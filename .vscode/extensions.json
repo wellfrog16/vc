@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "vue.volar",
+        "dbaeumer.vscode-eslint",
+        "stylelint.vscode-stylelint",
+        "oderwat.indent-rainbow",
+        "ryu1kn.partial-diff",
+        "jakob101.RelativePath",
+        "formulahendry.auto-rename-tag",
+        "eamodio.gitlens"
+    ]
+}

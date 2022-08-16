@@ -1,0 +1,15 @@
+@use 'element-plus/theme-chalk/src/index.scss' as *;
+
+.example {
+    .el-descriptions__table {
+        display: table;
+    }
+
+    tbody tr {
+        background-color: initial;
+    }
+
+    .el-descriptions__label {
+        width: 120px;
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "eslint.format.enable": true,
+  "eslint.run": "onSave",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  // #每次保存的时候自动格式化
+  // "editor.formatOnSave": true,
+  // "editor.formatOnType": true,
+  // "eslint.format.enable": true,
+  "eslint.options": {
+    "extensions": [
+      ".vue",
+      ".ts",
+      ".d.ts",
+      ".js"
+    ]
+  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.bracketPairColorization.enabled": true,
+  "stylelint.enable": true,
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "vue"
+  ],
+}

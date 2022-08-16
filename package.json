@@ -1,0 +1,26 @@
+{
+  "name": "@frog-res/element-plus-components",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config-vue": "^0.25.2",
+    "@frog-res/stylelint-config-vue-scss": "^1.0.0",
+    "@vitejs/plugin-vue": "^3.0.0",
+    "@vueuse/core": "^9.1.0",
+    "element-plus": "^2.2.13",
+    "eslint": "^8.20.0",
+    "sass": "^1.54.0",
+    "stylelint": "^14.9.1",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.0",
+    "vue": "^3.2.37",
+    "vue-tsc": "^0.38.4",
+    "vuepress": "2.0.0-beta.49"
+  }
+}

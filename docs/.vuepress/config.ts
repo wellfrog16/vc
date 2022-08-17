@@ -20,6 +20,7 @@ module.exports = {
                 link: 'http://www.baidu.com',
             },
         ],
+        sidebarDepth: 0,
         sidebar: {
             '/': [
                 {
@@ -39,13 +40,11 @@ module.exports = {
             ],
         },
     }),
-    // markdown: {
-    //     importCode: {
-    //         handleImportPath: (str) => {
-    //             console.log(str)
-    //             console.log('--------------')
-    //             return str.replace(/^@components/, path.resolve(__dirname, '/src/components'));
-    //         },
-    //     },
-    // },
+    markdown: {
+        importCode: {
+            handleImportPath: (str) => {
+                return str.replace(/^@/, path.resolve(__dirname, '../../src'));
+            },
+        },
+    },
 }

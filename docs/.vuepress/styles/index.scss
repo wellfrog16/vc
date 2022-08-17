@@ -13,3 +13,32 @@
         width: 120px;
     }
 }
+
+.usage {
+    th, td {
+        border: 0;
+    }
+
+    .el-table__header {
+        margin: 0;
+    }
+
+    .el-table__body-wrapper .el-scrollbar__view {
+        .el-table__body {
+            margin: 0;
+        }
+    }
+
+    .el-table .cell {
+        word-break: normal;
+    }
+
+    .el-table__body a:hover {
+        text-decoration: none;
+    }
+}
+
+table {
+    display: table;
+    width: 100%;
+}

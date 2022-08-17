@@ -44,6 +44,9 @@ const eleMain = ref<HTMLDivElement>()
 const eleText = ref<HTMLElement>()
 const eleEllipsis = ref<HTMLElement>()
 
+const mainStyle = computed(() => (props.maxWidth ? { width: `${props.maxWidth}px` } : {}))
+const fixStyle = computed(() => ({ width: `${realWidth.value}px` }))
+
 // 检查是否溢出
 const isOverflow = () => new Promise<boolean>(resolve => {
     tipsVisible.value = true
@@ -66,16 +69,12 @@ const update = async () => {
     const isOverflowX = await isOverflow()
     tipsVisible.value = isOverflowX
     textVisible.value = !isOverflowX
-    nextTick(() => {
-        realWidth.value = eleMain.value?.clientWidth || 0
-    })
+    realWidth.value = eleMain.value?.clientWidth || 0
 }
-
-const mainStyle = computed(() => (props.maxWidth ? { width: `${props.maxWidth}px` } : { width: '100%' }))
-const fixStyle = computed(() => ({ width: `${realWidth.value}px` }))
 
 // 可优化，只监听必要属性
 watch(props, () => update(), { immediate: true })
+watch(realWidth, () => update())
 onMounted(() => nextTick(() => update()))
 </script>
 

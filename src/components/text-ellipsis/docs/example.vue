@@ -1,13 +1,13 @@
 <template>
     <Wrapper>
-        <ElDescriptionsItem label="展示">
+        <ElDescriptionsItem label="展示区">
             <ElRow v-for="item in list" :key="item.id">
                 <ElCol :span="6">
                     <HTextEllipsis placement="top-start" :max-width="maxWidth" :show-tooltip="showTooltip">{{ item.title }}</HTextEllipsis>
                 </ElCol>
             </ElRow>
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="最大宽度">
+        <ElDescriptionsItem label="参数：最大宽度">
             <ElRow :gutter="20">
                 <ElCol :span="24">
                     <ElSlider v-model="myWidth" :max="400" @change="(val: any) => handleChange(val)" />
@@ -17,7 +17,7 @@
                 </ElCol>
             </ElRow>
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="显示Tooltip">
+        <ElDescriptionsItem label="参数：显示Tooltip">
             <ElSwitch v-model="showTooltip" />
         </ElDescriptionsItem>
     </Wrapper>

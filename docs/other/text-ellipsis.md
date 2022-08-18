@@ -1,5 +1,5 @@
 ---
-title: 单行省略号
+title: text-ellipsis
 ---
 
 ## 功能

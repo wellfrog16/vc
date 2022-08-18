@@ -20,7 +20,7 @@ module.exports = {
                 link: 'http://www.baidu.com',
             },
         ],
-        sidebarDepth: 0,
+        sidebarDepth: 1,
         sidebar: {
             '/': [
                 {
@@ -30,7 +30,7 @@ module.exports = {
                 {
                     text: '表单组件',
                     collapsible: true,
-                    children: ['/form/aaa.md', '/form/aaa.md'],
+                    children: ['/form/confirm-switch.md', '/form/aaa.md'],
                 },
                 {
                     text: '其他组件',

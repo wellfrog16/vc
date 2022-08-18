@@ -1,7 +1,7 @@
 <template>
     <div class="usage" :class="[$style.main]">
         <ElDivider v-if="data.params" content-position="left">参数</ElDivider>
-        <ElTable v-if="data.params" :data="data.params">
+        <ElTable v-if="data.params" :data="data.params" row-key="param">
             <ElTableColumn prop="param" label="名称" width="150" fixed />
             <ElTableColumn prop="description" label="说明" min-width="150" />
             <ElTableColumn prop="type" label="类型" min-width="150">
@@ -14,24 +14,24 @@
         </ElTable>
         <ElDivider v-if="data.methods" content-position="left">方法</ElDivider>
         <ElTable v-if="data.methods" :data="data.methods">
-            <ElTableColumn prop="name" label="方法" width="140" />
+            <ElTableColumn prop="name" label="方法" width="150" fixed />
             <ElTableColumn prop="description" label="说明" />
             <ElTableColumn prop="param" label="参数" />
         </ElTable>
         <ElDivider v-if="data.types" content-position="left">参数类型</ElDivider>
         <ElTable v-if="data.types" :data="data.types">
-            <ElTableColumn prop="param" label="类型" width="140" />
+            <ElTableColumn prop="param" label="类型" width="150" fixed />
             <ElTableColumn prop="description" label="说明" />
         </ElTable>
         <ElDivider v-if="data.events" content-position="left">事件</ElDivider>
         <ElTable v-if="data.events" :data="data.events">
-            <ElTableColumn prop="name" label="事件" width="140" />
+            <ElTableColumn prop="name" label="事件" width="150" fixed />
             <ElTableColumn prop="description" label="说明" />
             <ElTableColumn prop="param" label="回调参数" />
         </ElTable>
         <ElDivider v-if="data.slots" content-position="left">插槽</ElDivider>
-        <ElTable v-if="data.slots" :data="data.slots">
-            <ElTableColumn prop="name" label="名称" width="140" />
+        <ElTable v-if="data.slots" :data="data.slots" row-key="name">
+            <ElTableColumn prop="name" label="名称" width="150" fixed />
             <ElTableColumn prop="description" label="说明" />
         </ElTable>
     </div>

@@ -8,6 +8,8 @@
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
+    "declaration": true,
+    "outDir": "./dist", // 输出目录
     "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],

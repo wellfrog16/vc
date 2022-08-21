@@ -2,6 +2,7 @@ const { defaultTheme } = require('@vuepress/theme-default')
 const path = require('path')
 
 module.exports = {
+    base: '/element-plus-components/',
     lang: 'zh-CN',
     title: 'Element-plus-components',
     description: '基于element-plus的组件库，也包含独立组件',

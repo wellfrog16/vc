@@ -8,7 +8,7 @@ const resolve = dir => path.join(__dirname, dir)
 export default defineConfig({
     build: {
         lib: {
-            entry: path.resolve(__dirname, './src/main.ts'),
+            entry: path.resolve(__dirname, './src/index.ts'),
             name: 'element-plus-components',
             fileName: format => `index.${format}.js`,
         },

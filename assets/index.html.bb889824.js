@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-e4cb1150","path":"/other/","title":"","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[{"level":2,"title":"ertert","slug":"ertert","children":[]}],"git":{"updatedTime":1660843793000,"contributors":[{"name":"wellfrog","email":"wellfrog16@gmail.com","commits":2}]},"filePathRelative":"other/index.md"}');export{e as data};

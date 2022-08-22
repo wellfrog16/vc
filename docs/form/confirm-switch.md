@@ -14,7 +14,7 @@ title: confirm-switch
 
 <Simple />
 
-@[code vue{3-9}](@/components/confirm-switch/docs/simple.vue)
+@[code vue{3-9,18}](@/components/confirm-switch/docs/simple.vue)
 
 ## 用法
 

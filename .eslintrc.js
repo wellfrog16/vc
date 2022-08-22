@@ -5,10 +5,10 @@ module.exports = {
     globals: {
         IGlobal: 'readonly',
         $filters: 'readonly',
-    // defineProps: "readonly",
-    // defineEmits: "readonly",
-    // defineExpose: "readonly",
-    // withDefaults: "readonly",
+        // defineProps: 'readonly',
+        // defineEmits: 'readonly',
+        // defineExpose: "readonly",
+        // withDefaults: "readonly",
     },
     overrides: [
         {

@@ -21,7 +21,7 @@ module.exports = {
                 link: 'http://www.baidu.com',
             },
         ],
-        sidebarDepth: 1,
+        sidebarDepth: 0,
         sidebar: {
             '/': [
                 {
@@ -31,7 +31,10 @@ module.exports = {
                 {
                     text: '表单组件',
                     collapsible: true,
-                    children: ['/form/confirm-switch.md', '/form/aaa.md'],
+                    children: [
+                        '/form/confirm-switch.md',
+                        '/form/choice.md',
+                    ],
                 },
                 {
                     text: '其他组件',

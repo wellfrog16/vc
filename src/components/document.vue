@@ -4,13 +4,13 @@
         <ElTable v-if="data.params" :data="data.params" row-key="param">
             <ElTableColumn prop="param" label="名称" width="150" fixed />
             <ElTableColumn prop="description" label="说明" min-width="150" />
-            <ElTableColumn prop="type" label="类型" min-width="150">
+            <ElTableColumn prop="type" label="类型" min-width="100">
                 <template #default="{ row }">
                     <span v-if="row.type.indexOf('http') === -1">{{ row.type }}</span>
                     <ElLink v-else type="primary" target="_blank" :href="row.type">参考链接</ElLink>
                 </template>
             </ElTableColumn>
-            <ElTableColumn prop="defaultValue" label="默认值" width="100" />
+            <ElTableColumn prop="defaultValue" label="默认值" width="80" />
         </ElTable>
         <ElDivider v-if="data.methods" content-position="left">方法</ElDivider>
         <ElTable v-if="data.methods" :data="data.methods">
@@ -27,7 +27,12 @@
         <ElTable v-if="data.events" :data="data.events">
             <ElTableColumn prop="name" label="事件" width="150" fixed />
             <ElTableColumn prop="description" label="说明" />
-            <ElTableColumn prop="param" label="回调参数" />
+            <ElTableColumn prop="param" label="回调参数">
+                <template #default="{ row }">
+                    <span v-if="row.param.indexOf('http') === -1">{{ row.param }}</span>
+                    <ElLink v-else type="primary" target="_blank" :href="row.param">参考链接</ElLink>
+                </template>
+            </ElTableColumn>
         </ElTable>
         <ElDivider v-if="data.slots" content-position="left">插槽</ElDivider>
         <ElTable v-if="data.slots" :data="data.slots" row-key="name">

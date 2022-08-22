@@ -32,8 +32,9 @@ module.exports = {
                     text: '表单组件',
                     collapsible: true,
                     children: [
-                        '/form/confirm-switch.md',
                         '/form/choice.md',
+                        '/form/choice-boolean.md',
+                        '/form/confirm-switch.md',
                     ],
                 },
                 {

@@ -4,7 +4,7 @@ title: confirm-switch
 
 ## 功能
 
-用于确认 Switch 组件的操作
+基于 el-switch 和 el-popconfirm，用于确认 Switch 组件的操作
 
 ## 功能示例
 

@@ -19,7 +19,7 @@ export type IChoiceOption = IOption[] | string[] | number[]
 export const preProps = {
     name: { type: String, default: '' },
     multiple: { type: Boolean, default: false },
-    modelValue: { type: [String, Array] as PropType<string | string[] | number | number | boolean>, required: true },
+    modelValue: { type: [String, Array] as PropType<string | string[] | number | number[] | boolean>, required: true },
     options: { type: [Array, Function] as PropType<IChoiceOption | (() => Promise<IChoiceOption>)>, default: () => [] },
     props: { type: Object as PropType<Partial<IChoiceOptionProps>>, default: () => { } },
     expires: { type: [Date, Number] as PropType<Date | number>, default: 60 * 60 * 2 },
@@ -33,8 +33,7 @@ export interface IContext {
     emits: (event: 'update:modelValue' | 'init', ...args: any[]) => void
 }
 
-const storagPrefix = 'choice'
-const useChoice = ({ props, emits }: IContext) => {
+const useChoice = ({ props, emits }: IContext, storagPrefix: string) => {
     const loading = ref(false)
     const asyncOptions = ref<IChoiceOption>()
 

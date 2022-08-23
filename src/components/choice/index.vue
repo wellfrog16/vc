@@ -33,7 +33,7 @@ const emits = defineEmits(preEmit)
 const elLoading = ref()
 const loadingInstance = shallowRef()
 
-const { loading, myOptions, myProps, myValue } = useChoice({ props, emits })
+const { loading, myOptions, myProps, myValue } = useChoice({ props, emits }, 'choice')
 
 watch(loading, value => {
     nextTick(() => {

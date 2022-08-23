@@ -14,6 +14,21 @@
     }
 }
 
+.el-date-table {
+    th, td {
+        border: initial;
+    }
+
+    th {
+        border-bottom: solid 1px var(--el-border-color-lighter);
+    }
+
+    tbody tr {
+        background-color: initial;
+        border-top: initial;
+    }
+}
+
 .usage {
     th, td {
         border: 0;

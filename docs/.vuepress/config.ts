@@ -35,6 +35,7 @@ module.exports = {
                         '/form/choice.md',
                         '/form/choice-boolean.md',
                         '/form/confirm-switch.md',
+                        '/form/daterange-picker.md',
                         '/form/select.md',
                     ],
                 },

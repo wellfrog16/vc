@@ -42,7 +42,10 @@ module.exports = {
                 {
                     text: '其他组件',
                     collapsible: true,
-                    children: ['/other/text-ellipsis', '/other/index.md'],
+                    children: [
+                        '/other/awesome-icon.md',
+                        '/other/text-ellipsis',
+                    ],
                 },
             ],
         },

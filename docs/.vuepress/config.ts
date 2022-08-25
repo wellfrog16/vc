@@ -44,6 +44,7 @@ module.exports = {
                     collapsible: true,
                     children: [
                         '/other/awesome-icon.md',
+                        '/other/svg-icon.md',
                         '/other/text-ellipsis',
                     ],
                 },

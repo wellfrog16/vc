@@ -2,12 +2,12 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <div :class="$style.icons">
-                <HAwesomeIcon name="fa-brands fa-bilibili" />
-                <HAwesomeIcon name="fa-solid fa-car-side" />
-                <HAwesomeIcon name="fa-solid fa-chart-line" />
-                <HAwesomeIcon name="fa-brands fa-github-alt" />
-                <HAwesomeIcon name="fa-regular fa-face-laugh-beam" />
-                <HAwesomeIcon name="fa-regular fa-id-card" />
+                <HSVGIcon name="music" />
+                <HSVGIcon name="star" />
+                <HSVGIcon name="dream" />
+                <HSVGIcon name="component" />
+                <HSVGIcon name="eleme" />
+                <HSVGIcon name="business" />
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="大小控制">
@@ -16,16 +16,20 @@
         <ElDescriptionsItem label="颜色控制">
             <HChoice v-model="mycolor" :options="colors" />
         </ElDescriptionsItem>
+        <!-- <ElDescriptionsItem label="颜色控制">
+            <HChoiceBoolean v-model="box" />
+        </ElDescriptionsItem> -->
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, onBeforeMount, ref } from 'vue'
 import { ElDescriptionsItem, ElSlider } from 'element-plus'
+import { loader } from '@frog-res/h-utils'
 import Wrapper from '@/components/example-wrapper.vue'
 import HChoice from '@/components/choice/index.vue'
-import HAwesomeIcon from '../index.vue'
-import 'https://vuepress-theme-mix.vercel.app/assets/basic.html.cabafa5c.js'
+// import HChoiceBoolean from '@/components/choice-boolean/index.vue'
+import HSVGIcon from '../index.vue'
 
 const fontsize = ref(18)
 const iconsize = computed(() => `${fontsize.value}px`)
@@ -37,6 +41,13 @@ const colors = [
     { label: '金色', value: 'gold' },
 ]
 const mycolor = ref('deeppink')
+// const box = ref(false)
+
+const loaderResource = async () => {
+    await loader.loadScriptSingle('//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js')
+}
+
+onBeforeMount(() => loaderResource())
 </script>
 
 <style lang="scss" module>

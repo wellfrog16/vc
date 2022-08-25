@@ -31,7 +31,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config-vue": "^0.25.2",
-    "@frog-res/h-utils": "^1.0.3",
+    "@element-plus/icons-vue": "^2.0.9",
+    "@frog-res/h-utils": "^1.0.4",
     "@frog-res/stylelint-config-vue-scss": "^1.0.0",
     "@vitejs/plugin-vue": "^3.0.0",
     "@vueuse/core": "^9.1.0",

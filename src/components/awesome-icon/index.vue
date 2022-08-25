@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount } from 'vue'
-import { loader } from '@frog-res/h-utils'
+import { onMounted } from 'vue'
+import { defaultWindow, loader } from '@frog-res/h-utils'
 import type { PropType } from 'vue'
 
 const props = defineProps({
@@ -17,10 +17,12 @@ const loaderSource = async () => {
     await loader.loadCdnSingle(cdn)
 }
 
-onBeforeMount(() => {
-    if (!window.ElementPlusComponents?.isLock) {
-        window.ElementPlusComponents = { isLock: true }
-        loaderSource()
+onMounted(() => {
+    if (defaultWindow) {
+        if (!defaultWindow.ElementPlusComponents?.isLock) {
+            defaultWindow.ElementPlusComponents = { isLock: true }
+            loaderSource()
+        }
     }
 })
 </script>

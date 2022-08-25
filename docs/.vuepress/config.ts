@@ -2,7 +2,7 @@ const { defaultTheme } = require('@vuepress/theme-default')
 const path = require('path')
 
 module.exports = {
-    base: '/element-plus-components/',
+    base: '/',
     lang: 'zh-CN',
     title: 'Element-plus-components',
     description: '基于element-plus的组件库，也包含独立组件',
@@ -44,6 +44,7 @@ module.exports = {
                     collapsible: true,
                     children: [
                         '/other/awesome-icon.md',
+                        '/other/el-icon.md',
                         '/other/svg-icon.md',
                         '/other/text-ellipsis',
                     ],

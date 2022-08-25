@@ -2,12 +2,11 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <div :class="$style.icons" :style="myStyle">
-                <HSVGIcon name="music" />
-                <HSVGIcon name="star" />
-                <HSVGIcon name="dream" />
-                <HSVGIcon name="component" />
-                <HSVGIcon name="eleme" />
-                <HSVGIcon name="business" />
+                <HElIcon name="Aim" />
+                <HElIcon name="Link" />
+                <HElIcon name="Edit" />
+                <HElIcon name="Message" />
+                <HElIcon name="ShoppingCart" />
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="大小控制">
@@ -23,13 +22,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onBeforeMount, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { ElDescriptionsItem, ElSlider } from 'element-plus'
-import { loader } from '@frog-res/h-utils'
 import Wrapper from '@/components/example-wrapper.vue'
 import HChoice from '@/components/choice/index.vue'
-// import HChoiceBoolean from '@/components/choice-boolean/index.vue'
-import HSVGIcon from '../index.vue'
+import HElIcon from '../index.vue'
 
 const fontsize = ref(18)
 const colors = [
@@ -41,13 +38,6 @@ const colors = [
 ]
 const mycolor = ref('deeppink')
 const myStyle = computed(() => ({ color: mycolor.value, fontSize: `${fontsize.value}px` }))
-// const box = ref(false)
-
-const loaderResource = async () => {
-    await loader.loadScriptSingle('//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js')
-}
-
-onBeforeMount(() => loaderResource())
 </script>
 
 <style lang="scss" module>

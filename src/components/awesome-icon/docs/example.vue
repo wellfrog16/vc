@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <div :class="$style.icons">
+            <div :class="$style.icons" :style="myStyle">
                 <HAwesomeIcon name="fa-brands fa-bilibili" />
                 <HAwesomeIcon name="fa-solid fa-car-side" />
                 <HAwesomeIcon name="fa-solid fa-chart-line" />
@@ -25,10 +25,8 @@ import { ElDescriptionsItem, ElSlider } from 'element-plus'
 import Wrapper from '@/components/example-wrapper.vue'
 import HChoice from '@/components/choice/index.vue'
 import HAwesomeIcon from '../index.vue'
-import 'https://vuepress-theme-mix.vercel.app/assets/basic.html.cabafa5c.js'
 
 const fontsize = ref(18)
-const iconsize = computed(() => `${fontsize.value}px`)
 const colors = [
     { label: '粉红', value: 'deeppink' },
     { label: '黄绿', value: 'yellowgreen' },
@@ -37,13 +35,11 @@ const colors = [
     { label: '金色', value: 'gold' },
 ]
 const mycolor = ref('deeppink')
+const myStyle = computed(() => ({ color: mycolor.value, fontSize: `${fontsize.value}px` }))
 </script>
 
 <style lang="scss" module>
 .icons {
-    font-size: v-bind(iconsize);
-    color: v-bind(mycolor);
-
     > * + * {
         margin-left: 1em;
     }

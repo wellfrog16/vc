@@ -27,5 +27,6 @@ export default defineComponent({
     justify-content: center;
     width: 1em;
     height: 1em;
+    vertical-align: middle;
 }
 </style>

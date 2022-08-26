@@ -1,5 +1,5 @@
 <template>
-    <i class="awesome-icon" :class="[props.name, $style.icon]" />
+    <i class="awesome-icon" :class="props.name" />
 </template>
 
 <script lang="ts" setup>
@@ -26,9 +26,3 @@ onMounted(() => {
     }
 })
 </script>
-
-<style lang="scss" module>
-.icon {
-    vertical-align: middle;
-}
-</style>

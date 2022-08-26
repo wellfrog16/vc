@@ -16,7 +16,7 @@ const props = defineProps({
     height: 1em;
     overflow: hidden;
     font-size: 1em;
-    vertical-align: middle;
+    vertical-align: -0.15em;
     fill: currentcolor;
 }
 </style>

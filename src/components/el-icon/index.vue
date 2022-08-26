@@ -21,7 +21,7 @@ export default defineComponent({
 
 <style lang="scss" module>
 .icon {
-    vertical-align: -0.15em;
+    vertical-align: middle;
 
     &:global(.el-icon) {
         font-size: 1em;

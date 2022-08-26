@@ -7,6 +7,7 @@
                 <HElIcon name="Edit" />
                 <HElIcon name="Message" />
                 <HElIcon name="ShoppingCart" />
+                <HElIcon name="MoonNight" />
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="大小控制">
@@ -15,9 +16,6 @@
         <ElDescriptionsItem label="颜色控制">
             <HChoice v-model="mycolor" :options="colors" />
         </ElDescriptionsItem>
-        <!-- <ElDescriptionsItem label="颜色控制">
-            <HChoiceBoolean v-model="box" />
-        </ElDescriptionsItem> -->
     </Wrapper>
 </template>
 
@@ -42,6 +40,9 @@ const myStyle = computed(() => ({ color: mycolor.value, fontSize: `${fontsize.va
 
 <style lang="scss" module>
 .icons {
+    display: flex;
+    align-items: center;
+
     > * + * {
         margin-left: 1em;
     }

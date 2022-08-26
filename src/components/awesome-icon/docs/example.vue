@@ -40,6 +40,9 @@ const myStyle = computed(() => ({ color: mycolor.value, fontSize: `${fontsize.va
 
 <style lang="scss" module>
 .icons {
+    display: flex;
+    align-items: center;
+
     > * + * {
         margin-left: 1em;
     }

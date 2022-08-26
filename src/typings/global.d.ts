@@ -4,6 +4,7 @@ declare namespace IGlobal {
 
 interface Window {
     ElementPlusComponents: {
-        isLock: boolean
+        isAwesomeIconLock?: boolean
+        isSVGIconLock?: boolean
     }
 }

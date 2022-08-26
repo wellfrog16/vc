@@ -46,6 +46,7 @@ module.exports = {
                         '/other/awesome-icon.md',
                         '/other/el-icon.md',
                         '/other/svg-icon.md',
+                        '/other/icon.md',
                         '/other/text-ellipsis',
                     ],
                 },

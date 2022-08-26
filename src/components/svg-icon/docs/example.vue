@@ -16,21 +16,18 @@
         <ElDescriptionsItem label="颜色控制">
             <HChoice v-model="mycolor" :options="colors" />
         </ElDescriptionsItem>
-        <!-- <ElDescriptionsItem label="颜色控制">
-            <HChoiceBoolean v-model="box" />
-        </ElDescriptionsItem> -->
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import { computed, onBeforeMount, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { ElDescriptionsItem, ElSlider } from 'element-plus'
-import { loader } from '@frog-res/h-utils'
 import Wrapper from '@/components/example-wrapper.vue'
 import HChoice from '@/components/choice/index.vue'
-// import HChoiceBoolean from '@/components/choice-boolean/index.vue'
 import HSVGIcon from '../index.vue'
+import useExample from '../useExample'
 
+useExample()
 const fontsize = ref(18)
 const colors = [
     { label: '粉红', value: 'deeppink' },
@@ -41,17 +38,13 @@ const colors = [
 ]
 const mycolor = ref('deeppink')
 const myStyle = computed(() => ({ color: mycolor.value, fontSize: `${fontsize.value}px` }))
-// const box = ref(false)
-
-const loaderResource = async () => {
-    await loader.loadScriptSingle('//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js')
-}
-
-onBeforeMount(() => loaderResource())
 </script>
 
 <style lang="scss" module>
 .icons {
+    display: flex;
+    align-items: center;
+
     > * + * {
         margin-left: 1em;
     }

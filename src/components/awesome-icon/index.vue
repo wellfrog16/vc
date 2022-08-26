@@ -1,5 +1,5 @@
 <template>
-    <i class="awesome-icon" :class="props.name" />
+    <i class="awesome-icon" :class="[props.name, $style.icon]" />
 </template>
 
 <script lang="ts" setup>
@@ -19,10 +19,16 @@ const loaderSource = async () => {
 
 onMounted(() => {
     if (defaultWindow) {
-        if (!defaultWindow.ElementPlusComponents?.isLock) {
-            defaultWindow.ElementPlusComponents = { isLock: true }
+        if (!defaultWindow.ElementPlusComponents?.isAwesomeIconLock) {
+            defaultWindow.ElementPlusComponents = { ...defaultWindow.ElementPlusComponents, isAwesomeIconLock: true }
             loaderSource()
         }
     }
 })
 </script>
+
+<style lang="scss" module>
+.icon {
+    vertical-align: middle;
+}
+</style>

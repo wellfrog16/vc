@@ -15,7 +15,7 @@ export default defineComponent({
     components: { HEl, HSvg, HAwesome },
     props: {
         name: { type: String, required: true },
-        type: { type: String as PropType<'el' | 'svg' | 'awesome'>, required: true },
+        type: { type: String as PropType<IGlobal.IconType>, required: true },
     },
 })
 </script>

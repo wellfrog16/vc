@@ -1,6 +1,6 @@
 <template>
     <ElDescriptions ref="el" :column="1" border class="example" :direction="direction">
-        <slot />
+        <slot :direction="direction" />
     </ElDescriptions>
 </template>
 

@@ -48,6 +48,7 @@ module.exports = {
                         '/other/svg-icon',
                         '/other/icon',
                         '/other/button',
+                        '/other/easy-pagination',
                         '/other/screenfull',
                         '/other/text-ellipsis',
                     ],

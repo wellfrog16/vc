@@ -11,6 +11,9 @@ module.exports = {
         '@': path.resolve(__dirname, '../../src'),
     },
     theme: defaultTheme({
+        themePlugins: {
+            mediumZoom: false,
+        },
         navbar: [
             {
                 text: '指南',
@@ -44,12 +47,13 @@ module.exports = {
                     text: '其他组件',
                     collapsible: true,
                     children: [
+                        '/other/easy-pagination',
                         '/other/awesome-icon',
                         '/other/el-icon',
                         '/other/svg-icon',
                         '/other/icon',
                         '/other/button',
-                        '/other/easy-pagination',
+                        '/other/image',
                         '/other/screenfull',
                         '/other/text-ellipsis',
                     ],

@@ -76,6 +76,7 @@ const update = async () => {
 watch(props, () => update(), { immediate: true })
 watch(realWidth, () => update())
 onMounted(() => nextTick(() => update()))
+defineExpose({ tipsVisible })
 </script>
 
 <style lang="scss" module>

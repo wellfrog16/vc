@@ -1,5 +1,5 @@
 <template>
-    <span v-if="loading" ref="elLoading" :class="$style.loading" />
+    <span v-if="loading" v-loading="loading" :class="$style.loading" />
     <template v-else>
         <ElRadioGroup v-if="!props.multiple" v-model="myValue" v-bind="$attrs" :class="$style.radio">
             <ElRadioButton
@@ -23,28 +23,13 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, ref, shallowRef, watch } from 'vue'
-import { ElCheckboxButton, ElCheckboxGroup, ElLoading, ElRadioButton, ElRadioGroup } from 'element-plus'
+import { ElCheckboxButton, ElCheckboxGroup, ElRadioButton, ElRadioGroup, vLoading } from 'element-plus'
 import useChoice, { preEmit, preProps } from './useChoice'
 
 const props = defineProps(preProps)
 const emits = defineEmits(preEmit)
 
-const elLoading = ref()
-const loadingInstance = shallowRef()
-
 const { loading, myOptions, myProps, myValue } = useChoice({ props, emits }, 'choice')
-
-watch(loading, value => {
-    nextTick(() => {
-        if (!elLoading.value) { return }
-        if (value) {
-            loadingInstance.value = ElLoading.service({ target: elLoading.value, fullscreen: false })
-            return
-        }
-        loadingInstance.value.close()
-    })
-})
 </script>
 
 <style lang="scss" module>

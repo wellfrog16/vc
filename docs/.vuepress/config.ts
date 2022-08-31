@@ -41,6 +41,7 @@ module.exports = {
                         '/form/daterange-picker',
                         '/form/select',
                         '/form/thousand-input',
+                        '/form/tree-picker',
                     ],
                 },
                 {

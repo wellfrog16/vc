@@ -1,5 +1,5 @@
 import { loader } from '@frog-res/h-utils'
-import { isNumber } from 'lodash'
+import { isNumber } from 'lodash-es'
 import type { Directive } from 'vue'
 
 const thousand: Directive = {

@@ -6,6 +6,8 @@ module.exports = {
     lang: 'zh-CN',
     title: 'Element-plus-components',
     description: '基于element-plus的组件库，也包含独立组件',
+    // templateDev: path.resolve(__dirname, './templates/dev.html'),
+    // templateBuild: path.resolve(__dirname, './templates/build.html'),
     alias: {
         // '@components': path.resolve(__dirname, '../../src/components'),
         '@': path.resolve(__dirname, '../../src'),
@@ -42,7 +44,6 @@ module.exports = {
                         '/form/select',
                         '/form/thousand-input',
                         '/form/tree-picker',
-                        '/form/upload-file',
                     ],
                 },
                 {
@@ -56,8 +57,10 @@ module.exports = {
                         '/other/icon',
                         '/other/button',
                         '/other/image',
+                        '/other/qr-code',
                         '/other/screenfull',
                         '/other/text-ellipsis',
+                        '/other/upload-file',
                     ],
                 },
             ],

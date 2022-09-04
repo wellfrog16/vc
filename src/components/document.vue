@@ -1,16 +1,16 @@
 <template>
     <div class="usage" :class="[$style.main]">
         <ElDivider v-if="data.params" content-position="left">参数</ElDivider>
-        <ElTable v-if="data.params" :data="data.params" row-key="param">
+        <ElTable v-if="data.params" :data="data.params" row-key="param" :span-method="spanMethod">
             <ElTableColumn prop="param" label="名称" width="150" fixed />
             <ElTableColumn prop="description" label="说明" min-width="150" />
             <ElTableColumn prop="type" label="类型" min-width="100">
                 <template #default="{ row }">
-                    <span v-if="row.type.indexOf('http') === -1">{{ row.type }}</span>
+                    <span v-if="row.type && row.type.indexOf('http') === -1">{{ row.type }}</span>
                     <ElLink v-else type="primary" target="_blank" :href="row.type">参考链接</ElLink>
                 </template>
             </ElTableColumn>
-            <ElTableColumn prop="defaultValue" label="默认值" width="80" />
+            <ElTableColumn prop="defaultValue" label="默认值" width="80" :show-overflow-tooltip="false" />
         </ElTable>
         <ElDivider v-if="data.methods" content-position="left">方法</ElDivider>
         <ElTable v-if="data.methods" :data="data.methods">
@@ -48,6 +48,32 @@ import { ElDivider, ElLink, ElTable, ElTableColumn } from 'element-plus'
 defineProps({
     data: { type: Object, required: true, default: () => ({}) },
 })
+
+const spanMethod = ({
+    row,
+    column,
+    rowIndex,
+    columnIndex,
+}: any) => {
+    if (row.rowType === 'defaultValue') {
+        if (columnIndex === 0) { return [1, 1] }
+        if (columnIndex === 1) {
+            return [1, 3]
+        }
+        else {
+            return [0, 0]
+        }
+    }
+    return [1, 1]
+    // if (rowIndex % 2 === 0) {
+    //     if (columnIndex === 0) {
+    //         return [1, 2]
+    //     }
+    //     else if (columnIndex === 1) {
+    //         return [0, 0]
+    //     }
+    // }
+}
 </script>
 
 <style lang="scss" module>

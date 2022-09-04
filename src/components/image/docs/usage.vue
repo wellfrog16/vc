@@ -15,7 +15,10 @@ const documentData = {
         { param: 'preview-src-list', description: '点击放大的图片组列表', type: 'string[]', defaultValue: '[src]' },
         { param: 'width', description: 'type 为 image 时图片的宽度', type: 'string', defaultValue: '160px' },
         { param: 'height', description: 'type 为 image 时图片的高度', type: 'string', defaultValue: '90px' },
-        { param: 'fit', description: '原生图片的 fit', type: 'fill | contain | cover | none | scale-down', defaultValue: 'cover' },
+        { param: 'fit', description: '原生图片的 fit', type: 'ImageFit', defaultValue: 'cover' },
+    ],
+    types: [
+        { param: 'ImageFit', description: 'fill | contain | cover | none | scale-down' },
     ],
     slots: [
         { name: 'default', description: 'type 为 text 文本内容，优先级大于 text' },

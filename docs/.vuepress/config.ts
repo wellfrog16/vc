@@ -42,6 +42,7 @@ module.exports = {
                         '/form/select',
                         '/form/thousand-input',
                         '/form/tree-picker',
+                        '/form/upload-file',
                     ],
                 },
                 {

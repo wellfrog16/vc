@@ -58,7 +58,7 @@ const props = defineProps({
     previewSrcList: { type: Array as PropType<string[]>, default: () => [] },
     width: { type: String, default: '160px' },
     height: { type: String, default: '90px' },
-    fit: { type: String as PropType<'fill' | 'contain' | 'cover' | 'none' | 'scale-down'>, default: 'cover' },
+    fit: { type: String as PropType<IGlobal.ImageFit>, default: 'cover' },
     textMaxWidth: { type: Number, default: 0 },
 
     // tooltip的参数

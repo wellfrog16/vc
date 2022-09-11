@@ -31,7 +31,7 @@ title: svg-icon
 
 @[code vue{3}](@/components/svg-icon/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

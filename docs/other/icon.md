@@ -20,7 +20,7 @@ awesome-icon、el-icon、svg-icon 的三合一组件，消除了 3 种 icon 之�
 
 @[code vue{3-5}](@/components/icon/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

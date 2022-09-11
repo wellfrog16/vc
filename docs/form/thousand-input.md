@@ -16,7 +16,7 @@ title: thousand-input
 
 @[code vue{3,12}](@/components/thousand-input/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

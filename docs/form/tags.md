@@ -22,7 +22,7 @@ npm i vuedraggable-es@^4.1.1
 
 @[code vue{3,12}](@/components/tags/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

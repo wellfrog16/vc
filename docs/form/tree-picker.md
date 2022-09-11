@@ -18,7 +18,7 @@ title: tree-picker
 
 @[code vue{3,10,13}](@/components/tree-picker/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

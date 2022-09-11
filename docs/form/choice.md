@@ -18,7 +18,7 @@ title: choice
 
 @[code vue{3,12,13}](@/components/choice/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

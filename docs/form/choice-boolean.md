@@ -22,7 +22,7 @@ title: choice-boolean
 
 @[code vue{3,12}](@/components/choice-boolean/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

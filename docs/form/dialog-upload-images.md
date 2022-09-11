@@ -22,7 +22,7 @@ npm i vuedraggable-es@^4.1.1
 
 @[code vue{3-10,21-40}](@/components/dialog-upload-images/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

@@ -21,7 +21,7 @@ title: upload-file
 
 @[code vue{3,13-22}](@/components/upload-file/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

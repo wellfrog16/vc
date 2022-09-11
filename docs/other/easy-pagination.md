@@ -17,7 +17,7 @@ title: easy-pagination
 
 @[code vue{3,12,13}](@/components/easy-pagination/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

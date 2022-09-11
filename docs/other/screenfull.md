@@ -21,7 +21,7 @@ title: screenfull
 
 @[code vue{3}](@/components/screenfull/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

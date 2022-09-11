@@ -20,7 +20,7 @@ title: daterange-picker
 
 @[code vue{3,12}](@/components/daterange-picker/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

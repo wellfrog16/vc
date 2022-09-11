@@ -18,7 +18,7 @@ title: select
 
 @[code vue{3,12,13}](@/components/select/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

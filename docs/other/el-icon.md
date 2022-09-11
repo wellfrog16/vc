@@ -20,7 +20,7 @@ title: el-icon
 
 @[code vue{3}](@/components/el-icon/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

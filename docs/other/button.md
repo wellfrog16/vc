@@ -20,7 +20,7 @@ title: button
 
 @[code vue{3-5}](@/components/button/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

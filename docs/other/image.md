@@ -20,7 +20,7 @@ el-image 的修改版，增加文字展示方式，点击展开大图
 
 @[code vue{3-5}](@/components/image/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

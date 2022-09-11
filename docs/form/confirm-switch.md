@@ -16,7 +16,7 @@ title: confirm-switch
 
 @[code vue{3-9,18}](@/components/confirm-switch/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

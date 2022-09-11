@@ -23,7 +23,7 @@ staticfile 和 baomitu 等 cdn 源只有 1.0.0 的版本，使用这些 cdn 源�
 
 @[code vue{3,13-22}](@/components/qr-code/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

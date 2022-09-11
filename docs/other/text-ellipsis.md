@@ -16,7 +16,7 @@ title: text-ellipsis
 
 @[code vue{3-5}](@/components/text-ellipsis/docs/simple.vue)
 
-## 用法
+## API
 
 <Usage />
 

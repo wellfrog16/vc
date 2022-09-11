@@ -1,8 +1,8 @@
 <template>
-    <ElButton v-bind="attrs">
-        <HIcon v-if="position === 'left'" :type="type" :name="name" :class="$style.left" />
+    <ElButton v-bind="attrs" :class="$style.button">
+        <HIcon v-if="position === 'left'" :type="type" :name="name" />
         <span v-if="$slots.default"><slot /></span>
-        <HIcon v-if="position === 'right'" :type="type" :name="name" :class="$style.right" />
+        <HIcon v-if="position === 'right'" :type="type" :name="name" />
     </ElButton>
 </template>
 
@@ -22,11 +22,9 @@ const { name, type = 'el', position = 'left' } = props.icon
 </script>
 
 <style lang="scss" module>
-.left {
-    margin-right: 0.5em;
-}
-
-.right {
-    margin-left: 0.5em;
+.button {
+    > span > * + * {
+        margin-left: 0.5em;
+    }
 }
 </style>

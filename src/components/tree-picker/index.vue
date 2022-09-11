@@ -1,9 +1,8 @@
 <template>
     <ElPopover
         ref="myPopover"
-        v-model:visible="popoverVisible"
+        :visible="popoverVisible"
         placement="bottom"
-        trigger="contextmenu"
         :popper-class="$style.popover"
         @before-enter="() => toggleCascaderVisible()"
         @after-leave="() => toggleCascaderVisible()"

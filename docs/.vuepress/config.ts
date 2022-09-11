@@ -42,6 +42,7 @@ module.exports = {
                         '/form/confirm-switch',
                         '/form/daterange-picker',
                         '/form/select',
+                        '/form/tags',
                         '/form/thousand-input',
                         '/form/tree-picker',
                     ],

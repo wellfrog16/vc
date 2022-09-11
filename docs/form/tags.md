@@ -1,0 +1,33 @@
+---
+title: tags
+---
+
+## 功能
+
+基于 el-tag，用于标签组的编辑，可以拖拽排序
+
+:::tip
+此组件依赖 vuedraggable-es
+
+npm i vuedraggable-es@^4.1.1
+:::
+
+## 功能示例
+
+<Example />
+
+## 简单示例
+
+<Simple />
+
+@[code vue{3,12}](@/components/tags/docs/simple.vue)
+
+## 用法
+
+<Usage />
+
+<script setup>
+import Example from "@/components/tags/docs/example.vue";
+import Simple from "@/components/tags/docs/simple.vue";
+import Usage from "@/components/tags/docs/usage.vue";
+</script>

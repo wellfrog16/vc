@@ -4,10 +4,10 @@ title: tags
 
 ## 功能
 
-基于 el-tag，用于标签组的编辑，可以拖拽排序
+基于 el-tag，用于标签组的编辑，可以**拖拽**排序
 
 :::tip
-此组件依赖 vuedraggable-es
+此组件依赖 vuedraggable-es，使用时需要
 
 npm i vuedraggable-es@^4.1.1
 :::

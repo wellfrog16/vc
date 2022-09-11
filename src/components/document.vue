@@ -55,7 +55,7 @@ const spanMethod = ({
     rowIndex,
     columnIndex,
 }: any) => {
-    if (row.rowType === 'defaultValue') {
+    if (['defaultValue', 'paramType'].includes(row.rowType)) {
         if (columnIndex === 0) { return [1, 1] }
         if (columnIndex === 1) {
             return [1, 3]
@@ -65,14 +65,6 @@ const spanMethod = ({
         }
     }
     return [1, 1]
-    // if (rowIndex % 2 === 0) {
-    //     if (columnIndex === 0) {
-    //         return [1, 2]
-    //     }
-    //     else if (columnIndex === 1) {
-    //         return [0, 0]
-    //     }
-    // }
 }
 </script>
 

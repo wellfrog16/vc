@@ -41,6 +41,7 @@ module.exports = {
                         '/form/choice-boolean',
                         '/form/confirm-switch',
                         '/form/daterange-picker',
+                        '/form/dialog-upload-images',
                         '/form/select',
                         '/form/tags',
                         '/form/thousand-input',

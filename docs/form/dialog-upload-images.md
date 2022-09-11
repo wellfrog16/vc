@@ -1,0 +1,33 @@
+---
+title: dialog-upload-images
+---
+
+## 功能
+
+用于一次上传多张图片，支持**拖拽**排序
+
+:::tip
+此组件依赖 vuedraggable-es，使用时需要
+
+npm i vuedraggable-es@^4.1.1
+:::
+
+## 功能示例
+
+<Example />
+
+## 简单示例
+
+<Simple />
+
+@[code vue{3-10,21-40}](@/components/dialog-upload-images/docs/simple.vue)
+
+## 用法
+
+<Usage />
+
+<script setup>
+import Example from "@/components/dialog-upload-images/docs/example.vue";
+import Simple from "@/components/dialog-upload-images/docs/simple.vue";
+import Usage from "@/components/dialog-upload-images/docs/usage.vue";
+</script>

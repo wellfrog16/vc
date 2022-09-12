@@ -34,6 +34,7 @@ export { default as HSVGIcon } from './components/svg-icon/index.vue'
 export { default as HTags } from './components/tags/index.vue'
 export { default as HTextEllipsis } from './components/text-ellipsis/index.vue'
 export { default as HThousandInput } from './components/thousand-input/index.vue'
+export { default as HTinymce } from './components/tinymce/index.vue'
 export { default as HTreePicker } from './components/tree-picker/index.vue'
 export { default as HUploadFile } from './components/upload-file/index.vue'
 

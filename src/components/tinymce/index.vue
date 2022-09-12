@@ -71,7 +71,6 @@ const tinymceInit = async () => {
         image_uploadtab: true,
         images_upload_handler: props.httpRequest,
         init_instance_callback: editor => {
-            console.log(99999999999)
             if (props.modelValue) { editor.setContent(props.modelValue) }
 
             // self.hasInit = true;

@@ -62,6 +62,7 @@ module.exports = {
                         '/other/image',
                         '/other/qr-code',
                         '/other/screenfull',
+                        '/other/single-player',
                         '/other/text-ellipsis',
                         '/other/upload-file',
                     ],

@@ -17,5 +17,9 @@ const documentData = {
     types: [
         { param: 'UploadHandler', description: '(blobInfo, onSccuess, onFailed) => void，详情请查阅tinymce.d.ts' },
     ],
+    methods: [
+        { name: 'setContent', description: '设置编辑器的内容', param: 'val: string' },
+        { name: 'getContent', description: '获取编辑器的内容', param: '-' },
+    ],
 }
 </script>

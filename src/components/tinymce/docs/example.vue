@@ -15,6 +15,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ElDescriptionsItem } from 'element-plus'
+import { defaultWindow } from '@frog-res/h-utils'
 import Wrapper from '@/components/example-wrapper.vue'
 import HChoice from '@/components/choice/index.vue'
 import HTinymce from '../index.vue'
@@ -26,28 +27,14 @@ const config = ref<keyof typeof configs>('mini')
 const data = Object.keys(configs)
 
 const httpRequest: RawEditorSettings['images_upload_handler'] = (blobInfo, onSccuess, onFailed) => {
-    const blobUrl = window.URL.createObjectURL(blobInfo.blob())
-    console.log(blobInfo, onSccuess, onFailed)
-    // if (!blobUrl) {
-    //     onSccuess(blobUrl)
-    // }
-    // else {
-    //     onFailed('上传失败')
-    // }
+    if (!defaultWindow) { return }
+
+    const blobUrl = defaultWindow.URL.createObjectURL(blobInfo.blob())
+    if (blobUrl) {
+        onSccuess(blobUrl)
+    }
+    else {
+        onFailed('上传失败')
+    }
 }
 </script>
-
-<style lang="scss" module>
-.icons {
-    display: flex;
-    align-items: center;
-
-    & + .icons {
-        margin-top: 12px;
-    }
-
-    > * + * {
-        margin-left: 1em;
-    }
-}
-</style>

@@ -62,7 +62,7 @@ const props = defineProps({
     regexp: { type: RegExp as PropType<RegExp>, default: /\S+/ },
     errorMessage: { type: String, default: '' },
     readonly: { type: Boolean, default: false },
-    valueFormat: { type: Function as PropType<(val: string | number) => string | number>, default: (val: string | number) => {} },
+    valueFormat: { type: Function as PropType<(val: string | number) => string | number>, default: (val: string | number) => val },
 })
 
 const emits = defineEmits(['update:modelValue', 'change'])
@@ -85,7 +85,7 @@ const tags = computed({
         return props.modelValue.map(tag => ({ name: tag, editVisible: tag === bakTag.value }))
     },
     set(val: any[]) {
-        const data = val.map(item => props.valueFormat(item))
+        const data = val.map(item => props.valueFormat(item.name || item))
         emits('update:modelValue', data)
     },
 })

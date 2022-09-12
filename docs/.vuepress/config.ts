@@ -6,8 +6,8 @@ module.exports = {
     lang: 'zh-CN',
     title: 'Element-plus-components',
     description: '基于element-plus的组件库，也包含独立组件',
-    // templateDev: path.resolve(__dirname, './templates/dev.html'),
-    // templateBuild: path.resolve(__dirname, './templates/build.html'),
+    templateDev: path.resolve(__dirname, './templates/dev.html'),
+    templateBuild: path.resolve(__dirname, './templates/build.html'),
     alias: {
         // '@components': path.resolve(__dirname, '../../src/components'),
         '@': path.resolve(__dirname, '../../src'),
@@ -45,6 +45,7 @@ module.exports = {
                         '/form/select',
                         '/form/tags',
                         '/form/thousand-input',
+                        '/form/tinymce',
                         '/form/tree-picker',
                     ],
                 },

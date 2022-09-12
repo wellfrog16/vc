@@ -16,7 +16,7 @@ title: choice-boolean
 
 <Example />
 
-## 简单示例
+## 最小示例
 
 <Simple />
 

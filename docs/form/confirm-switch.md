@@ -10,7 +10,7 @@ title: confirm-switch
 
 <Example />
 
-## 简单示例
+## 最小示例
 
 <Simple />
 

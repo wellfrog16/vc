@@ -23,6 +23,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { ElImage, ElUpload, vLoading } from 'element-plus'
+import { defaultWindow } from '@frog-res/h-utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import HButton from '@/components/button/index.vue'
 import myProps, { buttonOptions, imageOptions } from './props'
@@ -82,8 +83,9 @@ const handleBeforeUpload = (file: UploadRawFile) => {
 }
 
 const handleHttpRequest: any = ({ file }: { file: File }) => {
+    if (!defaultWindow) { return }
     if (props.httpRequest) {
-        const localUrl = window.URL.createObjectURL(file)
+        const localUrl = defaultWindow.URL.createObjectURL(file)
         const done = () => {
             imgSrc.value = localUrl
             loading.value = false

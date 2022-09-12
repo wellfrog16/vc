@@ -46,6 +46,7 @@
 import { computed, ref, shallowRef } from 'vue'
 import Draggable from 'vuedraggable-es'
 import { ElButton, ElDialog, ElUpload, vLoading } from 'element-plus'
+import { defaultWindow } from '@frog-res/h-utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import myProps from './props'
 import type { IUploadFile } from './props'
@@ -64,9 +65,11 @@ const dialogVisible = computed({
 })
 
 const getImgUrl = (file: IUploadFile | File) => {
+    if (!defaultWindow) { return '' }
+
     const data = file as any
     if (data.url) { return data.url }
-    return window.URL.createObjectURL(data)
+    return defaultWindow.URL.createObjectURL(data)
 }
 
 const handleConfirm = () => {
@@ -126,7 +129,7 @@ const handleOnExceed = () => {
 }
 
 const handleOnPreview = (file: IUploadFile | File) => {
-    window.open(getImgUrl(file))
+    defaultWindow && defaultWindow.open(getImgUrl(file))
 }
 </script>
 

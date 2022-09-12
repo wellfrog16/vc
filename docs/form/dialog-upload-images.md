@@ -16,7 +16,7 @@ npm i vuedraggable-es@^4.1.1
 
 <Example />
 
-## 简单示例
+## 最小示例
 
 <Simple />
 

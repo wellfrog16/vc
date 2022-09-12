@@ -47,6 +47,7 @@
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
 import { ElImage, ElTooltip } from 'element-plus'
+import { defaultWindow } from '@frog-res/h-utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import HTextEllipsis from '@/components/text-ellipsis/index.vue'
 import type { PropType } from 'vue'
@@ -80,11 +81,13 @@ const eleEllipsis = ref<InstanceType<typeof HTextEllipsis>>()
 const isImageType = computed(() => props.type === 'image')
 const isTextType = computed(() => props.type === 'text')
 const mySrc = computed(() => {
+    if (!defaultWindow) { return '' }
+
     if (props.type === 'text' && eleText.value) {
         // 在文字上方盖一个同样大小的透明图片以使用 el-image
         const canvas = document.createElement('canvas')
         canvas.width = eleText.value.offsetWidth + fixWidth
-        canvas.height = parseInt(window.getComputedStyle(eleText.value).lineHeight, 10)
+        canvas.height = parseInt(defaultWindow.getComputedStyle(eleText.value).lineHeight, 10)
         return canvas.toDataURL('image/png')
     }
     return props.src || props.previewSrcList[0]

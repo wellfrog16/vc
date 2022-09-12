@@ -9,4 +9,12 @@ interface Window {
         isAwesomeIconLock?: boolean
         isSVGIconLock?: boolean
     }
+    tinyMCE: unknown;
+    h_utils: {
+        cdn: {
+            name: 'jsdelivr' | 'defaultBase' | 'localCDN'
+            path: string
+            host: string
+        }
+    };
 }

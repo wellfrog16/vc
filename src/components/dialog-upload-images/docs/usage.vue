@@ -7,7 +7,7 @@ import Document from '@/components/document.vue'
 
 const documentData = {
     params: [
-        { param: 'v-model', description: '绑定值', type: 'File[] | IFile[]', defaultValue: '[]' },
+        { param: 'v-model', description: '绑定值', type: '(File | IUploadFile)[]', defaultValue: '[]' },
         { param: 'v-model:visible', description: '显示/隐藏', type: 'boolen', defaultValue: 'false' },
         { param: '*http-request', description: '自定义上传', type: '下一行', defaultValue: '() => {}' },
         { param: '-', rowType: 'paramType', description: '(file: File) => Promise<IUploadFile | File | void>' },

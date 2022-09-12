@@ -14,7 +14,7 @@ awesome-icon、el-icon、svg-icon 的三合一组件，消除了 3 种 icon 之�
 
 <Example />
 
-## 简单示例
+## 最小示例
 
 <Simple />
 

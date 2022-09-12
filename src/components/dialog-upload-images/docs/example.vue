@@ -20,6 +20,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ElAlert, ElButton, ElDescriptionsItem, ElMessage } from 'element-plus'
+import { defaultWindow } from '@frog-res/h-utils'
 import Wrapper from '@/components/example-wrapper.vue'
 import HDialogUploadImages from '../index.vue'
 
@@ -39,11 +40,13 @@ const handleClick = () => {
 }
 
 const httpRequest = async (file: File) => {
+    if (!defaultWindow) { return }
+
     const myFile = {
         name: file.name,
         size: file.size,
         type: file.type,
-        url: window.URL.createObjectURL(file),
+        url: defaultWindow.URL.createObjectURL(file),
     }
     return myFile
 }

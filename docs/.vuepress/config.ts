@@ -1,7 +1,10 @@
-const { defaultTheme } = require('@vuepress/theme-default')
-const path = require('path')
+import { defineUserConfig } from 'vuepress'
+import { defaultTheme } from '@vuepress/theme-default'
+import { path, getDirname } from '@vuepress/utils'
 
-module.exports = {
+const __dirname = getDirname(import.meta.url)
+
+export default defineUserConfig({
     base: '/',
     lang: 'zh-CN',
     title: 'Element-plus-components',
@@ -77,4 +80,4 @@ module.exports = {
             },
         },
     },
-}
+})

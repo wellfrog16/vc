@@ -59,8 +59,8 @@ import { ElCascaderPanel, ElPopover, ElScrollbar, ElSelect, ElTree, ClickOutside
 import type { ElCascader } from 'element-plus'
 import type { PropType } from 'vue'
 
-import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel/src/node'
-import type { TreeOptionProps } from 'element-plus/es/components/tree/src/tree.type'
+import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel/src/node.d'
+import type { TreeOptionProps } from 'element-plus/es/components/tree/src/tree.type.d'
 
 const props = defineProps({
     name: { type: String, default: '' },

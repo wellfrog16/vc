@@ -51,7 +51,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import Draggable from 'vuedraggable-es'
+import Draggable from 'vuedraggable'
 import { ElAlert, ElInput, ElPopover, ElSpace, ElTag } from 'element-plus'
 import vFocus from '@/directives/focus'
 import HButton from '../button/index.vue'

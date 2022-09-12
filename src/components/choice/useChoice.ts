@@ -19,7 +19,7 @@ export type IChoiceOption = IOption[] | string[] | number[]
 export const preProps = {
     name: { type: String, default: '' },
     multiple: { type: Boolean, default: false },
-    modelValue: { type: [String, Array] as PropType<string | string[] | number | number[] | boolean>, required: true },
+    modelValue: { type: [String, Array, Boolean] as PropType<string | string[] | number | number[] | boolean>, required: true },
     options: { type: [Array, Function] as PropType<IChoiceOption | (() => Promise<IChoiceOption>)>, default: () => [] },
     props: { type: Object as PropType<Partial<IChoiceOptionProps>>, default: () => { } },
     expires: { type: [Date, Number] as PropType<Date | number>, default: 60 * 60 * 2 },

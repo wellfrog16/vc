@@ -24,11 +24,12 @@
 import { ElTooltip } from 'element-plus'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import type { PropType } from 'vue'
+import type { Placement, PopperEffect } from 'element-plus/es/components/popper'
 
 const props = defineProps({
     type: { type: String, default: 'single' }, // 单行多行，多行暂不支持
-    effect: { type: String as PropType<import('element-plus/es/components/popper').PopperEffect>, default: 'dark' },
-    placement: { type: String as PropType<import('element-plus/es/components/popper').Placement>, default: 'top' }, // tips位置
+    effect: { type: String as PropType<PopperEffect>, default: 'dark' },
+    placement: { type: String as PropType<Placement>, default: 'top' }, // tips位置
     content: { type: String, default: '' },
     popperOptions: { type: Object, default: () => ({ boundariesElement: 'body', gpuAcceleration: false }) }, // popper.js 的参数
     popperClass: { type: String, default: '' }, // popper样式

@@ -15,4 +15,7 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
 
-点击编辑数字
+## todo
+
+* 点击编辑数字
+* tree-picker 打包时，未能生成类型

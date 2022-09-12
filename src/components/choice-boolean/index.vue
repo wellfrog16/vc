@@ -8,7 +8,7 @@ import HChoice from '../choice/index.vue'
 import type { PropType } from 'vue'
 
 const props = defineProps({
-    modelValue: { type: Boolean, default: false },
+    modelValue: { type: Boolean, required: true, default: false },
     text: { type: Array as PropType<string []>, default: () => ['是', '否'] },
 })
 const emit = defineEmits(['update:modelValue'])

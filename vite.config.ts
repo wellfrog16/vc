@@ -10,13 +10,13 @@ export default defineConfig({
         lib: {
             entry: path.resolve(__dirname, './src/index.ts'),
             name: 'element-plus-components',
-            fileName: format => `index.${format}.js`,
+            fileName: format => format === 'es' ? `index.${format}.mjs` : `index.${format}.js`,
         },
         // css不要拆分
         cssCodeSplit: true,
         rollupOptions: {
             // 确保外部化处理那些你不想打包进库的依赖
-            external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable-es'],
+            external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable', '@frog-res/h-utils', 'crypto-js/aes'],
             output: {
                 sourcemap: true,
                 // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
@@ -25,7 +25,8 @@ export default defineConfig({
                     'element-plus': 'ElementPlus',
                     '@element-plus/icons-vue': 'ElementPlusIconsVue',
                     'lodash-es': '_',
-                    'vuedraggable-es': 'vuedraggable',
+                    'vuedraggable': 'vuedraggable',
+                    '@frog-res/h-utils': 'hutils',
                 },
             },
         },

@@ -7,7 +7,6 @@
             :effect="effect"
             :placement="placement"
             :popper-class="popperClass"
-            :popper-options="popperOptions"
             :enterable="enterable"
             :content="combineText"
         >
@@ -51,6 +50,7 @@ import { defaultWindow } from '@frog-res/h-utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import HTextEllipsis from '@/components/text-ellipsis/index.vue'
 import type { PropType } from 'vue'
+import type { Placement, PopperEffect } from 'element-plus/es/components/popper'
 
 const props = defineProps({
     type: { type: String as PropType<'image' | 'text'>, default: 'image' },
@@ -64,9 +64,8 @@ const props = defineProps({
 
     // tooltip的参数
     showTooltip: { type: Boolean, default: true }, // 是否显示tooltip
-    effect: { type: String as PropType<import('element-plus/es/components/popper').PopperEffect>, default: 'dark' },
-    placement: { type: String as PropType<import('element-plus/es/components/popper').Placement>, default: 'top' }, // tips位置
-    popperOptions: { type: Object, default: () => ({ boundariesElement: 'body', gpuAcceleration: false }) }, // popper.js 的参数
+    effect: { type: String as PropType<PopperEffect>, default: 'dark' },
+    placement: { type: String as PropType<Placement>, default: 'top' }, // tips位置
     popperClass: { type: String, default: '' }, // popper样式
     enterable: { type: Boolean, default: true }, // 鼠标是否可进入到 tooltip 中
 })

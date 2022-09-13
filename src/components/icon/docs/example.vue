@@ -30,7 +30,7 @@
             <ElSlider v-model="fontsize" :min="14" :max="30" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="颜色控制">
-            <HChoice v-model="mycolor" :options="colors" />
+            <HChoice v-model="myColor" :options="colors" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>
@@ -52,8 +52,8 @@ const colors = [
     { label: '银色', value: 'silver' },
     { label: '金色', value: 'gold' },
 ]
-const mycolor = ref('deeppink')
-const myStyle = computed(() => ({ color: mycolor.value, fontSize: `${fontsize.value}px` }))
+const myColor = ref('deeppink')
+const myStyle = computed(() => ({ color: myColor.value, fontSize: `${fontsize.value}px` }))
 </script>
 
 <style lang="scss" module>

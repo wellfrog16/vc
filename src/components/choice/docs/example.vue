@@ -38,7 +38,7 @@ const asyncData = () => new Promise<number[]>(resolve => {
     }, 1000)
 })
 const result1 = ref<string | string[]>('')
-const result2 = ref<number>()
+const result2 = ref<number>(1)
 const multiple = ref(false)
 const asyncChoiceVisible = ref(true)
 

@@ -73,8 +73,10 @@ const update = async () => {
     realWidth.value = eleMain.value?.clientWidth || 0
 }
 
+const watchData = computed(() => `${props.content}${props.maxWidth}${props.popperClass}`)
+
 // 可优化，只监听必要属性
-watch(props, () => update(), { immediate: true })
+watch(watchData, () => update(), { immediate: true })
 watch(realWidth, () => update())
 onMounted(() => nextTick(() => update()))
 defineExpose({ tipsVisible })

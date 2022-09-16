@@ -135,13 +135,15 @@ const selectValue = computed({
 })
 
 // popover显示隐藏控制
-const mySelect = ref<InstanceType<typeof ElSelect>>()
+// const mySelect = ref<InstanceType<typeof ElSelect>>()
+const mySelect = ref<any>() // 解决无法生成类型
 const clickOutSideTogglePopover = (event: any) => {
     !event.path.includes(mySelect.value?.$el) && togglePopoverVisible(false)
 }
 
 // 更新popover宽度
-const myPopover = ref<InstanceType<typeof ElPopover>>()
+// const myPopover = ref<InstanceType<typeof ElPopover>>()
+const myPopover = ref<any>()
 const updatePopper = () => nextTick(() => {
     myPopover.value?.popperRef?.popperInstanceRef.update()
 })
@@ -160,7 +162,8 @@ const filterTree = (val: CascaderValue) => {
 }
 
 // 级联选择的change事件
-const myCascader = ref<InstanceType<typeof ElCascader>>()
+// const myCascader = ref<InstanceType<typeof ElCascader>>()
+const myCascader = ref<any>()
 const handleCascaderChange = (val: CascaderValue) => {
     const node = myCascader.value?.getCheckedNodes(true)
     emits('change', val, node)

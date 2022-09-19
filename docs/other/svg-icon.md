@@ -27,8 +27,6 @@ title: svg-icon
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3}](@/components/svg-icon/docs/simple.vue)
 
 ## API
@@ -37,6 +35,5 @@ title: svg-icon
 
 <script setup>
 import Example from "@/components/svg-icon/docs/example.vue";
-import Simple from "@/components/svg-icon/docs/simple.vue";
 import Usage from "@/components/svg-icon/docs/usage.vue";
 </script>

@@ -12,8 +12,6 @@ title: tinymce
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,12}](@/components/tinymce/docs/simple.vue)
 
 ## API
@@ -22,6 +20,5 @@ title: tinymce
 
 <script setup>
 import Example from "@/components/tinymce/docs/example.vue";
-import Simple from "@/components/tinymce/docs/simple.vue";
 import Usage from "@/components/tinymce/docs/usage.vue";
 </script>

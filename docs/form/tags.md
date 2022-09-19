@@ -18,8 +18,6 @@ npm i vuedraggable-es@^4.1.1
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,12}](@/components/tags/docs/simple.vue)
 
 ## API
@@ -28,6 +26,5 @@ npm i vuedraggable-es@^4.1.1
 
 <script setup>
 import Example from "@/components/tags/docs/example.vue";
-import Simple from "@/components/tags/docs/simple.vue";
 import Usage from "@/components/tags/docs/usage.vue";
 </script>

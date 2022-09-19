@@ -16,8 +16,6 @@ title: button
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3-5}](@/components/button/docs/simple.vue)
 
 ## API
@@ -26,6 +24,5 @@ title: button
 
 <script setup>
 import Example from "@/components/button/docs/example.vue";
-import Simple from "@/components/button/docs/simple.vue";
 import Usage from "@/components/button/docs/usage.vue";
 </script>

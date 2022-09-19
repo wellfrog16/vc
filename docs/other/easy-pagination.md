@@ -13,8 +13,6 @@ title: easy-pagination
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,12,13}](@/components/easy-pagination/docs/simple.vue)
 
 ## API
@@ -23,6 +21,5 @@ title: easy-pagination
 
 <script setup>
 import Example from "@/components/easy-pagination/docs/example.vue";
-import Simple from "@/components/easy-pagination/docs/simple.vue";
 import Usage from "@/components/easy-pagination/docs/usage.vue";
 </script>

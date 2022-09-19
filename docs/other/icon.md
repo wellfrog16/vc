@@ -16,8 +16,6 @@ awesome-icon、el-icon、svg-icon 的三合一组件，消除了 3 种 icon 之�
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3-5}](@/components/icon/docs/simple.vue)
 
 ## API
@@ -26,6 +24,5 @@ awesome-icon、el-icon、svg-icon 的三合一组件，消除了 3 种 icon 之�
 
 <script setup>
 import Example from "@/components/icon/docs/example.vue";
-import Simple from "@/components/icon/docs/simple.vue";
 import Usage from "@/components/icon/docs/usage.vue";
 </script>

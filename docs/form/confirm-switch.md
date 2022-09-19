@@ -12,8 +12,6 @@ title: confirm-switch
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3-9,18}](@/components/confirm-switch/docs/simple.vue)
 
 ## API
@@ -22,6 +20,5 @@ title: confirm-switch
 
 <script setup>
 import Example from "@/components/confirm-switch/docs/example.vue";
-import Simple from "@/components/confirm-switch/docs/simple.vue";
 import Usage from "@/components/confirm-switch/docs/usage.vue";
 </script>

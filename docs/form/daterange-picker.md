@@ -16,8 +16,6 @@ title: daterange-picker
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,12}](@/components/daterange-picker/docs/simple.vue)
 
 ## API
@@ -26,6 +24,5 @@ title: daterange-picker
 
 <script setup>
 import Example from "@/components/daterange-picker/docs/example.vue";
-import Simple from "@/components/daterange-picker/docs/simple.vue";
 import Usage from "@/components/daterange-picker/docs/usage.vue";
 </script>

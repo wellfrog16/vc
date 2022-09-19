@@ -14,8 +14,6 @@ title: tree-picker
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,10,13}](@/components/tree-picker/docs/simple.vue)
 
 ## API
@@ -24,6 +22,5 @@ title: tree-picker
 
 <script setup>
 import Example from "@/components/tree-picker/docs/example.vue";
-import Simple from "@/components/tree-picker/docs/simple.vue";
 import Usage from "@/components/tree-picker/docs/usage.vue";
 </script>

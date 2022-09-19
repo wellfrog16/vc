@@ -12,8 +12,6 @@ title: thousand-input
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,12}](@/components/thousand-input/docs/simple.vue)
 
 ## API
@@ -22,6 +20,5 @@ title: thousand-input
 
 <script setup>
 import Example from "@/components/thousand-input/docs/example.vue";
-import Simple from "@/components/thousand-input/docs/simple.vue";
 import Usage from "@/components/thousand-input/docs/usage.vue";
 </script>

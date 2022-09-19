@@ -16,8 +16,6 @@ el-image 的修改版，增加文字展示方式，点击展开大图
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3-5}](@/components/image/docs/simple.vue)
 
 ## API
@@ -26,6 +24,5 @@ el-image 的修改版，增加文字展示方式，点击展开大图
 
 <script setup>
 import Example from "@/components/image/docs/example.vue";
-import Simple from "@/components/image/docs/simple.vue";
 import Usage from "@/components/image/docs/usage.vue";
 </script>

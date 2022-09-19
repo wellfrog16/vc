@@ -18,8 +18,6 @@ npm i vuedraggable-es@^4.1.1
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3-10,21-40}](@/components/dialog-upload-images/docs/simple.vue)
 
 ## API
@@ -28,6 +26,5 @@ npm i vuedraggable-es@^4.1.1
 
 <script setup>
 import Example from "@/components/dialog-upload-images/docs/example.vue";
-import Simple from "@/components/dialog-upload-images/docs/simple.vue";
 import Usage from "@/components/dialog-upload-images/docs/usage.vue";
 </script>

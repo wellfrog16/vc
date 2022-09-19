@@ -18,8 +18,6 @@ title: choice-boolean
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,12}](@/components/choice-boolean/docs/simple.vue)
 
 ## API
@@ -28,6 +26,5 @@ title: choice-boolean
 
 <script setup>
 import Example from "@/components/choice-boolean/docs/example.vue";
-import Simple from "@/components/choice-boolean/docs/simple.vue";
 import Usage from "@/components/choice-boolean/docs/usage.vue";
 </script>

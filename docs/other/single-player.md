@@ -16,8 +16,6 @@ BUG：因为使用 el-slider 作为进度条，双向绑定会使每秒播放重
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,11}](@/components/single-player/docs/simple.vue)
 
 ## API
@@ -26,6 +24,5 @@ BUG：因为使用 el-slider 作为进度条，双向绑定会使每秒播放重
 
 <script setup>
 import Example from "@/components/single-player/docs/example.vue";
-import Simple from "@/components/single-player/docs/simple.vue";
 import Usage from "@/components/single-player/docs/usage.vue";
 </script>

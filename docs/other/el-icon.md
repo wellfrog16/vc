@@ -16,8 +16,6 @@ title: el-icon
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3}](@/components/el-icon/docs/simple.vue)
 
 ## API
@@ -26,6 +24,5 @@ title: el-icon
 
 <script setup>
 import Example from "@/components/el-icon/docs/example.vue";
-import Simple from "@/components/el-icon/docs/simple.vue";
 import Usage from "@/components/el-icon/docs/usage.vue";
 </script>

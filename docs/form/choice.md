@@ -14,8 +14,6 @@ title: choice
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,12,13}](@/components/choice/docs/simple.vue)
 
 ## API
@@ -24,6 +22,5 @@ title: choice
 
 <script setup>
 import Example from "@/components/choice/docs/example.vue";
-import Simple from "@/components/choice/docs/simple.vue";
 import Usage from "@/components/choice/docs/usage.vue";
 </script>

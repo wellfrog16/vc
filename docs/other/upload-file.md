@@ -17,8 +17,6 @@ title: upload-file
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3,13-22}](@/components/upload-file/docs/simple.vue)
 
 ## API
@@ -27,6 +25,5 @@ title: upload-file
 
 <script setup>
 import Example from "@/components/upload-file/docs/example.vue";
-import Simple from "@/components/upload-file/docs/simple.vue";
 import Usage from "@/components/upload-file/docs/usage.vue";
 </script>

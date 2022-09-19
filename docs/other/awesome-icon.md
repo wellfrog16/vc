@@ -26,8 +26,6 @@ title: awesome-icon
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3}](@/components/awesome-icon/docs/simple.vue)
 
 ## API
@@ -36,6 +34,5 @@ title: awesome-icon
 
 <script setup>
 import Example from "@/components/awesome-icon/docs/example.vue";
-import Simple from "@/components/awesome-icon/docs/simple.vue";
 import Usage from "@/components/awesome-icon/docs/usage.vue";
 </script>

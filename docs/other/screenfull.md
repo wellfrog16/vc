@@ -17,8 +17,6 @@ title: screenfull
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3}](@/components/screenfull/docs/simple.vue)
 
 ## API
@@ -27,6 +25,5 @@ title: screenfull
 
 <script setup>
 import Example from "@/components/screenfull/docs/example.vue";
-import Simple from "@/components/screenfull/docs/simple.vue";
 import Usage from "@/components/screenfull/docs/usage.vue";
 </script>

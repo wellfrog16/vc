@@ -12,8 +12,6 @@ title: text-ellipsis
 
 ## 最小示例
 
-<Simple />
-
 @[code vue{3-5}](@/components/text-ellipsis/docs/simple.vue)
 
 ## API
@@ -22,6 +20,5 @@ title: text-ellipsis
 
 <script setup>
 import Example from "@/components/text-ellipsis/docs/example.vue";
-import Simple from "@/components/text-ellipsis/docs/simple.vue";
 import Usage from "@/components/text-ellipsis/docs/usage.vue";
 </script>

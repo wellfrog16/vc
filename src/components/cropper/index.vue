@@ -1,13 +1,33 @@
 <template>
-    <div ref="workbench" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
+    <ElDialog
+        v-if="dialog"
+        v-model="dialogVisible"
+        title="图片裁剪"
+        :width="dialogWidth"
+        custom-class="or-dialog"
+        append-to-body
+        :close-on-click-modal="false"
+        :before-close="handleCancle"
+    >
+        <div ref="workbench" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
+        <template #footer>
+            <ElSpace>
+                <ElButton :loading="loading" @click="handleCancle">取消</ElButton>
+                <ElLink :href="downloadLink" download="cropper.jpg" :underline="false">
+                    <ElButton type="primary">下载切片</ElButton>
+                </ElLink>
+                <ElButton :loading="loading" type="primary" @click="handleFinish">确定</ElButton>
+            </ElSpace>
+        </template>
+    </ElDialog>
+    <div v-else ref="workbench" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
-import { vLoading } from 'element-plus'
+import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
+import { ElButton, ElDialog, ElLink, ElSpace, vLoading } from 'element-plus'
 import { defaultWindow, loader } from '@frog-res/h-utils'
-import { reject } from 'lodash'
-import { resolve } from 'dns'
+import { debounce } from 'lodash-es'
 import type { PropType } from 'vue'
 import type ICropper from 'cropperjs'
 
@@ -22,24 +42,34 @@ const props = defineProps({
     imageSmoothingQuality: { type: String as PropType<ICropper.ImageSmoothingQuality>, default: 'high' },
 
     // 裁剪容器大小
-    containerWdith: { type: Number, default: 600 },
-    containerHeight: { type: Number, default: 450 },
+    containerWidth: { type: String, default: '600px' },
+    containerHeight: { type: String, default: '450px' },
 
     // 裁剪框大小
     cropperWidth: { type: Number, default: 400 },
     cropperHeight: { type: Number, default: 300 },
 })
 
-const emits = defineEmits(['init'])
+const emits = defineEmits(['init', 'update:visible', 'cancel', 'finished'])
 
 const loading = ref(false)
 const workbench = ref<HTMLDivElement>()
-const cropper = shallowRef<ICropper>()
+const cropperRef = shallowRef<ICropper>()
+const downloadLink = ref('')
+
+const dialogVisible = computed({
+    get: () => props.visible,
+    set: val => {
+        emits('update:visible', val)
+    },
+})
 
 const containerStyle = computed(() => ({
-    width: `${props.containerWdith}px`,
-    height: `${props.containerHeight}px`,
+    width: props.containerWidth,
+    height: props.containerHeight,
 }))
+
+const dialogWidth = computed(() => `${parseInt(props.containerWidth) + 40}px`)
 
 const image = computed(() => {
     // 链接类型
@@ -62,12 +92,19 @@ const image = computed(() => {
     return props.image as HTMLImageElement
 })
 
+const handleDownload = () => {
+    if (!cropperRef.value || !props.dialog) { return }
+    const canvas = cropperRef.value.getCroppedCanvas()
+    downloadLink.value = canvas?.toDataURL() || ''
+}
+
 const init = async () => {
+    cropperRef.value?.destroy()
     loading.value = true
     workbench.value?.appendChild(image.value)
     const Cropper = await loader.loadCdnSingle('cropper')
 
-    cropper.value = new Cropper(image.value, {
+    cropperRef.value = new Cropper(image.value, {
         dragMode: 'move',
         viewMode: 1,
         aspectRatio: props.cropperWidth / props.cropperHeight,
@@ -75,18 +112,26 @@ const init = async () => {
         toggleDragModeOnDblclick: false, // 双击切换拖动模式
         guides: true, // 网格
         // minContainerHeight: props.containerHeight,
+        cropmove: props.dialog ? debounce(handleDownload, 1000) : () => {},
         ...props.option,
         ready() {
-            emits('init')
             loading.value = false
+            handleDownload()
+            nextTick(() => emits('init'))
         },
     })
 }
 
-const getCroppedCanvas = () => {
-    if (loading.value || !cropper.value) { return }
+const handleCancle = () => {
+    if (loading.value) { return }
+    dialogVisible.value = false
+    emits('cancel')
+}
 
-    return cropper.value.getCroppedCanvas({
+const getCroppedCanvas = () => {
+    if (loading.value || !cropperRef.value) { return }
+
+    return cropperRef.value.getCroppedCanvas({
         width: props.cropperWidth,
         height: props.cropperHeight,
         imageSmoothingQuality: props.imageSmoothingQuality,
@@ -103,15 +148,22 @@ const getBlobData = () => new Promise<Blob>((resolve, reject) => {
     })
 })
 
-watch(props.option, () => {
-    cropper.value?.destroy()
-    init()
+const handleFinish = async () => {
+    const canvas = getCroppedCanvas()
+    const blob = await getBlobData()
+    dialogVisible.value = false
+    emits('finished', canvas, blob)
+}
+
+watch(props.option, () => init())
+
+watch(dialogVisible, () => {
+    props.visible && !cropperRef.value && nextTick(() => init())
 })
 
-defineExpose({ instance: cropper, getCroppedCanvas, getBlobData })
-
-onMounted(() => init())
-onUnmounted(() => cropper.value?.destroy())
+defineExpose({ instance: cropperRef, getCroppedCanvas, getBlobData })
+onMounted(() => (!props.dialog && init()))
+onUnmounted(() => cropperRef.value?.destroy())
 </script>
 
 <style lang="scss" module>

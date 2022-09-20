@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 import { ElButton, ElDialog, ElLink, ElSpace, vLoading } from 'element-plus'
-import { defaultWindow, loader } from '@frog-res/h-utils'
+import { defaultWindow, file, loader } from '@frog-res/h-utils'
 import { debounce } from 'lodash-es'
 import type { PropType } from 'vue'
 import type ICropper from 'cropperjs'
@@ -141,19 +141,16 @@ const getCroppedCanvas = () => {
     })
 }
 
-const getBlobData = () => new Promise<Blob>((resolve, reject) => {
+const getBlobData = () => {
     const canvas = getCroppedCanvas()
 
-    if (!canvas) { return reject(new Error('error')) }
-    canvas.toBlob(blob => {
-        if (!blob) { return reject(new Error('error')) }
-        resolve(blob)
-    })
-})
+    if (!canvas) { return undefined }
+    return file.canvasToBlob(canvas)
+}
 
-const handleFinish = async () => {
+const handleFinish = () => {
     const canvas = getCroppedCanvas()
-    const blob = await getBlobData()
+    const blob = getBlobData()
     dialogVisible.value = false
     emits('finished', canvas, blob)
 }

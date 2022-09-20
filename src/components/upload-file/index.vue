@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import { computed, nextTick, ref } from 'vue'
 import { ElImage, ElUpload, vLoading } from 'element-plus'
-import { defaultWindow } from '@frog-res/h-utils'
+import { defaultWindow, file } from '@frog-res/h-utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import HButton from '@/components/button/index.vue'
 import HCropper from '@/components/cropper/index.vue'
@@ -116,8 +116,8 @@ const handleCancel = () => {
 }
 
 const handleFinished = (canvas: any, blob: Blob) => {
-    const file = new File([blob], 'cropper.jpg', { type: blob.type, lastModified: Date.now() })
-    handleHttpRequest({ file })
+    const myFile = file.blobToFile(blob, 'cropper.jpg')
+    handleHttpRequest({ file: myFile })
 }
 </script>
 

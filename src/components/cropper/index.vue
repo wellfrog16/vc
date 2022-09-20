@@ -99,9 +99,12 @@ const handleDownload = () => {
 }
 
 const init = async () => {
+    if (!workbench.value) { return }
+
     cropperRef.value?.destroy()
     loading.value = true
-    workbench.value?.appendChild(image.value)
+    workbench.value.childNodes.forEach(item => workbench.value?.removeChild(item))
+    workbench.value.appendChild(image.value)
     const Cropper = await loader.loadCdnSingle('cropper')
 
     cropperRef.value = new Cropper(image.value, {
@@ -156,7 +159,7 @@ const handleFinish = async () => {
 }
 
 watch(props.option, () => init())
-
+watch(image, () => nextTick(() => init()))
 watch(dialogVisible, () => {
     props.visible && !cropperRef.value && nextTick(() => init())
 })

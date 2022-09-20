@@ -17,6 +17,8 @@ const documentData = {
         { param: 'max-size', description: '文件大小限制', type: 'number', defaultValue: '2 * 1024 * 1024' },
         { param: 'http-request', description: '自定义上传', type: '(file: File, done: () => void, localUrl: string) => void', defaultValue: '-' },
         { param: 'before-upload', description: '上传前回调，return false中止上传', type: '(file: File) => boolean', defaultValue: '-' },
+        { param: 'cropper', description: '上传前是否裁剪图片', type: 'boolean', defaultValue: 'false' },
+        { param: 'cropper-option', description: 'cropperjs 的 options', type: 'https://github.com/fengyuanchen/cropperjs#options', defaultValue: '-' },
     ],
     types: [
         { param: 'ImageOptions', description: '{ width: string, height: string, src: string, fit: object-fit, icon: string, iconSize: number }' },

@@ -23,7 +23,8 @@ import Wrapper from '@/components/example-wrapper.vue'
 import HCropper from '../index.vue'
 import type ICropper from 'cropperjs'
 
-const cropperRef = ref<InstanceType<typeof HCropper>>()
+// const cropperRef = ref<InstanceType<typeof HCropper>>()
+const cropperRef = ref<any>()
 const resultRef = ref<HTMLDivElement>()
 const downloadLink = ref('')
 

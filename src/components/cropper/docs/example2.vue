@@ -3,7 +3,7 @@
         <ElDescriptionsItem label="操作">
             <div>
                 <ElButton @click="handleToggleVisible">打开</ElButton>
-                <HCropper ref="cropperRef" v-model:visible="visible" :image="imgSrc" :option="cropperOption" dialog @finished="handleFinished" />
+                <HCropper v-model:visible="visible" :image="imgSrc" :option="cropperOption" dialog @finished="handleFinished" />
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">
@@ -18,7 +18,6 @@ import { ElButton, ElDescriptionsItem } from 'element-plus'
 import Wrapper from '@/components/example-wrapper.vue'
 import HCropper from '../index.vue'
 
-const cropperRef = ref<InstanceType<typeof HCropper>>()
 const resultRef = ref<HTMLDivElement>()
 const visible = ref(false)
 

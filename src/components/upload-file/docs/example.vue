@@ -1,7 +1,8 @@
 <template>
     <Wrapper>
-        <ElDescriptionsItem label="展示区：图片">
+        <ElDescriptionsItem label="展示区：图片上传">
             <HUploadFile
+                :cropper="cropper"
                 :http-request="httpRequest"
                 :image-options="{
                     width: '400px',
@@ -12,7 +13,11 @@
                 @error="handleError"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="展示区：按钮">
+        <ElDescriptionsItem label="参数：裁剪">
+            <HChoiceBoolean v-model="cropper" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="" />
+        <ElDescriptionsItem label="展示区：按钮上传">
             <HUploadFile
                 :http-request="httpRequest"
                 type="button"
@@ -22,7 +27,7 @@
                 @error="handleError"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="展示区：自定义">
+        <ElDescriptionsItem label="展示区：自定义上传">
             <HUploadFile
                 :http-request="httpRequest"
                 type="button"
@@ -44,9 +49,11 @@
 import { ref } from 'vue'
 import { ElDescriptionsItem, ElMessage } from 'element-plus'
 import Wrapper from '@/components/example-wrapper.vue'
+import HChoiceBoolean from '@/components/choice-boolean/index.vue'
 import HUploadFile from '../index.vue'
 
 const result = ref('')
+const cropper = ref(false)
 const httpRequest = (file: File, done: () => void, localUrl: string) => {
     setTimeout(() => {
         result.value = localUrl

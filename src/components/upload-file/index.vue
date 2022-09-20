@@ -17,15 +17,17 @@
         <template v-if="isButtonType">
             <slot><HButton :size="btnOptions.size" :type="btnOptions.type" :icon="{ name: btnOptions.icon }">{{ btnOptions.text }}</HButton></slot>
         </template>
+        <HCropper v-if="cropper && image" v-model:visible="visible" :image="image" :option="cropperOption" dialog @finished="handleFinished" @cancel="handleCancel" />
     </ElUpload>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { ElImage, ElUpload, vLoading } from 'element-plus'
 import { defaultWindow } from '@frog-res/h-utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import HButton from '@/components/button/index.vue'
+import HCropper from '@/components/cropper/index.vue'
 import myProps, { buttonOptions, imageOptions } from './props'
 import type { UploadRawFile } from 'element-plus/es/components/upload/src/upload'
 
@@ -34,6 +36,8 @@ const emits = defineEmits(['error'])
 
 const loading = ref(false)
 const imgSrc = ref('') // 上传图片的本地url
+const visible = ref(false)
+const image = ref<File>()
 
 const imgOptions = computed(() => {
     const options = { ...imageOptions, ...props.imageOptions }
@@ -63,7 +67,7 @@ const iconSizeStyle = computed(() => {
 const isImageType = computed(() => props.type === 'image')
 const isButtonType = computed(() => props.type === 'button')
 
-const handleBeforeUpload = (file: UploadRawFile) => {
+const checkFile = (file: UploadRawFile) => {
     if (file.size > props.maxSize) {
         const message = `文件大小不能超过 ${props.maxSize / 1024 / 1024}M`
         emits('error', message)
@@ -82,6 +86,19 @@ const handleBeforeUpload = (file: UploadRawFile) => {
     return true
 }
 
+const handleBeforeUpload = (file: UploadRawFile) => {
+    const checkResult = checkFile(file)
+
+    if (checkResult && props.cropper) {
+        image.value = file
+        nextTick(() => {
+            visible.value = true
+        })
+        return false
+    }
+    return checkResult
+}
+
 const handleHttpRequest: any = ({ file }: { file: File }) => {
     if (!defaultWindow) { return }
     if (props.httpRequest) {
@@ -92,6 +109,15 @@ const handleHttpRequest: any = ({ file }: { file: File }) => {
         }
         props.httpRequest(file, done, localUrl)
     }
+}
+
+const handleCancel = () => {
+    loading.value = false
+}
+
+const handleFinished = (canvas: any, blob: Blob) => {
+    const file = new File([blob], 'cropper.jpg', { type: blob.type, lastModified: Date.now() })
+    handleHttpRequest({ file })
 }
 </script>
 

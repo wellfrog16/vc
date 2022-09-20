@@ -1,5 +1,6 @@
 import type { PropType } from 'vue'
 import type { ButtonProps } from 'element-plus/es/components/button/src/button'
+import type ICropper from 'cropperjs'
 
 export interface IImageOptions {
     width: string // 组件宽
@@ -61,4 +62,7 @@ export default {
 
     // 上传前回调，return false中止上传
     beforeUpload: { type: Function as PropType<(file: File) => boolean> },
+
+    cropper: { type: Boolean, default: false },
+    cropperOption: { type: Object as PropType<ICropper.Options>, default: () => { } },
 }

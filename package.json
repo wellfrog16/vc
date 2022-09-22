@@ -1,6 +1,6 @@
 {
   "name": "@frog-res/element-plus-components",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.es.mjs",
   "types": "dist/index.d.ts",
   "scripts": {

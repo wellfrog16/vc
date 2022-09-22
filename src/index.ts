@@ -21,6 +21,7 @@ export { default as HButton } from './components/button/index.vue'
 export { default as HChoice } from './components/choice/index.vue'
 export { default as HChoiceBoolean } from './components/choice-boolean/index.vue'
 export { default as HConfirmSwitch } from './components/confirm-switch/index.vue'
+export { default as HCropper } from './components/cropper/index.vue'
 export { default as HDaterangePicker } from './components/daterange-picker/index.vue'
 export { default as HDialogUploadImages } from './components/dialog-upload-images/index.vue'
 export { default as HEasyPagination } from './components/easy-pagination/index.vue'
@@ -40,3 +41,22 @@ export { default as HTreePicker } from './components/tree-picker/index.vue'
 export { default as HUploadFile } from './components/upload-file/index.vue'
 
 // export default globalCropper
+
+const modules: Record<string, any> = import.meta.glob('./**/index.vue', { eager: true })
+const upper = (_: any, letter: string) => letter.toUpperCase()
+
+const install = function (Vue: any) {
+    Object.keys(modules).forEach(key => {
+        const [, name] = key.match(/\/([a-z\-\d]+)\//) || []
+        if (!name) { return false }
+
+        const componentName = `H-${name}`.replace(/-(\w)/g, upper)
+        Vue.component(componentName, modules[key].default)
+        return true
+    })
+}
+
+export default {
+    version: '0.0.1',
+    install,
+}

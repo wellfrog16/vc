@@ -1,7 +1,7 @@
 {
   "name": "@frog-res/element-plus-components",
-  "version": "0.0.1",
-  "main": "dist/index.es.js",
+  "version": "0.0.2",
+  "main": "dist/index.es.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite --host",
@@ -10,7 +10,8 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "gh-pages": "npm run docs:build && node gh-pages",
-    "gh": "node gh-pages"
+    "gh": "node gh-pages",
+    "publish2": "npm publish --access public"
   },
   "files": [
     "dist"
@@ -28,6 +29,9 @@
     "type": "git",
     "url": "git://github.com/wellfrog16/element-plus-components.git",
     "web": "https://github.com/wellfrog16/element-plus-components"
+  },
+  "dependencies": {
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@antfu/eslint-config-vue": "^0.25.2",
@@ -47,7 +51,6 @@
     "vite-plugin-dts": "^1.4.1",
     "vue": "^3.2.37",
     "vue-tsc": "^0.38.4",
-    "vuedraggable": "^4.1.0",
     "vuepress": "2.0.0-beta.51"
   }
 }

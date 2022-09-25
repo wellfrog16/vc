@@ -39,7 +39,7 @@
     "@vitejs/plugin-vue": "^3.0.0",
     "@vueuse/core": "^9.1.0",
     "@wfrog/stylelint-config-vue-scss": "^1.0.0",
-    "@wfrog/utils": "^0.0.1",
+    "@wfrog/utils": "^0.0.4",
     "element-plus": "^2.2.13",
     "eslint": "^8.20.0",
     "gh-pages": "^4.0.0",

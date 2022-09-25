@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue'
-import { defaultWindow, loader } from '@frog-res/h-utils'
+import { defaultWindow, loader } from '@wfrog/utils'
 import type { PropType } from 'vue'
 
 const props = defineProps({

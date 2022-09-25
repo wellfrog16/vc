@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ElAlert, ElButton, ElDescriptionsItem, ElMessage } from 'element-plus'
-import { defaultWindow } from '@frog-res/h-utils'
+import { defaultWindow } from '@wfrog/utils'
 import Wrapper from '@/components/example-wrapper.vue'
 import HDialogUploadImages from '../index.vue'
 

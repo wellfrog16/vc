@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 import { ElButton, ElDialog, ElLink, ElSpace, vLoading } from 'element-plus'
-import { defaultWindow, file, loader } from '@frog-res/h-utils'
+import { defaultWindow, file, loader } from '@wfrog/utils'
 import { debounce } from 'lodash-es'
 import type { PropType } from 'vue'
 import type ICropper from 'cropperjs'

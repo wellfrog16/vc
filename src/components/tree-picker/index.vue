@@ -52,7 +52,7 @@
 
 <script lang="ts" setup>
 import { computed, nextTick, onBeforeMount, ref, useCssModule, watch } from 'vue'
-import { storage, tree } from '@frog-res/h-utils'
+import { storage, tree } from '@wfrog/utils'
 import { get } from 'lodash-es'
 import { useToggle } from '@vueuse/core'
 import { ElCascaderPanel, ElPopover, ElScrollbar, ElSelect, ElTree, ClickOutside as vClickOutside } from 'element-plus'

@@ -14,7 +14,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ElButton, ElMessage } from 'element-plus'
-import { defaultWindow } from '@frog-res/h-utils'
+import { defaultWindow } from '@wfrog/utils'
 import Wrapper from '@/components/simple-wrapper.vue'
 import HDialogUploadImages from '../index.vue'
 import type { IUploadFile } from '../props'

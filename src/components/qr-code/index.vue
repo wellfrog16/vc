@@ -4,8 +4,8 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { loader } from '@frog-res/h-utils'
-import type { ICDNType } from '@frog-res/h-utils'
+import { loader } from '@wfrog/utils'
+import type { ICDNType } from '@wfrog/utils'
 
 const props = defineProps({
     tag: { type: String, default: 'canvas' },

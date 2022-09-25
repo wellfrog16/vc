@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import { computed, nextTick, ref } from 'vue'
 import { ElImage, ElUpload, vLoading } from 'element-plus'
-import { defaultWindow, file } from '@frog-res/h-utils'
+import { defaultWindow, file } from '@wfrog/utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import HButton from '@/components/button/index.vue'
 import HCropper from '@/components/cropper/index.vue'

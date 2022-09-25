@@ -1,5 +1,5 @@
 import { onMounted } from 'vue'
-import { defaultWindow, loader } from '@frog-res/h-utils'
+import { defaultWindow, loader } from '@wfrog/utils'
 
 const useExample = () => {
     const loaderSource = async () => {

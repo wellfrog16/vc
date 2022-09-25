@@ -46,7 +46,7 @@
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
 import { ElImage, ElTooltip } from 'element-plus'
-import { defaultWindow } from '@frog-res/h-utils'
+import { defaultWindow } from '@wfrog/utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import HTextEllipsis from '@/components/text-ellipsis/index.vue'
 import type { PropType } from 'vue'

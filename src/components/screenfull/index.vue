@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { vLoading } from 'element-plus'
-import { loader } from '@frog-res/h-utils'
+import { loader } from '@wfrog/utils'
 import HElIcon from '@/components/el-icon/index.vue'
 
 const loading = ref(false)

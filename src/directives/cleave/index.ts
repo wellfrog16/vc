@@ -1,4 +1,4 @@
-import { loader } from '@frog-res/h-utils'
+import { loader } from '@wfrog/utils'
 import type { Directive } from 'vue'
 
 const cleave: Directive = {

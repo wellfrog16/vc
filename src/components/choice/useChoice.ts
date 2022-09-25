@@ -1,5 +1,5 @@
 import { computed, onMounted, ref } from 'vue'
-import { storage } from '@frog-res/h-utils'
+import { storage } from '@wfrog/utils'
 import type { ExtractPropTypes, PropType } from 'vue'
 
 export interface IOption {

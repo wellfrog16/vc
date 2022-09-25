@@ -6,12 +6,12 @@
 
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
-import { defaultWindow, loader } from '@frog-res/h-utils'
+import { defaultWindow, loader } from '@wfrog/utils'
 import { vLoading } from 'element-plus'
 
 import config from './config'
-// import type { ICDNType, RawEditorSettings } from '@frog-res/h-utils'
-import type { ICDNType } from '@frog-res/h-utils'
+// import type { ICDNType, RawEditorSettings } from '@wfrog/utils'
+import type { ICDNType } from '@wfrog/utils'
 import type { PropType } from 'vue'
 
 const props = defineProps({

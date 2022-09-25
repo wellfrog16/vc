@@ -15,12 +15,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { ElDescriptionsItem } from 'element-plus'
-import { defaultWindow } from '@frog-res/h-utils'
+import { defaultWindow } from '@wfrog/utils'
 import Wrapper from '@/components/example-wrapper.vue'
 import HChoice from '@/components/choice/index.vue'
 import HTinymce from '../index.vue'
 import configs from '../config'
-import type { RawEditorSettings } from '@frog-res/h-utils'
+import type { RawEditorSettings } from '@wfrog/utils'
 
 const result = ref<string>('TinyMCE')
 const config = ref<keyof typeof configs>('mini')

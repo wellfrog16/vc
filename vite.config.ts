@@ -11,7 +11,7 @@ export default defineConfig({
         sourcemap: true,
         lib: {
             entry: path.resolve(__dirname, './src/index.ts'),
-            name: 'element-plus-components',
+            name: '@wfrog/vc',
             formats: ['es'],
             fileName: format => `index.${format}.mjs`,
         },
@@ -19,7 +19,7 @@ export default defineConfig({
         // cssCodeSplit: false,
         rollupOptions: {
             // 确保外部化处理那些你不想打包进库的依赖
-            external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable', '@frog-res/h-utils'],
+            external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable', '@wfrog/utils'],
             output: {
                 manualChunks(id) {
                     if (id.includes('/components/')) {
@@ -41,7 +41,7 @@ export default defineConfig({
             //         '@element-plus/icons-vue': 'ElementPlusIconsVue',
             //         'lodash-es': '_',
             //         'vuedraggable': 'vuedraggable',
-            //         '@frog-res/h-utils': 'hutils',
+            //         '@wfrog/utils': 'hutils',
             //     },
             // },
         },

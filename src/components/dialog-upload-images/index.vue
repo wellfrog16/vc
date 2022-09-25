@@ -47,7 +47,7 @@
 import { computed, ref, shallowRef } from 'vue'
 import Draggable from 'vuedraggable'
 import { ElButton, ElDialog, ElUpload, vLoading } from 'element-plus'
-import { defaultWindow } from '@frog-res/h-utils'
+import { defaultWindow } from '@wfrog/utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import myProps from './props'
 import type { IUploadFile } from './props'

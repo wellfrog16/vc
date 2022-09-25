@@ -11,7 +11,7 @@ import { useAttrs } from 'vue'
 import { ElButton } from 'element-plus'
 import HIcon from '../icon/index.vue'
 import type { PropType } from 'vue'
-import type { IIconOption } from './index'
+import type { IIconOption } from './button'
 
 const props = defineProps({
     icon: { type: Object as PropType<IIconOption> },

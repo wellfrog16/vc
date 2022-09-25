@@ -20,6 +20,18 @@ export default defineConfig({
         rollupOptions: {
             // 确保外部化处理那些你不想打包进库的依赖
             external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable', '@frog-res/h-utils'],
+            output: {
+                manualChunks(id) {
+                    if (id.includes('/components/')) {
+                        const arr = id.toString().split('/components/')[1].split('/')
+                        return arr[0]
+                    }
+                    return 'vendor'
+                },
+                chunkFileNames: 'components/[name]/index.js',
+                // entryFileNames: '[name].js',
+                // assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
+            },
             // output: {
             //     sourcemap: true,
             //     // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
@@ -34,7 +46,7 @@ export default defineConfig({
             // },
         },
     },
-    plugins: [vue(), dts()],
+    plugins: [vue(), dts({ cleanVueFileName: true })],
     resolve: {
         alias: [
             { find: /^~/, replacement: '' },

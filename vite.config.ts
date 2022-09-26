@@ -13,25 +13,28 @@ export default defineConfig({
             entry: path.resolve(__dirname, './src/index.ts'),
             name: '@wfrog/vc',
             formats: ['es'],
-            fileName: format => `index.${format}.mjs`,
+            fileName: 'index.mjs',
         },
         // css不要拆分
         // cssCodeSplit: false,
         rollupOptions: {
             // 确保外部化处理那些你不想打包进库的依赖
             external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable', '@wfrog/utils'],
-            output: {
-                manualChunks(id) {
-                    if (id.includes('/components/')) {
-                        const arr = id.toString().split('/components/')[1].split('/')
-                        return arr[0]
-                    }
-                    return 'vendor'
-                },
-                chunkFileNames: 'components/[name]/index.js',
-                // entryFileNames: '[name].js',
-                // assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
-            },
+            // output: {
+            //     manualChunks(id) {
+            //         if (id.includes('/components/')) {
+            //             const arr = id.toString().split('/components/')[1].split('/')
+            //             return arr[0]
+            //         }
+            //         if (id.includes('/node_modules/')) {
+            //             return 'vendor'
+            //         }
+            //         return 'main'
+            //     },
+            //     chunkFileNames: 'components/[name]/index.js',
+            //     // entryFileNames: '[name].js',
+            //     // assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
+            // },
             // output: {
             //     sourcemap: true,
             //     // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量

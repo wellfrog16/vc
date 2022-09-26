@@ -1,21 +1,3 @@
-// import VueCropper from './vue-cropper.vue'
-// import type { vueCropperGlobal } from './typings'
-
-// const install = function (Vue: any) {
-//     Vue.component('VueCropper', VueCropper)
-// }
-
-// /* istanbul ignore if */
-// if (typeof window !== 'undefined' && window.Vue) {
-//     window.Vue.createApp({}).component('VueCropper', VueCropper)
-// }
-
-// export const globalCropper: vueCropperGlobal = {
-//     version: '1.0.5',
-//     install,
-//     VueCropper,
-// }
-
 export { default as HAwesomeIcon } from './components/awesome-icon/index.vue'
 export { default as HButton } from './components/button/index.vue'
 export { default as HChoice } from './components/choice/index.vue'
@@ -40,14 +22,12 @@ export { default as HTinymce } from './components/tinymce/index.vue'
 export { default as HTreePicker } from './components/tree-picker/index.vue'
 export { default as HUploadFile } from './components/upload-file/index.vue'
 
-// export default globalCropper
-
 const modules: Record<string, any> = import.meta.glob('./**/index.vue', { eager: true })
 const upper = (_: any, letter: string) => letter.toUpperCase()
 
 const install = function (Vue: any) {
     Object.keys(modules).forEach(key => {
-        const [, name] = key.match(/\/([a-z\-\d]+)\//) || []
+        const [, name] = key.match(/\/components\/([a-z\-\d]+)\//) || []
         if (!name) { return false }
 
         const componentName = `H-${name}`.replace(/-(\w)/g, upper)

@@ -13,7 +13,7 @@ export default defineConfig({
             entry: path.resolve(__dirname, './src/index.ts'),
             name: '@wfrog/vc',
             formats: ['es'],
-            fileName: 'index.mjs',
+            fileName: 'index',
         },
         // css不要拆分
         // cssCodeSplit: false,

@@ -1,6 +1,7 @@
 /build/
 /config/
 /dist/
+/es/
 /public/
 /node_modules/
 

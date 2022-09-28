@@ -1,6 +1,6 @@
 import { build } from 'esbuild'
 import klawSync from 'klaw-sync'
-import pluginVue from 'esbuild-plugin-vue-next'
+import pluginVue from '@wfrog/esbuild-plugin-vue-next'
 import path from 'path'
 import type { BuildOptions } from 'esbuild'
 
@@ -24,7 +24,7 @@ async function run(options?: BuildOptions) {
         // loader: { '.png': 'dataurl' },
         external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable', '@wfrog/utils'],
         format: 'esm',
-        minify: true,
+        minify: false,
         ...options,
     })
 }

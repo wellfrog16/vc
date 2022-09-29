@@ -4,8 +4,14 @@ import { path, getDirname } from '@vuepress/utils'
 
 const __dirname = getDirname(import.meta.url)
 
+const getBase = () => {
+    const deploy = process?.env?.deploy
+    if (deploy === 'gh') return '/element-plus-components/' // github
+    return '/'  // default, layer0
+}
+
 export default defineUserConfig({
-    base: '/',
+    base: getBase(),
     lang: 'zh-CN',
     title: 'VC 组件库',
     description: '基于element-plus的组件库，也包含独立组件',

@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "gh-pages": "npm run docs:build && node gh-pages",
+    "gh-pages": "cross-env deploy=gh npm run docs:build && node gh-pages",
     "gh": "node gh-pages",
     "publish2": "npm publish --access public"
   },
@@ -44,6 +44,7 @@
     "@wfrog/esbuild-plugin-vue-next": "^0.1.5",
     "@wfrog/stylelint-config-vue-scss": "^1.0.0",
     "@wfrog/utils": "^0.0.4",
+    "cross-env": "^7.0.3",
     "element-plus": "^2.2.13",
     "esbuild": "^0.15.9",
     "eslint": "^8.20.0",

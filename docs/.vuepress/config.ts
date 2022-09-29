@@ -7,7 +7,7 @@ const __dirname = getDirname(import.meta.url)
 export default defineUserConfig({
     base: '/',
     lang: 'zh-CN',
-    title: 'Element-plus-components',
+    title: 'VC 组件库',
     description: '基于element-plus的组件库，也包含独立组件',
     templateDev: path.resolve(__dirname, './templates/dev.html'),
     templateBuild: path.resolve(__dirname, './templates/build.html'),
@@ -25,6 +25,13 @@ export default defineUserConfig({
                 link: '/',
             },
             {
+                text: '组件',
+                children: [
+                    '/form/',
+                    '/other/',
+                ],
+            },
+            {
                 text: 'Github',
                 link: 'http://www.baidu.com',
             },
@@ -36,9 +43,11 @@ export default defineUserConfig({
                     text: '指南',
                     link: '/',
                 },
+            ],
+            '/form/': [
                 {
                     text: '表单组件',
-                    collapsible: true,
+                    collapsible: false,
                     children: [
                         '/form/choice',
                         '/form/choice-boolean',
@@ -52,9 +61,11 @@ export default defineUserConfig({
                         '/form/tree-picker',
                     ],
                 },
+            ],
+            '/other/': [
                 {
                     text: '其他组件',
-                    collapsible: true,
+                    collapsible: false,
                     children: [
                         '/other/easy-pagination',
                         '/other/awesome-icon',

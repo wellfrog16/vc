@@ -34,7 +34,7 @@ import type ICropper from 'cropperjs'
 const props = defineProps({
     dialog: { type: Boolean, default: false },
     visible: { type: Boolean, default: false },
-    image: { type: [HTMLImageElement, String, File], required: true },
+    image: { type: [String, Object] as PropType<HTMLImageElement | string | File>, required: true },
 
     option: { type: Object as PropType<ICropper.Options>, default: () => {} },
 
@@ -155,7 +155,9 @@ const handleFinish = () => {
     emits('finished', canvas, blob)
 }
 
-watch(props.option, () => init())
+const myOption = computed(() => props.option)
+
+watch(myOption, () => init())
 watch(image, () => nextTick(() => init()))
 watch(dialogVisible, () => {
     props.visible && !cropperRef.value && nextTick(() => init())

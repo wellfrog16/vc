@@ -14,21 +14,39 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'change'])
 
+const fixValue = (val: string) => {
+    let myVal = val
+        .replace(/[^\d\.]/g, '') // 只保留数字和.
+        .replace(/^0+/, '') // 删除开头的0
+        .replace(/^\./, '') // 删除开头的.
+        .replace(/\.{1,}/g, '.') // 替换多个.为一个.
+    const arrayVal = myVal.split('.')
+    if (arrayVal.length > 1) {
+        const [integer, decimal] = arrayVal
+        myVal = `${integer}.${decimal}`
+    }
+    return myVal
+}
+
 const myValue = computed({
     get: () => {
+        // console.log('get', props.modelValue)
         const { modelValue } = props
         if (modelValue === '') { return '' }
 
         const dot = (modelValue).toString().charAt(modelValue.length - 1) === '.' ? '.' : ''
-        return (+props.modelValue).toLocaleString('en-US') + dot
+        return (+fixValue(props.modelValue)).toLocaleString('en-US') + dot
     },
     set: val => {
-        emit('update:modelValue', val.replace(/,/g, ''))
+        // console.log('set', val)
+        emit('update:modelValue', fixValue(val))
     },
 })
 
 const handleChange = (val: string) => {
-    myValue.value = val
-    emit('change', val.replace(/,/g, ''))
+    // console.log('change', val)
+    const myVal = fixValue(val).replace(/\.$/, '')
+    myValue.value = myVal
+    emit('change', myVal)
 }
 </script>

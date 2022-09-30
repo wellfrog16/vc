@@ -20,7 +20,7 @@ const thousand: Directive = {
             const event = new Event('input', { bubbles: true })
             const [elInput] = el.getElementsByTagName('input')
             elInput.dispatchEvent(event)
-            elInput.value = elInput.cleave?.properties?.result
+            elInput.value = elInput.cleave?.properties?.result || ''
         }, 100)
     },
 }

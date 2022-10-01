@@ -57,3 +57,12 @@ table {
     display: table;
     width: 100%;
 }
+
+html.dark {
+    --el-fill-color-light: var(--code-hl-bg-color);
+    --el-text-color-regular: var(--c-text);
+    --el-border-color-lighter: var(--c-border);
+    --el-bg-color: var(--c-bg);
+    --el-text-color-primary: var(--c-text);
+    --el-fill-color-blank: var(--c-bg);
+}

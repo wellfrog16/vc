@@ -19,7 +19,7 @@ export default defineConfig({
         // cssCodeSplit: false,
         rollupOptions: {
             // 确保外部化处理那些你不想打包进库的依赖
-            external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable', '@wfrog/utils'],
+            external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable@~4.1.0', '@wfrog/utils'],
             // output: {
             //     manualChunks(id) {
             //         if (id.includes('/components/')) {

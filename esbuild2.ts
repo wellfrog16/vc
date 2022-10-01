@@ -13,7 +13,7 @@ export const componentEntrys = klawSync(COMPONENTS_PATH, {
 
 async function run(options?: BuildOptions) {
     await build({
-        outdir: './dist/components',
+        outdir: './es/components',
         outExtension: { '.js': '.mjs' },
         bundle: true,
         entryPoints: componentEntrys,

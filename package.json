@@ -1,9 +1,9 @@
 {
   "name": "@wfrog/vc",
   "version": "0.0.5",
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./es/index.mjs",
+  "module": "./es/index.mjs",
+  "types": "./es/index.d.ts",
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build && npm run build:lib",
@@ -17,8 +17,8 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": "./es/index.mjs",
+      "types": "./es/index.d.ts"
     }
   },
   "files": [

@@ -7,6 +7,7 @@ const resolve = dir => path.join(__dirname, dir)
 
 export default defineConfig({
     build: {
+        outDir: 'es',
         target: 'esnext',
         sourcemap: true,
         lib: {

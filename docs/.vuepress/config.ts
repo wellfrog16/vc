@@ -79,6 +79,7 @@ export default defineUserConfig({
                         '/other/svg-icon',
                         '/other/icon',
                         '/other/button',
+                        '/other/flag',
                         '/other/cropper',
                         '/other/image',
                         '/other/qr-code',

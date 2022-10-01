@@ -8,6 +8,7 @@ export { default as HDaterangePicker } from './components/daterange-picker/index
 export { default as HDialogUploadImages } from './components/dialog-upload-images/index.vue'
 export { default as HEasyPagination } from './components/easy-pagination/index.vue'
 export { default as HElIcon } from './components/el-icon/index.vue'
+export { default as HFlag } from './components/flag/index.vue'
 export { default as HIcon } from './components/icon/index.vue'
 export { default as HImage } from './components/image/index.vue'
 export { default as HQRCode } from './components/qr-code/index.vue'

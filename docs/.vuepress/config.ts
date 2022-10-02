@@ -58,6 +58,7 @@ export default defineUserConfig({
                         '/form/choice',
                         '/form/choice-boolean',
                         '/form/confirm-switch',
+                        '/form/currency',
                         '/form/daterange-picker',
                         '/form/dialog-upload-images',
                         '/form/select',

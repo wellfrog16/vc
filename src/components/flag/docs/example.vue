@@ -7,6 +7,7 @@
                 <HFlag code="SGP" :squared="squared" />
                 <HFlag code="BA" :squared="squared" />
                 <HFlag code="TG" :squared="squared" />
+                <HFlag code="EU" :squared="squared" />
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="大小控制">

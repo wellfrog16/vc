@@ -1,21 +1,61 @@
-# Vue 3 + TypeScript + Vite
+# VC 组件库
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+`自用` 的基于 `element-plus` 二次封装的 `vue3` 组件库。追求在业务场景中，尽可能使用更少的代码量来实现需求。
+因此在组件封装上，以 `方便` 为主。
 
-## Recommended IDE Setup
+组件开发时，依赖的 `vue` 版本是 `^3.2.37`
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+组件库所使用 CDN 源为 [jsdelivr](https://www.jsdelivr.com/)，并使用了一个自用的函数库 `@wfrog/utils`
 
-## Type Support For `.vue` Imports in TS
+ **！！！如果 jsdelivr 无法访问，会导致部分组件失效。解决办法：todo**
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+## 全量引入
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+本组件库依赖 `element-plus`，需要事先安装组件中使用的库，以及组件的依赖
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+```sh
+npm i element-plus@~2.2.13 @element-plus/icons-vue@^2.0.9
+npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21 vuedraggable@^4.1.0 
+```
 
-## todo
+在 app.ts 里，全量引入组件和css
+```ts
+import VC from '@wfrog/vc'
+import '@wfrog/vc/es/style.css'
 
-* 点击编辑数字
-* tree-picker 打包时，未能生成类型
+const app = createApp(App)
+app.use(VC)
+```
+
+在 vue 文件中使用
+```vue
+<template>
+    <HButton :icon="{ type: 'svg', name: 'test' }" type="primary">SVG 图标</HButton>
+</template>
+```
+
+
+## 单组件加载
+
+本组件库依赖 `element-plus`，需要事先安装组件中使用的库。组件的依赖可以不按照，仅在使用到有依赖组件的时候才去安装
+
+```sh
+npm i element-plus@~2.2.13 @element-plus/icons-vue@^2.0.9
+npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21
+```
+
+在 app.ts 里，全量引入 css
+```ts
+import '@wfrog/vc/es/style.css'
+```
+
+在 vue 文件中
+```vue
+<template>
+    <HButton :icon="{ type: 'svg', name: 'test' }" type="primary">SVG 图标</HButton>
+</template>
+
+<script lang="ts" setup>
+import HButton from '@wfrog/vc/es/components/button'
+</script>
+```

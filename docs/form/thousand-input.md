@@ -4,7 +4,7 @@ title: thousand-input
 
 ## 功能
 
-千分位输入框
+千分位输入框，基础的千分位应用，如果应用于货币，请查看增强版 [currency](./currency.md)
 
 ## 功能示例
 

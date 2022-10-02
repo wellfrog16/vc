@@ -6,8 +6,9 @@
             <ElTableColumn prop="description" label="说明" min-width="150" />
             <ElTableColumn prop="type" label="类型" min-width="100">
                 <template #default="{ row }">
-                    <span v-if="row.type && row.type.indexOf('http') === -1">{{ row.type }}</span>
-                    <ElLink v-else type="primary" target="_blank" :href="row.type">参考链接</ElLink>
+                    <ElLink v-if="row.type && row.type.indexOf('http') !== -1" type="primary" target="_blank" :href="row.type">参考链接</ElLink>
+                    <ElLink v-if="row.type && row.type.indexOf('./') !== -1" type="primary" :href="row.type">查看</ElLink>
+                    <span v-if="row.type && row.type.indexOf('http') === -1 && row.type.indexOf('./') === -1">{{ row.type }}</span>
                 </template>
             </ElTableColumn>
             <ElTableColumn prop="defaultValue" label="默认值" width="80" :show-overflow-tooltip="false" />

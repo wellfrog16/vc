@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "gh-pages": "cross-env deploy=gh npm run docs:build && node gh-pages",
+    "gh-pages": "cross-env deploy=gh npm run docs:build",
     "gh": "node gh-pages",
     "publish2": "npm publish --access public"
   },

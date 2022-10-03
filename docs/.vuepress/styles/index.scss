@@ -66,3 +66,27 @@ html.dark {
     --el-text-color-primary: var(--c-text);
     --el-fill-color-blank: var(--c-bg);
 }
+
+.el-overlay-dialog {
+    display: flex;
+    align-items: center;
+}
+
+.or-dialog {
+    margin: 0 auto !important;
+
+    .el-dialog__header {
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--el-border-color-light);
+    }
+
+    .el-dialog__body {
+        padding: 20px;
+    }
+
+    .el-dialog__footer {
+        padding: 15px 20px;
+        border-top: 1px solid var(--el-border-color-light);
+    }
+}
+

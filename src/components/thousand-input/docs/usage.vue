@@ -11,13 +11,14 @@ const documentData = {
         { param: 'v-model:format-value', description: '带有千分位的值', type: 'string', defaultValue: '-' },
         { param: 'option', description: '指令 v-thoursand 参数', type: 'IThousandOption', defaultValue: '下一行' },
         { param: '', description: '{ decimalScale: 2, integerScale: 12 }', type: ' - ', defaultValue: ' - ' },
+        { param: 'padDecimal', description: 'format-value 小数位补0', type: 'boolean', defaultValue: 'true' },
         { param: '其他', description: 'el-input 属性', type: 'https://element-plus.gitee.io/zh-CN/component/input.html#input-%E5%B1%9E%E6%80%A7', defaultValue: '-' },
     ],
     types: [
         { param: 'IThousandOption', description: '{ decimalScale: 小数位长度, integerScale: 整数位长度 }' },
     ],
     events: [
-        { name: 'change', description: '用户操作输入框完成后的事件（失去焦点）', param: 'value, format-value' },
+        { name: 'change', description: '仅当 modelValue 改变时，当输入框失去焦点或用户按 Enter 时以及 option 变化时触发', param: '[value, format-value]' },
     ],
 }
 </script>

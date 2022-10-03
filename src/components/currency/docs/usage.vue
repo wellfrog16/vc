@@ -11,7 +11,8 @@ const documentData = {
         { param: 'v-model:format-value', description: '带有前缀千分位的值', type: 'string', defaultValue: '-' },
         { param: 'code', description: '旗子的 code', type: 'ICurrencyCode | ICurrencyCode[]', defaultValue: '-' },
         { param: 'flag', description: '是否现实旗子', type: 'boolean', defaultValue: 'false' },
-        { param: '其他', description: 'thousand-input 的 api', type: './thousand-input.html', defaultValue: '-' },
+        { param: 'prefix', description: '是否现实前缀', type: 'boolean', defaultValue: 'true' },
+        { param: '其他', description: 'thousand-input 的 API', type: './thousand-input.html#api', defaultValue: '-' },
     ],
     types: [
         { param: 'ICurrencyCode', description: '\'CNY\' | \'USD\' | \'JPY\' | \'EUR\' | \'TWD\' | \'KRW\'' },

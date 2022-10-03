@@ -20,6 +20,9 @@ const props = defineProps({
 const element = ref()
 
 const createQR = async () => {
+    // loader.loadScriptSingle('//api.map.baidu.com/api?v=3.0&ak=rrK5thxGKxN45pnaH2Gd0ZxyFkr8MaTl')
+    loader.loadScriptSingle('//api.map.baidu.com/getscript?v=3.0&ak=rrK5thxGKxN45pnaH2Gd0ZxyFkr8MaTl&services=&t=20220816154130')
+
     const QRCode = (await loader.loadCdnSingle('QRCode', props.version)) as ICDNType['QRCode']
     const { tag, value } = props
     const option = { width: props.width, height: props.height, margin: props.margin, ...props.option }

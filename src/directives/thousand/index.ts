@@ -6,6 +6,7 @@ const thousand: Directive = {
         const elInput = el.getElementsByTagName('input')[binding.value?.elInputIndex || 0]
         const disabled = elInput.disabled
         elInput.disabled = true
+        el.classList.add('is-disabled')
         const Cleave = await loader.loadCdnSingle('cleave')
         const option = { decimalScale: 2, integerScale: 0, prefix: '', ...binding.value }
         elInput.cleave = new Cleave(elInput, {
@@ -17,6 +18,8 @@ const thousand: Directive = {
         })
         elInput.style.textAlign = 'right'
         elInput.style.fontFamily = 'Pathway Gothic One'
+        elInput.value = elInput.cleave?.properties?.result || ''
+        el.classList.remove('is-disabled')
         elInput.disabled = disabled
     },
     updated: (el, binding) => {
@@ -24,7 +27,9 @@ const thousand: Directive = {
             const event = new Event('input', { bubbles: true })
             const elInput = el.getElementsByTagName('input')[binding.value?.elInputIndex || 0]
             elInput.dispatchEvent(event)
-            elInput.value = elInput.cleave?.properties?.result || ''
+            if (elInput.cleave) {
+                elInput.value = elInput.cleave?.properties?.result || ''
+            }
         }, 0)
     },
 }

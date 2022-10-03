@@ -1,7 +1,7 @@
 <template>
-    <HThousandInput v-model="myValue" :option="thousandOption" v-bind="$attrs">
+    <HThousandInput v-model="myValue" v-model:format-value="formatValue" :option="thousandOption" v-bind="$attrs" @change="handleChange">
         <template v-if="Array.isArray(currencyInfo)" #prepend>
-            <ElSelect v-if="Array.isArray(currencyInfo)" v-model="myCode" :style="selectStyle">
+            <ElSelect v-if="Array.isArray(currencyInfo)" v-model="myCode" :style="selectStyle" @change="handleCodeChange">
                 <template v-if="flag" #prefix>
                     <HFlag v-if="myCurrencyInfo" :code="myCurrencyInfo?.flag" />
                 </template>
@@ -29,21 +29,24 @@ const props = defineProps({
     modelValue: { type: String, required: true },
     code: { type: [Array, String] as PropType<ICurrencyCode | ICurrencyCode[]>, required: true },
     flag: { type: Boolean, default: false },
+    prefix: { type: Boolean, default: true },
 })
 
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits(['update:modelValue', 'change'])
 
 const myValue = computed({
     get: () => props.modelValue,
     set: val => emits('update:modelValue', val),
 })
 
-const selectStyle = computed(() => ({ width: props.flag ? '105px' : '80px' }))
+const selectStyle = computed(() => ({ width: props.flag ? '7.5em' : '6em' }))
 
+const formatValue = ref<string>('')
 const myCode = ref<ICurrencyCode>()
 const myCurrencyInfo = computed(() => currency.find(item => item.code === myCode.value))
 const thousandOption = computed(() => ({
     ...myCurrencyInfo.value?.option,
+    prefix: props.prefix ? myCurrencyInfo.value?.option.prefix : '',
     elInputIndex: Array.isArray(props.code) ? 1 : 0,
 }))
 
@@ -53,6 +56,14 @@ const currencyInfo = computed(() => {
     }
     return currency.find(item => item.code === props.code)
 })
+
+const handleChange = (val: string[]) => {
+    emits('change', [...val, myCode.value])
+}
+
+const handleCodeChange = (val: string) => {
+    handleChange([myValue.value, formatValue.value])
+}
 
 onBeforeMount(() => {
     if (Array.isArray(currencyInfo.value) && currencyInfo.value.length > 0) {

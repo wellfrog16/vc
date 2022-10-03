@@ -61,6 +61,7 @@ export default defineUserConfig({
                         '/form/currency',
                         '/form/daterange-picker',
                         '/form/dialog-upload-images',
+                        '/form/dialog-map-point',
                         '/form/select',
                         '/form/tags',
                         '/form/thousand-input',

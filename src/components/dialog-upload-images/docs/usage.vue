@@ -7,8 +7,8 @@ import Document from '@/components/document.vue'
 
 const documentData = {
     params: [
-        { param: 'v-model', description: '绑定值', type: '(File | IUploadFile)[]', defaultValue: '[]' },
-        { param: 'v-model:visible', description: '显示/隐藏', type: 'boolen', defaultValue: 'false' },
+        { param: '*v-model', description: '绑定值', type: '(File | IUploadFile)[]', defaultValue: '[]' },
+        { param: '*v-model:visible', description: '显示/隐藏', type: 'boolen', defaultValue: 'false' },
         { param: '*http-request', description: '自定义上传', type: '下一行', defaultValue: '() => {}' },
         { param: '-', rowType: 'paramType', description: '(file: File) => Promise<IUploadFile | File | void>' },
         { param: 'destroyOnClose', description: '对话框关闭时注销内容', type: 'boolen', defaultValue: 'false' },
@@ -24,6 +24,7 @@ const documentData = {
     ],
     events: [
         { name: 'error', description: '不符合文件大小限制的回调', param: '错误文本' },
+        { name: 'close', description: '对话框关闭的回调', param: '-' },
     ],
 }
 </script>

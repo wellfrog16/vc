@@ -55,14 +55,17 @@ import type { UploadRequestOptions } from 'element-plus'
 import type { UploadRawFile } from 'element-plus/es/components/upload/src/upload'
 
 const props = defineProps(myProps)
-const emits = defineEmits(['update:visible', 'update:modelValue', 'error'])
+const emits = defineEmits(['update:visible', 'update:modelValue', 'error', 'close'])
 
 const loading = ref(false)
 const imgList = shallowRef<(File | IUploadFile)[]>(props.modelValue) // 已上传的文件列表
 
 const dialogVisible = computed({
     get: () => props.visible,
-    set: val => emits('update:visible', val),
+    set: val => {
+        emits('update:visible', val)
+        if (!val) { emits('close') }
+    },
 })
 
 const getImgUrl = (file: IUploadFile | File) => {

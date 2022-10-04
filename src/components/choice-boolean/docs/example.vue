@@ -3,7 +3,7 @@
         <ElDescriptionsItem label="展示区">
             <HChoiceBoolean v-model="result" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果">{{ result }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="结果"><span>{{ result }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 

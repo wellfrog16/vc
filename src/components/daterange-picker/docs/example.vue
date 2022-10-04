@@ -9,7 +9,7 @@
         <ElDescriptionsItem label="参数：当天">
             <ElCheckbox v-model="includeToday">包含当天</ElCheckbox>
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果">{{ result }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="结果"><span>{{ result }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 

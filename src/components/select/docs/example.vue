@@ -16,7 +16,7 @@
                 @change="handleChange"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果">{{ result }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="结果"><span>{{ result }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 

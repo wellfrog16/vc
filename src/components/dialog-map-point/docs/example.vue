@@ -7,9 +7,7 @@
                 v-model:visible="visible"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果">
-            <p>{{ result }}</p>
-        </ElDescriptionsItem>
+        <ElDescriptionsItem label="结果"><span>{{ result }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 

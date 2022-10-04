@@ -10,9 +10,9 @@
         <ElDescriptionsItem label="参数：补零">
             <HChoiceBoolean v-model="padDecimal" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果：值">{{ result }}</ElDescriptionsItem>
-        <ElDescriptionsItem label="结果：格式化">{{ formatValue }}</ElDescriptionsItem>
-        <ElDescriptionsItem label="@change">{{ changeValue }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="结果：值"><span>{{ result }}</span></ElDescriptionsItem>
+        <ElDescriptionsItem label="结果：格式化"><span>{{ formatValue }}</span></ElDescriptionsItem>
+        <ElDescriptionsItem label="@change"><span>{{ changeValue }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 

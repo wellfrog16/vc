@@ -10,16 +10,13 @@
                 @error="handleError"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果">
-            <ElAlert title="这里的数据根据返回不同而变化" type="success" :closable="false" />
-            <p>{{ result }}</p>
-        </ElDescriptionsItem>
+        <ElDescriptionsItem label="结果"><span>{{ result }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { ElAlert, ElButton, ElDescriptionsItem, ElMessage } from 'element-plus'
+import { ElButton, ElDescriptionsItem, ElMessage } from 'element-plus'
 import { defaultWindow } from '@wfrog/utils'
 import Wrapper from '@/components/example-wrapper.vue'
 import HDialogUploadImages from '../index.vue'

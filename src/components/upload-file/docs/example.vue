@@ -39,9 +39,7 @@
                 <span>可以自定义上传控件，点我上传</span>
             </HUploadFile>
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="本地Blob地址">
-            {{ result }}
-        </ElDescriptionsItem>
+        <ElDescriptionsItem label="本地Blob地址"><span>{{ result }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 

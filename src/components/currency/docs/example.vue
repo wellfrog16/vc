@@ -3,7 +3,7 @@
         <ElDescriptionsItem label="展示区">
             <HCurrency v-model="result1" code="CNY" :flag="flag" :prefix="prefix" :pad-decimal="padDecimal" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果：值">{{ result1 }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="结果：值"><span>{{ result1 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem />
         <ElDescriptionsItem label="展示区">
             <HCurrency v-model="result2" v-model:format-value="formatValue" :code="code" :flag="flag" :prefix="prefix" :pad-decimal="padDecimal" @change="handleChange" />
@@ -17,9 +17,9 @@
         <ElDescriptionsItem label="参数：补零">
             <HChoiceBoolean v-model="padDecimal" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果： 值">{{ result2 }}</ElDescriptionsItem>
-        <ElDescriptionsItem label="结果：格式化">{{ formatValue }}</ElDescriptionsItem>
-        <ElDescriptionsItem label="@change">{{ changeValue }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="结果：值"><span>{{ result2 }}</span></ElDescriptionsItem>
+        <ElDescriptionsItem label="结果：格式化"><span>{{ formatValue }}</span></ElDescriptionsItem>
+        <ElDescriptionsItem label="@change"><span>{{ changeValue }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 

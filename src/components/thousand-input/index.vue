@@ -26,8 +26,6 @@ const fixValue = (val: string) => {
         .replace(/^0(\d{1,}\.?)+?/, '$1') // 删除开头的0
         .replace(/^\./, '') // 删除开头的.
         .replace(/\.{1,}/g, '.') // 替换多个.为一个.
-    console.log(val)
-    console.log(myVal)
     const arrayVal = myVal.split('.')
     if (arrayVal.length > 1) {
         const [integer, decimal] = arrayVal

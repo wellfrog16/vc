@@ -13,7 +13,7 @@
                 @change="handleChange"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果">{{ result1 }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="结果"><span>{{ result1 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem />
         <ElDescriptionsItem label="展示区：模拟异步">
             <ElSpace>
@@ -21,7 +21,7 @@
                 <ElButton @click="reload">重新加载</ElButton>
             </ElSpace>
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果">{{ result2 }}</ElDescriptionsItem>
+        <ElDescriptionsItem label="结果"><span>{{ result2 }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 

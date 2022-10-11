@@ -6,7 +6,17 @@
         <ElDescriptionsItem label="结果：值"><span>{{ result1 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem />
         <ElDescriptionsItem label="展示区">
-            <HCurrency v-model="result2" v-model:format-value="formatValue" :code="code" :flag="flag" :prefix="prefix" :pad-decimal="padDecimal" @change="handleChange" />
+            <HCurrency
+                v-model="result2"
+                v-model:format-value="formatValue"
+                :code="code"
+                :flag="flag"
+                :prefix="prefix"
+                :pad-decimal="padDecimal"
+                :prepend="prepend"
+                :append="append"
+                @change="handleChange"
+            />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：旗子">
             <HChoiceBoolean v-model="flag" />
@@ -16,6 +26,12 @@
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：补零">
             <HChoiceBoolean v-model="padDecimal" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：prepend">
+            <HChoiceBoolean v-model="prepend" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：append">
+            <HChoiceBoolean v-model="append" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果：值"><span>{{ result2 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem label="结果：格式化"><span>{{ formatValue }}</span></ElDescriptionsItem>
@@ -40,6 +56,8 @@ const changeValue = ref<string[]>()
 const flag = ref(true)
 const prefix = ref(true)
 const padDecimal = ref(true)
+const prepend = ref(true)
+const append = ref(false)
 
 const handleChange: any = (val: string[]) => {
     changeValue.value = val

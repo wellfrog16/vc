@@ -1,6 +1,7 @@
 <template>
     <ElInput v-if="visible" ref="elInput" v-model="myValue" v-thousand="option" v-bind="$attrs" :class="$style.main" @change="handleChange">
         <template v-if="$slots.prepend" #prepend><slot name="prepend" /></template>
+        <template v-if="$slots.append" #append><slot name="append" /></template>
     </ElInput>
 </template>
 
@@ -98,7 +99,7 @@ watch(observed, (val1, val2) => {
                 // 触发change事件，并重新格式化各个数据
                 handleChange(formatValue())
             })
-        }, 10)
+        }, 100)
         // })
     })
 })

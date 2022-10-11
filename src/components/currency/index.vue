@@ -1,6 +1,6 @@
 <template>
     <HThousandInput v-model="myValue" v-model:format-value="formatValue" :option="thousandOption" v-bind="$attrs" @change="handleChange">
-        <template v-if="Array.isArray(currencyInfo)" #prepend>
+        <template v-if="prepend" #prepend>
             <ElSelect v-if="Array.isArray(currencyInfo)" v-model="myCode" :style="selectStyle" @change="handleCodeChange">
                 <template v-if="flag" #prefix>
                     <HFlag v-if="myCurrencyInfo" :code="myCurrencyInfo?.flag" />
@@ -9,9 +9,13 @@
                     <HFlag v-if="flag" :code="item.flag" :class="$style.flag" />{{ item.code }}
                 </ElOption>
             </ElSelect>
+            <template v-else>
+                <HFlag v-if="flag" :code="currencyInfo!.flag" :class="$style.flag" />{{ currencyInfo!.code }}
+            </template>
         </template>
-        <template v-else #prepend>
-            <HFlag v-if="flag" :code="currencyInfo.flag" :class="$style.flag" />{{ currencyInfo.code }}
+        <template v-if="append" #append>
+            <span v-if="Array.isArray(currencyInfo)">{{ myCurrencyInfo!.code }}</span>
+            <span v-else>{{ currencyInfo!.code }}</span>
         </template>
     </HThousandInput>
 </template>
@@ -30,6 +34,8 @@ const props = defineProps({
     code: { type: [Array, String] as PropType<ICurrencyCode | ICurrencyCode[]>, required: true },
     flag: { type: Boolean, default: false },
     prefix: { type: Boolean, default: true },
+    prepend: { type: Boolean, default: true },
+    append: { type: Boolean, default: false },
 })
 
 const emits = defineEmits(['update:modelValue', 'change'])

@@ -3,7 +3,7 @@ import type { Directive } from 'vue'
 
 const thousand: Directive = {
     mounted: async (el, binding) => {
-        const elInput = el.getElementsByTagName('input')[binding.value?.elInputIndex || 0]
+        const elInput = el.getElementsByTagName('input')[binding.value?.elInputIndex || 0] || el.getElementsByTagName('input')[0]
         const disabled = elInput.disabled
         elInput.disabled = true
         el.classList.add('is-disabled')
@@ -25,7 +25,7 @@ const thousand: Directive = {
     updated: (el, binding) => {
         setTimeout(() => {
             const event = new Event('input', { bubbles: true })
-            const elInput = el.getElementsByTagName('input')[binding.value?.elInputIndex || 0]
+            const elInput = el.getElementsByTagName('input')[binding.value?.elInputIndex || 0] || el.getElementsByTagName('input')[0]
             elInput.dispatchEvent(event)
             if (elInput.cleave) {
                 elInput.value = elInput.cleave?.properties?.result || ''

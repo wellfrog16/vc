@@ -1,7 +1,15 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HCurrency v-model="result1" code="CNY" :flag="flag" :prefix="prefix" :pad-decimal="padDecimal" />
+            <HCurrency
+                v-model="result1"
+                code="CNY"
+                :flag="flag"
+                :prefix="prefix"
+                :pad-decimal="padDecimal"
+                :prepend="prepend"
+                :append="append"
+            />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果：值"><span>{{ result1 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem />

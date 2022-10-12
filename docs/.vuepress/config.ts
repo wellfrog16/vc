@@ -60,6 +60,7 @@ export default defineUserConfig({
                         '/form/confirm-switch',
                         '/form/currency',
                         '/form/daterange-picker',
+                        '/form/dialog-camera-upload',
                         '/form/dialog-upload-images',
                         '/form/dialog-map-point',
                         '/form/select',

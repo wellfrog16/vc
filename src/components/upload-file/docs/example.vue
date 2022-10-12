@@ -31,9 +31,6 @@
             <HUploadFile
                 :http-request="httpRequest"
                 type="button"
-                :button-options="{
-                    type: 'primary',
-                }"
                 @error="handleError"
             >
                 <span>可以自定义上传控件，点我上传</span>

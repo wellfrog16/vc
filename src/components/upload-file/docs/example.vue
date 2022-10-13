@@ -50,8 +50,8 @@ import HUploadFile from '../index.vue'
 const result = ref('')
 const cropper = ref(false)
 const httpRequest = (file: File, done: () => void, localUrl: string) => {
+    result.value = localUrl
     setTimeout(() => {
-        result.value = localUrl
         done()
     }, 1000)
 }

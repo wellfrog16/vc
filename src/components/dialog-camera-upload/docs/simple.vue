@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
         <ElButton @click="handleClick">打开</ElButton>
-        <HDialogMapPoint
-            v-model="result"
+        <HDialogCameraUpload
             v-model:visible="visible"
+            :http-request="httpRequest"
         />
     </Wrapper>
 </template>
@@ -12,12 +12,16 @@
 import { ref } from 'vue'
 import { ElButton } from 'element-plus'
 import Wrapper from '@/components/simple-wrapper.vue'
-import HDialogMapPoint from '../index.vue'
+import HDialogCameraUpload from '../index.vue'
 
-const result = ref({ lng: '', lat: '' })
+const result = ref('')
 const visible = ref(false)
 
 const handleClick = () => {
     visible.value = true
+}
+
+const httpRequest = (file: File, localUrl: string) => {
+    result.value = localUrl
 }
 </script>

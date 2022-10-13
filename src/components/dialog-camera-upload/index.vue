@@ -41,7 +41,7 @@
         </div>
         <template #footer>
             <div :class="$style.footer">
-                <ElSelect v-model="currentCamera" :class="$style.select">
+                <ElSelect v-if="cameraVisible" v-model="currentCamera" :class="$style.select">
                     <ElOption
                         v-for="item in cameras"
                         :key="item.deviceId"
@@ -54,7 +54,7 @@
                     <!-- <ElButton @click="handleClose">裁剪</ElButton> -->
                     <ElButton v-show="videoVisible" :loading="loading" @click="handleBack">返回</ElButton>
                     <ElButton v-show="videoVisible" :loading="loading" type="primary" @click="handleShoot">拍摄</ElButton>
-                    <ElButton v-show="confirmVisible" :loading="loading" type="primary" @click="handleConfirm">确定</ElButton>
+                    <ElButton v-show="confirmVisible" :loading="loading" type="primary" @click="handleSave">保存</ElButton>
                 </div>
             </div>
         </template>
@@ -73,17 +73,16 @@ import type { AlertProps } from 'element-plus/es/components/alert'
 import type { PropType } from 'vue'
 
 const props = defineProps({
-    modelValue: { type: Object as PropType<{ lng: string; lat: string }>, default: () => ({ lng: '', lat: '' }) },
     visible: { type: Boolean, required: true },
     type: { type: Array as PropType<string[]>, default: () => [TYPE_UPLOAD, TYPE_CAMERA] }, // 功能默认包含 上传和拍照
     width: { type: Number, default: 600 },
     fixWidth: { type: Number, default: 40 },
     height: { type: Number, default: 400 },
     accept: { type: String, default: '.jpg,.jpeg,.png' },
-    httpRequest: { type: Function as PropType<(file: File, done: () => void, localUrl: string) => void> },
+    httpRequest: { type: Function as PropType<(file: File, localUrl: string) => void>, required: true },
 })
 
-const emits = defineEmits(['update:visible', 'update:modelValue', 'close', 'error'])
+const emits = defineEmits(['update:visible', 'close', 'error'])
 
 // 常量
 const TIPS_SHOOT_SUCCESS = '照片拍摄成功'
@@ -102,6 +101,7 @@ const currentWindow = ref('')
 const blobImage = ref('')
 const loading = ref(false)
 const alert = reactive<{ visible: boolean; type: AlertProps['type']; description: string }>({ visible: false, type: 'success', description: '' })
+let myFile: File
 
 const dialogWidth = computed(() => `${props.width + props.fixWidth}px`) // 对话框宽度
 const windowStyle = computed(() => ({ width: `${props.width}px`, height: `${props.height}px` })) // 窗口样式
@@ -172,8 +172,8 @@ const handleBack = () => {
     toggleWindow(WINDOW_PLACEHOLDER)
 }
 
-const handleConfirm = () => {
-    emits('update:modelValue', '')
+const handleSave = () => {
+    props.httpRequest(myFile, blobImage.value)
     handleClose()
 }
 
@@ -192,7 +192,7 @@ const handleShoot = () => {
     toggleWindow(WINDOW_CANVAS)
     const context = elCanvas.value.getContext('2d')
     context.drawImage(elVideo.value, 0, 0, props.width, props.height)
-    const myFile = file.dataURLToFile(elCanvas.value.toDataURL(), 'camera.png')
+    myFile = file.dataURLToFile(elCanvas.value.toDataURL(), 'camera.png')
     const localUrl = defaultWindow.URL.createObjectURL(myFile)
     blobImage.value = localUrl
     showAlert('success', TIPS_SHOOT_SUCCESS)
@@ -202,6 +202,7 @@ const handleHttpRequest = (file: File, done: () => void, localUrl: string) => {
     done()
     toggleWindow(WINDOW_IMAGE)
     blobImage.value = localUrl
+    myFile = file
 }
 
 const handleError = (message: string) => emits('error', message)

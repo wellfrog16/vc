@@ -60,7 +60,6 @@ export default defineUserConfig({
                         '/form/confirm-switch',
                         '/form/currency',
                         '/form/daterange-picker',
-                        '/form/dialog-camera-upload',
                         '/form/dialog-upload-images',
                         '/form/dialog-map-point',
                         '/form/select',
@@ -76,6 +75,7 @@ export default defineUserConfig({
                     text: '其他组件',
                     collapsible: false,
                     children: [
+                        '/other/dialog-camera-upload',
                         '/other/easy-pagination',
                         '/other/awesome-icon',
                         '/other/el-icon',

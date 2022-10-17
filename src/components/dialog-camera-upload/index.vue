@@ -7,6 +7,7 @@
         :width="dialogWidth"
         :show-close="false"
         append-to-body
+        destroy-on-close
     >
         <div v-loading="loading" :class="$style.window" :style="windowStyle">
             <ElImage v-show="imageVisible" :src="blobImage" fit="contain" />
@@ -38,6 +39,7 @@
                     <span><ElIcon><Upload /></ElIcon></span>
                 </HUploadFile>
             </div>
+            <HCropper v-if="cropper" v-model:visible="cropperVisible" :image="blobImage" :option="cropperOption" dialog @finished="handleFinished" />
         </div>
         <template #footer>
             <div :class="$style.footer">
@@ -51,9 +53,9 @@
                 </ElSelect>
                 <div>
                     <ElButton v-show="!videoVisible" @click="handleClose">取消</ElButton>
-                    <!-- <ElButton @click="handleClose">裁剪</ElButton> -->
                     <ElButton v-show="videoVisible" :loading="loading" @click="handleBack">返回</ElButton>
                     <ElButton v-show="videoVisible" :loading="loading" type="primary" @click="handleShoot">拍摄</ElButton>
+                    <ElButton v-show="confirmVisible " @click="handleCropperOpen">裁剪</ElButton>
                     <ElButton v-show="confirmVisible" :loading="loading" type="primary" @click="handleSave">保存</ElButton>
                 </div>
             </div>
@@ -68,9 +70,11 @@ import { ElAlert, ElButton, ElDialog, ElIcon, ElImage, ElOption, ElSelect, vLoad
 import { Camera, Upload } from '@element-plus/icons-vue'
 import { useDevicesList, useUserMedia } from '@vueuse/core'
 import HUploadFile from '@/components/upload-file/index.vue'
+import HCropper from '@/components/cropper/index.vue'
 import { TYPE_CAMERA, TYPE_UPLOAD, WINDOW_CANVAS, WINDOW_IMAGE, WINDOW_PLACEHOLDER, WINDOW_VIDEO } from './data'
 import type { AlertProps } from 'element-plus/es/components/alert'
 import type { PropType } from 'vue'
+import type ICropper from 'cropperjs'
 
 const props = defineProps({
     visible: { type: Boolean, required: true },
@@ -80,6 +84,8 @@ const props = defineProps({
     height: { type: Number, default: 400 },
     accept: { type: String, default: '.jpg,.jpeg,.png' },
     httpRequest: { type: Function as PropType<(file: File, localUrl: string) => void>, required: true },
+    cropper: { type: Boolean, default: true },
+    cropperOption: { type: Object as PropType<ICropper.Options>, default: () => { } },
 })
 
 const emits = defineEmits(['update:visible', 'close', 'error'])
@@ -100,6 +106,7 @@ const elCanvas = ref()
 const currentWindow = ref('')
 const blobImage = ref('')
 const loading = ref(false)
+const cropperVisible = ref(false)
 const alert = reactive<{ visible: boolean; type: AlertProps['type']; description: string }>({ visible: false, type: 'success', description: '' })
 let myFile: File
 
@@ -206,6 +213,18 @@ const handleHttpRequest = (file: File, done: () => void, localUrl: string) => {
 }
 
 const handleError = (message: string) => emits('error', message)
+
+const handleCropperOpen = () => {
+    cropperVisible.value = true
+}
+
+const handleFinished = (canvas: any, blob: Blob) => {
+    if (!defaultWindow) { return }
+    myFile = file.blobToFile(blob, 'cropper.png')
+    const localUrl = defaultWindow.URL.createObjectURL(myFile)
+    blobImage.value = localUrl
+    toggleWindow(WINDOW_IMAGE)
+}
 </script>
 
 <style lang="scss" module>

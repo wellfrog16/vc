@@ -56,6 +56,7 @@ const loading = ref(false)
 const workbench = ref<HTMLDivElement>()
 const cropperRef = shallowRef<ICropper>()
 const downloadLink = ref('')
+const isNeedInit = ref(false) // 是否需要重新初始化
 
 const dialogVisible = computed({
     get: () => props.visible,
@@ -103,6 +104,7 @@ const init = async () => {
 
     cropperRef.value?.destroy()
     loading.value = true
+    isNeedInit.value = false
     workbench.value.childNodes.forEach(item => workbench.value?.removeChild(item))
     workbench.value.appendChild(image.value)
     const Cropper = await loader.loadCdnSingle('cropper')
@@ -155,12 +157,10 @@ const handleFinish = () => {
     emits('finished', canvas, blob)
 }
 
-const myOption = computed(() => props.option)
-
-watch(myOption, () => init())
-watch(image, () => nextTick(() => init()))
+watch(() => props.option, () => { isNeedInit.value = true })
+watch(image, () => { isNeedInit.value = true })
 watch(dialogVisible, () => {
-    props.visible && !cropperRef.value && nextTick(() => init())
+    props.visible && (!cropperRef.value || isNeedInit.value) && nextTick(() => init())
 })
 
 defineExpose({ instance: cropperRef, getCroppedCanvas, getBlobData })

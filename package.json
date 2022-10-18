@@ -33,11 +33,11 @@
   ],
   "author": "wellfrog",
   "license": "ISC",
-  "homepage": "https://github.com/wellfrog16/element-plus-components",
+  "homepage": "https://github.com/wellfrog16/vc",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wellfrog16/element-plus-components.git",
-    "web": "https://github.com/wellfrog16/element-plus-components"
+    "url": "git://github.com/wellfrog16/vc.git",
+    "web": "https://github.com/wellfrog16/vc"
   },
   "dependencies": {
     "vuedraggable": "^4.1.0"

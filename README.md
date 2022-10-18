@@ -18,6 +18,11 @@ npm i element-plus@~2.2.13 @element-plus/icons-vue@^2.0.9 @vueuse/core@^9.1.0
 npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21 vuedraggable@^4.1.0 
 ```
 
+然后安装本组件库
+```sh
+npm i @wfrog/vc 
+```
+
 在 app.ts 里，全量引入组件和css
 ```ts
 import VC from '@wfrog/vc'
@@ -42,6 +47,11 @@ app.use(VC)
 ```sh
 npm i element-plus@~2.2.13 @element-plus/icons-vue@^2.0.9 @vueuse/core@^9.1.0
 npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21
+```
+
+然后安装本组件库
+```sh
+npm i @wfrog/vc 
 ```
 
 在 app.ts 里，全量引入 css

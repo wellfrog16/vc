@@ -6,7 +6,7 @@ const __dirname = getDirname(import.meta.url)
 
 const getBase = () => {
     const deploy = process?.env?.deploy
-    if (deploy === 'gh') return '/element-plus-components/' // github
+    if (deploy === 'gh') return '/vc/' // github
     return '/'  // default, layer0
 }
 

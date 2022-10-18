@@ -19,10 +19,30 @@ sidebarDepth: 1
 
 本组件库依赖 `element-plus`，需要事先安装组件中使用的库，以及组件的依赖
 
-```sh
+<CodeGroup>
+  <CodeGroupItem title="NPM" active>
+
+```bash:no-line-numbers
 npm i element-plus@~2.2.13 @element-plus/icons-vue@^2.0.9 @vueuse/core@^9.1.0
 npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21 vuedraggable@^4.1.0 
 ```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+
+然后安装本组件库
+<CodeGroup>
+  <CodeGroupItem title="NPM" active>
+
+```bash:no-line-numbers
+npm i @wfrog/vc 
+```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+
 
 在 app.ts 里，全量引入组件和css
 ```ts
@@ -45,10 +65,27 @@ app.use(VC)
 
 本组件库依赖 `element-plus`，需要事先安装组件中使用的库。组件的依赖可以不按照，仅在使用到有依赖组件的时候才去安装
 
-```sh
+<CodeGroup>
+  <CodeGroupItem title="NPM" active>
+
+```bash:no-line-numbers
 npm i element-plus@~2.2.13 @element-plus/icons-vue@^2.0.9 @vueuse/core@^9.1.0
 npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21
 ```
+
+  </CodeGroupItem>
+</CodeGroup>
+
+然后安装本组件库
+<CodeGroup>
+  <CodeGroupItem title="NPM" active>
+
+```bash:no-line-numbers
+npm i @wfrog/vc 
+```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 在 app.ts 里，全量引入 css
 ```ts

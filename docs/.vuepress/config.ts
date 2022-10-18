@@ -38,8 +38,12 @@ export default defineUserConfig({
                 ],
             },
             {
+                text: '更新日志',
+                link: '/log.md',
+            },
+            {
                 text: 'Github',
-                link: 'http://www.baidu.com',
+                link: 'https://www.github.com',
             },
         ],
         sidebarDepth: 0,
@@ -50,6 +54,7 @@ export default defineUserConfig({
                     link: '/',
                 },
             ],
+            '/log': [],
             '/form/': [
                 {
                     text: '表单组件',

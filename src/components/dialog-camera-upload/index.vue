@@ -51,11 +51,12 @@
                         :value="item.deviceId"
                     />
                 </ElSelect>
+                <span v-else />
                 <div>
                     <ElButton v-show="!videoVisible" @click="handleClose">取消</ElButton>
                     <ElButton v-show="videoVisible" :loading="loading" @click="handleBack">返回</ElButton>
                     <ElButton v-show="videoVisible" :loading="loading" type="primary" @click="handleShoot">拍摄</ElButton>
-                    <ElButton v-show="confirmVisible " @click="handleCropperOpen">裁剪</ElButton>
+                    <ElButton v-show="confirmVisible && cropper" @click="handleCropperOpen">裁剪</ElButton>
                     <ElButton v-show="confirmVisible" :loading="loading" type="primary" @click="handleSave">保存</ElButton>
                 </div>
             </div>
@@ -64,8 +65,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, reactive, ref, watch, watchEffect } from 'vue'
-import { defaultWindow, file, loader } from '@wfrog/utils'
+import { computed, reactive, ref, watch } from 'vue'
+import { defaultWindow, file } from '@wfrog/utils'
 import { ElAlert, ElButton, ElDialog, ElIcon, ElImage, ElOption, ElSelect, vLoading } from 'element-plus'
 import { Camera, Upload } from '@element-plus/icons-vue'
 import { useDevicesList, useUserMedia } from '@vueuse/core'
@@ -78,17 +79,16 @@ import type ICropper from 'cropperjs'
 
 const props = defineProps({
     visible: { type: Boolean, required: true },
-    type: { type: Array as PropType<string[]>, default: () => [TYPE_UPLOAD, TYPE_CAMERA] }, // 功能默认包含 上传和拍照
+    type: { type: Array as PropType<('upload' | 'camera')[]>, default: () => [TYPE_UPLOAD, TYPE_CAMERA] }, // 功能默认包含 上传和拍照
     width: { type: Number, default: 600 },
     fixWidth: { type: Number, default: 40 },
     height: { type: Number, default: 400 },
     accept: { type: String, default: '.jpg,.jpeg,.png' },
-    httpRequest: { type: Function as PropType<(file: File, localUrl: string) => void>, required: true },
     cropper: { type: Boolean, default: true },
     cropperOption: { type: Object as PropType<ICropper.Options>, default: () => { } },
 })
 
-const emits = defineEmits(['update:visible', 'close', 'error'])
+const emits = defineEmits(['update:visible', 'close', 'error', 'save'])
 
 // 常量
 const TIPS_SHOOT_SUCCESS = '照片拍摄成功'
@@ -132,7 +132,7 @@ const confirmVisible = computed(() => {
 })
 
 watch(stream, () => {
-    if (elVideo.value) {
+    if (elVideo.value && stream.value) {
         elVideo.value.srcObject = stream.value
         elVideo.value.play()
         loading.value = false
@@ -180,7 +180,7 @@ const handleBack = () => {
 }
 
 const handleSave = () => {
-    props.httpRequest(myFile, blobImage.value)
+    emits('save', myFile, blobImage.value)
     handleClose()
 }
 

@@ -4,9 +4,9 @@ import pluginVue from '@wfrog/esbuild-plugin-vue-next'
 import path from 'path'
 import type { BuildOptions } from 'esbuild'
 
-const COMPONENTS_PATH = path.resolve(__dirname, './src/components')
+const COMPONENTS_PATH = path.resolve(__dirname, '../src/components')
 
-export const componentEntrys = klawSync(COMPONENTS_PATH, {
+const componentEntrys = klawSync(COMPONENTS_PATH, {
     nofile: true,
     depthLimit: 0,
 }).map(dir => `${dir.path}/index.vue`)

@@ -41,6 +41,6 @@ const install = function (Vue: any) {
 }
 
 export default {
-    version: '0.0.1',
+    version: '0.2.1',
     install,
 }

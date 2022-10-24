@@ -1,21 +1,19 @@
-declare namespace IGlobal {
-    type BaseType = string | number | boolean
-    type IconType = 'el' | 'svg' | 'awesome'
-    type ImageFit = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down'
+// GlobalComponents for Volar
+declare module '@vue/runtime-core' {
+    export interface GlobalComponents {
+        ElAffix: typeof import('@wfrog/vc')['ElAffix']
+    }
+
+    // interface ComponentCustomProperties {
+    //     $message: typeof import('element-plus')['ElMessage']
+    //     $notify: typeof import('element-plus')['ElNotification']
+    //     $msgbox: typeof import('element-plus')['ElMessageBox']
+    //     $messageBox: typeof import('element-plus')['ElMessageBox']
+    //     $alert: typeof import('element-plus')['ElMessageBox']['alert']
+    //     $confirm: typeof import('element-plus')['ElMessageBox']['confirm']
+    //     $prompt: typeof import('element-plus')['ElMessageBox']['prompt']
+    //     $loading: typeof import('element-plus')['ElLoadingService']
+    // }
 }
 
-interface Window {
-    ElementPlusComponents: {
-        isAwesomeIconLock?: boolean
-        isSVGIconLock?: boolean
-    }
-    tinyMCE: unknown
-    BMap: any
-    h_utils: {
-        cdn: {
-            name: 'jsdelivr' | 'defaultBase' | 'localCDN'
-            path: string
-            host: string
-        }
-    };
-}
+export { }

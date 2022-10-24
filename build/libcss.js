@@ -21,4 +21,4 @@ jsEntrys.forEach(js => {
     }
 })
 
-console.log('build finished')
+console.log('build css finished')

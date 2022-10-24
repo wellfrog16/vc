@@ -34,7 +34,10 @@ const install = function (Vue: any) {
         const [, name] = key.match(/\/components\/([a-z\-\d]+)\//) || []
         if (!name) { return false }
 
-        const componentName = `H-${name}`.replace(/-(\w)/g, upper)
+        let componentName = `H-${name}`.replace(/-(\w)/g, upper)
+        if (name === 'qr-code') { componentName = 'HQRCode' }
+        if (name === 'svg-icon') { componentName = 'HSVGIcon' }
+
         Vue.component(componentName, modules[key].default)
         return true
     })

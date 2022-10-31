@@ -1,13 +1,13 @@
 <template>
-    <ElDialog
+    <HDialog
         v-model="dialogVisible"
         title="拍照上传"
         :close-on-click-modal="false"
-        custom-class="or-dialog"
         :width="dialogWidth"
         :show-close="false"
         append-to-body
         destroy-on-close
+        :show-fullscreen="false"
     >
         <div v-loading="loading" :class="$style.window" :style="windowStyle">
             <ElImage v-show="imageVisible" :src="blobImage" fit="contain" />
@@ -61,18 +61,19 @@
                 </div>
             </div>
         </template>
-    </ElDialog>
+    </HDialog>
 </template>
 
 <script lang="ts" setup>
 import { computed, reactive, ref, watch } from 'vue'
 import { defaultWindow, file } from '@wfrog/utils'
-import { ElAlert, ElButton, ElDialog, ElIcon, ElImage, ElOption, ElSelect, vLoading } from 'element-plus'
+import { ElAlert, ElButton, ElIcon, ElImage, ElOption, ElSelect, vLoading } from 'element-plus'
 import { Camera, Upload } from '@element-plus/icons-vue'
 import { useDevicesList, useUserMedia } from '@vueuse/core'
 import HUploadFile from '@/components/upload-file/index.vue'
 import HCropper from '@/components/cropper/index.vue'
 import { TYPE_CAMERA, TYPE_UPLOAD, WINDOW_CANVAS, WINDOW_IMAGE, WINDOW_PLACEHOLDER, WINDOW_VIDEO } from './data'
+import HDialog from '../dialog/index.vue'
 import type { AlertProps } from 'element-plus/es/components/alert'
 import type { PropType } from 'vue'
 import type ICropper from 'cropperjs'
@@ -81,7 +82,7 @@ const props = defineProps({
     visible: { type: Boolean, required: true },
     type: { type: Array as PropType<('upload' | 'camera')[]>, default: () => [TYPE_UPLOAD, TYPE_CAMERA] }, // 功能默认包含 上传和拍照
     width: { type: Number, default: 600 },
-    fixWidth: { type: Number, default: 40 },
+    fixWidth: { type: Number, default: 32 },
     height: { type: Number, default: 400 },
     accept: { type: String, default: '.jpg,.jpeg,.png' },
     cropper: { type: Boolean, default: true },

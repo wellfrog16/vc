@@ -2,12 +2,15 @@
 title: 更新日志
 ---
 
-## 0.2.3
+## 0.3.0
 
-### 新增
+### 新增和更新
 
 * 增加 volar 用的 global.d.ts
 * 增加 commitlint
+* 增加 HDialog 组件
+* HDialogMapPoint、HDialogCameraUpload、HDialogUploadImages 改用 HDialog 组件
+* HDialogUploadImages 支持全屏
 
 ### 缺陷修复
 

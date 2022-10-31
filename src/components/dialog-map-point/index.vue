@@ -1,12 +1,12 @@
 <template>
-    <ElDialog
+    <HDialog
         v-model="dialogVisible"
         title="选择地点"
         :close-on-click-modal="false"
-        custom-class="or-dialog"
         :width="dialogWidth"
         :show-close="false"
         append-to-body
+        :show-fullscreen="false"
     >
         <div ref="elContainer" :style="containerStyle" />
         <div :class="$style.search">
@@ -18,14 +18,15 @@
             <ElButton @click="handleClose">取 消</ElButton>
             <ElButton type="primary" @click="handleConfirm">确 定</ElButton>
         </template>
-    </ElDialog>
+    </HDialog>
 </template>
 
 <script lang="ts" setup>
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { defaultWindow, loader } from '@wfrog/utils'
-import { ElButton, ElDialog, ElInput } from 'element-plus'
+import { ElButton, ElInput } from 'element-plus'
 import { Search } from '@element-plus/icons-vue'
+import HDialog from '../dialog/index.vue'
 import type { PropType } from 'vue'
 
 const props = defineProps({

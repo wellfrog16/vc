@@ -6,7 +6,7 @@
                 v-model="result"
                 v-model:visible="visible"
                 :http-request="httpRequest"
-                :limit="20"
+                :limit="200"
                 @error="handleError"
             />
         </ElDescriptionsItem>

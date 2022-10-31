@@ -6,6 +6,7 @@ export { default as HConfirmSwitch } from './components/confirm-switch/index.vue
 export { default as HCropper } from './components/cropper/index.vue'
 export { default as HCurrency } from './components/currency/index.vue'
 export { default as HDaterangePicker } from './components/daterange-picker/index.vue'
+export { default as HDialog } from './components/dialog/index.vue'
 export { default as HDialogCameraUpload } from './components/dialog-camera-upload/index.vue'
 export { default as HDialogMapPoint } from './components/dialog-map-point/index.vue'
 export { default as HDialogUploadImages } from './components/dialog-upload-images/index.vue'

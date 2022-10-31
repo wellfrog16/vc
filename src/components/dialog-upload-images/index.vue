@@ -1,9 +1,9 @@
 <template>
-    <ElDialog
+    <HDialog
         v-model="dialogVisible"
         title="上传图片"
         :close-on-click-modal="false"
-        :custom-class="`${$style.dialog} or-dialog`"
+        :class="$style.dialog"
         :width="660"
         :show-close="false"
         :destroy-on-close="destroyOnClose"
@@ -40,16 +40,17 @@
         <template #footer>
             <ElButton type="primary" :loading="loading" @click="handleConfirm">确 定</ElButton>
         </template>
-    </ElDialog>
+    </HDialog>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, shallowRef } from 'vue'
 import Draggable from 'vuedraggable'
-import { ElButton, ElDialog, ElUpload, vLoading } from 'element-plus'
+import { ElButton, ElUpload, vLoading } from 'element-plus'
 import { defaultWindow } from '@wfrog/utils'
 import HElIcon from '@/components/el-icon/index.vue'
 import myProps from './props'
+import HDialog from '../dialog/index.vue'
 import type { IUploadFile } from './props'
 import type { UploadRequestOptions } from 'element-plus'
 import type { UploadRawFile } from 'element-plus/es/components/upload/src/upload'
@@ -143,6 +144,12 @@ const handleOnPreview = (file: IUploadFile | File) => {
         .el-dialog__body {
             max-height: 470px;
             overflow-y: auto;
+        }
+    }
+
+    &:global(.is-fullscreen) {
+        :global(.el-dialog__body) {
+            max-height: initial;
         }
     }
 }

@@ -2,16 +2,16 @@ import { computed, onMounted, ref } from 'vue'
 import { storage } from '@wfrog/utils'
 import type { ExtractPropTypes, PropType } from 'vue'
 
-export interface IOption {
+export type IOption = {
     label: string
     value: string | number | boolean
     key?: string | number
-}
+} & Record<string, any>
 
 export interface IChoiceOptionProps {
-    key: keyof IOption
-    value: keyof IOption
-    label: keyof IOption
+    key: string
+    value: string
+    label: string
 }
 
 export type IChoiceOption = IOption[] | string[] | number[]

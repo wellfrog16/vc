@@ -7,7 +7,7 @@
         @before-enter="() => toggleCascaderVisible()"
         @after-leave="() => toggleCascaderVisible()"
     >
-        <div v-click-outside="clickOutSideTogglePopover" :class="$style.wrapper">
+        <div ref="myWrapper" :class="$style.wrapper">
             <div v-if="multiple" :class="$style.selected">
                 <ElScrollbar>
                     <ElTree
@@ -54,9 +54,8 @@
 import { computed, nextTick, onBeforeMount, ref, useCssModule, watch } from 'vue'
 import { storage, tree } from '@wfrog/utils'
 import { get } from 'lodash-es'
-import { useToggle } from '@vueuse/core'
-import { ElCascaderPanel, ElPopover, ElScrollbar, ElSelect, ElTree, ClickOutside as vClickOutside } from 'element-plus'
-import type { ElCascader } from 'element-plus'
+import { onClickOutside, useToggle } from '@vueuse/core'
+import { ElCascaderPanel, ElPopover, ElScrollbar, ElSelect, ElTree } from 'element-plus'
 import type { PropType } from 'vue'
 
 import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel/src/node.d'
@@ -70,7 +69,7 @@ const props = defineProps({
     emptyText: { type: String, default: '尚未选择' },
     disabled: { type: Boolean, default: false },
     multiple: { type: Boolean, default: false },
-    modelValue: { type: [String, Array] as PropType<string | number | string[] | number[]>, required: true },
+    modelValue: { type: [String, Number, Array] as PropType<string | number | string[] | number[]>, required: true },
     options: { type: [Array, Function] as PropType<CascaderOption[] | (() => Promise<CascaderOption[]>)>, default: () => [] },
     props: { type: Object as PropType<CascaderProps>, default: () => {} },
     expires: { type: [Date, Number] as PropType<Date | number>, default: 60 * 60 * 2 },
@@ -137,9 +136,9 @@ const selectValue = computed({
 // popover显示隐藏控制
 // const mySelect = ref<InstanceType<typeof ElSelect>>()
 const mySelect = ref<any>() // 解决无法生成类型
-const clickOutSideTogglePopover = (event: any) => {
-    !event.path.includes(mySelect.value?.$el) && togglePopoverVisible(false)
-}
+
+const myWrapper = ref<any>()
+onClickOutside(myWrapper, () => togglePopoverVisible(false))
 
 // 更新popover宽度
 // const myPopover = ref<InstanceType<typeof ElPopover>>()

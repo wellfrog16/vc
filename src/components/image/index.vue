@@ -15,6 +15,7 @@
                 :preview-src-list="mySrcList"
                 :class="$style.image"
                 lazy
+                preview-teleported
             />
         </ElTooltip>
         <!-- 无tooltip或者关闭tooltip则直接渲染 -->
@@ -24,6 +25,7 @@
             :preview-src-list="mySrcList"
             :class="$style.image"
             lazy
+            preview-teleported
         />
 
         <!-- 这里渲染文字 -->
@@ -40,6 +42,7 @@
         :fit="fit"
         :class="$style['image-wrapper']"
         lazy
+        preview-teleported
     />
 </template>
 

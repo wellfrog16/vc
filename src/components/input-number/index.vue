@@ -1,18 +1,18 @@
 <template>
-    <ElInputNumber v-model="myValue" v-bind="$attrs" :class="$style['input-number']" step-strictly :precision="0" @keydown="limitInputValue" @change="handleChange" />
+    <ElInputNumber v-model="myValue" v-bind="$attrs" :class="$style['input-number']" step-strictly :precision="precision" @keydown="limitInputValue" @change="handleChange" />
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, nextTick } from 'vue'
 import { ElInputNumber } from 'element-plus'
 
 interface IPropType {
     modelValue: number
+    precision?: number
 }
 
-const props = withDefaults(defineProps<IPropType>(), { modelValue: 0 })
+const props = withDefaults(defineProps<IPropType>(), { modelValue: 0, precision: 0 })
 
-// const emits = defineEmits(['update:modelValue', 'change'])
 const emits = defineEmits<{
     (e: 'update:modelValue', val: number): void
     (e: 'change', currentValue: number, oldValue: number): void
@@ -20,13 +20,17 @@ const emits = defineEmits<{
 
 const myValue = computed({
     get: () => props.modelValue,
-    set: val => emits('update:modelValue', val),
+    set: val => {
+        const myVal = val === null ? myValue.value : val
+        emits('update:modelValue', -1234567890)
+        nextTick(() => emits('update:modelValue', myVal))
+    },
 })
 
 const limitInputValue = (e: KeyboardEvent) => {
     const key = e.key
-    if (key === 'e' || key === 'E') {
-        e.returnValue = false
+    if (key === 'e' || key === 'E' || (props.precision === 0 && key === '.')) {
+        // e.returnValue = false
         e.preventDefault()
         return false
     }
@@ -34,9 +38,7 @@ const limitInputValue = (e: KeyboardEvent) => {
 }
 
 const handleChange = (currentValue: number | undefined, oldValue: number | undefined) => {
-    if (currentValue === null) {
-        myValue.value = oldValue || 0
-    }
+    myValue.value = currentValue || oldValue || 0
     emits('change', myValue.value, oldValue || 0)
 }
 </script>

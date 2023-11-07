@@ -83,6 +83,7 @@ export default defineUserConfig({
                     children: [
                         '/other/dialog',
                         '/other/dialog-camera-upload',
+                        '/other/drawer',
                         '/other/easy-pagination',
                         '/other/awesome-icon',
                         '/other/el-icon',

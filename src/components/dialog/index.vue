@@ -37,7 +37,7 @@ const props = defineProps({
     lazy: { type: Boolean, default: true },
     destoryDelay: { type: Number, default: 500 },
 })
-const emits = defineEmits(['update:modelValue', 'close', 'error', 'save'])
+const emits = defineEmits(['update:modelValue'])
 const dialogVisible = computed({
     get: () => props.modelValue,
     set: val => emits('update:modelValue', val),

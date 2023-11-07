@@ -14,7 +14,7 @@ export interface IChoiceOptionProps {
     label: string
 }
 
-export type IChoiceOption = IOption[] | string[] | number[]
+export type IChoiceOption = IOption[] | string[] | number[] | Record<string, string>[] | any[]
 
 export const preProps = {
     name: { type: String, default: '' },
@@ -66,7 +66,7 @@ const useChoice = ({ props, emits }: IContext, storagPrefix: string) => {
 
             if (val) {
                 asyncOptions.value = val
-                emits('init', val)
+                setTimeout(() => { emits('init', val) }, 0)
                 return
             }
         }
@@ -78,7 +78,7 @@ const useChoice = ({ props, emits }: IContext, storagPrefix: string) => {
 
             // 写入缓存
             props.name && storage.set(name, asyncOptions.value, { expires: props.expires })
-            emits('init', asyncOptions.value)
+            setTimeout(() => { emits('init', asyncOptions.value) }, 0)
         }
         finally {
             loading.value = false

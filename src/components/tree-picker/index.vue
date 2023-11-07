@@ -43,7 +43,7 @@
                 :multiple="multiple"
                 :class="[selectClassName, $style.select]"
                 :popper-class="$style['popover-select']"
-                @click="!loading && !disabled && togglePopoverVisible()"
+                @click="handleSelectClick"
                 @clear="clear"
             />
         </template>
@@ -54,7 +54,7 @@
 import { computed, nextTick, onBeforeMount, ref, useCssModule, watch } from 'vue'
 import { storage, tree } from '@wfrog/utils'
 import { get } from 'lodash-es'
-import { onClickOutside, useToggle } from '@vueuse/core'
+import { onClickOutside, useThrottleFn, useToggle } from '@vueuse/core'
 import { ElCascaderPanel, ElPopover, ElScrollbar, ElSelect, ElTree } from 'element-plus'
 import type { PropType } from 'vue'
 
@@ -82,6 +82,8 @@ const [cascaderVisible, toggleCascaderVisible] = useToggle()
 const loading = ref(false)
 const asyncOptions = ref<CascaderOption[]>()
 
+const handleSelectClick = useThrottleFn(() => !loading.value && !props.disabled && togglePopoverVisible(), 300)
+
 // 级联选择的props，便于设置multiple
 const cascaderProps = computed(() => ({
     label: 'label',
@@ -100,7 +102,7 @@ const myTreeProps = computed<TreeOptionProps>(() => ({
 }))
 
 const myValue = computed({
-    get: () => { return props.modelValue },
+    get: () => props.modelValue,
     set: val => emits('update:modelValue', val),
 })
 
@@ -133,12 +135,25 @@ const selectValue = computed({
     set() {},
 })
 
+// 修复箭头样式
+const $style = useCssModule()
+const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value }))
+
 // popover显示隐藏控制
 // const mySelect = ref<InstanceType<typeof ElSelect>>()
 const mySelect = ref<any>() // 解决无法生成类型
 
 const myWrapper = ref<any>()
-onClickOutside(myWrapper, () => togglePopoverVisible(false))
+onClickOutside(myWrapper, event => {
+    let target = event.target as any
+    let result = false
+    do {
+        result = target.classList.contains($style.select)
+        target = target.parentNode
+    } while (result === false && target.nodeName !== 'BODY')
+
+    !result && togglePopoverVisible(false)
+})
 
 // 更新popover宽度
 // const myPopover = ref<InstanceType<typeof ElPopover>>()
@@ -173,10 +188,6 @@ const handleCascaderChange = (val: CascaderValue) => {
         filterTree(val)
     }
 }
-
-// 修复箭头样式
-const $style = useCssModule()
-const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value }))
 
 // 清除事件，清除所有数据
 const clear = () => {
@@ -251,7 +262,7 @@ onBeforeMount(() => init())
         }
 
         .el-icon {
-            transform: rotateZ(0) !important;
+            transform: rotateZ(-180deg) !important;
         }
     }
 }

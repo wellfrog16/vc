@@ -9,7 +9,7 @@
             </HDialog>
             <HButton @click="() => toggleVisible()">打开</HButton>
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="参数：大小">
+        <ElDescriptionsItem label="参数：全屏">
             <HChoiceBoolean v-model="showFullscreen" />
         </ElDescriptionsItem>
     </Wrapper>

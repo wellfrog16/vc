@@ -1,5 +1,6 @@
 <template>
     <ElDialog
+        v-if="visible || !lazy"
         v-model="dialogVisible"
         v-bind="$attrs"
         align-center
@@ -24,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { ElButton, ElDialog } from 'element-plus'
 import { Close, CopyDocument, FullScreen } from '@element-plus/icons-vue'
 import { useToggle } from '@vueuse/core'
@@ -33,15 +34,25 @@ const props = defineProps({
     modelValue: { type: Boolean, required: true, default: false },
     title: { type: String, default: '对话框' },
     showFullscreen: { type: Boolean, default: true },
+    lazy: { type: Boolean, default: true },
+    destoryDelay: { type: Number, default: 500 },
 })
 const emits = defineEmits(['update:modelValue', 'close', 'error', 'save'])
 const dialogVisible = computed({
     get: () => props.modelValue,
     set: val => emits('update:modelValue', val),
 })
+const visible = ref(false) // 用于销毁对话框以及非开启状态时不渲染
 const isFullscreen = ref(false)
 const toggleFullscreen = useToggle(isFullscreen)
 const Icon = computed(() => isFullscreen.value ? CopyDocument : FullScreen)
+
+watch(dialogVisible, val => {
+    if (val) { visible.value = true }
+    else {
+        setTimeout(() => { visible.value = false }, props.destoryDelay)
+    }
+})
 </script>
 
 <style lang="scss" module>

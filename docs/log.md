@@ -2,6 +2,15 @@
 title: 更新日志
 ---
 
+2023-??-??
+
+### 新增和更新
+
+* 更新 dialog 和 drawer 的 lazy 销毁默认延迟为 300
+* 更新 drawer 的 body 滚动条为 el-scrollbar
+
+2023-11-8
+
 ## 0.4.0
 
 ### 新增和更新

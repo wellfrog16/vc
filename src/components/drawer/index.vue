@@ -1,20 +1,25 @@
 <template>
     <ElDrawer v-if="visible || !lazy" v-model="drawerVisible" v-bind="$attrs" :class="$style.main">
         <template #header><div><slot name="header">{{ title }}</slot></div></template>
-        <div class="drawer-body"><slot /></div>
-        <div class="drawer-footer"><slot name="footer" /></div>
+        <div class="drawer-body">
+            <ElScrollbar class="drawer-scrollbar">
+                <slot />
+            </ElScrollbar>
+            <slot />
+        </div>
+        <div v-if="$slots.footer" class="drawer-footer"><slot name="footer" /></div>
     </ElDrawer>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
-import { ElDrawer } from 'element-plus'
+import { ElDrawer, ElScrollbar } from 'element-plus'
 
 const props = defineProps({
     modelValue: { type: Boolean, required: true, default: false },
     title: { type: String, default: '对话框' },
     lazy: { type: Boolean, default: true },
-    destoryDelay: { type: Number, default: 500 },
+    destoryDelay: { type: Number, default: 300 },
 })
 const emits = defineEmits(['update:modelValue'])
 const drawerVisible = computed({
@@ -22,10 +27,6 @@ const drawerVisible = computed({
     set: val => emits('update:modelValue', val),
 })
 const visible = ref(false) // 用于销毁对话框以及非开启状态时不渲染
-
-const handleEnd = () => {
-    console.log(8888)
-}
 
 watch(drawerVisible, val => {
     if (val) { visible.value = true }
@@ -57,9 +58,13 @@ watch(drawerVisible, val => {
 
         .drawer-body {
             box-sizing: border-box;
-            flex: 0 0 calc(100vh - 46px - 53px);
+            flex-grow: 1;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .drawer-scrollbar {
             padding: 20px;
-            overflow-y: auto;
         }
 
         .drawer-footer {

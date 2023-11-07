@@ -35,7 +35,7 @@ const props = defineProps({
     title: { type: String, default: '对话框' },
     showFullscreen: { type: Boolean, default: true },
     lazy: { type: Boolean, default: true },
-    destoryDelay: { type: Number, default: 500 },
+    destoryDelay: { type: Number, default: 300 },
 })
 const emits = defineEmits(['update:modelValue'])
 const dialogVisible = computed({

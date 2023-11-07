@@ -1,18 +1,8 @@
 <template>
-    <ElDrawer
-        v-if="visible || !lazy"
-        v-model="drawerVisible"
-        v-bind="$attrs"
-        :class="$style.main"
-        :custom-class="$style.main"
-    >
-        <!-- <template #header><slot name="header">{{ title }}</slot></template> -->
-        <template #default>
-            <div class="drawer-body"><slot /></div>
-        </template>
-        <template #footer>
-            <div class="drawer-footer"><slot name="footer" /></div>
-        </template>
+    <ElDrawer v-if="visible || !lazy" v-model="drawerVisible" v-bind="$attrs" :class="$style.main">
+        <template #header><div><slot name="header">{{ title }}</slot></div></template>
+        <div class="drawer-body"><slot /></div>
+        <div class="drawer-footer"><slot name="footer" /></div>
     </ElDrawer>
 </template>
 
@@ -32,6 +22,10 @@ const drawerVisible = computed({
     set: val => emits('update:modelValue', val),
 })
 const visible = ref(false) // 用于销毁对话框以及非开启状态时不渲染
+
+const handleEnd = () => {
+    console.log(8888)
+}
 
 watch(drawerVisible, val => {
     if (val) { visible.value = true }

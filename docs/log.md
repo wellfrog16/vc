@@ -2,13 +2,21 @@
 title: 更新日志
 ---
 
-2023-8-31
-
 ## 0.4.0
 
 ### 新增和更新
 
+* 增加 input-number 组件
 * dialog 组件增加 lazy 模式
+
+### 缺陷修复
+
+* 修复 choice 组件和 select 组件的 option 类型
+* 修复 tree-picker 组件空白 Popover 空白的情况
+
+2023-8-31
+
+## 0.3.1
 
 ### 缺陷修复
 

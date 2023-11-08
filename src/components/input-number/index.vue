@@ -4,9 +4,11 @@
         <ElInputNumber
             v-model="myValue"
             v-bind="$attrs"
+            :size="size"
             step-strictly
+            :class="[inputNumberClass, $style['el-input-number']]"
             :precision="precision"
-            :controls-position="$slots.prepend ? 'right' : controlsPosition"
+            :controls-position="myControlsPosition"
             @keydown="limitInputValue"
             @change="handleChange"
         />
@@ -21,9 +23,12 @@ interface IPropType {
     modelValue: number
     precision?: number
     controlsPosition?: 'right' | ''
+    size?: 'large' | 'default' | 'small'
+    inputNumberClass?: string
+    inputWidth?: string
 }
 
-const props = withDefaults(defineProps<IPropType>(), { modelValue: 0, precision: 0 })
+const props = withDefaults(defineProps<IPropType>(), { modelValue: 0, precision: 0, inputWidth: '150px' })
 
 const emits = defineEmits<{
     (e: 'update:modelValue', val: number): void
@@ -33,11 +38,19 @@ const emits = defineEmits<{
 const $slots = useSlots()
 const $style = useCssModule()
 
-const mainClass = {
-    [$style['input-number']]: true,
-    'el-input': true,
-    'el-input-group__prepend': $slots.prepend,
-}
+const mainClass = computed(() => {
+    const className = {
+        [$style['input-number']]: true,
+        'el-input': true,
+        'el-input-group__prepend': $slots.prepend,
+    }
+    if (props.size) {
+        className[`el-input--${props.size}`] = true
+    }
+    return className
+})
+
+const myControlsPosition = computed(() => ($slots.prepend && props.controlsPosition === undefined) ? 'right' : props.controlsPosition)
 
 const myValue = computed({
     get: () => props.modelValue,
@@ -70,10 +83,6 @@ const handleChange = (currentValue: number | undefined, oldValue: number | undef
     width: auto;
     padding: 0;
 
-    :global(.el-input-number) {
-        line-height: 10px; // 防止上边框消失，10px为小于30px的任意值，无特殊意义
-    }
-
     &:global(.el-input-group__prepend :not(.el-select) .el-input__wrapper) {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
@@ -85,5 +94,10 @@ const handleChange = (currentValue: number | undefined, oldValue: number | undef
         border-radius: $border-radius 0 0 $border-radius;
         box-shadow: 0 0 0 0;
     }
+}
+
+.el-input-number {
+    width: v-bind(inputWidth);
+    line-height: 10px; // 防止上边框消失，10px为小于30px的任意值，无特殊意义
 }
 </style>

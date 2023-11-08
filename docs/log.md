@@ -10,7 +10,7 @@ title: 更新日志
 
 * 更新 dialog 和 drawer 的 lazy 销毁默认延迟为 300
 * 更新 drawer 的 body 滚动条为 el-scrollbar
-* input-number 组件增加 prepend 插槽
+* input-number 组件增加 prepend 插槽，尺寸，宽度，class功能
 
 2023-11-8
 

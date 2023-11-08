@@ -1,6 +1,6 @@
 {
   "name": "@wfrog/vc",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "main": "./es/index.mjs",
   "module": "./es/index.mjs",
   "types": "./es/index.d.ts",

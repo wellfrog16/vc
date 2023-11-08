@@ -12,6 +12,10 @@
     .el-descriptions__label {
         width: 150px;
     }
+
+    .el-descriptions__cell {
+        min-height: 50px;
+    }
 }
 
 .el-date-table {

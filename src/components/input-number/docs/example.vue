@@ -4,7 +4,7 @@
             <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：文字组合">
-            <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth" :min="-100">
+            <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth">
                 <template #prepend>份数</template>
             </HInputNumber>
         </ElDescriptionsItem>

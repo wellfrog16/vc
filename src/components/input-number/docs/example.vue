@@ -26,7 +26,7 @@
             <HChoiceBoolean v-model="controls" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="宽度">
-            <ElSlider v-model="width" :min="100" :max="250" />
+            <ElSlider v-model="width" :min="50" :max="200" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>

@@ -97,7 +97,11 @@ const handleChange = (currentValue: number | undefined, oldValue: number | undef
 }
 
 .el-input-number {
-    width: v-bind(inputWidth);
+    width: auto;
     line-height: 10px; // 防止上边框消失，10px为小于30px的任意值，无特殊意义
+
+    :global(.el-input__inner) {
+        width: v-bind(inputWidth);
+    }
 }
 </style>

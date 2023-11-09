@@ -28,7 +28,7 @@ interface IPropType {
     inputWidth?: string
 }
 
-const props = withDefaults(defineProps<IPropType>(), { modelValue: 0, precision: 0, inputWidth: '150px' })
+const props = withDefaults(defineProps<IPropType>(), { modelValue: 0, precision: 0, inputWidth: '80px' })
 
 const emits = defineEmits<{
     (e: 'update:modelValue', val: number): void

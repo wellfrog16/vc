@@ -4,7 +4,7 @@
             <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：文字组合">
-            <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth">
+            <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth" :min="-100">
                 <template #prepend>份数</template>
             </HInputNumber>
         </ElDescriptionsItem>
@@ -27,6 +27,9 @@
         </ElDescriptionsItem>
         <ElDescriptionsItem label="宽度">
             <ElSlider v-model="width" :min="50" :max="200" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="结果">
+            {{ result }}
         </ElDescriptionsItem>
     </Wrapper>
 </template>

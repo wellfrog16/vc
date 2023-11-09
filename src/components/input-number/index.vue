@@ -1,7 +1,8 @@
 <template>
-    <div :class="mainClass">
+    <div ref="eleInputNumber" :class="mainClass">
         <div v-if="$slots.prepend" class="el-input-group__prepend"><slot name="prepend" /></div>
         <ElInputNumber
+            v-if="visible"
             v-model="myValue"
             v-bind="$attrs"
             :size="size"
@@ -11,12 +12,13 @@
             :controls-position="myControlsPosition"
             @keydown="limitInputValue"
             @change="handleChange"
+            @blur="handleBlur"
         />
     </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, useCssModule, useSlots } from 'vue'
+import { computed, nextTick, ref, shallowRef, useCssModule, useSlots } from 'vue'
 import { ElInputNumber } from 'element-plus'
 
 interface IPropType {
@@ -33,10 +35,13 @@ const props = withDefaults(defineProps<IPropType>(), { modelValue: 0, precision:
 const emits = defineEmits<{
     (e: 'update:modelValue', val: number): void
     (e: 'change', currentValue: number, oldValue: number): void
+    (e: 'blur', event: Event): void
 }>()
 
 const $slots = useSlots()
 const $style = useCssModule()
+const visible = ref(true)
+const eleInputNumber = shallowRef<HTMLDivElement>()
 
 const mainClass = computed(() => {
     const className = {
@@ -56,8 +61,7 @@ const myValue = computed({
     get: () => props.modelValue,
     set: val => {
         const myVal = val === null ? myValue.value : val
-        emits('update:modelValue', -1234567890) // 无意义，用于触发更新
-        nextTick(() => emits('update:modelValue', myVal))
+        emits('update:modelValue', myVal)
     },
 })
 
@@ -74,6 +78,15 @@ const limitInputValue = (e: KeyboardEvent) => {
 const handleChange = (currentValue: number | undefined, oldValue: number | undefined) => {
     myValue.value = currentValue === 0 ? currentValue : (currentValue || oldValue || 0)
     emits('change', myValue.value, oldValue || 0)
+}
+
+const handleBlur = (e: Event) => {
+    const eleInput = eleInputNumber.value?.querySelector('.el-input__inner[type=number]') as HTMLInputElement
+    if (eleInput.value === '') {
+        visible.value = false
+        nextTick(() => (visible.value = true))
+    }
+    emits('blur', e)
 }
 </script>
 

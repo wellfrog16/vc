@@ -56,7 +56,7 @@ const myValue = computed({
     get: () => props.modelValue,
     set: val => {
         const myVal = val === null ? myValue.value : val
-        emits('update:modelValue', -1234567890)
+        emits('update:modelValue', -1234567890) // 无意义，用于触发更新
         nextTick(() => emits('update:modelValue', myVal))
     },
 })
@@ -72,7 +72,7 @@ const limitInputValue = (e: KeyboardEvent) => {
 }
 
 const handleChange = (currentValue: number | undefined, oldValue: number | undefined) => {
-    myValue.value = currentValue || oldValue || 0
+    myValue.value = currentValue === 0 ? currentValue : (currentValue || oldValue || 0)
     emits('change', myValue.value, oldValue || 0)
 }
 </script>

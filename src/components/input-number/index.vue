@@ -47,7 +47,7 @@ const mainClass = computed(() => {
     const className = {
         [$style['input-number']]: true,
         'el-input': true,
-        'el-input-group__prepend': $slots.prepend,
+        'el-input-group--prepend': $slots.prepend,
     }
     if (props.size) {
         className[`el-input--${props.size}`] = true
@@ -96,12 +96,12 @@ const handleBlur = (e: Event) => {
     width: auto;
     padding: 0;
 
-    &:global(.el-input-group__prepend :not(.el-select) .el-input__wrapper) {
+    &:global(.el-input-group--prepend :not(.el-select) .el-input__wrapper) {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
 
-    &:global(.el-input-group__prepend div.el-select .el-input__wrapper) {
+    &:global(.el-input-group--prepend div.el-select .el-input__wrapper) {
         $border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
 
         border-radius: $border-radius 0 0 $border-radius;

@@ -16,6 +16,12 @@
             <ElDescriptionsItem label="参数：大小">
                 <HChoice v-model="mySize" :options="sizeOption" />
             </ElDescriptionsItem>
+            <ElDescriptionsItem label="展示区：节流">
+                <HButton type="primary" :size="mySize" @click="handleClick">快速点击</HButton>
+            </ElDescriptionsItem>
+            <ElDescriptionsItem label="结果">
+                <div>节流间隔 800 毫秒，执行次数：{{ updated }}</div>
+            </ElDescriptionsItem>
         </template>
     </Wrapper>
 </template>
@@ -35,6 +41,9 @@ const sizeOption = [
     { label: '小', value: 'small' },
     { label: '大', value: 'large' },
 ]
+
+const updated = ref(0)
+const handleClick = () => { updated.value += 1 }
 </script>
 
 <style lang="scss" module>

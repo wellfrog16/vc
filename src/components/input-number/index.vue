@@ -48,6 +48,7 @@ const mainClass = computed(() => {
         [$style['input-number']]: true,
         'el-input': true,
         'el-input-group--prepend': $slots.prepend,
+        'input-with-select': eleInputNumber.value?.querySelector('.el-input-group__prepend>.el-select'),
     }
     if (props.size) {
         className[`el-input--${props.size}`] = true
@@ -106,6 +107,10 @@ const handleBlur = (e: Event) => {
 
         border-radius: $border-radius 0 0 $border-radius;
         box-shadow: 0 0 0 0;
+    }
+
+    &:global(.input-with-select .el-input-group__prepend) {
+        background-color: var(--el-fill-color-blank);
     }
 }
 

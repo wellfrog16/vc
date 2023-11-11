@@ -16,6 +16,8 @@ const documentData = {
         { param: 'emptyText', description: '复选未选择时，已选数据面板展示的文案', type: 'string', defaultValue: '尚未选择' },
         { param: 'name', description: '使用 localStorage 缓存时的 key，空不缓存', type: 'string', defaultValue: '' },
         { param: 'expires', description: '对数据进行 localStorage 缓存，指定日期到期或者 X 秒后失效。不缓存设置为 0', type: 'Date | number', defaultValue: '7200' },
+        { param: 'props', description: '级联选择器 CascaderPanel 的参数，会覆盖内置功能', type: 'CascaderProps', defaultValue: '-' },
+        { param: '-', description: '-', type: 'https://element-plus.org/zh-CN/component/cascader.html#cascaderprops', defaultValue: '-' },
         { param: '其他', description: 'el-cascader 的属性、事件', type: '-', defaultValue: '-' },
     ],
     types: [

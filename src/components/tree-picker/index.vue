@@ -63,7 +63,6 @@ import type { TreeOptionProps } from 'element-plus/es/components/tree/src/tree.t
 
 const props = defineProps({
     name: { type: String, default: '' },
-    width: { type: String, default: '202px' },
     placeholder: { type: String, default: '请选择' },
     loadingText: { type: String, default: '加载中' },
     emptyText: { type: String, default: '尚未选择' },
@@ -248,8 +247,6 @@ onBeforeMount(() => init())
 }
 
 .select {
-    width: v-bind(width);
-
     :global(.el-tag .el-icon) {
         display: none;
     }

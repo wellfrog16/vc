@@ -15,6 +15,7 @@ title: 更新日志
 
 * 修复 input-number 组件的负数异常
 * 修复 input-number 组件样式
+* 修复 tree-picker 组件样式
 
 ## 0.5.0
 

@@ -5,7 +5,6 @@
             <ElScrollbar class="drawer-scrollbar">
                 <slot />
             </ElScrollbar>
-            <slot />
         </div>
         <div v-if="$slots.footer" class="drawer-footer"><slot name="footer" /></div>
     </ElDrawer>

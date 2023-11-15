@@ -1,6 +1,6 @@
 <template>
     <ElSpace v-if="readonly" wrap>
-        <ElTag v-for="tag in tags" :key="tag.name">{{ tag.name }}</ElTag>
+        <ElTag v-for="tag in tags" :key="tag.name" v-bind="$attrs">{{ tag.name }}</ElTag>
     </ElSpace>
     <ElSpace v-else wrap>
         <Draggable
@@ -12,7 +12,7 @@
             animation="400"
         >
             <template #item="{ element }">
-                <ElTag v-if="!element.editVisible" closable :class="$style.tag" @close="handleDelete(element.name)" @dblclick="handleClick(element.name)">
+                <ElTag v-if="!element.editVisible" closable :class="$style.tag" v-bind="$attrs" @close="handleDelete(element.name)" @dblclick="handleClick(element.name)">
                     {{ element.name }}
                 </ElTag>
                 <ElInput

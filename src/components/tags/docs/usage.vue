@@ -12,6 +12,7 @@ const documentData = {
         { param: 'error-message', description: '校验错误的提示', type: 'string', defaultValue: '' },
         { param: 'readonly', description: '只读模式', type: 'boolean', defaultValue: false },
         { param: 'value-format', description: '结果格式化', type: '(val: string | number) => string | number', defaultValue: 'val=>val' },
+        { param: '其他', description: 'el-tag 的属性', type: 'https://element-plus.gitee.io/zh-CN/component/tag.html#tag-attributes' },
     ],
     events: [
         { name: 'change', description: '值更新时触发，注意：非变化，只要更新就触发', param: '更新后的值' },

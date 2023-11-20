@@ -1,13 +1,14 @@
 <template>
-    <ElDialog
+    <HDialog
         v-if="dialog"
         v-model="dialogVisible"
         title="图片裁剪"
         :width="dialogWidth"
-        custom-class="or-dialog"
         append-to-body
         :close-on-click-modal="false"
         :before-close="handleCancle"
+        :show-fullscreen="false"
+        :lazy="false"
     >
         <div ref="workbench" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
         <template #footer>
@@ -19,15 +20,16 @@
                 <ElButton :loading="loading" type="primary" @click="handleFinish">确定</ElButton>
             </ElSpace>
         </template>
-    </ElDialog>
+    </HDialog>
     <div v-else ref="workbench" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
 </template>
 
 <script lang="ts" setup>
 import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
-import { ElButton, ElDialog, ElLink, ElSpace, vLoading } from 'element-plus'
+import { ElButton, ElLink, ElSpace, vLoading } from 'element-plus'
 import { defaultWindow, file, loader } from '@wfrog/utils'
 import { debounce } from 'lodash-es'
+import HDialog from '@/components/dialog/index.vue'
 import type { PropType } from 'vue'
 import type ICropper from 'cropperjs'
 

@@ -11,6 +11,7 @@ title: 更新日志
 * button 组件增加 confirm 提示参数
 * tags 组件增加支持 $attr
 * 增加 config-provider 组件，并同步 button 组件的参数
+* 更新 cropper 组件的 dialog
 
 ### 缺陷修复
 

@@ -8,6 +8,7 @@ title: 更新日志
 
 ### 新增和更新
 
+* button 组件增加 confirm 提示参数
 * tags 组件增加支持 $attr
 
 ### 缺陷修复

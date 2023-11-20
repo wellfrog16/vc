@@ -19,6 +19,9 @@
             <ElDescriptionsItem label="展示区：节流">
                 <HButton type="primary" :size="mySize" @click="handleClick">快速点击</HButton>
             </ElDescriptionsItem>
+            <ElDescriptionsItem label="展示区：提示">
+                <HButton type="warning" :size="mySize" @click="handleClick">点击会有二次确认</HButton>
+            </ElDescriptionsItem>
             <ElDescriptionsItem label="结果">
                 <div>节流间隔 800 毫秒，执行次数：{{ updated }}</div>
             </ElDescriptionsItem>

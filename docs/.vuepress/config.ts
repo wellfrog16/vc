@@ -81,6 +81,7 @@ export default defineUserConfig({
                     text: '其他组件',
                     collapsible: false,
                     children: [
+                        '/other/config-provider',
                         '/other/dialog',
                         '/other/dialog-camera-upload',
                         '/other/drawer',

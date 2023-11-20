@@ -10,6 +10,7 @@ title: 更新日志
 
 * button 组件增加 confirm 提示参数
 * tags 组件增加支持 $attr
+* 增加 config-provider 组件，并同步 button 组件的参数
 
 ### 缺陷修复
 

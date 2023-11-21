@@ -1,6 +1,6 @@
 <template>
-    <ElSwitch v-if="disabled" v-model="myValue" :class="className" v-bind="$attrs" :disabled="disabled" />
-    <ElPopconfirm v-else :title="confirmTitle" @confirm="confirm">
+    <ElSwitch v-if="disabled || !confirm" v-model="myValue" :class="className" v-bind="$attrs" :disabled="disabled" />
+    <ElPopconfirm v-else :title="confirmTitle" @confirm="handleConfirm">
         <template #reference>
             <span ref="mainEle" :class="$style.main">
                 <ElSwitch v-model="myValue" class="h-switch" :class="className" v-bind="$attrs" />
@@ -19,6 +19,7 @@ const props = defineProps({
     confirmTitle: { type: String, default: '确认切换吗？' },
     disabled: { type: Boolean, default: false },
     className: { type: String, default: '' },
+    confirm: { type: Boolean, default: false },
 })
 const emit = defineEmits(['update:modelValue', 'change'])
 
@@ -29,7 +30,7 @@ const getSwitchEle = () => {
     const ele = mainEle.value.getElementsByClassName('h-switch')[0]
     return ele as HTMLDivElement
 }
-const confirm = () => getSwitchEle()?.click()
+const handleConfirm = () => getSwitchEle()?.click()
 
 const myValue = computed({
     get: () => props.modelValue,

@@ -2,7 +2,7 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <ElSpace>
-                <HConfirmSwitch
+                <HSwitch
                     v-model="result"
                     :before-change="beforeChange"
                     active-text="开"
@@ -11,6 +11,7 @@
                     inactive-value="Close"
                     :loading="loading"
                     :disabled="isDisabled"
+                    :confirm="confirm"
                 />
                 <span>值：{{ result }}</span>
             </ElSpace>
@@ -30,6 +31,15 @@
                 :inactive-value="true"
             />
         </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：二次确认">
+            <ElSwitch
+                v-model="confirm"
+                active-text="启用"
+                inactive-text="关闭"
+                :active-value="true"
+                :inactive-value="false"
+            />
+        </ElDescriptionsItem>
     </Wrapper>
 </template>
 
@@ -38,7 +48,7 @@ import { ref } from 'vue'
 import { promiseTimeout } from '@vueuse/core'
 import { ElDescriptionsItem, ElRadioButton, ElRadioGroup, ElSpace, ElSwitch } from 'element-plus'
 import Wrapper from '@/components/example-wrapper.vue'
-import HConfirmSwitch from '../index.vue'
+import HSwitch from '../index.vue'
 
 const result = ref('Open')
 const delay = ref(0)
@@ -51,4 +61,5 @@ const beforeChange = async () => {
 }
 
 const isDisabled = ref(false)
+const confirm = ref(false)
 </script>

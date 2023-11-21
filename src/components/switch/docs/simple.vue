@@ -1,6 +1,6 @@
 <template>
     <Wrapper>
-        <HConfirmSwitch
+        <HSwitch
             v-model="result"
             active-text="开"
             inactive-text="关"
@@ -13,7 +13,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import Wrapper from '@/components/simple-wrapper.vue'
-import HConfirmSwitch from '../index.vue'
+import HSwitch from '../index.vue'
 
 const result = ref('Open')
 </script>

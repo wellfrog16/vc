@@ -1,1 +1,0 @@
-import{K as t,aL as o,aB as s}from"./app.b12c36a8.js";const l=()=>{const e=async()=>{await s.loadScriptSingle("//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js")};t(()=>{var n;o&&((n=o.ElementPlusComponents)!=null&&n.isSVGIconLock||(o.ElementPlusComponents={...o.ElementPlusComponents,isSVGIconLock:!0},e()))})};export{l as u};

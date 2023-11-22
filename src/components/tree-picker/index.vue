@@ -146,10 +146,11 @@ const myWrapper = ref<any>()
 onClickOutside(myWrapper, event => {
     let target = event.target as any
     let result = false
+
     do {
-        result = target.classList.contains($style.select)
+        result = target.classList ? target.classList.contains($style.select) : false
         target = target.parentNode
-    } while (result === false && target.nodeName !== 'BODY')
+    } while (result === false && target !== null && target.nodeName !== 'BODY')
 
     !result && togglePopoverVisible(false)
 })

@@ -2,6 +2,17 @@
 title: 更新日志
 ---
 
+## 0.6.1
+
+2023-??-??
+
+### 新增和更新
+
+
+### 缺陷修复
+
+* 修复 tree-picker 组件异常提示
+
 ## 0.6.0
 
 2023-11-21
@@ -13,9 +24,6 @@ title: 更新日志
 * 增加 config-provider 组件，并同步 button 组件的参数
 * 更新 cropper 组件的 dialog
 * 将 confirm-switch 组件改名为 switch，增加 confirm 参数，用于开启关闭二次确认
-
-### 缺陷修复
-
 
 ## 0.5.3
 

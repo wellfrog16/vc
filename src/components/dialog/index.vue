@@ -19,24 +19,40 @@
                 </span>
             </div>
         </template>
-        <template #default><slot /></template>
+        <template #default>
+            <ElScrollbar v-if="height || maxHeight" :height="height" :max-height="maxHeight">
+                <slot />
+            </ElScrollbar>
+            <slot v-else />
+        </template>
         <template #footer><slot name="footer" /></template>
     </ElDialog>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
-import { ElButton, ElDialog } from 'element-plus'
+import { ElButton, ElDialog, ElScrollbar } from 'element-plus'
 import { Close, CopyDocument, FullScreen } from '@element-plus/icons-vue'
 import { useToggle } from '@vueuse/core'
 
-const props = defineProps({
-    modelValue: { type: Boolean, required: true, default: false },
-    title: { type: String, default: '对话框' },
-    showFullscreen: { type: Boolean, default: true },
-    lazy: { type: Boolean, default: true },
-    destoryDelay: { type: Number, default: 300 },
+interface IPropType {
+    modelValue: boolean
+    title?: string
+    showFullscreen?: boolean
+    lazy?: boolean
+    destoryDelay?: number
+    height?: string | number
+    maxHeight?: string | number
+}
+
+const props = withDefaults(defineProps<IPropType>(), {
+    modelValue: false,
+    title: '对话框',
+    showFullscreen: true,
+    lazy: true,
+    destoryDelay: 300,
 })
+
 const emits = defineEmits(['update:modelValue'])
 const dialogVisible = computed({
     get: () => props.modelValue,

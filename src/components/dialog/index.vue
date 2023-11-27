@@ -20,10 +20,12 @@
             </div>
         </template>
         <template #default>
-            <ElScrollbar v-if="height || maxHeight" :height="height" :max-height="maxHeight">
+            <ElScrollbar v-if="!isFullscreen && (height || maxHeight)" :height="height" :max-height="maxHeight">
                 <slot />
             </ElScrollbar>
-            <slot v-else />
+            <ElScrollbar v-else :max-height="fullscreenHeight">
+                <slot />
+            </ElScrollbar>
         </template>
         <template #footer><slot name="footer" /></template>
     </ElDialog>
@@ -43,6 +45,7 @@ interface IPropType {
     destoryDelay?: number
     height?: string | number
     maxHeight?: string | number
+    fullscreenHeight?: string | number
 }
 
 const props = withDefaults(defineProps<IPropType>(), {
@@ -51,6 +54,7 @@ const props = withDefaults(defineProps<IPropType>(), {
     showFullscreen: true,
     lazy: true,
     destoryDelay: 300,
+    fullscreenHeight: 'calc(100vh - 146px)',
 })
 
 const emits = defineEmits(['update:modelValue'])

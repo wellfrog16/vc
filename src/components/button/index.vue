@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<IPropType>(), {
 const emits = defineEmits<{ (e: 'click', event: Event): void }>()
 const { button: buttonConfig } = injectConfig()
 const defaultConfirmInfo = { title: '提示', confirmButtonText: '确定', cancelButtonText: '取消', msg: '确认要删除这条数据吗' }
-const myConfirm = isBoolean(buttonConfig?.confirm) ? buttonConfig?.confirm : (isBoolean(props.confirm) ? props.confirm : (props.type === 'warning'))
+const myConfirm = isBoolean(buttonConfig?.confirm) ? buttonConfig?.confirm : (isBoolean(props.confirm) ? props.confirm : (['danger', 'warning'].includes(props.type)))
 const { name, type: iconType = 'el', position = 'left' } = props.icon || {}
 const handleComfirm = async () => {
     const { msg, title, confirmButtonText, cancelButtonText } = { ...defaultConfirmInfo, ...buttonConfig?.confirmInfo, ...props.confirmInfo }

@@ -9,6 +9,7 @@ title: 更新日志
 ### 新增和更新
 
 * dialog 组件增加 height 和 max-height 属性
+* 调整 button 的 confirm 功能的默认按钮类型
 
 ### 缺陷修复
 

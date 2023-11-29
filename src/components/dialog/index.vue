@@ -7,6 +7,7 @@
         :show-close="false"
         :fullscreen="isFullscreen"
         :class="$style.main"
+        @closed="handleClosed"
     >
         <template #header="{ close, titleId, titleClass }">
             <div :class="$style.header">
@@ -42,7 +43,6 @@ interface IPropType {
     title?: string
     showFullscreen?: boolean
     lazy?: boolean
-    destoryDelay?: number
     height?: string | number
     maxHeight?: string | number
     fullscreenHeight?: string | number
@@ -53,11 +53,10 @@ const props = withDefaults(defineProps<IPropType>(), {
     title: '对话框',
     showFullscreen: true,
     lazy: true,
-    destoryDelay: 300,
     fullscreenHeight: 'calc(100vh - 146px)',
 })
 
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits(['update:modelValue', 'closed'])
 const dialogVisible = computed({
     get: () => props.modelValue,
     set: val => emits('update:modelValue', val),
@@ -69,10 +68,12 @@ const Icon = computed(() => isFullscreen.value ? CopyDocument : FullScreen)
 
 watch(dialogVisible, val => {
     if (val) { visible.value = true }
-    else {
-        setTimeout(() => { visible.value = false }, props.destoryDelay)
-    }
 })
+
+const handleClosed = () => {
+    visible.value = false
+    emits('closed')
+}
 </script>
 
 <style lang="scss" module>

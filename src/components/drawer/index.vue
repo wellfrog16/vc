@@ -1,5 +1,5 @@
 <template>
-    <ElDrawer v-if="visible || !lazy" v-model="drawerVisible" v-bind="$attrs" :class="$style.main">
+    <ElDrawer v-if="visible || !lazy" v-model="drawerVisible" v-bind="$attrs" :class="$style.main" @closed="handleClosed">
         <template #header><div><slot name="header">{{ title }}</slot></div></template>
         <div class="drawer-body">
             <ElScrollbar class="drawer-scrollbar">
@@ -18,9 +18,8 @@ const props = defineProps({
     modelValue: { type: Boolean, required: true, default: false },
     title: { type: String, default: '对话框' },
     lazy: { type: Boolean, default: true },
-    destoryDelay: { type: Number, default: 300 },
 })
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits(['update:modelValue', 'closed'])
 const drawerVisible = computed({
     get: () => props.modelValue,
     set: val => emits('update:modelValue', val),
@@ -29,10 +28,12 @@ const visible = ref(false) // 用于销毁对话框以及非开启状态时不�
 
 watch(drawerVisible, val => {
     if (val) { visible.value = true }
-    else {
-        setTimeout(() => { visible.value = false }, props.destoryDelay)
-    }
 })
+
+const handleClosed = () => {
+    visible.value = false
+    emits('closed')
+}
 </script>
 
 <style lang="scss" module>

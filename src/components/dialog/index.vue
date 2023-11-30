@@ -21,10 +21,10 @@
             </div>
         </template>
         <template #default>
-            <ElScrollbar v-if="!isFullscreen && (height || maxHeight)" :height="height" :max-height="maxHeight">
+            <ElScrollbar v-if="!isFullscreen && (height || maxHeight)" :class="scrollbarClassName" :height="height" :max-height="maxHeight">
                 <slot />
             </ElScrollbar>
-            <ElScrollbar v-else :max-height="fullscreenHeight">
+            <ElScrollbar v-else :class="scrollbarClassName" :max-height="fullscreenHeight">
                 <slot />
             </ElScrollbar>
         </template>
@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref, useCssModule, watch } from 'vue'
 import { ElButton, ElDialog, ElScrollbar } from 'element-plus'
 import { Close, CopyDocument, FullScreen } from '@element-plus/icons-vue'
 import { useToggle } from '@vueuse/core'
@@ -46,6 +46,7 @@ interface IPropType {
     height?: string | number
     maxHeight?: string | number
     fullscreenHeight?: string | number
+    flex?: boolean
 }
 
 const props = withDefaults(defineProps<IPropType>(), {
@@ -54,9 +55,11 @@ const props = withDefaults(defineProps<IPropType>(), {
     showFullscreen: true,
     lazy: true,
     fullscreenHeight: 'calc(100vh - 146px)',
+    flex: false,
 })
 
 const emits = defineEmits(['update:modelValue', 'closed'])
+const $style = useCssModule()
 const dialogVisible = computed({
     get: () => props.modelValue,
     set: val => emits('update:modelValue', val),
@@ -65,6 +68,10 @@ const visible = ref(false) // 用于销毁对话框以及非开启状态时不�
 const isFullscreen = ref(false)
 const toggleFullscreen = useToggle(isFullscreen)
 const Icon = computed(() => isFullscreen.value ? CopyDocument : FullScreen)
+const scrollbarClassName = computed(() => ({
+    [$style.scrollbar]: true,
+    [$style.flex]: props.flex,
+}))
 
 watch(dialogVisible, val => {
     if (val) { visible.value = true }
@@ -114,6 +121,27 @@ const handleClosed = () => {
 .title {
     display: flex;
     align-items: center;
+}
+
+.scrollbar {
+    &:global {
+        > .el-scrollbar__wrap {
+            display: flex;
+            flex-direction: column;
+
+            & > .el-scrollbar__view {
+                flex-grow: 1;
+                min-height: 100px;
+            }
+        }
+    }
+
+    &.flex:global {
+        > .el-scrollbar__wrap > .el-scrollbar__view {
+            display: flex;
+            flex-direction: column;
+        }
+    }
 }
 
 .buttons {

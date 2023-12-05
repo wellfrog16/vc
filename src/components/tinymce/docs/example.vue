@@ -25,7 +25,7 @@
                         <ElInput v-model.trim="form.fields.title" />
                     </ElFormItem>
                     <ElFormItem prop="content" label="内容">
-                        <HTinymce v-model.trim="form.fields.content" height="230" config="simple" />
+                        <HTinymce v-model.trim="form.fields.content" height="230px" config="simple" />
                     </ElFormItem>
                 </ElForm>
                 <template #footer>

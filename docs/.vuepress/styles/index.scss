@@ -63,6 +63,11 @@ table {
     width: 100%;
 }
 
+// tinymce 编辑器
+.tox-tinymce-aux {
+    z-index: 2300 !important;
+}
+
 html.dark {
     --el-fill-color-light: var(--code-hl-bg-color);
     --el-text-color-regular: var(--c-text);

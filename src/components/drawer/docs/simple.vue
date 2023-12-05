@@ -8,11 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { useToggle } from '@vueuse/core'
 import Wrapper from '@/components/simple-wrapper.vue'
 import HDrawer from '../index.vue'
 
-const visible = ref(true)
-const toggleVisible = useToggle(visible)
+const [visible, toggleVisible] = useToggle()
 </script>

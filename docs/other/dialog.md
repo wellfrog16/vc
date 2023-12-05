@@ -16,7 +16,7 @@ flex 模式方便 slot 的内容实现高度撑满父容器（100%高，slot节�
 
 ## 最小示例
 
-@[code vue{3-6,16,17}](@/components/dialog/docs/simple.vue)
+@[code vue{3-6,15}](@/components/dialog/docs/simple.vue)
 
 ## API
 

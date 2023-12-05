@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="loading">
+    <div v-loading="loading" :class="$style.tinymce">
         <textarea :id="id" :class="$style.textarea" />
     </div>
 </template>
@@ -118,6 +118,11 @@ defineExpose({ setContent, getContent })
 </script>
 
 <style lang="scss" module>
+.tinymce {
+    width: 100%;
+    height: v-bind(height);
+}
+
 .textarea {
     z-index: -1;
     visibility: hidden;

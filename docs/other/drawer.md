@@ -14,7 +14,7 @@ el-drawer 的修改版
 
 ## 最小示例
 
-@[code vue{3-6,16,17}](@/components/drawer/docs/simple.vue)
+@[code vue{3-6,15}](@/components/drawer/docs/simple.vue)
 
 ## API
 

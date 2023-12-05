@@ -13,13 +13,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { ElDescriptionsItem } from 'element-plus'
 import { useToggle } from '@vueuse/core'
 import Wrapper from '@/components/example-wrapper.vue'
 import HButton from '@/components/button/index.vue'
 import HDrawer from '../index.vue'
 
-const visible = ref(false)
-const toggleVisible = useToggle(visible)
+const [visible, toggleVisible] = useToggle()
 </script>

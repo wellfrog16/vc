@@ -6,8 +6,9 @@
   "types": "./es/index.d.ts",
   "scripts": {
     "dev": "vite --host",
-    "build": "vue-tsc --noEmit && vite build && npm run build:lib && npm run provide:css && npm run volar",
+    "build": "vue-tsc --noEmit && vite build && npm run build:lib && npm run build:type && npm run provide:css && npm run volar",
     "build:lib": "esno ./build/esbuild.ts",
+    "build:type": "tsc --emitDeclarationOnly --declaration --project tsconfig.build.json",
     "provide:css": "esno ./build/libcss",
     "volar": "esno ./build/volar-type",
     "preview": "vite preview",

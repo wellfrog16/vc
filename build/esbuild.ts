@@ -58,3 +58,30 @@ async function directiveRun(options?: BuildOptions) {
 }
 
 directiveRun()
+
+const USE_PATH = path.resolve(__dirname, '../src/use')
+
+const useEntrys = klawSync(USE_PATH, {
+    nofile: false,
+    depthLimit: 0,
+}).map(dir => `${dir.path}`)
+
+async function useRun(options?: BuildOptions) {
+    await build({
+        outdir: './es/use',
+        outExtension: { '.js': '.mjs' },
+        bundle: true,
+        entryPoints: useEntrys,
+        sourcemap: false,
+        plugins: [
+            pluginVue(),
+        ],
+        // loader: { '.png': 'dataurl' },
+        external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable', '@wfrog/utils'],
+        format: 'esm',
+        minify: false,
+        ...options,
+    })
+}
+
+useRun()

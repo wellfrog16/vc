@@ -58,12 +58,14 @@ const handleClosed = () => {
 
         .drawer-body {
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
             flex-grow: 1;
             height: 100px;
             overflow: hidden;
         }
 
-        .drawer-scrollbar {
+        .el-scrollbar__view {
             padding: 20px;
         }
 

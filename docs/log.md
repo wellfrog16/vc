@@ -9,6 +9,8 @@ title: 更新日志
 ### 新增和更新
 
 * 打包内容增加 directives 和 use 以及类型
+* dialog 组件增加默认 footer
+* drawer 组件增加默认 footer
 
 ### 缺陷修复
 

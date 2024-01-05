@@ -28,7 +28,7 @@
                 <slot />
             </ElScrollbar>
         </template>
-        <template #footer><slot name="footer" /></template>
+        <template v-if="showDefaultFooter || $slots.footer" #footer><slot name="footer"><HButton v-if="showDefaultFooter" @click="dialogVisible = false">关闭</HButton></slot></template>
     </ElDialog>
 </template>
 
@@ -38,10 +38,13 @@ import { ElButton, ElDialog, ElScrollbar } from 'element-plus'
 import { Close, CopyDocument, FullScreen } from '@element-plus/icons-vue'
 import { useToggle } from '@vueuse/core'
 
+import HButton from '@/components/button/index.vue'
+
 interface IPropType {
     modelValue: boolean
     title?: string
     showFullscreen?: boolean
+    showDefaultFooter?: boolean
     lazy?: boolean
     height?: string | number
     maxHeight?: string | number
@@ -53,6 +56,7 @@ const props = withDefaults(defineProps<IPropType>(), {
     modelValue: false,
     title: '对话框',
     showFullscreen: true,
+    showDefaultFooter: false,
     lazy: true,
     fullscreenHeight: 'calc(100vh - 146px)',
     flex: false,

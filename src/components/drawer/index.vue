@@ -6,7 +6,7 @@
                 <slot />
             </ElScrollbar>
         </div>
-        <div v-if="$slots.footer" class="drawer-footer"><slot name="footer" /></div>
+        <div v-if="showDefaultFooter || $slots.footer" class="drawer-footer"><slot name="footer"><HButton @click="drawerVisible = false">关闭</HButton></slot></div>
     </ElDrawer>
 </template>
 
@@ -14,10 +14,13 @@
 import { computed, ref, watch } from 'vue'
 import { ElDrawer, ElScrollbar } from 'element-plus'
 
+import HButton from '@/components/button/index.vue'
+
 const props = defineProps({
     modelValue: { type: Boolean, required: true, default: false },
     title: { type: String, default: '对话框' },
     lazy: { type: Boolean, default: true },
+    showDefaultFooter: { type: Boolean, default: false },
 })
 const emits = defineEmits(['update:modelValue', 'closed'])
 const drawerVisible = computed({

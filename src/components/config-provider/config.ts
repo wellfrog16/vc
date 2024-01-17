@@ -3,7 +3,7 @@ import type { PropType } from 'vue'
 
 export interface IPropType {
     button?: {
-        confirm?: boolean
+        confirm?: 'popconfirm' | 'messagebox'
         confirmInfo?: {
             title?: string
             confirmButtonText?: string

@@ -11,6 +11,7 @@ title: 更新日志
 * 打包内容增加 directives 和 use 以及类型
 * dialog 组件增加默认 footer
 * drawer 组件增加默认 footer
+* button 的 confirm 属性增加支持 popconfirm | messagebox 两种方式
 
 ### 缺陷修复
 

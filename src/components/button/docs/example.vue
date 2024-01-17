@@ -20,7 +20,10 @@
                 <HButton type="primary" :size="mySize" @click="handleClick">快速点击</HButton>
             </ElDescriptionsItem>
             <ElDescriptionsItem label="展示区：提示">
-                <HButton type="warning" :size="mySize" @click="handleClick">点击会有二次确认</HButton>
+                <HButton type="warning" :size="mySize" :confirm="myType" @click="handleClick">点击会有二次确认</HButton>
+            </ElDescriptionsItem>
+            <ElDescriptionsItem label="参数：类型">
+                <HChoice v-model="myType" :options="typeOption" />
             </ElDescriptionsItem>
             <ElDescriptionsItem label="结果">
                 <div>节流间隔 800 毫秒，执行次数：{{ updated }}</div>
@@ -43,6 +46,13 @@ const sizeOption = [
     { label: '默认', value: '' },
     { label: '小', value: 'small' },
     { label: '大', value: 'large' },
+]
+
+const myType = ref<any>('messagebox')
+const typeOption = [
+    { label: '无', value: undefined },
+    { label: 'messagebox', value: 'messagebox' },
+    { label: 'popconfirm', value: 'popconfirm' },
 ]
 
 const updated = ref(0)

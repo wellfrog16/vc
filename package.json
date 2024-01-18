@@ -1,6 +1,6 @@
 {
   "name": "@wfrog/vc",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "main": "./es/index.mjs",
   "module": "./es/index.mjs",
   "types": "./es/index.d.ts",
@@ -38,7 +38,7 @@
   ],
   "author": "wellfrog",
   "license": "ISC",
-  "homepage": "https://github.com/wellfrog16/vc",
+  "homepage": "https://wellfrog16.gitee.io/vc/",
   "repository": {
     "type": "git",
     "url": "git://github.com/wellfrog16/vc.git",

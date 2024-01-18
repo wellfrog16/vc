@@ -66,7 +66,6 @@ const handleComfirm = async () => {
     }
 }
 const handleClick = useThrottleFn(async e => {
-    console.log(myConfirm.value)
     if (myConfirm.value === 'messagebox') {
         const result = await handleComfirm()
         result && emits('click', e)

@@ -8,7 +8,7 @@ import Document from '@/components/document.vue'
 const documentData = {
     params: [
         { param: 'time', description: '点击时的节流间隔，单位毫秒', type: 'number', defaultValue: '800' },
-        { param: 'confirm', description: '手动设置是否显示二次确认框', type: 'boolean', defaultValue: '-' },
+        { param: 'confirm', description: '手动设置是否显示二次确认框', type: 'popconfirm | messagebox', defaultValue: 'messagebox' },
         { param: 'confirmInfo', description: '二次确认框文案', type: 'IConfirmInfo', defaultValue: '下一行' },
         { param: '-', rowType: 'defaultValue', description: '{ title: \'提示\', confirmButtonText: \'确定\', cancelButtonText: \'取消\', msg: \'确认要删除这条数据吗\' }' },
         { param: '*icon', description: 'icon 的设置信息', type: 'IIconOption', defaultValue: '-' },

@@ -9,6 +9,9 @@ const documentData = {
     params: [
         { param: '*v-model', description: '绑定值', type: 'Value | Value[]', defaultValue: '' },
         { param: '*options', description: '选项数据，可以是 Promise 数据', type: 'IChoiceOption | (() => Promise<IChoiceOption>)', defaultValue: '[]' },
+        { param: 'block', description: '内联还是块级展示', type: 'boolean', defaultValue: 'false' },
+        { param: 'width', description: '宽度', type: 'string', defaultValue: '下一行' },
+        { param: '-', rowType: 'paramType', description: '内联214px；块级100%' },
         { param: 'multiple', description: '是否多选', type: 'boolean', defaultValue: 'false' },
         { param: 'name', description: '使用 localStorage 缓存时的 key，空不缓存', type: 'string', defaultValue: '' },
         { param: 'loadingText', description: '加载文案', type: 'string', defaultValue: '加载中' },

@@ -1,19 +1,26 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <ElSpace>
-                <HSelect v-if="visible" v-model="result" :options="options" clearable :multiple="multiple" placeholder="请选择" />
-                <ElButton @click="reload">重新加载</ElButton>
-            </ElSpace>
+            <HSelect v-if="visible" v-model="result" :options="options" clearable :multiple="multiple" :block="isBlock" placeholder="请选择" />
+            <ElButton :class="$style.button" @click="reload">重新加载</ElButton>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：单/多选">
             <ElSwitch
                 v-model="multiple"
-                active-text="多选"
                 inactive-text="单选"
+                active-text="多选"
                 :active-value="true"
                 :inactive-value="false"
                 @change="handleChange"
+            />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：内联/块级">
+            <ElSwitch
+                v-model="isBlock"
+                inactive-text="内联"
+                active-text="块级"
+                :active-value="true"
+                :inactive-value="false"
             />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果"><span>{{ result }}</span></ElDescriptionsItem>
@@ -22,7 +29,7 @@
 
 <script lang="ts" setup>
 import { nextTick, ref } from 'vue'
-import { ElButton, ElDescriptionsItem, ElSpace, ElSwitch } from 'element-plus'
+import { ElButton, ElDescriptionsItem, ElSwitch } from 'element-plus'
 import Wrapper from '@/components/example-wrapper.vue'
 import HSelect from '../index.vue'
 import type { IChoiceOption } from '../../choice/useChoice'
@@ -41,6 +48,7 @@ const options = () => new Promise<IChoiceOption>(resolve => {
 
 const result = ref<number | number[]>()
 const multiple = ref(false)
+const isBlock = ref(false)
 const visible = ref(true)
 
 const reload = () => {
@@ -54,3 +62,9 @@ const handleChange = (value: string | number | boolean) => {
     result.value = value ? [] : undefined
 }
 </script>
+
+<style lang="scss" module>
+.button {
+    margin-left: 8px;
+}
+</style>

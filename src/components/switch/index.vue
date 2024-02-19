@@ -12,15 +12,22 @@
 <script lang="ts" setup>
 import { ElPopconfirm, ElSwitch } from 'element-plus'
 import { computed, onMounted, ref } from 'vue'
-import type { PropType } from 'vue'
 
-const props = defineProps({
-    modelValue: { type: String as PropType<IGlobal.BaseType>, default: '' },
-    confirmTitle: { type: String, default: '确认切换吗？' },
-    disabled: { type: Boolean, default: false },
-    className: { type: String, default: '' },
-    confirm: { type: Boolean, default: false },
+interface IPropType {
+    modelValue: IGlobal.BaseType
+    confirmTitle: string
+    disabled: boolean
+    className: string
+    confirm: boolean
+}
+
+const props = withDefaults(defineProps<IPropType>(), {
+    confirmTitle: '确认切换吗？',
+    disabled: false,
+    className: '',
+    confirm: false,
 })
+
 const emit = defineEmits(['update:modelValue', 'change'])
 
 const mainEle = ref<HTMLSpanElement>()

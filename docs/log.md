@@ -8,14 +8,14 @@ title: 更新日志
 
 ### 新增和更新
 
+* 新增 input 组件，提供内联和块级两种展示方式
 * select 组件增加内联和块级两种展示方式
 * 调整 tree-picker 组件使用 h-select 作为基础功能组件，并调整参数
 
 ### 缺陷修复
 
 * 修复 switch 组件的参数类型
-<!-- * 修复 element-plus 2.5.x 版本之后对于 select 宽度的破坏性更新 -->
-
+* 修复 element-plus 2.5.x 版本之后对于 select 宽度的破坏性更新
 
 ## 0.8.0
 

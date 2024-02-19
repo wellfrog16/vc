@@ -66,6 +66,7 @@ export default defineUserConfig({
                         '/form/daterange-picker',
                         '/form/dialog-map-point',
                         '/form/dialog-upload-images',
+                        '/form/input',
                         '/form/input-number',
                         '/form/select',
                         '/form/switch',

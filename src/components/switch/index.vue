@@ -15,10 +15,10 @@ import { computed, onMounted, ref } from 'vue'
 
 interface IPropType {
     modelValue: IGlobal.BaseType
-    confirmTitle: string
-    disabled: boolean
-    className: string
-    confirm: boolean
+    confirmTitle?: string
+    disabled?: boolean
+    className?: string
+    confirm?: boolean
 }
 
 const props = withDefaults(defineProps<IPropType>(), {

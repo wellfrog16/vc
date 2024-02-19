@@ -27,13 +27,13 @@
                 v-model="myValue"
                 :props="cascaderProps"
                 :options="myOptions"
-                v-bind="$attrs"
+                v-bind="cascaderAttrs"
                 @expand-change="updatePopper"
                 @change="handleCascaderChange"
             />
         </div>
         <template #reference>
-            <ElSelect
+            <HSelect
                 ref="mySelect"
                 v-model="selectValue"
                 :placeholder="myPlaceholder"
@@ -43,6 +43,7 @@
                 :multiple="multiple"
                 :class="[selectClassName, $style.select]"
                 :popper-class="$style['popover-select']"
+                v-bind="$attrs"
                 @click="handleSelectClick"
                 @clear="clear"
             />
@@ -55,23 +56,37 @@ import { computed, nextTick, onBeforeMount, ref, useCssModule, watch } from 'vue
 import { storage, tree } from '@wfrog/utils'
 import { get } from 'lodash-es'
 import { onClickOutside, useThrottleFn, useToggle } from '@vueuse/core'
-import { ElCascaderPanel, ElPopover, ElScrollbar, ElSelect, ElTree } from 'element-plus'
-import type { PropType } from 'vue'
+import { ElCascaderPanel, ElPopover, ElScrollbar, ElTree } from 'element-plus'
+
+import HSelect from '@/components/select/index.vue'
 
 import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel/src/node.d'
 import type { TreeOptionProps } from 'element-plus/es/components/tree/src/tree.type.d'
 
-const props = defineProps({
-    name: { type: String, default: '' },
-    placeholder: { type: String, default: '请选择' },
-    loadingText: { type: String, default: '加载中' },
-    emptyText: { type: String, default: '尚未选择' },
-    disabled: { type: Boolean, default: false },
-    multiple: { type: Boolean, default: false },
-    modelValue: { type: [String, Number, Array] as PropType<string | number | string[] | number[]>, required: true },
-    options: { type: [Array, Function] as PropType<CascaderOption[] | (() => Promise<CascaderOption[]>)>, default: () => [] },
-    props: { type: Object as PropType<CascaderProps>, default: () => {} },
-    expires: { type: [Date, Number] as PropType<Date | number>, default: 60 * 60 * 2 },
+interface IPropType {
+    name?: string
+    placeholder?: string
+    loadingText?: string
+    emptyText?: string
+    disabled?: boolean
+    multiple?: boolean
+    modelValue: string | number | string[] | number[]
+    options: CascaderOption[] | (() => Promise<CascaderOption[]>)
+    props?: CascaderProps
+    cascaderAttrs?: any
+    expires?: Date | number
+}
+
+const props = withDefaults(defineProps<IPropType>(), {
+    name: '',
+    placeholder: '请选择',
+    loadingText: '加载中',
+    emptyText: '尚未选择',
+    disabled: false,
+    multiple: false,
+    options: () => [],
+    props: () => ({}),
+    expires: () => new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365),
 })
 
 const emits = defineEmits(['update:modelValue', 'change', 'init'])
@@ -127,7 +142,7 @@ const selectValue = computed({
             if (!labels || labels.length === 0 || !Array.isArray(props.modelValue)) { return }
             const result = [...props.modelValue]
             result[0] = labels.join(' / ')
-            return result
+            return result as string[] | number[]
         }
         return labels.join(' / ')
     },

@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区：同步">
-            <HTreePicker v-model="result" :options="treeData" :multiple="multiple" width="300px" />
+            <HTreePicker v-model="result" :options="treeData" :multiple="multiple" block />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：异步">
             <ElSpace>

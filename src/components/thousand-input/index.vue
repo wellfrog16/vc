@@ -23,7 +23,6 @@ const emit = defineEmits(['update:modelValue', 'update:formatValue', 'change'])
 // 转换为纯数字
 const fixValue = (val: string) => {
     if (val === '' || val === undefined) { return '' }
-    console.log(val)
     let myVal = val
         .replace(/[^\d\.]/g, '') // 只保留数字和.
         .replace(/^0(\d{1,}\.?)+?/, '$1') // 删除开头的0

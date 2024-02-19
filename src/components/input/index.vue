@@ -1,5 +1,10 @@
 <template>
-    <ElInput :class="className" />
+    <ElInput :class="className">
+        <template v-if="$slots.prefix" #prefix><slot name="prefix" /></template>
+        <template v-if="$slots.suffix" #suffix><slot name="suffix" /></template>
+        <template v-if="$slots.prepend" #prepend><slot name="prepend" /></template>
+        <template v-if="$slots.append" #append><slot name="append" /></template>
+    </ElInput>
 </template>
 
 <script lang="ts" setup>

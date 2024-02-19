@@ -11,6 +11,7 @@ title: 更新日志
 * 新增 input 组件，提供内联和块级两种展示方式
 * select 组件增加内联和块级两种展示方式
 * 调整 tree-picker 组件使用 h-select 作为基础功能组件，并调整参数
+* 调整 thousand-input 组件使用 h-input 作为基础功能组件，并调整参数
 
 ### 缺陷修复
 

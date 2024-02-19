@@ -1,14 +1,14 @@
 <template>
-    <ElInput v-if="visible" ref="elInput" v-model="myValue" v-thousand="option" v-bind="$attrs" :class="$style.main" @change="handleChange">
+    <HInput v-if="visible" ref="elInput" v-model="myValue" v-thousand="option" v-bind="$attrs" :class="$style.main" @change="handleChange">
         <template v-if="$slots.prepend" #prepend><slot name="prepend" /></template>
         <template v-if="$slots.append" #append><slot name="append" /></template>
-    </ElInput>
+    </HInput>
 </template>
 
 <script lang="ts" setup>
 import { computed, nextTick, ref, watch } from 'vue'
-import { ElInput } from 'element-plus'
 import { isEqual } from 'lodash-es'
+import HInput from '@/components/input/index.vue'
 import vThousand from '@/directives/thousand'
 
 const props = defineProps({
@@ -22,6 +22,8 @@ const emit = defineEmits(['update:modelValue', 'update:formatValue', 'change'])
 
 // 转换为纯数字
 const fixValue = (val: string) => {
+    if (val === '' || val === undefined) { return '' }
+    console.log(val)
     let myVal = val
         .replace(/[^\d\.]/g, '') // 只保留数字和.
         .replace(/^0(\d{1,}\.?)+?/, '$1') // 删除开头的0
@@ -93,7 +95,7 @@ watch(observed, (val1, val2) => {
         // 千分位格式化完成
         setTimeout(() => {
             // 修正小数点，如：有小数点的美元转换到无小数点的日元，需要删除小数位
-            myValue.value = elInput.value.input.value
+            myValue.value = elInput.value.input?.value
             // 上一步赋值并渲染完成
             nextTick(() => {
                 // 触发change事件，并重新格式化各个数据

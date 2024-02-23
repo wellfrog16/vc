@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 
 import { ElButton, ElMessageBox, ElPopconfirm } from 'element-plus'
 import { useThrottleFn } from '@vueuse/core'

@@ -8,7 +8,7 @@ title: 更新日志
 
 ### 缺陷修复
 
-* --
+* 修复 select 组件，options 值为 true/false 时，选择值错误的情况
 
 ## 0.9.1
 

@@ -4,7 +4,7 @@
             v-for="(item, index) in myOptions"
             :key="((item[myProps.key] || item[myProps.label]) as string | number)"
             :label="(item[myProps.label] as string | number)"
-            :value="item[myProps.value] || index"
+            :value="item[myProps.value] === undefined ? index : item[myProps.value]"
         />
     </ElSelect>
 </template>

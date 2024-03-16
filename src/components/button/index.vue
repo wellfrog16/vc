@@ -1,9 +1,9 @@
 <template>
     <ElPopconfirm
+        v-if="myConfirm === 'popconfirm'"
         :title="msg"
         :confirm-button-text="confirmButtonText"
         :cancel-button-text="cancelButtonText"
-        :disabled="myConfirm !== 'popconfirm'"
         :popper-class="`${$style.popper} el-popover`"
         @confirm="handleConfirm"
     >
@@ -15,6 +15,11 @@
             </ElButton>
         </template>
     </ElPopconfirm>
+    <ElButton v-else v-bind="$attrs" :type="type" :class="$style.button" @click="handleClick">
+        <HIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
+        <span v-if="$slots.default"><slot /></span>
+        <HIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
+    </ElButton>
 </template>
 
 <script lang="ts" setup>

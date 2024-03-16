@@ -2,7 +2,7 @@
 title: 更新日志
 ---
 
-## 0.10.0
+## 0.10.1
 
 2024-03-16
 
@@ -13,6 +13,7 @@ title: 更新日志
 ### 缺陷修复
 
 * 修复 select 组件，options 值为 true/false 时，选择值错误的情况
+* 修复 button 组件，当没有 comfirm 时依然渲染 Popconfirm
 
 ## 0.9.1
 

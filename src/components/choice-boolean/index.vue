@@ -4,14 +4,19 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import HChoice from '../choice/index.vue'
-import type { PropType } from 'vue'
 
-const props = defineProps({
-    modelValue: { type: Boolean, required: true, default: false },
-    text: { type: Array as PropType<string []>, default: () => ['是', '否'] },
+import HChoice from '../choice/index.vue'
+
+interface IPropType {
+    modelValue: boolean | boolean[]
+    text?: [string, string]
+}
+
+const props = withDefaults(defineProps<IPropType>(), {
+    modelValue: false,
+    text: () => ['是', '否'],
 })
-const emit = defineEmits(['update:modelValue'])
+const emits = defineEmits(['update:modelValue'])
 
 const [textTrue, textFalse] = props.text
 const data = [
@@ -21,6 +26,6 @@ const data = [
 
 const myValue = computed({
     get: () => props.modelValue,
-    set: val => emit('update:modelValue', val),
+    set: val => emits('update:modelValue', val),
 })
 </script>

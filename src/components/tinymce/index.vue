@@ -37,7 +37,7 @@ const tinymceInit = async () => {
         Tinymce.value = await loader.loadCdnSingle('tinymce')
     }
 
-    const cdnName = defaultWindow.h_utils.cdn.name
+    const cdnName = defaultWindow.h_utils?.cdn.name || 'jsdelivr'
     const cdnUrl = loader.baseCdnUrl[cdnName]
     const version = '5.8.1'
 

@@ -32,7 +32,7 @@ const myWidth = computed(() => {
 </script>
 
 <style lang="scss" module>
-.input {
+div.input {
     width: unset;
     min-width: v-bind(myWidth);
 

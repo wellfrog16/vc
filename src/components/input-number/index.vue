@@ -92,7 +92,7 @@ const handleBlur = (e: Event) => {
 </script>
 
 <style lang="scss" module>
-.input-number {
+div.input-number {
     display: inline-flex;
     width: auto;
     padding: 0;
@@ -114,7 +114,7 @@ const handleBlur = (e: Event) => {
     }
 }
 
-.el-input-number {
+div.el-input-number {
     width: auto;
     line-height: 10px; // 防止上边框消失，10px为小于30px的任意值，无特殊意义
 

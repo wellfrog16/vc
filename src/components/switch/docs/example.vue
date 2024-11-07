@@ -13,9 +13,9 @@
                     :disabled="isDisabled"
                     :confirm="confirm"
                 />
-                <span>值：{{ result }}</span>
             </ElSpace>
         </ElDescriptionsItem>
+        <ElDescriptionsItem label="值">{{ result }}</ElDescriptionsItem>
         <ElDescriptionsItem label="模拟：异步切换">
             <ElRadioGroup v-model="delay">
                 <ElRadioButton :label="0">立即执行</ElRadioButton>

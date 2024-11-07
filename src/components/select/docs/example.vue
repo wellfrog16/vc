@@ -73,6 +73,7 @@ const reload = () => {
 }
 
 const handleChange = (value: string | number | boolean) => {
+    reload()
     result1.value = value ? [] : undefined
 }
 </script>

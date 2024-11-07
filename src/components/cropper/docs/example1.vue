@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HCropper ref="cropperRef" :image="imgSrc" :option="cropperOption" container-wdith="100%" @init="handleInit" />
+            <HCropper ref="cropperRef" :image="imgSrc" :option="cropperOption" container-width="100%" @init="handleInit" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">
             <div ref="resultRef" :class="$style.result" />

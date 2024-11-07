@@ -1,6 +1,6 @@
 {
   "name": "@wfrog/vc",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "author": "wellfrog",
   "license": "ISC",
   "homepage": "https://wellfrog16.gitee.io/vc/",
@@ -30,8 +30,9 @@
     "provide:css": "esno ./build/libcss",
     "volar": "esno ./build/volar-type",
     "preview": "vite preview",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
     "gh-pages": "cross-env deploy=gh npm run docs:build",
     "gh": "node gh-pages",
     "publish2": "npm publish --access public",
@@ -52,6 +53,7 @@
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@element-plus/icons-vue": "^2.0.9",
+    "@types/node": "^22.9.0",
     "@vitejs/plugin-vue": "^3.0.0",
     "@vueuse/core": "^9.1.0",
     "@wfrog/esbuild-plugin-vue-next": "^0.1.5",
@@ -73,8 +75,8 @@
     "typescript": "^4.6.4",
     "vite": "^3.0.0",
     "vite-plugin-dts": "^1.4.1",
+    "vitepress": "^1.5.0",
     "vue": "^3.2.37",
-    "vue-tsc": "^0.38.4",
-    "vuepress": "2.0.0-beta.51"
+    "vue-tsc": "^0.38.4"
   }
 }

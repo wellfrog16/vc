@@ -81,6 +81,32 @@ const spanMethod = ({
         .el-divider__text {
             font-weight: bold;
         }
+
+        a.el-link {
+            color: var(--el-link-text-color);
+            text-decoration: none;
+
+            &:hover {
+                color: var(--el-link-hover-text-color);
+            }
+
+            &::after {
+                width: inherit !important;
+                height: inherit !important;
+                margin-top: 0 !important;
+                margin-left: 0 !important;
+                background: inherit !important;
+                mask-image: none !important;
+            }
+        }
+
+        table.el-table__body, table.el-table__header {
+            border-collapse: separate;
+        }
+
+        tbody tr:nth-child(2n) {
+            background-color: inherit;
+        }
     }
 }
 </style>

@@ -12,7 +12,7 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['*.ts', '*.vue', '*.js'],
+            files: ['*.ts', '*.vue', '*.js', '*.mts'],
             rules: {
                 'indent': ['error', 4, { SwitchCase: 1 }],
                 '@typescript-eslint/indent': ['error', 4],

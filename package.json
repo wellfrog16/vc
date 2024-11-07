@@ -32,6 +32,7 @@
     "preview": "vite preview",
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
+    "docs:deploy-build": "cross-env deploy=gh vitepress build",
     "docs:preview": "vitepress preview",
     "gh-pages": "cross-env deploy=gh npm run docs:build",
     "gh": "node gh-pages",

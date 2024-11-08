@@ -50,7 +50,7 @@ const sizeOption = [
 
 const myType = ref<any>('messagebox')
 const typeOption = [
-    { label: '无', value: undefined },
+    { label: 'none', value: 'none' },
     { label: 'messagebox', value: 'messagebox' },
     { label: 'popconfirm', value: 'popconfirm' },
 ]

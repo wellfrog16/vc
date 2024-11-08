@@ -10,6 +10,7 @@ title: 更新日志
 
 * 修复组件样式优先级
 * 修复 tinymce 组件的 cdn 引用
+* 完善 button 组件的 confirm 参数
 
 
 ## 0.10.2

@@ -37,7 +37,7 @@ interface IPropType {
     icon?: IIconOption
     time?: number
     type?: ButtonType
-    confirm?: 'popconfirm' | 'messagebox'
+    confirm?: 'popconfirm' | 'messagebox' | 'none' // 非 popconfirm， messagebox 的其他值不会执行 confirm
     confirmInfo?: {
         title?: string
         confirmButtonText?: string

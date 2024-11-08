@@ -94,7 +94,8 @@ watch(observed, (val1, val2) => {
         // 千分位格式化完成
         setTimeout(() => {
             // 修正小数点，如：有小数点的美元转换到无小数点的日元，需要删除小数位
-            myValue.value = elInput.value.input?.value
+            const inputInstance = elInput.value.instance()
+            myValue.value = inputInstance.input?.value
             // 上一步赋值并渲染完成
             nextTick(() => {
                 // 触发change事件，并重新格式化各个数据

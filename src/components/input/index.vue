@@ -1,5 +1,5 @@
 <template>
-    <ElInput :class="className">
+    <ElInput ref="refInput" :class="className">
         <template v-if="$slots.prefix" #prefix><slot name="prefix" /></template>
         <template v-if="$slots.suffix" #suffix><slot name="suffix" /></template>
         <template v-if="$slots.prepend" #prepend><slot name="prepend" /></template>
@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, useCssModule } from 'vue'
+import { computed, shallowRef, useCssModule } from 'vue'
 import { ElInput } from 'element-plus'
 
 interface IpropType {
@@ -20,6 +20,7 @@ const props = withDefaults(defineProps<IpropType>(), {
     block: false,
 })
 const $style = useCssModule()
+const refInput = shallowRef()
 
 const className = computed(() => ({
     [$style.input]: true,
@@ -28,6 +29,10 @@ const className = computed(() => ({
 
 const myWidth = computed(() => {
     return props.width || (props.block ? '100%' : '214px')
+})
+
+defineExpose({
+    instance: () => refInput.value,
 })
 </script>
 

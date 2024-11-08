@@ -4,9 +4,11 @@ import type { Directive } from 'vue'
 const thousand: Directive = {
     mounted: async (el, binding) => {
         const elInput = el.getElementsByTagName('input')[binding.value?.elInputIndex || 0] || el.getElementsByTagName('input')[0]
+        elInput.style.textAlign = 'right'
+        elInput.style.fontFamily = 'Pathway Gothic One'
         const disabled = elInput.disabled
         elInput.disabled = true
-        el.classList.add('is-disabled')
+        // el.classList.add('is-disabled') // 导致组件文档切换参数时闪烁
         const Cleave = await loader.loadCdnSingle('cleave')
         const option = { decimalScale: 2, integerScale: 0, prefix: '', ...binding.value }
         elInput.cleave = new Cleave(elInput, {
@@ -16,10 +18,8 @@ const thousand: Directive = {
             numeralIntegerScale: option.integerScale,
             prefix: option.prefix,
         })
-        elInput.style.textAlign = 'right'
-        elInput.style.fontFamily = 'Pathway Gothic One'
         elInput.value = elInput.cleave?.properties?.result || ''
-        el.classList.remove('is-disabled')
+        // el.classList.remove('is-disabled')
         elInput.disabled = disabled
     },
     updated: (el, binding) => {

@@ -1,5 +1,13 @@
 <template>
-    <HThousandInput v-model="myValue" v-model:format-value="formatValue" :option="thousandOption" v-bind="$attrs" @change="handleChange">
+    <!-- [$style.prepend]: prepend 可以使得 input 框左边的圆角在无 prepend 时保持正确  -->
+    <HThousandInput
+        v-model="myValue"
+        v-model:format-value="formatValue"
+        :option="thousandOption"
+        v-bind="$attrs"
+        :class="{ [$style.append]: append, [$style.prepend]: prepend }"
+        @change="handleChange"
+    >
         <template v-if="prepend" #prepend>
             <ElSelect v-if="Array.isArray(currencyInfo)" v-model="myCode" :style="selectStyle" @change="handleCodeChange">
                 <template v-if="flag" #prefix>
@@ -82,6 +90,13 @@ onBeforeMount(() => {
 </script>
 
 <style lang="scss" module>
+.append {
+    .el-input__wrapper {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+
 .flag {
     margin-right: 8px;
 }

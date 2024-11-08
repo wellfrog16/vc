@@ -18,7 +18,7 @@ export default defineConfig({
     description: '基于element-plus的组件库，也包含独立组件',
     srcDir: './src',
     rewrites: {
-        'components/:name/docs/(.*)': 'components/:name/index.md',
+        'components/:name/docs/(.*)': 'components/:name.md',
     },
     ignoreDeadLinks: true,
     // head: [
@@ -48,14 +48,9 @@ export default defineConfig({
             },
         ],
         sidebar: {
-            '/': [
-                {
-                    text: '指南',
-                    link: '/',
-                },
-            ],
+
             '/log': [],
-            '/components/': [
+            '/components': [
                 {
                     text: '全局配置',
                     items: [
@@ -104,10 +99,14 @@ export default defineConfig({
                     ],
                 },
             ],
+            // '/': [
+            //     {
+            //         text: '指南',
+            //         link: '/',
+            //     },
+            // ],
         },
     },
-    // templateDev: path.resolve(__dirname, './templates/dev.html'),
-    // templateBuild: path.resolve(__dirname, './templates/build.html'),
     vite: {
         resolve: {
             alias: [

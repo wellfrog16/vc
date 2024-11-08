@@ -1,5 +1,12 @@
 @use 'element-plus/theme-chalk/src/index.scss' as *;
 
+.vp-doc h2 {
+    &:first-child {
+        margin-top: 0;
+        border-top: none;
+    }
+}
+
 .example {
     .el-descriptions__table {
         display: table;

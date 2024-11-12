@@ -1,6 +1,6 @@
 ## 功能
 
-二维码生成
+<CdnTag name="qrcode" />二维码生成
 
 :::warning
 staticfile 和 baomitu 等 cdn 源只有 1.0.0 的版本，使用这些 cdn 源需要指定 version 属性。
@@ -24,4 +24,5 @@ staticfile 和 baomitu 等 cdn 源只有 1.0.0 的版本，使用这些 cdn 源�
 <script setup>
 import Example from "@/components/qr-code/docs/example.vue";
 import Usage from "@/components/qr-code/docs/usage.vue";
+import CdnTag from "@/components/cdn-tag.vue";
 </script>

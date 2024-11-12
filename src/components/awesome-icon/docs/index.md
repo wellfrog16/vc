@@ -1,6 +1,6 @@
 ## 功能
 
-基于 `font-awesome 6.1.2` 的 `free` 版本封装的 icon 组件。提供全量 `Css` 或者 `SVG` 加载方式。
+<CdnTag name="fontawesome" />基于 `font-awesome 6.1.2` 的 `free` 版本封装的 icon 组件。提供全量 `Css` 或者 `SVG` 加载方式。
 - 通过 `font-size` 控制 icon 大小，`color` 控制 icon 的颜色。
 - 你可以通过 [这里](https://fontawesome.com/search?m=free&s=brands%2Csolid%2Cregular) 查看所有可以使用的 icon。它包括 `brands`、`solid`、`regular` 三个分类。
 
@@ -31,4 +31,5 @@
 <script setup>
 import Example from "@/components/awesome-icon/docs/example.vue";
 import Usage from "@/components/awesome-icon/docs/usage.vue";
+import CdnTag from "@/components/cdn-tag.vue";
 </script>

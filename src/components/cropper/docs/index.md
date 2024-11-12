@@ -1,6 +1,6 @@
 ## 功能
 
-用于裁剪图片，常用于图片上传前的裁剪以及图片下载前的裁剪。
+<CdnTag name="cropperjs" />用于裁剪图片，常用于图片上传前的裁剪以及图片下载前的裁剪。
 
 基于 [cropperjs](https://fengyuanchen.github.io/cropperjs/) 二次封装，更贴近业务场景
 
@@ -28,4 +28,5 @@
 import Example1 from "@/components/cropper/docs/example1.vue";
 import Example2 from "@/components/cropper/docs/example2.vue";
 import Usage from "@/components/cropper/docs/usage.vue";
+import CdnTag from "@/components/cdn-tag.vue";
 </script>

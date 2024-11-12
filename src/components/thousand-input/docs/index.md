@@ -1,6 +1,6 @@
 ## 功能
 
-千分位输入框，基础的千分位应用，如果应用于货币，请查看增强版 [currency](../../components/currency)
+<CdnTag name="currency" />千分位输入框，基础的千分位应用，如果应用于货币，请查看增强版 [currency](../../components/currency)
 
 ## 功能示例
 
@@ -17,4 +17,5 @@
 <script setup>
 import Example from "@/components/thousand-input/docs/example.vue";
 import Usage from "@/components/thousand-input/docs/usage.vue";
+import CdnTag from "@/components/cdn-tag.vue";
 </script>

@@ -1,4 +1,5 @@
 import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue'
 
 // 注入数据
 export function useProvide(keyName: string | Symbol, instance: Record<string, unknown>) {
@@ -14,8 +15,8 @@ export function useProvide(keyName: string | Symbol, instance: Record<string, un
 }
 
 // 获取数据
-export function useInject<T>(keyName: string | Symbol): T {
-    const keys = inject(keyName, {}) as Record<keyof T, Symbol>
+export function useInject<T>(keyName: InjectionKey<any>): T {
+    const keys = inject(keyName, {}) as Record<keyof T, any>
     const result = {} as any
 
     Object.keys(keys).forEach(key => {

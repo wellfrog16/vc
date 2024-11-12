@@ -9,7 +9,7 @@
                 @save="handleSave"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="获取的图片"><ElImage :src="result" :class="$style.image" /></ElDescriptionsItem>
+        <ElDescriptionsItem label="获取的图片"><ElImage v-if="result" :src="result" :class="$style.image" /></ElDescriptionsItem>
         <ElDescriptionsItem label="本地Blob地址"><span>{{ result }}</span></ElDescriptionsItem>
         <ElDescriptionsItem label="参数：类型">
             <HChoice v-model="type" :options="['upload', 'camera']" multiple />

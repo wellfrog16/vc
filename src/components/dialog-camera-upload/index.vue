@@ -101,7 +101,11 @@ const { videoInputs: cameras } = useDevicesList({
         if (!cameras.value.find(i => i.deviceId && i.deviceId === currentCamera.value)) { currentCamera.value = cameras.value[0]?.deviceId }
     },
 })
-const { stream, start, stop, enabled } = useUserMedia({ videoDeviceId: currentCamera, audioDeviceId: false })
+const { stream, start, stop, enabled } = useUserMedia({
+    constraints: {
+        video: { deviceId: currentCamera.value },
+    },
+})
 const elVideo = ref()
 const elCanvas = ref()
 const currentWindow = ref('')

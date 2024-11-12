@@ -1,7 +1,7 @@
 <template>
     <span v-if="loading" v-loading="loading" :class="$style.loading" />
     <template v-else>
-        <ElRadioGroup v-if="!props.multiple" v-model="myValue" v-bind="$attrs" :class="$style.radio">
+        <ElRadioGroup v-if="!props.multiple" v-model="myValue" v-bind="$attrs">
             <ElRadioButton
                 v-for="item in myOptions"
                 :key="((item[myProps.key] || item[myProps.label]) as string | number)"
@@ -38,11 +38,9 @@ const { loading, myOptions, myProps, myValue } = useChoice({ props, emits }, 'ch
     width: 100px;
 }
 
-.radio {
-    display: inherit;
-}
-
 .checkbox {
+    display: inline-flex;
+
     // 统一checkbox和radio的样式
     :global(.el-checkbox-button__inner) {
         border-left: 0;

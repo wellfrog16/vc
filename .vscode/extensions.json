@@ -7,6 +7,6 @@
         "ryu1kn.partial-diff",
         "jakob101.RelativePath",
         "formulahendry.auto-rename-tag",
-        "eamodio.gitlens"
+        "donjayamanne.git-extension-pack"
     ]
 }

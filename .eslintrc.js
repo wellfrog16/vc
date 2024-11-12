@@ -12,10 +12,11 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['*.ts', '*.vue', '*.js', '*.mts'],
+            files: ['*.ts', '*.vue', '*.js', '*.mts', '*.json'],
             rules: {
                 'indent': ['error', 4, { SwitchCase: 1 }],
                 '@typescript-eslint/indent': ['error', 4],
+                'jsonc/indent': ['error', 4, {}],
                 'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
                 'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
                 'arrow-parens': ['error', 'as-needed'],

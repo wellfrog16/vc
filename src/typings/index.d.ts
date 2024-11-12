@@ -10,7 +10,7 @@ interface Window {
         isSVGIconLock?: boolean
     }
     tinyMCE: unknown
-    BMap: any
+    BMapGL: any
     h_utils: {
         cdn: {
             name: 'jsdelivr' | 'defaultBase' | 'localCDN'

@@ -7,7 +7,7 @@
                 v-model:visible="visible"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果"><span>{{ result }}</span></ElDescriptionsItem>
+        <ElDescriptionsItem label="结果"><span>{{ `lng: ${result.lng}, lat: ${result.lat}` }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 
@@ -17,7 +17,7 @@ import { ElButton, ElDescriptionsItem } from 'element-plus'
 import Wrapper from '@/components/example-wrapper.vue'
 import HDialogMapPoint from '../index.vue'
 
-const result = ref({ lng: '', lat: '' })
+const result = ref({ lng: 0, lat: 0 })
 const visible = ref(false)
 
 const handleClick = () => {

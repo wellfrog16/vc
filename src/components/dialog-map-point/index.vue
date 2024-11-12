@@ -30,7 +30,7 @@ import HDialog from '../dialog/index.vue'
 import type { PropType } from 'vue'
 
 const props = defineProps({
-    modelValue: { type: Object as PropType<{ lng: string; lat: string }>, default: () => ({ lng: '', lat: '' }) },
+    modelValue: { type: Object as PropType<{ lng: number; lat: number }>, default: () => ({ lng: 0, lat: 0 }) },
     visible: { type: Boolean, required: true },
     city: { type: String, default: '上海' },
     ak: { type: String, default: 'rrK5thxGKxN45pnaH2Gd0ZxyFkr8MaTl&services=&t=20220816154130' },
@@ -64,52 +64,46 @@ const dialogVisible = computed({
 
 let map: any
 let local: any
-let point: any
+const point = ref({ lng: '', lat: '' })
 
 const init = () => {
     if (!defaultWindow) { return '' }
 
-    const { BMap } = defaultWindow
-    map = new BMap.Map(elContainer.value, { enableMapClick: false })
+    const { BMapGL } = defaultWindow
+    map = new BMapGL.Map(elContainer.value, { enableMapClick: false })
     map.setDefaultCursor('default')
-    // const point = new BMap.Point(this.value.lng, this.value.lat);
-    // let marker = new BMap.Marker(point);
     let marker: any = null
     const { lng, lat } = props.modelValue
     if (lng) {
-        const point = new BMap.Point(lng, lat)
-        marker = new BMap.Marker(point)
+        const myPoint = new BMapGL.Point(lng, lat)
+        marker = new BMapGL.Marker(myPoint)
         map.addOverlay(marker) // 定点坐标红点覆盖
-        map.centerAndZoom(point, 14) // 定位中心和缩放
+        map.centerAndZoom(myPoint, 14) // 定位中心和缩放
     }
     else {
         map.centerAndZoom(props.city, 14) // 定位中心和缩放
     }
     // map.setCurrentCity(this.city);
     map.enableScrollWheelZoom() // 允许鼠标缩放
-    map.addControl(new BMap.NavigationControl()) // 缩放平移控件
-    // map.addControl(new BMap.OverviewMapControl()); // 缩略图
+    map.addControl(new BMapGL.NavigationControl()) // 缩放平移控件
+    // map.addControl(new BMapGL.OverviewMapControl()); // 缩略图
     setTimeout(() => {
-        map.addControl(new BMap.ScaleControl()) // 比例尺，延迟加载，否则会有黑色闪烁
+        map.addControl(new BMapGL.ScaleControl()) // 比例尺，延迟加载，否则会有黑色闪烁
     }, 1000)
-    // map.addControl(new BMap.MapTypeControl());
+    // map.addControl(new BMapGL.MapTypeControl());
 
     // 地图搜索
-    local = new BMap.LocalSearch(map, {
+    local = new BMapGL.LocalSearch(map, {
         renderOptions: { map },
     })
     // local.search('上海火车站');
 
-    const geoc = new BMap.Geocoder()
-
     map.addEventListener('click', (e: any) => {
         // 通过点击百度地图，可以获取到对应的point,由point的lng、lat属性就可以获取对应的经度纬度
-        point = e.point
-        geoc.getLocation(point, () => {
-            marker && map.removeOverlay(marker)
-            marker = new BMap.Marker(point)
-            map.addOverlay(marker) // 定点坐标红点覆盖
-        })
+        point.value = e.latlng
+        marker && map.removeOverlay(marker)
+        marker = new BMapGL.Marker(point.value)
+        map.addOverlay(marker) // 定点坐标红点覆盖
     })
 }
 
@@ -124,12 +118,12 @@ watch(dialogVisible, val => {
 })
 
 const handleConfirm = () => {
-    emits('update:modelValue', point)
+    emits('update:modelValue', point.value)
     handleClose()
 }
 
 onMounted(() => {
-    loader.loadScriptSingle(`//api.map.baidu.com/getscript?v=3.0&ak=${props.ak}`)
+    loader.loadScriptSingle(`//api.map.baidu.com/getscript?type=webgl&v=1.0&ak=${props.ak}`)
 })
 </script>
 

@@ -14,7 +14,7 @@ import { ElButton } from 'element-plus'
 import Wrapper from '@/components/simple-wrapper.vue'
 import HDialogMapPoint from '../index.vue'
 
-const result = ref({ lng: '', lat: '' })
+const result = ref({ lng: 0, lat: 0 })
 const visible = ref(false)
 
 const handleClick = () => {

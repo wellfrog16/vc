@@ -13,6 +13,7 @@ title: 更新日志
 * 完善 button 组件的 confirm 参数
 * 修复 thousand-input 组件样式和闪烁
 * 统一 choice 中 checkbox 和 radio 的样式
+* 修复 dialog-map-point 组件
 
 
 ## 0.10.2

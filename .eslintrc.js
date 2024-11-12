@@ -16,7 +16,7 @@ module.exports = {
             rules: {
                 'indent': ['error', 4, { SwitchCase: 1 }],
                 '@typescript-eslint/indent': ['error', 4],
-                'jsonc/indent': ['error', 4, {}],
+                'jsonc/indent': ['error', 2, {}],
                 'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
                 'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
                 'arrow-parens': ['error', 'as-needed'],

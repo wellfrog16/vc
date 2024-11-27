@@ -5,7 +5,7 @@
             <ElRadioButton
                 v-for="item in myOptions"
                 :key="((item[myProps.key] || item[myProps.label]) as string | number)"
-                :label="item[myProps.value]"
+                :value="item[myProps.value]"
             >
                 {{ item[myProps.label] }}
             </ElRadioButton>
@@ -14,7 +14,7 @@
             <ElCheckboxButton
                 v-for="item in myOptions"
                 :key="((item[myProps.key] || item[myProps.label]) as string | number)"
-                :label="item[myProps.value]"
+                :value="item[myProps.value]"
             >
                 {{ item[myProps.label] }}
             </ElCheckboxButton>

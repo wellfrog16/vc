@@ -13,7 +13,14 @@
             @keydown="limitInputValue"
             @change="handleChange"
             @blur="handleBlur"
-        />
+        >
+            <template v-if="$slots.prefix" #prefix>
+                <slot name="prefix" />
+            </template>
+            <template v-if="$slots.suffix" #suffix>
+                <slot name="suffix" />
+            </template>
+        </ElInputNumber>
     </div>
 </template>
 

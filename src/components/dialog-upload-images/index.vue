@@ -4,7 +4,7 @@
         title="上传图片"
         :close-on-click-modal="false"
         :class="$style.dialog"
-        :width="660"
+        :width="850"
         :show-close="false"
         :destroy-on-close="destroyOnClose"
         append-to-body
@@ -52,8 +52,7 @@ import HElIcon from '@/components/el-icon/index.vue'
 import myProps from './props'
 import HDialog from '../dialog/index.vue'
 import type { IUploadFile } from './props'
-import type { UploadRequestOptions } from 'element-plus'
-import type { UploadRawFile } from 'element-plus/es/components/upload/src/upload'
+import type { UploadRawFile, UploadRequestOptions } from 'element-plus/es/components/upload/src/upload'
 
 const props = defineProps(myProps)
 const emits = defineEmits(['update:visible', 'update:modelValue', 'error', 'close'])
@@ -212,7 +211,7 @@ div.draggable {
             margin: 0 5px 5px 0;
         }
 
-        .el-upload-list__item:nth-of-type(3n) {
+        .el-upload-list__item:nth-of-type(4n) {
             margin-right: 0;
         }
 

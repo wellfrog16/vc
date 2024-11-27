@@ -91,6 +91,7 @@ const handleClosed = () => {
 .main {
     display: flex;
     flex-direction: column;
+    padding: 0;
 
     :global {
         .el-dialog__header {

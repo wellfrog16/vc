@@ -2,19 +2,26 @@
 title: 更新日志
 ---
 
-## 0.10.3
+## 0.11.0
 
 2024-??-??
 
 ### 新增和更新
 
+* 更新 element-plus 到 2.8.8 版本
+* 完善 button 组件的 confirm 参数
+* 统一 choice 中 checkbox 和 radio 的样式
+* radio 和 checkbox 使用新的 api
+* 更新 dialog 组件样式
+* 更新 dialog-upload-images 组件样式
+* input-number 兼容 element-plus 2.8.8 版本 slot
+
+### 缺陷修复
+
 * 修复组件样式优先级
 * 修复 tinymce 组件的 cdn 引用
-* 完善 button 组件的 confirm 参数
 * 修复 thousand-input 组件样式和闪烁
-* 统一 choice 中 checkbox 和 radio 的样式
 * 修复 dialog-map-point 组件
-
 
 ## 0.10.2
 

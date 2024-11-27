@@ -18,8 +18,8 @@
         <ElDescriptionsItem label="值">{{ result }}</ElDescriptionsItem>
         <ElDescriptionsItem label="模拟：异步切换">
             <ElRadioGroup v-model="delay">
-                <ElRadioButton :label="0">立即执行</ElRadioButton>
-                <ElRadioButton :label="1000">延迟一秒</ElRadioButton>
+                <ElRadioButton :value="0">立即执行</ElRadioButton>
+                <ElRadioButton :value="1000">延迟一秒</ElRadioButton>
             </ElRadioGroup>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：禁用组件">

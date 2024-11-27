@@ -1,14 +1,21 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth" />
+            <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth">
+                <template #prefix>
+                    <span>￥</span>
+                </template>
+                <template #suffix>
+                    <span>RMB</span>
+                </template>
+            </HInputNumber>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：文字组合">
             <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth">
                 <template #prepend>份数</template>
             </HInputNumber>
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="展示区：Select 组合">
+        <ElDescriptionsItem label="展示区：组合">
             <HInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth">
                 <template #prepend>
                     <ElSelect v-model="select" placeholder="请选择" style="width: 110px;" :size="size">

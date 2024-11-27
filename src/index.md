@@ -20,7 +20,7 @@ sidebarDepth: 1
 本组件库依赖 `element-plus`，需要事先安装组件中使用的库，以及组件的依赖
 
 ```bash
-npm i element-plus@~2.2.13 @element-plus/icons-vue@^2.0.9 @vueuse/core@^9.1.0
+npm i element-plus@~2.8.8 @element-plus/icons-vue@^2.3.1 @vueuse/core@^11.2.0
 npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21 vuedraggable@^4.1.0 
 ```
 

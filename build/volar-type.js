@@ -13,7 +13,7 @@ const names = klawSync(JS_PATH, {
 const upper = (_, letter) => letter.toUpperCase()
 
 let content = `// GlobalComponents for Volar
-declare module '@vue/runtime-core' {
+declare module 'vue' {
     export interface GlobalComponents {
 `
 

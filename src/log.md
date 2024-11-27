@@ -9,6 +9,7 @@ title: 更新日志
 ### 新增和更新
 
 * 更新 element-plus 到 2.8.8 版本
+* 更新组件库的类型产物，适配 vue 和 volar
 * 完善 button 组件的 confirm 参数
 * 统一 choice 中 checkbox 和 radio 的样式
 * radio 和 checkbox 使用新的 api

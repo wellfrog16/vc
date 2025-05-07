@@ -88,10 +88,11 @@ const handleClosed = () => {
 </script>
 
 <style lang="scss" module>
-.main {
+div.main {
+    --el-dialog-padding-primary: 0;
+
     display: flex;
     flex-direction: column;
-    padding: 0;
 
     :global {
         .el-dialog__header {

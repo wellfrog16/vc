@@ -22,6 +22,9 @@
     "dist",
     "es"
   ],
+  "engines": {
+    "node": "=16.18.0"
+  },
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build && npm run build:lib && npm run build:type && npm run provide:css && npm run volar",

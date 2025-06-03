@@ -153,6 +153,7 @@ div.main {
 .buttons {
     button {
         padding: 8px;
+        font-size: 1.2em;
         border: 0;
     }
 }

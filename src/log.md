@@ -8,11 +8,12 @@ title: 更新日志
 
 ### 新增和更新
 
-* 111
+* 更新 element-plus 到 2.9.11 版本
+* 调整 dialog 组件右上角操作按钮大小
 
 ### 缺陷修复
 
-* 更新 dialog 组件样式，修复 padding
+* 更新 dialog 组件样式，修复 padding，
 
 ## 0.11.0
 
@@ -168,7 +169,6 @@ title: 更新日志
 
 * 修复 choice 组件和 select 组件的 option 类型
 * 修复 tree-picker 组件空白 Popover 空白的情况
-
 
 ## 0.3.1
 

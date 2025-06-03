@@ -21,10 +21,10 @@
             </div>
         </template>
         <template #default>
-            <ElScrollbar v-if="!isFullscreen && (height || maxHeight)" :class="scrollbarClassName" :height="height" :max-height="maxHeight">
+            <ElScrollbar v-if="!isFullscreen && (height || maxHeight)" :class="scrollbarClassName" :height="height" :max-height="maxHeight" always>
                 <slot />
             </ElScrollbar>
-            <ElScrollbar v-else :class="scrollbarClassName" :max-height="fullscreenHeight">
+            <ElScrollbar v-else :class="scrollbarClassName" :max-height="fullscreenHeight" always>
                 <slot />
             </ElScrollbar>
         </template>

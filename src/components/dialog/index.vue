@@ -50,6 +50,7 @@ interface IPropType {
     maxHeight?: string | number
     fullscreenHeight?: string | number
     flex?: boolean
+    fullscreen?: boolean
 }
 
 const props = withDefaults(defineProps<IPropType>(), {
@@ -60,6 +61,7 @@ const props = withDefaults(defineProps<IPropType>(), {
     lazy: true,
     fullscreenHeight: 'calc(100vh - 146px)',
     flex: false,
+    fullscreen: false,
 })
 
 const emits = defineEmits(['update:modelValue', 'closed'])
@@ -78,7 +80,10 @@ const scrollbarClassName = computed(() => ({
 }))
 
 watch(dialogVisible, val => {
-    if (val) { visible.value = true }
+    if (val) {
+        isFullscreen.value = props.fullscreen
+        visible.value = true
+    }
 })
 
 const handleClosed = () => {

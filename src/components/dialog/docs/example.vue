@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HDialog v-model="visible" title="测试" :show-fullscreen="showFullscreen" :show-default-footer="showDefaultFooter" :height="height" :max-height="maxHeight">
+            <HDialog v-model="visible" title="测试" :show-fullscreen="showFullscreen" :fullscreen="isFullscreen" :show-default-footer="showDefaultFooter" :height="height" :max-height="maxHeight">
                 <HButton :time="0" @click="handleAdd">增加内容</HButton>
                 <HButton :time="0" @click="handleRemove">减少内容</HButton>
                 <div v-for="item in line" :key="item">啤酒、饮料、矿泉水，花生、瓜子、大鸡腿</div>
@@ -16,6 +16,9 @@
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：全屏">
             <HChoiceBoolean v-model="showFullscreen" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：默认全屏">
+            <HChoiceBoolean v-model="isFullscreen" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：默认 footer">
             <HChoiceBoolean v-model="showDefaultFooter" />
@@ -35,6 +38,7 @@ import HDialog from '../index.vue'
 
 const visible = ref(false)
 const showFullscreen = ref(true)
+const isFullscreen = ref(false)
 const showDefaultFooter = ref(false)
 const toggleVisible = useToggle(visible)
 const line = ref(1)

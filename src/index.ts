@@ -1,6 +1,7 @@
 import packageJson from '../package.json'
 
 export { default as HAwesomeIcon } from './components/awesome-icon/index.vue'
+export { default as HBackbottom } from './components/backbottom/index.vue'
 export { default as HButton } from './components/button/index.vue'
 export { default as HChoice } from './components/choice/index.vue'
 export { default as HChoiceBoolean } from './components/choice-boolean/index.vue'

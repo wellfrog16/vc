@@ -10,7 +10,7 @@
 
 ## 最小示例
 
-<<< ./simple.vue{3,13}
+<<< ./simple.vue{3}
 
 ## API
 

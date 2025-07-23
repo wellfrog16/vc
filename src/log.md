@@ -12,6 +12,7 @@ title: 更新日志
 * 调整 dialog 组件右上角操作按钮大小，滚动条属性
 * dialog 组件增加默认全屏属性
 * 新增 backbottom 组件
+* 新增 chat-container 组件
 
 ### 缺陷修复
 

@@ -15,7 +15,7 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/thousand-input/docs/example.vue";
-import Usage from "@/components/thousand-input/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 import CdnTag from "@/components/cdn-tag.vue";
 </script>

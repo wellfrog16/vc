@@ -15,6 +15,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/switch/docs/example.vue";
-import Usage from "@/components/switch/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

@@ -19,6 +19,6 @@ awesome-icon、el-icon、svg-icon 的三合一组件，消除了 3 种 icon 之�
 <Usage />
 
 <script setup>
-import Example from "@/components/icon/docs/example.vue";
-import Usage from "@/components/icon/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

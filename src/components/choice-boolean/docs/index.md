@@ -21,6 +21,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/choice-boolean/docs/example.vue";
-import Usage from "@/components/choice-boolean/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

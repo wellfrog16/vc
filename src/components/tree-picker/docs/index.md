@@ -17,6 +17,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/tree-picker/docs/example.vue";
-import Usage from "@/components/tree-picker/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

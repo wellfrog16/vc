@@ -17,6 +17,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/input-number/docs/example.vue";
-import Usage from "@/components/input-number/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

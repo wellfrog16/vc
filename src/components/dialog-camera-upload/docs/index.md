@@ -25,6 +25,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/dialog-camera-upload/docs/example.vue";
-import Usage from "@/components/dialog-camera-upload/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

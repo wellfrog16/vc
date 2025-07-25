@@ -27,6 +27,6 @@
 <script setup>
 import Example1 from "@/components/cropper/docs/example1.vue";
 import Example2 from "@/components/cropper/docs/example2.vue";
-import Usage from "@/components/cropper/docs/usage.vue";
+import Usage from "./usage.vue";
 import CdnTag from "@/components/cdn-tag.vue";
 </script>

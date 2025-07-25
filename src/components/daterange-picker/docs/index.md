@@ -19,6 +19,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/daterange-picker/docs/example.vue";
-import Usage from "@/components/daterange-picker/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

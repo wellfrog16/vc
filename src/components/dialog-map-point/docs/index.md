@@ -21,6 +21,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/dialog-map-point/docs/example.vue";
-import Usage from "@/components/dialog-map-point/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

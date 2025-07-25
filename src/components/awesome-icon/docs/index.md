@@ -29,7 +29,7 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/awesome-icon/docs/example.vue";
-import Usage from "@/components/awesome-icon/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 import CdnTag from "@/components/cdn-tag.vue";
 </script>

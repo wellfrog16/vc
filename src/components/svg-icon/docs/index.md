@@ -30,6 +30,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/svg-icon/docs/example.vue";
-import Usage from "@/components/svg-icon/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

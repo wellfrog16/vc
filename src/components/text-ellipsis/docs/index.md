@@ -15,6 +15,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/text-ellipsis/docs/example.vue";
-import Usage from "@/components/text-ellipsis/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

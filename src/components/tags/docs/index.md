@@ -21,6 +21,6 @@ npm i vuedraggable-es@^4.1.1
 <Usage />
 
 <script setup>
-import Example from "@/components/tags/docs/example.vue";
-import Usage from "@/components/tags/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

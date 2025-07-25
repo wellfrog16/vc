@@ -19,6 +19,6 @@ BUG：因为使用 el-slider 作为进度条，双向绑定会使每秒播放重
 <Usage />
 
 <script setup>
-import Example from "@/components/single-player/docs/example.vue";
-import Usage from "@/components/single-player/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

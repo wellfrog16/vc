@@ -19,6 +19,6 @@ flex 模式方便 slot 的内容实现高度撑满父容器（100%高，slot节�
 <Usage />
 
 <script setup>
-import Example from "@/components/dialog/docs/example.vue";
-import Usage from "@/components/dialog/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

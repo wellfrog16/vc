@@ -18,6 +18,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/config-provider/docs/example.vue";
-import Usage from "@/components/config-provider/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

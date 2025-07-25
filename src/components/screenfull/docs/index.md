@@ -20,7 +20,7 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/screenfull/docs/example.vue";
-import Usage from "@/components/screenfull/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 import CdnTag from "@/components/cdn-tag.vue";
 </script>

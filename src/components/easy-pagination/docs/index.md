@@ -16,6 +16,6 @@
 <Usage />
 
 <script setup>
-import Example from "@/components/easy-pagination/docs/example.vue";
-import Usage from "@/components/easy-pagination/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

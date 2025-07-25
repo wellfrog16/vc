@@ -19,6 +19,6 @@ el-image 的修改版，增加文字展示方式，点击展开大图
 <Usage />
 
 <script setup>
-import Example from "@/components/image/docs/example.vue";
-import Usage from "@/components/image/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

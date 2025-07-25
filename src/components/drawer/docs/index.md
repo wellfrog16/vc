@@ -17,6 +17,6 @@ el-drawer 的修改版
 <Usage />
 
 <script setup>
-import Example from "@/components/drawer/docs/example.vue";
-import Usage from "@/components/drawer/docs/usage.vue";
+import Example from "./example.vue";
+import Usage from "./usage.vue";
 </script>

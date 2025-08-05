@@ -42,7 +42,8 @@
     "publish2": "npm publish --access public",
     "commit": "git-cz",
     "lint": "commitlint -e",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "push": "node node/auto-push.js"
   },
   "config": {
     "commitizen": {

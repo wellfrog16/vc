@@ -6,6 +6,10 @@
 import Document from '@/components/document.vue'
 
 const documentData = {
+    params: [
+        { param: 'border', description: '各个区域之间的分割边框', type: 'boolean', defaultValue: 'true' },
+        { param: 'shadow', description: '各个区域之间的分割阴影', type: 'boolean', defaultValue: 'false' },
+    ],
     slots: [
         { name: 'default', description: '内容区域' },
         { name: 'header', description: '冻结的表头' },

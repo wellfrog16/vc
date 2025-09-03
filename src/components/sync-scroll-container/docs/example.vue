@@ -22,10 +22,10 @@
         <ElDescriptionsItem label="参数：边框">
             <HChoiceBoolean v-model="border" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="参数：Header 高度">
+        <ElDescriptionsItem label="Header 高度">
             <HInputNumber v-model="headerHeight" :step="5" :min="20" :max="100" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="参数：Sidebar 高度">
+        <ElDescriptionsItem label="Sidebar 宽度">
             <HInputNumber v-model="sidebarWidth" :step="5" :min="80" :max="200" />
         </ElDescriptionsItem>
     </Wrapper>

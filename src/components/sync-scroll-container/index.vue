@@ -9,10 +9,10 @@
             </div>
         </div>
         <div v-if="shadow" :class="$style['header-shadow']" />
+        <div :class="[$style.sidebar, { [$style.shadow]: shadow, [$style.border]: border }]">
+            <div ref="refSidebarContainer"><slot name="sidebar" /></div>
+        </div>
         <div ref="refContainer" :class="$style.container">
-            <div :class="[$style.sidebar, { [$style.shadow]: shadow, [$style.border]: border }]">
-                <div ref="refSidebarContainer"><slot name="sidebar" /></div>
-            </div>
             <div :class="$style.body">
                 <div ref="refBodyContainer"><slot /></div>
             </div>
@@ -48,8 +48,6 @@ const { width: sidebarWidth } = useElementSize(refSidebarContainer)
 const { width: nodeWidth, height: nodeHeight } = useElementSize(refNode)
 
 const scrollBarWidth = ref(0)
-const containerWidth = computed(() => nodeWidth.value - scrollBarWidth.value)
-const cornerWidth = computed(() => props.border ? sidebarWidth.value + 1 : sidebarWidth.value)
 
 function getScrollbarWidth() {
     const outer = document.createElement('div')
@@ -66,7 +64,7 @@ function getScrollbarWidth() {
 
 const syncScroll = () => {
     function updateScroll() {
-        refHeader.value!.scrollLeft = refContainer.value!.scrollLeft
+        refHeader.value!.scrollLeft = refWrapper.value!.scrollLeft
     }
 
     function hasHorizontalScroll(element) {
@@ -74,15 +72,15 @@ const syncScroll = () => {
     }
 
     const install = () => {
-        refContainer.value!.addEventListener('scroll', updateScroll)
+        refWrapper.value!.addEventListener('scroll', updateScroll)
 
-        if (hasHorizontalScroll(refContainer.value!)) {
+        if (hasHorizontalScroll(refWrapper.value!)) {
             scrollBarWidth.value = getScrollbarWidth()
         }
     }
 
     const uninstall = () => {
-        refContainer.value!.removeEventListener('scroll', updateScroll)
+        refWrapper.value!.removeEventListener('scroll', updateScroll)
     }
 
     return { install, uninstall }
@@ -102,17 +100,17 @@ onBeforeUnmount(() => syncScrollUninstall())
     position: relative;
     width: v-bind('`${nodeWidth}px`');
     height: v-bind('`${nodeHeight}px`');
+    overflow: auto;
 }
 
 .header {
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
     z-index: 5;
     display: flex;
-    width: v-bind('`${containerWidth}px`');
+    width: 100%;
     height: v-bind('`${headerHeight}px`');
-    min-height: 30px;
     overflow: hidden;
     background-color: var(--el-bg-color);
 
@@ -126,11 +124,12 @@ onBeforeUnmount(() => syncScrollUninstall())
 }
 
 .header-shadow {
-    position: absolute;
+    position: sticky;
     top: v-bind('`${headerHeight}px`');
     left: 0;
     z-index: 4;
-    width: v-bind('`${containerWidth - 5}px`');
+    width: v-bind('`${bodyWidth + sidebarWidth}px`');
+    min-width: 100%;
     height: 0;
     box-shadow: 0 1px 4px 1px rgb(0 0 0 / 20%);
 }
@@ -141,7 +140,7 @@ onBeforeUnmount(() => syncScrollUninstall())
     z-index: 3;
     box-sizing: border-box;
     flex-shrink: 0;
-    width: v-bind('`${cornerWidth}px`');
+    width: v-bind('`${sidebarWidth}px`');
     background-color: var(--el-bg-color);
 
     &.border {
@@ -154,21 +153,23 @@ onBeforeUnmount(() => syncScrollUninstall())
 }
 
 .container {
+    position: absolute;
+    top: v-bind('`${headerHeight}px`');
+    left: v-bind('`${sidebarWidth}px`');
     display: flex;
-    width: auto;
-    height: v-bind('`${nodeHeight}px`');
-    overflow-x: auto;
     background-color: var(--el-bg-color);
 }
 
 .sidebar {
     position: sticky;
+    top: 0;
     left: 0;
     z-index: 3;
     box-sizing: border-box;
-    flex-shrink: 0;
+    display: flex;
+    width: v-bind('`${sidebarWidth}px`');
     height: v-bind('`${bodyHeight}px`');
-    margin-top: v-bind('`${headerHeight}px`');
+    min-height: v-bind('`calc(100% - ${headerHeight}px)`');
     background-color: var(--el-bg-color);
 
     &.border {
@@ -182,8 +183,6 @@ onBeforeUnmount(() => syncScrollUninstall())
 
 .body {
     position: relative;
-    flex-shrink: 0;
     height: v-bind('`${bodyHeight}px`');
-    margin-top: v-bind('`${headerHeight}px`');
 }
 </style>

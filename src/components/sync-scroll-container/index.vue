@@ -1,5 +1,5 @@
 <template>
-    <div ref="refWrapper" :class="$style.wrapper">
+    <div ref="refWrapper" :class="[$style.wrapper, { [$style.border]: border }]">
         <div ref="refHeader" :class="[$style.header, { [$style.border]: border }]">
             <div :class="[$style.corner, { [$style.shadow]: shadow, [$style.border]: border }]">
                 <slot name="corner" />
@@ -98,9 +98,14 @@ onBeforeUnmount(() => syncScrollUninstall())
 
 .wrapper {
     position: relative;
+    box-sizing: border-box;
     width: v-bind('`${nodeWidth}px`');
     height: v-bind('`${nodeHeight}px`');
     overflow: auto;
+
+    &.border {
+        border: 1px solid var(--el-border-color);
+    }
 }
 
 .header {

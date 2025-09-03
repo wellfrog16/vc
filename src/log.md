@@ -13,6 +13,7 @@ title: 更新日志
 * dialog 组件增加默认全屏属性
 * 新增 backbottom 组件
 * 新增 chat-container 组件
+* 新增 sync-scroll-container 组件
 
 ### 缺陷修复
 

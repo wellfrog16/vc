@@ -1,5 +1,5 @@
 <template>
-    <ElSelect v-model="myValue" :multiple="multiple" collapse-tags :loading="loading" v-bind="{ ...$attrs }" :class="className">
+    <ElSelect v-model="myValue" :multiple="multiple" collapse-tags :loading="props.loading || loading" v-bind="{ ...$attrs }" :class="className">
         <ElOption
             v-for="(item, index) in myOptions"
             :key="((item[myProps.key] || item[myProps.label]) as string | number)"

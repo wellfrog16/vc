@@ -23,6 +23,7 @@ export const preProps = {
     options: { type: [Array, Function] as PropType<IChoiceOption | (() => Promise<IChoiceOption>)>, default: () => [] },
     props: { type: Object as PropType<Partial<IChoiceOptionProps>>, default: () => { } },
     expires: { type: [Date, Number] as PropType<Date | number>, default: 60 * 60 * 2 },
+    loading: { type: Boolean, default: false },
     loadingText: { type: String, default: '加载中' },
 }
 
@@ -38,7 +39,7 @@ const useChoice = ({ props, emits }: IContext, storagPrefix: string) => {
     const asyncOptions = ref<IChoiceOption>()
 
     const myValue = computed<any>({
-        get: () => { return loading.value ? props.loadingText : props.modelValue },
+        get: () => { return props.loading || loading.value ? props.loadingText : props.modelValue },
         set: val => emits('update:modelValue', val),
     })
 

@@ -1,18 +1,18 @@
 <template>
-    <ElDescriptions ref="el" :column="1" border class="example" :direction="direction" :class="$style.main">
-        <slot :direction="direction" />
+    <ElDescriptions v-if="width" :column="1" border class="example" :direction="direction" :class="$style.main">
+        <slot />
     </ElDescriptions>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { ElDescriptions } from 'element-plus'
-import { useElementSize } from '@vueuse/core'
+import { useWindowSize } from '@vueuse/core'
 
 const el = ref(null)
-const { width } = useElementSize(el)
+const { width } = useWindowSize()
 const minWidth = 500
-const direction = computed(() => width.value < minWidth ? 'vertical' : 'horizontal')
+const direction = computed(() => width.value && width.value < minWidth ? 'vertical' : 'horizontal')
 </script>
 
 <style lang="scss" module>

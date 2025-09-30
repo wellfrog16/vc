@@ -7,6 +7,7 @@
     >
         <div ref="wrapperRef" :class="$style.wrapper">
             <PPicker v-if="type === 'P'" v-model="myValue" v-bind="componentProps" @change="handleChange" @limit="handleLimit" />
+            <CPicker v-if="type === 'C'" v-model="myValue" v-bind="componentProps" @change="handleChange" @limit="handleLimit" />
         </div>
         <template #reference>
             <HSelect
@@ -40,14 +41,15 @@ import { injectConfig } from '@/components/config-provider/config'
 import HSelect from '@/components/select/index.vue'
 
 import PPicker from './components/p.vue'
+import CPicker from './components/c.vue'
 import './index.scss'
 
 import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel/src/node.d'
-import type { IPCAData } from './data'
+import type { IPCAData } from './source'
 
 interface IPropType {
     source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
-    type: 'P' | 'PC' | 'PCA'
+    type: 'P' | 'C' | 'A'
     hotIds?: number[] // 热门城市的codes
     history?: boolean // 是否记录历史选择
     historyStorageKey?: string // 历史记录的Storage key

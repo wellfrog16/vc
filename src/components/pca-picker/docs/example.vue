@@ -6,7 +6,7 @@
                 <HPCAPicker
                     v-model="result"
                     :multiple="multiple"
-                    type="P"
+                    :type="type"
                     source="p-py-fn"
                     clearable
                     placeholder="请选择"
@@ -18,6 +18,9 @@
                     @change="handleChange"
                 />
             </HConfigProvider>
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：选择类型">
+            <HChoice v-model="type" :options="typeOption" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：热门省/市/区">
             <HChoice v-model="hotIds" :options="hotIdsOption" multiple />
@@ -63,6 +66,7 @@ import HInputNumber from '@/components/input-number/index.vue'
 import HPCAPicker from '../index.vue'
 import type { IChoiceOption } from '../../choice/useChoice'
 
+const hotIds = ref<number[]>([11, 31])
 const hotIdsOption: IChoiceOption = [
     { label: '北京', value: 11 },
     { label: '上海', value: 31 },
@@ -70,9 +74,11 @@ const hotIdsOption: IChoiceOption = [
     { label: '江苏', value: 32 },
 ]
 
-const data2: IChoiceOption = [
-    { label: '已完成', value: true },
-    { label: '未完成', value: false },
+const type = ref<'P' | 'C' | 'A'>('C')
+const typeOption: IChoiceOption = [
+    { label: '省', value: 'P' },
+    { label: '市', value: 'C' },
+    { label: '区', value: 'A' },
 ]
 
 const result = ref<number | number[]>()
@@ -81,7 +87,7 @@ const multiple = ref(false)
 const history = ref(false)
 const activeMark = ref(true)
 const syncActive = ref(false)
-const hotIds = ref<number[]>([11, 31])
+
 const limit = ref<number>(3)
 // const visible = ref(true)
 

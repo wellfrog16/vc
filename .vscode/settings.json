@@ -28,5 +28,7 @@
     "postcss",
     "scss",
     "vue"
-  ]
+  ],
+  "files.eol": "\n",
+  "files.insertFinalNewline": true
 }

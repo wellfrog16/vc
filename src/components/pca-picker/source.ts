@@ -1,23 +1,225 @@
+import { computed, ref, shallowRef, watchEffect } from 'vue'
+import { useStorage } from '@vueuse/core'
+import { storage } from '@wfrog/utils'
+import { flatMap, flatMapDeep, flattenDeep, get, pick } from 'lodash-es'
+
+import { useInject } from '@/use/useStore'
+import type { ComputedRef, Ref } from 'vue'
+
+export interface IPropType {
+    source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
+    type: 'P' | 'C' | 'A'
+    hotIds?: number[] // 热门城市的codes
+    history?: boolean // 是否记录历史选择
+    historyMax?: number // 历史记录的最大条数
+    historyStorageKey?: string // 历史记录的Storage key
+    excludeIds?: number[] // 排除的城市codes
+    nameKey?: string
+    modelValue: number | number[] | undefined
+    disabled?: boolean
+    multiple?: boolean
+    placeholder?: string
+    loadingText?: string
+    activeMark?: boolean // 选中项角标
+    syncActive?: boolean // 是否在热门和历史选择里同步高亮选中项
+    limit?: number // 多选时的数量限制
+}
+
+export interface ICommmonStateType {
+    props: IPropType
+    availableData: ComputedRef<IPCAData[]>
+    flatData: ComputedRef<IPCAData[]>
+    filterData: ComputedRef<IPCAData[]>
+    historyData: ComputedRef<IPCAData[]>
+    itemClass: (item: IPCAData, isHistoryOrHot?: boolean) => Record<string, boolean>
+    isHotEmpty: ComputedRef<boolean>
+    hotData: ComputedRef<IPCAData[]>
+    clickItem: (item: IPCAData) => void
+    keyword: Ref<string>
+    // addHistory: (id: number) => void
+    // historyIds: number[]
+}
+
 export interface IPCAData {
     id: number
     n: string
     fpy: string
+    fn?: string
+    py?: string
+    childs?: IPCAData[]
 }
 
-interface IItemClassParams {
-    value: number | number[] | undefined
-    item: IPCAData
-    activeMark?: boolean
-    syncActive?: boolean
-    isHistoryOrHot?: boolean
-}
+// export const useHistory = (historyStorageKey: string) => {
+//     const historyIds = useStorage<number[]>(historyStorageKey || 'vc-pca-history-p', [])
+//     const historyData = computed(() => {
+//         if (!props.history || !historyIds.value || historyIds.value.length === 0) {
+//             return []
+//         }
+//         const data: IPCAData[] = []
+//         historyIds.value.forEach(id => {
+//             const item = props.data?.find(i => i.id === id)
+//             item && data.push(item)
+//         })
+//         return data
+//     })
 
-export const getItemClass = (params: IItemClassParams) => {
-    const { value, item, activeMark, syncActive, isHistoryOrHot } = params
-    const isActive = value === item.id || (Array.isArray(value) && value.includes(item.id))
-    return {
-        'pca-item': true,
-        'active': isActive && (!isHistoryOrHot || syncActive),
-        'active-mark': isActive && activeMark,
+//     const addHistory = (id: number) => {
+//         // if (!props.history) { return }
+//         const ids = historyIds.value || []
+//         const index = ids.indexOf(id)
+//         if (index > -1) { ids.splice(index, 1) }
+//         ids.unshift(id)
+//         if (ids.length > 6) { ids.splice(6) }
+//         historyIds.value = ids
+//     }
+//     return { historyData, addHistory, historyIds }
+// }
+
+export const usePCAFetchData = (params: IPropType) => {
+    const loading = ref(false)
+    const myProps = ref<IPropType>(params)
+    const storageKey = computed(() => `vc-pca-picker-${myProps.value?.source}`)
+    const pcaData = shallowRef<IPCAData[]>([])
+    const keyword = ref('')
+
+    const setProps = (data: IPropType) => {
+        myProps.value = data
     }
+
+    const fetchData = async (pcaBaseUrl: string, crosProxy?: string): Promise<IPCAData[]> => {
+    // 有缓存
+        const storageData = storage.get(storageKey.value)
+        if (storageData) {
+            pcaData.value = storageData as IPCAData[]
+            return pcaData.value
+        }
+
+        // 无缓存
+        loading.value = true
+        try {
+            const sourceUrl = crosProxy ? `${crosProxy}${encodeURIComponent(`${pcaBaseUrl}/${myProps.value!.source}.json`)}` : `${pcaBaseUrl}/${myProps.value!.source}.json`
+            const res = await fetch(sourceUrl)
+            const data = await res.json()
+            storage.set(storageKey.value, data)
+            pcaData.value = data
+            return data
+        }
+        catch (error) {
+            console.error(error)
+            return []
+        }
+        finally {
+            loading.value = false
+        }
+    }
+
+    // 去掉 excludeIds 的数据
+    const availableData = computed(() => {
+        if (!myProps.value) { return [] }
+        if (!myProps.value.excludeIds || myProps.value.excludeIds.length === 0) {
+            return pcaData.value || []
+        }
+
+        if (myProps.value.type === 'P') {
+            return pcaData.value?.filter(i => !myProps.value!.excludeIds?.includes(i.id)) || []
+        }
+        if (myProps.value.type === 'C') {
+            const tempData = pcaData.value?.filter(i => myProps.value!.excludeIds?.includes(i.id)) || []
+            tempData.forEach(i => {
+                i.childs = i.childs?.filter(j => myProps.value!.excludeIds?.includes(j.id)) || []
+            })
+            return tempData
+        }
+        if (myProps.value.type === 'A') {
+            const tempData = pcaData.value?.filter(i => myProps.value!.excludeIds?.includes(i.id)) || []
+            tempData.forEach(i => {
+                i.childs = i.childs?.filter(j => myProps.value!.excludeIds?.includes(j.id)) || []
+                i.childs.forEach(k => {
+                    k.childs = k.childs?.filter(l => myProps.value!.excludeIds?.includes(l.id)) || []
+                })
+            })
+            return tempData
+        }
+        return []
+    })
+
+    // 用于搜索，拍平的数据
+    const flatData = computed(() => {
+        if (!myProps.value) { return [] }
+        let tempData: IPCAData[] = []
+        if (myProps.value.type === 'P') {
+            tempData = availableData.value
+        }
+        if (myProps.value.type === 'C') {
+            tempData = flatMap(availableData.value, i => i.childs || [])
+        }
+        if (myProps.value.type === 'A') {
+            tempData = flatMapDeep(availableData.value, i => i.childs || [])
+        }
+        return tempData
+    })
+
+    const getValueData = (values: number | number[] | undefined) => flatData.value!.filter(i => (Array.isArray(values) ? values : []).includes(i.id)) || []
+
+    const optionData = computed(() => {
+        if (!myProps.value || !flatData.value || flatData.value.length === 0) {
+            return []
+        }
+        return flatData.value.map(item => ({
+            value: item.id,
+            label: item[myProps.value!.nameKey!],
+        }))
+    })
+
+    // 返回搜索的数据
+    const filterData = computed(() => {
+        if (keyword.value) {
+            return flatData.value.filter(i => i.n.includes(keyword.value) || i.fn?.includes(keyword.value) || i.py?.includes(keyword.value))
+        }
+        return []
+    })
+
+    // 是否配置了热点省/市/区
+    const isHotEmpty = computed(() => !myProps.value?.hotIds || myProps.value?.hotIds.length === 0)
+
+    // 热门省/市/区
+    const hotData = computed(() => {
+        if (!myProps.value?.hotIds || myProps.value?.hotIds.length === 0) {
+            return []
+        }
+        return flatData.value?.filter(i => myProps.value?.hotIds?.includes(i.id)) || []
+    })
+
+    // 只取初始化时 props 的 historyStorageKey，后续不改变
+    const historyStorageKey = `vc-pca-history-${myProps.value?.type.toLowerCase()}`
+    const historyIds = useStorage<number[]>(myProps.value?.historyStorageKey || historyStorageKey, [])
+    // 历史数据
+    const historyData = computed(() => {
+        if (!myProps.value.history || !historyIds.value || historyIds.value.length === 0) {
+            return []
+        }
+        const data: IPCAData[] = []
+        historyIds.value.forEach(id => {
+            const item = flatData.value?.find(i => i.id === id)
+            item && data.push(item)
+        })
+        return data
+    })
+
+    const appendToHistory = (id: number) => {
+        if (!myProps.value.history) { return }
+        if (!myProps.value.historyMax) { return }
+        const ids = historyIds.value || []
+        const index = ids.indexOf(id)
+        if (index > -1) { ids.splice(index, 1) }
+        ids.unshift(id)
+        if (ids.length > myProps.value.historyMax) { ids.splice(myProps.value.historyMax) }
+        historyIds.value = ids
+    }
+
+    return { fetchData, loading, filterData, flatData, keyword, availableData, optionData, setProps, isHotEmpty, hotData, historyData, appendToHistory, getValueData }
 }
+
+export const KEY_NAME = Symbol('VCPCA')
+export const injectCommonState = () => useInject<ICommmonStateType>(KEY_NAME)
+

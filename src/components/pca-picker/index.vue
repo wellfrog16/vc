@@ -6,8 +6,9 @@
         :popper-class="$style.popover"
     >
         <div ref="wrapperRef" :class="$style.wrapper">
-            <PPicker v-if="type === 'P'" v-model="myValue" v-bind="componentProps" @change="handleChange" @limit="handleLimit" />
-            <CPicker v-if="type === 'C'" v-model="myValue" v-bind="componentProps" @change="handleChange" @limit="handleLimit" />
+            <FilterPicker v-if="keyword" />
+            <PPicker v-if="!keyword && type === 'P'" />
+            <!-- <CPicker v-if="!keyword && type === 'C'" v-model="myValue" v-bind="componentProps" @change="handleChange" @limit="handleLimit" /> -->
         </div>
         <template #reference>
             <HSelect
@@ -19,11 +20,12 @@
                 :disabled="loading || disabled"
                 :loading="loading"
                 :multiple="multiple"
-                :options="myOptions"
+                :options="optionData"
                 :class="[selectClassName, $style.select]"
                 :popper-class="$style['popover-select']"
+                :filter-method="query => keyword = query"
                 v-bind="$attrs"
-                @click="handleSelectClick"
+                @click.capture="handleSelectClick"
                 @clear="clear"
             />
         </template>
@@ -31,39 +33,23 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onBeforeMount, onMounted, ref, shallowRef, useCssModule, watch } from 'vue'
+import { computed, nextTick, onBeforeMount, onBeforeUnmount, onMounted, ref, shallowRef, useCssModule, watch } from 'vue'
 import { storage } from '@wfrog/utils'
-import { get, pick } from 'lodash-es'
+import { flatMap, flatMapDeep, flattenDeep, get, pick } from 'lodash-es'
 import { onClickOutside, useThrottleFn, useToggle, useVModel } from '@vueuse/core'
 import { ElCascaderPanel, ElPopover, ElScrollbar, ElTree } from 'element-plus'
 
+import { useProvide } from '@/use/useStore'
 import { injectConfig } from '@/components/config-provider/config'
 import HSelect from '@/components/select/index.vue'
 
+import FilterPicker from './components/filter.vue'
 import PPicker from './components/p.vue'
-import CPicker from './components/c.vue'
+// import CPicker from './components/c.vue'
 import './index.scss'
 
-import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel/src/node.d'
-import type { IPCAData } from './source'
-
-interface IPropType {
-    source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
-    type: 'P' | 'C' | 'A'
-    hotIds?: number[] // 热门城市的codes
-    history?: boolean // 是否记录历史选择
-    historyStorageKey?: string // 历史记录的Storage key
-    excludeIds?: number[] // 排除的城市codes
-    nameKey?: string
-    modelValue: number | number[] | undefined
-    disabled?: boolean
-    multiple?: boolean
-    placeholder?: string
-    loadingText?: string
-    activeMark?: boolean // 选中项角标
-    syncActive?: boolean // 是否在热门和历史选择里同步高亮选中项
-    limit?: number // 多选时的数量限制
-}
+import { KEY_NAME, usePCAFetchData } from './source'
+import type { IPCAData, IPropType } from './source'
 
 const props = withDefaults(defineProps<IPropType>(), {
     disabled: false,
@@ -71,10 +57,11 @@ const props = withDefaults(defineProps<IPropType>(), {
     nameKey: 'fn',
     activeMark: true,
     syncActive: false,
+    historyMax: 6,
 })
 const emits = defineEmits<{
     (e: 'update:modelValue', value: number | number[]): void
-    (e: 'change', value1: IPCAData, value2: IPCAData | IPCAData[]): void
+    (e: 'change', value1?: IPCAData, value2?: IPCAData | IPCAData[]): void
     (e: 'limit', number: number, value: IPCAData): void
 }>()
 
@@ -82,27 +69,8 @@ const myValue = useVModel(props, 'modelValue', emits)
 const { pcaBaseUrl, crosProxy } = injectConfig()
 const [popoverVisible, togglePopoverVisible] = useToggle()
 const $style = useCssModule()
-const data = ref<IPCAData[]>()
-const loading = ref(false)
-
-const selectValue = ref<any>()
-
-const componentProps = computed(() => {
-    return {
-        ...pick(props, ['source', 'hotIds', 'multiple', 'history', 'historyStorageKey', 'nameKey', 'activeMark', 'syncActive', 'limit']),
-        data: data.value,
-    }
-})
-
-const myOptions = computed(() => {
-    if (!data.value || data.value.length === 0) {
-        return []
-    }
-    return data.value.map(item => ({
-        value: item.id,
-        label: item[props.nameKey],
-    }))
-})
+const pcaFetchData = usePCAFetchData(props)
+const { loading, fetchData, setProps, keyword, optionData, appendToHistory, getValueData } = pcaFetchData
 
 // popover显示隐藏控制
 // const mySelect = ref<InstanceType<typeof ElSelect>>()
@@ -126,52 +94,72 @@ const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.
 const myPlaceholder = computed(() => loading.value ? props.loadingText : props.placeholder)
 
 const handleSelectClick = useThrottleFn(() => !loading.value && !props.disabled && togglePopoverVisible(), 300)
-const clear = () => {}
 
 const handleChange = (item: IPCAData) => {
     if (props.multiple) {
-        const valueData = data.value!.filter(i => (Array.isArray(myValue.value) ? myValue.value : []).includes(i.id)) || []
-        emits('change', item, valueData)
+        emits('change', item, getValueData(myValue.value))
     }
     else {
         emits('change', item, item)
         togglePopoverVisible(false)
     }
+    setTimeout(() => (keyword.value = ''), 300)
+}
+
+const clear = () => {
+    togglePopoverVisible(false)
+    emits('change', undefined, undefined)
 }
 
 const handleLimit = (item: IPCAData) => {
     emits('limit', props.limit!, item)
 }
 
-const storageKey = computed(() => `vc-pca-picker-${props.source}`)
-const fetchData = async (): Promise<IPCAData[]> => {
-    // 有缓存
-    const storageData = storage.get(storageKey.value)
-    if (storageData) {
-        return storageData as IPCAData[]
-    }
+useProvide(KEY_NAME, {
+    props,
+    ...pcaFetchData,
+    itemClass: (item: IPCAData, isHistoryOrHot?: boolean) => {
+        const isActive = myValue.value === item.id || (Array.isArray(myValue.value) && myValue.value.includes(item.id))
+        return {
+            'pca-item': true,
+            'active': isActive && (!isHistoryOrHot || props.syncActive),
+            'active-mark': isActive && props.activeMark,
+        }
+    },
+    clickItem: (item: IPCAData) => {
+        if (props.multiple) {
+            const val = Array.isArray(myValue.value) ? [...myValue.value] : []
+            const index = val.indexOf(item.id)
+            if (index > -1) {
+                val.splice(index, 1)
+            }
+            else {
+                if (props.limit && val.length >= props.limit) {
+                    emits('limit', props.limit, item)
+                    return
+                }
+                appendToHistory(item.id)
+                val.push(item.id)
+            }
+            myValue.value = val
+        }
+        else {
+            appendToHistory(item.id)
+            myValue.value = item.id
+        }
+        handleChange(item)
+    },
+})
 
-    // 无缓存
-    loading.value = true
-    try {
-        const sourceUrl = crosProxy ? `${crosProxy}${encodeURIComponent(`${pcaBaseUrl}/${props.source}.json`)}` : `${pcaBaseUrl}/${props.source}.json`
-        const res = await fetch(sourceUrl)
-        const data = await res.json()
-        storage.set(storageKey.value, data)
-        return data
-    }
-    catch (error) {
-        console.error(error)
-        return []
-    }
-    finally {
-        loading.value = false
-    }
-}
+const propsWatch = watch(() => props, newProps => { setProps(newProps) }, { deep: true })
 
 onMounted(async () => {
-    const myData = await fetchData()
-    data.value = myData?.filter(i => !props.excludeIds?.includes(i.id)) || []
+    setProps(props)
+    await fetchData(pcaBaseUrl || '', crosProxy)
+})
+
+onBeforeUnmount(() => {
+    propsWatch.stop()
 })
 </script>
 

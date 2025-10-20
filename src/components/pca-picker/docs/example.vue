@@ -4,14 +4,16 @@
             <!-- <HConfigProvider pca-base-url="https://raw.githubusercontent.com/wellfrog16/area/refs/heads/master"> -->
             <HConfigProvider pca-base-url="https://gitee.com/wellfrog16/area/raw/master" cros-proxy="https://api.allorigins.win/raw?url=">
                 <HPCAPicker
+                    v-if="visible"
                     v-model="result"
                     :multiple="multiple"
                     :type="type"
-                    source="p-py-fn"
+                    source="pc-py-fn"
                     clearable
                     placeholder="请选择"
                     :hot-ids="hotIds"
                     :history="history"
+                    :filterable="filterable"
                     :active-mark="activeMark"
                     :sync-active="syncActive"
                     :limit="limit"
@@ -35,6 +37,9 @@
                 @change="handleMutipleChange"
             />
         </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：可搜索">
+            <HChoiceBoolean v-model="filterable" />
+        </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：历史选择">
             <HChoiceBoolean v-model="history" />
         </ElDescriptionsItem>
@@ -55,7 +60,7 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, ref } from 'vue'
+import { nextTick, ref, watch } from 'vue'
 import { ElButton, ElDescriptionsItem, ElSwitch } from 'element-plus'
 
 import Wrapper from '@/components/example-wrapper.vue'
@@ -83,20 +88,22 @@ const typeOption: IChoiceOption = [
 
 const result = ref<number | number[]>()
 const changeValue = ref<unknown>()
-const multiple = ref(false)
-const history = ref(false)
-const activeMark = ref(true)
-const syncActive = ref(false)
+const multiple = ref(false) // 单/多选
+const history = ref(false) // 历史选择
+const activeMark = ref(true) // 角标
+const syncActive = ref(false) // 同步高亮
+const filterable = ref(true) // 可搜索
+const visible = ref(true)
 
 const limit = ref<number>(3)
 // const visible = ref(true)
 
-// const reload = () => {
-//     visible.value = false
-//     nextTick(() => {
-//         visible.value = true
-//     })
-// }
+const reload = () => {
+    visible.value = false
+    nextTick(() => {
+        visible.value = true
+    })
+}
 
 const handleChange = (value: any) => {
     changeValue.value = value
@@ -105,6 +112,11 @@ const handleChange = (value: any) => {
 const handleMutipleChange = (value: string | number | boolean) => {
     result.value = value ? [] : undefined
 }
+
+watch(type, () => {
+    reload()
+    result.value = undefined
+})
 </script>
 
 <style lang="scss" module>

@@ -60,7 +60,7 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { ElButton, ElDescriptionsItem, ElSwitch } from 'element-plus'
 
 import Wrapper from '@/components/example-wrapper.vue'
@@ -71,13 +71,36 @@ import HInputNumber from '@/components/input-number/index.vue'
 import HPCAPicker from '../index.vue'
 import type { IChoiceOption } from '../../choice/useChoice'
 
-const hotIds = ref<number[]>([11, 31])
-const hotIdsOption: IChoiceOption = [
-    { label: '北京', value: 11 },
-    { label: '上海', value: 31 },
-    { label: '四川', value: 51 },
-    { label: '江苏', value: 32 },
+const hotData = [
+    {
+        type: ['P'],
+        defaultId: [11, 31],
+        options: [
+            { label: '北京', value: 11 },
+            { label: '上海', value: 31 },
+            { label: '四川', value: 51 },
+            { label: '江苏', value: 32 },
+        ],
+    },
+    {
+        type: ['C'],
+        defaultId: [1101, 3101],
+        options: [
+            { label: '北京市', value: 1101 },
+            { label: '上海市', value: 3101 },
+            { label: '长沙市', value: 4301 },
+            { label: '无锡市', value: 3202 },
+        ],
+    },
 ]
+
+// const hotIds = ref<number[]>([11, 31])
+// const hotIdsOption: IChoiceOption = [
+//     { label: '北京', value: 11 },
+//     { label: '上海', value: 31 },
+//     { label: '四川', value: 51 },
+//     { label: '江苏', value: 32 },
+// ]
 
 const type = ref<'P' | 'C' | 'A'>('C')
 const typeOption: IChoiceOption = [
@@ -85,6 +108,13 @@ const typeOption: IChoiceOption = [
     { label: '市', value: 'C' },
     { label: '区', value: 'A' },
 ]
+
+const hotIds = computed(() => {
+    return hotData.find(item => item.type.includes(type.value))?.defaultId || []
+})
+const hotIdsOption = computed(() => {
+    return hotData.find(item => item.type.includes(type.value))?.options || []
+})
 
 const result = ref<number | number[]>()
 const changeValue = ref<unknown>()

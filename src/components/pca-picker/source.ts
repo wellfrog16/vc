@@ -1,7 +1,7 @@
-import { computed, ref, shallowRef, watchEffect } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
 import { useStorage } from '@vueuse/core'
 import { storage } from '@wfrog/utils'
-import { flatMap, flatMapDeep, flattenDeep, get, pick } from 'lodash-es'
+import { flatMap, flatMapDeep } from 'lodash-es'
 
 import { useInject } from '@/use/useStore'
 import type { ComputedRef, Ref } from 'vue'
@@ -9,7 +9,9 @@ import type { ComputedRef, Ref } from 'vue'
 export interface IPropType {
     source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
     type: 'P' | 'C' | 'A'
+    hotText?: string // 热门城市文案
     hotIds?: number[] // 热门城市的codes
+    historyText?: string // 历史选择文案
     history?: boolean // 是否记录历史选择
     historyMax?: number // 历史记录的最大条数
     historyStorageKey?: string // 历史记录的Storage key
@@ -31,11 +33,13 @@ export interface ICommmonStateType {
     flatData: ComputedRef<IPCAData[]>
     filterData: ComputedRef<IPCAData[]>
     historyData: ComputedRef<IPCAData[]>
+    fpyGroupData: ComputedRef<{ label: string; childs: IPCAData[] }[]>
     itemClass: (item: IPCAData, isHistoryOrHot?: boolean) => Record<string, boolean>
-    isHotEmpty: ComputedRef<boolean>
+    hasHot: ComputedRef<boolean>
     hotData: ComputedRef<IPCAData[]>
     clickItem: (item: IPCAData) => void
     keyword: Ref<string>
+    popoverVisible: Ref<boolean>
     // addHistory: (id: number) => void
     // historyIds: number[]
 }
@@ -48,32 +52,6 @@ export interface IPCAData {
     py?: string
     childs?: IPCAData[]
 }
-
-// export const useHistory = (historyStorageKey: string) => {
-//     const historyIds = useStorage<number[]>(historyStorageKey || 'vc-pca-history-p', [])
-//     const historyData = computed(() => {
-//         if (!props.history || !historyIds.value || historyIds.value.length === 0) {
-//             return []
-//         }
-//         const data: IPCAData[] = []
-//         historyIds.value.forEach(id => {
-//             const item = props.data?.find(i => i.id === id)
-//             item && data.push(item)
-//         })
-//         return data
-//     })
-
-//     const addHistory = (id: number) => {
-//         // if (!props.history) { return }
-//         const ids = historyIds.value || []
-//         const index = ids.indexOf(id)
-//         if (index > -1) { ids.splice(index, 1) }
-//         ids.unshift(id)
-//         if (ids.length > 6) { ids.splice(6) }
-//         historyIds.value = ids
-//     }
-//     return { historyData, addHistory, historyIds }
-// }
 
 export const usePCAFetchData = (params: IPropType) => {
     const loading = ref(false)
@@ -124,9 +102,9 @@ export const usePCAFetchData = (params: IPropType) => {
             return pcaData.value?.filter(i => !myProps.value!.excludeIds?.includes(i.id)) || []
         }
         if (myProps.value.type === 'C') {
-            const tempData = pcaData.value?.filter(i => myProps.value!.excludeIds?.includes(i.id)) || []
+            const tempData = pcaData.value?.filter(i => !myProps.value!.excludeIds?.includes(i.id)) || []
             tempData.forEach(i => {
-                i.childs = i.childs?.filter(j => myProps.value!.excludeIds?.includes(j.id)) || []
+                i.childs = i.childs?.filter(j => !myProps.value!.excludeIds?.includes(j.id)) || []
             })
             return tempData
         }
@@ -159,6 +137,18 @@ export const usePCAFetchData = (params: IPropType) => {
         return tempData
     })
 
+    // 按拼音分组的市/区
+    const fpyGroup = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z']
+    const fpyGroupData = computed(() => {
+        if (myProps.value.type === 'C') {
+            return fpyGroup.map(i => ({
+                label: i,
+                childs: flatData.value.filter(j => j.fpy && i.includes(j.fpy)) || [],
+            }))
+        }
+        return []
+    })
+
     const getValueData = (values: number | number[] | undefined) => flatData.value!.filter(i => (Array.isArray(values) ? values : []).includes(i.id)) || []
 
     const optionData = computed(() => {
@@ -180,7 +170,7 @@ export const usePCAFetchData = (params: IPropType) => {
     })
 
     // 是否配置了热点省/市/区
-    const isHotEmpty = computed(() => !myProps.value?.hotIds || myProps.value?.hotIds.length === 0)
+    const hasHot = computed(() => Array.isArray(myProps.value?.hotIds) && myProps.value?.hotIds.length > 0)
 
     // 热门省/市/区
     const hotData = computed(() => {
@@ -217,7 +207,22 @@ export const usePCAFetchData = (params: IPropType) => {
         historyIds.value = ids
     }
 
-    return { fetchData, loading, filterData, flatData, keyword, availableData, optionData, setProps, isHotEmpty, hotData, historyData, appendToHistory, getValueData }
+    return {
+        fetchData,
+        loading,
+        filterData,
+        flatData,
+        keyword,
+        availableData,
+        optionData,
+        setProps,
+        hasHot,
+        hotData,
+        historyData,
+        appendToHistory,
+        getValueData,
+        fpyGroupData,
+    }
 }
 
 export const KEY_NAME = Symbol('VCPCA')

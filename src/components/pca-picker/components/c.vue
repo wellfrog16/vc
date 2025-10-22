@@ -1,42 +1,91 @@
 <template>
-    <div :class="$style.wrapper">1122</div>
+    <div ref="wrapperRef" class="pca-wrapper">
+        <div :class="$style.elevator">
+            <ElAnchor ref="anchorRef" select-scroll-top :container="wrapperRef" :bound="40">
+                <ElAnchorLink v-if="history && historyData.length" :href="`#${historyText}`">历史</ElAnchorLink>
+                <ElAnchorLink v-if="hasHot" :href="`#${hotText}`">{{ hotText }}</ElAnchorLink>
+                <ElAnchorLink v-for="group in fpyGroupData" :key="group.label" :href="`#${group.label}`">{{ group.label }}</ElAnchorLink>
+            </ElAnchor>
+        </div>
+        <!-- 历史记录 -->
+        <div v-if="history && historyData.length">
+            <ElevatorItem :label="historyText!" :data="historyData" />
+        </div>
+        <!-- 热门 -->
+        <div v-if="hasHot">
+            <ElevatorItem :label="hotText!" :data="hotData" />
+        </div>
+        <div v-for="group in fpyGroupData" :key="group.label">
+            <ElevatorItem :label="group.label" :data="group.childs" />
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { ElDivider } from 'element-plus'
+import { toRefs, useTemplateRef, watch } from 'vue'
+import { ElAnchor, ElAnchorLink } from 'element-plus'
 
+import ElevatorItem from './elevator-item.vue'
+import { injectCommonState } from '../source'
 import type { IPCAData } from '../source'
 
-interface IPropType {
-    modelValue: number | number[] | undefined
-    // source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
-    nameKey?: string
-    hotIds?: number[] // 热门城市的id
-    history?: boolean // 是否记录历史选择
-    historyStorageKey?: string // 历史记录的Storage key
-    data?: IPCAData[]
-    multiple?: boolean
-    activeMark?: boolean
-    syncActive?: boolean // 是否在热门和历史选择里同步高亮选中项
-    limit?: number // 多选时的数量限制
-}
+const { props: commonProps, fpyGroupData, flatData, popoverVisible, hasHot, hotData, historyData } = injectCommonState()
+const { history, historyText, hotText } = toRefs(commonProps)
 
-const props = withDefaults(defineProps<IPropType>(), {
-    nameKey: 'n',
-    data: () => [],
+const wrapperRef = useTemplateRef('wrapperRef')
+const anchorRef = useTemplateRef('anchorRef')
+
+watch(fpyGroupData, () => {
+    const tagsA = wrapperRef.value?.getElementsByTagName('a')
+    if (!tagsA) { return }
+    const firstHref = tagsA[0].hash
+    // 遍历tagsA，设置href属性为空
+    for (let i = 0; i < tagsA.length; i++) {
+        tagsA[i].setAttribute('href', 'javascript:void(0)')
+    }
+    anchorRef.value?.scrollTo(firstHref)
 })
 
-const emits = defineEmits<{
-    (e: 'update:modelValue', value: number | number[]): void
-    (e: 'change', value: IPCAData): void
-    (e: 'limit', value: IPCAData): void
-}>()
+watch(popoverVisible, () => {
+    if (!popoverVisible.value) { return }
+    if (!commonProps.modelValue || (Array.isArray(commonProps.modelValue) && commonProps.modelValue.length === 0)) { return }
+
+    let firstItem: IPCAData | undefined
+    if (commonProps.multiple && Array.isArray(commonProps.modelValue)) {
+        firstItem = flatData.value.find(item => (commonProps.modelValue as number[])!.includes(item.id))
+    }
+    else {
+        firstItem = flatData.value.find(item => item.id === commonProps.modelValue)
+    }
+    if (firstItem) {
+        setTimeout(() => anchorRef.value?.scrollTo(`#${firstItem.fpy}`), 0)
+    }
+})
 </script>
 
 <style lang="scss" module>
-.wrapper {
-    $column: 6;
+.elevator {
+    --el-anchor-line-height: 12px !important;
 
-    width: $column * 100px + ( $column - 1) * 8px;
+    position: absolute;
+    top: 32px;
+    left: -40px;
+    width: 38px;
+    padding: 8px 0;
+    background-color: var(--el-color-white);
+    border-radius: var(--el-popover-border-radius);
+    box-shadow: var(--el-box-shadow-light);
+
+    :global {
+        .el-anchor__link {
+            padding: 2px 0;
+            line-height: 12px;
+            text-align: center;
+        }
+
+        .el-anchor__list {
+            padding-left: 0 !important;
+        }
+    }
 }
 </style>

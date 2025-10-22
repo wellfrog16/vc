@@ -8,7 +8,7 @@
         <div ref="wrapperRef" :class="$style.wrapper">
             <FilterPicker v-if="keyword" />
             <PPicker v-if="!keyword && type === 'P'" />
-            <!-- <CPicker v-if="!keyword && type === 'C'" v-model="myValue" v-bind="componentProps" @change="handleChange" @limit="handleLimit" /> -->
+            <CPicker v-if="!keyword && type === 'C'" />
         </div>
         <template #reference>
             <HSelect
@@ -16,6 +16,7 @@
                 v-model="myValue"
                 :placeholder="placeholder"
                 collapse-tags
+                collapse-tags-tooltip
                 clearable
                 :disabled="loading || disabled"
                 :loading="loading"
@@ -45,7 +46,7 @@ import HSelect from '@/components/select/index.vue'
 
 import FilterPicker from './components/filter.vue'
 import PPicker from './components/p.vue'
-// import CPicker from './components/c.vue'
+import CPicker from './components/c.vue'
 import './index.scss'
 
 import { KEY_NAME, usePCAFetchData } from './source'
@@ -58,6 +59,8 @@ const props = withDefaults(defineProps<IPropType>(), {
     activeMark: true,
     syncActive: false,
     historyMax: 6,
+    hotText: '热门',
+    historyText: '历史选择',
 })
 const emits = defineEmits<{
     (e: 'update:modelValue', value: number | number[]): void
@@ -118,6 +121,7 @@ const handleLimit = (item: IPCAData) => {
 useProvide(KEY_NAME, {
     props,
     ...pcaFetchData,
+    popoverVisible,
     itemClass: (item: IPCAData, isHistoryOrHot?: boolean) => {
         const isActive = myValue.value === item.id || (Array.isArray(myValue.value) && myValue.value.includes(item.id))
         return {

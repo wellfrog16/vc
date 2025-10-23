@@ -11,6 +11,7 @@
                     source="pc-py-fn"
                     clearable
                     placeholder="请选择"
+                    :name-key="nameType"
                     :hot-ids="hotIds"
                     :history="history"
                     :filterable="filterable"
@@ -26,6 +27,9 @@
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：热门省/市/区">
             <HChoice v-model="hotIds" :options="hotIdsOption" multiple />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：名称类型">
+            <HChoice v-model="nameType" :options="nameTypeOption" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：单/多选">
             <ElSwitch
@@ -94,14 +98,6 @@ const hotData = [
     },
 ]
 
-// const hotIds = ref<number[]>([11, 31])
-// const hotIdsOption: IChoiceOption = [
-//     { label: '北京', value: 11 },
-//     { label: '上海', value: 31 },
-//     { label: '四川', value: 51 },
-//     { label: '江苏', value: 32 },
-// ]
-
 const type = ref<'P' | 'C' | 'A'>('C')
 const typeOption: IChoiceOption = [
     { label: '省', value: 'P' },
@@ -109,9 +105,13 @@ const typeOption: IChoiceOption = [
     { label: '区', value: 'A' },
 ]
 
-const hotIds = computed(() => {
-    return hotData.find(item => item.type.includes(type.value))?.defaultId || []
-})
+const nameType = ref<'fn' | 'n'>('fn')
+const nameTypeOption = [
+    { label: '全称', value: 'fn' },
+    { label: '简称', value: 'n' },
+]
+
+const hotIds = ref<number[]>(hotData.find(item => item.type.includes(type.value))?.defaultId || [])
 const hotIdsOption = computed(() => {
     return hotData.find(item => item.type.includes(type.value))?.options || []
 })
@@ -146,6 +146,7 @@ const handleMutipleChange = (value: string | number | boolean) => {
 watch(type, () => {
     reload()
     result.value = undefined
+    hotIds.value = hotData.find(item => item.type.includes(type.value))?.defaultId || []
 })
 </script>
 

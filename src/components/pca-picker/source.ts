@@ -53,7 +53,7 @@ export interface IPCAData {
     childs?: IPCAData[]
 }
 
-export const usePCAFetchData = (params: IPropType) => {
+export const usePCAData = (params: IPropType) => {
     const loading = ref(false)
     const myProps = ref<IPropType>(params)
     const storageKey = computed(() => `vc-pca-picker-${myProps.value?.source}`)

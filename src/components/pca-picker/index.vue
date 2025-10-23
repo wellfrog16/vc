@@ -49,7 +49,7 @@ import PPicker from './components/p.vue'
 import CPicker from './components/c.vue'
 import './index.scss'
 
-import { KEY_NAME, usePCAFetchData } from './source'
+import { KEY_NAME, usePCAData } from './source'
 import type { IPCAData, IPropType } from './source'
 
 const props = withDefaults(defineProps<IPropType>(), {
@@ -72,7 +72,7 @@ const myValue = useVModel(props, 'modelValue', emits)
 const { pcaBaseUrl, crosProxy } = injectConfig()
 const [popoverVisible, togglePopoverVisible] = useToggle()
 const $style = useCssModule()
-const pcaFetchData = usePCAFetchData(props)
+const pcaFetchData = usePCAData(props)
 const { loading, fetchData, setProps, keyword, optionData, appendToHistory, getValueData } = pcaFetchData
 
 // popover显示隐藏控制

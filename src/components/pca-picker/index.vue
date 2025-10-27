@@ -1,6 +1,6 @@
 <template>
     <ElPopover
-        ref="myPopover"
+        ref="popoverRef"
         :visible="popoverVisible"
         placement="bottom"
         :popper-class="$style.popover"
@@ -9,44 +9,48 @@
             <FilterPicker v-if="keyword" />
             <PPicker v-if="!keyword && type === 'P'" />
             <CPicker v-if="!keyword && type === 'C'" />
+            <PCAPicker v-if="!keyword && type === 'PCA'" v-model="myValue" />
         </div>
         <template #reference>
-            <HSelect
-                ref="mySelect"
-                v-model="myValue"
-                :placeholder="placeholder"
-                collapse-tags
-                collapse-tags-tooltip
-                clearable
-                :disabled="loading || disabled"
-                :loading="loading"
-                :multiple="multiple"
-                :options="optionData"
-                :class="[selectClassName, $style.select]"
-                :popper-class="$style['popover-select']"
-                :filter-method="query => keyword = query"
-                v-bind="$attrs"
-                @click.capture="handleSelectClick"
-                @clear="clear"
-            />
+            <div :style="{ display: 'inline-block' }" @click.capture="handleSelectClick" @keyup="handleKeyup">
+                <ElCascader
+                    ref="mySelect"
+                    v-model="myValue"
+                    :placeholder="placeholder"
+                    collapse-tags
+                    collapse-tags-tooltip
+                    clearable
+                    :disabled="loading || disabled"
+                    :loading="loading"
+                    :multiple="multiple"
+                    :options="optionData"
+                    :props="cascaderProps"
+                    :class="[selectClassName, $style.select]"
+                    :popper-class="$style['popover-select']"
+                    :before-filter="() => false"
+                    v-bind="$attrs"
+
+                    @clear="clear"
+                />
+            </div>
         </template>
     </ElPopover>
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onBeforeMount, onBeforeUnmount, onMounted, ref, shallowRef, useCssModule, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, useCssModule, useTemplateRef, watch } from 'vue'
 import { storage } from '@wfrog/utils'
 import { flatMap, flatMapDeep, flattenDeep, get, pick } from 'lodash-es'
 import { onClickOutside, useThrottleFn, useToggle, useVModel } from '@vueuse/core'
-import { ElCascaderPanel, ElPopover, ElScrollbar, ElTree } from 'element-plus'
+import { ElCascader, ElCascaderPanel, ElPopover, ElScrollbar, ElTree } from 'element-plus'
 
 import { useProvide } from '@/use/useStore'
 import { injectConfig } from '@/components/config-provider/config'
-import HSelect from '@/components/select/index.vue'
 
 import FilterPicker from './components/filter.vue'
 import PPicker from './components/p.vue'
 import CPicker from './components/c.vue'
+import PCAPicker from './components/pca.vue'
 import './index.scss'
 
 import { KEY_NAME, usePCAData } from './source'
@@ -78,6 +82,16 @@ const { loading, fetchData, setProps, keyword, optionData, appendToHistory, getV
 // popover显示隐藏控制
 // const mySelect = ref<InstanceType<typeof ElSelect>>()
 // const mySelect = ref<any>() // 解决无法生成类型
+const popoverRef = useTemplateRef('popoverRef')
+const updatePopper = () => nextTick(() => {
+    popoverRef.value!.popperRef!.popperInstanceRef?.update()
+})
+
+const cascaderProps = computed(() => ({
+    value: 'id',
+    label: props.nameKey,
+    children: 'childs',
+}))
 
 const wrapperRef = shallowRef<any>()
 onClickOutside(wrapperRef, event => {
@@ -98,6 +112,11 @@ const myPlaceholder = computed(() => loading.value ? props.loadingText : props.p
 
 const handleSelectClick = useThrottleFn(() => !loading.value && !props.disabled && togglePopoverVisible(), 300)
 
+// 用于解决 before-filter 清空时无触发的问题
+const handleKeyup = useThrottleFn((event: KeyboardEvent) => {
+    keyword.value = (event.target as HTMLInputElement).value
+}, 300)
+
 const handleChange = (item: IPCAData) => {
     if (props.multiple) {
         emits('change', item, getValueData(myValue.value))
@@ -117,6 +136,10 @@ const clear = () => {
 const handleLimit = (item: IPCAData) => {
     emits('limit', props.limit!, item)
 }
+
+watch(() => props.modelValue, () => {
+    console.log('props.modelValue', props.modelValue)
+})
 
 useProvide(KEY_NAME, {
     props,
@@ -153,6 +176,7 @@ useProvide(KEY_NAME, {
         }
         handleChange(item)
     },
+    updatePopper,
 })
 
 const propsWatch = watch(() => props, newProps => { setProps(newProps) }, { deep: true })

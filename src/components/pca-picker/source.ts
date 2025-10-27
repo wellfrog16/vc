@@ -4,11 +4,13 @@ import { storage } from '@wfrog/utils'
 import { flatMap, flatMapDeep } from 'lodash-es'
 
 import { useInject } from '@/use/useStore'
+
 import type { ComputedRef, Ref } from 'vue'
+import type { CascaderOption } from 'element-plus/es/components/cascader-panel/src/node.d'
 
 export interface IPropType {
     source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
-    type: 'P' | 'C' | 'A'
+    type: 'P' | 'C' | 'PCA'
     hotText?: string // 热门城市文案
     hotIds?: number[] // 热门城市的codes
     historyText?: string // 历史选择文案
@@ -28,18 +30,20 @@ export interface IPropType {
 }
 
 export interface ICommmonStateType {
-    props: IPropType
+    props: Required<IPropType>
     availableData: ComputedRef<IPCAData[]>
     flatData: ComputedRef<IPCAData[]>
     filterData: ComputedRef<IPCAData[]>
     historyData: ComputedRef<IPCAData[]>
     fpyGroupData: ComputedRef<{ label: string; childs: IPCAData[] }[]>
+    optionData: ComputedRef<CascaderOption[]>
     itemClass: (item: IPCAData, isHistoryOrHot?: boolean) => Record<string, boolean>
     hasHot: ComputedRef<boolean>
     hotData: ComputedRef<IPCAData[]>
     clickItem: (item: IPCAData) => void
     keyword: Ref<string>
     popoverVisible: Ref<boolean>
+    updatePopper: () => Promise<void>
     // addHistory: (id: number) => void
     // historyIds: number[]
 }
@@ -108,12 +112,12 @@ export const usePCAData = (params: IPropType) => {
             })
             return tempData
         }
-        if (myProps.value.type === 'A') {
-            const tempData = pcaData.value?.filter(i => myProps.value!.excludeIds?.includes(i.id)) || []
+        if (myProps.value.type === 'PCA') {
+            const tempData = pcaData.value?.filter(i => !myProps.value!.excludeIds?.includes(i.id)) || []
             tempData.forEach(i => {
-                i.childs = i.childs?.filter(j => myProps.value!.excludeIds?.includes(j.id)) || []
+                i.childs = i.childs?.filter(j => !myProps.value!.excludeIds?.includes(j.id)) || []
                 i.childs.forEach(k => {
-                    k.childs = k.childs?.filter(l => myProps.value!.excludeIds?.includes(l.id)) || []
+                    k.childs = k.childs?.filter(l => !myProps.value!.excludeIds?.includes(l.id)) || []
                 })
             })
             return tempData
@@ -131,8 +135,13 @@ export const usePCAData = (params: IPropType) => {
         if (myProps.value.type === 'C') {
             tempData = flatMap(availableData.value, i => i.childs || [])
         }
-        if (myProps.value.type === 'A') {
-            tempData = flatMapDeep(availableData.value, i => i.childs || [])
+        if (myProps.value.type === 'PCA') {
+            tempData = flatMapDeep(availableData.value, function traverse(node) {
+                if (!node.childs || node.childs.length === 0) {
+                    return [node] // 叶子，收集
+                }
+                return node.childs.map(traverse) // 分支，继续递归
+            })
         }
         return tempData
     })
@@ -155,16 +164,23 @@ export const usePCAData = (params: IPropType) => {
         if (!myProps.value || !flatData.value || flatData.value.length === 0) {
             return []
         }
-        return flatData.value.map(item => ({
-            value: item.id,
-            label: item[myProps.value!.nameKey!],
-        }))
+
+        // 树形结构返回
+        if (myProps.value.type === 'PCA') {
+            return availableData.value as unknown as CascaderOption[]
+        }
+
+        // 平面结构返回
+        return flatData.value as unknown as CascaderOption[]
     })
 
     // 返回搜索的数据
     const filterData = computed(() => {
         if (keyword.value) {
-            return flatData.value.filter(i => i.n.includes(keyword.value) || i.fn?.includes(keyword.value) || i.py?.includes(keyword.value))
+            const result = flatData.value.filter(i => i.n.includes(keyword.value) || i.fn?.includes(keyword.value) || i.py?.includes(keyword.value))
+
+            // 截取前 48 个，太多的搜索结果对于搜索无意义，48 个保持无垂直滚动条
+            return result.slice(0, 48)
         }
         return []
     })

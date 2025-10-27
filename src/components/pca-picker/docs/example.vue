@@ -8,7 +8,7 @@
                     v-model="result"
                     :multiple="multiple"
                     :type="type"
-                    source="pc-py-fn"
+                    source="pca-py-fn"
                     clearable
                     placeholder="请选择"
                     :name-key="nameType"
@@ -96,13 +96,23 @@ const hotData = [
             { label: '无锡市', value: 3202 },
         ],
     },
+    {
+        type: ['PCA'],
+        defaultId: [310115, 110105],
+        options: [
+            { label: '浦东新区', value: 310115 },
+            { label: '朝阳区', value: 110105 },
+            { label: '渝中区', value: 500103 },
+            { label: '武侯区', value: 510107 },
+        ],
+    },
 ]
 
-const type = ref<'P' | 'C' | 'A'>('C')
+const type = ref<'P' | 'C' | 'PCA'>('PCA')
 const typeOption: IChoiceOption = [
     { label: '省', value: 'P' },
     { label: '市', value: 'C' },
-    { label: '区', value: 'A' },
+    { label: '省市区', value: 'PCA' },
 ]
 
 const nameType = ref<'fn' | 'n'>('fn')

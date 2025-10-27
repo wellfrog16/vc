@@ -38,6 +38,7 @@
                 v-model="selectValue"
                 :placeholder="myPlaceholder"
                 collapse-tags
+                collapse-tags-tooltip
                 clearable
                 :disabled="loading || disabled"
                 :multiple="multiple"

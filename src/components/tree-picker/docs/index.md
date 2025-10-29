@@ -1,6 +1,6 @@
 ## 功能
 
-用于树形数据的选择，利用Select、Cascader、Popover进行扩展，增强多选功能。
+用于树形数据的选择，利用 Cascader、Popover 进行扩展，增强多选功能。
 
 不同于官方的 Cascader，在多选结果展示时使用单独的面板展示树形选择结果。
 

@@ -1,12 +1,14 @@
 <template>
     <ElPopover
-        ref="popoverRef"
+        ref="myPopover"
         :visible="popoverVisible"
         placement="bottom"
         :popper-class="$style.popover"
+        @before-enter="() => toggleCascaderVisible()"
+        @after-leave="() => toggleCascaderVisible()"
     >
-        <div ref="refContainer" :class="$style.container">
-            <!-- <div v-if="multiple" :class="$style.selected">
+        <div ref="myWrapper" :class="$style.wrapper">
+            <div v-if="multiple" :class="$style.selected">
                 <ElScrollbar>
                     <ElTree
                         ref="myTree"
@@ -28,48 +30,36 @@
                 v-bind="cascaderAttrs"
                 @expand-change="updatePopper"
                 @change="handleCascaderChange"
-            /> -->
-            <PopoverCascader
-                v-model="myValue"
-                :options="myOptions"
-                :props="cascaderProps"
-                v-bind="cascaderAttrs"
-                :multiple="multiple"
-                @expand-change="updatePopper"
-                @choiced="togglePopoverVisible(false)"
             />
         </div>
         <template #reference>
-            <div :class="$style.wrapper" @click.capture="handleSelectClick">
-                <ElCascader
-                    ref="mySelect"
-                    v-model="myValue"
-                    :placeholder="myPlaceholder"
-                    collapse-tags
-                    collapse-tags-tooltip
-                    clearable
-                    :disabled="loading || disabled"
-                    :multiple="multiple"
-                    :options="myOptions"
-                    :class="[selectClassName, $style.cascader]"
-                    :popper-class="$style['popover-select']"
-                    v-bind="$attrs"
-                    @clear="clear"
-                />
-            </div>
+            <HSelect
+                ref="mySelect"
+                v-model="selectValue"
+                :placeholder="myPlaceholder"
+                collapse-tags
+                collapse-tags-tooltip
+                clearable
+                :disabled="loading || disabled"
+                :multiple="multiple"
+                :class="[selectClassName, $style.select]"
+                :popper-class="$style['popover-select']"
+                v-bind="$attrs"
+                @click="handleSelectClick"
+                @clear="clear"
+            />
         </template>
     </ElPopover>
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onBeforeMount, ref, useCssModule, useTemplateRef, watch } from 'vue'
+import { computed, nextTick, onBeforeMount, ref, useCssModule, watch } from 'vue'
 import { storage, tree } from '@wfrog/utils'
 import { get } from 'lodash-es'
 import { onClickOutside, useThrottleFn, useToggle } from '@vueuse/core'
-import { ElCascader, ElCascaderPanel, ElPopover, ElScrollbar } from 'element-plus'
+import { ElCascaderPanel, ElPopover, ElScrollbar, ElTree } from 'element-plus'
 
-import PopoverCascader from './popover-cascader.vue'
-import type { ElTree } from 'element-plus'
+import HSelect from '@/components/select/index.vue'
 
 import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel/src/node.d'
 import type { TreeOptionProps } from 'element-plus/es/components/tree/src/tree.type.d'
@@ -86,8 +76,6 @@ interface IPropType {
     props?: CascaderProps
     cascaderAttrs?: any
     expires?: Date | number
-    width?: string
-    block?: boolean
 }
 
 const props = withDefaults(defineProps<IPropType>(), {
@@ -133,10 +121,6 @@ const myValue = computed({
     set: val => emits('update:modelValue', val),
 })
 
-const myWidth = computed(() => {
-    return props.width || (props.block ? '100%' : '214px')
-})
-
 const myOptions = computed(() => Array.isArray(props.options) ? props.options : asyncOptions.value || [])
 const myPlaceholder = computed(() => loading.value ? props.loadingText : props.placeholder)
 
@@ -168,29 +152,30 @@ const selectValue = computed({
 
 // 修复箭头样式
 const $style = useCssModule()
-const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value, [$style.block]: props.block }))
+const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value }))
 
 // popover显示隐藏控制
 // const mySelect = ref<InstanceType<typeof ElSelect>>()
 const mySelect = ref<any>() // 解决无法生成类型
 
-const containerRef = useTemplateRef('refContainer')
-onClickOutside(containerRef, event => {
+const myWrapper = ref<any>()
+onClickOutside(myWrapper, event => {
     let target = event.target as any
     let result = false
 
     do {
-        result = target.classList ? target.classList.contains($style.cascader) : false
+        result = target.classList ? target.classList.contains($style.select) : false
         target = target.parentNode
     } while (result === false && target !== null && target.nodeName !== 'BODY')
 
     !result && togglePopoverVisible(false)
 })
 
-// 更新popover布局
-const popoverRef = useTemplateRef('popoverRef')
+// 更新popover宽度
+// const myPopover = ref<InstanceType<typeof ElPopover>>()
+const myPopover = ref<any>()
 const updatePopper = () => nextTick(() => {
-    popoverRef.value!.popperRef!.popperInstanceRef?.update()
+    myPopover.value?.popperRef?.popperInstanceRef.update()
 })
 
 // 过滤复选选择的树节点
@@ -227,7 +212,9 @@ const clear = () => {
 }
 
 // 展开时，显示已选择的树形结构
-watch(popoverVisible, val => val && props.multiple && filterTree(props.modelValue || ''))
+watch(popoverVisible, val => {
+    val && props.multiple && filterTree(props.modelValue || '')
+})
 
 const init = async () => {
     // 同步数据
@@ -259,10 +246,6 @@ const init = async () => {
     }
 }
 
-watch(myValue, () => {
-    console.log(myValue)
-})
-
 onBeforeMount(() => init())
 </script>
 
@@ -272,7 +255,7 @@ onBeforeMount(() => init())
     min-width: 80px !important;
 }
 
-.container {
+.wrapper {
     display: flex;
 
     :global(.el-cascader-menu) {
@@ -280,28 +263,9 @@ onBeforeMount(() => init())
     }
 }
 
-.wrapper {
-    display: inline-block;
-    width: unset;
-    min-width: v-bind(myWidth);
-
-    &.block {
-        display: block;
-        width: v-bind(myWidth);
-    }
-
+.select {
     :global(.el-tag .el-icon) {
         display: none;
-    }
-}
-
-.cascader {
-    width: 100%;
-
-    :global {
-        .el-input__wrapper.is-focus {
-            box-shadow: 0 0 0 1px var(--el-input-focus-border-color, var(--el-color-primary)) inset !important;
-        }
     }
 }
 

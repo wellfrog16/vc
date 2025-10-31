@@ -6,9 +6,9 @@
                 default-expand-all
                 :node-key="cascaderProps.value"
                 :props="treeProps"
-                :filter-node-method="filterNode"
                 :empty-text="emptyText"
-                v-bind="$attrs"
+                :data="options"
+                :filter-node-method="filterNode"
             />
         </ElScrollbar>
     </div>
@@ -16,6 +16,7 @@
         ref="cascaderPanelRef"
         v-model="myValue"
         :props="cascaderProps"
+        :options="options"
         v-bind="$attrs"
         @expand-change="emits('expandChange')"
         @change="handleCascaderChange"
@@ -23,27 +24,26 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, useTemplateRef } from 'vue'
+import { computed, nextTick, onBeforeUnmount, useTemplateRef, watch } from 'vue'
 import { useVModel } from '@vueuse/core'
 import { ElCascaderPanel, ElScrollbar, ElTree } from 'element-plus'
 
-// import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel/src/node.d'
-// import type { CascaderNode, CascaderOption, CascaderProps } from 'element-plus/es/components/cascader-panel'
-import type { CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel'
+import type { CascaderNode, CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel'
 
 interface IPropType {
-    modelValue: number | number[]
+    modelValue: string | number | string[] | number[] | undefined
     multiple?: boolean
     emptyText?: string
     props: CascaderProps
+    options: CascaderOption[]
 }
 
 const props = withDefaults(defineProps<IPropType>(), {
     emptyText: '尚未选择',
 })
 const emits = defineEmits<{
-    (e: 'update:modelValue', value: number | number[]): void
-    (e: 'change', value: CascaderValue, node: any): void
+    (e: 'update:modelValue', value: string | number | string[] | number[] | undefined): void
+    (e: 'change', value?: CascaderValue | null, node?: CascaderNode[]): void
     (e: 'expandChange'): void
     (e: 'choiced'): void
 }>()
@@ -51,12 +51,12 @@ const emits = defineEmits<{
 const myValue = useVModel(props, 'modelValue', emits)
 
 const cascaderProps = computed(() => ({
-    ...props.props,
     label: props.props.label || 'label',
     value: props.props.value || 'value',
     children: props.props.children || 'children',
     multiple: props.multiple,
     emitPath: false,
+    ...props.props,
 }))
 
 const treeProps = computed(() => ({
@@ -66,21 +66,20 @@ const treeProps = computed(() => ({
 
 // 过滤复选选择的树节点
 const filterNode = (value: CascaderValue[], data: CascaderOption) => {
-    console.log('filterNode', value, data)
-    if (!value) { return true }
+    if (!value) { return false }
     return value.includes(data[cascaderProps.value.value] as string)
 }
 
 // 树过滤，el-tree内部调用filterNode
 const treeRef = useTemplateRef('treeRef')
-const filterTree = (val: CascaderValue) => {
+const filterTree = (val: CascaderValue | null | undefined) => {
     nextTick(() => treeRef.value?.filter(val))
     emits('expandChange')
 }
 
 // const cascaderPanelRef = useTemplateRef<InstanceType<typeof ElCascaderPanel>>('cascaderPanelRef')
 const cascaderPanelRef = useTemplateRef('cascaderPanelRef')
-const handleCascaderChange = (val: CascaderValue) => {
+const handleCascaderChange = (val?: CascaderValue | null) => {
     const node = cascaderPanelRef.value?.getCheckedNodes(true)
     emits('change', val, node)
     if (!props.multiple) {
@@ -90,17 +89,12 @@ const handleCascaderChange = (val: CascaderValue) => {
         filterTree(val)
     }
 }
+
+const filterTreeWatch = watch(myValue, val => props.multiple && filterTree(val || ''), { immediate: true })
+onBeforeUnmount(() => filterTreeWatch.stop())
 </script>
 
 <style lang="scss" module>
-.wrapper {
-    display: flex;
-
-    :global(.el-cascader-menu) {
-        min-width: 80px;
-    }
-}
-
 .selected {
     box-sizing: border-box;
     flex: 1 1 180px;

@@ -11,6 +11,7 @@ title: 更新日志
 * 更新 element-plus 到 2.11.5 版本
 * 新增 pca-picker 组件
 * 重构 tree-picker 组件，把主组件从 h-select 换成 el-cascader。提取 el-cascaderPanel 为组件
+* 更新 config-provider，增加跨域请求代理地址和 pac 数据源的 base url
 
 ## 0.12.0
 

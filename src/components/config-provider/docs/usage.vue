@@ -8,6 +8,8 @@ import Document from '@/components/document.vue'
 const documentData = {
     params: [
         { param: 'button', description: 'button 组件的 confirm 和 confirmInfo 参数', type: './button.html#api', defaultValue: '-' },
+        { param: 'pca-base-url', description: 'pac 数据源的 base url', type: 'string', defaultValue: '-' },
+        { param: 'cros-proxy', description: '跨域请求的代理地址', type: 'string', defaultValue: '-' },
     ],
 }
 </script>

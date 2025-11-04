@@ -32,8 +32,9 @@ import type { IPCAData } from '../source'
 const { props: commonProps, fpyGroupData, flatData, popoverVisible, hasHot, hotData, historyData } = injectCommonState()
 const { history, historyText, hotText } = toRefs(commonProps)
 
-const wrapperRef = useTemplateRef('wrapperRef')
-const anchorRef = useTemplateRef('anchorRef')
+// any 避免类型在打包时报错
+const wrapperRef = useTemplateRef<any>('wrapperRef')
+const anchorRef = useTemplateRef<any>('anchorRef')
 
 watch(fpyGroupData, () => {
     const tagsA = wrapperRef.value?.getElementsByTagName('a')
@@ -59,7 +60,7 @@ watch(popoverVisible, () => {
         firstItem = flatData.value.find(item => item.id === commonProps.modelValue)
     }
     if (firstItem) {
-        setTimeout(() => anchorRef.value?.scrollTo(`#${firstItem.fpy}`), 0)
+        setTimeout(() => anchorRef.value?.scrollTo(`#${firstItem?.fpy}`), 0)
     }
 })
 </script>

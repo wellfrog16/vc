@@ -1,6 +1,6 @@
 <template>
     <ElDescriptions v-if="width" :column="1" border class="example" :direction="direction" :class="$style.main">
-        <slot />
+        <slot :direction="direction" />
     </ElDescriptions>
 </template>
 

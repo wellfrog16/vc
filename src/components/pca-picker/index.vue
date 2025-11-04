@@ -49,7 +49,30 @@ import PCAPicker from './components/pca.vue'
 import './index.scss'
 
 import { KEY_NAME, usePCAData } from './source'
-import type { IPCAData, IPropType } from './source'
+import type { IPCAData } from './source'
+
+// todo 没有使用source里的IPropType，是因为打包会报错
+interface IPropType {
+    source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
+    type: 'P' | 'C' | 'PC' | 'PCA'
+    hotIds?: number[] // 热门城市的codes
+    hotText?: string // 热门城市文案
+    history?: boolean // 是否记录历史选择
+    historyText?: string // 历史选择文案
+    historyMax?: number // 历史记录的最大条数
+    historyStorageKey?: string // 历史记录的Storage key
+    excludeIds?: number[] // 排除的ids
+    nameKey?: string
+    modelValue: number | number[] | undefined
+    disabled?: boolean
+    multiple?: boolean
+    placeholder?: string
+    loadingText?: string
+    loadFailedText?: string
+    activeMark?: boolean // 选中项角标
+    syncActive?: boolean // 是否在热门和历史选择里同步高亮选中项
+    limit?: number // 多选时的数量限制
+}
 
 const props = withDefaults(defineProps<IPropType>(), {
     disabled: false,
@@ -80,7 +103,7 @@ const { loading, loadFailed, fetchData, setProps, keyword, optionData, appendToH
 const isTreeType = computed(() => ['PCA', 'PC'].includes(props.type))
 const myPlaceholder = computed(() => loadFailed.value ? props.loadFailedText : (loading.value ? props.loadingText : props.placeholder))
 
-const popoverRef = useTemplateRef('popoverRef')
+const popoverRef = useTemplateRef<any>('popoverRef')
 const updatePopper = () => nextTick(() => {
     popoverRef.value!.popperRef!.popperInstanceRef?.update()
 })

@@ -1,6 +1,7 @@
 import { build } from 'esbuild'
 import klawSync from 'klaw-sync'
 import pluginVue from '@wfrog/esbuild-plugin-vue-next'
+import { sassPlugin } from 'esbuild-sass-plugin'
 import path from 'path'
 import type { BuildOptions } from 'esbuild'
 
@@ -20,7 +21,11 @@ async function componentRun(options?: BuildOptions) {
         sourcemap: false,
         plugins: [
             pluginVue(),
+            sassPlugin(),
         ],
+        loader: {
+            '.scss': 'css',
+        },
         // loader: { '.png': 'dataurl' },
         external: ['vue', 'element-plus', 'lodash-es', '@element-plus/icons-vue', 'vuedraggable', '@wfrog/utils'],
         format: 'esm',

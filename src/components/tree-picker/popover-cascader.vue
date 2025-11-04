@@ -71,14 +71,14 @@ const filterNode = (value: CascaderValue[], data: CascaderOption) => {
 }
 
 // 树过滤，el-tree内部调用filterNode
-const treeRef = useTemplateRef('treeRef')
+const treeRef = useTemplateRef<any>('treeRef')
 const filterTree = (val: CascaderValue | null | undefined) => {
     nextTick(() => treeRef.value?.filter(val))
     emits('expandChange')
 }
 
 // const cascaderPanelRef = useTemplateRef<InstanceType<typeof ElCascaderPanel>>('cascaderPanelRef')
-const cascaderPanelRef = useTemplateRef('cascaderPanelRef')
+const cascaderPanelRef = useTemplateRef<any>('cascaderPanelRef')
 const handleCascaderChange = (val?: CascaderValue | null) => {
     const node = cascaderPanelRef.value?.getCheckedNodes(true)
     emits('change', val, node)

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 import path from 'node:path'
 
-const resolve = dir => path.join(__dirname, dir)
+const resolve = (dir: string) => path.join(__dirname, dir)
 
 // const __dirname = getDirname(import.meta.url)
 

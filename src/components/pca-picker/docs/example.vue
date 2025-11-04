@@ -19,6 +19,7 @@
                     :sync-active="syncActive"
                     :limit="limit"
                     @change="handleChange"
+                    @limit="handleLimit"
                 />
             </HConfigProvider>
         </ElDescriptionsItem>
@@ -45,27 +46,38 @@
             <HChoiceBoolean v-model="filterable" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：历史选择">
-            <HChoiceBoolean v-model="history" />
+            <ElSpace size="large">
+                <HChoiceBoolean v-model="history" />
+                <ElText type="warning">*非级联选择生效</ElText>
+            </ElSpace>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：高亮角标">
-            <HChoiceBoolean v-model="activeMark" />
+            <ElSpace size="large">
+                <HChoiceBoolean v-model="activeMark" />
+                <ElText type="warning">*非级联选择生效</ElText>
+            </ElSpace>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：热门和历史选择同步高亮">
-            <HChoiceBoolean v-model="syncActive" />
+            <ElSpace size="large">
+                <HChoiceBoolean v-model="syncActive" />
+                <ElText type="warning">*非级联选择生效</ElText>
+            </ElSpace>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：多选限制">
-            <HInputNumber v-model="limit" :min="3" :max="10" />
+            <ElSpace size="large">
+                <HInputNumber v-model="limit" :min="3" :max="10" />
+                <ElText type="warning">*非级联选择的多选生效</ElText>
+            </ElSpace>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">
             {{ result }}
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="@change">{{ changeValue }}</ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
 import { computed, nextTick, ref, watch } from 'vue'
-import { ElButton, ElDescriptionsItem, ElSwitch } from 'element-plus'
+import { ElDescriptionsItem, ElSpace, ElSwitch, ElText } from 'element-plus'
 
 import Wrapper from '@/components/example-wrapper.vue'
 import HConfigProvider from '@/components/config-provider/index.vue'
@@ -98,13 +110,8 @@ const hotData = [
     },
     {
         type: ['PCA'],
-        defaultId: [310115, 110105],
-        options: [
-            { label: '浦东新区', value: 310115 },
-            { label: '朝阳区', value: 110105 },
-            { label: '渝中区', value: 500103 },
-            { label: '武侯区', value: 510107 },
-        ],
+        defaultId: [],
+        options: [],
     },
 ]
 
@@ -127,7 +134,6 @@ const hotIdsOption = computed(() => {
 })
 
 const result = ref<number | number[]>()
-const changeValue = ref<unknown>()
 const multiple = ref(false) // 单/多选
 const history = ref(false) // 历史选择
 const activeMark = ref(true) // 角标
@@ -146,11 +152,15 @@ const reload = () => {
 }
 
 const handleChange = (value: any) => {
-    changeValue.value = value
+    console.log('@change', value)
 }
 
 const handleMutipleChange = (value: string | number | boolean) => {
     result.value = value ? [] : undefined
+}
+
+const handleLimit = (value: number) => {
+    console.log('@limit', value)
 }
 
 watch(type, () => {

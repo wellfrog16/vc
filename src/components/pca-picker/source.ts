@@ -6,7 +6,7 @@ import { flatMap, flatMapDeep } from 'lodash-es'
 import { useInject } from '@/use/useStore'
 
 import type { ComputedRef, Ref } from 'vue'
-import type { CascaderOption } from 'element-plus/es/components/cascader-panel/src/node.d'
+import type { CascaderOption } from 'element-plus/es/components/cascader-panel'
 
 export interface IPropType {
     source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
@@ -41,8 +41,10 @@ export interface ICommmonStateType {
     hasHot: ComputedRef<boolean>
     hotData: ComputedRef<IPCAData[]>
     clickItem: (item: IPCAData) => void
+    clickItems: (items: IPCAData[]) => void
     keyword: Ref<string>
     popoverVisible: Ref<boolean>
+    togglePopoverVisible: (visible?: boolean) => boolean
     updatePopper: () => Promise<void>
     // addHistory: (id: number) => void
     // historyIds: number[]
@@ -70,8 +72,8 @@ export const usePCAData = (params: IPropType) => {
 
     const fetchData = async (pcaBaseUrl: string, crosProxy?: string): Promise<IPCAData[]> => {
     // 有缓存
-        const storageData = storage.get(storageKey.value)
-        if (storageData) {
+        const storageData = storage.get<IPCAData[]>(storageKey.value)
+        if (storageData && storageData.length) {
             pcaData.value = storageData as IPCAData[]
             return pcaData.value
         }
@@ -160,6 +162,7 @@ export const usePCAData = (params: IPropType) => {
 
     const getValueData = (values: number | number[] | undefined) => flatData.value!.filter(i => (Array.isArray(values) ? values : []).includes(i.id)) || []
 
+    // cascader 的 option 数据
     const optionData = computed(() => {
         if (!myProps.value || !flatData.value || flatData.value.length === 0) {
             return []

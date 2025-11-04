@@ -19,11 +19,6 @@ import { toRefs } from 'vue'
 import { ElCol, ElDivider, ElRow, ElText } from 'element-plus'
 
 import { injectCommonState } from '../source'
-import type { IPCAData } from '../source'
-
-const emits = defineEmits<{
-    (e: 'click', value: IPCAData): void
-}>()
 
 const { props: commonProps, filterData, itemClass, clickItem, keyword } = injectCommonState()
 const { nameKey } = toRefs(commonProps)

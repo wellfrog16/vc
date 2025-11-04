@@ -11,19 +11,20 @@ import type { CascaderOption } from 'element-plus/es/components/cascader-panel'
 export interface IPropType {
     source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
     type: 'P' | 'C' | 'PC' | 'PCA'
-    hotText?: string // 热门城市文案
     hotIds?: number[] // 热门城市的codes
-    historyText?: string // 历史选择文案
+    hotText?: string // 热门城市文案
     history?: boolean // 是否记录历史选择
+    historyText?: string // 历史选择文案
     historyMax?: number // 历史记录的最大条数
     historyStorageKey?: string // 历史记录的Storage key
-    excludeIds?: number[] // 排除的城市codes
+    excludeIds?: number[] // 排除的ids
     nameKey?: string
     modelValue: number | number[] | undefined
     disabled?: boolean
     multiple?: boolean
     placeholder?: string
     loadingText?: string
+    loadFailedText?: string
     activeMark?: boolean // 选中项角标
     syncActive?: boolean // 是否在热门和历史选择里同步高亮选中项
     limit?: number // 多选时的数量限制
@@ -65,6 +66,7 @@ export const usePCAData = (params: IPropType) => {
     const storageKey = computed(() => `vc-pca-picker-${myProps.value?.source}`)
     const pcaData = shallowRef<IPCAData[]>([])
     const keyword = ref('')
+    const loadFailed = ref(false)
 
     const setProps = (data: IPropType) => {
         myProps.value = data
@@ -80,6 +82,7 @@ export const usePCAData = (params: IPropType) => {
 
         // 无缓存
         loading.value = true
+        loadFailed.value = false
         try {
             const sourceUrl = crosProxy ? `${crosProxy}${encodeURIComponent(`${pcaBaseUrl}/${myProps.value!.source}.json`)}` : `${pcaBaseUrl}/${myProps.value!.source}.json`
             const res = await fetch(sourceUrl)
@@ -90,6 +93,7 @@ export const usePCAData = (params: IPropType) => {
         }
         catch (error) {
             console.error(error)
+            loadFailed.value = true
             return []
         }
         finally {
@@ -237,6 +241,7 @@ export const usePCAData = (params: IPropType) => {
     return {
         fetchData,
         loading,
+        loadFailed,
         filterData,
         flatData,
         keyword,

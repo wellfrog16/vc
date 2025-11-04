@@ -28,9 +28,3 @@ import { injectCommonState } from '../source'
 const { props: commonProps, availableData, itemClass, clickItem } = injectCommonState()
 const { nameKey } = commonProps
 </script>
-
-<style module lang="scss">
-div.wrapper {
-    height: auto;
-}
-</style>

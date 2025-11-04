@@ -15,11 +15,11 @@
             <div :class="$style.wrapper" @click.capture="handleSelectClick" @keyup="handleKeyup">
                 <ElCascader
                     v-model="myValue"
-                    :placeholder="placeholder"
+                    :placeholder="myPlaceholder"
                     collapse-tags
                     collapse-tags-tooltip
                     clearable
-                    :disabled="loading || disabled"
+                    :disabled="loading || disabled || loadFailed"
                     :loading="loading"
                     :options="optionData"
                     :props="cascaderProps"
@@ -54,12 +54,15 @@ import type { IPCAData, IPropType } from './source'
 const props = withDefaults(defineProps<IPropType>(), {
     disabled: false,
     excludeIds: () => [71, 81, 82], // 港澳台
-    nameKey: 'fn',
+    nameKey: 'n',
     activeMark: true,
     syncActive: false,
     historyMax: 6,
     hotText: '热门',
     historyText: '历史选择',
+    loadingText: '加载数据源中...',
+    loadFailedText: '数据源加载失败',
+    placeholder: '请选择',
 })
 const emits = defineEmits<{
     (e: 'update:modelValue', value: number | number[]): void
@@ -72,9 +75,10 @@ const { pcaBaseUrl, crosProxy } = injectConfig()
 const [popoverVisible, togglePopoverVisible] = useToggle()
 const $style = useCssModule()
 const pcaFetchData = usePCAData(props)
-const { loading, fetchData, setProps, keyword, optionData, appendToHistory, getValueData } = pcaFetchData
+const { loading, loadFailed, fetchData, setProps, keyword, optionData, appendToHistory, getValueData } = pcaFetchData
 
 const isTreeType = computed(() => ['PCA', 'PC'].includes(props.type))
+const myPlaceholder = computed(() => loadFailed.value ? props.loadFailedText : (loading.value ? props.loadingText : props.placeholder))
 
 const popoverRef = useTemplateRef('popoverRef')
 const updatePopper = () => nextTick(() => {
@@ -104,14 +108,13 @@ onClickOutside(containerRef, event => {
 
 // 修复箭头样式
 const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value }))
-const myPlaceholder = computed(() => loading.value ? props.loadingText : props.placeholder)
 
 const handleSelectClick = useThrottleFn(() => !loading.value && !props.disabled && togglePopoverVisible(), 300)
 
 // 用于解决 before-filter 清空时无触发的问题
-const handleKeyup = useThrottleFn((event: KeyboardEvent) => {
+const handleKeyup = (event: KeyboardEvent) => {
     keyword.value = (event.target as HTMLInputElement).value
-}, 300)
+}
 
 const handleChange = (item: IPCAData | IPCAData[]) => {
     emits('change', props.multiple ? item : item[0])
@@ -172,6 +175,7 @@ useProvide(KEY_NAME, {
 })
 
 const propsWatch = watch(() => props, newProps => { setProps(newProps) }, { deep: true })
+const popoverWatch = watch(popoverVisible, () => (keyword.value = ''))
 
 defineExpose({ getValueData })
 
@@ -180,7 +184,7 @@ onMounted(async () => {
     await fetchData(pcaBaseUrl || '', crosProxy)
 })
 
-onBeforeUnmount(() => propsWatch.stop())
+onBeforeUnmount(() => { propsWatch.stop(); popoverWatch.stop() })
 </script>
 
 <style lang="scss" module>

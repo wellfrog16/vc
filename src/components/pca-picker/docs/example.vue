@@ -8,7 +8,7 @@
                     v-model="result"
                     :multiple="multiple"
                     :type="type"
-                    source="pca-py-fn"
+                    :source="source"
                     clearable
                     placeholder="请选择"
                     :name-key="nameType"
@@ -23,8 +23,17 @@
                 />
             </HConfigProvider>
         </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：数据源">
+            <ElSelect v-model="source" placeholder="请选择" @change="handleSourceChange">
+                <ElOption v-for="item in sourceOption" :key="item.value" :label="item.label" :value="item.value" />
+            </ElSelect>
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="">
+            <ElAlert :title="sourceExplain" type="warning" :closable="false" />
+            <ElAlert title="不同数据源的作用是减少请求回来的数据量，完整的省市区全称+拼音，需要请求 66K 的数据，而如果只要单纯的省市，只需要请求 4.9K 的数据" type="info" :closable="false" />
+        </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：选择类型">
-            <HChoice v-model="type" :options="typeOption" />
+            <HChoice v-model="type" :options="typeOption" @change="handleTypeChange" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：热门省/市/区">
             <HChoice v-model="hotIds" :options="hotIdsOption" multiple />
@@ -70,7 +79,7 @@
 
 <script lang="ts" setup>
 import { computed, nextTick, ref, watch } from 'vue'
-import { ElDescriptionsItem, ElSpace, ElText } from 'element-plus'
+import { ElAlert, ElDescriptionsItem, ElOption, ElSelect, ElSpace, ElText } from 'element-plus'
 
 import Wrapper from '@/components/example-wrapper.vue'
 import HConfigProvider from '@/components/config-provider/index.vue'
@@ -79,6 +88,21 @@ import HChoiceBoolean from '@/components/choice-boolean/index.vue'
 import HInputNumber from '@/components/input-number/index.vue'
 import HPCAPicker from '../index.vue'
 import type { IChoiceOption } from '../../choice/useChoice'
+
+const sourceExplain = '*不同数据源，提供的数据不同。所以像“省 + 拼音”的数据，是无法提供【省市】信息的展示，也无法显示数据的【全称】。同样，如果数据源没有选择【拼音】，那么搜索时也无法使用拼音搜索。'
+
+const source = ref<any>('pca-py-fn')
+const sourceOption: IChoiceOption = [
+    { label: '省', value: 'p' },
+    { label: '省 + 拼音', value: 'p-py' },
+    { label: '省 + 全称+ 拼音', value: 'p-py-fn' },
+    { label: '省市', value: 'pc' },
+    { label: '省市 + 拼音', value: 'pc-py' },
+    { label: '省市 + 全称 + 拼音', value: 'pc-py-fn' },
+    { label: '省市区', value: 'pca' },
+    { label: '省市区 + 拼音', value: 'pca-py' },
+    { label: '省市区 + 全称 + 拼音', value: 'pca-py-fn' },
+]
 
 const hotData = [
     {
@@ -117,8 +141,8 @@ const type = ref<'P' | 'C' | 'PC' | 'PCA'>('P')
 const typeOption: IChoiceOption = [
     { label: '省', value: 'P' },
     { label: '市', value: 'C' },
-    { label: '省市', value: 'PC' },
-    { label: '省市区', value: 'PCA' },
+    { label: '省市(级联)', value: 'PC' },
+    { label: '省市区(级联)', value: 'PCA' },
 ]
 
 const nameType = ref<'fn' | 'n'>('fn')
@@ -166,11 +190,13 @@ const handleLimit = (value: number) => {
     console.log('@limit', value)
 }
 
-watch(type, () => {
+const handleSourceChange = () => reload()
+
+const handleTypeChange = () => {
     reload()
     result.value = undefined
     hotIds.value = hotData.find(item => item.type.includes(type.value))?.defaultId || []
-})
+}
 </script>
 
 <style lang="scss" module>

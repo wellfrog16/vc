@@ -46,6 +46,7 @@ watch(fpyGroupData, () => {
     anchorRef.value?.scrollTo(firstHref)
 })
 
+// 定位选择的元素
 watch(popoverVisible, () => {
     if (!popoverVisible.value) { return }
     if (!commonProps.modelValue || (Array.isArray(commonProps.modelValue) && commonProps.modelValue.length === 0)) { return }

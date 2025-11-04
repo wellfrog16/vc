@@ -8,7 +8,9 @@
 
 ## 最小示例
 
-<!-- <<< ./simple.vue{3,12,13} -->
+省份选择
+
+<<< ./simple.vue{3,12}
 
 ## API
 
@@ -16,5 +18,5 @@
 
 <script setup>
 import Example from "./example.vue";
-// import Usage from "./usage.vue";
+import Usage from "./usage.vue";
 </script>

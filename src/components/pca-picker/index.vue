@@ -9,7 +9,7 @@
             <FilterPicker v-if="keyword" />
             <PPicker v-if="!keyword && type === 'P'" />
             <CPicker v-if="!keyword && type === 'C'" />
-            <PCAPicker v-if="!keyword && type === 'PCA'" v-model="myValue" />
+            <PCAPicker v-if="!keyword && ['PCA', 'PC'].includes(type)" v-model="myValue" />
         </div>
         <template #reference>
             <div :class="$style.wrapper" @click.capture="handleSelectClick" @keyup="handleKeyup">
@@ -37,7 +37,7 @@
 <script lang="ts" setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, useCssModule, useTemplateRef, watch } from 'vue'
 import { onClickOutside, useThrottleFn, useToggle, useVModel } from '@vueuse/core'
-import { ElCascader, ElCascaderPanel, ElPopover, ElScrollbar, ElTree } from 'element-plus'
+import { ElCascader, ElPopover } from 'element-plus'
 
 import { useProvide } from '@/use/useStore'
 import { injectConfig } from '@/components/config-provider/config'
@@ -74,7 +74,7 @@ const $style = useCssModule()
 const pcaFetchData = usePCAData(props)
 const { loading, fetchData, setProps, keyword, optionData, appendToHistory, getValueData } = pcaFetchData
 
-const isTreeType = computed(() => ['PCA'].includes(props.type))
+const isTreeType = computed(() => ['PCA', 'PC'].includes(props.type))
 
 const popoverRef = useTemplateRef('popoverRef')
 const updatePopper = () => nextTick(() => {
@@ -125,10 +125,6 @@ const clear = () => {
     togglePopoverVisible(false)
     emits('change', undefined)
 }
-
-watch(() => props.modelValue, () => {
-    console.log('props.modelValue', props.modelValue)
-})
 
 useProvide(KEY_NAME, {
     props,

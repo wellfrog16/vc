@@ -10,7 +10,7 @@ import type { CascaderOption } from 'element-plus/es/components/cascader-panel'
 
 export interface IPropType {
     source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
-    type: 'P' | 'C' | 'PCA'
+    type: 'P' | 'C' | 'PC' | 'PCA'
     hotText?: string // 热门城市文案
     hotIds?: number[] // 热门城市的codes
     historyText?: string // 历史选择文案
@@ -114,6 +114,14 @@ export const usePCAData = (params: IPropType) => {
             })
             return tempData
         }
+        if (myProps.value.type === 'PC') {
+            const tempData = pcaData.value?.filter(i => !myProps.value!.excludeIds?.includes(i.id)) || []
+            tempData.forEach(i => {
+                i.childs = i.childs?.filter(j => !myProps.value!.excludeIds?.includes(j.id)) || []
+                i.childs.forEach(k => { delete k.childs })
+            })
+            return tempData
+        }
         if (myProps.value.type === 'PCA') {
             const tempData = pcaData.value?.filter(i => !myProps.value!.excludeIds?.includes(i.id)) || []
             tempData.forEach(i => {
@@ -137,7 +145,7 @@ export const usePCAData = (params: IPropType) => {
         if (myProps.value.type === 'C') {
             tempData = flatMap(availableData.value, i => i.childs || [])
         }
-        if (myProps.value.type === 'PCA') {
+        if (myProps.value.type === 'PCA' || myProps.value.type === 'PC') {
             tempData = flatMapDeep(availableData.value, function traverse(node) {
                 if (!node.childs || node.childs.length === 0) {
                     return [node] // 叶子，收集
@@ -169,7 +177,7 @@ export const usePCAData = (params: IPropType) => {
         }
 
         // 树形结构返回
-        if (myProps.value.type === 'PCA') {
+        if (myProps.value.type === 'PCA' || myProps.value.type === 'PC') {
             return availableData.value as unknown as CascaderOption[]
         }
 

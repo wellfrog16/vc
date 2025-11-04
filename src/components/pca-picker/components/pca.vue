@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRefs, watch } from 'vue'
+import { computed, toRefs } from 'vue'
 import { useVModel } from '@vueuse/core'
 
 import PopoverCascader from '@/components/tree-picker/popover-cascader.vue'
@@ -28,8 +28,8 @@ const emits = defineEmits<{
     (e: 'update:modelValue', value: number | number[]): void
 }>()
 
-const { props: commonProps, optionData, hasHot, hotData, historyData, updatePopper, togglePopoverVisible, clickItems } = injectCommonState()
-const { history, historyText, hotText, nameKey, multiple } = toRefs(commonProps)
+const { props: commonProps, optionData, updatePopper, togglePopoverVisible, clickItems } = injectCommonState()
+const { nameKey, multiple } = toRefs(commonProps)
 
 const cascaderProps = computed(() => ({
     label: nameKey.value,

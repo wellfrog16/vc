@@ -33,14 +33,7 @@
             <HChoice v-model="nameType" :options="nameTypeOption" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：单/多选">
-            <ElSwitch
-                v-model="multiple"
-                active-text="多选"
-                inactive-text="单选"
-                :active-value="true"
-                :inactive-value="false"
-                @change="handleMutipleChange"
-            />
+            <HChoice v-model="multiple" :options="multipleOption" @change="handleMultipleChange" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：可搜索">
             <HChoiceBoolean v-model="filterable" />
@@ -77,7 +70,7 @@
 
 <script lang="ts" setup>
 import { computed, nextTick, ref, watch } from 'vue'
-import { ElDescriptionsItem, ElSpace, ElSwitch, ElText } from 'element-plus'
+import { ElDescriptionsItem, ElSpace, ElText } from 'element-plus'
 
 import Wrapper from '@/components/example-wrapper.vue'
 import HConfigProvider from '@/components/config-provider/index.vue'
@@ -109,16 +102,22 @@ const hotData = [
         ],
     },
     {
+        type: ['PC'],
+        defaultId: [],
+        options: [],
+    },
+    {
         type: ['PCA'],
         defaultId: [],
         options: [],
     },
 ]
 
-const type = ref<'P' | 'C' | 'PCA'>('PCA')
+const type = ref<'P' | 'C' | 'PC' | 'PCA'>('P')
 const typeOption: IChoiceOption = [
     { label: '省', value: 'P' },
     { label: '市', value: 'C' },
+    { label: '省市', value: 'PC' },
     { label: '省市区', value: 'PCA' },
 ]
 
@@ -133,8 +132,13 @@ const hotIdsOption = computed(() => {
     return hotData.find(item => item.type.includes(type.value))?.options || []
 })
 
-const result = ref<number | number[]>()
 const multiple = ref(false) // 单/多选
+const multipleOption: IChoiceOption = [
+    { label: '单选', value: false },
+    { label: '多选', value: true },
+]
+
+const result = ref<number | number[]>()
 const history = ref(false) // 历史选择
 const activeMark = ref(true) // 角标
 const syncActive = ref(false) // 同步高亮
@@ -142,7 +146,6 @@ const filterable = ref(true) // 可搜索
 const visible = ref(true)
 
 const limit = ref<number>(3)
-// const visible = ref(true)
 
 const reload = () => {
     visible.value = false
@@ -155,7 +158,7 @@ const handleChange = (value: any) => {
     console.log('@change', value)
 }
 
-const handleMutipleChange = (value: string | number | boolean) => {
+const handleMultipleChange = (value: string | number | boolean) => {
     result.value = value ? [] : undefined
 }
 

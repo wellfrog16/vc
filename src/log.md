@@ -8,7 +8,9 @@ title: 更新日志
 
 ### 新增和更新
 
+* 更新 element-plus 到 2.11.5 版本
 * 新增 pca-picker 组件
+* 重构 tree-picker 组件，把主组件从 h-select 换成 el-cascader。提取 el-cascaderPanel 为组件
 
 ## 0.12.0
 

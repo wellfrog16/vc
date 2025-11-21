@@ -21,4 +21,5 @@ yarn-error.log*
 
 #
 .temp
-.vitepress/cache
+**/.vitepress/cache
+tsconfig.tsbuildinfo

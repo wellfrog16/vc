@@ -1,0 +1,46 @@
+{
+  "name": "@wfrog/vc",
+  "version": "0.13.0",
+  "packageManager": "pnpm@10.20.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "exports": {
+    ".": {
+      "types": "./dist/es/index.d.ts",
+      "import": "./dist/es/index.mjs"
+    },
+    "./index.css": "./dist/index.css",
+    "./*": "./dist/*",
+    "./es/components/*": {
+      "types": "./dist/es/components/*/index.d.ts",
+      "default": "./dist/es/components/*/index.mjs"
+    }
+  },
+  "main": "dist/es/index.mjs",
+  "types": "dist/es/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && pnpm volar && pnpm provide:css",
+    "provide:css": "esno ./build/libcss",
+    "volar": "esno ./build/volar-type",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:deploy-build": "cross-env deploy=gh vitepress build",
+    "docs:preview": "vitepress preview",
+    "gh-pages": "cross-env deploy=gh pnpm docs:build",
+    "gh": "node gh-pages",
+    "publish2": "npm publish --access public",
+    "clean": "rimraf node_modules dist .vitepress/dist  .vitepress/cache"
+  },
+  "devDependencies": {
+    "@types/klaw-sync": "^6.0.5",
+    "esbuild": "^0.27.0",
+    "esno": "^4.8.0",
+    "klaw-sync": "^7.0.0",
+    "vitepress": "^1.6.4"
+  }
+}

@@ -1,0 +1,36 @@
+import { version } from '../package.json'
+
+export { default as HAwesomeIcon } from './components/awesome-icon/awesome-icon.vue'
+export { default as HBackbottom } from './components/backbottom/backbottom.vue'
+export { default as HButton } from './components/button/button.vue'
+export { default as HChatContainer } from './components/chat-container/chat-container.vue'
+export { default as HChoiceBoolean } from './components/choice-boolean/choice-boolean.vue'
+export { default as HChoice } from './components/choice/choice.vue'
+export { default as HConfigProvider } from './components/config-provider/config-provider.vue'
+export { default as HElIcon } from './components/el-icon/el-icon.vue'
+export { default as HIcon } from './components/icon/icon.vue'
+export { default as HPCAPicker } from './components/pca-picker/pca-picker.vue'
+export { default as HSVGIcon } from './components/svg-icon/svg-icon.vue'
+export { default as HTreePicker } from './components/tree-picker/tree-picker.vue'
+
+const modules: Record<string, any> = import.meta.glob('./components/*/*.vue', { eager: true })
+const upper = (_: any, letter: string) => letter.toUpperCase()
+
+function install(Vue: any) {
+    Object.keys(modules).forEach(key => {
+        const [, name] = key.match(/\/components\/([a-z\-\d]+)\//) || []
+        if (!name) { return false }
+
+        let componentName = `H-${name}`.replace(/-(\w)/g, upper)
+        if (name === 'qr-code') { componentName = 'HQRCode' }
+        if (name === 'svg-icon') { componentName = 'HSVGIcon' }
+
+        Vue.component(componentName, modules[key].default)
+        return true
+    })
+}
+
+export default {
+    version,
+    install,
+}

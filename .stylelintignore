@@ -1,9 +1,0 @@
-/node_modules/
-/public/
-/dist/
-/es/
-*.js
-*.png
-*.eot
-*.ttf
-*.woff

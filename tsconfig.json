@@ -1,26 +1,29 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "declaration": true,
-    "outDir": "./dist", // 输出目录
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "types": ["element-plus/global"],
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "noImplicitAny": false
+    "composite": false, // 启用项目编译,支持项目引用
+    "target": "ES6", // 编译输出的目标JavaScript版本
+    "jsx": "preserve", // 保留JSX以供后续转换,用于Vue项目
+    "jsxImportSource": "vue", // 指定JSX工厂函数来源为Vue
+    "lib": ["ESNext", "DOM"], // 编译过程中需要引入的库文件
+    "noLib": false, // 不包含默认的库文件(lib.d.ts)
+    "experimentalDecorators": true, // 启用装饰器特性
+    "module": "ESNext", // 指定生成的模块代码,ESNext表示使用最新的ES模块语法
+    "moduleResolution": "Node", // 模块解析策略,使用Node.js的模块解析机制
+    "resolveJsonModule": true, // 允许导入JSON模块
+    "strict": true, // 启用所有严格类型检查选项
+    "noImplicitAny": true, // 禁止隐式的any类型
+    "declaration": true, // 生成相应的.d.ts文件
+    "removeComments": true, // 删除注释
+    "sourceMap": true, // 生成源映射文件
+    "allowSyntheticDefaultImports": true, // 允许从没有默认导出的模块中默认导入
+    "esModuleInterop": true, // 启用ES模块化交互非ES模块导出
+    "forceConsistentCasingInFileNames": true, // 强制文件名大小写一致
+    "skipLibCheck": true // 跳过声明文件的类型检查
+    // "paths": {                                  // 模块路径别名配置
+    //   "@chenms-demo/components": ["./packages/components/es"],
+    //   "@chenms-demo/components/*": ["./packages/components/es/*"]
+    // }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": ["node_modules", "**/__tests__", "dist/**"] // 排除编译的文件夹
+  // "references": [{ "path": "./packages/components" }]      // 项目引用配置,指定依赖的其他项目
 }

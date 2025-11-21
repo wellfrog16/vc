@@ -7,7 +7,7 @@
 
 组件库所使用 CDN 源为 [jsdelivr](https://www.jsdelivr.com/)，并使用了一个自用的函数库 `@wfrog/utils`
 
- **！！！如果 jsdelivr 无法访问，会导致部分组件失效。解决办法：todo**
+**！！！如果 jsdelivr 无法访问，会导致部分组件失效。解决办法：todo**
 
 ## 全量引入
 
@@ -15,15 +15,17 @@
 
 ```sh
 npm i element-plus@~2.8.8 @element-plus/icons-vue@^2.3.1 @vueuse/core@^11.2.0
-npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21 vuedraggable@^4.1.0 
+npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21 vuedraggable@^4.1.0
 ```
 
 然后安装本组件库
+
 ```sh
-npm i @wfrog/vc 
+npm i @wfrog/vc
 ```
 
 在 app.ts 里，全量引入组件和css
+
 ```ts
 import VC from '@wfrog/vc'
 import '@wfrog/vc/es/style.css'
@@ -33,12 +35,12 @@ app.use(VC)
 ```
 
 在 vue 文件中使用
+
 ```vue
 <template>
     <HButton :icon="{ type: 'svg', name: 'test' }" type="primary">SVG 图标</HButton>
 </template>
 ```
-
 
 ## 单组件加载
 
@@ -50,16 +52,19 @@ npm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21
 ```
 
 然后安装本组件库
+
 ```sh
-npm i @wfrog/vc 
+npm i @wfrog/vc
 ```
 
 在 app.ts 里，全量引入 css
+
 ```ts
 import '@wfrog/vc/es/style.css'
 ```
 
 在 vue 文件中
+
 ```vue
 <template>
     <HButton :icon="{ type: 'svg', name: 'test' }" type="primary">SVG 图标</HButton>

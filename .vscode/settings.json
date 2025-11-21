@@ -1,34 +1,55 @@
 {
+  // Disable the default formatter, use eslint instead
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+
+  // Auto fix
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit"
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
-  "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "eslint.format.enable": true,
-  "eslint.run": "onSave",
-  // "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  // #每次保存的时候自动格式化
-  // "editor.formatOnSave": true,
-  // "editor.formatOnType": true,
-  // "eslint.format.enable": true,
-  "eslint.options": {
-    "extensions": [
-      ".vue",
-      ".ts",
-      ".d.ts",
-      ".js"
-    ]
-  },
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.bracketPairColorization.enabled": true,
-  "stylelint.enable": true,
-  "stylelint.validate": [
+
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off", "fixable": true },
+    { "rule": "format/*", "severity": "off", "fixable": true },
+    { "rule": "*-indent", "severity": "off", "fixable": true },
+    { "rule": "*-spacing", "severity": "off", "fixable": true },
+    { "rule": "*-spaces", "severity": "off", "fixable": true },
+    { "rule": "*-order", "severity": "off", "fixable": true },
+    { "rule": "*-dangle", "severity": "off", "fixable": true },
+    { "rule": "*-newline", "severity": "off", "fixable": true },
+    { "rule": "*quotes", "severity": "off", "fixable": true },
+    { "rule": "*semi", "severity": "off", "fixable": true }
+  ],
+
+  // Enable eslint for all supported languages
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml",
+    "xml",
+    "gql",
+    "graphql",
+    "astro",
+    "svelte",
     "css",
     "less",
-    "postcss",
     "scss",
-    "vue"
+    "pcss",
+    "postcss"
   ],
+  "editor.tabSize": 4,
   "files.eol": "\n",
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.linkedEditing": true
 }

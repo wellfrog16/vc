@@ -30,61 +30,26 @@ export const staticRoutes: RouteRecordRaw[] = [
             },
         ],
     },
-    {
-        name: 'my-components2',
-        path: '/components2',
-        component: Layout,
-        redirect: { name: 'components2' },
-        meta: {
-            title: '组件2',
-        },
-        children: [
-            {
-                name: 'components2',
-                path: 'index',
-                component: () => import('@/views/components/index.vue'),
-                meta: {
-                    hidden: true,
-                },
-            },
-        ],
-    },
-    {
-        name: 'my-components3',
-        path: '/components3',
-        component: Layout,
-        redirect: { name: 'components3' },
-        meta: {
-            title: '组件3',
-            icon: ['el', 'Menu'],
-        },
-        children: [
-            {
-                name: 'components3',
-                path: 'index',
-                component: () => import('@/views/components/index.vue'),
-                meta: {
-                    title: '组件1113',
-                    icon: ['el', 'Menu'],
-                },
-            },
-            {
-                name: 'components31',
-                path: 'index2',
-                component: () => import('@/views/components/index.vue'),
-                meta: {
-                    title: '组件1113',
-                },
-            },
-        ],
-    },
     // {
-    //     name: 'components',
-    //     path: '/components',
-    //     component: () => import('@/views/components/index.vue'),
+    //     name: 'my-components3',
+    //     path: '/components3',
+    //     component: Layout,
+    //     redirect: { name: 'components3' },
     //     meta: {
-    //         title: '组件',
+    //         title: '组件3',
+    //         icon: ['el', 'Menu'],
     //     },
+    //     children: [
+    //         {
+    //             name: 'components3',
+    //             path: 'index',
+    //             component: () => import('@/views/components/index.vue'),
+    //             meta: {
+    //                 title: '组件1113',
+    //                 icon: ['el', 'Menu'],
+    //             },
+    //         },
+    //     ],
     // },
 ]
 

@@ -10,7 +10,7 @@
             />
         </el-aside>
         <el-container>
-            <el-header :class="$style.header">11</el-header>
+            <el-header :class="$style.header">这里是用产物测试，模拟真实场景</el-header>
             <el-main id="elMain" :class="$style.main">
                 <router-view v-slot="{ Component }">
                     <transition appear name="fade-transform" mode="out-in">
@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref, useCssModule } from 'vue'
+import { computed, ref } from 'vue'
 
 import { useRoute } from 'vue-router'
 import AsideMenu from '@/components/menu/index.vue'
@@ -82,9 +82,9 @@ $page-height: calc(
     justify-content: space-between;
     height: $height;
     line-height: $height;
-    background-color: var(--color-white);
-    border-bottom: 1px solid var(--border-color-extra-light);
-    box-shadow: 0 1px 5px rgb(0 0 0 / 20%);
+    background-color: var(--el-color-white);
+    // border-bottom: 1px solid var(--el-border-color);
+    // box-shadow: 0 1px 5px rgb(0 0 0 / 20%);
 }
 
 main.main {

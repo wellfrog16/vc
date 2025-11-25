@@ -9,6 +9,9 @@
     "preview": "vite preview",
     "clean": "rimraf node_modules"
   },
+  "dependencies": {
+    "vue-router": "^4.6.3"
+  },
   "devDependencies": {
     "@vue/tsconfig": "^0.8.1"
   }

@@ -4,7 +4,7 @@
     "prefix": "zinit",
     "body": [
       "<template>",
-      "    <view>空页面</view>",
+      "    <div>空页面</div>",
       "</template>\n",
       "<script setup lang=\"ts\">",
       "",

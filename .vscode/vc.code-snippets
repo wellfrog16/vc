@@ -1,0 +1,37 @@
+{
+  "init Component": {
+    "scope": "vue",
+    "prefix": "zinit",
+    "body": [
+      "<template>",
+      "    <view>空页面</view>",
+      "</template>\n",
+      "<script setup lang=\"ts\">",
+      "",
+      "</script>\n",
+      "<style lang=\"scss\" module></style>\n"
+    ],
+    "description": "空页面模板"
+  },
+  // "init Layout": {
+  //   "scope": "vue",
+  //   "prefix": "zlayout",
+  //   "body": [
+  //     "<template>",
+  //     "    <HLayout :refresher-enabled=\"false\">",
+  //     "        <template #header><HNavbar title=\"$1\" back-visible /></template>",
+  //     "        <view :class=\"\\$style.wrapper\">新页面</view>",
+  //     "    </HLayout>",
+  //     "</template>\n",
+  //     "<script setup lang=\"ts\">",
+  //     "",
+  //     "</script>\n",
+  //     "<style lang=\"scss\" module>",
+  //     ".wrapper {",
+  //     "    position: relative;",
+  //     "}",
+  //     "</style>\n"
+  //   ],
+  //   "description": "Layout 空模板"
+  // },
+}

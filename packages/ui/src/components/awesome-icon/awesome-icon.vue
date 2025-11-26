@@ -1,15 +1,25 @@
 <template>
-    <i class="awesome-icon" :class="props.name" />
+    <i class="awesome-icon" :class="props.name" :style="{ fontSize: mySize, color }" />
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
 import { defaultWindow, loader } from '@wfrog/utils'
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 
-const props = defineProps({
-    name: { type: String, default: '' },
-    mode: { type: String as PropType<'css' | 'svg'>, default: 'css' },
+interface IPropType {
+    name: string
+    mode?: 'css' | 'svg'
+    size?: number | string
+    color?: string
+}
+
+const props = withDefaults(defineProps<IPropType>(), {
+    mode: 'css',
+})
+
+const mySize = computed(() => {
+    if (props.size && Number.isNaN(+props.size)) { return props.size }
+    return `${props.size}px`
 })
 
 async function loaderSource() {
@@ -19,8 +29,8 @@ async function loaderSource() {
 
 onMounted(() => {
     if (defaultWindow) {
-        if (!defaultWindow.ElementPlusComponents?.isAwesomeIconLock) {
-            defaultWindow.ElementPlusComponents = { ...defaultWindow.ElementPlusComponents, isAwesomeIconLock: true }
+        if (!defaultWindow.VC?.isAwesomeIconLock) {
+            defaultWindow.VC = { ...defaultWindow.VC, isAwesomeIconLock: true }
             loaderSource()
         }
     }

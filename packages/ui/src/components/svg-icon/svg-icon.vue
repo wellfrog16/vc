@@ -1,13 +1,16 @@
 <template>
-    <svg class="svg-icon" :class="[$style.icon]" aria-hidden="true">
+    <svg class="svg-icon" :class="[$style.icon]" aria-hidden="true" :style="{ fontSize: size, color }">
         <use :xlink:href="`#icon-${props.name}`" />
     </svg>
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
-    name: { type: String, required: true },
-})
+interface IPropType {
+    name: string
+    size?: number | string
+    color?: string
+}
+const props = defineProps<IPropType>()
 </script>
 
 <style lang="scss" module>

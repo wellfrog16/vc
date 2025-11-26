@@ -38,6 +38,7 @@ const currentComponent = computed(() => componentMap[activeComponent.value])
 
 function setComponent(name: string) {
     activeComponent.value = name
+    console.log('setComponent', name, componentMap)
     storage.set(STORAGE_KEY, name)
 }
 </script>
@@ -59,6 +60,11 @@ function setComponent(name: string) {
     height: 100px;
     flex-grow: 1;
     padding: 12px;
+
+    // 防止被鼠标横向拖动
+    :global(.el-scrollbar__wrap) {
+        overflow-x: hidden;
+    }
 }
 
 .container-wrapper {

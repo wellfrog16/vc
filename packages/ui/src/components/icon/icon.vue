@@ -1,22 +1,27 @@
 <template>
-    <i class="svg-icon-box" :class="[$style.box]">
-        <component :is="`h-${type}`" :name="name" class="site-icon" />
+    <i class="svg-icon-box" :class="[$style.box]" :style="{ fontSize: mySize, color }">
+        <component :is="components[type]" :name="name" class="site-icon" />
     </i>
 </template>
 
-<script lang="ts">
-import type { PropType } from 'vue'
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
 import HAwesome from '../awesome-icon/awesome-icon.vue'
 import HEl from '../el-icon/el-icon.vue'
 import HSvg from '../svg-icon/svg-icon.vue'
 
-export default defineComponent({
-    components: { HEl, HSvg, HAwesome },
-    props: {
-        name: { type: String, required: true },
-        type: { type: String as PropType<IGlobal.IconType>, required: true },
-    },
+interface IPropType {
+    name: string
+    type: IGlobal.IconType
+    color?: string
+    size?: string | number
+}
+
+const props = defineProps<IPropType>()
+const components = { awesome: HAwesome, el: HEl, svg: HSvg }
+const mySize = computed(() => {
+    if (props.size && Number.isNaN(+props.size)) { return props.size }
+    return `${props.size}px`
 })
 </script>
 

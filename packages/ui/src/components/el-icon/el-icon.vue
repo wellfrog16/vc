@@ -1,22 +1,20 @@
 <template>
     <ElIcon :size="size" :color="color" :class="$style.icon">
-        <component :is="name" />
+        <component :is="Icons[name]" />
     </ElIcon>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import * as Icons from '@element-plus/icons-vue'
 import { ElIcon } from 'element-plus'
-import { defineComponent } from 'vue'
 
-export default defineComponent({
-    components: { ...Icons, ElIcon },
-    props: {
-        name: { type: String, required: true },
-        color: { type: String, default: '' },
-        size: { type: [Number, String], default: '' },
-    },
-})
+interface IPropType {
+    name: keyof typeof Icons
+    color?: string
+    size?: string | number
+}
+
+withDefaults(defineProps<IPropType>(), { color: '', size: '' })
 </script>
 
 <style lang="scss" module>

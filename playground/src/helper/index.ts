@@ -1,7 +1,7 @@
 import { defaultWindow, loader } from '@wfrog/utils'
 import { onMounted } from 'vue'
 
-function useExample() {
+export function useSVGIconExample() {
     const loaderSource = async () => {
         await loader.loadScriptSingle('//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js')
     }
@@ -15,5 +15,3 @@ function useExample() {
         }
     })
 }
-
-export default useExample

@@ -1,9 +1,12 @@
 <template>
-    <div>空页面222</div>
+    <el-space direction="vertical" size="large" alignment="left">
+        <HChoiceBoolean v-model="result" />
+        <el-text>你选择了：<el-text type="primary">{{ result }}</el-text></el-text>
+    </el-space>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 
+const result = ref(false)
 </script>
-
-<style lang="scss" module></style>

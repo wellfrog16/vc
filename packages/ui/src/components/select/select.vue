@@ -1,27 +1,29 @@
 <template>
-    <ElSelect v-model="myValue" :multiple="multiple" collapse-tags :loading="props.loading || loading" v-bind="{ ...$attrs }" :class="className">
-        <ElOption
-            v-for="(item, index) in myOptions"
-            :key="((item[myProps.key] || item[myProps.label]) as string | number)"
-            :label="(item[myProps.label] as string | number)"
-            :value="item[myProps.value] === undefined ? index : item[myProps.value]"
-        />
-    </ElSelect>
+    <ElSelect collapse-tags v-bind="$attrs" :class="className" :options="myOptions" />
 </template>
 
 <script lang="ts" setup>
-import { ElOption, ElSelect } from 'element-plus'
+import type { SelectProps } from 'element-plus'
+import { ElSelect } from 'element-plus'
 import { computed, useCssModule } from 'vue'
-import useChoice, { preEmit, preProps } from '../choice/useChoice'
 
-const props = defineProps({
-    ...preProps,
-    block: { type: Boolean, default: false },
-    width: { type: String },
+interface IPropType {
+    block?: boolean
+    width?: string
+    options: SelectProps['options'] | string[]
+}
+
+const props = withDefaults(defineProps<IPropType>(), {
+    block: false,
+    width: '',
 })
-const emits = defineEmits(preEmit)
 
-const { loading, myOptions, myProps, myValue } = useChoice({ props, emits }, 'async-picker')
+const myOptions = computed(() => {
+    if (Array.isArray(props.options) && typeof props.options[0] === 'string') {
+        return props.options.map(item => ({ label: item, value: item }))
+    }
+    return props.options as SelectProps['options']
+})
 
 const $style = useCssModule()
 const className = computed(() => ({
@@ -30,7 +32,7 @@ const className = computed(() => ({
 }))
 
 const myWidth = computed(() => {
-    return props.width || (props.block ? '100%' : '214px')
+    return props.width || (props.block ? '100%' : '240px')
 })
 </script>
 

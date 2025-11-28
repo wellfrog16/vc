@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HChoice v-model="result1" :options="data" :multiple="multiple" />
+            <HChoice v-model="result" :options="options" :multiple="multiple" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：单/多选">
             <ElSwitch
@@ -13,45 +13,22 @@
                 @change="handleChange"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果"><span>{{ result1 }}</span></ElDescriptionsItem>
-        <ElDescriptionsItem />
-        <ElDescriptionsItem label="展示区：模拟异步">
-            <ElSpace>
-                <HChoice v-if="asyncChoiceVisible" v-model="result2" :options="asyncData" />
-                <ElButton @click="reload">重新加载</ElButton>
-            </ElSpace>
-        </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果"><span>{{ result2 }}</span></ElDescriptionsItem>
+        <ElDescriptionsItem label="结果"><span>{{ result }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import { ElButton, ElDescriptionsItem, ElSpace, ElSwitch } from 'element-plus'
-import { nextTick, ref } from 'vue'
+import { ElDescriptionsItem, ElSwitch } from 'element-plus'
+import { ref } from 'vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HChoice from '../choice.vue'
 
-const data = ['小龙虾', '毛血旺', '剁椒鱼头', '冰激凌']
-function asyncData() {
-    return new Promise<number[]>(resolve => {
-        setTimeout(() => {
-            resolve(Array.from({ length: 5 }, () => Math.ceil(Math.random() * 10000)))
-        }, 1000)
-    })
-}
-const result1 = ref<string | string[]>('')
-const result2 = ref<number>(1)
-const multiple = ref(false)
-const asyncChoiceVisible = ref(true)
+const options = ['小龙虾', '毛血旺', '剁椒鱼头', '冰激凌']
 
-function reload() {
-    asyncChoiceVisible.value = false
-    nextTick(() => {
-        asyncChoiceVisible.value = true
-    })
-}
+const result = ref<string | string[]>('')
+const multiple = ref(false)
 
 function handleChange(value: string | number | boolean) {
-    result1.value = value ? [] : ''
+    result.value = value ? [] : ''
 }
 </script>

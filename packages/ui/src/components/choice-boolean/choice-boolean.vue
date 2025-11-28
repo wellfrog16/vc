@@ -3,29 +3,26 @@
 </template>
 
 <script lang="ts" setup>
+import { useVModel } from '@vueuse/core'
 import { computed } from 'vue'
-
 import HChoice from '../choice/choice.vue'
 
 interface IPropType {
-    modelValue: boolean | boolean[]
+    modelValue: boolean | boolean[] | number | number[]
     text?: [string, string]
+    valueType?: 'boolean' | 'number'
 }
 
 const props = withDefaults(defineProps<IPropType>(), {
-    modelValue: false,
     text: () => ['是', '否'],
+    valueType: 'boolean',
 })
 const emits = defineEmits(['update:modelValue'])
+const myValue = useVModel(props, 'modelValue', emits)
 
 const [textTrue, textFalse] = props.text
-const data = [
-    { label: textTrue, value: true },
-    { label: textFalse, value: false },
-]
-
-const myValue = computed({
-    get: () => props.modelValue,
-    set: val => emits('update:modelValue', val),
-})
+const data = computed(() => ([
+    { label: textTrue, value: props.valueType === 'boolean' ? true : 1 },
+    { label: textFalse, value: props.valueType === 'boolean' ? false : 0 },
+]))
 </script>

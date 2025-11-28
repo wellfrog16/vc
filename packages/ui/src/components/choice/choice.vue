@@ -1,35 +1,33 @@
 <template>
-    <span v-if="loading" v-loading="loading" :class="$style.loading" />
-    <template v-else>
-        <ElRadioGroup v-if="!props.multiple" v-model="myValue" v-bind="$attrs">
-            <ElRadioButton v-for="item in myOptions" :key="(item[myProps.key] || item[myProps.label])" :value="(item[myProps.value])">
-                {{ item[myProps.label] }}
-            </ElRadioButton>
-        </ElRadioGroup>
-        <ElCheckboxGroup v-else v-model="myValue" v-bind="$attrs" :class="$style.checkbox">
-            <ElCheckboxButton v-for="item in myOptions" :key="(item[myProps.key] || item[myProps.label])" :value="(item[myProps.value])">
-                {{ item[myProps.label] }}
-            </ElCheckboxButton>
-        </ElCheckboxGroup>
-    </template>
+    <ElRadioGroup v-if="!props.multiple" v-bind="$attrs" :type="myType" :options="myOptions" />
+    <ElCheckboxGroup v-else v-bind="$attrs" :class="$style.checkbox" :type="myType" :options="myOptions" />
 </template>
 
 <script lang="ts" setup>
-import { ElCheckboxButton, ElCheckboxGroup, ElRadioButton, ElRadioGroup, vLoading } from 'element-plus'
-import useChoice, { preEmit, preProps } from './useChoice'
+import type { CheckboxGroupProps, RadioGroupProps } from 'element-plus'
+import { ElCheckboxGroup, ElRadioGroup } from 'element-plus'
+import { computed } from 'vue'
 
-const props = defineProps(preProps)
-const emits = defineEmits(preEmit)
+interface IPropType {
+    multiple?: boolean
+    type?: RadioGroupProps['type'] | CheckboxGroupProps['type']
+    options: RadioGroupProps['options'] | CheckboxGroupProps['options'] | string[]
+}
 
-const { loading, myOptions, myProps, myValue } = useChoice({ props, emits }, 'choice')
+const props = withDefaults(defineProps<IPropType>(), {
+    type: 'button',
+})
+
+const myType = props.type as any // 解决类型报红
+const myOptions = computed(() => {
+    if (Array.isArray(props.options) && typeof props.options[0] === 'string') {
+        return props.options.map(item => ({ label: item, value: item }))
+    }
+    return props.options
+})
 </script>
 
 <style lang="scss" module>
-.loading {
-    display: inline-block;
-    width: 100px;
-}
-
 .checkbox {
     display: inline-flex;
 

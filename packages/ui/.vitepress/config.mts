@@ -70,7 +70,7 @@ export default defineConfig({
                         // { text: 'input', link: '/components/input' },
                         { text: 'input-number', link: '/components/input-number' },
                         { text: 'pca-picker', link: '/components/pca-picker' },
-                        // { text: 'select', link: '/components/select' },
+                        { text: 'select', link: '/components/select' },
                         // { text: 'switch', link: '/components/switch' },
                         // { text: 'tags', link: '/components/tags' },
                         // { text: 'thousand-input', link: '/components/thousand-input' },

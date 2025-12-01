@@ -23,14 +23,14 @@ import HConfigProvider from '../config-provider.vue'
 
 const size = ref('default')
 const buttonConfig = {
-    confirmInfo: {
+    confirm: {
         title: '这是二次提示的标题',
         confirmButtonText: '好的，我确认修改',
         msg: '您确认修改按钮的大小吗？<br>修改后，您可以再次点击按钮恢复大小<br>主要可以用于全局默认的按钮二次确认文案，比如删除确认',
     },
 }
 const buttonConfig2 = {
-    confirmInfo: {
+    confirm: {
         title: '请注意',
         confirmButtonText: '确认删除',
         msg: '这是不可恢复的操作<br>您确认要删除这条数据吗？',

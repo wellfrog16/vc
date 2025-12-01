@@ -14,7 +14,7 @@ import Wrapper from '@/components/simple-wrapper.vue'
 import HConfigProvider from '../config-provider.vue'
 
 const buttonConfig = {
-    confirmInfo: {
+    confirm: {
         title: '请注意',
         confirmButtonText: '确认删除',
         msg: '这是不可恢复的操作<br>您确认要删除这条数据吗？',

@@ -53,7 +53,7 @@ const props = withDefaults(defineProps<IPropType>(), {
 })
 const emits = defineEmits<{ (e: 'click', event: Event): void }>()
 const { button: buttonConfig } = injectConfig()
-const defaultConfirmInfo = { title: '提示', confirmButtonText: '确定', cancelButtonText: '取消', msg: '请确认您的操作？' }
+const defaultConfirmInfo = { title: '提示', confirmButtonText: '确定', cancelButtonText: '取消', msg: '请确认您的操作' }
 const myConfirm = computed(() => buttonConfig?.confirm?.type !== undefined
     ? buttonConfig?.confirm?.type
     : (props.confirm?.type !== undefined

@@ -1,10 +1,9 @@
-import type { PropType } from 'vue'
 import { useInject } from '@/use/useStore'
 
 export interface IPropType {
     button?: {
-        confirm?: 'popconfirm' | 'messagebox'
-        confirmInfo?: {
+        confirm?: {
+            type?: 'popconfirm' | 'messagebox' | 'none'
             title?: string
             confirmButtonText?: string
             cancelButtonText?: string
@@ -13,12 +12,6 @@ export interface IPropType {
     }
     pcaBaseUrl?: string
     crosProxy?: string
-}
-
-export const preProps = {
-    button: { type: Object as PropType<IPropType['button']> },
-    pcaBaseUrl: { type: String, default: '' },
-    crosProxy: { type: String, default: '' },
 }
 
 export const KEY_NAME = Symbol('VCConfig')

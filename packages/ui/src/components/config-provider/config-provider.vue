@@ -3,9 +3,10 @@
 </template>
 
 <script lang="ts" setup>
+import type { IPropType } from './config-provider'
 import { useProvide } from '@/use/useStore'
-import { KEY_NAME, preProps } from './config-provider'
+import { KEY_NAME } from './config-provider'
 
-const props = defineProps(preProps)
+const props = defineProps<IPropType>()
 useProvide(KEY_NAME, props)
 </script>

@@ -4,7 +4,6 @@
 
 目前支持的组件有：`button`, `pca-picker`
 
-
 ## 功能示例
 
 ### button

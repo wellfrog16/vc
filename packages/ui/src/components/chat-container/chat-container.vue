@@ -1,5 +1,5 @@
 <template>
-    <div ref="refContainer" :class="$style.main" v-bind="$attrs">
+    <div ref="refContainer" :class="$style.main">
         <slot />
         <Backbottom
             v-if="refContainer"
@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, useTemplateRef } from 'vue'
+import { onBeforeUnmount, onMounted, shallowRef, useTemplateRef } from 'vue'
 
 import Backbottom from '../backbottom/backbottom.vue'
 
@@ -34,6 +34,7 @@ const props = withDefaults(defineProps<IPropType>(), {
     keepBottom: false,
 })
 const refContainer = useTemplateRef('refContainer')
+const observer = shallowRef<MutationObserver>()
 
 function isScrollbarNearBottom(element: HTMLElement) {
     return element.scrollTop + element.clientHeight + props.stopHeight >= element.scrollHeight
@@ -46,13 +47,17 @@ function scrollToBottom() {
 defineExpose({ scrollToBottom })
 
 onMounted(() => {
-    const observer = new MutationObserver(() => {
+    observer.value = new MutationObserver(() => {
         if (isScrollbarNearBottom(refContainer.value!) || props.keepBottom) {
             refContainer.value!.scrollTop = refContainer.value!.scrollHeight
         }
     })
 
-    observer.observe(refContainer.value!, { subtree: true, characterData: true, childList: true })
+    observer.value.observe(refContainer.value!, { subtree: true, characterData: true, childList: true })
+})
+
+onBeforeUnmount(() => {
+    observer.value?.disconnect()
 })
 </script>
 

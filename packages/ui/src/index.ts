@@ -10,6 +10,7 @@ export { default as HConfigProvider } from './components/config-provider/config-
 export { default as HElIcon } from './components/el-icon/el-icon.vue'
 export { default as HIcon } from './components/icon/icon.vue'
 export { default as HPCAPicker } from './components/pca-picker/pca-picker.vue'
+export { default as HSelect } from './components/select/select.vue'
 export { default as HSVGIcon } from './components/svg-icon/svg-icon.vue'
 export { default as HTreePicker } from './components/tree-picker/tree-picker.vue'
 

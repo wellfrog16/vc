@@ -1,8 +1,24 @@
 <template>
     <Wrapper>
-        <ElDescriptionsItem label="展示区">
+        <ElDescriptionsItem label="展示区1">
             看右下角
             <HBackbottom :bottom="bottom" :right="right" :visibility-height="visibilityHeight" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="展示区2：">
+            <div>普通 div </div>
+            <div :class="$style['test-div']">
+                <div v-for="i in 40" :key="i">{{ i }}</div>
+                <HBackbottom :bottom="bottom" :right="right" :visibility-height="visibilityHeight" parent />
+            </div>
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="展示区3：">
+            <div>使用 el-scrollbar</div>
+            <ElScrollbar height="200px">
+                <div v-for="i in 40" :key="i">{{ i }}</div>
+                <div>
+                    <HBackbottom :bottom="bottom" :right="right" :visibility-height="visibilityHeight" />
+                </div>
+            </ElScrollbar>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：底部距离">
             <ElInputNumber v-model="bottom" :min="0" :precision="0" />
@@ -17,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElInputNumber } from 'element-plus'
+import { ElDescriptionsItem, ElInputNumber, ElScrollbar } from 'element-plus'
 import { ref } from 'vue'
 import Wrapper from '@/components/example-wrapper.vue'
 
@@ -27,3 +43,11 @@ const bottom = ref(40)
 const right = ref(40)
 const visibilityHeight = ref(200)
 </script>
+
+<style lang="scss" module>
+.test-div {
+    position: relative;
+    overflow: auto;
+    height: 200px;
+}
+</style>

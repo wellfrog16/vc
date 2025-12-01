@@ -11,7 +11,10 @@
         </div>
         <div :class="$style['container-wrapper']">
             <el-scrollbar :class="$style.container">
-                <component :is="currentComponent" />
+                <component :is="currentComponent" v-if="currentComponent" />
+                <div v-else>
+                    <el-text type="warning">从左边选择一个组件</el-text>
+                </div>
             </el-scrollbar>
         </div>
     </div>

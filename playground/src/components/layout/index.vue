@@ -10,7 +10,7 @@
             />
         </el-aside>
         <el-container>
-            <el-header :class="$style.header">这里是用产物测试，模拟真实场景</el-header>
+            <el-header :class="$style.header">这里是用产物测试，模拟真实场景，测试功能和 ts 类型</el-header>
             <el-main id="elMain" :class="$style.main">
                 <router-view v-slot="{ Component }">
                     <transition appear name="fade-transform" mode="out-in">

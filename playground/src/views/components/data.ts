@@ -30,7 +30,7 @@ export const componentsData = [
         items: [
             { text: 'backbottom' },
             { text: 'chat-container' },
-            // { text: 'dialog' },
+            { text: 'dialog' },
             // { text: 'dialog-camera-upload' },
             // { text: 'drawer' },
             // { text: 'easy-pagination' },

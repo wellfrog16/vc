@@ -83,7 +83,7 @@ export default defineConfig({
                     items: [
                         { text: 'backbottom', link: '/components/backbottom' },
                         { text: 'chat-container', link: '/components/chat-container' },
-                        // { text: 'dialog', link: '/components/dialog' },
+                        { text: 'dialog', link: '/components/dialog' },
                         // { text: 'dialog-camera-upload', link: '/components/dialog-camera-upload' },
                         // { text: 'drawer', link: '/components/drawer' },
                         // { text: 'easy-pagination', link: '/components/easy-pagination' },

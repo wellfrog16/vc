@@ -34,7 +34,7 @@
 
 <script lang="ts" setup>
 import { Close, CopyDocument, FullScreen } from '@element-plus/icons-vue'
-import { useToggle } from '@vueuse/core'
+import { useToggle, useVModel } from '@vueuse/core'
 import { ElButton, ElDialog, ElScrollbar } from 'element-plus'
 import { computed, ref, useCssModule, watch } from 'vue'
 
@@ -54,7 +54,6 @@ interface IPropType {
 }
 
 const props = withDefaults(defineProps<IPropType>(), {
-    modelValue: false,
     title: '对话框',
     showFullscreen: true,
     showDefaultFooter: false,
@@ -66,10 +65,7 @@ const props = withDefaults(defineProps<IPropType>(), {
 
 const emits = defineEmits(['update:modelValue', 'closed'])
 const $style = useCssModule()
-const dialogVisible = computed({
-    get: () => props.modelValue,
-    set: val => emits('update:modelValue', val),
-})
+const dialogVisible = useVModel(props, 'modelValue', emits)
 const visible = ref(false) // 用于销毁对话框以及非开启状态时不渲染
 const isFullscreen = ref(false)
 const toggleFullscreen = useToggle(isFullscreen)

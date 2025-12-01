@@ -37,8 +37,8 @@ interface IPropType {
     icon?: IIconOption
     time?: number
     type?: ButtonType
-    confirm?: 'popconfirm' | 'messagebox' | 'none' // 非 popconfirm， messagebox 的其他值不会执行 confirm
-    confirmInfo?: {
+    confirm?: {
+        type?: 'popconfirm' | 'messagebox' | 'none' // 非 popconfirm， messagebox 的其他值不会执行 confirm
         title?: string
         confirmButtonText?: string
         cancelButtonText?: string
@@ -53,14 +53,14 @@ const props = withDefaults(defineProps<IPropType>(), {
 })
 const emits = defineEmits<{ (e: 'click', event: Event): void }>()
 const { button: buttonConfig } = injectConfig()
-const defaultConfirmInfo = { title: '提示', confirmButtonText: '确定', cancelButtonText: '取消', msg: '确认要删除这条数据吗？' }
-const myConfirm = computed(() => buttonConfig?.confirm !== undefined
-    ? buttonConfig?.confirm
-    : (props.confirm !== undefined
-            ? props.confirm
+const defaultConfirmInfo = { title: '提示', confirmButtonText: '确定', cancelButtonText: '取消', msg: '请确认您的操作？' }
+const myConfirm = computed(() => buttonConfig?.confirm?.type !== undefined
+    ? buttonConfig?.confirm?.type
+    : (props.confirm?.type !== undefined
+            ? props.confirm.type
             : (['danger', 'warning'].includes(props.type) ? 'messagebox' : undefined)))
 const { name, type: iconType = 'el', position = 'left' } = props.icon || {}
-const { msg, title, confirmButtonText, cancelButtonText } = { ...defaultConfirmInfo, ...buttonConfig?.confirmInfo, ...props.confirmInfo }
+const { msg, title, confirmButtonText, cancelButtonText } = { ...defaultConfirmInfo, ...buttonConfig?.confirm, ...props.confirm }
 async function handleComfirm() {
     try {
         const result = await ElMessageBox.confirm(msg, title, { confirmButtonText, cancelButtonText, type: 'warning', dangerouslyUseHTMLString: true })

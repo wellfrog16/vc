@@ -20,7 +20,7 @@
                 <HButton type="primary" :size="mySize" @click="handleClick">快速点击</HButton>
             </ElDescriptionsItem>
             <ElDescriptionsItem label="展示区：提示">
-                <HButton type="warning" :size="mySize" :confirm="myType" @click="handleClick">点击会有二次确认</HButton>
+                <HButton type="warning" :size="mySize" :confirm="{ type: myType }" @click="handleClick">点击会有二次确认</HButton>
             </ElDescriptionsItem>
             <ElDescriptionsItem label="参数：类型">
                 <HChoice v-model="myType" :options="typeOption" />

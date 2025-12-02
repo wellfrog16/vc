@@ -14,7 +14,7 @@ export const componentsData = [
             // { text: 'daterange-picker' },
             // { text: 'dialog-map-point' },
             // { text: 'dialog-upload-images' },
-            // { text: 'input' },
+            { text: 'input' },
             { text: 'input-number' },
             { text: 'pca-picker' },
             { text: 'select' },

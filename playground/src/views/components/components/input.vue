@@ -1,0 +1,14 @@
+<template>
+    <el-space size="large" alignment="center" fill :style="{ display: 'flex' }">
+        <HInput v-model="result" :block="true">
+            <template #prepend>输入点什么</template>
+        </HInput>
+        <el-text>你输入了：<el-text type="primary">{{ result }}</el-text></el-text>
+    </el-space>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const result = ref('')
+</script>

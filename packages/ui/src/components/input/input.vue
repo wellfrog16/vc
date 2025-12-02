@@ -1,5 +1,9 @@
 <template>
-    <ElInput ref="refInput" :class="className">
+    <ElInput ref="inputRef" :class="className">
+        <!-- 这样没有类型提示 -->
+        <!-- <template v-for="(_, name) in $slots" :key="name" #[name]>
+            <slot :name="name" />
+        </template> -->
         <template v-if="$slots.prefix" #prefix><slot name="prefix" /></template>
         <template v-if="$slots.suffix" #suffix><slot name="suffix" /></template>
         <template v-if="$slots.prepend" #prepend><slot name="prepend" /></template>
@@ -9,18 +13,18 @@
 
 <script lang="ts" setup>
 import { ElInput } from 'element-plus'
-import { computed, shallowRef, useCssModule } from 'vue'
+import { computed, useCssModule, useTemplateRef } from 'vue'
 
-interface IpropType {
+interface IPropType {
     block?: boolean
     width?: string
 }
 
-const props = withDefaults(defineProps<IpropType>(), {
+const props = withDefaults(defineProps<IPropType>(), {
     block: false,
 })
 const $style = useCssModule()
-const refInput = shallowRef()
+const inputRef = useTemplateRef('inputRef')
 
 const className = computed(() => ({
     [$style.input]: true,
@@ -28,11 +32,7 @@ const className = computed(() => ({
 }))
 
 const myWidth = computed(() => {
-    return props.width || (props.block ? '100%' : '214px')
-})
-
-defineExpose({
-    instance: () => refInput.value,
+    return props.width || (props.block ? '100%' : '240px')
 })
 </script>
 

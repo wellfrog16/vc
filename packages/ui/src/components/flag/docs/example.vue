@@ -1,6 +1,6 @@
 <template>
     <Wrapper>
-        <ElDescriptionsItem label="展示区">
+        <ElDescriptionsItem label="展示区1">
             <div :class="$style.flags" :style="myStyle">
                 <HFlag code="RUS" :squared="squared" />
                 <HFlag code="SPM" :squared="squared" />
@@ -13,6 +13,13 @@
         <ElDescriptionsItem label="大小控制">
             <ElSlider v-model="fontsize" :min="14" :max="30" />
         </ElDescriptionsItem>
+        <ElDescriptionsItem label="展示区2：size 控制">
+            <ElSpace>
+                <HFlag code="EU" :squared="squared" size="2em" />
+                <HFlag code="EU" :squared="squared" :size="40" />
+                <HFlag code="EU" :squared="squared" size="30px" />
+            </ElSpace>
+        </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：正方形">
             <HChoiceBoolean v-model="squared" />
         </ElDescriptionsItem>
@@ -20,7 +27,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElSlider } from 'element-plus'
+import { ElDescriptionsItem, ElSlider, ElSpace } from 'element-plus'
 import { computed, ref } from 'vue'
 import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import Wrapper from '@/components/example-wrapper.vue'

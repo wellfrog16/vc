@@ -93,7 +93,7 @@ export default defineConfig({
                         { text: 'svg-icon', link: '/components/svg-icon' },
                         { text: 'icon', link: '/components/icon' },
                         { text: 'button', link: '/components/button' },
-                        // { text: 'flag', link: '/components/flag' },
+                        { text: 'flag', link: '/components/flag' },
                         // { text: 'image', link: '/components/image' },
                         // { text: 'qr-code', link: '/components/qr-code' },
                         // { text: 'screenfull', link: '/components/screenfull' },

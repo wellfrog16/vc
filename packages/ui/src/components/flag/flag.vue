@@ -1,17 +1,21 @@
 <template>
-    <span :class="className" />
+    <span :class="className" :style="{ fontSize: mySize }" />
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
 import type { IFlag2Code, IFlag3Code } from './flags'
 import { loader } from '@wfrog/utils'
 import { computed, onBeforeMount } from 'vue'
 import { codeMapping } from './flags'
 
-const props = defineProps({
-    code: { type: String as PropType<IFlag2Code | IFlag3Code>, required: true },
-    squared: { type: Boolean, default: false },
+interface IPropType {
+    code: IFlag2Code | IFlag3Code
+    squared?: boolean
+    size?: string | number
+}
+
+const props = withDefaults(defineProps<IPropType>(), {
+    squared: false,
 })
 
 const className = computed(() => {
@@ -28,14 +32,12 @@ const className = computed(() => {
     }
 })
 
+const mySize = computed(() => {
+    if (props.size && Number.isNaN(+props.size)) { return props.size }
+    return `${props.size}px`
+})
+
 onBeforeMount(async () => {
     await loader.loadCdnSingle('flagIcons')
 })
 </script>
-
-<style lang="scss" module>
-.main {
-    display: inline-flex;
-    cursor: pointer;
-}
-</style>

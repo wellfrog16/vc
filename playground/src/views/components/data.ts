@@ -40,7 +40,7 @@ export const componentsData = [
             { text: 'svg-icon' },
             { text: 'icon' },
             { text: 'button' },
-            // { text: 'flag' },
+            { text: 'flag' },
             // { text: 'image' },
             // { text: 'qr-code' },
             // { text: 'screenfull' },

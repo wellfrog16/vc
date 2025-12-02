@@ -8,7 +8,7 @@ export { default as HChoiceBoolean } from './components/choice-boolean/choice-bo
 export { default as HChoice } from './components/choice/choice.vue'
 export { default as HConfigProvider } from './components/config-provider/config-provider.vue'
 export { default as HCropper } from './components/cropper/cropper.vue'
-// export { default as HCurrency } from './components/currency/currency.vue'
+export { default as HCurrency } from './components/currency/currency.vue'
 export { default as HElIcon } from './components/el-icon/el-icon.vue'
 export { default as HFlag } from './components/flag/flag.vue'
 export { default as HIcon } from './components/icon/icon.vue'

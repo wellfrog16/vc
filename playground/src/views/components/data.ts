@@ -10,7 +10,7 @@ export const componentsData = [
         items: [
             { text: 'choice' },
             { text: 'choice-boolean' },
-            // { text: 'currency' },
+            { text: 'currency' },
             // { text: 'daterange-picker' },
             // { text: 'dialog-map-point' },
             // { text: 'dialog-upload-images' },

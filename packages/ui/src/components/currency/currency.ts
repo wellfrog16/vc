@@ -8,6 +8,15 @@ export interface ICurrencyInfo {
     option: { prefix: string, decimalScale: number, integerScale: number }
 }
 
+export interface IPropType {
+    modelValue: string
+    code: ICurrencyCode | ICurrencyCode[]
+    flag?: boolean
+    prefix?: boolean
+    prepend?: boolean
+    append?: boolean
+}
+
 const data: ICurrencyInfo[] = [
     {
         code: 'CNY',

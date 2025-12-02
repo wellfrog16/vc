@@ -3,7 +3,7 @@
     <HThousandInput
         v-model="myValue"
         v-model:format-value="formatValue"
-        :option="thousandOption"
+        :options="thousandOption"
         v-bind="$attrs"
         :class="{ [$style.append]: append, [$style.prepend]: prepend }"
         @change="handleChange"
@@ -29,35 +29,33 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
-import type { ICurrencyCode } from './currency'
+import type { ICurrencyCode, IPropType } from './currency'
+import { useVModel } from '@vueuse/core'
 import { ElOption, ElSelect } from 'element-plus'
 import { computed, onBeforeMount, ref } from 'vue'
 import HFlag from '../flag/flag.vue'
 import HThousandInput from '../thousand-input/thousand-input.vue'
 import currency from './currency'
 
-const props = defineProps({
-    modelValue: { type: String, required: true },
-    code: { type: [Array, String] as PropType<ICurrencyCode | ICurrencyCode[]>, required: true },
-    flag: { type: Boolean, default: false },
-    prefix: { type: Boolean, default: true },
-    prepend: { type: Boolean, default: true },
-    append: { type: Boolean, default: false },
+const props = withDefaults(defineProps<IPropType>(), {
+    flag: false,
+    prefix: true,
+    prepend: true,
+    append: false,
 })
 
-const emits = defineEmits(['update:modelValue', 'change'])
+const emits = defineEmits<{
+    (e: 'update:modelValue', value: string): void
+    (e: 'change', value: [string, string, ICurrencyCode]): void
+}>()
 
-const myValue = computed({
-    get: () => props.modelValue,
-    set: val => emits('update:modelValue', val),
-})
+const myValue = useVModel(props, 'modelValue', emits)
 
 const selectStyle = computed(() => ({ width: props.flag ? '7.5em' : '6em' }))
 
 const formatValue = ref<string>('')
 const myCode = ref<ICurrencyCode>()
-const myCurrencyInfo = computed(() => currency.find(item => item.code === myCode.value))
+const myCurrencyInfo = computed(() => currency.find(item => item.code === myCode.value)!)
 const thousandOption = computed(() => ({
     ...myCurrencyInfo.value?.option,
     prefix: props.prefix ? myCurrencyInfo.value?.option.prefix : '',
@@ -72,7 +70,7 @@ const currencyInfo = computed(() => {
 })
 
 function handleChange(val: string[]) {
-    emits('change', [...val, myCode.value])
+    emits('change', [...val, myCode.value] as [string, string, ICurrencyCode])
 }
 
 function handleCodeChange() {

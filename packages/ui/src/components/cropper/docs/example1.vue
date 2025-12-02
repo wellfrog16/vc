@@ -19,13 +19,12 @@ import type ICropper from 'cropperjs'
 import { Download } from '@element-plus/icons-vue'
 import { ElButton, ElDescriptionsItem, ElLink } from 'element-plus'
 import { debounce } from 'lodash-es'
-import { computed, ref } from 'vue'
+import { computed, ref, useTemplateRef } from 'vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HCropper from '../cropper.vue'
 
-// const cropperRef = ref<InstanceType<typeof HCropper>>()
-const cropperRef = ref<any>()
-const resultRef = ref<HTMLDivElement>()
+const cropperRef = useTemplateRef('cropperRef')
+const resultRef = useTemplateRef('resultRef')
 const downloadLink = ref('')
 
 const imgSrc = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
@@ -44,7 +43,7 @@ function handleDownload() {
 
 const cropperOption = computed<ICropper.Options>(() => ({
     aspectRatio: 16 / 9,
-    preview: resultRef.value,
+    preview: resultRef.value || undefined,
     cropmove: debounce(handleDownload, 1000),
 }))
 

@@ -23,5 +23,10 @@ const documentData = {
         { name: 'cancel', description: '对话框模式时，取消事件', param: '-' },
         { name: 'finished', description: '对话框模式时，完成事件', param: 'canvas, blob' },
     ],
+    methods: [
+        { name: 'instance', description: '获取 cropper 实例', param: '() => ICropper' },
+        { name: 'getCroppedCanvas', description: '获取裁剪后的 canvas', param: '() => HTMLCanvasElement | undefined' },
+        { name: 'getBlobData', description: '获取裁剪后的 Blob 数据', param: '() => Blob | undefined' },
+    ],
 }
 </script>

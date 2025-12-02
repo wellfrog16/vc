@@ -83,6 +83,7 @@ export default defineConfig({
                     items: [
                         { text: 'backbottom', link: '/components/backbottom' },
                         { text: 'chat-container', link: '/components/chat-container' },
+                        { text: 'cropper', link: '/components/cropper' },
                         { text: 'dialog', link: '/components/dialog' },
                         // { text: 'dialog-camera-upload', link: '/components/dialog-camera-upload' },
                         // { text: 'drawer', link: '/components/drawer' },
@@ -93,7 +94,6 @@ export default defineConfig({
                         { text: 'icon', link: '/components/icon' },
                         { text: 'button', link: '/components/button' },
                         // { text: 'flag', link: '/components/flag' },
-                        // { text: 'cropper', link: '/components/cropper' },
                         // { text: 'image', link: '/components/image' },
                         // { text: 'qr-code', link: '/components/qr-code' },
                         // { text: 'screenfull', link: '/components/screenfull' },

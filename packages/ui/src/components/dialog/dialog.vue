@@ -63,7 +63,10 @@ const props = withDefaults(defineProps<IPropType>(), {
     fullscreen: false,
 })
 
-const emits = defineEmits(['update:modelValue', 'closed'])
+const emits = defineEmits<{
+    (e: 'update:modelValue', value: boolean): void
+    (e: 'closed'): void
+}>()
 const $style = useCssModule()
 const dialogVisible = useVModel(props, 'modelValue', emits)
 const visible = ref(false) // 用于销毁对话框以及非开启状态时不渲染

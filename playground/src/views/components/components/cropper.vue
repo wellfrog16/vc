@@ -1,22 +1,14 @@
 <template>
-    <Wrapper>
-        <ElDescriptionsItem label="操作">
-            <div>
-                <ElButton @click="handleToggleVisible">打开</ElButton>
-                <HCropper v-model:visible="visible" :image="imgSrc" :option="cropperOption" dialog @finished="handleFinished" />
-            </div>
-        </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果">
-            <div ref="resultRef" :class="$style.result" />
-        </ElDescriptionsItem>
-    </Wrapper>
+    <el-space size="large" direction="vertical" alignment="left">
+        <div><ElButton @click="handleToggleVisible">打开裁剪器</ElButton></div>
+        <div ref="resultRef" :class="$style.result" />
+        <HCropper v-model:visible="visible" :image="imgSrc" :option="cropperOption" dialog @finished="handleFinished" />
+    </el-space>
 </template>
 
-<script lang="ts" setup>
-import { ElButton, ElDescriptionsItem } from 'element-plus'
+<script setup lang="ts">
+import { ElButton } from 'element-plus'
 import { ref, useTemplateRef } from 'vue'
-import Wrapper from '@/components/example-wrapper.vue'
-import HCropper from '../cropper.vue'
 
 const resultRef = useTemplateRef('resultRef')
 const visible = ref(false)

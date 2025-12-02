@@ -17,7 +17,7 @@
         <ElTable v-if="data.methods" :data="data.methods">
             <ElTableColumn prop="name" label="方法" width="150" fixed />
             <ElTableColumn prop="description" label="说明" />
-            <ElTableColumn prop="param" label="参数" />
+            <ElTableColumn prop="param" label="函数" />
         </ElTable>
         <ElDivider v-if="data.types" content-position="left">参数类型</ElDivider>
         <ElTable v-if="data.types" :data="data.types">

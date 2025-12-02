@@ -52,7 +52,12 @@ const props = defineProps({
     cropperHeight: { type: Number, default: 300 },
 })
 
-const emits = defineEmits(['init', 'update:visible', 'cancel', 'finished'])
+const emits = defineEmits<{
+    (e: 'init'): void
+    (e: 'update:visible', value: boolean): void
+    (e: 'cancel'): void
+    (e: 'finished', canvas: HTMLCanvasElement, blob: Blob): void
+}>()
 
 const loading = ref(false)
 const workbench = ref<HTMLDivElement>()
@@ -156,7 +161,7 @@ function handleFinish() {
     const canvas = getCroppedCanvas()
     const blob = getBlobData()
     dialogVisible.value = false
-    emits('finished', canvas, blob)
+    emits('finished', canvas!, blob!)
 }
 
 watch(() => props.option, () => { isNeedInit.value = true })

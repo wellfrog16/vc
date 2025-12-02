@@ -30,6 +30,7 @@ export const componentsData = [
         items: [
             { text: 'backbottom' },
             { text: 'chat-container' },
+            { text: 'cropper' },
             { text: 'dialog' },
             // { text: 'dialog-camera-upload' },
             // { text: 'drawer' },
@@ -40,7 +41,6 @@ export const componentsData = [
             { text: 'icon' },
             { text: 'button' },
             // { text: 'flag' },
-            // { text: 'cropper' },
             // { text: 'image' },
             // { text: 'qr-code' },
             // { text: 'screenfull' },

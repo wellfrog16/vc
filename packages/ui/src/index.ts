@@ -7,6 +7,7 @@ export { default as HChatContainer } from './components/chat-container/chat-cont
 export { default as HChoiceBoolean } from './components/choice-boolean/choice-boolean.vue'
 export { default as HChoice } from './components/choice/choice.vue'
 export { default as HConfigProvider } from './components/config-provider/config-provider.vue'
+export { default as HCropper } from './components/cropper/cropper.vue'
 export { default as HElIcon } from './components/el-icon/el-icon.vue'
 export { default as HIcon } from './components/icon/icon.vue'
 export { default as HPCAPicker } from './components/pca-picker/pca-picker.vue'

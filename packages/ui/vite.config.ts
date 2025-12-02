@@ -62,7 +62,7 @@ export default defineConfig({
             },
         },
         rollupOptions: {
-            external: ['vue', 'element-plus', '@element-plus/icons-vue'],
+            external: ['vue', 'element-plus', '@element-plus/icons-vue', 'cropperjs'],
             output: {
                 // entryFileNames: 'es/components/[name]/index.mjs',
                 chunkFileNames: chunkInfo => {

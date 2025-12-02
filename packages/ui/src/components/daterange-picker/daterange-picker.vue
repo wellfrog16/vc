@@ -10,18 +10,22 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
+import type { IPropType } from './daterange-picker'
+import { useVModel } from '@vueuse/core'
 import { ElDatePicker } from 'element-plus'
-import { computed } from 'vue'
 
-const props = defineProps({
-    modelValue: { type: Array as PropType<string[]>, default: () => [] },
-    valueFormat: { type: String, default: 'YYYY-MM-DD' },
-    limitDays: { type: Number, default: 3 }, // 限制天数
-    includeToday: { type: Boolean, default: false }, // 是否包含当天
+const props = withDefaults(defineProps<IPropType>(), {
+    valueFormat: 'YYYY-MM-DD',
+    limitDays: 3,
+    includeToday: false,
 })
 
-const emits = defineEmits(['update:modelValue', 'change'])
+const emits = defineEmits<{
+    (e: 'update:modelValue', value: string[]): void
+    (e: 'change', value: string[]): void
+}>()
+
+const myValue = useVModel(props, 'modelValue', emits)
 
 function disabledDate(time: Date) {
     const now = Date.now()
@@ -43,14 +47,7 @@ function disabledDate(time: Date) {
     return pickerTime + todayTime > now + limitTime || pickerTime + todayTime < now
 }
 
-const myValue = computed<any>({
-    get: () => props.modelValue,
-    set: val => {
-        emits('update:modelValue', val)
-    },
-})
-
-function handleChange(val: string[] | Event) {
+function handleChange(val: string[]) {
     emits('change', val)
 }
 </script>

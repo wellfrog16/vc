@@ -64,7 +64,7 @@ export default defineConfig({
                         { text: 'choice', link: '/components/choice' },
                         { text: 'choice-boolean', link: '/components/choice-boolean' },
                         { text: 'currency', link: '/components/currency' },
-                        // { text: 'daterange-picker', link: '/components/daterange-picker' },
+                        { text: 'daterange-picker', link: '/components/daterange-picker' },
                         // { text: 'dialog-map-point', link: '/components/dialog-map-point' },
                         // { text: 'dialog-upload-images', link: '/components/dialog-upload-images' },
                         { text: 'input', link: '/components/input' },

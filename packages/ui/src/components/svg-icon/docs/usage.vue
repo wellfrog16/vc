@@ -9,7 +9,7 @@ const documentData = {
     params: [
         { param: '*name', description: 'icon 对应的 name，可以在 iconfont.cn 查看', type: 'string', defaultValue: '-' },
         { param: 'color', description: 'SVG 的 fill 颜色', type: 'string', defaultValue: '-' },
-        { param: 'size', description: 'SVG 图标的大小，size x size', type: 'number', defaultValue: '-' },
+        { param: 'size', description: 'SVG 图标的大小，size x size', type: 'number | string', defaultValue: '-' },
     ],
 }
 </script>

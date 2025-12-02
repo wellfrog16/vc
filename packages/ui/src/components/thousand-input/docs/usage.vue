@@ -12,7 +12,7 @@ const documentData = {
         { param: 'option', description: '指令 v-thoursand 参数', type: 'IThousandOption', defaultValue: '下一行' },
         { param: '', description: '{ decimalScale: 2, integerScale: 12 }', type: ' - ', defaultValue: ' - ' },
         { param: 'padDecimal', description: 'format-value 小数位补0', type: 'boolean', defaultValue: 'true' },
-        { param: '其他', description: 'el-input 属性', type: 'https://element-plus.gitee.io/zh-CN/component/input.html#input-%E5%B1%9E%E6%80%A7', defaultValue: '-' },
+        { param: '其他', description: 'el-input 属性', type: 'https://element-plus.org/zh-CN/component/input#api', defaultValue: '-' },
     ],
     types: [
         { param: 'IThousandOption', description: '{ decimalScale: 小数位长度, integerScale: 整数位长度 }' },

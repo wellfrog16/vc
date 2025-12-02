@@ -12,13 +12,10 @@
 </template>
 
 <script lang="ts" setup>
+import type { IPropType } from './input'
 import { ElInput } from 'element-plus'
-import { computed, useCssModule, useTemplateRef } from 'vue'
 
-interface IPropType {
-    block?: boolean
-    width?: string
-}
+import { computed, useCssModule, useTemplateRef } from 'vue'
 
 const props = withDefaults(defineProps<IPropType>(), {
     block: false,
@@ -34,6 +31,8 @@ const className = computed(() => ({
 const myWidth = computed(() => {
     return props.width || (props.block ? '100%' : '240px')
 })
+
+defineExpose({ inputRef })
 </script>
 
 <style lang="scss" module>

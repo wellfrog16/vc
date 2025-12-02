@@ -1,5 +1,5 @@
-import { loader } from '@wfrog/utils'
 import type { Directive } from 'vue'
+import { loader } from '@wfrog/utils'
 
 const thousand: Directive = {
     mounted: async (el, binding) => {

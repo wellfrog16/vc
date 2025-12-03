@@ -61,7 +61,7 @@
 <script lang="ts" setup>
 import type { IPropType } from './tags'
 import { ElAlert, ElInput, ElPopover, ElSpace, ElTag } from 'element-plus'
-import { computed, nextTick, ref, watch, watchEffect } from 'vue'
+import { computed, ref, watch } from 'vue'
 import Draggable from 'vuedraggable-es'
 import vFocus from '@/directives/focus'
 import HButton from '../button/button.vue'
@@ -225,10 +225,6 @@ function handleDragEnd(event: any) {
 watch(isLimited, async val => {
     if (!val) { return }
     setTimeout(() => { createVisible.value = false }, 0)
-})
-
-watchEffect(() => {
-    console.log(createVisible.value, props.modelValue.length)
 })
 </script>
 

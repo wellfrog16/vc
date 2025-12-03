@@ -10,7 +10,8 @@
     "clean": "rimraf node_modules dist"
   },
   "dependencies": {
-    "vue-router": "^4.6.3"
+    "vue-router": "^4.6.3",
+    "vuedraggable-es": "^4.1.1"
   },
   "devDependencies": {
     "@vue/tsconfig": "^0.8.1"

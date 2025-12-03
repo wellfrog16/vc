@@ -17,6 +17,7 @@ export { default as HInput } from './components/input/input.vue'
 export { default as HPCAPicker } from './components/pca-picker/pca-picker.vue'
 export { default as HSelect } from './components/select/select.vue'
 export { default as HSVGIcon } from './components/svg-icon/svg-icon.vue'
+export { default as HTags } from './components/tags/tags.vue'
 export { default as HThousandInput } from './components/thousand-input/thousand-input.vue'
 export { default as HTreePicker } from './components/tree-picker/tree-picker.vue'
 

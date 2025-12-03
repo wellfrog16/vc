@@ -36,6 +36,9 @@
     "publish2": "npm publish --access public",
     "clean": "rimraf node_modules dist .vitepress/dist  .vitepress/cache"
   },
+  "dependencies": {
+    "vuedraggable-es": "^4.1.1"
+  },
   "devDependencies": {
     "@types/klaw-sync": "^6.0.5",
     "esbuild": "^0.27.0",

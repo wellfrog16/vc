@@ -19,7 +19,7 @@ export const componentsData = [
             { text: 'pca-picker' },
             { text: 'select' },
             // { text: 'switch' },
-            // { text: 'tags' },
+            { text: 'tags' },
             { text: 'thousand-input' },
             // { text: 'tinymce' },
             { text: 'tree-picker' },

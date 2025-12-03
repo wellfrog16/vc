@@ -25,7 +25,7 @@ const result2 = ref<number[]>([111, 222, 333, 444])
 
 const valueFormat = (val: any) => Number.parseInt(val)
 
-function handleChange(value: string) {
+function handleChange(value: string[]) {
     console.log(value)
 }
 </script>

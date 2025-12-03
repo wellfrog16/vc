@@ -1,6 +1,6 @@
 <template>
     <ElSpace v-if="readonly" wrap>
-        <ElTag v-for="tag in tags" :key="tag.name" v-bind="$attrs">{{ tag.name }}</ElTag>
+        <ElTag v-for="tag in tags" :key="tag.name" disable-transitions v-bind="$attrs">{{ tag.name }}</ElTag>
     </ElSpace>
     <ElSpace v-else wrap>
         <Draggable
@@ -10,9 +10,19 @@
             tag="span"
             item-key="name"
             animation="400"
+            @start="handleDragStart"
+            @end="handleDragEnd"
         >
             <template #item="{ element }">
-                <ElTag v-if="!element.editVisible" closable :class="$style.tag" v-bind="$attrs" @close="handleDelete(element.name)" @dblclick="handleClick(element.name)">
+                <ElTag
+                    v-if="!element.editVisible"
+                    disable-transitions
+                    closable
+                    :class="$style.tag"
+                    v-bind="$attrs"
+                    @close="handleDelete(element.name)"
+                    @dblclick="handleClick(element.name)"
+                >
                     {{ element.name }}
                 </ElTag>
                 <ElInput
@@ -29,8 +39,7 @@
             </template>
             <template #footer>
                 <ElInput
-                    v-if="createVisible"
-                    ref="createRef"
+                    v-if="createVisible && !isLimited"
                     v-model="currentTag"
                     v-focus
                     size="small"
@@ -40,44 +49,46 @@
                     @keyup.enter="handleBlur"
                     @blur="handleInsert"
                 />
-                <HButton v-else size="small" :icon="{ name: 'Plus' }" @click="showCreate" />
+                <HButton v-else-if="!isLimited" size="small" :icon="{ name: 'Plus' }" @click="showCreate" />
             </template>
         </Draggable>
-        <ElPopover v-if="errorVisible" ref="popoverRef" :virtual-ref="currentRef" :visible="errorVisible" placement="bottom">
-            <ElAlert type="error" :closable="false" :class="$style.alert">{{ sameNameMessage || errorMessage }}</ElAlert>
+        <ElPopover v-if="errorVisible" :virtual-ref="currentRef" :visible="errorVisible" placement="bottom">
+            <ElAlert type="error" :closable="false" :class="$style.alert">{{ sameContentMessage || errorMessage }}</ElAlert>
         </ElPopover>
     </ElSpace>
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
+import type { IPropType } from './tags'
 import { ElAlert, ElInput, ElPopover, ElSpace, ElTag } from 'element-plus'
-import { computed, ref } from 'vue'
-import Draggable from 'vuedraggable'
+import { computed, nextTick, ref, watch, watchEffect } from 'vue'
+import Draggable from 'vuedraggable-es'
 import vFocus from '@/directives/focus'
 import HButton from '../button/button.vue'
 
-const props = defineProps({
-    modelValue: { type: Array as PropType<(string | number) []>, required: true, default: () => [] },
-    regexp: { type: RegExp as PropType<RegExp>, default: /\S+/ },
-    errorMessage: { type: String, default: '' },
-    readonly: { type: Boolean, default: false },
-    valueFormat: { type: Function as PropType<(val: string | number) => string | number>, default: (val: string | number) => val },
+const props = withDefaults(defineProps<IPropType>(), {
+    regexp: () => /\S+/,
+    limit: 5,
+    errorMessage: '',
+    sameMessage: '内容重复了',
+    readonly: false,
+    valueFormat: (val: string | number) => val,
 })
 
-const emits = defineEmits(['update:modelValue', 'change'])
-
-const message = '名称重复了'
+const emits = defineEmits<{
+    (e: 'update:modelValue', val: any[]): void
+    (e: 'change', val: any[]): void
+    (e: 'dragStart', event: any): void
+    (e: 'dragEnd', event: any): void
+}>()
 
 const errorVisible = ref(false)
 const createVisible = ref(false) // 新建input的visible
 const currentTag = ref('') // 正在编辑的tag值
 const bakTag = ref('') // 编辑前的tag值
-const sameNameMessage = ref('')
+const sameContentMessage = ref('')
 const currentInput = ref<HTMLInputElement>()
 const timerId = ref()
-const popoverRef = ref()
-const createRef = ref()
 const currentRef = ref()
 
 const tags = computed({
@@ -89,6 +100,7 @@ const tags = computed({
         emits('update:modelValue', data)
     },
 })
+const isLimited = computed(() => props.modelValue.length >= props.limit)
 
 function handleClick(name: string) {
     currentTag.value = name
@@ -104,24 +116,24 @@ function handleDelete(name: string) {
 }
 
 // 是否有同名
-const isSameName = (name: string | number) => props.modelValue.includes(name) && bakTag.value !== name
+const isSameContent = (name: string | number) => props.modelValue.includes(name) && bakTag.value !== name
 
 // 是否通过正则检测
 const isPassTest = (name: string) => props.regexp.test(name)
 
 // 检查变更的tag name是否已存在和通过正则验证
-const checkTag = (name: string) => !isSameName(name) && isPassTest(name)
+const checkTag = (name: string) => !isSameContent(name) && isPassTest(name)
 
 function closeError() {
     errorVisible.value = false
-    sameNameMessage.value = ''
+    sameContentMessage.value = ''
     clearTimeout(timerId.value)
 }
 
 function showError() {
     clearTimeout(timerId.value)
-    if (isSameName(currentTag.value)) {
-        sameNameMessage.value = message
+    if (isSameContent(currentTag.value)) {
+        sameContentMessage.value = props.sameMessage
     }
     errorVisible.value = true
     currentInput.value?.focus()
@@ -141,12 +153,15 @@ function handleSave({ target }: FocusEvent) {
     currentInput.value = target as HTMLInputElement
 
     // 检测输入数据
-    if (!checkTag(currentTag.value)) { showError(); return }
+    if (!checkTag(currentTag.value)) {
+        showError(); return
+    }
 
     const data = tags.value.map(item => (item.name === bakTag.value ? currentTag.value : item.name))
     bakTag.value = ''
     tags.value = data
     emits('change', data)
+    currentTag.value = ''
 }
 
 function handleSaveClear() {
@@ -172,7 +187,9 @@ function handleInsert({ target }: FocusEvent) {
     currentInput.value = target as HTMLInputElement
 
     // 检测输入数据
-    if (!checkTag(currentTag.value)) { showError(); return }
+    if (!checkTag(currentTag.value)) {
+        showError(); return
+    }
 
     const data = [...props.modelValue, currentTag.value]
     createVisible.value = false
@@ -195,6 +212,24 @@ function handleBlur({ target }: KeyboardEvent) {
     const myTarget: any = target
     myTarget.blur()
 }
+
+function handleDragStart(event: any) {
+    emits('dragStart', event)
+}
+
+function handleDragEnd(event: any) {
+    emits('change', props.modelValue)
+    emits('dragEnd', event)
+}
+
+watch(isLimited, async val => {
+    if (!val) { return }
+    setTimeout(() => { createVisible.value = false }, 0)
+})
+
+watchEffect(() => {
+    console.log(createVisible.value, props.modelValue.length)
+})
 </script>
 
 <style lang="scss" module>

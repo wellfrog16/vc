@@ -5,13 +5,12 @@
 此组件依赖 [cropper](../../components/cropper.md) 组件
 
 :::tip
-这里仅返回 File 类型的数据，需要自行使用 axios/fetch 等完成上传。这样方便在前端业务层面处理header、权限信息等
+这里仅返回 File 类型的数据，需要自行使用 axios/fetch 等完成上传。这样方便在前端业务层面统一处理header、权限信息等
 :::
 
 :::warning
 图片裁剪不会做类型强校验，需要正确设置`accept`的值（默认为图片）
 :::
-
 
 ## 功能示例
 

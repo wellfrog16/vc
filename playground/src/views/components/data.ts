@@ -47,7 +47,7 @@ export const componentsData = [
             // { text: 'sync-scroll-container' },
             // { text: 'single-player' },
             // { text: 'text-ellipsis' },
-            // { text: 'upload-file' },
+            { text: 'upload-file' },
         ],
     },
 ]

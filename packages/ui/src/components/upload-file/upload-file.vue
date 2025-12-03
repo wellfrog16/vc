@@ -23,16 +23,28 @@
 
 <script lang="ts" setup>
 import type { UploadRawFile } from 'element-plus/es/components/upload/src/upload'
+import type { IPropType } from './upload-file'
 import { defaultWindow, file } from '@wfrog/utils'
 import { ElImage, ElUpload, vLoading } from 'element-plus'
 import { computed, nextTick, ref } from 'vue'
 import HButton from '../button/button.vue'
 import HCropper from '../cropper/cropper.vue'
 import HElIcon from '../el-icon/el-icon.vue'
-import myProps, { buttonOptions, imageOptions } from './props'
+import { buttonOptions, imageOptions } from './upload-file'
 
-const props = defineProps(myProps)
-const emits = defineEmits(['error'])
+const props = withDefaults(defineProps<IPropType>(), {
+    accept: '.jpg,.jpeg,.png',
+    type: 'image',
+    imageOptions: () => imageOptions,
+    buttonOptions: () => buttonOptions,
+    maxSize: 2 * 1024 * 1024,
+    cropper: false,
+    cropperOption: () => ({}),
+})
+
+const emits = defineEmits<{
+    (e: 'error', message: string): void
+}>()
 
 const loading = ref(false)
 const imgSrc = ref('') // 上传图片的本地url

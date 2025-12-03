@@ -5,14 +5,9 @@
 </template>
 
 <script lang="ts" setup>
+import type { IPropType } from './el-icon'
 import * as Icons from '@element-plus/icons-vue'
 import { ElIcon } from 'element-plus'
-
-interface IPropType {
-    name: keyof typeof Icons
-    color?: string
-    size?: string | number
-}
 
 withDefaults(defineProps<IPropType>(), { color: '', size: '' })
 </script>

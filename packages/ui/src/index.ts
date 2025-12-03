@@ -20,6 +20,7 @@ export { default as HSVGIcon } from './components/svg-icon/svg-icon.vue'
 export { default as HTags } from './components/tags/tags.vue'
 export { default as HThousandInput } from './components/thousand-input/thousand-input.vue'
 export { default as HTreePicker } from './components/tree-picker/tree-picker.vue'
+export { default as HUploadFile } from './components/upload-file/upload-file.vue'
 
 const modules: Record<string, any> = import.meta.glob('./components/*/*.vue', { eager: true })
 const upper = (_: any, letter: string) => letter.toUpperCase()

@@ -32,7 +32,7 @@ export const componentsData = [
             { text: 'chat-container' },
             { text: 'cropper' },
             { text: 'dialog' },
-            // { text: 'dialog-camera-upload' },
+            { text: 'dialog-camera-upload' },
             // { text: 'drawer' },
             // { text: 'easy-pagination' },
             { text: 'awesome-icon' },

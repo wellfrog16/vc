@@ -11,8 +11,8 @@
     >
         <div v-loading="loading" :class="$style.window" :style="windowStyle">
             <ElImage v-show="imageVisible" :src="blobImage" fit="contain" />
-            <video v-show="videoVisible" ref="elVideo" :width="width" :height="height" muted />
-            <canvas v-show="canvasVisible" ref="elCanvas" :width="width" :height="height" />
+            <video v-show="videoVisible" ref="videoRef" :width="width" :height="height" muted @click="handleShoot" />
+            <canvas v-show="canvasVisible" ref="canvasRef" :width="width" :height="height" />
             <div v-show="alert.visible" :class="$style.alert">
                 <Transition mode="out-in">
                     <ElAlert
@@ -65,28 +65,25 @@
 </template>
 
 <script lang="ts" setup>
-import type ICropper from 'cropperjs'
 import type { AlertProps } from 'element-plus/es/components/alert'
-import type { PropType } from 'vue'
+import type { IPropType } from './dialog-camera-upload'
 import { Camera, Upload } from '@element-plus/icons-vue'
 import { useDevicesList, useUserMedia } from '@vueuse/core'
 import { defaultWindow, file } from '@wfrog/utils'
 import { ElAlert, ElButton, ElIcon, ElImage, ElOption, ElSelect, vLoading } from 'element-plus'
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, useTemplateRef, watch } from 'vue'
+import HCropper from '../cropper/cropper.vue'
 import HDialog from '../dialog/dialog.vue'
-import HCropper from './cropper/cropper.vue'
+import HUploadFile from '../upload-file/upload-file.vue'
 import { TYPE_CAMERA, TYPE_UPLOAD, WINDOW_CANVAS, WINDOW_IMAGE, WINDOW_PLACEHOLDER, WINDOW_VIDEO } from './dialog-camera-upload'
-import HUploadFile from './upload-file/upload-file.vue'
 
-const props = defineProps({
-    visible: { type: Boolean, required: true },
-    type: { type: Array as PropType<('upload' | 'camera')[]>, default: () => [TYPE_UPLOAD, TYPE_CAMERA] }, // 功能默认包含 上传和拍照
-    width: { type: Number, default: 600 },
-    fixWidth: { type: Number, default: 32 },
-    height: { type: Number, default: 400 },
-    accept: { type: String, default: '.jpg,.jpeg,.png' },
-    cropper: { type: Boolean, default: true },
-    cropperOption: { type: Object as PropType<ICropper.Options>, default: () => { } },
+const props = withDefaults(defineProps<IPropType>(), {
+    type: () => [TYPE_UPLOAD, TYPE_CAMERA], // 功能默认包含 上传和拍照
+    width: 600,
+    fixWidth: 32,
+    height: 400,
+    accept: '.jpg,.jpeg,.png',
+    cropper: true,
 })
 
 const emits = defineEmits(['update:visible', 'close', 'error', 'save'])
@@ -103,11 +100,15 @@ const { videoInputs: cameras } = useDevicesList({
 })
 const { stream, start, stop, enabled } = useUserMedia({
     constraints: {
-        video: { deviceId: currentCamera.value },
+        video: {
+            width: props.width,
+            height: props.height,
+            deviceId: currentCamera.value,
+        },
     },
 })
-const elVideo = ref()
-const elCanvas = ref()
+const videoRef = useTemplateRef('videoRef')
+const canvasRef = useTemplateRef('canvasRef')
 const currentWindow = ref('')
 const blobImage = ref('')
 const loading = ref(false)
@@ -137,9 +138,9 @@ const confirmVisible = computed(() => {
 })
 
 watch(stream, () => {
-    if (elVideo.value && stream.value) {
-        elVideo.value.srcObject = stream.value
-        elVideo.value.play()
+    if (videoRef.value && stream.value) {
+        videoRef.value.srcObject = stream.value
+        videoRef.value.play()
         loading.value = false
     }
 })
@@ -200,11 +201,11 @@ function handleOpenCamera() {
 }
 
 function handleShoot() {
-    if (!defaultWindow) { return }
+    if (!defaultWindow || !canvasRef.value || !videoRef.value) { return }
     toggleWindow(WINDOW_CANVAS)
-    const context = elCanvas.value.getContext('2d')
-    context.drawImage(elVideo.value, 0, 0, props.width, props.height)
-    myFile = file.dataURLToFile(elCanvas.value.toDataURL(), 'camera.png')
+    const context = canvasRef.value.getContext('2d')!
+    context.drawImage(videoRef.value, 0, 0, props.width, props.height)
+    myFile = file.dataURLToFile(canvasRef.value.toDataURL(), 'camera.png')
     const localUrl = defaultWindow.URL.createObjectURL(myFile)
     blobImage.value = localUrl
     showAlert('success', TIPS_SHOOT_SUCCESS)
@@ -223,7 +224,7 @@ function handleCropperOpen() {
     cropperVisible.value = true
 }
 
-function handleFinished(canvas: any, blob: Blob) {
+function handleFinished(_canvas: any, blob: Blob) {
     if (!defaultWindow) { return }
     myFile = file.blobToFile(blob, 'cropper.png')
     const localUrl = defaultWindow.URL.createObjectURL(myFile)

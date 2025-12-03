@@ -37,7 +37,7 @@ function handleClick() {
     visible.value = true
 }
 
-function handleSave(file: File, localUrl: string) {
+function handleSave(_file: File, localUrl: string) {
     result.value = localUrl
 }
 </script>

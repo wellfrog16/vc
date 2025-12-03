@@ -10,6 +10,7 @@ export { default as HConfigProvider } from './components/config-provider/config-
 export { default as HCropper } from './components/cropper/cropper.vue'
 export { default as HCurrency } from './components/currency/currency.vue'
 export { default as HDaterangePicker } from './components/daterange-picker/daterange-picker.vue'
+export { default as HDialogCameraUpload } from './components/dialog-camera-upload/dialog-camera-upload.vue'
 export { default as HElIcon } from './components/el-icon/el-icon.vue'
 export { default as HFlag } from './components/flag/flag.vue'
 export { default as HIcon } from './components/icon/icon.vue'

@@ -2,7 +2,7 @@
 
 <CdnTag name="cropperjs" />上传单图片，展示图片（fit）以及button。也可以修改accept上传其他格式的文件，默认为图片。图片类型支持上传前裁剪
 
-此组件依赖 [cropper](../../components/cropper.md) 组件
+此组件依赖 [cropper](./cropper.md) 组件
 
 :::tip
 这里仅返回 File 类型的数据，需要自行使用 axios/fetch 等完成上传。这样方便在前端业务层面统一处理header、权限信息等

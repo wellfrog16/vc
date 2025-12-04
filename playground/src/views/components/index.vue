@@ -1,13 +1,15 @@
 <template>
     <div class="main-wrapper" :class="$style.main">
         <div :class="$style['aside-wrapper']">
-            <el-scrollbar :class="$style.aside">
-                <el-collapse v-model="activeNames">
-                    <el-collapse-item v-for="(item, index) in componentsData" :key="item.text" :title="item.text" :name="index" :class="$style['components-name-container']">
-                        <el-text v-for="com in item.items" :key="com.text" :type="activeComponent === com.text ? 'primary' : 'info'" size="large" @click="setComponent(com.text)">{{ com.text }}</el-text>
-                    </el-collapse-item>
-                </el-collapse>
-            </el-scrollbar>
+            <div :class="$style.aside">
+                <el-scrollbar>
+                    <el-collapse v-model="activeNames" :class="$style.collapse">
+                        <el-collapse-item v-for="(item, index) in componentsData" :key="item.text" :title="item.text" :name="index" :class="$style['components-name-container']">
+                            <el-text v-for="com in item.items" :key="com.text" :type="activeComponent === com.text ? 'primary' : 'info'" size="large" @click="setComponent(com.text)">{{ com.text }}</el-text>
+                        </el-collapse-item>
+                    </el-collapse>
+                </el-scrollbar>
+            </div>
         </div>
         <div :class="$style['container-wrapper']">
             <el-scrollbar :class="$style.container">
@@ -59,15 +61,27 @@ function setComponent(name: string) {
 }
 
 .aside {
-    width: 200px;
+    width: 240px;
     height: 100px;
     flex-grow: 1;
-    padding: 12px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    padding: 12px 0;
 
-    // 防止被鼠标横向拖动
-    :global(.el-scrollbar__wrap) {
-        overflow-x: hidden;
+    :global {
+        // 防止被鼠标横向拖动
+        .el-scrollbar__wrap {
+            overflow-x: hidden;
+        }
+
+        // .el-collapse-item__header {
+        //     box-sizing: border-box;
+        // }
     }
+}
+
+.collapse {
+    padding: 0 12px;
 }
 
 .container-wrapper {

@@ -68,8 +68,6 @@ $page-height: calc(
     // --el-menu-bg-color: red;
     background-color: var(--color-primary);
 
-    // height: @page-height;
-
     > ul {
         border-right: 0;
     }

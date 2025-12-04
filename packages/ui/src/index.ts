@@ -14,6 +14,7 @@ export { default as HDialogCameraUpload } from './components/dialog-camera-uploa
 export { default as HDialogMapPoint } from './components/dialog-map-point/dialog-map-point.vue'
 export { default as HDialogUploadImages } from './components/dialog-upload-images/dialog-upload-images.vue'
 export { default as HDrawer } from './components/drawer/drawer.vue'
+export { default as HEasyPagination } from './components/easy-pagination/easy-pagination.vue'
 export { default as HElIcon } from './components/el-icon/el-icon.vue'
 export { default as HFlag } from './components/flag/flag.vue'
 export { default as HIcon } from './components/icon/icon.vue'

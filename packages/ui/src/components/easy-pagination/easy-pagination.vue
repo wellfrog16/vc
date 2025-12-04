@@ -6,19 +6,25 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
+import type { IEasyPaginationProps } from './easy-pagination'
 import { ElButton } from 'element-plus'
 import { computed } from 'vue'
 
-const props = defineProps({
-    size: { type: String as PropType<import('element-plus/es/components/button').ButtonProps['size']>, default: 'small' },
-    prevText: { type: String, default: '上一页' },
-    nextText: { type: String, default: '下一页' },
-    currentPage: { type: Number, default: 1 },
-    haveNext: { type: Boolean, default: false },
+const props = withDefaults(defineProps<IEasyPaginationProps>(), {
+    size: 'small',
+    prevText: '上一页',
+    nextText: '下一页',
+    currentPage: 1,
+    haveNext: false,
 })
 
-const emits = defineEmits(['currentChange', 'update:currentPage', 'prevClick', 'nextClick'])
+const emits = defineEmits<{
+    (e: 'currentChange', p: number): void
+    (e: 'update:currentPage', p: number): void
+    (e: 'prevClick', p: number): void
+    (e: 'nextClick', p: number): void
+}>()
+
 const havePrev = computed(() => props.currentPage > 1)
 function handlePageChange(p: number) {
     let currentPage = props.currentPage + p

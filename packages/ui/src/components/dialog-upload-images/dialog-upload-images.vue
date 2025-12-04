@@ -8,6 +8,7 @@
         :show-close="false"
         :destroy-on-close="destroyOnClose"
         append-to-body
+        v-bind="$attrs"
     >
         <Draggable v-model="imgList" item-key="uid" class="el-upload-list--picture-card" :class="[$style.draggable]">
             <template #header>

@@ -41,7 +41,7 @@ export const componentsData = [
             { text: 'icon' },
             { text: 'button' },
             { text: 'flag' },
-            // { text: 'image' },
+            { text: 'image' },
             // { text: 'qr-code' },
             // { text: 'screenfull' },
             // { text: 'sync-scroll-container' },

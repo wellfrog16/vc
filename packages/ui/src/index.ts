@@ -18,7 +18,7 @@ export { default as HEasyPagination } from './components/easy-pagination/easy-pa
 export { default as HElIcon } from './components/el-icon/el-icon.vue'
 export { default as HFlag } from './components/flag/flag.vue'
 export { default as HIcon } from './components/icon/icon.vue'
-// export { default as HImage } from './components/image/image.vue'
+export { default as HImage } from './components/image/image.vue'
 export { default as HInput } from './components/input/input.vue'
 export { default as HPCAPicker } from './components/pca-picker/pca-picker.vue'
 export { default as HSelect } from './components/select/select.vue'

@@ -94,7 +94,7 @@ export default defineConfig({
                         { text: 'icon', link: '/components/icon' },
                         { text: 'button', link: '/components/button' },
                         { text: 'flag', link: '/components/flag' },
-                        // { text: 'image', link: '/components/image' },
+                        { text: 'image', link: '/components/image' },
                         // { text: 'qr-code', link: '/components/qr-code' },
                         // { text: 'screenfull', link: '/components/screenfull' },
                         // { text: 'sync-scroll-container', link: '/components/sync-scroll-container' },

@@ -86,7 +86,7 @@ export default defineConfig({
                         { text: 'cropper', link: '/components/cropper' },
                         { text: 'dialog', link: '/components/dialog' },
                         { text: 'dialog-camera-upload', link: '/components/dialog-camera-upload' },
-                        // { text: 'drawer', link: '/components/drawer' },
+                        { text: 'drawer', link: '/components/drawer' },
                         // { text: 'easy-pagination', link: '/components/easy-pagination' },
                         { text: 'awesome-icon', link: '/components/awesome-icon' },
                         { text: 'el-icon', link: '/components/el-icon' },

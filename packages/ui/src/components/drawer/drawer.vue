@@ -1,5 +1,5 @@
 <template>
-    <ElDrawer v-if="visible || !lazy" v-model="drawerVisible" v-bind="$attrs" :class="$style.main" @closed="handleClosed">
+    <ElDrawer v-if="visible || !lazy" v-model="drawerVisible" v-bind="$attrs" :close-on-click-modal="false" :class="$style.main" @closed="handleClosed">
         <template #header><div><slot name="header">{{ title }}</slot></div></template>
         <div class="drawer-body">
             <ElScrollbar class="drawer-scrollbar">
@@ -11,22 +11,25 @@
 </template>
 
 <script lang="ts" setup>
+import type { IDrawerProps } from './drawer'
+import { useVModel } from '@vueuse/core'
 import { ElDrawer, ElScrollbar } from 'element-plus'
-import { computed, ref, watch } from 'vue'
 
+import { ref, watch } from 'vue'
 import HButton from '../button/button.vue'
 
-const props = defineProps({
-    modelValue: { type: Boolean, required: true, default: false },
-    title: { type: String, default: '对话框' },
-    lazy: { type: Boolean, default: true },
-    showDefaultFooter: { type: Boolean, default: false },
+const props = withDefaults(defineProps<IDrawerProps>(), {
+    title: '对话框',
+    lazy: true,
+    showDefaultFooter: false,
 })
-const emits = defineEmits(['update:modelValue', 'closed'])
-const drawerVisible = computed({
-    get: () => props.modelValue,
-    set: val => emits('update:modelValue', val),
-})
+
+const emits = defineEmits<{
+    (e: 'update:modelValue', val: boolean): void
+    (e: 'closed'): void
+}>()
+
+const drawerVisible = useVModel(props, 'modelValue', emits)
 const visible = ref(false) // 用于销毁对话框以及非开启状态时不渲染
 
 watch(drawerVisible, val => {

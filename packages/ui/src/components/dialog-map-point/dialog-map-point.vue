@@ -8,7 +8,7 @@
         append-to-body
         :show-fullscreen="false"
     >
-        <div ref="elContainer" :style="containerStyle" />
+        <div ref="containerRef" :style="containerStyle" />
         <div :class="$style.search">
             <ElInput v-model="keywords" placeholder="请输入查询地址" clearable @keyup.enter="handleSearch" @clear="handleClear">
                 <template #append><ElButton :icon="Search" @click="handleSearch" /></template>
@@ -22,23 +22,26 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
+import type { IPropType } from './dialog-map-point'
 import { Search } from '@element-plus/icons-vue'
 import { defaultWindow, loader } from '@wfrog/utils'
 import { ElButton, ElInput } from 'element-plus'
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue'
 import HDialog from '../dialog/dialog.vue'
 
-const props = defineProps({
-    modelValue: { type: Object as PropType<{ lng: number, lat: number }>, default: () => ({ lng: 0, lat: 0 }) },
-    visible: { type: Boolean, required: true },
-    city: { type: String, default: '上海' },
-    ak: { type: String, default: 'rrK5thxGKxN45pnaH2Gd0ZxyFkr8MaTl&services=&t=20220816154130' },
+const props = withDefaults(defineProps<IPropType>(), {
+    visible: false,
+    city: '上海',
 })
 
-const emits = defineEmits(['update:visible', 'update:modelValue', 'close'])
-const elContainer = ref()
-const keywords = ref()
+const emits = defineEmits<{
+    (e: 'update:visible', val: boolean): void
+    (e: 'update:modelValue', val: { lng: number, lat: number }): void
+    (e: 'close'): void
+}>()
+
+const containerRef = useTemplateRef('containerRef')
+const keywords = ref('')
 
 const dialogWidth = computed(() => {
     if (!defaultWindow) { return '500px' }
@@ -64,13 +67,13 @@ const dialogVisible = computed({
 
 let map: any
 let local: any
-const point = ref({ lng: '', lat: '' })
+const point = ref({ lng: 0, lat: 0 })
 
 function init() {
     if (!defaultWindow) { return '' }
 
     const { BMapGL } = defaultWindow
-    map = new BMapGL.Map(elContainer.value, { enableMapClick: false })
+    map = new BMapGL.Map(containerRef.value, { enableMapClick: false })
     map.setDefaultCursor('default')
     let marker: any = null
     const { lng, lat } = props.modelValue

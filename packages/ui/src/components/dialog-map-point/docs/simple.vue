@@ -1,10 +1,8 @@
 <template>
     <Wrapper>
         <ElButton @click="handleClick">打开</ElButton>
-        <HDialogMapPoint
-            v-model="result"
-            v-model:visible="visible"
-        />
+        <!-- 需要填写你自己的百度地图 AK 密钥 -->
+        <HDialogMapPoint v-model="result" v-model:visible="visible" ak="" />
     </Wrapper>
 </template>
 

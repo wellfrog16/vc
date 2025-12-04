@@ -2,10 +2,7 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <ElButton @click="handleClick">打开</ElButton>
-            <HDialogMapPoint
-                v-model="result"
-                v-model:visible="visible"
-            />
+            <HDialogMapPoint v-model="result" v-model:visible="visible" ak="rrK5thxGKxN45pnaH2Gd0ZxyFkr8MaTl" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果"><span>{{ `lng: ${result.lng}, lat: ${result.lat}` }}</span></ElDescriptionsItem>
     </Wrapper>

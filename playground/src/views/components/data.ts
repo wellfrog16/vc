@@ -12,7 +12,7 @@ export const componentsData = [
             { text: 'choice-boolean' },
             { text: 'currency' },
             { text: 'daterange-picker' },
-            // { text: 'dialog-map-point' },
+            { text: 'dialog-map-point' },
             // { text: 'dialog-upload-images' },
             { text: 'input' },
             { text: 'input-number' },

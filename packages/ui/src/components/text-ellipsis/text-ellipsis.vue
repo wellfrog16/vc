@@ -1,5 +1,5 @@
 <template>
-    <div ref="eleMain" :class="$style.main" :style="mainStyle">
+    <div ref="mainRef" :class="$style.main" :style="mainStyle">
         <!-- 显示tooltip并且tips可见，不用disable可以避免渲染tooltip -->
         <ElTooltip
             v-if="tipsVisible && showTooltip"
@@ -9,41 +9,40 @@
             :popper-options="popperOptions"
             :enterable="enterable"
         >
-            <div ref="eleEllipsis" :class="$style.ellipsis" :style="fixStyle"><slot>{{ content }}</slot></div>
+            <div ref="ellipsisRef" :class="$style.ellipsis" :style="fixStyle"><slot>{{ content }}</slot></div>
             <template #content>
                 <slot>{{ content }}</slot>
             </template>
         </ElTooltip>
         <!-- 显示tooltip并且tips不可见，仅显示文案 -->
-        <div v-if="tipsVisible && !showTooltip" ref="eleEllipsis" :class="$style.ellipsis" :style="fixStyle"><slot>{{ content }}</slot></div>
-        <div v-if="textVisible" ref="eleText" :class="$style.text"><slot>{{ content }}</slot></div>
+        <div v-if="tipsVisible && !showTooltip" ref="ellipsisRef" :class="$style.ellipsis" :style="fixStyle"><slot>{{ content }}</slot></div>
+        <div v-if="textVisible" ref="textRef" :class="$style.text"><slot>{{ content }}</slot></div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import type { Placement, PopperEffect } from 'element-plus/es/components/popper'
-import type { PropType } from 'vue'
+import type { ITextEllipsisProps } from './text-ellipsis'
 import { ElTooltip } from 'element-plus'
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue'
 
-const props = defineProps({
-    type: { type: String, default: 'single' }, // 单行多行，多行暂不支持
-    effect: { type: String as PropType<PopperEffect>, default: 'dark' },
-    placement: { type: String as PropType<Placement>, default: 'top' }, // tips位置
-    content: { type: String, default: '' },
-    popperOptions: { type: Object, default: () => ({ boundariesElement: 'body', gpuAcceleration: false }) }, // popper.js 的参数
-    popperClass: { type: String, default: '' }, // popper样式
-    enterable: { type: Boolean, default: true }, // 鼠标是否可进入到 tooltip 中
-    maxWidth: { type: Number, default: 0 }, // 自定义文案的最大长度
-    showTooltip: { type: Boolean, default: true }, // 是否显示tooltip
+const props = withDefaults(defineProps<ITextEllipsisProps>(), {
+    type: 'single',
+    effect: 'light',
+    placement: 'top',
+    content: '',
+    popperOptions: () => ({ boundariesElement: 'body', gpuAcceleration: false }),
+    popperClass: '',
+    enterable: false,
+    maxWidth: 0,
+    showTooltip: true,
 })
 
 const tipsVisible = ref(false)
 const textVisible = ref(false)
 const realWidth = ref(0)
-const eleMain = ref<HTMLDivElement>()
-const eleText = ref<HTMLElement>()
-const eleEllipsis = ref<HTMLElement>()
+const mainRef = useTemplateRef('mainRef')
+const textRef = useTemplateRef('textRef')
+const ellipsisRef = useTemplateRef('ellipsisRef')
 
 const mainStyle = computed(() => (props.maxWidth ? { width: `${props.maxWidth}px` } : {}))
 const fixStyle = computed(() => ({ width: `${realWidth.value}px` }))
@@ -55,9 +54,9 @@ function isOverflow() {
         textVisible.value = true
 
         nextTick(() => {
-            if (eleText.value && eleEllipsis.value) {
-                const originWidth = eleText.value?.offsetWidth
-                const ellipsisWidth = props.maxWidth || eleEllipsis.value?.offsetWidth
+            if (textRef.value && ellipsisRef.value) {
+                const originWidth = textRef.value?.offsetWidth
+                const ellipsisWidth = props.maxWidth || ellipsisRef.value?.offsetWidth
                 resolve(originWidth > ellipsisWidth)
             }
             else {
@@ -72,7 +71,7 @@ async function update() {
     const isOverflowX = await isOverflow()
     tipsVisible.value = isOverflowX
     textVisible.value = !isOverflowX
-    realWidth.value = eleMain.value?.clientWidth || 0
+    realWidth.value = mainRef.value?.clientWidth || 0
 }
 
 const watchData = computed(() => `${props.content}${props.maxWidth}${props.popperClass}`)

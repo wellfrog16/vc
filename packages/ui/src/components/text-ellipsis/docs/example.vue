@@ -3,7 +3,7 @@
         <ElDescriptionsItem label="展示区">
             <ElRow v-for="item in list" :key="item.id">
                 <ElCol :span="6">
-                    <HTextEllipsis placement="top-start" :max-width="maxWidth" :show-tooltip="showTooltip">{{ item.title }}</HTextEllipsis>
+                    <HTextEllipsis placement="top-start" :max-width="maxWidth" effect="dark" :show-tooltip="showTooltip">{{ item.title }}</HTextEllipsis>
                 </ElCol>
             </ElRow>
         </ElDescriptionsItem>

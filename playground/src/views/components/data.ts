@@ -46,7 +46,7 @@ export const componentsData = [
             // { text: 'screenfull' },
             // { text: 'sync-scroll-container' },
             // { text: 'single-player' },
-            // { text: 'text-ellipsis' },
+            { text: 'text-ellipsis' },
             { text: 'upload-file' },
         ],
     },

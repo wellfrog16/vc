@@ -99,7 +99,7 @@ export default defineConfig({
                         // { text: 'screenfull', link: '/components/screenfull' },
                         // { text: 'sync-scroll-container', link: '/components/sync-scroll-container' },
                         // { text: 'single-player', link: '/components/single-player' },
-                        // { text: 'text-ellipsis', link: '/components/text-ellipsis' },
+                        { text: 'text-ellipsis', link: '/components/text-ellipsis' },
                         { text: 'upload-file', link: '/components/upload-file' },
                     ],
                 },

@@ -13,7 +13,7 @@ export const componentsData = [
             { text: 'currency' },
             { text: 'daterange-picker' },
             { text: 'dialog-map-point' },
-            // { text: 'dialog-upload-images' },
+            { text: 'dialog-upload-images' },
             { text: 'input' },
             { text: 'input-number' },
             { text: 'pca-picker' },

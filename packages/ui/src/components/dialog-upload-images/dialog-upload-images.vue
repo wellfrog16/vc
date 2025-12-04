@@ -4,7 +4,7 @@
         title="上传图片"
         :close-on-click-modal="false"
         :class="$style.dialog"
-        :width="850"
+        :width="862"
         :show-close="false"
         :destroy-on-close="destroyOnClose"
         append-to-body
@@ -45,17 +45,28 @@
 
 <script lang="ts" setup>
 import type { UploadRawFile, UploadRequestOptions } from 'element-plus/es/components/upload/src/upload'
-import type { IUploadFile } from './props'
+import type { IDialogUploadImagesProps, IUploadFile } from './dialog-upload-images'
 import { defaultWindow } from '@wfrog/utils'
 import { ElButton, ElUpload, vLoading } from 'element-plus'
 import { computed, ref, shallowRef } from 'vue'
-import Draggable from 'vuedraggable'
+import Draggable from 'vuedraggable-es'
 import HDialog from '../dialog/dialog.vue'
 import HElIcon from '../el-icon/el-icon.vue'
-import myProps from './props'
 
-const props = defineProps(myProps)
-const emits = defineEmits(['update:visible', 'update:modelValue', 'error', 'close'])
+const props = withDefaults(defineProps<IDialogUploadImagesProps>(), {
+    destroyOnClose: false,
+    limit: 5,
+    maxSize: 2 * 1024 * 1024,
+    beforeUpload: () => true,
+    beforeRemove: () => true,
+})
+
+const emits = defineEmits<{
+    (e: 'update:visible', val: boolean): void
+    (e: 'update:modelValue', val: (File | IUploadFile)[]): void
+    (e: 'error', message: string): void
+    (e: 'close'): void
+}>()
 
 const loading = ref(false)
 const imgList = shallowRef<(File | IUploadFile)[]>(props.modelValue) // 已上传的文件列表
@@ -155,7 +166,6 @@ function handleOnPreview(file: IUploadFile | File) {
 
 .upload {
     display: inline-flex;
-    margin: 0 5px 5px 0;
     line-height: 0;
 
     :global {
@@ -203,12 +213,14 @@ function handleOnPreview(file: IUploadFile | File) {
 div.draggable {
     display: flex;
     flex-wrap: wrap;
+    row-gap: 5px;
+    column-gap: 5px;
 
     :global {
         .el-upload-list__item {
             width: 200px;
             height: 150px;
-            margin: 0 5px 5px 0;
+            margin: 0;
         }
 
         .el-upload-list__item:nth-of-type(4n) {

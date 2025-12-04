@@ -66,7 +66,7 @@ export default defineConfig({
                         { text: 'currency', link: '/components/currency' },
                         { text: 'daterange-picker', link: '/components/daterange-picker' },
                         { text: 'dialog-map-point', link: '/components/dialog-map-point' },
-                        // { text: 'dialog-upload-images', link: '/components/dialog-upload-images' },
+                        { text: 'dialog-upload-images', link: '/components/dialog-upload-images' },
                         { text: 'input', link: '/components/input' },
                         // { text: 'input-number', link: '/components/input-number' },
                         { text: 'pca-picker', link: '/components/pca-picker' },

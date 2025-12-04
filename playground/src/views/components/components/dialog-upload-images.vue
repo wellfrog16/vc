@@ -1,35 +1,25 @@
 <template>
-    <Wrapper>
-        <ElDescriptionsItem label="展示区">
+    <el-space direction="vertical" size="large" alignment="left">
+        <div>
             <ElButton @click="handleClick">打开</ElButton>
             <HDialogUploadImages
                 v-model="result"
                 v-model:visible="visible"
                 :http-request="httpRequest"
-                :limit="200"
+                :limit="5"
                 :lazy="false"
                 @error="handleError"
             />
-        </ElDescriptionsItem>
-        <ElDescriptionsItem label="结果"><span>{{ result }}</span></ElDescriptionsItem>
-    </Wrapper>
+        </div>
+        <el-text>{{ result }}</el-text>
+    </el-space>
 </template>
 
-<script lang="ts" setup>
-import { ElButton, ElDescriptionsItem, ElMessage } from 'element-plus'
+<script setup lang="ts">
+import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
-import Wrapper from '@/components/example-wrapper.vue'
-import HDialogUploadImages from '../dialog-upload-images.vue'
 
-const demoData: any = {
-    name: '山.png',
-    size: 9988,
-    type: 'image/jpeg',
-    url: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg',
-    uid: 1625899269286,
-}
-
-const result = ref<File[]>([demoData])
+const result = ref<File[]>([])
 const visible = ref(false)
 
 function handleClick() {

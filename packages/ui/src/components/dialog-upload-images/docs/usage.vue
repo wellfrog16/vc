@@ -18,6 +18,7 @@ const documentData = {
         { param: '-', rowType: 'paramType', description: '(file: File) => boolean' },
         { param: 'before-remove', description: '删除前回调，return false 中止删除，用于先接口删除，再展示删除', type: '下一行', defaultValue: '()=>true' },
         { param: '-', rowType: 'paramType', description: '(file: File | IUploadFile, fileList: (File | IUploadFile)[]) => boolean' },
+        { param: '其他', description: 'h-dialog 的属性、事件', type: './dialog.html', defaultValue: '-' },
     ],
     types: [
         { param: 'IUploadFile', description: '{ url: string; size: number; type: string; name: string}' },

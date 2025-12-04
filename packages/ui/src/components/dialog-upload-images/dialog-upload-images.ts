@@ -27,3 +27,14 @@ export default {
     // 删除前回调，return false中止上传
     beforeRemove: { type: Function as PropType<(file: File | IUploadFile, fileList: (File | IUploadFile)[]) => boolean>, default: () => true },
 }
+
+export interface IDialogUploadImagesProps {
+    modelValue: (File | IUploadFile)[]
+    visible: boolean
+    destroyOnClose?: boolean
+    limit?: number
+    maxSize?: number
+    httpRequest: (file: File) => Promise<IUploadFile | File | void>
+    beforeUpload?: (file: File) => boolean
+    beforeRemove?: (file: File | IUploadFile, fileList: (File | IUploadFile)[]) => boolean
+}

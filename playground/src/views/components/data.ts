@@ -18,7 +18,7 @@ export const componentsData = [
             { text: 'input-number' },
             { text: 'pca-picker' },
             { text: 'select' },
-            // { text: 'switch' },
+            { text: 'switch' },
             { text: 'tags' },
             { text: 'thousand-input' },
             // { text: 'tinymce' },

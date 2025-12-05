@@ -44,16 +44,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { promiseTimeout } from '@vueuse/core'
 import { ElDescriptionsItem, ElRadioButton, ElRadioGroup, ElSpace, ElSwitch } from 'element-plus'
+import { ref } from 'vue'
 import Wrapper from '@/components/example-wrapper.vue'
-import HSwitch from '../index.vue'
+import HSwitch from '../switch.vue'
 
 const result = ref('Open')
 const delay = ref(0)
 const loading = ref(false)
-const beforeChange = async () => {
+async function beforeChange() {
+    if (delay.value === 0) { return true }
     loading.value = true
     await promiseTimeout(delay.value)
     loading.value = false

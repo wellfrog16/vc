@@ -1,8 +1,8 @@
 <template>
     <ElSwitch v-if="disabled || !confirm" v-model="myValue" :class="className" v-bind="$attrs" :disabled="disabled" />
-    <ElPopconfirm v-else :title="confirmTitle" @confirm="handleConfirm">
+    <ElPopconfirm v-else :title="confirmTitle" v-bind="props.confirmProps" @confirm="handleConfirm">
         <template #reference>
-            <span ref="mainEle" :class="$style.main">
+            <span ref="mainRef" :class="$style.main">
                 <ElSwitch v-model="myValue" class="h-switch" :class="className" v-bind="$attrs" />
             </span>
         </template>
@@ -10,38 +10,30 @@
 </template>
 
 <script lang="ts" setup>
+import type { ISwitchProps } from './switch'
 import { ElPopconfirm, ElSwitch } from 'element-plus'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, useTemplateRef } from 'vue'
 
-interface IPropType {
-    modelValue: IGlobal.BaseType
-    confirmTitle?: string
-    disabled?: boolean
-    className?: string
-    confirm?: boolean
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<ISwitchProps>(), {
     confirmTitle: '确认切换吗？',
     disabled: false,
     className: '',
     confirm: false,
 })
 
-const emit = defineEmits(['update:modelValue', 'change'])
+const emits = defineEmits(['update:modelValue'])
+const mainRef = useTemplateRef('mainRef')
 
-const mainEle = ref<HTMLSpanElement>()
-
-const getSwitchEle = () => {
-    if (!mainEle.value) { return }
-    const ele = mainEle.value.getElementsByClassName('h-switch')[0]
+function getSwitchEle() {
+    if (!mainRef.value) { return }
+    const ele = mainRef.value.getElementsByClassName('h-switch')[0]
     return ele as HTMLDivElement
 }
 const handleConfirm = () => getSwitchEle()?.click()
 
 const myValue = computed({
     get: () => props.modelValue,
-    set: val => emit('update:modelValue', val),
+    set: val => emits('update:modelValue', val),
 })
 
 onMounted(() => {

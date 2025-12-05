@@ -42,7 +42,7 @@ export const componentsData = [
             { text: 'button' },
             { text: 'flag' },
             { text: 'image' },
-            // { text: 'qr-code' },
+            { text: 'qr-code' },
             // { text: 'screenfull' },
             // { text: 'sync-scroll-container' },
             // { text: 'single-player' },

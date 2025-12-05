@@ -68,7 +68,7 @@ export default defineConfig({
                         { text: 'dialog-map-point', link: '/components/dialog-map-point' },
                         { text: 'dialog-upload-images', link: '/components/dialog-upload-images' },
                         { text: 'input', link: '/components/input' },
-                        // { text: 'input-number', link: '/components/input-number' },
+                        { text: 'input-number', link: '/components/input-number' },
                         { text: 'pca-picker', link: '/components/pca-picker' },
                         { text: 'select', link: '/components/select' },
                         // { text: 'switch', link: '/components/switch' },

@@ -1,15 +1,15 @@
 <template>
-    <div ref="eleInputNumber" :class="mainClass">
+    <div ref="inputNumberRef" :class="mainClass">
         <div v-if="$slots.prepend" class="el-input-group__prepend"><slot name="prepend" /></div>
         <ElInputNumber
             v-if="visible"
             v-model="myValue"
-            v-bind="$attrs"
-            :size="size"
             step-strictly
+            :size="size"
             :class="[inputNumberClass, $style['el-input-number']]"
             :precision="precision"
             :controls-position="myControlsPosition"
+            v-bind="$attrs"
             @keydown="limitInputValue"
             @change="handleChange"
             @blur="handleBlur"
@@ -25,19 +25,11 @@
 </template>
 
 <script lang="ts" setup>
+import type { IInputNumber } from './input-number'
 import { ElInputNumber } from 'element-plus'
-import { computed, nextTick, ref, shallowRef, useCssModule, useSlots } from 'vue'
+import { computed, nextTick, onUnmounted, ref, useCssModule, useSlots, useTemplateRef, watch } from 'vue'
 
-interface IPropType {
-    modelValue: number
-    precision?: number
-    controlsPosition?: 'right' | ''
-    size?: 'large' | 'default' | 'small'
-    inputNumberClass?: string
-    inputWidth?: string
-}
-
-const props = withDefaults(defineProps<IPropType>(), { modelValue: 0, precision: 0, inputWidth: '80px' })
+const props = withDefaults(defineProps<IInputNumber>(), { precision: 0, inputWidth: '80px' })
 
 const emits = defineEmits<{
     (e: 'update:modelValue', val: number): void
@@ -48,14 +40,14 @@ const emits = defineEmits<{
 const $slots = useSlots()
 const $style = useCssModule()
 const visible = ref(true)
-const eleInputNumber = shallowRef<HTMLDivElement>()
+const inputNumberRef = useTemplateRef('inputNumberRef')
 
 const mainClass = computed(() => {
     const className = {
         [$style['input-number']]: true,
         'el-input': true,
         'el-input-group--prepend': $slots.prepend,
-        'input-with-select': eleInputNumber.value?.querySelector('.el-input-group__prepend>.el-select'),
+        'input-with-select': inputNumberRef.value?.querySelector('.el-input-group__prepend>.el-select'),
     }
     if (props.size) {
         className[`el-input--${props.size}`] = true
@@ -88,14 +80,19 @@ function handleChange(currentValue: number | undefined, oldValue: number | undef
     emits('change', myValue.value, oldValue || 0)
 }
 
+function rerender() {
+    visible.value = false
+    nextTick(() => (visible.value = true))
+}
+
 function handleBlur(e: Event) {
-    const eleInput = eleInputNumber.value?.querySelector('.el-input__inner[type=number]') as HTMLInputElement
-    if (eleInput.value === '') {
-        visible.value = false
-        nextTick(() => (visible.value = true))
-    }
+    const eleInput = inputNumberRef.value?.querySelector('.el-input__inner[type=number]') as HTMLInputElement
+    if (eleInput.value === '') { rerender() }
     emits('blur', e)
 }
+
+const watchHandler = watch(() => props.precision, val => val === 0 && rerender())
+onUnmounted(() => watchHandler.stop())
 </script>
 
 <style lang="scss" module>

@@ -43,7 +43,7 @@ export const componentsData = [
             { text: 'flag' },
             { text: 'image' },
             { text: 'qr-code' },
-            // { text: 'screenfull' },
+            { text: 'screenfull' },
             // { text: 'sync-scroll-container' },
             // { text: 'single-player' },
             { text: 'text-ellipsis' },

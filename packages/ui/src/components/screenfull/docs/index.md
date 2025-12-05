@@ -1,3 +1,5 @@
+# screenfull
+
 ## 功能
 
 <CdnTag name="screenfull" />全屏组件。
@@ -5,7 +7,6 @@
 :::tip
 只有当点击组件时，才会去加载全屏依赖的 js 文件
 :::
-
 
 ## 功能示例
 

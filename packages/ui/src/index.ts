@@ -23,6 +23,7 @@ export { default as HInputNumber } from './components/input-number/input-number.
 export { default as HInput } from './components/input/input.vue'
 export { default as HPCAPicker } from './components/pca-picker/pca-picker.vue'
 export { default as HQRCode } from './components/qr-code/qr-code.vue'
+export { default as HScreenfull } from './components/screenfull/screenfull.vue'
 export { default as HSelect } from './components/select/select.vue'
 export { default as HSVGIcon } from './components/svg-icon/svg-icon.vue'
 export { default as HTags } from './components/tags/tags.vue'

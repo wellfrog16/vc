@@ -19,17 +19,20 @@
 </template>
 
 <script lang="ts" setup>
+import type { ISinglePlayerProps } from './single-player'
 import { ElSlider } from 'element-plus'
 import { isBoolean } from 'lodash-es'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import HAwesomeIcon from '../awesome-icon/awesome-icon.vue'
 
-const props = defineProps({
-    src: { type: String, default: '' },
-    width: { type: Number, default: 300 },
+const props = withDefaults(defineProps<ISinglePlayerProps>(), {
+    width: 300,
 })
 
-const emits = defineEmits(['error', 'timeupdate'])
+const emits = defineEmits<{
+    (e: 'error', error: any): void
+    (e: 'timeupdate', time: number): void
+}>()
 
 const DEFAULT_VOLUME = 50
 

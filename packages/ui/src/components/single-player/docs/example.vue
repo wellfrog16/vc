@@ -11,5 +11,5 @@ import { ElDescriptionsItem } from 'element-plus'
 import Wrapper from '@/components/example-wrapper.vue'
 import HSinglePlayer from '../single-player.vue'
 
-const mediaUrl = 'https://music.163.com/song/media/outer/url?id=1842025914.mp3'
+const mediaUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'
 </script>

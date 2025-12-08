@@ -105,6 +105,7 @@ const { stream, start, stop, enabled } = useUserMedia({
             height: props.height,
             deviceId: currentCamera.value,
         },
+        audio: false,
     },
 })
 const videoRef = useTemplateRef('videoRef')

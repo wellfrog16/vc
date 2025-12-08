@@ -74,7 +74,7 @@ export default defineConfig({
                         { text: 'switch', link: '/components/switch' },
                         { text: 'tags', link: '/components/tags' },
                         { text: 'thousand-input', link: '/components/thousand-input' },
-                        // { text: 'tinymce', link: '/components/tinymce' },
+                        { text: 'tinymce', link: '/components/tinymce' },
                         { text: 'tree-picker', link: '/components/tree-picker' },
                     ],
                 },

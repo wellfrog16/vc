@@ -32,6 +32,7 @@ export { default as HSyncScrollContainer } from './components/sync-scroll-contai
 export { default as HTags } from './components/tags/tags.vue'
 export { default as HTextEllipsis } from './components/text-ellipsis/text-ellipsis.vue'
 export { default as HThousandInput } from './components/thousand-input/thousand-input.vue'
+export { default as HTinymce } from './components/tinymce/tinymce.vue'
 export { default as HTreePicker } from './components/tree-picker/tree-picker.vue'
 export { default as HUploadFile } from './components/upload-file/upload-file.vue'
 

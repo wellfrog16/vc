@@ -1,3 +1,5 @@
+# tinymce
+
 ## 功能
 
 <CdnTag name="tinymce" />基于 TinyMCE 的富文本编辑器

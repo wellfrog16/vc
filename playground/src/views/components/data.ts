@@ -21,7 +21,7 @@ export const componentsData = [
             { text: 'switch' },
             { text: 'tags' },
             { text: 'thousand-input' },
-            // { text: 'tinymce' },
+            { text: 'tinymce' },
             { text: 'tree-picker' },
         ],
     },

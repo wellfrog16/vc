@@ -5,23 +5,21 @@
 </template>
 
 <script lang="ts" setup>
-// import type { ICDNType, RawEditorSettings } from '@wfrog/utils'
 import type { ICDNType } from '@wfrog/utils'
-import type { PropType } from 'vue'
-import { defaultWindow, loader } from '@wfrog/utils'
+import type { ITinymceProps } from './tinymce'
 
+import { defaultWindow, loader } from '@wfrog/utils'
 import { vLoading } from 'element-plus'
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import config from './config'
 
-const props = defineProps({
-    id: { type: String, default: () => `h-tinymce-${+new Date()}${(Math.random() * 1000).toFixed(0)}` },
-    config: { type: String as PropType<keyof typeof config>, default: 'mini' },
-    width: { type: String, default: '100%' },
-    height: { type: String, default: '360px' },
-    modelValue: { type: String, default: '' },
-    // httpRequest: { type: Function as PropType<RawEditorSettings['images_upload_handler']>, default: undefined },
-    httpRequest: { type: Function as PropType<any>, default: undefined }, // 上面ts类型报错，暂时any，原因未知
+const props = withDefaults(defineProps<ITinymceProps>(), {
+    id: () => `h-tinymce-${+new Date()}${(Math.random() * 1000).toFixed(0)}`,
+    config: 'mini',
+    width: '100%',
+    height: '360px',
+    modelValue: '',
+    httpRequest: undefined,
 })
 
 const emits = defineEmits(['update:modelValue'])

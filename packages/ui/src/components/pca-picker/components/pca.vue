@@ -29,9 +29,10 @@ const emits = defineEmits<{
 }>()
 
 const { props: commonProps, optionData, updatePopper, togglePopoverVisible, clickItems } = injectCommonState()
-const { nameKey, multiple } = toRefs(commonProps)
+const { nameKey, multiple, props: cascaderPropsFromCommon } = toRefs(commonProps)
 
 const cascaderProps = computed(() => ({
+    ...cascaderPropsFromCommon.value,
     label: nameKey.value,
     value: 'id',
     children: 'childs',

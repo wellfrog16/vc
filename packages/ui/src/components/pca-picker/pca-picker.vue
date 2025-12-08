@@ -35,11 +35,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { IPCAData, IPropType } from './pca-picker'
+import type { IPCAData, IPCAPickerProps } from './pca-picker'
 import { onClickOutside, useThrottleFn, useToggle, useVModel } from '@vueuse/core'
 import { ElCascader, ElPopover } from 'element-plus'
 
-import { computed, nextTick, onBeforeUnmount, onMounted, shallowRef, useCssModule, useTemplateRef, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, useCssModule, useTemplateRef, watch } from 'vue'
 import { useProvide } from '@/use/useStore'
 
 import { injectConfig } from '../config-provider/config-provider'
@@ -51,7 +51,7 @@ import PCAPicker from './components/pca.vue'
 import { KEY_NAME, usePCAData } from './pca-picker'
 import './index.scss'
 
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IPCAPickerProps>(), {
     disabled: false,
     excludeIds: () => [71, 81, 82], // 港澳台
     nameKey: 'n',
@@ -95,7 +95,7 @@ const cascaderProps = computed(() => ({
     emitPath: false,
 }))
 
-const containerRef = shallowRef<any>()
+const containerRef = useTemplateRef('containerRef')
 onClickOutside(containerRef, event => {
     let target = event.target as any
     let result = false

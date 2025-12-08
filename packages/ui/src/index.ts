@@ -47,6 +47,7 @@ function install(Vue: any) {
         let componentName = `H-${name}`.replace(/-(\w)/g, upper)
         if (name === 'qr-code') { componentName = 'HQRCode' }
         if (name === 'svg-icon') { componentName = 'HSVGIcon' }
+        if (name === 'pca-picker') { componentName = 'HPCAPicker' }
 
         Vue.component(componentName, modules[key].default)
         return true

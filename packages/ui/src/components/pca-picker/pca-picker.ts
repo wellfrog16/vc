@@ -1,4 +1,4 @@
-import type { CascaderOption } from 'element-plus/es/components/cascader-panel'
+import type { CascaderOption, CascaderProps } from 'element-plus'
 import type { ComputedRef, Ref } from 'vue'
 import { useStorage } from '@vueuse/core'
 import { storage } from '@wfrog/utils'
@@ -8,7 +8,7 @@ import { flatMap, flatMapDeep } from 'lodash-es'
 import { computed, ref, shallowRef } from 'vue'
 import { useInject } from '@/use/useStore'
 
-export interface IPropType {
+export interface IPCAPickerProps {
     source: 'p' | 'p-py' | 'p-py-fn' | 'pc' | 'pc-py' | 'pc-py-fn' | 'pca' | 'pca-py' | 'pca-py-fn'
     type: 'P' | 'C' | 'PC' | 'PCA'
     hotIds?: number[] // 热门城市的codes
@@ -28,10 +28,11 @@ export interface IPropType {
     activeMark?: boolean // 选中项角标
     syncActive?: boolean // 是否在热门和历史选择里同步高亮选中项
     limit?: number // 多选时的数量限制
+    props?: CascaderProps
 }
 
 export interface ICommmonStateType {
-    props: Required<IPropType>
+    props: Required<IPCAPickerProps>
     availableData: ComputedRef<IPCAData[]>
     flatData: ComputedRef<IPCAData[]>
     filterData: ComputedRef<IPCAData[]>
@@ -61,15 +62,15 @@ export interface IPCAData {
     [key: string]: any
 }
 
-export function usePCAData(params: IPropType) {
+export function usePCAData(params: IPCAPickerProps) {
     const loading = ref(false)
-    const myProps = ref<IPropType>(params)
+    const myProps = ref<IPCAPickerProps>(params)
     const storageKey = computed(() => `vc-pca-picker-${myProps.value?.source}`)
     const pcaData = shallowRef<IPCAData[]>([])
     const keyword = ref('')
     const loadFailed = ref(false)
 
-    const setProps = (data: IPropType) => {
+    const setProps = (data: IPCAPickerProps) => {
         myProps.value = data
     }
 

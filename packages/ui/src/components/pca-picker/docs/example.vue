@@ -78,21 +78,21 @@
 </template>
 
 <script lang="ts" setup>
-import type { IChoiceOption } from '../../choice/useChoice'
+import type { IChoiceProps } from '@/components/choice/choice'
 import { ElAlert, ElDescriptionsItem, ElOption, ElSelect, ElSpace, ElText } from 'element-plus'
 
 import { computed, nextTick, ref } from 'vue'
-import HChoice from '@/components/choice'
-import HChoiceBoolean from '@/components/choice-boolean'
+import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import HChoice from '@/components/choice/choice.vue'
 import HConfigProvider from '@/components/config-provider/config-provider.vue'
 import Wrapper from '@/components/example-wrapper.vue'
-import HInputNumber from '@/components/input-number'
+import HInputNumber from '@/components/input-number/input-number.vue'
 import HPCAPicker from '../pca-picker.vue'
 
 const sourceExplain = '*不同数据源，提供的数据不同。所以像“省 + 拼音”的数据，是无法提供【省市】信息的展示，也无法显示数据的【全称】。同样，如果数据源没有选择【拼音】，那么搜索时也无法使用拼音搜索。'
 
 const source = ref<any>('pca-py-fn')
-const sourceOption: IChoiceOption = [
+const sourceOption: IChoiceProps['options'] = [
     { label: '省', value: 'p' },
     { label: '省 + 拼音', value: 'p-py' },
     { label: '省 + 全称+ 拼音', value: 'p-py-fn' },
@@ -138,7 +138,7 @@ const hotData = [
 ]
 
 const type = ref<'P' | 'C' | 'PC' | 'PCA'>('P')
-const typeOption: IChoiceOption = [
+const typeOption: IChoiceProps['options'] = [
     { label: '省', value: 'P' },
     { label: '市', value: 'C' },
     { label: '省市(级联)', value: 'PC' },
@@ -157,7 +157,7 @@ const hotIdsOption = computed(() => {
 })
 
 const multiple = ref(false) // 单/多选
-const multipleOption: IChoiceOption = [
+const multipleOption: IChoiceProps['options'] = [
     { label: '单选', value: false },
     { label: '多选', value: true },
 ]

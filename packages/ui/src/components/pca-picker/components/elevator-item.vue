@@ -16,12 +16,12 @@ import { ElCol, ElRow } from 'element-plus'
 import { toRefs } from 'vue'
 import { injectCommonState } from '../pca-picker'
 
-interface IPropType {
+interface IElevatorItem {
     label: string
     data: IPCAData[]
 }
 
-defineProps<IPropType>()
+defineProps<IElevatorItem>()
 
 const { props: commonProps, itemClass, clickItem } = injectCommonState()
 const { nameKey } = toRefs(commonProps)

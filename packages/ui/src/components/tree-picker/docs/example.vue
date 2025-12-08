@@ -28,18 +28,18 @@
 </template>
 
 <script lang="ts" setup>
-import type { IChoiceOption } from '@/components/choice/useChoice'
+import type { IChoiceProps } from '@/components/choice/choice'
 import { ElDescriptionsItem } from 'element-plus'
 import { ref } from 'vue'
-import HChoice from '@/components/choice'
-import HChoiceBoolean from '@/components/choice-boolean'
+import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import HChoice from '@/components/choice/choice.vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HTreePicker from '../tree-picker.vue'
-import treeData from './data'
+import { treeData } from './data'
 
 const result = ref<string | string[]>('')
 const multiple = ref(false)
-const multipleOption: IChoiceOption = [
+const multipleOption: IChoiceProps['options'] = [
     { label: '单选', value: false },
     { label: '多选', value: true },
 ]
@@ -48,13 +48,13 @@ function handleMultipleChange(value: string | number | boolean) {
 }
 
 const block = ref(false)
-const blockOption: IChoiceOption = [
+const blockOption: IChoiceProps['options'] = [
     { label: '内联', value: false },
     { label: '块级（需要设置默认宽度）', value: true },
 ]
 
 const width = ref('450px')
-const widthOption: IChoiceOption = [
+const widthOption: IChoiceProps['options'] = [
     { label: '默认', value: '' },
     { label: '350px', value: '350px' },
     { label: '450px', value: '450px' },

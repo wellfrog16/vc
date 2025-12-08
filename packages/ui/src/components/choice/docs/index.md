@@ -1,3 +1,5 @@
+# choice
+
 ## 功能
 
 基于 el-radio 和 el-checkbox，用于单选和多选共用一个组件方便切换。

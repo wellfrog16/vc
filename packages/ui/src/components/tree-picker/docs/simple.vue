@@ -8,7 +8,7 @@
 import { ref } from 'vue'
 import Wrapper from '@/components/simple-wrapper.vue'
 import HTreePicker from '../tree-picker.vue'
-import treeData from './data'
+import { treeData } from './data'
 
 const result = ref<string>('')
 </script>

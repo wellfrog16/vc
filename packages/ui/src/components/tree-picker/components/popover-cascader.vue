@@ -24,21 +24,14 @@
 </template>
 
 <script setup lang="ts">
-import type { CascaderNode, CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel'
+import type { CascaderNode, CascaderOption, CascaderValue } from 'element-plus/es/components/cascader-panel'
+import type { IPopoverCascaderProps } from './popover-cascader'
 import { useVModel } from '@vueuse/core'
-import { ElCascaderPanel, ElScrollbar, ElTree } from 'element-plus'
 
+import { ElCascaderPanel, ElScrollbar, ElTree } from 'element-plus'
 import { computed, nextTick, onBeforeUnmount, useTemplateRef, watch } from 'vue'
 
-interface IPropType {
-    modelValue: string | number | string[] | number[] | undefined
-    multiple?: boolean
-    emptyText?: string
-    props: CascaderProps
-    options: CascaderOption[]
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IPopoverCascaderProps>(), {
     emptyText: '尚未选择',
 })
 const emits = defineEmits<{
@@ -71,14 +64,13 @@ function filterNode(value: CascaderValue[], data: CascaderOption) {
 }
 
 // 树过滤，el-tree内部调用filterNode
-const treeRef = useTemplateRef<any>('treeRef')
+const treeRef = useTemplateRef('treeRef')
 function filterTree(val: CascaderValue | null | undefined) {
     nextTick(() => treeRef.value?.filter(val))
     emits('expandChange')
 }
 
-// const cascaderPanelRef = useTemplateRef<InstanceType<typeof ElCascaderPanel>>('cascaderPanelRef')
-const cascaderPanelRef = useTemplateRef<any>('cascaderPanelRef')
+const cascaderPanelRef = useTemplateRef('cascaderPanelRef')
 function handleCascaderChange(val?: CascaderValue | null) {
     const node = cascaderPanelRef.value?.getCheckedNodes(true)
     emits('change', val, node)

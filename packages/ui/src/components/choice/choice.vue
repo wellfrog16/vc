@@ -4,17 +4,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { CheckboxGroupProps, RadioGroupProps } from 'element-plus'
+import type { IChoiceProps } from './choice'
 import { ElCheckboxGroup, ElRadioGroup } from 'element-plus'
 import { computed } from 'vue'
 
-interface IPropType {
-    multiple?: boolean
-    type?: RadioGroupProps['type'] | CheckboxGroupProps['type']
-    options: RadioGroupProps['options'] | CheckboxGroupProps['options'] | string[]
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IChoiceProps>(), {
     type: 'button',
 })
 

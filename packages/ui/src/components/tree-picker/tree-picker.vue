@@ -37,29 +37,16 @@
 </template>
 
 <script lang="ts" setup>
-import type { CascaderNode, CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel'
+import type { CascaderNode, CascaderValue } from 'element-plus/es/components/cascader-panel'
+import type { ITreePickerProps } from './tree-picker'
 import { onClickOutside, useThrottleFn, useToggle, useVModel } from '@vueuse/core'
+
 import { ElCascader, ElPopover } from 'element-plus'
 
 import { computed, nextTick, ref, useCssModule, useTemplateRef } from 'vue'
-
 import PopoverCascader from './components/popover-cascader.vue'
 
-interface IPropType {
-    emptyText?: string
-    placeholder?: string
-    disabled?: boolean
-    multiple?: boolean
-    modelValue: string | number | string[] | number[] | undefined
-    options?: CascaderOption[]
-    props?: CascaderProps
-    width?: string
-    block?: boolean
-    filterable?: boolean
-    filterEmptyText?: string
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<ITreePickerProps>(), {
     placeholder: '请选择',
     disabled: false,
     multiple: false,

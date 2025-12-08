@@ -83,7 +83,7 @@ const myWidth = computed(() => {
 const $style = useCssModule()
 const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value, [$style.block]: props.block }))
 
-const containerRef = useTemplateRef<any>('containerRef')
+const containerRef = useTemplateRef('containerRef')
 onClickOutside(containerRef, event => {
     let target = event.target as any
     let result = false
@@ -97,7 +97,7 @@ onClickOutside(containerRef, event => {
 })
 
 // 更新popover布局
-const popoverRef = useTemplateRef<any>('popoverRef')
+const popoverRef = useTemplateRef('popoverRef')
 function updatePopper() {
     return nextTick(() => {
         popoverRef.value!.popperRef!.popperInstanceRef?.update()

@@ -13,6 +13,7 @@
     },
     "./index.css": "./dist/index.css",
     "./*": "./dist/*",
+    "./es/components/*/type": "./dist/es/components/*/*.d.ts",
     "./es/components/*": {
       "types": "./dist/es/components/*/index.d.ts",
       "default": "./dist/es/components/*/index.mjs"

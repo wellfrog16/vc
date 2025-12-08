@@ -1,17 +1,19 @@
 <template>
     <Wrapper>
-        <HSyncScrollContainer border>
-            <template #corner>
-                <div>slot: corner</div>
-            </template>
-            <template #sidebar>
-                <div :class="$style.sidebar">slot: sidebar</div>
-            </template>
-            <template #header>
-                <div :class="$style.header">slot: header</div>
-            </template>
-            <div :class="$style.body">slot: default</div>
-        </HSyncScrollContainer>
+        <div :class="$style.container">
+            <HSyncScrollContainer border>
+                <template #corner>
+                    <div>slot: corner</div>
+                </template>
+                <template #sidebar>
+                    <div :class="$style.sidebar">slot: sidebar</div>
+                </template>
+                <template #header>
+                    <div :class="$style.header">slot: header</div>
+                </template>
+                <div :class="$style.body">slot: default</div>
+            </HSyncScrollContainer>
+        </div>
     </Wrapper>
 </template>
 

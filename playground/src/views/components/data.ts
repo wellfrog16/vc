@@ -45,7 +45,7 @@ export const componentsData = [
             { text: 'qr-code' },
             { text: 'screenfull' },
             { text: 'single-player' },
-            // { text: 'sync-scroll-container' },
+            { text: 'sync-scroll-container' },
             { text: 'text-ellipsis' },
             { text: 'upload-file' },
         ],

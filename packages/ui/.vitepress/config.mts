@@ -98,7 +98,7 @@ export default defineConfig({
                         { text: 'qr-code', link: '/components/qr-code' },
                         { text: 'screenfull', link: '/components/screenfull' },
                         { text: 'single-player', link: '/components/single-player' },
-                        // { text: 'sync-scroll-container', link: '/components/sync-scroll-container' },
+                        { text: 'sync-scroll-container', link: '/components/sync-scroll-container' },
                         { text: 'text-ellipsis', link: '/components/text-ellipsis' },
                         { text: 'upload-file', link: '/components/upload-file' },
                     ],

@@ -12,7 +12,7 @@
         <div :class="[$style.sidebar, { [$style.shadow]: shadow, [$style.border]: border }]">
             <div ref="refSidebarContainer"><slot name="sidebar" /></div>
         </div>
-        <div ref="refContainer" :class="$style.container">
+        <div :class="$style.container">
             <div :class="$style.body">
                 <div ref="refBodyContainer"><slot /></div>
             </div>
@@ -21,25 +21,20 @@
 </template>
 
 <script setup lang="ts">
+import type { ISyncScrollContainerProps } from './sync-scroll-container'
 import { useElementSize } from '@vueuse/core'
-import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
 
-interface IPropType {
-    shadow?: boolean
-    border?: boolean
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+withDefaults(defineProps<ISyncScrollContainerProps>(), {
     shadow: false,
     border: true,
 })
 
-const refWrapper = shallowRef<HTMLDivElement>()
-const refContainer = shallowRef<HTMLDivElement>()
-const refHeader = shallowRef<HTMLDivElement>()
-const refHeaderContainer = shallowRef<HTMLDivElement>()
-const refBodyContainer = shallowRef<HTMLDivElement>()
-const refSidebarContainer = shallowRef<HTMLDivElement>()
+const refWrapper = useTemplateRef('refWrapper')
+const refHeader = useTemplateRef('refHeader')
+const refHeaderContainer = useTemplateRef('refHeaderContainer')
+const refBodyContainer = useTemplateRef('refBodyContainer')
+const refSidebarContainer = useTemplateRef('refSidebarContainer')
 const refNode = computed(() => refWrapper.value?.parentNode as HTMLElement || refWrapper.value)
 
 const { height: headerHeight } = useElementSize(refHeaderContainer)
@@ -67,7 +62,7 @@ function syncScroll() {
         refHeader.value!.scrollLeft = refWrapper.value!.scrollLeft
     }
 
-    function hasHorizontalScroll(element) {
+    function hasHorizontalScroll(element: HTMLDivElement) {
         return element.scrollWidth > element.clientWidth
     }
 

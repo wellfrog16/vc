@@ -6,7 +6,7 @@
 
 - 通过 `font-size` 控制 icon 大小，`color` 控制 icon 的颜色。
 - 你可以通过 [iconfont.cn](https://iconfont.cn) 挑选你需要 icon。
-- 最后加载 `Symbol` 模式提供的 js 即可使用，像这样
+- 最后加载 `Symbol` 模式提供的 js 可以通过 `config-provider` 加载，也可以像这样
 
 ```html
 <!doctype html>
@@ -26,7 +26,7 @@
 
 ## 最小示例
 
-<<< ./simple.vue{3}
+<<< ./simple.vue{3-5}
 
 ## API
 

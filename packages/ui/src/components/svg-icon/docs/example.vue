@@ -1,14 +1,16 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <div :class="$style.icons" :style="myStyle">
-                <HSVGIcon name="music" />
-                <HSVGIcon name="star" />
-                <HSVGIcon name="dream" />
-                <HSVGIcon name="component" />
-                <HSVGIcon name="eleme" />
-                <HSVGIcon name="business" />
-            </div>
+            <HConfigProvider iconfont-url="//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js">
+                <div :class="$style.icons" :style="myStyle">
+                    <HSVGIcon name="music" />
+                    <HSVGIcon name="star" />
+                    <HSVGIcon name="dream" />
+                    <HSVGIcon name="component" />
+                    <HSVGIcon name="eleme" />
+                    <HSVGIcon name="business" />
+                </div>
+            </HConfigProvider>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="大小控制">
             <ElSlider v-model="fontsize" :min="14" :max="30" />
@@ -24,11 +26,10 @@ import { ElDescriptionsItem, ElSlider } from 'element-plus'
 import { computed, ref } from 'vue'
 
 import HChoice from '@/components/choice/choice.vue'
+import HConfigProvider from '@/components/config-provider/config-provider.vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HSVGIcon from '../svg-icon.vue'
-import useExample from './useExample'
 
-useExample()
 const fontsize = ref(18)
 const colors = [
     { label: '粉红', value: 'deeppink' },

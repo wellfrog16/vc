@@ -10,6 +10,7 @@ export interface IConfigProviderProps {
             msg?: string
         }
     }
+    iconfontUrl?: string
     pcaBaseUrl?: string
     crosProxy?: string
 }

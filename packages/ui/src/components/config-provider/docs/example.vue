@@ -18,7 +18,7 @@
 import { ElDescriptionsItem, ElMessage } from 'element-plus'
 import { ref } from 'vue'
 
-import HButton from '@/components/button'
+import HButton from '@/components/button/button.vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HConfigProvider from '../config-provider.vue'
 

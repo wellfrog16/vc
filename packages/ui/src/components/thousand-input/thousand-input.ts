@@ -1,4 +1,4 @@
-interface IOptionType {
+export interface IOptionType {
     decimalScale: number
     integerScale: number
     prefix?: string

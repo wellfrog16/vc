@@ -3,18 +3,14 @@
 </template>
 
 <script lang="ts" setup>
-import type { IFlag2Code, IFlag3Code } from './flags'
+import type { IFlag3Code, IFlagProps } from './flags'
+
 import { loader } from '@wfrog/utils'
 import { computed, onBeforeMount } from 'vue'
+
 import { codeMapping } from './flags'
 
-interface IPropType {
-    code: IFlag2Code | IFlag3Code
-    squared?: boolean
-    size?: string | number
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IFlagProps>(), {
     squared: false,
 })
 

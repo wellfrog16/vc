@@ -11,9 +11,10 @@
 
 <script setup lang="ts">
 import type { IPCAData } from '../pca-picker'
-import { ElCol, ElRow } from 'element-plus'
 
+import { ElCol, ElRow } from 'element-plus'
 import { toRefs } from 'vue'
+
 import { injectCommonState } from '../pca-picker'
 
 interface IElevatorItem {

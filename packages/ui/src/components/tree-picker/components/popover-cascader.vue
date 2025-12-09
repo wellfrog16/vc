@@ -26,8 +26,8 @@
 <script setup lang="ts">
 import type { CascaderNode, CascaderOption, CascaderValue } from 'element-plus/es/components/cascader-panel'
 import type { IPopoverCascaderProps } from './popover-cascader'
-import { useVModel } from '@vueuse/core'
 
+import { useVModel } from '@vueuse/core'
 import { ElCascaderPanel, ElScrollbar, ElTree } from 'element-plus'
 import { computed, nextTick, onBeforeUnmount, useTemplateRef, watch } from 'vue'
 

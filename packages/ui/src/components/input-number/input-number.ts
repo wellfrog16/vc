@@ -1,4 +1,4 @@
-export interface IInputNumber {
+export interface IInputNumberProps {
     modelValue: number
     precision?: number
     controlsPosition?: 'right' | ''

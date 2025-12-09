@@ -1,4 +1,4 @@
-export interface IPropType {
+export interface ITagsProps {
     modelValue: (string | number)[]
     limit?: number
     regexp?: RegExp

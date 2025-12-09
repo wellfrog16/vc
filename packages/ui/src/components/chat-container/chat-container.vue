@@ -1,9 +1,9 @@
 <template>
-    <div ref="refContainer" :class="$style.main">
+    <div ref="containerRef" :class="$style.main">
         <slot />
         <Backbottom
-            v-if="refContainer"
-            :target="refContainer"
+            v-if="containerRef"
+            :target="containerRef"
             :class="[$style.backbottom, backbottomClassName]"
             :visibility-height="backbottomProps?.visibilityHeight"
             :bottom="backbottomProps?.bottom"
@@ -14,26 +14,17 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, shallowRef, useTemplateRef } from 'vue'
+import type { IChatContainerProps } from './chat-container'
 
+import { onBeforeUnmount, onMounted, shallowRef, useTemplateRef } from 'vue'
 import Backbottom from '../backbottom/backbottom.vue'
 
-interface IPropType {
-    stopHeight?: number
-    keepBottom?: boolean
-    backbottomClassName?: string
-    backbottomProps?: {
-        visibilityHeight?: number
-        bottom?: number
-    }
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
-    refContainer: undefined,
+const props = withDefaults(defineProps<IChatContainerProps>(), {
+    containerRef: undefined,
     stopHeight: 30,
     keepBottom: false,
 })
-const refContainer = useTemplateRef('refContainer')
+const containerRef = useTemplateRef('containerRef')
 const observer = shallowRef<MutationObserver>()
 
 function isScrollbarNearBottom(element: HTMLElement) {
@@ -41,19 +32,19 @@ function isScrollbarNearBottom(element: HTMLElement) {
 }
 
 function scrollToBottom() {
-    refContainer.value!.scrollTop = refContainer.value!.scrollHeight
+    containerRef.value!.scrollTop = containerRef.value!.scrollHeight
 }
 
 defineExpose({ scrollToBottom })
 
 onMounted(() => {
     observer.value = new MutationObserver(() => {
-        if (isScrollbarNearBottom(refContainer.value!) || props.keepBottom) {
-            refContainer.value!.scrollTop = refContainer.value!.scrollHeight
+        if (isScrollbarNearBottom(containerRef.value!) || props.keepBottom) {
+            containerRef.value!.scrollTop = containerRef.value!.scrollHeight
         }
     })
 
-    observer.value.observe(refContainer.value!, { subtree: true, characterData: true, childList: true })
+    observer.value.observe(containerRef.value!, { subtree: true, characterData: true, childList: true })
 })
 
 onBeforeUnmount(() => {

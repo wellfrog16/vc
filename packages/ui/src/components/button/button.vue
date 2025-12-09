@@ -23,30 +23,16 @@
 </template>
 
 <script lang="ts" setup>
-import type { ButtonType } from 'element-plus/es/components/button/src/button'
+import type { IButtonProps } from './button'
 
-import type { IIconOption } from './button'
 import { useThrottleFn } from '@vueuse/core'
-
 import { ElButton, ElMessageBox, ElPopconfirm } from 'element-plus'
 import { computed } from 'vue'
+
 import { injectConfig } from '../config-provider/config-provider'
 import HIcon from '../icon/icon.vue'
 
-interface IPropType {
-    icon?: IIconOption
-    time?: number
-    type?: ButtonType
-    confirm?: {
-        type?: 'popconfirm' | 'messagebox' | 'none' // 非 popconfirm， messagebox 的其他值不会执行 confirm
-        title?: string
-        confirmButtonText?: string
-        cancelButtonText?: string
-        msg?: string
-    }
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IButtonProps>(), {
     time: 800,
     type: '',
     confirm: undefined,

@@ -27,6 +27,7 @@
 import { useDebounceFn } from '@vueuse/core'
 import { ElAlert, ElCol, ElDescriptionsItem, ElRow, ElSlider, ElSwitch } from 'element-plus'
 import { ref } from 'vue'
+
 import Wrapper from '@/components/example-wrapper.vue'
 import HTextEllipsis from '../text-ellipsis.vue'
 

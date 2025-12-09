@@ -1,20 +1,20 @@
 <template>
-    <div ref="refWrapper" :class="[$style.wrapper, { [$style.border]: border }]">
-        <div ref="refHeader" :class="[$style.header, { [$style.border]: border }]">
+    <div ref="wrapperRef" :class="[$style.wrapper, { [$style.border]: border }]">
+        <div ref="headerRef" :class="[$style.header, { [$style.border]: border }]">
             <div :class="[$style.corner, { [$style.shadow]: shadow, [$style.border]: border }]">
                 <slot name="corner" />
             </div>
             <div>
-                <div ref="refHeaderContainer" :class="$style['header-container']"><slot name="header" /></div>
+                <div ref="headerContainerRef" :class="$style['header-container']"><slot name="header" /></div>
             </div>
         </div>
         <div v-if="shadow" :class="$style['header-shadow']" />
         <div :class="[$style.sidebar, { [$style.shadow]: shadow, [$style.border]: border }]">
-            <div ref="refSidebarContainer"><slot name="sidebar" /></div>
+            <div ref="sidebarContainerRef"><slot name="sidebar" /></div>
         </div>
         <div :class="$style.container">
             <div :class="$style.body">
-                <div ref="refBodyContainer"><slot /></div>
+                <div ref="bodyContainerRef"><slot /></div>
             </div>
         </div>
     </div>
@@ -22,6 +22,7 @@
 
 <script setup lang="ts">
 import type { ISyncScrollContainerProps } from './sync-scroll-container'
+
 import { useElementSize } from '@vueuse/core'
 import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
 
@@ -30,17 +31,17 @@ withDefaults(defineProps<ISyncScrollContainerProps>(), {
     border: true,
 })
 
-const refWrapper = useTemplateRef('refWrapper')
-const refHeader = useTemplateRef('refHeader')
-const refHeaderContainer = useTemplateRef('refHeaderContainer')
-const refBodyContainer = useTemplateRef('refBodyContainer')
-const refSidebarContainer = useTemplateRef('refSidebarContainer')
-const refNode = computed(() => refWrapper.value?.parentNode as HTMLElement || refWrapper.value)
+const wrapperRef = useTemplateRef('wrapperRef')
+const headerRef = useTemplateRef('headerRef')
+const headerContainerRef = useTemplateRef('headerContainerRef')
+const bodyContainerRef = useTemplateRef('bodyContainerRef')
+const sidebarContainerRef = useTemplateRef('sidebarContainerRef')
+const nodeRef = computed(() => wrapperRef.value?.parentNode as HTMLElement || wrapperRef.value)
 
-const { height: headerHeight } = useElementSize(refHeaderContainer)
-const { width: bodyWidth, height: bodyHeight } = useElementSize(refBodyContainer)
-const { width: sidebarWidth } = useElementSize(refSidebarContainer)
-const { width: nodeWidth, height: nodeHeight } = useElementSize(refNode)
+const { height: headerHeight } = useElementSize(headerContainerRef)
+const { width: bodyWidth, height: bodyHeight } = useElementSize(bodyContainerRef)
+const { width: sidebarWidth } = useElementSize(sidebarContainerRef)
+const { width: nodeWidth, height: nodeHeight } = useElementSize(nodeRef)
 
 const scrollBarWidth = ref(0)
 
@@ -59,7 +60,7 @@ function getScrollbarWidth() {
 
 function syncScroll() {
     function updateScroll() {
-        refHeader.value!.scrollLeft = refWrapper.value!.scrollLeft
+        headerRef.value!.scrollLeft = wrapperRef.value!.scrollLeft
     }
 
     function hasHorizontalScroll(element: HTMLDivElement) {
@@ -67,15 +68,15 @@ function syncScroll() {
     }
 
     const install = () => {
-        refWrapper.value!.addEventListener('scroll', updateScroll)
+        wrapperRef.value!.addEventListener('scroll', updateScroll)
 
-        if (hasHorizontalScroll(refWrapper.value!)) {
+        if (hasHorizontalScroll(wrapperRef.value!)) {
             scrollBarWidth.value = getScrollbarWidth()
         }
     }
 
     const uninstall = () => {
-        refWrapper.value!.removeEventListener('scroll', updateScroll)
+        wrapperRef.value!.removeEventListener('scroll', updateScroll)
     }
 
     return { install, uninstall }

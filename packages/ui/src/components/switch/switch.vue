@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
 import type { ISwitchProps } from './switch'
+
 import { ElPopconfirm, ElSwitch } from 'element-plus'
 import { computed, onMounted, useTemplateRef } from 'vue'
 

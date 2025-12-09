@@ -1,3 +1,5 @@
+# flag
+
 ## 功能
 
 <CdnTag name="flagicons" />地区 SVG 旗子

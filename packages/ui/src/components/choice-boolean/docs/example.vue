@@ -13,6 +13,7 @@
 <script lang="ts" setup>
 import { ElDescriptionsItem } from 'element-plus'
 import { ref } from 'vue'
+
 import HChoice from '@/components/choice/choice.vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HChoiceBoolean from '../choice-boolean.vue'

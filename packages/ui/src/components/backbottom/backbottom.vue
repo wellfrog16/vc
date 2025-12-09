@@ -10,20 +10,13 @@
 </template>
 
 <script lang="ts" setup>
+import type { IBackBottomProps } from './backbottom'
+
 import { CaretBottom } from '@element-plus/icons-vue'
 import { ElIcon } from 'element-plus'
-
 import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
 
-interface IPropType {
-    target?: HTMLElement | string | null
-    right?: number
-    bottom?: number
-    visibilityHeight?: number
-    parent?: boolean
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IBackBottomProps>(), {
     right: 40,
     bottom: 40,
     visibilityHeight: 200,

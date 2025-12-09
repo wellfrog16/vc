@@ -5,11 +5,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { IPropType } from './el-icon'
+import type { IElIconProps } from './el-icon'
+
 import * as Icons from '@element-plus/icons-vue'
 import { ElIcon } from 'element-plus'
 
-withDefaults(defineProps<IPropType>(), { color: '', size: '' })
+withDefaults(defineProps<IElIconProps>(), { color: '', size: '' })
 </script>
 
 <style lang="scss" module>

@@ -1,3 +1,5 @@
+# upload-file
+
 ## 功能
 
 <CdnTag name="cropperjs" />上传单图片，展示图片（fit）以及button。也可以修改accept上传其他格式的文件，默认为图片。图片类型支持上传前裁剪

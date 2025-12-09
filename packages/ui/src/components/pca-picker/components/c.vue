@@ -23,9 +23,10 @@
 
 <script setup lang="ts">
 import type { IPCAData } from '../pca-picker'
-import { ElAnchor, ElAnchorLink } from 'element-plus'
 
+import { ElAnchor, ElAnchorLink } from 'element-plus'
 import { toRefs, useTemplateRef, watch } from 'vue'
+
 import { injectCommonState } from '../pca-picker'
 import ElevatorItem from './elevator-item.vue'
 

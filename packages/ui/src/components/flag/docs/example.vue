@@ -29,6 +29,7 @@
 <script lang="ts" setup>
 import { ElDescriptionsItem, ElSlider, ElSpace } from 'element-plus'
 import { computed, ref } from 'vue'
+
 import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HFlag from '../flag.vue'

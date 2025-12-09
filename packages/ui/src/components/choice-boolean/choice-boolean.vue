@@ -3,17 +3,14 @@
 </template>
 
 <script lang="ts" setup>
+import type { IChoiceBooleanProps } from './choice-boolean'
+
 import { useVModel } from '@vueuse/core'
 import { computed } from 'vue'
+
 import HChoice from '../choice/choice.vue'
 
-interface IPropType {
-    modelValue: boolean | boolean[] | number | number[]
-    text?: [string, string]
-    valueType?: 'boolean' | 'number'
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IChoiceBooleanProps>(), {
     text: () => ['是', '否'],
     valueType: 'boolean',
 })

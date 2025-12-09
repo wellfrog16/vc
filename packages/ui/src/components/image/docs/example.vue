@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
 import { ElDescriptionsItem } from 'element-plus'
+
 import Wrapper from '@/components/example-wrapper.vue'
 import HImage from '../image.vue'
 </script>

@@ -19,6 +19,7 @@
 <script lang="ts" setup>
 import { ElButton, ElDescriptionsItem } from 'element-plus'
 import { ref } from 'vue'
+
 import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HThousandInput from '../thousand-input.vue'

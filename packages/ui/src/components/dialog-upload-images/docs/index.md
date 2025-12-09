@@ -16,7 +16,7 @@ npm i vuedraggable-es@^4.1.1
 
 ## 最小示例
 
-<<< ./simple.vue{3-10,22-42}
+<<< ./simple.vue{3-10,24-44}
 
 ## API
 

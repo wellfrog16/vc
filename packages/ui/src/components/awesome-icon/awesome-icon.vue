@@ -3,17 +3,12 @@
 </template>
 
 <script lang="ts" setup>
+import type { IAwesomeIconProps } from './awesome-icon'
+
 import { defaultWindow, loader } from '@wfrog/utils'
 import { computed, onMounted } from 'vue'
 
-interface IPropType {
-    name: string
-    mode?: 'css' | 'svg'
-    size?: number | string
-    color?: string
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IAwesomeIconProps>(), {
     mode: 'css',
 })
 

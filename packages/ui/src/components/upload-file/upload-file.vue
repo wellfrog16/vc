@@ -23,16 +23,18 @@
 
 <script lang="ts" setup>
 import type { UploadRawFile } from 'element-plus/es/components/upload/src/upload'
-import type { IPropType } from './upload-file'
+import type { IUploadFileProps } from './upload-file'
+
 import { defaultWindow, file } from '@wfrog/utils'
 import { ElImage, ElUpload, vLoading } from 'element-plus'
 import { computed, nextTick, ref } from 'vue'
+
 import HButton from '../button/button.vue'
 import HCropper from '../cropper/cropper.vue'
 import HElIcon from '../el-icon/el-icon.vue'
 import { buttonOptions, imageOptions } from './upload-file'
 
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IUploadFileProps>(), {
     accept: '.jpg,.jpeg,.png',
     type: 'image',
     imageOptions: () => imageOptions,

@@ -1,3 +1,5 @@
+# awesome-icon
+
 ## 功能
 
 <CdnTag name="fontawesome" />基于 `font-awesome 6.1.2` 的 `free` 版本封装的 icon 组件。提供全量 `css` 或者 `svg` 加载方式。css 体积较小

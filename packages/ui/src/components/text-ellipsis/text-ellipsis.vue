@@ -22,6 +22,7 @@
 
 <script lang="ts" setup>
 import type { ITextEllipsisProps } from './text-ellipsis'
+
 import { ElTooltip } from 'element-plus'
 import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue'
 

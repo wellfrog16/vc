@@ -16,10 +16,12 @@
 
 <script lang="ts" setup>
 import type ICropper from 'cropperjs'
+
 import { Download } from '@element-plus/icons-vue'
 import { ElButton, ElDescriptionsItem, ElLink } from 'element-plus'
 import { debounce } from 'lodash-es'
 import { computed, ref, useTemplateRef } from 'vue'
+
 import Wrapper from '@/components/example-wrapper.vue'
 import HCropper from '../cropper.vue'
 

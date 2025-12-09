@@ -25,12 +25,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { IInputNumber } from './input-number'
+import type { IInputNumberProps } from './input-number'
 import { ElInputNumber } from 'element-plus'
 import { computed, nextTick, onUnmounted, ref, useCssModule, useSlots, useTemplateRef, watch } from 'vue'
 
-const props = withDefaults(defineProps<IInputNumber>(), { precision: 0, inputWidth: '80px' })
-
+const props = withDefaults(defineProps<IInputNumberProps>(), { precision: 0, inputWidth: '80px' })
 const emits = defineEmits<{
     (e: 'update:modelValue', val: number): void
     (e: 'change', currentValue: number, oldValue: number): void

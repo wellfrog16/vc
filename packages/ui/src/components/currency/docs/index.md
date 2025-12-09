@@ -1,3 +1,5 @@
+# currency
+
 ## 功能
 
 <CdnTag name="currency" />货币组件，[thousand-input](../../components/thousand-input) 的增强版

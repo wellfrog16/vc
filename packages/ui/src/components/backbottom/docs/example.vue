@@ -1,23 +1,21 @@
 <template>
     <Wrapper>
-        <ElDescriptionsItem label="展示区1">
+        <ElDescriptionsItem label="展示区1：页面">
             看右下角
             <HBackbottom :bottom="bottom" :right="right" :visibility-height="visibilityHeight" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="展示区2：">
-            <div>普通 div </div>
+        <ElDescriptionsItem>
+            <template #label>展示区2：<br>普通 div</template>
             <div :class="$style['test-div']">
                 <div v-for="i in 40" :key="i">{{ i }}</div>
                 <HBackbottom :bottom="bottom" :right="right" :visibility-height="visibilityHeight" parent />
             </div>
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="展示区3：">
-            <div>使用 el-scrollbar</div>
-            <ElScrollbar height="200px">
+        <ElDescriptionsItem>
+            <template #label>展示区3：<br>使用 el-scrollbar</template>
+            <ElScrollbar height="200px" always>
                 <div v-for="i in 40" :key="i">{{ i }}</div>
-                <div>
-                    <HBackbottom :bottom="bottom" :right="right" :visibility-height="visibilityHeight" />
-                </div>
+                <HBackbottom :bottom="bottom" :right="right" :visibility-height="visibilityHeight" />
             </ElScrollbar>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：底部距离">
@@ -35,8 +33,8 @@
 <script lang="ts" setup>
 import { ElDescriptionsItem, ElInputNumber, ElScrollbar } from 'element-plus'
 import { ref } from 'vue'
-import Wrapper from '@/components/example-wrapper.vue'
 
+import Wrapper from '@/components/example-wrapper.vue'
 import HBackbottom from '../backbottom.vue'
 
 const bottom = ref(40)

@@ -33,6 +33,8 @@
 </template>
 
 <script lang="ts" setup>
+import type { IDialogProps } from './dialog'
+
 import { Close, CopyDocument, FullScreen } from '@element-plus/icons-vue'
 import { useToggle, useVModel } from '@vueuse/core'
 import { ElButton, ElDialog, ElScrollbar } from 'element-plus'
@@ -40,20 +42,7 @@ import { computed, ref, useCssModule, watch } from 'vue'
 
 import HButton from '../button/button.vue'
 
-interface IPropType {
-    modelValue: boolean
-    title?: string
-    showFullscreen?: boolean
-    showDefaultFooter?: boolean
-    lazy?: boolean
-    height?: string | number
-    maxHeight?: string | number
-    fullscreenHeight?: string | number
-    flex?: boolean
-    fullscreen?: boolean
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IDialogProps>(), {
     title: '对话框',
     showFullscreen: true,
     showDefaultFooter: false,

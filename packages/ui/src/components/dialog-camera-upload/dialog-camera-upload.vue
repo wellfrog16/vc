@@ -66,18 +66,20 @@
 
 <script lang="ts" setup>
 import type { AlertProps } from 'element-plus/es/components/alert'
-import type { IPropType } from './dialog-camera-upload'
+import type { IDialogCameraUploadProps } from './dialog-camera-upload'
+
 import { Camera, Upload } from '@element-plus/icons-vue'
 import { useDevicesList, useUserMedia } from '@vueuse/core'
 import { defaultWindow, file } from '@wfrog/utils'
 import { ElAlert, ElButton, ElIcon, ElImage, ElOption, ElSelect, vLoading } from 'element-plus'
 import { computed, reactive, ref, useTemplateRef, watch } from 'vue'
+
 import HCropper from '../cropper/cropper.vue'
 import HDialog from '../dialog/dialog.vue'
 import HUploadFile from '../upload-file/upload-file.vue'
 import { TYPE_CAMERA, TYPE_UPLOAD, WINDOW_CANVAS, WINDOW_IMAGE, WINDOW_PLACEHOLDER, WINDOW_VIDEO } from './dialog-camera-upload'
 
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IDialogCameraUploadProps>(), {
     type: () => [TYPE_UPLOAD, TYPE_CAMERA], // 功能默认包含 上传和拍照
     width: 600,
     fixWidth: 32,

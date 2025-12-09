@@ -47,10 +47,12 @@
 <script lang="ts" setup>
 import type { UploadRawFile, UploadRequestOptions } from 'element-plus/es/components/upload/src/upload'
 import type { IDialogUploadImagesProps, IUploadFile } from './dialog-upload-images'
+
 import { defaultWindow } from '@wfrog/utils'
 import { ElButton, ElUpload, vLoading } from 'element-plus'
 import { computed, ref, shallowRef } from 'vue'
 import Draggable from 'vuedraggable-es'
+
 import HDialog from '../dialog/dialog.vue'
 import HElIcon from '../el-icon/el-icon.vue'
 

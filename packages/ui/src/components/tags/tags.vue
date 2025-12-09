@@ -59,14 +59,16 @@
 </template>
 
 <script lang="ts" setup>
-import type { IPropType } from './tags'
+import type { ITagsProps } from './tags'
+
 import { ElAlert, ElInput, ElPopover, ElSpace, ElTag } from 'element-plus'
 import { computed, ref, watch } from 'vue'
 import Draggable from 'vuedraggable-es'
+
 import vFocus from '@/directives/focus'
 import HButton from '../button/button.vue'
 
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<ITagsProps>(), {
     regexp: () => /\S+/,
     limit: 5,
     errorMessage: '',

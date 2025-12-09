@@ -13,9 +13,11 @@
 
 <script lang="ts" setup>
 import type { IUploadFile } from '../dialog-upload-images'
+
 import { defaultWindow } from '@wfrog/utils'
 import { ElButton, ElMessage } from 'element-plus'
 import { ref } from 'vue'
+
 import Wrapper from '@/components/simple-wrapper.vue'
 import HDialogUploadImages from '../dialog-upload-images.vue'
 

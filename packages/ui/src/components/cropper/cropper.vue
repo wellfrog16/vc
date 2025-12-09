@@ -10,7 +10,7 @@
         :show-fullscreen="false"
         :lazy="false"
     >
-        <div ref="workbench" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
+        <div ref="workbenchRef" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
         <template #footer>
             <ElSpace>
                 <ElButton :loading="loading" @click="handleCancle">取消</ElButton>
@@ -21,35 +21,30 @@
             </ElSpace>
         </template>
     </HDialog>
-    <div v-else ref="workbench" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
+    <div v-else ref="workbenchRef" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
 </template>
 
 <script lang="ts" setup>
 import type ICropper from 'cropperjs'
-import type { PropType } from 'vue'
+import type { ICropperProps } from './cropper'
+
 import { defaultWindow, file, loader } from '@wfrog/utils'
 import { ElButton, ElLink, ElSpace, vLoading } from 'element-plus'
 import { debounce } from 'lodash-es'
-import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, useTemplateRef, watch } from 'vue'
+
 import HDialog from '../dialog/dialog.vue'
 
-const props = defineProps({
-    dialog: { type: Boolean, default: false },
-    visible: { type: Boolean, default: false },
-    image: { type: [String, Object] as PropType<HTMLImageElement | string | File>, required: true },
-
-    option: { type: Object as PropType<ICropper.Options>, default: () => {} },
-
-    // 图片质量
-    imageSmoothingQuality: { type: String as PropType<ICropper.ImageSmoothingQuality>, default: 'high' },
-
-    // 裁剪容器大小
-    containerWidth: { type: String, default: '600px' },
-    containerHeight: { type: String, default: '450px' },
-
-    // 裁剪框大小
-    cropperWidth: { type: Number, default: 400 },
-    cropperHeight: { type: Number, default: 300 },
+const props = withDefaults(defineProps<ICropperProps>(), {
+    dialog: false,
+    visible: false,
+    image: undefined,
+    option: () => ({}),
+    imageSmoothingQuality: 'high',
+    containerWidth: '600px',
+    containerHeight: '450px',
+    cropperWidth: 400,
+    cropperHeight: 300,
 })
 
 const emits = defineEmits<{
@@ -60,7 +55,7 @@ const emits = defineEmits<{
 }>()
 
 const loading = ref(false)
-const workbench = ref<HTMLDivElement>()
+const workbenchRef = useTemplateRef('workbenchRef')
 const cropperRef = shallowRef<ICropper>()
 const downloadLink = ref('')
 const isNeedInit = ref(false) // 是否需要重新初始化
@@ -107,13 +102,13 @@ function handleDownload() {
 }
 
 async function init() {
-    if (!workbench.value) { return }
+    if (!workbenchRef.value) { return }
 
     cropperRef.value?.destroy()
     loading.value = true
     isNeedInit.value = false
-    workbench.value.childNodes.forEach(item => workbench.value?.removeChild(item))
-    workbench.value.appendChild(image.value)
+    workbenchRef.value.childNodes.forEach(item => workbenchRef.value?.removeChild(item))
+    workbenchRef.value.appendChild(image.value)
     const Cropper = await loader.loadCdnSingle('cropper')
 
     cropperRef.value = new Cropper(image.value, {

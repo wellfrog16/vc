@@ -1,4 +1,4 @@
-export interface IPropType {
+export interface IDialogMapPointProps {
     modelValue: { lng: number, lat: number }
     visible: boolean
     city?: string

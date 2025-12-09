@@ -23,6 +23,7 @@
 <script lang="ts" setup>
 import { ElButton, ElDescriptionsItem, ElImage } from 'element-plus'
 import { ref } from 'vue'
+
 import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import HChoice from '@/components/choice/choice.vue'
 import Wrapper from '@/components/example-wrapper.vue'

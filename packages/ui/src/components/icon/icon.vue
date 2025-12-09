@@ -5,19 +5,15 @@
 </template>
 
 <script setup lang="ts">
+import type { IIconProps } from './icon'
+
 import { computed } from 'vue'
+
 import HAwesome from '../awesome-icon/awesome-icon.vue'
 import HEl from '../el-icon/el-icon.vue'
 import HSvg from '../svg-icon/svg-icon.vue'
 
-interface IPropType {
-    name: string
-    type: IGlobal.IconType
-    color?: string
-    size?: string | number
-}
-
-const props = defineProps<IPropType>()
+const props = defineProps<IIconProps>()
 const components = { awesome: HAwesome, el: HEl, svg: HSvg }
 const mySize = computed(() => {
     if (props.size && Number.isNaN(+props.size)) { return props.size }

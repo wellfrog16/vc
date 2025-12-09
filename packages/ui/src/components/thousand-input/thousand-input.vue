@@ -6,25 +6,15 @@
 </template>
 
 <script lang="ts" setup>
+import type { IThousandInputProps } from './thousand-input'
+
 import { isEqual } from 'lodash-es'
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
+
 import vThousand from '@/directives/thousand'
 import HInput from '../input/input.vue'
 
-interface IOptionType {
-    decimalScale: number
-    integerScale: number
-    prefix?: string
-}
-
-interface IPropType {
-    modelValue?: string
-    formatValue?: string
-    options?: IOptionType
-    padDecimal?: boolean
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<IThousandInputProps>(), {
     modelValue: '',
     formatValue: '',
     options: () => ({ decimalScale: 2, integerScale: 12 }),

@@ -38,7 +38,7 @@
 <script lang="ts" setup>
 import { ElDescriptionsItem, ElSlider } from 'element-plus'
 import { computed, ref } from 'vue'
-import HChoice from '@/components/choice'
+import HChoice from '@/components/choice/choice.vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import useExample from '@/components/svg-icon/docs/useExample'
 import HIcon from '../icon.vue'

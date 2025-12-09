@@ -7,6 +7,7 @@
 
 <script lang="ts" setup>
 import type { IEasyPaginationProps } from './easy-pagination'
+
 import { ElButton } from 'element-plus'
 import { computed } from 'vue'
 

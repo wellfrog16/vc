@@ -39,11 +39,11 @@
 <script lang="ts" setup>
 import type { CascaderNode, CascaderValue } from 'element-plus/es/components/cascader-panel'
 import type { ITreePickerProps } from './tree-picker'
+
 import { onClickOutside, useThrottleFn, useToggle, useVModel } from '@vueuse/core'
-
 import { ElCascader, ElPopover } from 'element-plus'
-
 import { computed, nextTick, ref, useCssModule, useTemplateRef } from 'vue'
+
 import PopoverCascader from './components/popover-cascader.vue'
 
 const props = withDefaults(defineProps<ITreePickerProps>(), {

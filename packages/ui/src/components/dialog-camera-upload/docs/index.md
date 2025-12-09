@@ -1,3 +1,5 @@
+# dialog-camera-upload
+
 ## 功能
 
 <CdnTag name="cropperjs" /> 通过摄像头拍照或者直接上传获取文件数据，支持裁剪，依赖 [cropper](./cropper)

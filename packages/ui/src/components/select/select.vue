@@ -4,16 +4,12 @@
 
 <script lang="ts" setup>
 import type { SelectProps } from 'element-plus'
+import type { ISelectProps } from './select'
+
 import { ElSelect } from 'element-plus'
 import { computed, useCssModule } from 'vue'
 
-interface IPropType {
-    block?: boolean
-    width?: string
-    options: SelectProps['options'] | string[]
-}
-
-const props = withDefaults(defineProps<IPropType>(), {
+const props = withDefaults(defineProps<ISelectProps>(), {
     block: false,
     width: '',
 })

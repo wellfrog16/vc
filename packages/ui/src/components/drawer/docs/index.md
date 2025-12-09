@@ -12,7 +12,7 @@ el-drawer 的修改版
 
 ## 最小示例
 
-<<< ./simple.vue{3-6,15}
+<<< ./simple.vue{3-6,16}
 
 ## API
 

@@ -41,8 +41,8 @@ import type { RawEditorSettings } from '@wfrog/utils'
 import { useToggle } from '@vueuse/core'
 import { defaultWindow } from '@wfrog/utils'
 import { ElDescriptionsItem, ElForm, ElFormItem, ElInput } from 'element-plus'
-
 import { reactive, ref } from 'vue'
+
 import HButton from '@/components/button/button.vue'
 import HChoice from '@/components/choice/choice.vue'
 import HDialog from '@/components/dialog/dialog.vue'

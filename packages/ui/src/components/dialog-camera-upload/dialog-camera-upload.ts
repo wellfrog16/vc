@@ -7,7 +7,7 @@ export const WINDOW_VIDEO = 'video'
 export const WINDOW_CANVAS = 'canvas'
 export const WINDOW_PLACEHOLDER = 'placeholder'
 
-export interface IPropType {
+export interface IDialogCameraUploadProps {
     visible: boolean
     type?: ('upload' | 'camera')[]
     width?: number

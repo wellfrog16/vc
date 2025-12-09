@@ -1,6 +1,6 @@
 import { useInject } from '@/use/useStore'
 
-export interface IPropType {
+export interface IConfigProviderProps {
     button?: {
         confirm?: {
             type?: 'popconfirm' | 'messagebox' | 'none'
@@ -15,4 +15,4 @@ export interface IPropType {
 }
 
 export const KEY_NAME = Symbol('VCConfig')
-export const injectConfig = () => useInject<IPropType>(KEY_NAME)
+export const injectConfig = () => useInject<IConfigProviderProps>(KEY_NAME)

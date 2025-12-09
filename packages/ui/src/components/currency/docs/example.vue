@@ -49,8 +49,10 @@
 
 <script lang="ts" setup>
 import type { ICurrencyCode } from '../currency'
+
 import { ElDescriptionsItem } from 'element-plus'
 import { ref } from 'vue'
+
 import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HCurrency from '../currency.vue'

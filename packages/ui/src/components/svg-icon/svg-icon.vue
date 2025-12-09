@@ -5,12 +5,9 @@
 </template>
 
 <script lang="ts" setup>
-interface IPropType {
-    name: string
-    size?: number | string
-    color?: string
-}
-const props = defineProps<IPropType>()
+import type { ISVGIconProps } from './svg-icon'
+
+const props = defineProps<ISVGIconProps>()
 </script>
 
 <style lang="scss" module>

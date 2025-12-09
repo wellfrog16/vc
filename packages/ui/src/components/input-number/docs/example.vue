@@ -49,8 +49,9 @@
 <script lang="ts" setup>
 import { ElDescriptionsItem, ElOption, ElSelect, ElSlider } from 'element-plus'
 import { computed, ref } from 'vue'
-import HChoice from '@/components/choice'
-import HChoiceBoolean from '@/components/choice-boolean'
+
+import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import HChoice from '@/components/choice/choice.vue'
 import Wrapper from '@/components/example-wrapper.vue'
 import HInputNumber from '../input-number.vue'
 

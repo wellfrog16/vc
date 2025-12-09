@@ -9,19 +9,19 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { ElButton } from 'element-plus'
+import { ref } from 'vue'
 import Wrapper from '@/components/simple-wrapper.vue'
-import HDialogCameraUpload from '../index.vue'
+import HDialogCameraUpload from '../dialog-camera-upload.vue'
 
 const result = ref('')
 const visible = ref(false)
 
-const handleClick = () => {
+function handleClick() {
     visible.value = true
 }
 
-const httpRequest = (file: File, localUrl: string) => {
+function httpRequest(_file: File, localUrl: string) {
     result.value = localUrl
 }
 </script>

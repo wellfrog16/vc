@@ -8,7 +8,7 @@ export interface ICurrencyInfo {
     option: { prefix: string, decimalScale: number, integerScale: number }
 }
 
-export interface IPropType {
+export interface ICurrencyProps {
     modelValue: string
     code: ICurrencyCode | ICurrencyCode[]
     flag?: boolean

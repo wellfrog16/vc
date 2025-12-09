@@ -7,11 +7,12 @@
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
+
 import Wrapper from '@/components/simple-wrapper.vue'
 import HUploadFile from '../upload-file.vue'
 
 const result = ref('')
-function httpRequest(file: File, done: () => void, localUrl: string) {
+function httpRequest(_file: File, done: () => void, localUrl: string) {
     setTimeout(() => {
         result.value = localUrl
         done()

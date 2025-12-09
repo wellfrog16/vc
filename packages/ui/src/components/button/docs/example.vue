@@ -2,16 +2,18 @@
     <Wrapper>
         <template #default="{ direction }">
             <ElDescriptionsItem label="展示区">
-                <div :class="$style[direction]">
-                    <HButton :icon="{ name: 'Search' }" type="primary" :size="mySize">Eleme 图标</HButton>
-                    <HButton :icon="{ type: 'awesome', name: 'fas fa-dog' }" type="primary" :size="mySize">Awesome 图标</HButton>
-                    <HButton :icon="{ type: 'svg', name: 'test' }" type="primary" :size="mySize">SVG 图标</HButton>
-                </div>
-                <div :class="$style[direction]">
-                    <HButton :icon="{ name: 'Search', position: 'right' }" type="primary" :size="mySize">Eleme 图标</HButton>
-                    <HButton :icon="{ type: 'awesome', name: 'fas fa-dog', position: 'right' }" type="primary" :size="mySize">Awesome 图标</HButton>
-                    <HButton :icon="{ type: 'svg', name: 'test', position: 'right' }" type="primary" :size="mySize">SVG 图标</HButton>
-                </div>
+                <HConfigProvider iconfont-url="//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js">
+                    <div :class="$style[direction]">
+                        <HButton :icon="{ name: 'Search' }" type="primary" :size="mySize">Eleme 图标</HButton>
+                        <HButton :icon="{ type: 'awesome', name: 'fas fa-dog' }" type="primary" :size="mySize">Awesome 图标</HButton>
+                        <HButton :icon="{ type: 'svg', name: 'test' }" type="primary" :size="mySize">SVG 图标</HButton>
+                    </div>
+                    <div :class="$style[direction]">
+                        <HButton :icon="{ name: 'Search', position: 'right' }" type="primary" :size="mySize">Eleme 图标</HButton>
+                        <HButton :icon="{ type: 'awesome', name: 'fas fa-dog', position: 'right' }" type="primary" :size="mySize">Awesome 图标</HButton>
+                        <HButton :icon="{ type: 'svg', name: 'test', position: 'right' }" type="primary" :size="mySize">SVG 图标</HButton>
+                    </div>
+                </HConfigProvider>
             </ElDescriptionsItem>
             <ElDescriptionsItem label="参数：大小">
                 <HChoice v-model="mySize" :options="sizeOption" />
@@ -37,11 +39,10 @@ import { ElDescriptionsItem } from 'element-plus'
 import { ref } from 'vue'
 
 import HChoice from '@/components/choice/choice.vue'
+import HConfigProvider from '@/components/config-provider/config-provider.vue'
 import Wrapper from '@/components/example-wrapper.vue'
-import useExample from '@/components/svg-icon/docs/useExample'
 import HButton from '../button.vue'
 
-useExample()
 const mySize = ref('')
 const sizeOption = [
     { label: '默认', value: '' },

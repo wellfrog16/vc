@@ -6,6 +6,7 @@
         align-center
         :show-close="false"
         :fullscreen="isFullscreen"
+        :close-on-click-modal="false"
         :class="$style.main"
         @closed="handleClosed"
     >
@@ -22,10 +23,10 @@
         </template>
         <template #default>
             <ElScrollbar v-if="!isFullscreen && (height || maxHeight)" :class="scrollbarClassName" :height="height" :max-height="maxHeight" always>
-                <slot />
+                <div :class="$style['body-container']"><slot /></div>
             </ElScrollbar>
             <ElScrollbar v-else :class="scrollbarClassName" :max-height="fullscreenHeight" always>
-                <slot />
+                <div :class="$style['body-container']"><slot /></div>
             </ElScrollbar>
         </template>
         <template v-if="showDefaultFooter || $slots.footer" #footer><slot name="footer"><HButton v-if="showDefaultFooter" @click="dialogVisible = false">关闭</HButton></slot></template>
@@ -50,6 +51,7 @@ const props = withDefaults(defineProps<IDialogProps>(), {
     fullscreenHeight: 'calc(100vh - 146px)',
     flex: false,
     fullscreen: false,
+    boxPadding: true,
 })
 
 const emits = defineEmits<{
@@ -96,13 +98,54 @@ div.main {
 
         .el-dialog__body {
             flex-grow: 1;
-            padding: 16px;
+            padding: 0;
         }
 
         .el-dialog__footer {
             padding: 12px 16px;
             border-top: 1px solid var(--el-border-color-light);
         }
+    }
+
+    :global(> .el-dialog__body > .el-scrollbar) {
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(100% - 8px);
+            height: 100%;
+            background: var(--el-color-white);
+            height: 16px;
+            z-index: 3;
+            display: v-bind('boxPadding ? "block" : "none"');
+            // background-image: radial-gradient(transparent 1px, var(--el-color-white) 1px);
+            // background-size: 4px 4px;
+            // backdrop-filter: saturate(50%) blur(4px);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: calc(100% - 8px);
+            height: 100%;
+            background: var(--el-color-white);
+            height: 16px;
+            z-index: 3;
+            display: v-bind('boxPadding ? "block" : "none"');
+        }
+    }
+
+    .header {
+        h4 {
+            font-size: 1.2em;
+            font-weight: 600;
+            line-height: 1;
+        }
+        line-height: 1;
     }
 }
 
@@ -141,6 +184,10 @@ div.main {
             flex-direction: column;
         }
     }
+}
+
+.body-container {
+    padding: 16px;
 }
 
 .buttons {

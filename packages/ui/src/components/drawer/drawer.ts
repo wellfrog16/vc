@@ -3,4 +3,5 @@ export interface IDrawerProps {
     title?: string
     lazy?: boolean
     showDefaultFooter?: boolean
+    boxPadding?: boolean
 }

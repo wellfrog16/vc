@@ -1,11 +1,9 @@
 <template>
     <ElDrawer v-if="visible || !lazy" v-model="drawerVisible" v-bind="$attrs" :close-on-click-modal="false" :class="$style.main" @closed="handleClosed">
         <template #header><div><slot name="header">{{ title }}</slot></div></template>
-        <div class="drawer-body">
-            <ElScrollbar class="drawer-scrollbar">
-                <slot />
-            </ElScrollbar>
-        </div>
+        <ElScrollbar class="drawer-scrollbar" always>
+            <div :class="$style['body-container']"><slot /></div>
+        </ElScrollbar>
         <div v-if="showDefaultFooter || $slots.footer" class="drawer-footer"><slot name="footer"><HButton @click="drawerVisible = false">关闭</HButton></slot></div>
     </ElDrawer>
 </template>
@@ -23,6 +21,7 @@ const props = withDefaults(defineProps<IDrawerProps>(), {
     title: '对话框',
     lazy: true,
     showDefaultFooter: false,
+    boxPadding: true,
 })
 
 const emits = defineEmits<{
@@ -51,7 +50,7 @@ function handleClosed() {
         .el-drawer__header {
             box-sizing: border-box;
             flex: 0 0 auto;
-            padding: 10px 20px;
+            padding: 10px 16px;
             margin-bottom: 0;
             border-bottom: 1px solid var(--el-border-color-light);
         }
@@ -63,23 +62,10 @@ function handleClosed() {
             overflow: hidden;
         }
 
-        .drawer-body {
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            height: 100px;
-            overflow: hidden;
-        }
-
-        .el-scrollbar__view {
-            padding: 20px;
-        }
-
         .drawer-footer {
             display: flex;
             flex: 0 0 auto;
-            padding: 10px 20px;
+            padding: 10px 16px;
             border-top: 1px solid var(--el-border-color-light);
 
             .el-button {
@@ -87,5 +73,41 @@ function handleClosed() {
             }
         }
     }
+
+    :global(> .el-drawer__body > .el-scrollbar) {
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(100% - 8px);
+            height: 100%;
+            background: var(--el-color-white);
+            height: 16px;
+            z-index: 3;
+            display: v-bind('boxPadding ? "block" : "none"');
+            // background-image: radial-gradient(transparent 1px, var(--el-color-white) 1px);
+            // background-size: 4px 4px;
+            // backdrop-filter: saturate(50%) blur(4px);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: calc(100% - 8px);
+            height: 100%;
+            background: var(--el-color-white);
+            height: 16px;
+            z-index: 3;
+            display: v-bind('boxPadding ? "block" : "none"');
+        }
+    }
+}
+
+.body-container {
+    padding: 16px;
 }
 </style>

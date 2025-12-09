@@ -8,6 +8,7 @@
         append-to-body
         destroy-on-close
         :show-fullscreen="false"
+        lazy
     >
         <div v-loading="loading" :class="$style.window" :style="windowStyle">
             <ElImage v-show="imageVisible" :src="blobImage" fit="contain" />
@@ -69,7 +70,7 @@ import type { AlertProps } from 'element-plus/es/components/alert'
 import type { IDialogCameraUploadProps } from './dialog-camera-upload'
 
 import { Camera, Upload } from '@element-plus/icons-vue'
-import { useDevicesList, useUserMedia } from '@vueuse/core'
+import { useUserMedia } from '@vueuse/core'
 import { defaultWindow, file } from '@wfrog/utils'
 import { ElAlert, ElButton, ElIcon, ElImage, ElOption, ElSelect, vLoading } from 'element-plus'
 import { computed, reactive, ref, useTemplateRef, watch } from 'vue'
@@ -77,7 +78,7 @@ import { computed, reactive, ref, useTemplateRef, watch } from 'vue'
 import HCropper from '../cropper/cropper.vue'
 import HDialog from '../dialog/dialog.vue'
 import HUploadFile from '../upload-file/upload-file.vue'
-import { TYPE_CAMERA, TYPE_UPLOAD, WINDOW_CANVAS, WINDOW_IMAGE, WINDOW_PLACEHOLDER, WINDOW_VIDEO } from './dialog-camera-upload'
+import { TYPE_CAMERA, TYPE_UPLOAD, useVideosList, WINDOW_CANVAS, WINDOW_IMAGE, WINDOW_PLACEHOLDER, WINDOW_VIDEO } from './dialog-camera-upload'
 
 const props = withDefaults(defineProps<IDialogCameraUploadProps>(), {
     type: () => [TYPE_UPLOAD, TYPE_CAMERA], // 功能默认包含 上传和拍照
@@ -94,12 +95,14 @@ const emits = defineEmits(['update:visible', 'close', 'error', 'save'])
 const TIPS_SHOOT_SUCCESS = '照片拍摄成功'
 
 const currentCamera = ref<string>()
-const { videoInputs: cameras } = useDevicesList({
-    requestPermissions: true,
-    onUpdated() {
-        if (!cameras.value.find(i => i.deviceId && i.deviceId === currentCamera.value)) { currentCamera.value = cameras.value[0]?.deviceId }
-    },
-})
+const { cameras, getVideosList } = useVideosList()
+// 这里会获取摄像头 和 麦克风的权限，而我们只要摄像头的权限，所以需要手动调用 getVideosList
+// const { videoInputs: cameras } = useDevicesList({
+//     requestPermissions: false,
+//     onUpdated() {
+//         if (!cameras.value.find(i => i.deviceId && i.deviceId === currentCamera.value)) { currentCamera.value = cameras.value[0]?.deviceId }
+//     },
+// })
 const { stream, start, stop, enabled } = useUserMedia({
     constraints: {
         video: {
@@ -171,7 +174,16 @@ function toggleWindow(type: string) {
     currentWindow.value = type
 }
 
-function initWindow() {
+async function initWindow() {
+    try {
+        if (props.type.includes(TYPE_CAMERA)) {
+            await getVideosList()
+            if (cameras.value.length) { currentCamera.value = cameras.value[0].deviceId }
+        }
+    }
+    catch {
+        console.error(new Error('获取摄像头失败'))
+    }
     toggleWindow(WINDOW_PLACEHOLDER)
     blobImage.value = ''
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="pca-wrapper">
+    <div class="vc-pca-wrapper">
         <!-- 历史记录 -->
         <History />
 
@@ -8,7 +8,7 @@
 
         <!-- 所有 -->
         <ElDivider content-position="left">全部</ElDivider>
-        <ElRow :gutter="8" class="pca-container">
+        <ElRow :gutter="8" class="vc-pca-container">
             <ElCol v-for="item in availableData" :key="item.id" :span="4">
                 <div :class="itemClass(item)" @click="clickItem(item)">
                     {{ item[nameKey!] }}

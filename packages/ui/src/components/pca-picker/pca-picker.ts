@@ -45,6 +45,7 @@ export interface ICommmonStateType {
     clickItem: (item: IPCAData) => void
     clickItems: (items: IPCAData[]) => void
     keyword: Ref<string>
+    lastKeyword: Ref<string>
     popoverVisible: Ref<boolean>
     togglePopoverVisible: (visible?: boolean) => boolean
     updatePopper: () => Promise<void>
@@ -68,6 +69,7 @@ export function usePCAData(params: IPCAPickerProps) {
     const storageKey = computed(() => `vc-pca-picker-${myProps.value?.source}`)
     const pcaData = shallowRef<IPCAData[]>([])
     const keyword = ref('')
+    const lastKeyword = ref('')
     const loadFailed = ref(false)
 
     const setProps = (data: IPCAPickerProps) => {
@@ -199,6 +201,13 @@ export function usePCAData(params: IPCAPickerProps) {
             // 截取前 48 个，太多的搜索结果对于搜索无意义，48 个保持无垂直滚动条
             return result.slice(0, 48)
         }
+
+        // 用于解决主 input 在 click outside 后，keyword 被自动清空，导致 filter 层数据闪烁
+        // 用 lastKeyword 让其保持搜索结果，在 filter 关闭后，再清空 lastKeyword
+        if (lastKeyword.value) {
+            const result = flatData.value.filter(i => i.n.includes(lastKeyword.value) || i.fn?.includes(lastKeyword.value) || i.py?.includes(lastKeyword.value))
+            return result.slice(0, 48)
+        }
         return []
     })
 
@@ -247,6 +256,7 @@ export function usePCAData(params: IPCAPickerProps) {
         filterData,
         flatData,
         keyword,
+        lastKeyword,
         availableData,
         optionData,
         setProps,

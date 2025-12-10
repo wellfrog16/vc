@@ -6,10 +6,10 @@
         :popper-class="$style.popover"
     >
         <div ref="containerRef" :class="$style.container">
-            <FilterPicker v-if="keyword" />
-            <PPicker v-if="!keyword && type === 'P'" />
-            <CPicker v-if="!keyword && type === 'C'" />
-            <PCAPicker v-if="!keyword && ['PCA', 'PC'].includes(type)" v-model="myValue" />
+            <FilterPicker v-if="filterManualVisible || keyword" />
+            <PPicker v-if="!filterManualVisible && !keyword && type === 'P'" />
+            <CPicker v-if="!filterManualVisible && !keyword && type === 'C'" />
+            <PCAPicker v-if="!filterManualVisible && !keyword && ['PCA', 'PC'].includes(type)" v-model="myValue" />
         </div>
         <template #reference>
             <div :class="$style.wrapper" @click.capture="handleSelectClick" @keyup="handleKeyup">
@@ -39,7 +39,7 @@ import type { IPCAData, IPCAPickerProps } from './pca-picker'
 
 import { onClickOutside, useThrottleFn, useToggle, useVModel } from '@vueuse/core'
 import { ElCascader, ElPopover } from 'element-plus'
-import { computed, nextTick, onBeforeUnmount, onMounted, useCssModule, useTemplateRef, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, useCssModule, useTemplateRef, watch } from 'vue'
 import { useProvide } from '@/use/useStore'
 
 import { injectConfig } from '../config-provider/config-provider'
@@ -74,7 +74,8 @@ const { pcaBaseUrl, crosProxy } = injectConfig()
 const [popoverVisible, togglePopoverVisible] = useToggle()
 const $style = useCssModule()
 const pcaFetchData = usePCAData(props)
-const { loading, loadFailed, fetchData, setProps, keyword, optionData, appendToHistory, getValueData } = pcaFetchData
+const { loading, loadFailed, fetchData, setProps, keyword, lastKeyword, optionData, appendToHistory, getValueData } = pcaFetchData
+const filterManualVisible = ref(false)
 
 const isTreeType = computed(() => ['PCA', 'PC'].includes(props.type))
 const myPlaceholder = computed(() => loadFailed.value ? props.loadFailedText : (loading.value ? props.loadingText : props.placeholder))
@@ -94,6 +95,7 @@ const cascaderProps = computed(() => ({
     emitPath: false,
 }))
 
+// 在 containerRef 外点击，如果不是点击了输入框($style.cascader)，则关闭 popover
 const containerRef = useTemplateRef('containerRef')
 onClickOutside(containerRef, event => {
     let target = event.target as any
@@ -104,7 +106,18 @@ onClickOutside(containerRef, event => {
         target = target.parentNode
     } while (result === false && target !== null && target.nodeName !== 'BODY')
 
-    !result && togglePopoverVisible(false)
+    if (!result) {
+        // 说明 filter 层可见，关闭 popover 后再关闭 filter 层，以免闪烁。用 lastKeyword 为了防止数据闪烁
+        if (keyword.value) {
+            filterManualVisible.value = true
+            lastKeyword.value = keyword.value
+            setTimeout(() => {
+                filterManualVisible.value = false
+                lastKeyword.value = ''
+            }, 500)
+        }
+        togglePopoverVisible(false)
+    }
 })
 
 // 修复箭头样式
@@ -139,7 +152,7 @@ useProvide(KEY_NAME, {
     itemClass: (item: IPCAData, isHistoryOrHot?: boolean) => {
         const isActive = myValue.value === item.id || (Array.isArray(myValue.value) && myValue.value.includes(item.id))
         return {
-            'pca-item': true,
+            'vc-pca-item': true,
             'active': isActive && (!isHistoryOrHot || props.syncActive),
             'active-mark': isActive && props.activeMark,
         }

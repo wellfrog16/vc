@@ -1,6 +1,6 @@
 <template>
     <div :id="label" :class="$style.label">{{ label }}</div>
-    <ElRow :gutter="8" class="pca-container" :class="$style['pca-container']">
+    <ElRow :gutter="8" class="vc-pca-container" :class="$style['pca-container']">
         <ElCol v-for="item in data" :key="item.id" :span="4">
             <div :class="itemClass(item)" @click="clickItem(item)">
                 {{ item[nameKey] }}

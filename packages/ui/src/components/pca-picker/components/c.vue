@@ -1,5 +1,5 @@
 <template>
-    <div ref="wrapperRef" class="pca-wrapper">
+    <div ref="wrapperRef" class="vc-pca-wrapper">
         <div :class="$style.elevator">
             <ElAnchor ref="anchorRef" select-scroll-top :container="wrapperRef" :bound="40">
                 <ElAnchorLink v-if="history && historyData.length" :href="`#${historyText}`">历史</ElAnchorLink>

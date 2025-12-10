@@ -16,7 +16,7 @@ import type { CascaderNode, CascaderValue } from 'element-plus/es/components/cas
 import type { IPCAData } from '../pca-picker'
 
 import { useVModel } from '@vueuse/core'
-import { computed, toRefs } from 'vue'
+import { computed, onMounted, toRefs } from 'vue'
 
 import PopoverCascader from '@/components/tree-picker/components/popover-cascader.vue'
 import { injectCommonState } from '../pca-picker'
@@ -48,4 +48,6 @@ function handleChange(value?: CascaderValue | null, node?: CascaderNode[]) {
         clickItems(item)
     }
 }
+
+onMounted(() => updatePopper())
 </script>

@@ -1,11 +1,11 @@
-.pca-wrapper {
+.vc-pca-wrapper {
     width: 640px;
     height: 420px;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
-.pca-container {
+.vc-pca-container {
     display: flex;
     flex-wrap: wrap;
     row-gap: 8px;
@@ -17,7 +17,7 @@
     // list-style: none;
 }
 
-.pca-item {
+.vc-pca-item {
     box-sizing: border-box;
 
     // width: calc(100% / 6);

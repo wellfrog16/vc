@@ -1,6 +1,6 @@
 <template>
     <svg class="svg-icon" :class="[$style.icon]" aria-hidden="true" :style="{ fontSize: size, color }">
-        <use :xlink:href="`#icon-${props.name}`" />
+        <slot><use :xlink:href="`#icon-${props.name}`" /></slot>
     </svg>
 </template>
 

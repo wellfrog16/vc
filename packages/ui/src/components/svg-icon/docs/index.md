@@ -26,7 +26,7 @@
 
 ## 最小示例
 
-<<< ./simple.vue{3-5}
+<<< ./simple.vue{3-9}
 
 ## API
 

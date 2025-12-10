@@ -38,7 +38,7 @@
     "clean": "rimraf node_modules dist .vitepress/dist  .vitepress/cache"
   },
   "dependencies": {
-    "vuedraggable-es": "^4.1.1"
+    "vuedraggable-es-fix": "^1.0.1"
   },
   "devDependencies": {
     "@types/klaw-sync": "^6.0.5",

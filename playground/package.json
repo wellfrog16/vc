@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "vue-router": "^4.6.3",
-    "vuedraggable-es": "^4.1.1"
+    "vuedraggable-es-fix": "^1.0.1"
   },
   "devDependencies": {
     "@vue/tsconfig": "^0.8.1"

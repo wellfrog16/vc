@@ -63,7 +63,7 @@ import type { ITagsProps } from './tags'
 
 import { ElAlert, ElInput, ElPopover, ElSpace, ElTag } from 'element-plus'
 import { computed, ref, watch } from 'vue'
-import Draggable from 'vuedraggable-es'
+import Draggable from 'vuedraggable-es-fix'
 
 import vFocus from '@/directives/focus'
 import HButton from '../button/button.vue'

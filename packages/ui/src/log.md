@@ -30,6 +30,7 @@ title: 更新日志
 
 - 修复组件库的类型
 - 修复 pck-picker 在搜索后，click outside 出现的数据闪烁
+- 修复 vuedraggable-es 的 package.json 中 main 的指向错误。使用 vuedraggable-es-fix 替换
 
 ## 0.13.0
 

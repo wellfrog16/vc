@@ -15,6 +15,7 @@
     "ui:build": "pnpm -C packages/ui build",
     "ui:docs:dev": "pnpm -C packages/ui docs:dev",
     "ui:docs:build": "pnpm -C packages/ui docs:build",
+    "ui:docs:preview": "pnpm -C packages/ui docs:preview",
     "playground:dev": "pnpm -C playground dev",
     "playground:build": "pnpm -C playground build",
     "clean": "pnpm -r run clean && rm -rf node_modules",

@@ -15,7 +15,7 @@
             <template #label>展示区3：<br>使用 el-scrollbar</template>
             <ElScrollbar height="200px" always>
                 <div v-for="i in 40" :key="i">{{ i }}</div>
-                <HBackbottom :bottom="bottom" :right="right" :visibility-height="visibilityHeight" />
+                <HBackbottom :bottom="bottom" :right="right" :visibility-height="visibilityHeight" parent />
             </ElScrollbar>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：底部距离">

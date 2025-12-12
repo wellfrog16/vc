@@ -10,7 +10,6 @@
 
 <script lang="ts" setup>
 import type { RouteRecordRaw } from 'vue-router'
-import { computed } from 'vue'
 
 interface IPropType {
     item: RouteRecordRaw

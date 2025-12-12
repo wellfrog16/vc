@@ -14,7 +14,6 @@
 
 <script setup lang="ts">
 import type { IChoiceProps } from '@wfrog/vc/es/components/choice/type'
-import { nextTick, ref } from 'vue'
 
 const result = ref()
 const visible = ref(true)

@@ -4,7 +4,6 @@
 
 <script setup lang="ts">
 import { ElNotification } from 'element-plus'
-import { computed, ref } from 'vue'
 
 const p = ref(1)
 const haveNext = computed(() => (p.value < 3))

@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
-import { ref } from 'vue'
 
 const result = ref<File[]>([])
 const visible = ref(false)

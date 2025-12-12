@@ -8,7 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { treeData } from '../demo-data'
 
 const result = ref('')

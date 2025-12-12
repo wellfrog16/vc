@@ -23,9 +23,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-
-import { useRoute } from 'vue-router'
 import AsideMenu from '@/components/menu/index.vue'
 import { staticRoutes } from '@/plugins/router'
 

@@ -15,8 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 const result = ref()
 
 function httpRequest(_: File, done: () => void, localUrl: string) {

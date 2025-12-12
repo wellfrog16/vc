@@ -6,8 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 const options = [
     { label: '小龙虾', value: 1 },
     { label: '毛血旺', value: 2 },

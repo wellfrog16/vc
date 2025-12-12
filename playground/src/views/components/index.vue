@@ -26,7 +26,6 @@
 
 <script setup lang="ts">
 import { storage } from '@wfrog/utils'
-import { computed, ref } from 'vue'
 import { componentsData } from './data'
 
 const STORAGE_KEY = 'PLAYGROUND_ACTIVE_COMPONENT'

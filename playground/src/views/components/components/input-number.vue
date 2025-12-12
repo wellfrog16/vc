@@ -13,7 +13,5 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 const result = ref(0)
 </script>

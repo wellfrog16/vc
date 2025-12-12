@@ -22,9 +22,7 @@
 
 <script lang="ts">
 import type { PropType } from 'vue'
-
 import type { RouteRecordRaw } from 'vue-router'
-import { defineComponent } from 'vue'
 import * as helper from './helper'
 import MenuItem from './menu-item.vue'
 import SubmenuItem from './submenu-item.vue'

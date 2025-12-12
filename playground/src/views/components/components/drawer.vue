@@ -8,9 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { useToggle } from '@vueuse/core'
-import { ref } from 'vue'
-
 const visible = ref(false)
 
 const toggleVisible = useToggle(visible)

@@ -1,15 +1,12 @@
 <template>
     <el-space size="large" direction="vertical" alignment="left">
-        <div><ElButton @click="handleToggleVisible">打开裁剪器</ElButton></div>
+        <div><el-button @click="handleToggleVisible">打开裁剪器</el-button></div>
         <div ref="resultRef" :class="$style.result" />
         <HCropper v-model:visible="visible" :image="imgSrc" :option="cropperOption" dialog @finished="handleFinished" />
     </el-space>
 </template>
 
 <script setup lang="ts">
-import { ElButton } from 'element-plus'
-import { ref, useTemplateRef } from 'vue'
-
 const resultRef = useTemplateRef('resultRef')
 const visible = ref(false)
 

@@ -1,6 +1,6 @@
 {
   "name": "@wfrog/vc",
-  "version": "0.13.0",
+  "version": "1.0.0",
   "packageManager": "pnpm@10.20.0",
   "description": "",
   "author": "",
@@ -28,6 +28,9 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">22.21.1"
+  },
   "scripts": {
     "build": "vite build && pnpm volar && pnpm provide:css",
     "provide:css": "esno ./build/libcss",

@@ -6,9 +6,6 @@
 import type { SelectProps } from 'element-plus'
 import type { ISelectProps } from './select'
 
-import { ElSelect } from 'element-plus'
-import { computed, useCssModule } from 'vue'
-
 const props = withDefaults(defineProps<ISelectProps>(), {
     block: false,
     width: '',

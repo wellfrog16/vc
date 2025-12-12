@@ -20,10 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElSlider } from 'element-plus'
-import { computed, ref } from 'vue'
 import HChoice from '@/components/choice/choice.vue'
-import Wrapper from '@/components/example-wrapper.vue'
 import HElIcon from '../el-icon.vue'
 
 const fontsize = ref(18)

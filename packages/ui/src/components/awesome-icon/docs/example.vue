@@ -20,14 +20,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElSlider } from 'element-plus'
-import { computed, ref } from 'vue'
-
 import HChoice from '@/components/choice/choice.vue'
-import Wrapper from '@/components/example-wrapper.vue'
 import HAwesomeIcon from '../awesome-icon.vue'
 
-const fontsize = ref(18)
+const fontsize = ref(20)
 const colors = [
     { label: '粉红', value: 'deeppink' },
     { label: '黄绿', value: 'yellowgreen' },

@@ -29,5 +29,4 @@
 <script setup>
 import Example from "./example.vue";
 import Usage from "./usage.vue";
-import CdnTag from "@/components/cdn-tag.vue";
 </script>

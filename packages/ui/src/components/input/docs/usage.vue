@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'block', description: '内联还是块级展示', type: 'boolean', defaultValue: 'false' },

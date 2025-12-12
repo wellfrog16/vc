@@ -6,9 +6,6 @@
 
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
-import { ref } from 'vue'
-
-import Wrapper from '@/components/simple-wrapper.vue'
 import HUploadFile from '../upload-file.vue'
 
 const result = ref('')

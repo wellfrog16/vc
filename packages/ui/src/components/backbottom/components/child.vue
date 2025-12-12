@@ -12,10 +12,7 @@
 
 <script lang="ts" setup>
 import type { IBackBottomProps } from '../backbottom'
-
 import { CaretBottom } from '@element-plus/icons-vue'
-import { ElIcon } from 'element-plus'
-import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
 
 const props = withDefaults(defineProps<IBackBottomProps>(), {
     right: 40,

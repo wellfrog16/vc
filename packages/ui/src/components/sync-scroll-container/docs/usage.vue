@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'border', description: '各个区域之间的分割边框', type: 'boolean', defaultValue: 'true' },

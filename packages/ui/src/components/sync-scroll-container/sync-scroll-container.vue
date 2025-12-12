@@ -23,9 +23,6 @@
 <script setup lang="ts">
 import type { ISyncScrollContainerProps } from './sync-scroll-container'
 
-import { useElementSize } from '@vueuse/core'
-import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue'
-
 withDefaults(defineProps<ISyncScrollContainerProps>(), {
     shadow: false,
     border: true,

@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'precision', description: '精度', type: 'number', defaultValue: '0' },

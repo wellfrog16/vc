@@ -4,9 +4,7 @@
 
 <script lang="ts" setup>
 import type { IAwesomeIconProps } from './awesome-icon'
-
 import { defaultWindow, loader } from '@wfrog/utils'
-import { computed, onMounted } from 'vue'
 
 const props = withDefaults(defineProps<IAwesomeIconProps>(), {
     mode: 'css',

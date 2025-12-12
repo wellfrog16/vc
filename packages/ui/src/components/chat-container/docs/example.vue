@@ -20,12 +20,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElInputNumber } from 'element-plus'
-import { ref } from 'vue'
-
 import HButton from '@/components/button/button.vue'
 import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
-import Wrapper from '@/components/example-wrapper.vue'
 import HChatContainer from '../chat-container.vue'
 
 const content = ref('')

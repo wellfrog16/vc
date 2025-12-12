@@ -27,12 +27,8 @@
 <script lang="ts" setup>
 import type ICropper from 'cropperjs'
 import type { ICropperProps } from './cropper'
-
 import { defaultWindow, file, loader } from '@wfrog/utils'
-import { ElButton, ElLink, ElSpace, vLoading } from 'element-plus'
 import { debounce } from 'lodash-es'
-import { computed, nextTick, onMounted, onUnmounted, ref, shallowRef, useTemplateRef, watch } from 'vue'
-
 import HDialog from '../dialog/dialog.vue'
 
 const props = withDefaults(defineProps<ICropperProps>(), {

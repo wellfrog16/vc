@@ -14,9 +14,6 @@
 <script lang="ts" setup>
 import type { IInputProps } from './input'
 
-import { ElInput } from 'element-plus'
-import { computed, useCssModule, useTemplateRef } from 'vue'
-
 const props = withDefaults(defineProps<IInputProps>(), {
     block: false,
 })

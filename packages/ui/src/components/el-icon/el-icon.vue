@@ -1,6 +1,6 @@
 <template>
     <ElIcon :size="size" :color="color" :class="$style.icon">
-        <component :is="Icons[name]" />
+        <component :is="Icons[props.name]" />
     </ElIcon>
 </template>
 
@@ -10,7 +10,7 @@ import type { IElIconProps } from './el-icon'
 import * as Icons from '@element-plus/icons-vue'
 import { ElIcon } from 'element-plus'
 
-withDefaults(defineProps<IElIconProps>(), { color: '', size: '' })
+const props = withDefaults(defineProps<IElIconProps>(), { color: '', size: '' })
 </script>
 
 <style lang="scss" module>

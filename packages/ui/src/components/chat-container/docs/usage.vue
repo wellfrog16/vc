@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'stopHeight', description: '滚动条离开底部多少高度时，停止滚动', type: 'number', defaultValue: '30' },

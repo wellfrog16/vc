@@ -1,5 +1,8 @@
 import path from 'node:path'
 import process from 'node:process'
+import AutoImport from 'unplugin-auto-import/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vitepress'
 
 const resolve = (dir: string) => path.join(__dirname, dir)
@@ -113,6 +116,46 @@ export default defineConfig({
         },
     },
     vite: {
+        plugins: [
+            AutoImport({
+                resolvers: [ElementPlusResolver()],
+                imports: ['vue', '@vueuse/core'],
+                dts: './typings/auto-imports.d.ts',
+            }),
+            Components({
+                resolvers: [
+                    ElementPlusResolver({
+                        importStyle: false, // 导入 css 会报错，这里本来也是在 theme 下的 index.scss 全局引用
+                    }),
+                    // (() => ({
+                    //     type: 'component',
+                    //     resolve: (name: string) => {
+                    //         console.log('-------------------------')
+                    //         console.log('name', name)
+
+                    //         return {
+                    //             name: 'Wrapper',
+                    //             from: '../../example-wrapper.vue',
+                    //             // sideEffects: 'abc',
+                    //         }
+                    //     },
+                    // }))(),
+                    name => {
+                        if (name === 'Wrapper')
+                            return { name: 'default', from: '@/components/example-wrapper.vue' }
+                        if (name === 'Document')
+                            return { name: 'default', from: '@/components/document.vue' }
+                        if (name === 'CdnTag')
+                            return { name: 'default', from: '@/components/cdn-tag.vue' }
+                    },
+                ],
+                dirs: [], // 避免自动导入其他组件，element-plus 类型由 tsconfig 的 compilerOptions.types 控制
+                // dirs: ['../src/components'],
+                // globs: ['../src/components/*.vue'],
+                dts: './typings/components.d.ts',
+                include: [/\.vue$/, /\.md$/, /\.vue\?vue/, /\.vue\.[tj]sx?\?vue/],
+            }),
+        ],
         resolve: {
             alias: [
                 { find: /^~/, replacement: '' },
@@ -121,12 +164,12 @@ export default defineConfig({
             ],
         },
         // 修复 The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0 的警告
-        css: {
-            preprocessorOptions: {
-                scss: {
-                    api: 'modern-compiler',
-                },
-            },
-        },
+        // css: {
+        //     preprocessorOptions: {
+        //         scss: {
+        //             api: 'modern-compiler',
+        //         },
+        //     },
+        // },
     },
 })

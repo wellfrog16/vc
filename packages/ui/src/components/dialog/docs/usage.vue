@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'showFullscreen', description: '是否显示最大化的按钮', type: 'boolean', defaultValue: 'true' },

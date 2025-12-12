@@ -31,10 +31,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElSwitch } from 'element-plus'
-import { ref } from 'vue'
-
-import Wrapper from '@/components/example-wrapper.vue'
 import HSelect from '../select.vue'
 
 const options1 = [

@@ -15,11 +15,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElMessage } from 'element-plus'
-import { ref } from 'vue'
-
+import { ElMessage } from 'element-plus'
 import HButton from '@/components/button/button.vue'
-import Wrapper from '@/components/example-wrapper.vue'
 import HConfigProvider from '../config-provider.vue'
 
 const size = ref('default')

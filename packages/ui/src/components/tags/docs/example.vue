@@ -15,10 +15,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem } from 'element-plus'
-import { ref } from 'vue'
-
-import Wrapper from '@/components/example-wrapper.vue'
 import HTags from '../tags.vue'
 
 const result1 = ref<string[]>(['小龙虾', '毛血旺', '剁椒鱼头', '冰激凌'])

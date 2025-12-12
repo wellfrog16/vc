@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'dialog', description: '是否对话框模式', type: 'boolean', defaultValue: 'false' },

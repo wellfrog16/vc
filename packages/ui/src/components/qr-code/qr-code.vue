@@ -5,9 +5,7 @@
 <script lang="ts" setup>
 import type { ICDNType } from '@wfrog/utils'
 import type { IQRCodeProps } from './qr-code'
-
 import { loader } from '@wfrog/utils'
-import { onMounted, useTemplateRef } from 'vue'
 
 const props = withDefaults(defineProps<IQRCodeProps>(), {
     tag: 'canvas',

@@ -6,9 +6,6 @@
 <script lang="ts" setup>
 import type { IChoiceProps } from './choice'
 
-import { ElCheckboxGroup, ElRadioGroup } from 'element-plus'
-import { computed } from 'vue'
-
 const props = withDefaults(defineProps<IChoiceProps>(), {
     type: 'button',
 })

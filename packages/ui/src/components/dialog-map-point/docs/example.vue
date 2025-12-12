@@ -9,10 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElButton, ElDescriptionsItem } from 'element-plus'
-import { ref } from 'vue'
-import Wrapper from '@/components/example-wrapper.vue'
-
 import HDialogMapPoint from '../dialog-map-point.vue'
 
 const result = ref({ lng: 0, lat: 0 })

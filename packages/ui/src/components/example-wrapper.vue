@@ -5,10 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowSize } from '@vueuse/core'
-import { ElDescriptions } from 'element-plus'
-import { computed } from 'vue'
-
 const { width } = useWindowSize()
 const minWidth = 500
 const direction = computed(() => width.value && width.value < minWidth ? 'vertical' : 'horizontal')

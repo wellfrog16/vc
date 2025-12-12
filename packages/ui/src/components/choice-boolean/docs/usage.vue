@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
 
 const documentData = {
     params: [

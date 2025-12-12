@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'lazy', description: '是否使用懒渲染', type: 'boolean', defaultValue: 'true' },

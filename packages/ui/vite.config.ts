@@ -1,7 +1,11 @@
 import { resolve } from 'node:path'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+
 import cssSource from './build/css-source'
 import { getFoldFile } from './build/helper'
 
@@ -33,6 +37,16 @@ export default defineConfig({
             }),
         }),
         cssSource(),
+        AutoImport({
+            imports: ['vue', '@vueuse/core'],
+            resolvers: [ElementPlusResolver()],
+            dts: './src/typings/auto-imports.d.ts',
+        }),
+        Components({
+            resolvers: [ElementPlusResolver()],
+            dirs: [], // 避免自动导入其他组件，element-plus 类型由 tsconfig 的 compilerOptions.types 控制
+            dts: './src/typings/components.d.ts',
+        }),
     ],
 
     build: {

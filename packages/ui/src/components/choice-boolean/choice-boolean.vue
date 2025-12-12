@@ -4,10 +4,6 @@
 
 <script lang="ts" setup>
 import type { IChoiceBooleanProps } from './choice-boolean'
-
-import { useVModel } from '@vueuse/core'
-import { computed } from 'vue'
-
 import HChoice from '../choice/choice.vue'
 
 const props = withDefaults(defineProps<IChoiceBooleanProps>(), {

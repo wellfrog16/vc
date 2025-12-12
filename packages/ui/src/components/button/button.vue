@@ -24,10 +24,7 @@
 
 <script lang="ts" setup>
 import type { IButtonProps } from './button'
-
-import { useThrottleFn } from '@vueuse/core'
-import { ElButton, ElMessageBox, ElPopconfirm } from 'element-plus'
-import { computed } from 'vue'
+import { ElMessageBox } from 'element-plus'
 
 import { injectConfig } from '../config-provider/config-provider'
 import HIcon from '../icon/icon.vue'

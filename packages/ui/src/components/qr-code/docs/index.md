@@ -25,5 +25,4 @@ staticfile 和 baomitu 等 cdn 源只有 1.0.0 的版本，使用这些 cdn 源�
 <script setup>
 import Example from "./example.vue";
 import Usage from "./usage.vue";
-import CdnTag from "@/components/cdn-tag.vue";
 </script>

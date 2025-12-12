@@ -6,9 +6,6 @@
 
 <script setup lang="ts">
 import type { IIconProps } from './icon'
-
-import { computed } from 'vue'
-
 import HAwesome from '../awesome-icon/awesome-icon.vue'
 import HEl from '../el-icon/el-icon.vue'
 import HSvg from '../svg-icon/svg-icon.vue'

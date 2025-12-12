@@ -14,10 +14,6 @@
 <script setup lang="ts">
 import type { CascaderNode, CascaderValue } from 'element-plus/es/components/cascader-panel'
 import type { IPCAData } from '../pca-picker'
-
-import { useVModel } from '@vueuse/core'
-import { computed, onMounted, toRefs } from 'vue'
-
 import PopoverCascader from '@/components/tree-picker/components/popover-cascader.vue'
 import { injectCommonState } from '../pca-picker'
 

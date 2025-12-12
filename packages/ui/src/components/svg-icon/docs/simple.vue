@@ -12,6 +12,5 @@
 
 <script lang="ts" setup>
 import HConfigProvider from '@/components/config-provider/config-provider.vue'
-import Wrapper from '@/components/simple-wrapper.vue'
 import HSVGIcon from '../svg-icon.vue'
 </script>

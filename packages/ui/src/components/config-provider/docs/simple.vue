@@ -10,7 +10,6 @@
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
 import HButton from '@/components/button/button.vue'
-import Wrapper from '@/components/simple-wrapper.vue'
 import HConfigProvider from '../config-provider.vue'
 
 const buttonConfig = {

@@ -49,8 +49,6 @@ import type { UploadRawFile, UploadRequestOptions } from 'element-plus/es/compon
 import type { IDialogUploadImagesProps, IUploadFile } from './dialog-upload-images'
 
 import { defaultWindow } from '@wfrog/utils'
-import { ElButton, ElUpload, vLoading } from 'element-plus'
-import { computed, ref, shallowRef } from 'vue'
 import Draggable from 'vuedraggable-es-fix'
 
 import HDialog from '../dialog/dialog.vue'

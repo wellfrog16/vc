@@ -7,10 +7,7 @@
 
 <script lang="ts" setup>
 import type { IThousandInputProps } from './thousand-input'
-
 import { isEqual } from 'lodash-es'
-import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
-
 import vThousand from '@/directives/thousand'
 import HInput from '../input/input.vue'
 

@@ -8,9 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useToggle } from '@vueuse/core'
 import HButton from '@/components/button/button.vue'
-import Wrapper from '@/components/simple-wrapper.vue'
 import HDrawer from '../drawer.vue'
 
 const [visible, toggleVisible] = useToggle()

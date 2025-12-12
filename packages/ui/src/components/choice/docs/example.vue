@@ -18,10 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElSwitch } from 'element-plus'
-import { ref } from 'vue'
-
-import Wrapper from '@/components/example-wrapper.vue'
 import HChoice from '../choice.vue'
 
 const options = ['小龙虾', '毛血旺', '剁椒鱼头', '冰激凌']

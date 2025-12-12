@@ -1,7 +1,5 @@
 import type ICropper from 'cropperjs'
 
-import { ref } from 'vue'
-
 export const TYPE_UPLOAD = 'upload'
 export const TYPE_CAMERA = 'camera'
 export const WINDOW_IMAGE = 'image'

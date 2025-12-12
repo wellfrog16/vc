@@ -36,12 +36,7 @@
 
 <script lang="ts" setup>
 import type { IPCAData, IPCAPickerProps } from './pca-picker'
-
-import { onClickOutside, useThrottleFn, useToggle, useVModel } from '@vueuse/core'
-import { ElCascader, ElPopover } from 'element-plus'
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, useCssModule, useTemplateRef, watch } from 'vue'
 import { useProvide } from '@/use/useStore'
-
 import { injectConfig } from '../config-provider/config-provider'
 import CPicker from './components/c.vue'
 import FilterPicker from './components/filter.vue'

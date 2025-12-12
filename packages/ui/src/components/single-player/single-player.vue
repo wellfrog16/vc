@@ -20,11 +20,7 @@
 
 <script lang="ts" setup>
 import type { ISinglePlayerProps } from './single-player'
-
-import { ElSlider } from 'element-plus'
 import { isBoolean } from 'lodash-es'
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
-
 import HAwesomeIcon from '../awesome-icon/awesome-icon.vue'
 
 const props = withDefaults(defineProps<ISinglePlayerProps>(), {

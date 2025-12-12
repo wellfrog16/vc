@@ -11,9 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { ElCol, ElDivider, ElRow } from 'element-plus'
-import { toRefs } from 'vue'
-
 import { injectCommonState } from '../pca-picker'
 
 const { props: commonProps, historyData, itemClass, clickItem } = injectCommonState()

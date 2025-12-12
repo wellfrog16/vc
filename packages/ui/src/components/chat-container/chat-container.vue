@@ -15,8 +15,6 @@
 
 <script setup lang="ts">
 import type { IChatContainerProps } from './chat-container'
-
-import { onBeforeUnmount, onMounted, shallowRef, useTemplateRef } from 'vue'
 import Backbottom from '../backbottom/backbottom.vue'
 
 const props = withDefaults(defineProps<IChatContainerProps>(), {

@@ -19,8 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { ElCol, ElDivider, ElRow } from 'element-plus'
-
 import { injectCommonState } from '../pca-picker'
 import History from './history.vue'
 import Hot from './hot.vue'

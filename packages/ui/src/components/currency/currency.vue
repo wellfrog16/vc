@@ -30,11 +30,6 @@
 
 <script lang="ts" setup>
 import type { ICurrencyCode, ICurrencyProps } from './currency'
-
-import { useVModel } from '@vueuse/core'
-import { ElOption, ElSelect } from 'element-plus'
-import { computed, onBeforeMount, ref } from 'vue'
-
 import HFlag from '../flag/flag.vue'
 import HThousandInput from '../thousand-input/thousand-input.vue'
 import currency from './currency'

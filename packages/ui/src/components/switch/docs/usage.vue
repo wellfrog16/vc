@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: '*v-model', description: '绑定值', type: 'boolean | string | number', defaultValue: '-' },

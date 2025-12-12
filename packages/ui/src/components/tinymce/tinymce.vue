@@ -7,11 +7,7 @@
 <script lang="ts" setup>
 import type { ICDNType } from '@wfrog/utils'
 import type { ITinymceProps } from './tinymce'
-
 import { defaultWindow, loader } from '@wfrog/utils'
-import { vLoading } from 'element-plus'
-import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
-
 import config from './config'
 
 const props = withDefaults(defineProps<ITinymceProps>(), {

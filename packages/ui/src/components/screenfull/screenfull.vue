@@ -14,9 +14,6 @@
 <script lang="ts" setup>
 import type { IScreenfullProps } from './screenfull'
 import { loader } from '@wfrog/utils'
-import { vLoading } from 'element-plus'
-import { computed, ref, shallowRef } from 'vue'
-
 import HSVGIcon from '../svg-icon/svg-icon.vue'
 
 const props = defineProps<IScreenfullProps>()

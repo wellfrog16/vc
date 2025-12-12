@@ -12,9 +12,6 @@
 <script lang="ts" setup>
 import type { IDateRangePickerProps } from './daterange-picker'
 
-import { useVModel } from '@vueuse/core'
-import { ElDatePicker } from 'element-plus'
-
 const props = withDefaults(defineProps<IDateRangePickerProps>(), {
     valueFormat: 'YYYY-MM-DD',
     limitDays: 3,

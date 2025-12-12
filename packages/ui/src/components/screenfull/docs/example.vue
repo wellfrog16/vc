@@ -13,11 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElSlider } from 'element-plus'
-import { ref } from 'vue'
-
 import HChoice from '@/components/choice/choice.vue'
-import Wrapper from '@/components/example-wrapper.vue'
 import HScreenfull from '../screenfull.vue'
 
 const fontsize = ref(24)

@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: '*current-page', description: '当前页数，用于判断是否有上一页和发送下一页的页数', type: 'number', defaultValue: '1' },

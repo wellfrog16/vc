@@ -19,10 +19,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElSwitch } from 'element-plus'
-import { ref } from 'vue'
-
-import Wrapper from '@/components/example-wrapper.vue'
 import HInput from '../input.vue'
 
 const result = ref('')

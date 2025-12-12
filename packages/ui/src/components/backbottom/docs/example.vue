@@ -31,10 +31,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElInputNumber, ElScrollbar } from 'element-plus'
-import { ref } from 'vue'
-
-import Wrapper from '@/components/example-wrapper.vue'
 import HBackbottom from '../backbottom.vue'
 
 const bottom = ref(40)

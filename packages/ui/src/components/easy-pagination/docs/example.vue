@@ -7,10 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem, ElNotification } from 'element-plus'
-import { computed, ref } from 'vue'
-
-import Wrapper from '@/components/example-wrapper.vue'
+import { ElNotification } from 'element-plus'
 import HEasyPagination from '../easy-pagination.vue'
 
 const p = ref(1)

@@ -7,9 +7,6 @@
 
 <script lang="ts" setup>
 import type { IBackBottomProps } from './backbottom'
-
-import { ref } from 'vue'
-
 import Child from './components/child.vue'
 
 const props = withDefaults(defineProps<IBackBottomProps>(), {

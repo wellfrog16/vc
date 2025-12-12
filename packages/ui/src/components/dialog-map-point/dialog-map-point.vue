@@ -23,12 +23,8 @@
 
 <script lang="ts" setup>
 import type { IDialogMapPointProps } from './dialog-map-point'
-
 import { Search } from '@element-plus/icons-vue'
 import { defaultWindow, loader } from '@wfrog/utils'
-import { ElButton, ElInput } from 'element-plus'
-import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue'
-
 import HDialog from '../dialog/dialog.vue'
 
 const props = withDefaults(defineProps<IDialogMapPointProps>(), {

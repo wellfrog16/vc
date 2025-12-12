@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'target', description: '触发滚动的对象，CSS 选择器字符串或者 DOM 对象', type: 'string | HTMLElement', defaultValue: '下一行' },

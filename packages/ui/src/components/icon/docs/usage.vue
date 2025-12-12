@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: '*name', description: 'icon 对应的 name', type: 'string', defaultValue: '-' },

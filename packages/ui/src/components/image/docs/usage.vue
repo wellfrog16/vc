@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'type', description: '展示的嵌入方式', type: 'image | text', defaultValue: 'image' },

@@ -79,14 +79,9 @@
 
 <script lang="ts" setup>
 import type { IChoiceProps } from '@/components/choice/choice'
-
-import { ElAlert, ElDescriptionsItem, ElOption, ElSelect, ElSpace, ElText } from 'element-plus'
-import { computed, nextTick, ref } from 'vue'
-
 import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import HChoice from '@/components/choice/choice.vue'
 import HConfigProvider from '@/components/config-provider/config-provider.vue'
-import Wrapper from '@/components/example-wrapper.vue'
 import HInputNumber from '@/components/input-number/input-number.vue'
 import HPCAPicker from '../pca-picker.vue'
 

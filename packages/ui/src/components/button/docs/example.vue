@@ -35,12 +35,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDescriptionsItem } from 'element-plus'
-import { ref } from 'vue'
-
 import HChoice from '@/components/choice/choice.vue'
 import HConfigProvider from '@/components/config-provider/config-provider.vue'
-import Wrapper from '@/components/example-wrapper.vue'
 import HButton from '../button.vue'
 
 const mySize = ref('')

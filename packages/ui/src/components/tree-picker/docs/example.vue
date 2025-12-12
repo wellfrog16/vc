@@ -29,13 +29,8 @@
 
 <script lang="ts" setup>
 import type { IChoiceProps } from '@/components/choice/choice'
-
-import { ElDescriptionsItem } from 'element-plus'
-import { ref } from 'vue'
-
 import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import HChoice from '@/components/choice/choice.vue'
-import Wrapper from '@/components/example-wrapper.vue'
 import HTreePicker from '../tree-picker.vue'
 import { treeData } from './data'
 

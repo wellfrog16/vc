@@ -70,10 +70,7 @@ import type { AlertProps } from 'element-plus/es/components/alert'
 import type { IDialogCameraUploadProps } from './dialog-camera-upload'
 
 import { Camera, Upload } from '@element-plus/icons-vue'
-import { useUserMedia } from '@vueuse/core'
 import { defaultWindow, file } from '@wfrog/utils'
-import { ElAlert, ElButton, ElIcon, ElImage, ElOption, ElSelect, vLoading } from 'element-plus'
-import { computed, reactive, ref, useTemplateRef, watch } from 'vue'
 
 import HCropper from '../cropper/cropper.vue'
 import HDialog from '../dialog/dialog.vue'

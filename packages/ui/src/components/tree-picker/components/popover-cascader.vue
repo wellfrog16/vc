@@ -27,10 +27,6 @@
 import type { CascaderNode, CascaderOption, CascaderValue } from 'element-plus/es/components/cascader-panel'
 import type { IPopoverCascaderProps } from './popover-cascader'
 
-import { useVModel } from '@vueuse/core'
-import { ElCascaderPanel, ElScrollbar, ElTree } from 'element-plus'
-import { computed, nextTick, onBeforeUnmount, useTemplateRef, watch } from 'vue'
-
 const props = withDefaults(defineProps<IPopoverCascaderProps>(), {
     emptyText: '尚未选择',
 })

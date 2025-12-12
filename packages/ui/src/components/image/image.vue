@@ -35,10 +35,6 @@
 
 <script lang="ts" setup>
 import type { IImageProps } from './image'
-
-import { ElImage, ElTooltip } from 'element-plus'
-import { computed, ref, useSlots, useTemplateRef } from 'vue'
-
 import HElIcon from '../el-icon/el-icon.vue'
 import HTextEllipsis from '../text-ellipsis/text-ellipsis.vue'
 

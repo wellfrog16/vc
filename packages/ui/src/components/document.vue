@@ -44,8 +44,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElDivider, ElLink, ElTable, ElTableColumn } from 'element-plus'
-
 defineProps({
     data: { type: Object, default: () => ({}) },
 })

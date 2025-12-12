@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'time', description: '点击时的节流间隔，单位毫秒', type: 'number', defaultValue: '800' },

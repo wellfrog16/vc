@@ -5,8 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import Wrapper from '@/components/simple-wrapper.vue'
 import HEasyPagination from '../easy-pagination.vue'
 
 const p = ref(1)

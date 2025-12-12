@@ -43,14 +43,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useToggle } from '@vueuse/core'
-import { ElDescriptionsItem } from 'element-plus'
-import { ref } from 'vue'
-
 import HButton from '@/components/button/button.vue'
 import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import HChoice from '@/components/choice/choice.vue'
-import Wrapper from '@/components/example-wrapper.vue'
 import HDialog from '../dialog.vue'
 
 const visible = ref(false)

@@ -8,8 +8,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useToggle } from '@vueuse/core'
-import Wrapper from '@/components/simple-wrapper.vue'
 import HDialog from '../dialog.vue'
 
 const [visible, toggleVisible] = useToggle()

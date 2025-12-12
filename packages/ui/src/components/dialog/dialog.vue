@@ -35,12 +35,7 @@
 
 <script lang="ts" setup>
 import type { IDialogProps } from './dialog'
-
 import { Close, CopyDocument, FullScreen } from '@element-plus/icons-vue'
-import { useToggle, useVModel } from '@vueuse/core'
-import { ElButton, ElDialog, ElScrollbar } from 'element-plus'
-import { computed, ref, useCssModule, watch } from 'vue'
-
 import HButton from '../button/button.vue'
 
 const props = withDefaults(defineProps<IDialogProps>(), {

@@ -5,7 +5,6 @@
 <script lang="ts" setup>
 import type { IConfigProviderProps } from './config-provider'
 import { loader } from '@wfrog/utils'
-import { onMounted } from 'vue'
 
 import { useProvide } from '@/use/useStore'
 import { KEY_NAME } from './config-provider'

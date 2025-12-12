@@ -16,10 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ElButton, ElDescriptionsItem, ElMessage } from 'element-plus'
-import { ref } from 'vue'
-
-import Wrapper from '@/components/example-wrapper.vue'
+import { ElMessage } from 'element-plus'
 import HDialogUploadImages from '../dialog-upload-images.vue'
 
 const demoData: any = {

@@ -9,9 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElButton } from 'element-plus'
-import { ref } from 'vue'
-import Wrapper from '@/components/simple-wrapper.vue'
 import HDialogCameraUpload from '../dialog-camera-upload.vue'
 
 const result = ref('')

@@ -13,10 +13,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ElButton, ElDescriptionsItem } from 'element-plus'
-import { ref, useTemplateRef } from 'vue'
-
-import Wrapper from '@/components/example-wrapper.vue'
 import HCropper from '../cropper.vue'
 
 const resultRef = useTemplateRef('resultRef')

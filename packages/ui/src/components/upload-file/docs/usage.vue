@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: 'accept', description: '接受的文件格式', type: 'string', defaultValue: '下一行' },

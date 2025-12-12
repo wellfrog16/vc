@@ -3,8 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import Document from '@/components/document.vue'
-
 const documentData = {
     params: [
         { param: '*v-model:visible', description: '显示/隐藏', type: 'boolen', defaultValue: 'false' },

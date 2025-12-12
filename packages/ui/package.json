@@ -17,8 +17,9 @@
       "types": "./dist/es/components/*/index.d.ts",
       "default": "./dist/es/components/*/index.mjs"
     },
-    "./global": {
-      "types": "./global.d.ts"
+    "./resolver": {
+      "types": "./dist/es/utils/resolver.d.ts",
+      "default": "./dist/es/utils/resolver.mjs"
     },
     "./*": "./dist/*"
   },

@@ -1,5 +1,6 @@
 import path from 'node:path'
 import vue from '@vitejs/plugin-vue'
+import VcResolver from '@wfrog/vc/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
@@ -9,15 +10,22 @@ const resolve = (dir: string) => path.join(__dirname, dir)
 
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [vue(), AutoImport({
-        imports: ['vue', '@vueuse/core', 'vue-router'],
-        resolvers: [ElementPlusResolver()],
-        dts: './src/types/auto-imports.d.ts',
-    }), Components({
-        resolvers: [ElementPlusResolver()],
-        dirs: [], // 避免自动导入其他组件，element-plus 类型由 tsconfig 的 compilerOptions.types 控制
-        dts: './src/types/components.d.ts',
-    })],
+    plugins: [
+        vue(),
+        AutoImport({
+            imports: ['vue', '@vueuse/core', 'vue-router'],
+            resolvers: [ElementPlusResolver()],
+            dts: './src/types/auto-imports.d.ts',
+        }),
+        Components({
+            resolvers: [
+                ElementPlusResolver(),
+                VcResolver(),
+            ],
+            dirs: [], // 避免自动导入其他组件，element-plus 类型由 tsconfig 的 compilerOptions.types 控制
+            dts: './src/types/components.d.ts',
+        }),
+    ],
     base: './',
     resolve: {
         alias: [

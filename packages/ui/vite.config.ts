@@ -62,6 +62,7 @@ export default defineConfig({
                 main: resolve(__dirname, './src/index.ts'),
                 ...componentEntrys,
                 ...useEntrys,
+                resolver: resolve(__dirname, './src/utils/resolver.ts'),
             },
             name: '@wfrog/vc',
             formats: ['es'],
@@ -69,6 +70,9 @@ export default defineConfig({
                 // console.log(entryName, 'entryName')
                 if (entryName === 'main') {
                     return 'es/index.mjs'
+                }
+                else if (entryName === 'resolver') {
+                    return 'es/utils/resolver.mjs'
                 }
                 else {
                     return `es/${entryName}/index.mjs`

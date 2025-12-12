@@ -120,7 +120,7 @@ export default defineConfig({
             AutoImport({
                 resolvers: [ElementPlusResolver()],
                 imports: ['vue', '@vueuse/core'],
-                dts: './typings/auto-imports.d.ts',
+                dts: './types/auto-imports.d.ts',
             }),
             Components({
                 resolvers: [
@@ -152,7 +152,7 @@ export default defineConfig({
                 dirs: [], // 避免自动导入其他组件，element-plus 类型由 tsconfig 的 compilerOptions.types 控制
                 // dirs: ['../src/components'],
                 // globs: ['../src/components/*.vue'],
-                dts: './typings/components.d.ts',
+                dts: './types/components.d.ts',
                 include: [/\.vue$/, /\.md$/, /\.vue\?vue/, /\.vue\.[tj]sx?\?vue/],
             }),
         ],

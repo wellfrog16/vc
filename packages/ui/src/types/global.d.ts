@@ -1,7 +1,6 @@
 // GlobalComponents for Volar
 declare module '@vue/runtime-core' {
     export interface GlobalComponents {
-        ElAffix: typeof import('@wfrog/vc')['ElAffix']
     }
 
     // interface ComponentCustomProperties {

@@ -40,12 +40,12 @@ export default defineConfig({
         AutoImport({
             imports: ['vue', '@vueuse/core'],
             resolvers: [ElementPlusResolver()],
-            dts: './src/typings/auto-imports.d.ts',
+            dts: './src/types/auto-imports.d.ts',
         }),
         Components({
             resolvers: [ElementPlusResolver()],
             dirs: [], // 避免自动导入其他组件，element-plus 类型由 tsconfig 的 compilerOptions.types 控制
-            dts: './src/typings/components.d.ts',
+            dts: './src/types/components.d.ts',
         }),
     ],
 

@@ -1,6 +1,6 @@
 <template>
     <!-- [$style.prepend]: prepend 可以使得 input 框左边的圆角在无 prepend 时保持正确  -->
-    <HThousandInput
+    <VcThousandInput
         v-model="myValue"
         v-model:format-value="formatValue"
         :options="thousandOption"
@@ -11,27 +11,27 @@
         <template v-if="prepend" #prepend>
             <ElSelect v-if="Array.isArray(currencyInfo)" v-model="myCode" :style="selectStyle" @change="handleCodeChange">
                 <template v-if="flag" #prefix>
-                    <HFlag v-if="myCurrencyInfo" :code="myCurrencyInfo?.flag" />
+                    <VcFlag v-if="myCurrencyInfo" :code="myCurrencyInfo?.flag" />
                 </template>
                 <ElOption v-for="item in currencyInfo" :key="item.code" :value="item.code">
-                    <HFlag v-if="flag" :code="item.flag" :class="$style.flag" />{{ item.code }}
+                    <VcFlag v-if="flag" :code="item.flag" :class="$style.flag" />{{ item.code }}
                 </ElOption>
             </ElSelect>
             <template v-else>
-                <HFlag v-if="flag" :code="currencyInfo!.flag" :class="$style.flag" />{{ currencyInfo!.code }}
+                <VcFlag v-if="flag" :code="currencyInfo!.flag" :class="$style.flag" />{{ currencyInfo!.code }}
             </template>
         </template>
         <template v-if="append" #append>
             <span v-if="Array.isArray(currencyInfo)">{{ myCurrencyInfo!.code }}</span>
             <span v-else>{{ currencyInfo!.code }}</span>
         </template>
-    </HThousandInput>
+    </VcThousandInput>
 </template>
 
 <script lang="ts" setup>
 import type { ICurrencyCode, ICurrencyProps } from './currency'
-import HFlag from '../flag/flag.vue'
-import HThousandInput from '../thousand-input/thousand-input.vue'
+import VcFlag from '../flag/flag.vue'
+import VcThousandInput from '../thousand-input/thousand-input.vue'
 import currency from './currency'
 
 const props = withDefaults(defineProps<ICurrencyProps>(), {

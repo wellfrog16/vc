@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
-        <HAwesomeIcon name="fa-solid fa-dog" />
+        <VcAwesomeIcon name="fa-solid fa-dog" />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HAwesomeIcon from '../awesome-icon.vue'
+import VcAwesomeIcon from '../awesome-icon.vue'
 </script>

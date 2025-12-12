@@ -1,23 +1,23 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HConfigProvider :button="buttonConfig">
-                <HButton :size="size" type="warning" @click="handleClick">点击会有二次确认修改按钮大小</HButton>
-            </HConfigProvider>
+            <VcConfigProvider :button="buttonConfig">
+                <VcButton :size="size" type="warning" @click="handleClick">点击会有二次确认修改按钮大小</VcButton>
+            </VcConfigProvider>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区">
-            <HConfigProvider :button="buttonConfig2">
-                <HButton :size="size" type="warning" @click="handleClick2">删除</HButton>
-                <HButton :size="size" type="warning" @click="handleClick2">删除</HButton>
-            </HConfigProvider>
+            <VcConfigProvider :button="buttonConfig2">
+                <VcButton :size="size" type="warning" @click="handleClick2">删除</VcButton>
+                <VcButton :size="size" type="warning" @click="handleClick2">删除</VcButton>
+            </VcConfigProvider>
         </ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
-import HButton from '@/components/button/button.vue'
-import HConfigProvider from '../config-provider.vue'
+import VcButton from '@/components/button/button.vue'
+import VcConfigProvider from '../config-provider.vue'
 
 const size = ref('default')
 const buttonConfig = {

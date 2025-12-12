@@ -1,11 +1,11 @@
 <template>
     <Wrapper>
-        <HCurrency v-model="result" code="EUR" />
+        <VcCurrency v-model="result" code="EUR" />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HCurrency from '../currency.vue'
+import VcCurrency from '../currency.vue'
 
 const result = ref('')
 </script>

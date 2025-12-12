@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './input.vue'
 
-export const HInput: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HInput
+export const VcInput: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcInput

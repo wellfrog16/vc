@@ -15,5 +15,5 @@ export interface IConfigProviderProps {
     crosProxy?: string
 }
 
-export const KEY_NAME = Symbol('VCConfig')
+export const KEY_NAME = Symbol('VcConfig')
 export const injectConfig = () => useInject<IConfigProviderProps>(KEY_NAME)

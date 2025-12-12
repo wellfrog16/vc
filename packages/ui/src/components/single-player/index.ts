@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './single-player.vue'
 
-export const HSinglePlayer: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HSinglePlayer
+export const VcSinglePlayer: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcSinglePlayer

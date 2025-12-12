@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './pca-picker.vue'
 
-export const HPCAPicker: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HPCAPicker
+export const VcPCAPicker: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcPCAPicker

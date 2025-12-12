@@ -1,5 +1,5 @@
 <template>
-    <HDialog
+    <VcDialog
         v-model="dialogVisible"
         title="上传图片"
         :close-on-click-modal="false"
@@ -25,15 +25,15 @@
                     :limit="limit"
                     :on-exceed="handleOnExceed"
                 >
-                    <HElIcon name="Plus" />
+                    <VcElIcon name="Plus" />
                 </ElUpload>
             </template>
             <template #item="{ element }">
                 <div class="el-upload-list__item">
                     <img class="el-upload-list__item-thumbnail" :src="getImgUrl(element)">
                     <span class="el-upload-list__item-actions" :class="[$style.opration]">
-                        <HElIcon name="ZoomIn" @click="handleOnPreview(element)" />
-                        <HElIcon name="Delete" @click="handleOnRemove(element)" />
+                        <VcElIcon name="ZoomIn" @click="handleOnPreview(element)" />
+                        <VcElIcon name="Delete" @click="handleOnRemove(element)" />
                     </span>
                 </div>
             </template>
@@ -41,7 +41,7 @@
         <template #footer>
             <ElButton type="primary" :loading="loading" @click="handleConfirm">确 定</ElButton>
         </template>
-    </HDialog>
+    </VcDialog>
 </template>
 
 <script lang="ts" setup>
@@ -51,8 +51,8 @@ import type { IDialogUploadImagesProps, IUploadFile } from './dialog-upload-imag
 import { defaultWindow } from '@wfrog/utils'
 import Draggable from 'vuedraggable-es-fix'
 
-import HDialog from '../dialog/dialog.vue'
-import HElIcon from '../el-icon/el-icon.vue'
+import VcDialog from '../dialog/dialog.vue'
+import VcElIcon from '../el-icon/el-icon.vue'
 
 const props = withDefaults(defineProps<IDialogUploadImagesProps>(), {
     destroyOnClose: false,

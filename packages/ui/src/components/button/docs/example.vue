@@ -2,30 +2,30 @@
     <Wrapper>
         <template #default="{ direction }">
             <ElDescriptionsItem label="展示区">
-                <HConfigProvider iconfont-url="//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js">
+                <VcConfigProvider iconfont-url="//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js">
                     <div :class="$style[direction]">
-                        <HButton :icon="{ name: 'Search' }" type="primary" :size="mySize">Eleme 图标</HButton>
-                        <HButton :icon="{ type: 'awesome', name: 'fas fa-dog' }" type="primary" :size="mySize">Awesome 图标</HButton>
-                        <HButton :icon="{ type: 'svg', name: 'test' }" type="primary" :size="mySize">SVG 图标</HButton>
+                        <VcButton :icon="{ name: 'Search' }" type="primary" :size="mySize">Eleme 图标</VcButton>
+                        <VcButton :icon="{ type: 'awesome', name: 'fas fa-dog' }" type="primary" :size="mySize">Awesome 图标</VcButton>
+                        <VcButton :icon="{ type: 'svg', name: 'test' }" type="primary" :size="mySize">SVG 图标</VcButton>
                     </div>
                     <div :class="$style[direction]">
-                        <HButton :icon="{ name: 'Search', position: 'right' }" type="primary" :size="mySize">Eleme 图标</HButton>
-                        <HButton :icon="{ type: 'awesome', name: 'fas fa-dog', position: 'right' }" type="primary" :size="mySize">Awesome 图标</HButton>
-                        <HButton :icon="{ type: 'svg', name: 'test', position: 'right' }" type="primary" :size="mySize">SVG 图标</HButton>
+                        <VcButton :icon="{ name: 'Search', position: 'right' }" type="primary" :size="mySize">Eleme 图标</VcButton>
+                        <VcButton :icon="{ type: 'awesome', name: 'fas fa-dog', position: 'right' }" type="primary" :size="mySize">Awesome 图标</VcButton>
+                        <VcButton :icon="{ type: 'svg', name: 'test', position: 'right' }" type="primary" :size="mySize">SVG 图标</VcButton>
                     </div>
-                </HConfigProvider>
+                </VcConfigProvider>
             </ElDescriptionsItem>
             <ElDescriptionsItem label="参数：大小">
-                <HChoice v-model="mySize" :options="sizeOption" />
+                <VcChoice v-model="mySize" :options="sizeOption" />
             </ElDescriptionsItem>
             <ElDescriptionsItem label="展示区：节流">
-                <HButton type="primary" :size="mySize" @click="handleClick">快速点击</HButton>
+                <VcButton type="primary" :size="mySize" @click="handleClick">快速点击</VcButton>
             </ElDescriptionsItem>
             <ElDescriptionsItem label="展示区：提示">
-                <HButton type="warning" :size="mySize" :confirm="{ type: myType }" @click="handleClick">点击会有二次确认</HButton>
+                <VcButton type="warning" :size="mySize" :confirm="{ type: myType }" @click="handleClick">点击会有二次确认</VcButton>
             </ElDescriptionsItem>
             <ElDescriptionsItem label="参数：类型">
-                <HChoice v-model="myType" :options="typeOption" />
+                <VcChoice v-model="myType" :options="typeOption" />
             </ElDescriptionsItem>
             <ElDescriptionsItem label="结果">
                 <div>节流间隔 800 毫秒，执行次数：{{ updated }}</div>
@@ -35,9 +35,9 @@
 </template>
 
 <script lang="ts" setup>
-import HChoice from '@/components/choice/choice.vue'
-import HConfigProvider from '@/components/config-provider/config-provider.vue'
-import HButton from '../button.vue'
+import VcChoice from '@/components/choice/choice.vue'
+import VcConfigProvider from '@/components/config-provider/config-provider.vue'
+import VcButton from '../button.vue'
 
 const mySize = ref('')
 const sizeOption = [

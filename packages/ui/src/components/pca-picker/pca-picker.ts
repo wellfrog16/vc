@@ -269,5 +269,5 @@ export function usePCAData(params: IPCAPickerProps) {
     }
 }
 
-export const KEY_NAME = Symbol('VCPCA')
+export const KEY_NAME = Symbol('VcPCA')
 export const injectCommonState = () => useInject<ICommmonStateType>(KEY_NAME)

@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './upload-file.vue'
 
-export const HUploadFile: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HUploadFile
+export const VcUploadFile: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcUploadFile

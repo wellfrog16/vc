@@ -1,41 +1,41 @@
 import { version } from '../package.json'
 
-export { default as HAwesomeIcon } from './components/awesome-icon/awesome-icon.vue'
-export { default as HBackbottom } from './components/backbottom/backbottom.vue'
-export { default as HButton } from './components/button/button.vue'
-export { default as HChatContainer } from './components/chat-container/chat-container.vue'
-export { default as HChoiceBoolean } from './components/choice-boolean/choice-boolean.vue'
-export { default as HChoice } from './components/choice/choice.vue'
-export { default as HConfigProvider } from './components/config-provider/config-provider.vue'
-export { default as HCropper } from './components/cropper/cropper.vue'
-export { default as HCurrency } from './components/currency/currency.vue'
-export { default as HDaterangePicker } from './components/daterange-picker/daterange-picker.vue'
-export { default as HDialogCameraUpload } from './components/dialog-camera-upload/dialog-camera-upload.vue'
-export { default as HDialogMapPoint } from './components/dialog-map-point/dialog-map-point.vue'
-export { default as HDialogUploadImages } from './components/dialog-upload-images/dialog-upload-images.vue'
-export { default as HDialog } from './components/dialog/dialog.vue'
-export { default as HDrawer } from './components/drawer/drawer.vue'
-export { default as HEasyPagination } from './components/easy-pagination/easy-pagination.vue'
-export { default as HElIcon } from './components/el-icon/el-icon.vue'
-export { default as HFlag } from './components/flag/flag.vue'
-export { default as HIcon } from './components/icon/icon.vue'
-export { default as HImage } from './components/image/image.vue'
-export { default as HInputNumber } from './components/input-number/input-number.vue'
-export { default as HInput } from './components/input/input.vue'
-export { default as HPCAPicker } from './components/pca-picker/pca-picker.vue'
-export { default as HQRCode } from './components/qr-code/qr-code.vue'
-export { default as HScreenfull } from './components/screenfull/screenfull.vue'
-export { default as HSelect } from './components/select/select.vue'
-export { default as HSinglePlayer } from './components/single-player/single-player.vue'
-export { default as HSVGIcon } from './components/svg-icon/svg-icon.vue'
-export { default as HSwitch } from './components/switch/switch.vue'
-export { default as HSyncScrollContainer } from './components/sync-scroll-container/sync-scroll-container.vue'
-export { default as HTags } from './components/tags/tags.vue'
-export { default as HTextEllipsis } from './components/text-ellipsis/text-ellipsis.vue'
-export { default as HThousandInput } from './components/thousand-input/thousand-input.vue'
-export { default as HTinymce } from './components/tinymce/tinymce.vue'
-export { default as HTreePicker } from './components/tree-picker/tree-picker.vue'
-export { default as HUploadFile } from './components/upload-file/upload-file.vue'
+export { default as VcAwesomeIcon } from './components/awesome-icon/awesome-icon.vue'
+export { default as VcBackbottom } from './components/backbottom/backbottom.vue'
+export { default as VcButton } from './components/button/button.vue'
+export { default as VcChatContainer } from './components/chat-container/chat-container.vue'
+export { default as VcChoiceBoolean } from './components/choice-boolean/choice-boolean.vue'
+export { default as VcChoice } from './components/choice/choice.vue'
+export { default as VcConfigProvider } from './components/config-provider/config-provider.vue'
+export { default as VcCropper } from './components/cropper/cropper.vue'
+export { default as VcCurrency } from './components/currency/currency.vue'
+export { default as VcDaterangePicker } from './components/daterange-picker/daterange-picker.vue'
+export { default as VcDialogCameraUpload } from './components/dialog-camera-upload/dialog-camera-upload.vue'
+export { default as VcDialogMapPoint } from './components/dialog-map-point/dialog-map-point.vue'
+export { default as VcDialogUploadImages } from './components/dialog-upload-images/dialog-upload-images.vue'
+export { default as VcDialog } from './components/dialog/dialog.vue'
+export { default as VcDrawer } from './components/drawer/drawer.vue'
+export { default as VcEasyPagination } from './components/easy-pagination/easy-pagination.vue'
+export { default as VcElIcon } from './components/el-icon/el-icon.vue'
+export { default as VcFlag } from './components/flag/flag.vue'
+export { default as VcIcon } from './components/icon/icon.vue'
+export { default as VcImage } from './components/image/image.vue'
+export { default as VcInputNumber } from './components/input-number/input-number.vue'
+export { default as VcInput } from './components/input/input.vue'
+export { default as VcPcaPicker } from './components/pca-picker/pca-picker.vue'
+export { default as VcQrCode } from './components/qr-code/qr-code.vue'
+export { default as VcScreenfull } from './components/screenfull/screenfull.vue'
+export { default as VcSelect } from './components/select/select.vue'
+export { default as VcSinglePlayer } from './components/single-player/single-player.vue'
+export { default as VcSvgIcon } from './components/svg-icon/svg-icon.vue'
+export { default as VcSwitch } from './components/switch/switch.vue'
+export { default as VcSyncScrollContainer } from './components/sync-scroll-container/sync-scroll-container.vue'
+export { default as VcTags } from './components/tags/tags.vue'
+export { default as VcTextEllipsis } from './components/text-ellipsis/text-ellipsis.vue'
+export { default as VcThousandInput } from './components/thousand-input/thousand-input.vue'
+export { default as VcTinymce } from './components/tinymce/tinymce.vue'
+export { default as VcTreePicker } from './components/tree-picker/tree-picker.vue'
+export { default as VcUploadFile } from './components/upload-file/upload-file.vue'
 
 const modules: Record<string, any> = import.meta.glob('./components/*/*.vue', { eager: true })
 const upper = (_: any, letter: string) => letter.toUpperCase()
@@ -45,10 +45,11 @@ function install(Vue: any) {
         const [, name] = key.match(/\/components\/([a-z\-\d]+)\//) || []
         if (!name) { return false }
 
-        let componentName = `H-${name}`.replace(/-(\w)/g, upper)
-        if (name === 'qr-code') { componentName = 'HQRCode' }
-        if (name === 'svg-icon') { componentName = 'HSVGIcon' }
-        if (name === 'pca-picker') { componentName = 'HPCAPicker' }
+        const componentName = `Vc-${name}`.replace(/-(\w)/g, upper)
+        // console.log(`[VcUI] Register component: ${componentName}`)
+        // if (name === 'qr-code') { componentName = 'VcQRCode' }
+        // if (name === 'svg-icon') { componentName = 'VcSVGIcon' }
+        // if (name === 'pca-picker') { componentName = 'VcPCAPicker' }
 
         Vue.component(componentName, modules[key].default)
         return true

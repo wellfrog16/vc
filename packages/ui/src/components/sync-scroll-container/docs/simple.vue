@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <div :class="$style.container">
-            <HSyncScrollContainer border>
+            <VcSyncScrollContainer border>
                 <template #corner>
                     <div>slot: corner</div>
                 </template>
@@ -12,13 +12,13 @@
                     <div :class="$style.header">slot: header</div>
                 </template>
                 <div :class="$style.body">slot: default</div>
-            </HSyncScrollContainer>
+            </VcSyncScrollContainer>
         </div>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HSyncScrollContainer from '../sync-scroll-container.vue'
+import VcSyncScrollContainer from '../sync-scroll-container.vue'
 </script>
 
 <style lang="scss" module>

@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './svg-icon.vue'
 
-export const HSVGIcon: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HSVGIcon
+export const VcSVGIcon: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcSVGIcon

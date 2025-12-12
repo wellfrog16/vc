@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './select.vue'
 
-export const HSelect: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HSelect
+export const VcSelect: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcSelect

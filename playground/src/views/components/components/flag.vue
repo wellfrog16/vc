@@ -1,11 +1,11 @@
 <template>
     <el-space :class="$style.container">
-        <HFlag code="RUS" size="2em" />
-        <HFlag code="SPM" size="30px" />
-        <HFlag code="SGP" :size="40" />
-        <HFlag code="BA" />
-        <HFlag code="TG" />
-        <HFlag code="EU" />
+        <vc-flag code="RUS" size="2em" />
+        <vc-flag code="SPM" size="30px" />
+        <vc-flag code="SGP" :size="40" />
+        <vc-flag code="BA" />
+        <vc-flag code="TG" />
+        <vc-flag code="EU" />
     </el-space>
 </template>
 

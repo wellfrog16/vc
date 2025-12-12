@@ -1,17 +1,17 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HChatContainer :class="$style.container" :keep-bottom="keepBottom">
+            <VcChatContainer :class="$style.container" :keep-bottom="keepBottom">
                 <div v-html="content" />
-            </HChatContainer>
+            </VcChatContainer>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="操作">
-            <HButton type="primary" plain @click="fillContent">填充内容</HButton>
-            <HButton type="primary" plain @click="stopFill">暂停</HButton>
-            <HButton type="primary" plain @click="clearContent">清空</HButton>
+            <VcButton type="primary" plain @click="fillContent">填充内容</VcButton>
+            <VcButton type="primary" plain @click="stopFill">暂停</VcButton>
+            <VcButton type="primary" plain @click="clearContent">清空</VcButton>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：强制底部">
-            <HChoiceBoolean v-model="keepBottom" />
+            <VcChoiceBoolean v-model="keepBottom" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：停止距离">
             <ElInputNumber v-model="stopHeight" :min="30" :precision="0" />
@@ -20,9 +20,9 @@
 </template>
 
 <script lang="ts" setup>
-import HButton from '@/components/button/button.vue'
-import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
-import HChatContainer from '../chat-container.vue'
+import VcButton from '@/components/button/button.vue'
+import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import VcChatContainer from '../chat-container.vue'
 
 const content = ref('')
 const keepBottom = ref(false)

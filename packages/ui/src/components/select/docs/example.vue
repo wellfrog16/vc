@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HSelect v-model="result1" :options="options1" clearable :multiple="multiple" :block="isBlock" placeholder="请选择" />
+            <VcSelect v-model="result1" :options="options1" clearable :multiple="multiple" :block="isBlock" placeholder="请选择" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：单/多选">
             <ElSwitch
@@ -24,14 +24,14 @@
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果"><span>{{ result1 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：逻辑型">
-            <HSelect v-model="result2" :options="options2" clearable :block="isBlock" placeholder="请选择" />
+            <VcSelect v-model="result2" :options="options2" clearable :block="isBlock" placeholder="请选择" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果"><span>{{ result2 }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HSelect from '../select.vue'
+import VcSelect from '../select.vue'
 
 const options1 = [
     { label: '小龙虾', value: 1 },

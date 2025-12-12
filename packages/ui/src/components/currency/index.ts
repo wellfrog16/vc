@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './currency.vue'
 
-export const HCurrency: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HCurrency
+export const VcCurrency: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcCurrency

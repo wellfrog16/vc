@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
-        <HScreenfull />
+        <VcScreenfull />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HScreenfull from '../screenfull.vue'
+import VcScreenfull from '../screenfull.vue'
 </script>

@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './chat-container.vue'
 
-export const HChatContainer: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HChatContainer
+export const VcChatContainer: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcChatContainer

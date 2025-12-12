@@ -4,13 +4,13 @@
         <ElScrollbar class="drawer-scrollbar" always>
             <div :class="$style['body-container']"><slot /></div>
         </ElScrollbar>
-        <div v-if="showDefaultFooter || $slots.footer" class="drawer-footer"><slot name="footer"><HButton @click="drawerVisible = false">关闭</HButton></slot></div>
+        <div v-if="showDefaultFooter || $slots.footer" class="drawer-footer"><slot name="footer"><VcButton @click="drawerVisible = false">关闭</VcButton></slot></div>
     </ElDrawer>
 </template>
 
 <script lang="ts" setup>
 import type { IDrawerProps } from './drawer'
-import HButton from '../button/button.vue'
+import VcButton from '../button/button.vue'
 
 const props = withDefaults(defineProps<IDrawerProps>(), {
     title: '对话框',

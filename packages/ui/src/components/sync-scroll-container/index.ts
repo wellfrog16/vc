@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './sync-scroll-container.vue'
 
-export const HSyncScrollContainer: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HSyncScrollContainer
+export const VcSyncScrollContainer: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcSyncScrollContainer

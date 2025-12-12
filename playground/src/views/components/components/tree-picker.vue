@@ -1,7 +1,7 @@
 <template>
     <el-space size="large" alignment="center" fill :style="{ display: 'flex' }">
         <div>
-            <HTreePicker v-model="result" :options="treeData" multiple width="400px" filterable />
+            <vc-tree-picker v-model="result" :options="treeData" multiple width="400px" filterable />
         </div>
         <el-text>结果：<el-text type="primary">{{ result }}</el-text></el-text>
     </el-space>

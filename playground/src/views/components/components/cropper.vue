@@ -2,7 +2,7 @@
     <el-space size="large" direction="vertical" alignment="left">
         <div><el-button @click="handleToggleVisible">打开裁剪器</el-button></div>
         <div ref="resultRef" :class="$style.result" />
-        <HCropper v-model:visible="visible" :image="imgSrc" :option="cropperOption" dialog @finished="handleFinished" />
+        <vc-cropper v-model:visible="visible" :image="imgSrc" :option="cropperOption" dialog @finished="handleFinished" />
     </el-space>
 </template>
 

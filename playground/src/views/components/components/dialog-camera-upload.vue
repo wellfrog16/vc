@@ -5,7 +5,7 @@
         </div>
         <el-image v-if="result" :src="result" :class="$style.image" />
     </el-space>
-    <HDialogCameraUpload
+    <vc-dialog-camera-upload
         v-model:visible="visible"
         cropper
         @save="handleSave"

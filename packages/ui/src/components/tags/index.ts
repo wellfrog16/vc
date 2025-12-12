@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './tags.vue'
 
-export const HTags: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HTags
+export const VcTags: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcTags

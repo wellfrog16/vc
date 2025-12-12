@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './image.vue'
 
-export const HImage: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HImage
+export const VcImage: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcImage

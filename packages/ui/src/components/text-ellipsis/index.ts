@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './text-ellipsis.vue'
 
-export const HTextEllipsis: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HTextEllipsis
+export const VcTextEllipsis: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcTextEllipsis

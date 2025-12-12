@@ -1,15 +1,15 @@
 <template>
-    <HInput v-if="visible" ref="inputRef" v-model="myValue" v-thousand="options" v-bind="$attrs" :class="$style.main" @change="handleChange">
+    <VcInput v-if="visible" ref="inputRef" v-model="myValue" v-thousand="options" v-bind="$attrs" :class="$style.main" @change="handleChange">
         <template v-if="$slots.prepend" #prepend><slot name="prepend" /></template>
         <template v-if="$slots.append" #append><slot name="append" /></template>
-    </HInput>
+    </VcInput>
 </template>
 
 <script lang="ts" setup>
 import type { IThousandInputProps } from './thousand-input'
 import { isEqual } from 'lodash-es'
 import vThousand from '@/directives/thousand'
-import HInput from '../input/input.vue'
+import VcInput from '../input/input.vue'
 
 const props = withDefaults(defineProps<IThousandInputProps>(), {
     modelValue: '',

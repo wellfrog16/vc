@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElButton @click="handleClick">打开</ElButton>
-        <HDialogUploadImages
+        <VcDialogUploadImages
             v-model="result"
             v-model:visible="visible"
             :http-request="httpRequest"
@@ -15,7 +15,7 @@
 import type { IUploadFile } from '../dialog-upload-images'
 import { defaultWindow } from '@wfrog/utils'
 import { ElMessage } from 'element-plus'
-import HDialogUploadImages from '../dialog-upload-images.vue'
+import VcDialogUploadImages from '../dialog-upload-images.vue'
 
 const result = ref<(File | IUploadFile)[]>([])
 const visible = ref(false)

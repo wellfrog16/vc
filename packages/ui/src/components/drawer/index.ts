@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './drawer.vue'
 
-export const HDrawer: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HDrawer
+export const VcDrawer: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcDrawer

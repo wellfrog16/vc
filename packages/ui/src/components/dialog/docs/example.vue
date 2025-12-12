@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HDialog
+            <VcDialog
                 v-model="visible"
                 title="测试"
                 :show-fullscreen="showFullscreen"
@@ -11,42 +11,42 @@
                 :max-height="maxHeight"
                 :box-padding="boxPadding"
             >
-                <HButton :time="0" @click="handleAdd">增加内容</HButton>
-                <HButton :time="0" @click="handleRemove">减少内容</HButton>
+                <VcButton :time="0" @click="handleAdd">增加内容</VcButton>
+                <VcButton :time="0" @click="handleRemove">减少内容</VcButton>
                 <div v-for="item in line" :key="item">啤酒、饮料、矿泉水，花生、瓜子、大鸡腿</div>
                 <div>长文本测试左右的 padding，我很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长</div>
-            </HDialog>
-            <HButton @click="() => toggleVisible()">打开</HButton>
+            </VcDialog>
+            <VcButton @click="() => toggleVisible()">打开</VcButton>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：内容高">
-            <HChoice v-model="height" :options="options" />
+            <VcChoice v-model="height" :options="options" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：最大内容高">
-            <HChoice v-model="maxHeight" :options="options" />
+            <VcChoice v-model="maxHeight" :options="options" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：全屏">
-            <HChoiceBoolean v-model="showFullscreen" />
+            <VcChoiceBoolean v-model="showFullscreen" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：默认全屏">
-            <HChoiceBoolean v-model="isFullscreen" />
+            <VcChoiceBoolean v-model="isFullscreen" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：内边距">
-            <HChoiceBoolean v-model="boxPadding" />
+            <VcChoiceBoolean v-model="boxPadding" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="">
             滚动内容，注意上下边距的不同
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：默认 footer">
-            <HChoiceBoolean v-model="showDefaultFooter" />
+            <VcChoiceBoolean v-model="showDefaultFooter" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HButton from '@/components/button/button.vue'
-import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
-import HChoice from '@/components/choice/choice.vue'
-import HDialog from '../dialog.vue'
+import VcButton from '@/components/button/button.vue'
+import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import VcChoice from '@/components/choice/choice.vue'
+import VcDialog from '../dialog.vue'
 
 const visible = ref(false)
 const showFullscreen = ref(true)

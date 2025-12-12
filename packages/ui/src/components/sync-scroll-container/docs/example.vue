@@ -2,7 +2,7 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <div :class="$style.container">
-                <HSyncScrollContainer :shadow="shadow" :border="border">
+                <VcSyncScrollContainer :shadow="shadow" :border="border">
                     <template #corner>
                         <div>slot: corner</div>
                     </template>
@@ -13,28 +13,28 @@
                         <div :class="$style.header">slot: header</div>
                     </template>
                     <div :class="$style.body">slot: default</div>
-                </HSyncScrollContainer>
+                </VcSyncScrollContainer>
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：阴影">
-            <HChoiceBoolean v-model="shadow" />
+            <VcChoiceBoolean v-model="shadow" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：边框">
-            <HChoiceBoolean v-model="border" />
+            <VcChoiceBoolean v-model="border" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="Header 高度">
-            <HInputNumber v-model="headerHeight" :step="5" :min="20" :max="100" />
+            <VcInputNumber v-model="headerHeight" :step="5" :min="20" :max="100" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="Sidebar 宽度">
-            <HInputNumber v-model="sidebarWidth" :step="5" :min="80" :max="200" />
+            <VcInputNumber v-model="sidebarWidth" :step="5" :min="80" :max="200" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
-import HInputNumber from '@/components/input-number/input-number.vue'
-import HSyncScrollContainer from '../sync-scroll-container.vue'
+import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import VcInputNumber from '@/components/input-number/input-number.vue'
+import VcSyncScrollContainer from '../sync-scroll-container.vue'
 
 const shadow = ref(false)
 const border = ref(true)

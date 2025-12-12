@@ -2,26 +2,26 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <div :class="$style.icons" :style="myStyle">
-                <HElIcon name="Aim" />
-                <HElIcon name="Link" />
-                <HElIcon name="Edit" />
-                <HElIcon name="Message" />
-                <HElIcon name="ShoppingCart" />
-                <HElIcon name="MoonNight" />
+                <VcElIcon name="Aim" />
+                <VcElIcon name="Link" />
+                <VcElIcon name="Edit" />
+                <VcElIcon name="Message" />
+                <VcElIcon name="ShoppingCart" />
+                <VcElIcon name="MoonNight" />
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="大小控制">
             <ElSlider v-model="fontsize" :min="14" :max="30" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="颜色控制">
-            <HChoice v-model="myColor" :options="colors" />
+            <VcChoice v-model="myColor" :options="colors" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HChoice from '@/components/choice/choice.vue'
-import HElIcon from '../el-icon.vue'
+import VcChoice from '@/components/choice/choice.vue'
+import VcElIcon from '../el-icon.vue'
 
 const fontsize = ref(18)
 const colors = [

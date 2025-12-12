@@ -3,7 +3,7 @@
         <ElDescriptionsItem label="展示区">
             <ElRow v-for="item in list" :key="item.id">
                 <ElCol :span="6">
-                    <HTextEllipsis placement="top-start" :max-width="maxWidth" effect="dark" :show-tooltip="showTooltip">{{ item.title }}</HTextEllipsis>
+                    <VcTextEllipsis placement="top-start" :max-width="maxWidth" effect="dark" :show-tooltip="showTooltip">{{ item.title }}</VcTextEllipsis>
                 </ElCol>
             </ElRow>
         </ElDescriptionsItem>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import HTextEllipsis from '../text-ellipsis.vue'
+import VcTextEllipsis from '../text-ellipsis.vue'
 
 const myWidth = ref(300)
 const maxWidth = ref(300)

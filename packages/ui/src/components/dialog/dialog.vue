@@ -29,14 +29,14 @@
                 <div :class="$style['body-container']"><slot /></div>
             </ElScrollbar>
         </template>
-        <template v-if="showDefaultFooter || $slots.footer" #footer><slot name="footer"><HButton v-if="showDefaultFooter" @click="dialogVisible = false">关闭</HButton></slot></template>
+        <template v-if="showDefaultFooter || $slots.footer" #footer><slot name="footer"><VcButton v-if="showDefaultFooter" @click="dialogVisible = false">关闭</VcButton></slot></template>
     </ElDialog>
 </template>
 
 <script lang="ts" setup>
 import type { IDialogProps } from './dialog'
 import { Close, CopyDocument, FullScreen } from '@element-plus/icons-vue'
-import HButton from '../button/button.vue'
+import VcButton from '../button/button.vue'
 
 const props = withDefaults(defineProps<IDialogProps>(), {
     title: '对话框',

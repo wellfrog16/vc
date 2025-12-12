@@ -1,5 +1,5 @@
 <template>
-    <HEasyPagination v-model:current-page="p" :have-next="haveNext" @current-change="loadList" />
+    <vc-easy-pagination v-model:current-page="p" :have-next="haveNext" @current-change="loadList" />
 </template>
 
 <script setup lang="ts">

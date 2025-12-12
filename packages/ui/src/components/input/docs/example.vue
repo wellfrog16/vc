@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HInput v-model="result" :block="isBlock" />
+            <VcInput v-model="result" :block="isBlock" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：内联/块级">
             <ElSwitch
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import HInput from '../input.vue'
+import VcInput from '../input.vue'
 
 const result = ref('')
 const isBlock = ref(false)

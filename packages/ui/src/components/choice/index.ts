@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './choice.vue'
 
-export const HChoice: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HChoice
+export const VcChoice: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcChoice

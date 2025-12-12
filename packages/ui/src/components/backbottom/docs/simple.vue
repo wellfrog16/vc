@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
-        <HBackbottom />
+        <VcBackbottom />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HBackbottom from '../backbottom.vue'
+import VcBackbottom from '../backbottom.vue'
 </script>

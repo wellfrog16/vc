@@ -1,13 +1,13 @@
 <template>
     <Wrapper>
-        <HChatContainer :class="$style.container">
+        <VcChatContainer :class="$style.container">
             <div>内容部分</div>
-        </HChatContainer>
+        </VcChatContainer>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HChatContainer from '../chat-container.vue'
+import VcChatContainer from '../chat-container.vue'
 </script>
 
 <style lang="scss" module>

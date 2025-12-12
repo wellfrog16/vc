@@ -1,5 +1,5 @@
 <template>
-    <HScreenfull />
+    <vc-screenfull />
 </template>
 
 <script setup lang="ts"></script>

@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HCurrency
+            <VcCurrency
                 v-model="result1"
                 code="CNY"
                 :flag="flag"
@@ -14,7 +14,7 @@
         <ElDescriptionsItem label="结果：值"><span>{{ result1 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem />
         <ElDescriptionsItem label="展示区">
-            <HCurrency
+            <VcCurrency
                 v-model="result2"
                 v-model:format-value="formatValue"
                 :code="code"
@@ -27,19 +27,19 @@
             />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：旗子">
-            <HChoiceBoolean v-model="flag" />
+            <VcChoiceBoolean v-model="flag" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：前缀">
-            <HChoiceBoolean v-model="prefix" />
+            <VcChoiceBoolean v-model="prefix" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：补零">
-            <HChoiceBoolean v-model="padDecimal" />
+            <VcChoiceBoolean v-model="padDecimal" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：prepend">
-            <HChoiceBoolean v-model="prepend" />
+            <VcChoiceBoolean v-model="prepend" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：append">
-            <HChoiceBoolean v-model="append" />
+            <VcChoiceBoolean v-model="append" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果：值"><span>{{ result2 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem label="结果：格式化"><span>{{ formatValue }}</span></ElDescriptionsItem>
@@ -49,8 +49,8 @@
 
 <script lang="ts" setup>
 import type { ICurrencyCode } from '../currency'
-import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
-import HCurrency from '../currency.vue'
+import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import VcCurrency from '../currency.vue'
 
 const code: ICurrencyCode[] = ['CNY', 'USD', 'EUR', 'JPY', 'TWD', 'KRW']
 

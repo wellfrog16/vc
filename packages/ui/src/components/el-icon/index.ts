@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './el-icon.vue'
 
-export const HElIcon: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HElIcon
+export const VcElIcon: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcElIcon

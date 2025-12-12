@@ -1,6 +1,6 @@
 <template>
     <el-space direction="vertical" size="large" alignment="left">
-        <HUploadFile
+        <vc-upload-file
             cropper
             :http-request="httpRequest"
             :image-options="{

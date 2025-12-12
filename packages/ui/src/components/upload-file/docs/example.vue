@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区：图片上传">
-            <HUploadFile
+            <VcUploadFile
                 :cropper="cropper"
                 :http-request="httpRequest"
                 :image-options="{
@@ -14,11 +14,11 @@
             />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：裁剪">
-            <HChoiceBoolean v-model="cropper" />
+            <VcChoiceBoolean v-model="cropper" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="" />
         <ElDescriptionsItem label="展示区：按钮上传">
-            <HUploadFile
+            <VcUploadFile
                 :http-request="httpRequest"
                 type="button"
                 :button-options="{
@@ -28,13 +28,13 @@
             />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：自定义上传">
-            <HUploadFile
+            <VcUploadFile
                 :http-request="httpRequest"
                 type="button"
                 @error="handleError"
             >
                 <span>可以自定义上传控件，点我上传</span>
-            </HUploadFile>
+            </VcUploadFile>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="本地Blob地址"><span>{{ result }}</span></ElDescriptionsItem>
     </Wrapper>
@@ -42,8 +42,8 @@
 
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
-import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
-import HUploadFile from '../upload-file.vue'
+import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import VcUploadFile from '../upload-file.vue'
 
 const result = ref('')
 const cropper = ref(false)

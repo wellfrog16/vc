@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './dialog-map-point.vue'
 
-export const HDialogMapPoint: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HDialogMapPoint
+export const VcDialogMapPoint: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcDialogMapPoint

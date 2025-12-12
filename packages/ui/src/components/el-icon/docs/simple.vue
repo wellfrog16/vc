@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
-        <HElIcon name="Aim" />
+        <VcElIcon name="Aim" />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HElIcon from '../el-icon.vue'
+import VcElIcon from '../el-icon.vue'
 </script>

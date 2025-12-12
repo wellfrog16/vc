@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.container">
-        <HSyncScrollContainer border>
+        <vc-sync-scroll-container border>
             <template #corner>
                 <div>slot: corner</div>
             </template>
@@ -11,7 +11,7 @@
                 <div :class="$style.header">slot: header</div>
             </template>
             <div :class="$style.body">slot: default</div>
-        </HSyncScrollContainer>
+        </vc-sync-scroll-container>
     </div>
 </template>
 

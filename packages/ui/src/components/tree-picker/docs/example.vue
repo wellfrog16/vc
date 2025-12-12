@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区：">
-            <HTreePicker
+            <VcTreePicker
                 v-model="result"
                 :options="treeData"
                 :multiple="multiple"
@@ -12,16 +12,16 @@
             />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：单/多选">
-            <HChoice v-model="multiple" :options="multipleOption" @change="handleMultipleChange" />
+            <VcChoice v-model="multiple" :options="multipleOption" @change="handleMultipleChange" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：内联/块级">
-            <HChoice v-model="block" :options="blockOption" />
+            <VcChoice v-model="block" :options="blockOption" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：宽度">
-            <HChoice v-model="width" :options="widthOption" />
+            <VcChoice v-model="width" :options="widthOption" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="演示：任意节点单选">
-            <HChoiceBoolean v-model="showDemo1" @change="handleShowDemo1Change" />
+            <VcChoiceBoolean v-model="showDemo1" @change="handleShowDemo1Change" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">{{ result }}</ElDescriptionsItem>
     </Wrapper>
@@ -29,9 +29,9 @@
 
 <script lang="ts" setup>
 import type { IChoiceProps } from '@/components/choice/choice'
-import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
-import HChoice from '@/components/choice/choice.vue'
-import HTreePicker from '../tree-picker.vue'
+import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import VcChoice from '@/components/choice/choice.vue'
+import VcTreePicker from '../tree-picker.vue'
 import { treeData } from './data'
 
 const result = ref<string | string[]>('')

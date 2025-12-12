@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './dialog.vue'
 
-export const HDialog: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HDialog
+export const VcDialog: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcDialog

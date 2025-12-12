@@ -1,20 +1,20 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HScreenfull :size="fontsize" :color="myColor" />
+            <VcScreenfull :size="fontsize" :color="myColor" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="大小控制">
             <ElSlider v-model="fontsize" :min="14" :max="40" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="颜色控制">
-            <HChoice v-model="myColor" :options="colors" />
+            <VcChoice v-model="myColor" :options="colors" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HChoice from '@/components/choice/choice.vue'
-import HScreenfull from '../screenfull.vue'
+import VcChoice from '@/components/choice/choice.vue'
+import VcScreenfull from '../screenfull.vue'
 
 const fontsize = ref(24)
 const colors = [

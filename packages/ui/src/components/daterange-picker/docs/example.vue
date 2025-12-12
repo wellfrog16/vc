@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HDaterangePicker v-model="result" :limit-days="limitDays" :include-today="includeToday" />
+            <VcDaterangePicker v-model="result" :limit-days="limitDays" :include-today="includeToday" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：限制天数">
             <ElInputNumber v-model="limitDays" :min="-10" :max="10" :precision="0" />
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import HDaterangePicker from '../daterange-picker.vue'
+import VcDaterangePicker from '../daterange-picker.vue'
 
 const result = ref<string[]>(['', ''])
 const limitDays = ref(5)

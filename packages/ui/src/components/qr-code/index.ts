@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './qr-code.vue'
 
-export const HQRCode: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HQRCode
+export const VcQRCode: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcQRCode

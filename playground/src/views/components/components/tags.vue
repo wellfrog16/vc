@@ -1,5 +1,5 @@
 <template>
-    <HTags v-model="result" />
+    <vc-tags v-model="result" />
 </template>
 
 <script setup lang="ts">

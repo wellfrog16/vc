@@ -1,6 +1,6 @@
 <template>
     <el-space size="large" alignment="center" fill :style="{ display: 'flex' }">
-        <HTinymce v-model="result" config="mini" />
+        <vc-tinymce v-model="result" config="mini" />
         <div v-html="result" />
     </el-space>
 </template>

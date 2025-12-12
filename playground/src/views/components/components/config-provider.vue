@@ -1,10 +1,10 @@
 <template>
-    <HConfigProvider :button="buttonConfig">
+    <vc-config-provider :button="buttonConfig">
         <el-space size="large">
-            <HButton type="warning" @click="handleClick">有二次确认的删除</HButton>
-            <HButton type="warning" :confirm="{ type: 'none' }" @click="handleClick">阻止二次确认的 删除</HButton>
+            <vc-button type="warning" @click="handleClick">有二次确认的删除</vc-button>
+            <vc-button type="warning" :confirm="{ type: 'none' }" @click="handleClick">阻止二次确认的 删除</vc-button>
         </el-space>
-    </HConfigProvider>
+    </vc-config-provider>
 </template>
 
 <script setup lang="ts">

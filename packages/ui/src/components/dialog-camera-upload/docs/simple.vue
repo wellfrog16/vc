@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElButton @click="handleClick">打开</ElButton>
-        <HDialogCameraUpload
+        <VcDialogCameraUpload
             v-model:visible="visible"
             :http-request="httpRequest"
         />
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import HDialogCameraUpload from '../dialog-camera-upload.vue'
+import VcDialogCameraUpload from '../dialog-camera-upload.vue'
 
 const result = ref('')
 const visible = ref(false)

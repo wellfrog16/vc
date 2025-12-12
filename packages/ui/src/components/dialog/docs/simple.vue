@@ -1,14 +1,14 @@
 <template>
     <Wrapper>
-        <HDialog v-model="visible" title="测试">
+        <VcDialog v-model="visible" title="测试">
             内容
-        </HDialog>
-        <HButton @click="() => toggleVisible()">打开</HButton>
+        </VcDialog>
+        <VcButton @click="() => toggleVisible()">打开</VcButton>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HDialog from '../dialog.vue'
+import VcDialog from '../dialog.vue'
 
 const [visible, toggleVisible] = useToggle()
 </script>

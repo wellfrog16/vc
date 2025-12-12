@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './dialog-upload-images.vue'
 
-export const HDialogUploadImages: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HDialogUploadImages
+export const VcDialogUploadImages: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcDialogUploadImages

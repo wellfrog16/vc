@@ -17,8 +17,8 @@
 
         <!-- 这里渲染文字 -->
         <span ref="textRef" :class="$style.text">
-            <HElIcon name="Picture" :class="$style.icon" />
-            <HTextEllipsis ref="comEllipsis" placement="top-start" :max-width="myMaxWidth" :show-tooltip="false"><slot>{{ text }}</slot></HTextEllipsis>
+            <VcElIcon name="Picture" :class="$style.icon" />
+            <VcTextEllipsis ref="comEllipsis" placement="top-start" :max-width="myMaxWidth" :show-tooltip="false"><slot>{{ text }}</slot></VcTextEllipsis>
         </span>
     </div>
     <ElImage
@@ -35,8 +35,8 @@
 
 <script lang="ts" setup>
 import type { IImageProps } from './image'
-import HElIcon from '../el-icon/el-icon.vue'
-import HTextEllipsis from '../text-ellipsis/text-ellipsis.vue'
+import VcElIcon from '../el-icon/el-icon.vue'
+import VcTextEllipsis from '../text-ellipsis/text-ellipsis.vue'
 
 const props = withDefaults(defineProps<IImageProps>(), {
     type: 'image',
@@ -61,7 +61,7 @@ const $slots = useSlots()
 const fixWidth = 5 // 修正宽度，防止文字换行
 const textRef = useTemplateRef('textRef')
 const textWrapperRef = useTemplateRef('textWrapperRef')
-const comEllipsis = ref<InstanceType<typeof HTextEllipsis>>()
+const comEllipsis = ref<InstanceType<typeof VcTextEllipsis>>()
 
 const isImageType = computed(() => props.type === 'image')
 const isTextType = computed(() => props.type === 'text')

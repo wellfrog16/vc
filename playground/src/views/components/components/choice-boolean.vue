@@ -1,6 +1,6 @@
 <template>
     <el-space direction="vertical" size="large" alignment="left">
-        <HChoiceBoolean v-model="result" />
+        <vc-choiceBoolean v-model="result" />
         <el-text>你选择了：<el-text type="primary">{{ result }}</el-text></el-text>
     </el-space>
 </template>

@@ -1,14 +1,14 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HEasyPagination v-model:current-page="p" :have-next="haveNext" @current-change="loadList" />
+            <VcEasyPagination v-model:current-page="p" :have-next="haveNext" @current-change="loadList" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
 import { ElNotification } from 'element-plus'
-import HEasyPagination from '../easy-pagination.vue'
+import VcEasyPagination from '../easy-pagination.vue'
 
 const p = ref(1)
 const haveNext = computed(() => (p.value < 3))

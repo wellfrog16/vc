@@ -1,17 +1,17 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HTinymce v-model="result" :config="config" :http-request="httpRequest" />
+            <VcTinymce v-model="result" :config="config" :http-request="httpRequest" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="编辑器配置">
-            <HChoice v-model="config" :options="data" />
+            <VcChoice v-model="config" :options="data" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">
             <div v-html="result" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：对话框">
-            <HButton type="primary" @click="() => toggleVisible()">打开</HButton>
-            <HDialog
+            <VcButton type="primary" @click="() => toggleVisible()">打开</VcButton>
+            <VcDialog
                 v-model="visible"
                 title="对话框展示编辑器"
                 :close-on-click-modal="false"
@@ -25,13 +25,13 @@
                         <ElInput v-model.trim="form.fields.title" />
                     </ElFormItem>
                     <ElFormItem prop="content" label="内容">
-                        <HTinymce v-model.trim="form.fields.content" height="230px" config="simple" />
+                        <VcTinymce v-model.trim="form.fields.content" height="230px" config="simple" />
                     </ElFormItem>
                 </ElForm>
                 <template #footer>
-                    <HButton type="primary" @click="() => toggleVisible()">关闭</HButton>
+                    <VcButton type="primary" @click="() => toggleVisible()">关闭</VcButton>
                 </template>
-            </HDialog>
+            </VcDialog>
         </ElDescriptionsItem>
     </Wrapper>
 </template>
@@ -40,11 +40,11 @@
 import type { RawEditorSettings } from '@wfrog/utils'
 import { defaultWindow } from '@wfrog/utils'
 
-import HButton from '@/components/button/button.vue'
-import HChoice from '@/components/choice/choice.vue'
-import HDialog from '@/components/dialog/dialog.vue'
+import VcButton from '@/components/button/button.vue'
+import VcChoice from '@/components/choice/choice.vue'
+import VcDialog from '@/components/dialog/dialog.vue'
 import configs from '../config'
-import HTinymce from '../tinymce.vue'
+import VcTinymce from '../tinymce.vue'
 
 const result = ref<string>('TinyMCE')
 const config = ref<keyof typeof configs>('mini')

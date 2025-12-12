@@ -1,5 +1,5 @@
 <template>
-    <HDialog
+    <VcDialog
         v-if="dialog"
         v-model="dialogVisible"
         title="图片裁剪"
@@ -20,7 +20,7 @@
                 <ElButton :loading="loading" type="primary" @click="handleFinish">确定</ElButton>
             </ElSpace>
         </template>
-    </HDialog>
+    </VcDialog>
     <div v-else ref="workbenchRef" v-loading="loading" :class="$style.workbench" :style="containerStyle" />
 </template>
 
@@ -29,7 +29,7 @@ import type ICropper from 'cropperjs'
 import type { ICropperProps } from './cropper'
 import { defaultWindow, file, loader } from '@wfrog/utils'
 import { debounce } from 'lodash-es'
-import HDialog from '../dialog/dialog.vue'
+import VcDialog from '../dialog/dialog.vue'
 
 const props = withDefaults(defineProps<ICropperProps>(), {
     dialog: false,

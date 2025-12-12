@@ -3,7 +3,7 @@
         <ElDescriptionsItem label="操作">
             <div>
                 <ElButton @click="handleToggleVisible">打开</ElButton>
-                <HCropper v-model:visible="visible" :image="imgSrc" :option="cropperOption" dialog @finished="handleFinished" />
+                <VcCropper v-model:visible="visible" :image="imgSrc" :option="cropperOption" dialog @finished="handleFinished" />
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">
@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import HCropper from '../cropper.vue'
+import VcCropper from '../cropper.vue'
 
 const resultRef = useTemplateRef('resultRef')
 const visible = ref(false)

@@ -2,7 +2,7 @@
     <el-space direction="vertical" size="large" alignment="left">
         <div>
             <ElButton @click="handleClick">打开</ElButton>
-            <HDialogUploadImages
+            <vc-dialog-upload-images
                 v-model="result"
                 v-model:visible="visible"
                 :http-request="httpRequest"

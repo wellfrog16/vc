@@ -1,12 +1,12 @@
 <template>
     <el-space size="large" alignment="center" fill :style="{ display: 'flex' }">
         <div>
-            <HConfigProvider pca-base-url="https://gitee.com/wellfrog16/area/raw/master" cros-proxy="https://api.allorigins.win/raw?url=">
-                <HPCAPicker v-model="result" :type="type" source="pca-py-fn" filterable />
-            </HConfigProvider>
+            <vc-config-provider pca-base-url="https://gitee.com/wellfrog16/area/raw/master" cros-proxy="https://api.allorigins.win/raw?url=">
+                <vc-pca-picker v-model="result" :type="type" source="pca-py-fn" filterable />
+            </vc-config-provider>
         </div>
         <div>
-            <HChoice v-model="type" :options="typeOption" @change="handleTypeChange" />
+            <vc-choice v-model="type" :options="typeOption" @change="handleTypeChange" />
         </div>
         <el-text>结果：<el-text type="primary">{{ result }}</el-text></el-text>
     </el-space>

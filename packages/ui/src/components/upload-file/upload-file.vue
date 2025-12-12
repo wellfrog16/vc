@@ -12,12 +12,12 @@
             <ElImage v-if="hasImage" :src="imgOptions.src" :fit="imgOptions.fit" :style="imageSizeStyle" :class="$style.photo">
                 <template #placeholder>加载中</template>
             </ElImage>
-            <HElIcon v-else :name="imgOptions.icon" :class="[$style.icon]" :style="iconSizeStyle" />
+            <VcElIcon v-else :name="imgOptions.icon" :class="[$style.icon]" :style="iconSizeStyle" />
         </template>
         <template v-if="isButtonType">
-            <slot><HButton :size="btnOptions.size" :type="btnOptions.type" :icon="{ name: btnOptions.icon }">{{ btnOptions.text }}</HButton></slot>
+            <slot><VcButton :size="btnOptions.size" :type="btnOptions.type" :icon="{ name: btnOptions.icon }">{{ btnOptions.text }}</VcButton></slot>
         </template>
-        <HCropper v-if="cropper && image" v-model:visible="visible" :image="image" :option="cropperOption" dialog @finished="handleFinished" @cancel="handleCancel" />
+        <VcCropper v-if="cropper && image" v-model:visible="visible" :image="image" :option="cropperOption" dialog @finished="handleFinished" @cancel="handleCancel" />
     </ElUpload>
 </template>
 
@@ -29,9 +29,9 @@ import { defaultWindow, file } from '@wfrog/utils'
 import { ElImage, ElUpload, vLoading } from 'element-plus'
 import { computed, nextTick, ref } from 'vue'
 
-import HButton from '../button/button.vue'
-import HCropper from '../cropper/cropper.vue'
-import HElIcon from '../el-icon/el-icon.vue'
+import VcButton from '../button/button.vue'
+import VcCropper from '../cropper/cropper.vue'
+import VcElIcon from '../el-icon/el-icon.vue'
 import { buttonOptions, imageOptions } from './upload-file'
 
 const props = withDefaults(defineProps<IUploadFileProps>(), {

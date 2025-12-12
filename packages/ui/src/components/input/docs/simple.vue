@@ -1,11 +1,11 @@
 <template>
     <Wrapper>
-        <HInput v-model="result" />
+        <VcInput v-model="result" />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HInput from '../input.vue'
+import VcInput from '../input.vue'
 
 const result = ref('')
 </script>

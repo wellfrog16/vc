@@ -2,26 +2,26 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <div :class="$style.icons" :style="myStyle">
-                <HAwesomeIcon name="fa-brands fa-bilibili" />
-                <HAwesomeIcon name="fa-solid fa-car-side" />
-                <HAwesomeIcon name="fa-solid fa-chart-line" />
-                <HAwesomeIcon name="fa-brands fa-github-alt" />
-                <HAwesomeIcon name="fa-regular fa-face-laugh-beam" />
-                <HAwesomeIcon name="fa-regular fa-id-card" />
+                <VcAwesomeIcon name="fa-brands fa-bilibili" />
+                <VcAwesomeIcon name="fa-solid fa-car-side" />
+                <VcAwesomeIcon name="fa-solid fa-chart-line" />
+                <VcAwesomeIcon name="fa-brands fa-github-alt" />
+                <VcAwesomeIcon name="fa-regular fa-face-laugh-beam" />
+                <VcAwesomeIcon name="fa-regular fa-id-card" />
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="大小控制">
             <ElSlider v-model="fontsize" :min="14" :max="30" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="颜色控制">
-            <HChoice v-model="myColor" :options="colors" />
+            <VcChoice v-model="myColor" :options="colors" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HChoice from '@/components/choice/choice.vue'
-import HAwesomeIcon from '../awesome-icon.vue'
+import VcChoice from '@/components/choice/choice.vue'
+import VcAwesomeIcon from '../awesome-icon.vue'
 
 const fontsize = ref(20)
 const colors = [

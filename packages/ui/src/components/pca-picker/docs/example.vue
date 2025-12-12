@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <!-- <HConfigProvider pca-base-url="https://raw.githubusercontent.com/wellfrog16/area/refs/heads/master"> -->
-            <HConfigProvider pca-base-url="https://gitee.com/wellfrog16/area/raw/master" cros-proxy="https://api.allorigins.win/raw?url=">
-                <HPCAPicker
+            <!-- <VcConfigProvider pca-base-url="https://raw.githubusercontent.com/wellfrog16/area/refs/heads/master"> -->
+            <VcConfigProvider pca-base-url="https://gitee.com/wellfrog16/area/raw/master" cros-proxy="https://api.allorigins.win/raw?url=">
+                <VcPCAPicker
                     v-if="visible"
                     v-model="result"
                     :multiple="multiple"
@@ -21,7 +21,7 @@
                     @change="handleChange"
                     @limit="handleLimit"
                 />
-            </HConfigProvider>
+            </VcConfigProvider>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：数据源">
             <ElSelect v-model="source" placeholder="请选择" @change="handleSourceChange">
@@ -33,41 +33,41 @@
             <ElAlert title="不同数据源的作用是减少请求回来的数据量，完整的省市区全称+拼音，需要请求 66K 的数据，而如果只要单纯的省市，只需要请求 4.9K 的数据" type="info" :closable="false" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：选择类型">
-            <HChoice v-model="type" :options="typeOption" @change="handleTypeChange" />
+            <VcChoice v-model="type" :options="typeOption" @change="handleTypeChange" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：热门省/市/区">
-            <HChoice v-model="hotIds" :options="hotIdsOption" multiple />
+            <VcChoice v-model="hotIds" :options="hotIdsOption" multiple />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：名称类型">
-            <HChoice v-model="nameType" :options="nameTypeOption" />
+            <VcChoice v-model="nameType" :options="nameTypeOption" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：单/多选">
-            <HChoice v-model="multiple" :options="multipleOption" @change="handleMultipleChange" />
+            <VcChoice v-model="multiple" :options="multipleOption" @change="handleMultipleChange" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：可搜索">
-            <HChoiceBoolean v-model="filterable" />
+            <VcChoiceBoolean v-model="filterable" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：历史选择">
             <ElSpace size="large">
-                <HChoiceBoolean v-model="history" />
+                <VcChoiceBoolean v-model="history" />
                 <ElText type="warning">*非级联选择生效</ElText>
             </ElSpace>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：高亮角标">
             <ElSpace size="large">
-                <HChoiceBoolean v-model="activeMark" />
+                <VcChoiceBoolean v-model="activeMark" />
                 <ElText type="warning">*非级联选择生效</ElText>
             </ElSpace>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：热门和历史选择同步高亮">
             <ElSpace size="large">
-                <HChoiceBoolean v-model="syncActive" />
+                <VcChoiceBoolean v-model="syncActive" />
                 <ElText type="warning">*非级联选择生效</ElText>
             </ElSpace>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：多选限制">
             <ElSpace size="large">
-                <HInputNumber v-model="limit" :min="3" :max="10" />
+                <VcInputNumber v-model="limit" :min="3" :max="10" />
                 <ElText type="warning">*非级联选择的多选生效</ElText>
             </ElSpace>
         </ElDescriptionsItem>
@@ -79,11 +79,11 @@
 
 <script lang="ts" setup>
 import type { IChoiceProps } from '@/components/choice/choice'
-import HChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
-import HChoice from '@/components/choice/choice.vue'
-import HConfigProvider from '@/components/config-provider/config-provider.vue'
-import HInputNumber from '@/components/input-number/input-number.vue'
-import HPCAPicker from '../pca-picker.vue'
+import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
+import VcChoice from '@/components/choice/choice.vue'
+import VcConfigProvider from '@/components/config-provider/config-provider.vue'
+import VcInputNumber from '@/components/input-number/input-number.vue'
+import VcPCAPicker from '../pca-picker.vue'
 
 const sourceExplain = '*不同数据源，提供的数据不同。所以像“省 + 拼音”的数据，是无法提供【省市】信息的展示，也无法显示数据的【全称】。同样，如果数据源没有选择【拼音】，那么搜索时也无法使用拼音搜索。'
 

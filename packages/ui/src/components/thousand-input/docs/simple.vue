@@ -1,11 +1,11 @@
 <template>
     <Wrapper>
-        <HThousandInput v-model="result" />
+        <VcThousandInput v-model="result" />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HThousandInput from '../thousand-input.vue'
+import VcThousandInput from '../thousand-input.vue'
 
 const result = ref('')
 </script>

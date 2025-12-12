@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './daterange-picker.vue'
 
-export const HDaterangePicker: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HDaterangePicker
+export const VcDaterangePicker: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcDaterangePicker

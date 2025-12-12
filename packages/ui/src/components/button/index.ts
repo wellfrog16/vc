@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './button.vue'
 
-export const HButton: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HButton
+export const VcButton: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcButton

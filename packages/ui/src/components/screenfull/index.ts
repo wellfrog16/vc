@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './screenfull.vue'
 
-export const HScreenfull: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HScreenfull
+export const VcScreenfull: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcScreenfull

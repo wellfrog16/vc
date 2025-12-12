@@ -1,5 +1,5 @@
 <template>
-    <HDialog
+    <VcDialog
         v-model="dialogVisible"
         title="选择地点"
         :close-on-click-modal="false"
@@ -18,14 +18,14 @@
             <ElButton @click="handleClose">取 消</ElButton>
             <ElButton type="primary" @click="handleConfirm">确 定</ElButton>
         </template>
-    </HDialog>
+    </VcDialog>
 </template>
 
 <script lang="ts" setup>
 import type { IDialogMapPointProps } from './dialog-map-point'
 import { Search } from '@element-plus/icons-vue'
 import { defaultWindow, loader } from '@wfrog/utils'
-import HDialog from '../dialog/dialog.vue'
+import VcDialog from '../dialog/dialog.vue'
 
 const props = withDefaults(defineProps<IDialogMapPointProps>(), {
     visible: false,

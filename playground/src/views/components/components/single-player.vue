@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.container">
-        <HSinglePlayer :width="400" :src="mediaUrl" />
+        <vc-single-player :width="400" :src="mediaUrl" />
     </div>
 </template>
 

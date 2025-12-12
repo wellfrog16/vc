@@ -1,11 +1,11 @@
 <template>
     <Wrapper>
-        <HDaterangePicker v-model="result" />
+        <VcDaterangePicker v-model="result" />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HDaterangePicker from '../daterange-picker.vue'
+import VcDaterangePicker from '../daterange-picker.vue'
 
 const result = ref(['', ''])
 </script>

@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './cropper.vue'
 
-export const HCropper: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HCropper
+export const VcCropper: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcCropper

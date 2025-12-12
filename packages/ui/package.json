@@ -12,12 +12,15 @@
       "import": "./dist/es/index.mjs"
     },
     "./index.css": "./dist/index.css",
-    "./*": "./dist/*",
     "./es/components/*/type": "./dist/es/components/*/*.d.ts",
     "./es/components/*": {
       "types": "./dist/es/components/*/index.d.ts",
       "default": "./dist/es/components/*/index.mjs"
-    }
+    },
+    "./global": {
+      "types": "./global.d.ts"
+    },
+    "./*": "./dist/*"
   },
   "main": "dist/es/index.mjs",
   "types": "dist/es/index.d.ts",

@@ -1,5 +1,5 @@
 <template>
-    <HDialog
+    <VcDialog
         v-model="dialogVisible"
         title="拍照上传"
         :close-on-click-modal="false"
@@ -31,16 +31,16 @@
                 <div v-if="cameraVisible" @click="handleOpenCamera">
                     <ElIcon><Camera /></ElIcon>
                 </div>
-                <HUploadFile
+                <VcUploadFile
                     v-if="uploadVisible"
                     :http-request="handleHttpRequest"
                     type="button"
                     @error="handleError"
                 >
                     <span><ElIcon><Upload /></ElIcon></span>
-                </HUploadFile>
+                </VcUploadFile>
             </div>
-            <HCropper v-if="cropper" v-model:visible="cropperVisible" :image="blobImage" :option="cropperOption" dialog @finished="handleFinished" />
+            <VcCropper v-if="cropper" v-model:visible="cropperVisible" :image="blobImage" :option="cropperOption" dialog @finished="handleFinished" />
         </div>
         <template #footer>
             <div :class="$style.footer">
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </template>
-    </HDialog>
+    </VcDialog>
 </template>
 
 <script lang="ts" setup>
@@ -72,9 +72,9 @@ import type { IDialogCameraUploadProps } from './dialog-camera-upload'
 import { Camera, Upload } from '@element-plus/icons-vue'
 import { defaultWindow, file } from '@wfrog/utils'
 
-import HCropper from '../cropper/cropper.vue'
-import HDialog from '../dialog/dialog.vue'
-import HUploadFile from '../upload-file/upload-file.vue'
+import VcCropper from '../cropper/cropper.vue'
+import VcDialog from '../dialog/dialog.vue'
+import VcUploadFile from '../upload-file/upload-file.vue'
 import { TYPE_CAMERA, TYPE_UPLOAD, useVideosList, WINDOW_CANVAS, WINDOW_IMAGE, WINDOW_PLACEHOLDER, WINDOW_VIDEO } from './dialog-camera-upload'
 
 const props = withDefaults(defineProps<IDialogCameraUploadProps>(), {

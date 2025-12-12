@@ -9,16 +9,16 @@
     >
         <template #reference>
             <ElButton v-bind="$attrs" :type="type" :class="$style.button" @click="handleClick">
-                <HIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
+                <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
                 <span v-if="$slots.default"><slot /></span>
-                <HIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
+                <VcIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
             </ElButton>
         </template>
     </ElPopconfirm>
     <ElButton v-else v-bind="$attrs" :type="type" :class="$style.button" @click="handleClick">
-        <HIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
+        <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
         <span v-if="$slots.default"><slot /></span>
-        <HIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
+        <VcIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
     </ElButton>
 </template>
 
@@ -27,7 +27,7 @@ import type { IButtonProps } from './button'
 import { ElMessageBox } from 'element-plus'
 
 import { injectConfig } from '../config-provider/config-provider'
-import HIcon from '../icon/icon.vue'
+import VcIcon from '../icon/icon.vue'
 
 const props = withDefaults(defineProps<IButtonProps>(), {
     time: 800,

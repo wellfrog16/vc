@@ -1,6 +1,6 @@
 <template>
     <el-space direction="vertical" size="large" alignment="left">
-        <HSelect v-model="result" :options="options" />
+        <vc-select v-model="result" :options="options" />
         <el-text>你选择了：<el-text type="primary">{{ result }}</el-text></el-text>
     </el-space>
 </template>

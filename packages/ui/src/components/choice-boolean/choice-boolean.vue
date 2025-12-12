@@ -1,10 +1,10 @@
 <template>
-    <HChoice v-model="myValue" :options="data" v-bind="$attrs" />
+    <VcChoice v-model="myValue" :options="data" v-bind="$attrs" />
 </template>
 
 <script lang="ts" setup>
 import type { IChoiceBooleanProps } from './choice-boolean'
-import HChoice from '../choice/choice.vue'
+import VcChoice from '../choice/choice.vue'
 
 const props = withDefaults(defineProps<IChoiceBooleanProps>(), {
     text: () => ['是', '否'],

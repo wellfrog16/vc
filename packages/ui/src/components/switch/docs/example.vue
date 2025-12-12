@@ -2,7 +2,7 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <ElSpace>
-                <HSwitch
+                <VcSwitch
                     v-model="result"
                     :before-change="beforeChange"
                     active-text="开"
@@ -45,7 +45,7 @@
 
 <script lang="ts" setup>
 import { promiseTimeout } from '@vueuse/core'
-import HSwitch from '../switch.vue'
+import VcSwitch from '../switch.vue'
 
 const result = ref('Open')
 const delay = ref(0)

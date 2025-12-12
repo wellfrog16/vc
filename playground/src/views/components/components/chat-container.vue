@@ -1,9 +1,9 @@
 <template>
     <el-space direction="vertical" fill size="large" :style="{ display: 'flex' }">
         <div>
-            <HChatContainer :class="$style.container" :keep-bottom="keepBottom">
+            <vc-chat-container :class="$style.container" :keep-bottom="keepBottom">
                 <div v-html="content" />
-            </HChatContainer>
+            </vc-chat-container>
         </div>
         <el-space>
             <el-button @click="fillContent">填充内容</el-button>

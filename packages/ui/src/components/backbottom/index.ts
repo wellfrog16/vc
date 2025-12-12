@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './backbottom.vue'
 
-export const HBackbottom: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HBackbottom
+export const VcBackbottom: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcBackbottom

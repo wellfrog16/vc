@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
-        <HFlag code="RUS" />
+        <VcFlag code="RUS" />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import HFlag from '../flag.vue'
+import VcFlag from '../flag.vue'
 </script>

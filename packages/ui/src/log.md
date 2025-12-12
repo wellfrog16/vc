@@ -221,7 +221,7 @@ title: 更新日志
 
 ### 缺陷修复
 
-- HImage 组件始终挂在 body 上，以确保显示正确
+- VcImage 组件始终挂在 body 上，以确保显示正确
 - 修复 tree-picker 组件的 ClickOutside 失效的问题
 - 修复 choice 组件和 select 组件的 props 类型，并更新文档
 
@@ -233,9 +233,9 @@ title: 更新日志
 
 - 增加 volar 用的 global.d.ts
 - 增加 commitlint
-- 增加 HDialog 组件
-- HDialogMapPoint、HDialogCameraUpload、HDialogUploadImages 改用 HDialog 组件
-- HDialogUploadImages 支持全屏
+- 增加 VcDialog 组件
+- VcDialogMapPoint、VcDialogCameraUpload、VcDialogUploadImages 改用 VcDialog 组件
+- VcDialogUploadImages 支持全屏
 
 ### 缺陷修复
 

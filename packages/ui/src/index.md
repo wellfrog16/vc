@@ -43,7 +43,7 @@ app.use(VC)
 在 vue 文件中使用
 ```vue
 <template>
-    <HButton :icon="{ type: 'svg', name: 'test' }" type="primary">SVG 图标</HButton>
+    <VcButton :icon="{ type: 'svg', name: 'test' }" type="primary">SVG 图标</VcButton>
 </template>
 ```
 
@@ -71,10 +71,10 @@ import '@wfrog/vc/es/style.css'
 在 vue 文件中
 ```vue
 <template>
-    <HButton :icon="{ type: 'svg', name: 'test' }" type="primary">SVG 图标</HButton>
+    <VcButton :icon="{ type: 'svg', name: 'test' }" type="primary">SVG 图标</VcButton>
 </template>
 
 <script lang="ts" setup>
-import HButton from '@wfrog/vc/es/components/button'
+import VcButton from '@wfrog/vc/es/components/button'
 </script>
 ```

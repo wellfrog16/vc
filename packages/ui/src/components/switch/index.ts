@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './switch.vue'
 
-export const HSwitch: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HSwitch
+export const VcSwitch: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcSwitch

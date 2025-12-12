@@ -11,9 +11,9 @@
         />
         <div :class="$style['volume-container']">
             <ElSlider v-model="volume" vertical height="100px" :show-tooltip="false" :class="$style.volume" />
-            <HAwesomeIcon name="fas" :class="[$style['volume-controll'], volumeIcon]" @click="toggleVolume" />
+            <VcAwesomeIcon name="fas" :class="[$style['volume-controll'], volumeIcon]" @click="toggleVolume" />
         </div>
-        <HAwesomeIcon name="fas" :class="[$style.play, playClass]" @click="togglePlay" />
+        <VcAwesomeIcon name="fas" :class="[$style.play, playClass]" @click="togglePlay" />
         <audio ref="myAudio" :src="src" loop />
     </div>
 </template>
@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import type { ISinglePlayerProps } from './single-player'
 import { isBoolean } from 'lodash-es'
-import HAwesomeIcon from '../awesome-icon/awesome-icon.vue'
+import VcAwesomeIcon from '../awesome-icon/awesome-icon.vue'
 
 const props = withDefaults(defineProps<ISinglePlayerProps>(), {
     width: 300,

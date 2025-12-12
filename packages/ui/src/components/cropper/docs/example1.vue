@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <HCropper ref="cropperRef" :image="imgSrc" :option="cropperOption" container-width="100%" @init="handleInit" />
+            <VcCropper ref="cropperRef" :image="imgSrc" :option="cropperOption" container-width="100%" @init="handleInit" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">
             <div ref="resultRef" :class="$style.result" />
@@ -18,7 +18,7 @@
 import type ICropper from 'cropperjs'
 import { Download } from '@element-plus/icons-vue'
 import { debounce } from 'lodash-es'
-import HCropper from '../cropper.vue'
+import VcCropper from '../cropper.vue'
 
 const cropperRef = useTemplateRef('cropperRef')
 const resultRef = useTemplateRef('resultRef')

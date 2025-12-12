@@ -1,12 +1,12 @@
 <template>
     <Wrapper>
-        <HUploadFile :http-request="httpRequest" @error="handleError" />
+        <VcUploadFile :http-request="httpRequest" @error="handleError" />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
-import HUploadFile from '../upload-file.vue'
+import VcUploadFile from '../upload-file.vue'
 
 const result = ref('')
 function httpRequest(_file: File, done: () => void, localUrl: string) {

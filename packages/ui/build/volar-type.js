@@ -16,11 +16,11 @@ declare module 'vue' {
 `
 
 names.forEach(name => {
-    let componentName = `H-${name}`.replace(/-(\w)/g, upper)
+    const componentName = `Vc-${name}`.replace(/-(\w)/g, upper)
 
-    if (name === 'qr-code') { componentName = 'HQRCode' }
-    if (name === 'svg-icon') { componentName = 'HSVGIcon' }
-    if (name === 'pca-picker') { componentName = 'HPCAPicker' }
+    // if (name === 'qr-code') { componentName = 'VCQRCode' }
+    // if (name === 'svg-icon') { componentName = 'VCSVGIcon' }
+    // if (name === 'pca-picker') { componentName = 'VCPCAPicker' }
     content += `        ${componentName}: typeof import('@wfrog/vc')['${componentName}']\n`
 })
 

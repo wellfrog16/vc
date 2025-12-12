@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './awesome-icon.vue'
 
-export const HAwesomeIcon: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HAwesomeIcon
+export const VcAwesomeIcon: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcAwesomeIcon

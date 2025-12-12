@@ -49,7 +49,7 @@
                     @keyup.enter="handleBlur"
                     @blur="handleInsert"
                 />
-                <HButton v-else-if="!isLimited" size="small" :icon="{ name: 'Plus' }" @click="showCreate" />
+                <VcButton v-else-if="!isLimited" size="small" :icon="{ name: 'Plus' }" @click="showCreate" />
             </template>
         </Draggable>
         <ElPopover v-if="errorVisible" :virtual-ref="currentRef" :visible="errorVisible" placement="bottom">
@@ -62,7 +62,7 @@
 import type { ITagsProps } from './tags'
 import Draggable from 'vuedraggable-es-fix'
 import vFocus from '@/directives/focus'
-import HButton from '../button/button.vue'
+import VcButton from '../button/button.vue'
 
 const props = withDefaults(defineProps<ITagsProps>(), {
     regexp: () => /\S+/,

@@ -3,5 +3,5 @@ import { withInstall } from '@/utils'
 
 import Component from './choice-boolean.vue'
 
-export const HChoiceBoolean: SFCWithInstall<typeof Component> = withInstall(Component)
-export default HChoiceBoolean
+export const VcChoiceBoolean: SFCWithInstall<typeof Component> = withInstall(Component)
+export default VcChoiceBoolean

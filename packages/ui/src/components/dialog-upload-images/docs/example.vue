@@ -2,7 +2,7 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <ElButton @click="handleClick">打开</ElButton>
-            <HDialogUploadImages
+            <VcDialogUploadImages
                 v-model="result"
                 v-model:visible="visible"
                 :http-request="httpRequest"
@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
-import HDialogUploadImages from '../dialog-upload-images.vue'
+import VcDialogUploadImages from '../dialog-upload-images.vue'
 
 const demoData: any = {
     name: '山.png',

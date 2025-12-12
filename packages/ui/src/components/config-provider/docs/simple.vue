@@ -1,16 +1,16 @@
 <template>
     <Wrapper>
-        <HConfigProvider :button="buttonConfig">
-            <HButton type="warning" @click="handleClick">删除</HButton>
-            <HButton type="warning" @click="handleClick">删除</HButton>
-        </HConfigProvider>
+        <VcConfigProvider :button="buttonConfig">
+            <VcButton type="warning" @click="handleClick">删除</VcButton>
+            <VcButton type="warning" @click="handleClick">删除</VcButton>
+        </VcConfigProvider>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
-import HButton from '@/components/button/button.vue'
-import HConfigProvider from '../config-provider.vue'
+import VcButton from '@/components/button/button.vue'
+import VcConfigProvider from '../config-provider.vue'
 
 const buttonConfig = {
     confirm: {

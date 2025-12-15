@@ -1,8 +1,8 @@
 {
-  "name": "@wfrog/vc",
-  "version": "1.0.2",
+  "name": "@wfrog/vc-ui",
+  "version": "1.0.0",
   "packageManager": "pnpm@10.20.0",
-  "description": "vue3 组件库 vc",
+  "description": "vue3 组件库 vc-ui",
   "author": "wellfrog",
   "license": "ISC",
   "keywords": ["vue3-components", "vue3-ui", "components", "vue3-component"],

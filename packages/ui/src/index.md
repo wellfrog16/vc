@@ -1,4 +1,4 @@
-# VC 组件库
+# VC-UI 组件库
 
 `自用` 的基于 `element-plus` 二次封装的 `vue3` 组件库。追求在业务场景中，尽可能使用更少的代码量来实现需求。
 因此在组件封装上，以 `方便` 为主，打包仅 `esm` 模式。
@@ -21,14 +21,14 @@ pnpm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21
 ## 全量引入
 
 ```sh
-pnpm i @wfrog/vc
+pnpm i @wfrog/vc-ui
 ```
 
 在 app.ts 里，全量引入组件和css
 
 ```ts
-import Vc from '@wfrog/vc'
-import '@wfrog/vc/index.css'
+import Vc from '@wfrog/vc-ui'
+import '@wfrog/vc-ui/index.css'
 
 const app = createApp(App)
 app.use(Vc)
@@ -51,7 +51,7 @@ pnpm install -D unplugin-vue-components unplugin-auto-import
 在 vite.config.ts 里，配置自动导入和组件库
 
 ```ts
-import VcResolver from '@wfrog/vc/resolver'
+import VcResolver from '@wfrog/vc-ui/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
@@ -73,13 +73,13 @@ export default defineConfig({
 ## 单组件加载
 
 ```sh
-pnpm i @wfrog/vc
+pnpm i @wfrog/vc-ui
 ```
 
 在 app.ts 里，全量引入 css
 
 ```ts
-import '@wfrog/vc/es/style.css'
+import '@wfrog/vc-ui/es/style.css'
 ```
 
 在 vue 文件中
@@ -90,6 +90,6 @@ import '@wfrog/vc/es/style.css'
 </template>
 
 <script lang="ts" setup>
-import VcButton from '@wfrog/vc/es/components/button'
+import VcButton from '@wfrog/vc-ui/es/components/button'
 </script>
 ```

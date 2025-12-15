@@ -43,7 +43,7 @@
     "@vue/shared": "^3.5.24",
     "@vueuse/core": "^14.0.0",
     "@wfrog/utils": "^0.1.1",
-    "@wfrog/vc": "workspace:*",
+    "@wfrog/vc-ui": "workspace:*",
     "commitizen": "^4.3.1",
     "cross-env": "^10.1.0",
     "cz-git": "^1.12.0",

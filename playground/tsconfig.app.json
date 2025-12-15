@@ -6,7 +6,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["node", "vite/client", "@wfrog/vc/global.d.ts", "element-plus/global"],
+    "types": ["node", "vite/client", "@wfrog/vc-ui/global.d.ts", "element-plus/global"],
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,

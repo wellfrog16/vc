@@ -64,7 +64,7 @@ export default defineConfig({
                 ...useEntrys,
                 resolver: resolve(__dirname, './src/utils/resolver.ts'),
             },
-            name: '@wfrog/vc',
+            name: '@wfrog/vc-ui',
             formats: ['es'],
             fileName: (format, entryName) => {
                 // console.log(entryName, 'entryName')

@@ -1,6 +1,6 @@
 import path from 'node:path'
 import vue from '@vitejs/plugin-vue'
-import VcResolver from '@wfrog/vc/resolver'
+import VcResolver from '@wfrog/vc-ui/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'

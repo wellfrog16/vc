@@ -20,13 +20,13 @@ export default (): ComponentResolver => {
                 return
             }
             // console.log(compName, name, kebabToPascal(compName))
-            // return { name, from: '@wfrog/vc' }
+            // return { name, from: '@wfrog/vc-ui' }
 
             return {
                 name: 'default',
-                from: `@wfrog/vc/es/components/${kebabToPascal(compName)}`,
-                // from: '@wfrog/vc',
-                // sideEffects: `@wfrog/vc/es/components/${compName}/index.css`,
+                from: `@wfrog/vc-ui/es/components/${kebabToPascal(compName)}`,
+                // from: '@wfrog/vc-ui',
+                // sideEffects: `@wfrog/vc-ui/es/components/${compName}/index.css`,
             }
         },
     }

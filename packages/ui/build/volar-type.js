@@ -21,7 +21,7 @@ names.forEach(name => {
     // if (name === 'qr-code') { componentName = 'VCQRCode' }
     // if (name === 'svg-icon') { componentName = 'VCSVGIcon' }
     // if (name === 'pca-picker') { componentName = 'VCPCAPicker' }
-    content += `        ${componentName}: typeof import('@wfrog/vc')['${componentName}']\n`
+    content += `        ${componentName}: typeof import('@wfrog/vc-ui')['${componentName}']\n`
 })
 
 content += `    }\n}\nexport {}`

@@ -23,3 +23,6 @@ yarn-error.log*
 .temp
 **/.vitepress/cache
 tsconfig.tsbuildinfo
+
+# special
+packages/ui/README.md

@@ -1,11 +1,11 @@
 {
   "name": "@wfrog/vc",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "packageManager": "pnpm@10.20.0",
-  "description": "",
-  "author": "",
+  "description": "vue3 组件库 vc",
+  "author": "wellfrog",
   "license": "ISC",
-  "keywords": [],
+  "keywords": ["vue3-components", "vue3-ui", "components", "vue3-component"],
   "exports": {
     ".": {
       "types": "./dist/es/index.d.ts",
@@ -26,8 +26,12 @@
   "main": "dist/es/index.mjs",
   "types": "dist/es/index.d.ts",
   "files": [
+    "README.md",
     "dist"
   ],
+  "publishConfig": {
+    "directory": "."
+  },
   "scripts": {
     "build": "vite build && pnpm volar && pnpm provide:css",
     "provide:css": "esno ./build/libcss",
@@ -36,9 +40,9 @@
     "docs:build": "vitepress build",
     "docs:deploy-build": "cross-env deploy=gh vitepress build",
     "docs:preview": "vitepress preview",
-    "gh-pages": "cross-env deploy=gh pnpm docs:build",
-    "gh": "node gh-pages",
+    "prepublishOnly": "cp src/index.md README.md",
     "publish2": "npm publish --access public",
+    "postpublish": "rimraf README.md",
     "clean": "rimraf node_modules dist .vitepress/dist  .vitepress/cache"
   },
   "dependencies": {

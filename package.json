@@ -17,6 +17,7 @@
     "ui:docs:build": "pnpm -C packages/ui docs:build",
     "ui:docs:deploy-build": "pnpm -C packages/ui docs:deploy-build",
     "ui:docs:preview": "pnpm -C packages/ui docs:preview",
+    "ui:publish": "pnpm --filter ./packages/ui publish2",
     "playground:dev": "pnpm -C playground dev",
     "playground:build": "pnpm -C playground build",
     "clean": "pnpm -r run clean && rm -rf node_modules",

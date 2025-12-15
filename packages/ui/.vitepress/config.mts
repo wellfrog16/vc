@@ -127,19 +127,6 @@ export default defineConfig({
                     ElementPlusResolver({
                         importStyle: false, // 导入 css 会报错，这里本来也是在 theme 下的 index.scss 全局引用
                     }),
-                    // (() => ({
-                    //     type: 'component',
-                    //     resolve: (name: string) => {
-                    //         console.log('-------------------------')
-                    //         console.log('name', name)
-
-                    //         return {
-                    //             name: 'Wrapper',
-                    //             from: '../../example-wrapper.vue',
-                    //             // sideEffects: 'abc',
-                    //         }
-                    //     },
-                    // }))(),
                     name => {
                         if (name === 'Wrapper')
                             return { name: 'default', from: '@/components/example-wrapper.vue' }

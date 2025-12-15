@@ -28,9 +28,6 @@
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">22.21.1"
-  },
   "scripts": {
     "build": "vite build && pnpm volar && pnpm provide:css",
     "provide:css": "esno ./build/libcss",

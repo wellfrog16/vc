@@ -5,8 +5,8 @@
         :popper-class="popperClass"
     >
         <template #title>
-            <h-icon v-if="type && name" :type="type" :name="name" box />
-            <span>{{ item.meta && item.meta.title }}112233</span>
+            <vc-icon v-if="type && name" :type="type" :name="name" box />
+            <span>{{ item.meta && item.meta.title }}{{ item.meta?.title }}</span>
         </template>
         <template v-for="item1 in item.children">
             <!-- 无子级菜单 -->

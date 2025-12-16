@@ -3,7 +3,7 @@
         v-bind="itemProps"
         @click="handleLink"
     >
-        <h-icon v-if="type && name" :type="type" :name="name" box />
+        <vc-icon v-if="type && name" :type="type" :name="name" box />
         <template #title><span>{{ item.meta && item.meta.title }}</span></template>
     </el-menu-item>
 </template>

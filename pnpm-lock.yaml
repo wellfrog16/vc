@@ -45,6 +45,9 @@ importers:
       '@wfrog/vc-ui':
         specifier: workspace:*
         version: link:packages/ui
+      '@wfrog/vc-utils':
+        specifier: workspace:*
+        version: link:packages/utils
       commitizen:
         specifier: ^4.3.1
         version: 4.3.1(@types/node@24.10.4)(typescript@5.9.3)

@@ -30,6 +30,26 @@ export const staticRoutes: RouteRecordRaw[] = [
             },
         ],
     },
+    {
+        name: 'my-functions',
+        path: '/functions',
+        component: Layout,
+        redirect: { name: 'functions' },
+        meta: {
+            title: '函数',
+            icon: ['el', 'HelpFilled'],
+        },
+        children: [
+            {
+                name: 'functions',
+                path: 'index',
+                component: () => import('@/views/functions/index.vue'),
+                meta: {
+                    hidden: true,
+                },
+            },
+        ],
+    },
     // {
     //     name: 'my-components3',
     //     path: '/components3',

@@ -26,7 +26,8 @@
     "commit": "git-cz",
     "lint": "commitlint -e",
     "push": "node ./scripts/auto-push.js",
-    "gen:com": "esno ./scripts/create-component.ts"
+    "gen:com": "esno ./scripts/create-component.ts",
+    "gen:fun": "esno ./scripts/create-function.ts"
   },
   "config": {
     "commitizen": {

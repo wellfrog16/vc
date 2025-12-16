@@ -4,7 +4,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import { createTemplate, kebabToPascal } from './template'
+import { createTemplate, kebabToPascal } from './component-template'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

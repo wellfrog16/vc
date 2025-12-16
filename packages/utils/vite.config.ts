@@ -8,8 +8,8 @@ import { getFoldFile } from '../../scripts/helper'
 
 const funEntrys: Record<string, string> = {}
 
-for (const [key, value] of getFoldFile(path.resolve(__dirname, './src/utils'), true)) {
-    funEntrys[`utils/${key}`] = value.path
+for (const [key, value] of getFoldFile(path.resolve(__dirname, './src/functions'), true)) {
+    funEntrys[`functions/${key}`] = value.path
 }
 
 // 简化配置，避免类型错误

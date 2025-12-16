@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import rndColor from '@wfrog/vc-utils/es/utils/rnd-color'
+import { rndColor } from '@wfrog/vc-utils'
 
 const colors: string[] = []
 for (let i = 0; i < 10; i++) {

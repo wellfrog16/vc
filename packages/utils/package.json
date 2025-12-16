@@ -11,9 +11,9 @@
       "types": "./dist/es/index.d.ts",
       "import": "./dist/es/index.mjs"
     },
-    "./es/utils/*": {
-      "types": "./dist/es/utils/*/index.d.ts",
-      "default": "./dist/es/utils/*/index.mjs"
+    "./es/functions/*": {
+      "types": "./dist/es/functions/*/index.d.ts",
+      "default": "./dist/es/functions/*/index.mjs"
     },
     "./*": "./dist/*"
   },

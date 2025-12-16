@@ -1,22 +1,15 @@
 import path, { resolve } from 'node:path'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
 import { getFoldFile } from '../../scripts/helper'
-import cssSource from './build/css-source'
 
-const componentEntrys: Record<string, string> = {}
-for (const [key, value] of getFoldFile(path.resolve(__dirname, './src/components'), true)) {
-    componentEntrys[`components/${key}`] = `${value.path}\\index.ts`
-}
+const funEntrys: Record<string, string> = {}
 
-const useEntrys: Record<string, string> = {}
-for (const [key, value] of getFoldFile(path.resolve(__dirname, './src/use'), true)) {
-    useEntrys[`use/${key}`] = value.path
+for (const [key, value] of getFoldFile(path.resolve(__dirname, './src/utils'), true)) {
+    funEntrys[`utils/${key}`] = value.path
 }
 
 // 简化配置，避免类型错误
@@ -36,16 +29,9 @@ export default defineConfig({
                 content,
             }),
         }),
-        cssSource(),
         AutoImport({
             imports: ['vue', '@vueuse/core'],
-            resolvers: [ElementPlusResolver()],
             dts: './src/types/auto-imports.d.ts',
-        }),
-        Components({
-            resolvers: [ElementPlusResolver()],
-            dirs: [], // 避免自动导入其他组件，element-plus 类型由 tsconfig 的 compilerOptions.types 控制
-            dts: './src/types/components.d.ts',
         }),
     ],
 
@@ -60,19 +46,14 @@ export default defineConfig({
             // 入口文件
             entry: {
                 main: resolve(__dirname, './src/index.ts'),
-                ...componentEntrys,
-                ...useEntrys,
-                resolver: resolve(__dirname, './src/utils/resolver.ts'),
+                ...funEntrys,
             },
-            name: '@wfrog/vc-ui',
+            name: '@wfrog/vc-utils',
             formats: ['es'],
             fileName: (format, entryName) => {
                 // console.log(entryName, 'entryName')
                 if (entryName === 'main') {
                     return 'es/index.mjs'
-                }
-                else if (entryName === 'resolver') {
-                    return 'es/utils/resolver.mjs'
                 }
                 else {
                     return `es/${entryName}/index.mjs`
@@ -80,20 +61,12 @@ export default defineConfig({
             },
         },
         rollupOptions: {
-            external: ['vue', '@vueuse/core', 'element-plus', '@element-plus/icons-vue', 'cropperjs', 'vuedraggable-es-fix'],
+            external: ['vue'],
             output: {
                 // entryFileNames: 'es/components/[name]/index.mjs',
                 chunkFileNames: chunkInfo => {
-                    // console.log(chunkInfo.name)
-                    const name = chunkInfo.name.split('.')[0]
-                    if (componentEntrys[`components/${name}`]) {
-                        return `es/components/${name}/${name}.mjs`
-                    }
+                    console.log(chunkInfo.name)
                     return 'es/chunk/[hash].mjs'
-                },
-                assetFileNames: info => {
-                    const name = info.names[0].split('.')[0]
-                    return `es/assets/${name}[extname]`
                 },
                 // 导出方式
                 exports: 'named',

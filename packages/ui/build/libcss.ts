@@ -1,6 +1,6 @@
 import fs from 'node:fs'
 import path, { resolve } from 'node:path'
-import { getFoldFile } from './helper'
+import { getFoldFile } from '../../../scripts/helper'
 
 const baseOutput = path.resolve(__dirname, '../dist/es')
 // const cssFile = getFoldFile('../dist/es/assets')

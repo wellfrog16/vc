@@ -21,6 +21,9 @@ importers:
       '@element-plus/icons-vue':
         specifier: ^2.3.2
         version: 2.3.2(vue@3.5.25(typescript@5.9.3))
+      '@types/klaw-sync':
+        specifier: ^6.0.5
+        version: 6.0.5
       '@types/lodash-es':
         specifier: ^4.17.12
         version: 4.17.12
@@ -63,6 +66,9 @@ importers:
       esno:
         specifier: ^4.8.0
         version: 4.8.0
+      klaw-sync:
+        specifier: ^7.0.0
+        version: 7.0.0
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -97,18 +103,12 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1(vue@3.5.25(typescript@5.9.3))
     devDependencies:
-      '@types/klaw-sync':
-        specifier: ^6.0.5
-        version: 6.0.5
-      esbuild:
-        specifier: ^0.27.0
-        version: 0.27.1
-      klaw-sync:
-        specifier: ^7.0.0
-        version: 7.0.0
       vitepress:
         specifier: 2.0.0-alpha.15
         version: 2.0.0-alpha.15(@types/node@24.10.4)(async-validator@4.2.5)(change-case@5.4.4)(jiti@2.6.1)(postcss@8.5.6)(sass-embedded@1.96.0)(sass@1.96.0)(sortablejs@1.14.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
+    publishDirectory: .
+
+  packages/utils:
     publishDirectory: .
 
   playground:

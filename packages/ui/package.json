@@ -49,9 +49,6 @@
     "vuedraggable-es-fix": "^1.0.1"
   },
   "devDependencies": {
-    "@types/klaw-sync": "^6.0.5",
-    "esbuild": "^0.27.0",
-    "klaw-sync": "^7.0.0",
     "vitepress": "2.0.0-alpha.15"
   }
 }

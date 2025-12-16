@@ -23,7 +23,8 @@
     "clean": "pnpm -r run clean && rm -rf node_modules",
     "commit": "git-cz",
     "lint": "commitlint -e",
-    "push": "node node/auto-push.js"
+    "push": "node node/auto-push.js",
+    "gen:com": "esno ./scripts/create-component.ts"
   },
   "config": {
     "commitizen": {
@@ -50,6 +51,7 @@
     "element-plus": "^2.11.7",
     "eslint": "^9.39.1",
     "eslint-plugin-format": "^1.0.2",
+    "esno": "^4.8.0",
     "lodash-es": "^4.17.21",
     "rimraf": "^6.1.0",
     "sass-embedded": "^1.93.3",

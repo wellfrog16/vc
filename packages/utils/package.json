@@ -32,9 +32,7 @@
   },
   "scripts": {
     "build": "vite build",
-    "prepublishOnly": "cp src/index.md README.md",
     "publish2": "npm publish --access public",
-    "postpublish": "rimraf README.md",
     "clean": "rimraf node_modules dist"
   },
   "dependencies": {

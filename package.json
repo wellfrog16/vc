@@ -19,6 +19,7 @@
     "ui:docs:preview": "pnpm -C packages/ui docs:preview",
     "ui:publish": "pnpm --filter ./packages/ui publish2",
     "utils:build": "pnpm -C packages/utils build",
+    "utils:publish": "pnpm --filter ./packages/utils publish2",
     "playground:dev": "pnpm -C playground dev",
     "playground:build": "pnpm -C playground build",
     "postinstall": "pnpm utils:build && pnpm ui:build",

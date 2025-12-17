@@ -38,6 +38,7 @@
     "clean": "rimraf node_modules dist"
   },
   "dependencies": {
+    "@types/crypto-js": "^4.2.2",
     "crypto-js": "^4.2.0"
   }
 }

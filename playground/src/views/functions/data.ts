@@ -5,6 +5,7 @@ export const functionsData = [
             { text: 'delay' },
             { text: 'file' },
             { text: 'image-size' },
+            { text: 'loader' },
             { text: 'rnd-color' },
             { text: 'remove-html-tag' },
             { text: 'storage' },

@@ -5,6 +5,7 @@ export const functionsData = [
             { text: 'delay' },
             { text: 'rnd-color' },
             { text: 'remove-html-tag' },
+            { text: 'storage' },
         ],
     },
 ]

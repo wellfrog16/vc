@@ -5,7 +5,11 @@
   "description": "函数工具库 vc-utils",
   "author": "wellfrog",
   "license": "ISC",
-  "keywords": ["vue3-utils", "utils", "vue3"],
+  "keywords": [
+    "vue3-utils",
+    "utils",
+    "vue3"
+  ],
   "exports": {
     ".": {
       "types": "./dist/es/index.d.ts",
@@ -32,5 +36,8 @@
     "publish2": "npm publish --access public",
     "postpublish": "rimraf README.md",
     "clean": "rimraf node_modules dist"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0"
   }
 }

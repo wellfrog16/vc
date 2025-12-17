@@ -13,7 +13,6 @@
 
 <script lang="ts" setup>
 import type { IUploadFile } from '../dialog-upload-images'
-import { defaultWindow } from '@wfrog/utils'
 import { ElMessage } from 'element-plus'
 import VcDialogUploadImages from '../dialog-upload-images.vue'
 
@@ -25,12 +24,11 @@ function handleClick() {
 }
 
 async function httpRequest(file: File) {
-    if (!defaultWindow) { return }
     const myFile = {
         name: file.name,
         size: file.size,
         type: file.type,
-        url: defaultWindow.URL.createObjectURL(file),
+        url: window.URL.createObjectURL(file),
     }
     return myFile
 }

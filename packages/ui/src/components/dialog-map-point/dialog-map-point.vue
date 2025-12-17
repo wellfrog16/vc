@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import type { IDialogMapPointProps } from './dialog-map-point'
 import { Search } from '@element-plus/icons-vue'
-import { defaultWindow, loader } from '@wfrog/utils'
+import { loader } from '@wfrog/vc-utils'
 import VcDialog from '../dialog/dialog.vue'
 
 const props = withDefaults(defineProps<IDialogMapPointProps>(), {
@@ -42,8 +42,6 @@ const containerRef = useTemplateRef('containerRef')
 const keywords = ref('')
 
 const dialogWidth = computed(() => {
-    if (!defaultWindow) { return '500px' }
-
     const width = document.body.clientWidth * 0.8
     const maxWidth = 1000
     return `${width > maxWidth ? maxWidth : width}px`
@@ -68,9 +66,7 @@ let local: any
 const point = ref({ lng: 0, lat: 0 })
 
 function init() {
-    if (!defaultWindow) { return '' }
-
-    const { BMapGL } = defaultWindow
+    const { BMapGL } = window
     map = new BMapGL.Map(containerRef.value, { enableMapClick: false })
     map.setDefaultCursor('default')
     let marker: any = null

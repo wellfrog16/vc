@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import type { IConfigProviderProps } from './config-provider'
-import { loader } from '@wfrog/utils'
+import { loader } from '@wfrog/vc-utils'
 
 import { useProvide } from '@/use/useStore'
 import { KEY_NAME } from './config-provider'

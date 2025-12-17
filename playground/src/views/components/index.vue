@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { storage } from '@wfrog/utils'
+import { storage } from '@wfrog/vc-utils'
 import { componentsData } from './data'
 
 const STORAGE_KEY = 'PLAYGROUND_ACTIVE_COMPONENT'

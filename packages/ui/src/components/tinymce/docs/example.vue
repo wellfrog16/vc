@@ -37,8 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { RawEditorSettings } from '@wfrog/utils'
-import { defaultWindow } from '@wfrog/utils'
+// import type { RawEditorSettings } from '@wfrog/utils'
 
 import VcButton from '@/components/button/button.vue'
 import VcChoice from '@/components/choice/choice.vue'
@@ -54,10 +53,8 @@ const form = reactive({
     fields: { title: '', content: '' },
 })
 
-const httpRequest: RawEditorSettings['images_upload_handler'] = (blobInfo, onSccuess, onFailed) => {
-    if (!defaultWindow) { return }
-
-    const blobUrl = defaultWindow.URL.createObjectURL(blobInfo.blob())
+function httpRequest(blobInfo: any, onSccuess: any, onFailed: any) {
+    const blobUrl = window.URL.createObjectURL(blobInfo.blob())
     if (blobUrl) {
         onSccuess(blobUrl)
     }

@@ -47,10 +47,7 @@
 <script lang="ts" setup>
 import type { UploadRawFile, UploadRequestOptions } from 'element-plus/es/components/upload/src/upload'
 import type { IDialogUploadImagesProps, IUploadFile } from './dialog-upload-images'
-
-import { defaultWindow } from '@wfrog/utils'
 import Draggable from 'vuedraggable-es-fix'
-
 import VcDialog from '../dialog/dialog.vue'
 import VcElIcon from '../el-icon/el-icon.vue'
 
@@ -81,11 +78,9 @@ const dialogVisible = computed({
 })
 
 function getImgUrl(file: IUploadFile | File) {
-    if (!defaultWindow) { return '' }
-
     const data = file as any
     if (data.url) { return data.url }
-    return defaultWindow.URL.createObjectURL(data)
+    return window.URL.createObjectURL(data)
 }
 
 function handleConfirm() {
@@ -145,7 +140,7 @@ function handleOnExceed() {
 }
 
 function handleOnPreview(file: IUploadFile | File) {
-    defaultWindow && defaultWindow.open(getImgUrl(file))
+    window.open(getImgUrl(file))
 }
 </script>
 

@@ -3,9 +3,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { ICDNType } from '@wfrog/utils'
 import type { IQRCodeProps } from './qr-code'
-import { loader } from '@wfrog/utils'
+import { loader } from '@wfrog/vc-utils'
 
 const props = withDefaults(defineProps<IQRCodeProps>(), {
     tag: 'canvas',
@@ -20,7 +19,7 @@ const props = withDefaults(defineProps<IQRCodeProps>(), {
 const elementRef = useTemplateRef<any>('elementRef')
 
 async function createQR() {
-    const QRCode = (await loader.loadCdnSingle('QRCode', props.version)) as ICDNType['QRCode']
+    const QRCode = await loader.loadCdnSingle('QRCode', props.version)
     const { tag, value } = props
     const option = { width: props.width, height: props.height, margin: props.margin, ...props.option }
 

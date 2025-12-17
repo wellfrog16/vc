@@ -11,7 +11,7 @@ interface Window {
     }
     tinyMCE: unknown
     BMapGL: any
-    h_utils: {
+    vc: {
         cdn: {
             name: 'jsdelivr' | 'defaultBase' | 'localCDN'
             path: string

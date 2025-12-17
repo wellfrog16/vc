@@ -25,7 +25,7 @@
 import type { UploadRawFile } from 'element-plus/es/components/upload/src/upload'
 import type { IUploadFileProps } from './upload-file'
 
-import { defaultWindow, file } from '@wfrog/utils'
+import { file } from '@wfrog/vc-utils'
 import { ElImage, ElUpload, vLoading } from 'element-plus'
 import { computed, nextTick, ref } from 'vue'
 
@@ -114,9 +114,8 @@ function handleBeforeUpload(file: UploadRawFile) {
 }
 
 const handleHttpRequest: any = ({ file }: { file: File }) => {
-    if (!defaultWindow) { return }
     if (props.httpRequest) {
-        const localUrl = defaultWindow.URL.createObjectURL(file)
+        const localUrl = window.URL.createObjectURL(file)
         const done = () => {
             imgSrc.value = localUrl
             loading.value = false

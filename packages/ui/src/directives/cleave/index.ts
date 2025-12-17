@@ -1,5 +1,5 @@
 import type { Directive } from 'vue'
-import { loader } from '@wfrog/utils'
+import { loader } from '@wfrog/vc-utils'
 
 const cleave: Directive = {
     mounted: async (el, binding) => {

@@ -5,7 +5,7 @@
 
 组件开发时，依赖的 `vue` 版本是 `^3.5.22`
 
-组件库所使用 CDN 源为 [jsdelivr](https://www.jsdelivr.com/)，并使用了一个自用的函数库 `@wfrog/utils`
+组件库所使用 CDN 源为 [jsdelivr](https://www.jsdelivr.com/)，并使用了一个自用的函数库 `@wfrog/vc-utils`
 
 **！！！如果 jsdelivr 无法访问，会导致部分组件失效。解决办法：todo**
 
@@ -15,7 +15,7 @@
 
 ```sh
 pnpm i element-plus@~2.11.7 @element-plus/icons-vue@^2.3.2 @vueuse/core@^14.0.0
-pnpm i @wfrog/utils@^0.1.0 lodash-es@^4.17.21
+pnpm i @wfrog/vc-utils@^1.0.0 lodash-es@^4.17.21
 ```
 
 ## 全量引入

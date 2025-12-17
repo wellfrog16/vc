@@ -1,7 +1,7 @@
 import type { CascaderOption, CascaderProps } from 'element-plus'
 import type { ComputedRef, Ref } from 'vue'
 import { useStorage } from '@vueuse/core'
-import { storage } from '@wfrog/utils'
+import { storage } from '@wfrog/vc-utils'
 
 import { flatMap, flatMapDeep } from 'lodash-es'
 

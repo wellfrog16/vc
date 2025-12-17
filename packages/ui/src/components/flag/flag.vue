@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import type { IFlag3Code, IFlagProps } from './flags'
-import { loader } from '@wfrog/utils'
+import { loader } from '@wfrog/vc-utils'
 import { codeMapping } from './flags'
 
 const props = withDefaults(defineProps<IFlagProps>(), {

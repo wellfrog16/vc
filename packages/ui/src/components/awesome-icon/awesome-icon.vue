@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import type { IAwesomeIconProps } from './awesome-icon'
-import { defaultWindow, loader } from '@wfrog/utils'
+import { loader } from '@wfrog/vc-utils'
 
 const props = withDefaults(defineProps<IAwesomeIconProps>(), {
     mode: 'css',
@@ -21,11 +21,9 @@ async function loaderSource() {
 }
 
 onMounted(() => {
-    if (defaultWindow) {
-        if (!defaultWindow.VC?.isAwesomeIconLock) {
-            defaultWindow.VC = { ...defaultWindow.VC, isAwesomeIconLock: true }
-            loaderSource()
-        }
+    if (!window.VC?.isAwesomeIconLock) {
+        window.VC = { ...window.VC, isAwesomeIconLock: true }
+        loaderSource()
     }
 })
 </script>

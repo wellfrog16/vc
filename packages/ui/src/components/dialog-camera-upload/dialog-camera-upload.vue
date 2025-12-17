@@ -70,7 +70,7 @@ import type { AlertProps } from 'element-plus/es/components/alert'
 import type { IDialogCameraUploadProps } from './dialog-camera-upload'
 
 import { Camera, Upload } from '@element-plus/icons-vue'
-import { defaultWindow, file } from '@wfrog/utils'
+import { file } from '@wfrog/vc-utils'
 
 import VcCropper from '../cropper/cropper.vue'
 import VcDialog from '../dialog/dialog.vue'
@@ -213,12 +213,12 @@ function handleOpenCamera() {
 }
 
 function handleShoot() {
-    if (!defaultWindow || !canvasRef.value || !videoRef.value) { return }
+    if (!canvasRef.value || !videoRef.value) { return }
     toggleWindow(WINDOW_CANVAS)
     const context = canvasRef.value.getContext('2d')!
     context.drawImage(videoRef.value, 0, 0, props.width, props.height)
     myFile = file.dataURLToFile(canvasRef.value.toDataURL(), 'camera.png')
-    const localUrl = defaultWindow.URL.createObjectURL(myFile)
+    const localUrl = window.URL.createObjectURL(myFile)
     blobImage.value = localUrl
     showAlert('success', TIPS_SHOOT_SUCCESS)
 }
@@ -237,9 +237,8 @@ function handleCropperOpen() {
 }
 
 function handleFinished(_canvas: any, blob: Blob) {
-    if (!defaultWindow) { return }
     myFile = file.blobToFile(blob, 'cropper.png')
-    const localUrl = defaultWindow.URL.createObjectURL(myFile)
+    const localUrl = window.URL.createObjectURL(myFile)
     blobImage.value = localUrl
     toggleWindow(WINDOW_IMAGE)
 }

@@ -46,6 +46,7 @@
     "clean": "rimraf node_modules dist .vitepress/dist  .vitepress/cache"
   },
   "dependencies": {
+    "cropperjs": "^1.5.12",
     "vuedraggable-es-fix": "^1.0.1"
   },
   "devDependencies": {

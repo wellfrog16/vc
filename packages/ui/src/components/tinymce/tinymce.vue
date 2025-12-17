@@ -5,9 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { ICDNType } from '@wfrog/utils'
 import type { ITinymceProps } from './tinymce'
-import { defaultWindow, loader } from '@wfrog/utils'
+import { loader } from '@wfrog/vc-utils'
 import config from './config'
 
 const props = withDefaults(defineProps<ITinymceProps>(), {
@@ -21,18 +20,16 @@ const props = withDefaults(defineProps<ITinymceProps>(), {
 
 const emits = defineEmits(['update:modelValue'])
 
-const Tinymce = shallowRef<ICDNType['tinymce']>()
+const Tinymce = shallowRef()
 const loading = ref(false)
 
 async function tinymceInit() {
-    if (!defaultWindow) { return }
-
     if (!Tinymce.value) {
         loading.value = true
         Tinymce.value = await loader.loadCdnSingle('tinymce')
     }
 
-    const cdnName = defaultWindow.h_utils?.cdn.name || 'jsdelivr'
+    const cdnName = window.vc?.cdn.name || 'jsdelivr'
     const cdnUrl = loader.baseCdnUrl[cdnName]
     const version = '5.8.1'
 
@@ -65,7 +62,7 @@ async function tinymceInit() {
         content_css: false, // 不加载body的样式
         image_uploadtab: true,
         images_upload_handler: props.httpRequest,
-        init_instance_callback: editor => {
+        init_instance_callback: (editor: any) => {
             if (props.modelValue) { editor.setContent(props.modelValue) }
 
             // self.hasInit = true;

@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import type { IScreenfullProps } from './screenfull'
-import { loader } from '@wfrog/utils'
+import { loader } from '@wfrog/vc-utils'
 import VcSVGIcon from '../svg-icon/svg-icon.vue'
 
 const props = defineProps<IScreenfullProps>()

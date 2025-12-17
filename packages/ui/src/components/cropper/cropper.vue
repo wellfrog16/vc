@@ -27,7 +27,7 @@
 <script lang="ts" setup>
 import type ICropper from 'cropperjs'
 import type { ICropperProps } from './cropper'
-import { defaultWindow, file, loader } from '@wfrog/utils'
+import { file, loader } from '@wfrog/vc-utils'
 import { debounce } from 'lodash-es'
 import VcDialog from '../dialog/dialog.vue'
 
@@ -80,9 +80,9 @@ const image = computed(() => {
 
     // 假设File类型
     const file = props.image as File
-    if (defaultWindow && file?.size) {
+    if (file?.size) {
         const img = new Image()
-        const blob = defaultWindow.URL.createObjectURL(file)
+        const blob = window.URL.createObjectURL(file)
         img.src = blob
         return img
     }

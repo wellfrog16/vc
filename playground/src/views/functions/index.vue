@@ -44,7 +44,6 @@ const currentFunction = computed(() => functionMap[activeFunction.value])
 
 function setFunction(name: string) {
     activeFunction.value = name
-    console.log('setFunction', name, functionMap)
     storage.set(STORAGE_KEY, name)
 }
 </script>

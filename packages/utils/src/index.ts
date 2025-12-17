@@ -1,4 +1,5 @@
 export { default as delay } from './functions/delay'
+export { default as imageSize } from './functions/image-size'
 export { default as removeHtmlTag } from './functions/remove-html-tag'
 export { default as rndColor } from './functions/rnd-color'
 export { default as storage } from './functions/storage'

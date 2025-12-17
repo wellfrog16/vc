@@ -1,20 +1,16 @@
-export function pascalToKebab(name: string) {
+export function kebabToCamel(name: string): string {
     return name
-        .split('')
-        .map((char, index) => {
-            if (index === 0) {
-                return char.toLowerCase()
-            }
-            if (char === char.toUpperCase()) {
-                return `-${char.toLowerCase()}`
-            }
-            return char
-        })
+        .split('-')
+        .map((word, idx) =>
+            idx === 0
+                ? word.toLowerCase()
+                : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
+        )
         .join('')
 }
 
 export function createTemplate(name: string) {
-    const kebabName = pascalToKebab(name)
+    const kebabName = kebabToCamel(name)
 
     const functionTemplate = `function ${kebabName}(str: string) {
     if (!str) { return '' }

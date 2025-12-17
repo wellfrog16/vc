@@ -4,7 +4,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import { createTemplate, pascalToKebab } from './function-template'
+import { createTemplate, kebabToCamel } from './function-template'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -46,12 +46,12 @@ writeFileSync(join(playgroundDir, `${functionName}.vue`), template.playground)
 
 console.log('========================================================================')
 console.log(`✅ 组件 ${functionName} 创建成功！`)
-console.log(`📁 位置: packages/utils/src/functions/${functionName}`)
+console.log(`📁 位置: packages/utils/src/functions/${functionName}/index.ts`)
 console.log(`📝 请使用下面语句在 packages/utils/src/index.ts 中导出新函数\n`)
-console.log(`export { default as ${pascalToKebab(functionName)} } from './functions/${functionName}'\n`)
+console.log(`export { default as ${kebabToCamel(functionName)} } from './functions/${functionName}'\n`)
 console.log('------------------------------------------------------------------------\n')
 console.log(`✅ 组件 ${functionName} playground 创建成功！`)
-console.log(`📁 位置: playground/src/views/functions/component/${functionName}`)
+console.log(`📁 位置: playground/src/views/functions/component/${functionName}.vue`)
 console.log(`📝 请使用下面语句在 playground/src/views/functions/data.ts 中增加菜单\n`)
 console.log(`{ text: '${functionName}' },\n`)
 console.log('========================================================================')

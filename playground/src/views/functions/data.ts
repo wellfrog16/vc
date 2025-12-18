@@ -6,6 +6,7 @@ export const functionsData = [
             { text: 'file' },
             { text: 'image-size' },
             { text: 'loader' },
+            { text: 'render-to' },
             { text: 'rnd-color' },
             { text: 'remove-html-tag' },
             { text: 'storage' },

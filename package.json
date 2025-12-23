@@ -50,6 +50,7 @@
     "@vueuse/core": "^14.0.0",
     "@wfrog/vc-ui": "workspace:*",
     "@wfrog/vc-utils": "workspace:*",
+    "change-case": "^5.4.4",
     "commitizen": "^4.3.1",
     "cross-env": "^10.1.0",
     "cz-git": "^1.12.0",

@@ -45,6 +45,9 @@ importers:
       '@wfrog/vc-utils':
         specifier: workspace:*
         version: link:packages/utils
+      change-case:
+        specifier: ^5.4.4
+        version: 5.4.4
       commitizen:
         specifier: ^4.3.1
         version: 4.3.1(@types/node@24.10.4)(typescript@5.9.3)

@@ -1,6 +1,6 @@
 {
   "name": "@wfrog/vc-utils",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "packageManager": "pnpm@10.20.0",
   "description": "函数工具库 vc-utils",
   "author": "wellfrog",

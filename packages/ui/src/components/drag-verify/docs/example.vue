@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <VcDragVerify ref="dragVerifyRef" type="text" :circle="circle" @success="handleSuccess" @fail="handleFail" />
+            <VcDragVerify ref="dragVerifyRef" v-model:success="success" type="text" :circle="circle" @success="handleSuccess" @fail="handleFail" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：圆形">
             <VcChoiceBoolean v-model="circle" />

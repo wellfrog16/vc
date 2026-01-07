@@ -13,10 +13,12 @@
   "exports": {
     ".": {
       "types": "./dist/es/index.d.ts",
-      "import": "./dist/es/index.mjs"
+      "import": "./dist/es/index.mjs",
+      "require": "./dist/es/index.mjs"
     },
     "./es/functions/*": {
       "types": "./dist/es/functions/*/index.d.ts",
+      "require": "./dist/es/functions/*/index.mjs",
       "default": "./dist/es/functions/*/index.mjs"
     },
     "./*": "./dist/*"

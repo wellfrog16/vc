@@ -36,7 +36,7 @@
     "build": "vite build && pnpm volar && pnpm provide:css",
     "provide:css": "esno ./build/libcss",
     "volar": "esno ./build/volar-type",
-    "docs:dev": "vitepress dev",
+    "docs:dev": "vitepress dev --port 5201",
     "docs:build": "vitepress build",
     "docs:deploy-build": "cross-env deploy=gh vitepress build",
     "docs:preview": "vitepress preview",

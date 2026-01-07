@@ -51,6 +51,7 @@ declare module 'vue' {
     VcDialogCameraUpload: typeof import('@wfrog/vc-ui/es/components/dialog-camera-upload')['default']
     VcDialogMapPoint: typeof import('@wfrog/vc-ui/es/components/dialog-map-point')['default']
     VcDialogUploadImages: typeof import('@wfrog/vc-ui/es/components/dialog-upload-images')['default']
+    VcDragVerify: typeof import('@wfrog/vc-ui/es/components/drag-verify')['default']
     VcDrawer: typeof import('@wfrog/vc-ui/es/components/drawer')['default']
     VcEasyPagination: typeof import('@wfrog/vc-ui/es/components/easy-pagination')['default']
     VcElIcon: typeof import('@wfrog/vc-ui/es/components/el-icon')['default']

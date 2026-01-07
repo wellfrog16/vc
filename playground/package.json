@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5202",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "clean": "rimraf node_modules dist"

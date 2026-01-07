@@ -87,6 +87,7 @@ import Usage from "./usage.vue";
 <script lang="ts" setup>
 import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import VcChoice from '@/components/choice/choice.vue'
+import Vc${pascalName} from '../${componentName}.vue'
 
 const colors = [
     { label: '粉红', value: 'deeppink' },

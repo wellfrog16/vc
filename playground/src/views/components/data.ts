@@ -33,6 +33,7 @@ export const componentsData = [
             { text: 'cropper' },
             { text: 'dialog' },
             { text: 'dialog-camera-upload' },
+            { text: 'drag-verify' },
             { text: 'drawer' },
             { text: 'easy-pagination' },
             { text: 'awesome-icon' },

@@ -14,6 +14,7 @@ export { default as VcDialogCameraUpload } from './components/dialog-camera-uplo
 export { default as VcDialogMapPoint } from './components/dialog-map-point/dialog-map-point.vue'
 export { default as VcDialogUploadImages } from './components/dialog-upload-images/dialog-upload-images.vue'
 export { default as VcDialog } from './components/dialog/dialog.vue'
+export { default as VcDragVerify } from './components/drag-verify/drag-verify.vue'
 export { default as VcDrawer } from './components/drawer/drawer.vue'
 export { default as VcEasyPagination } from './components/easy-pagination/easy-pagination.vue'
 export { default as VcElIcon } from './components/el-icon/el-icon.vue'

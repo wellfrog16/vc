@@ -1,14 +1,16 @@
+import defaultWindow from '../defaultWindow'
+
 export const baseCdnUrl = {
     jsdelivr: '//cdn.jsdelivr.net/npm', // jsdelivr.net
-    defaultBase: window.vc?.cdn?.host || '//cdn.staticfile.org',
-    localCDN: window.vc?.cdn?.path || '/local-cdn',
+    defaultBase: defaultWindow?.vc?.cdn?.host || '//cdn.staticfile.org',
+    localCDN: defaultWindow?.vc?.cdn?.path || '/local-cdn',
 }
 
 export const cdnMapping = {
     // 全屏
     screenfull: (version = '5.2.0') => ({
         version,
-        instance: () => window.screenfull,
+        instance: () => defaultWindow && defaultWindow.screenfull,
         source: {
             jsdelivr: { js: [`${baseCdnUrl.jsdelivr}/screenfull@${version}`] },
             defaultBase: { js: [`${baseCdnUrl.defaultBase}/screenfull.js/${version}/screenfull.min.js`] },
@@ -19,7 +21,7 @@ export const cdnMapping = {
     // 复制黏贴
     clipboard: (version = '2.0.8') => ({
         version,
-        instance: () => window.ClipboardJS,
+        instance: () => defaultWindow && defaultWindow.ClipboardJS,
         source: {
             jsdelivr: { js: [`${baseCdnUrl.jsdelivr}/clipboard@${version}`] },
             defaultBase: { js: [`${baseCdnUrl.defaultBase}/clipboard.js/${version}/clipboard.min.js`] },
@@ -30,7 +32,7 @@ export const cdnMapping = {
     // 富文本编辑器
     tinymce: (version = '5.8.1') => ({
         version,
-        instance: () => window.tinyMCE,
+        instance: () => defaultWindow && defaultWindow.tinyMCE,
         source: {
             jsdelivr: { js: [`${baseCdnUrl.jsdelivr}/tinymce@${version}`] },
             defaultBase: { js: [`${baseCdnUrl.defaultBase}/tinymce/${version}/tinymce.min.js`] },
@@ -41,7 +43,7 @@ export const cdnMapping = {
     // 二维码生成
     QRCode: (version = '1.5.1') => ({
         version,
-        instance: () => window.QRCode,
+        instance: () => defaultWindow && defaultWindow.QRCode,
         source: {
             jsdelivr: { js: [`${baseCdnUrl.jsdelivr}/qrcode@${version}/build/qrcode.min.js`] },
             defaultBase: { js: [`${baseCdnUrl.defaultBase}/qrcodejs/${version}/qrcode.min.js`] },
@@ -52,7 +54,7 @@ export const cdnMapping = {
     // 千分位
     cleave: (version = '1.6.0') => ({
         version,
-        instance: () => window.Cleave,
+        instance: () => defaultWindow && defaultWindow.Cleave,
         source: {
             jsdelivr: { js: [`${baseCdnUrl.jsdelivr}/cleave.js@${version}`] },
             defaultBase: { js: [`${baseCdnUrl.defaultBase}/cleave.js/${version}/cleave.min.js`] },
@@ -84,7 +86,7 @@ export const cdnMapping = {
 
     cropper: (version = '1.5.12') => ({
         version,
-        instance: () => window.Cropper,
+        instance: () => defaultWindow && defaultWindow.Cropper,
         source: {
             jsdelivr: { js: [`${baseCdnUrl.jsdelivr}/cropperjs@${version}`], css: [`${baseCdnUrl.jsdelivr}/cropperjs@${version}/dist/cropper.min.css`] },
             defaultBase: { js: [`${baseCdnUrl.defaultBase}/cropperjs/${version}/cropper.min.js`], css: [`${baseCdnUrl.defaultBase}/cropperjs/${version}/cropper.min.css`] },
@@ -109,7 +111,7 @@ export type ICDNNames = keyof typeof cdnMapping
 type ICDNNameType = 'jsdelivr' | 'defaultBase' | 'localCDN'
 
 function cdnSource(name: keyof typeof cdnMapping, version?: string) {
-    const cdnName = (window.vc?.cdn?.name || 'jsdelivr') as ICDNNameType
+    const cdnName = (defaultWindow?.vc?.cdn?.name || 'jsdelivr') as ICDNNameType
     const resource = cdnMapping[name]
 
     if (!resource) {

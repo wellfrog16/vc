@@ -24,6 +24,7 @@
 <script lang="ts" setup>
 import type { IDialogMapPointProps } from './dialog-map-point'
 import { Search } from '@element-plus/icons-vue'
+import { defaultDocument } from '@vueuse/core'
 import { loader } from '@wfrog/vc-utils'
 import VcDialog from '../dialog/dialog.vue'
 
@@ -42,13 +43,13 @@ const containerRef = useTemplateRef('containerRef')
 const keywords = ref('')
 
 const dialogWidth = computed(() => {
-    const width = document.body.clientWidth * 0.8
+    const width = defaultDocument ? defaultDocument.body.clientWidth * 0.8 : 0
     const maxWidth = 1000
     return `${width > maxWidth ? maxWidth : width}px`
 })
 
 const containerStyle = computed(() => {
-    const height = document.body.clientHeight * 0.8
+    const height = defaultDocument ? defaultDocument.body.clientHeight * 0.8 : 0
     const maxHeight = 600
     return { height: `${height > maxHeight ? maxHeight : height}px` }
 })

@@ -1,3 +1,4 @@
+export { default as defaultWindow } from './functions/defaultWindow'
 export { default as delay } from './functions/delay'
 export { default as file } from './functions/file'
 export { default as imageSize } from './functions/image-size'

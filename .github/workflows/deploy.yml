@@ -40,6 +40,29 @@ jobs:
         with:
           node-version: 22
           cache: pnpm # 或 pnpm / yarn
+      - name: Debug 0 – 文件系统快照
+        run: |
+          echo "----- workspace root -----"
+          pwd && ls -la
+          echo "----- 组件库目录 -----"
+          ls -la packages/ui/src/components/ || true
+          echo "----- 找 awesome -----"
+          find packages/ui/src/components -iname "*awesome*" -type f | sort || true
+
+      # ---------- 1. 确认 pnpm 安装的是“当前”代码，而不是缓存的旧版本 ----------
+      - name: Debug 1 – 清缓存重装
+        run: |
+          pnpm store prune
+          rm -rf packages/ui/node_modules packages/ui/dist
+          pnpm install --frozen-lockfile --prefer-offline=false
+
+      # ---------- 2. 把 VitePress 的组件解析路径打印出来 ----------
+      - name: Debug 2 – 打印 VitePress 组件入口
+        working-directory: packages/ui
+        run: |
+          cat .vitepress/config.ts || cat .vitepress/config.js || echo "no config file"
+          # 如果你用 vite.config.ts 单独配置，也 cat 出来
+          cat vite.config.ts 2>/dev/null || true
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Install dependencies

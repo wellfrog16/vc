@@ -3,10 +3,10 @@ import path from 'node:path'
 import klawSync from 'klaw-sync'
 
 const baseOutput = path.resolve(__dirname, '../dist/es')
-const names = klawSync(`${baseOutput}\\components`, {
+const names = klawSync(`${baseOutput}/components`, {
     nofile: true,
     depthLimit: 0,
-}).map(dir => dir.path.split('\\').pop())
+}).map(dir => path.basename(dir.path))
 
 const upper = (_, letter) => letter.toUpperCase()
 

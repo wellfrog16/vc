@@ -8,7 +8,6 @@ export function getFoldFile(root: string, nofile: boolean = false) {
         depthLimit: 0,
     }).forEach(dir => {
         const lastPart = path.basename(dir.path)
-        console.log(lastPart)
         result.set(lastPart, { fileName: lastPart, path: dir.path })
     })
     return result

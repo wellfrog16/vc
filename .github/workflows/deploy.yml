@@ -42,8 +42,6 @@ jobs:
           cache: pnpm # 或 pnpm / yarn
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Install dependencies
-        run: pnpm install # 或 pnpm install / yarn install / bun install
       - name: Debug – 打印真实文件系统
         working-directory: packages/ui
         run: |
@@ -51,6 +49,8 @@ jobs:
           ls -la src/components/awesome-icon/
           realpath src/components/awesome-icon/index.ts
           node -p "require.resolve('./src/components/awesome-icon/index.ts')"
+      - name: Install dependencies
+        run: pnpm install # 或 pnpm install / yarn install / bun install
       - name: Build with VitePress
         run: pnpm ui:docs:deploy-build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
       - name: Upload artifact

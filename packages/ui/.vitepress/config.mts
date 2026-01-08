@@ -120,7 +120,19 @@ export default defineConfig({
         plugins: [
             AutoImport({
                 resolvers: [ElementPlusResolver()],
-                imports: ['vue', '@vueuse/core'],
+                imports: [
+                    'vue',
+                    '@vueuse/core',
+                    {
+                        '@vueuse/core': [
+                            'defaultWindow',
+                            'defaultDocument',
+                            'isClient',
+                            'isDef',
+                            'resolveUnref',
+                        ],
+                    },
+                ],
                 dts: './types/auto-imports.d.ts',
             }),
             Components({
@@ -151,13 +163,5 @@ export default defineConfig({
                 { find: /^@components\//, replacement: resolve('../src/components/') },
             ],
         },
-        // 修复 The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0 的警告
-        // css: {
-        //     preprocessorOptions: {
-        //         scss: {
-        //             api: 'modern-compiler',
-        //         },
-        //     },
-        // },
     },
 })

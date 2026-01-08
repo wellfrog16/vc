@@ -42,13 +42,6 @@ jobs:
           cache: pnpm # 或 pnpm / yarn
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Debug – 打印真实文件系统
-        working-directory: packages/ui
-        run: |
-          echo "===== pnpm 为什么找不到 index.ts ====="
-          ls -la src/components/awesome-icon/
-          realpath src/components/awesome-icon/index.ts
-          node -p "require.resolve('./src/components/awesome-icon/index.ts')"
       - name: Install dependencies
         run: pnpm install # 或 pnpm install / yarn install / bun install
       - name: Build with VitePress

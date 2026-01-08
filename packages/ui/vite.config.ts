@@ -11,7 +11,7 @@ import cssSource from './build/css-source'
 
 const componentEntrys: Record<string, string> = {}
 for (const [key, value] of getFoldFile(path.resolve(__dirname, './src/components'), true)) {
-    componentEntrys[`components/${key}`] = `${value.path}\\index.ts`
+    componentEntrys[`components/${key}`] = `${value.path}/index.ts`
 }
 
 const useEntrys: Record<string, string> = {}

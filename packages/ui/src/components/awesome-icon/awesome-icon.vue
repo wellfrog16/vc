@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IAwesomeIconProps } from './awesome-icon'
+import type { IAwesomeIconProps } from './awesome-icon.ts'
 import { loader } from '@wfrog/vc-utils'
 
 const props = withDefaults(defineProps<IAwesomeIconProps>(), {

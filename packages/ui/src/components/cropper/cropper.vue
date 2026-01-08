@@ -27,7 +27,6 @@
 <script lang="ts" setup>
 import type ICropper from 'cropperjs'
 import type { ICropperProps } from './cropper'
-import { defaultWindow } from '@vueuse/core'
 import { file, loader } from '@wfrog/vc-utils'
 import { debounce } from 'lodash-es'
 import VcDialog from '../dialog/dialog.vue'

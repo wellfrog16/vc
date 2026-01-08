@@ -24,7 +24,6 @@
 <script lang="ts" setup>
 import type { IDialogMapPointProps } from './dialog-map-point'
 import { Search } from '@element-plus/icons-vue'
-import { defaultDocument } from '@vueuse/core'
 import { loader } from '@wfrog/vc-utils'
 import VcDialog from '../dialog/dialog.vue'
 

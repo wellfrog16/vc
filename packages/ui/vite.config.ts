@@ -38,7 +38,19 @@ export default defineConfig({
         }),
         cssSource(),
         AutoImport({
-            imports: ['vue', '@vueuse/core'],
+            imports: [
+                'vue',
+                '@vueuse/core',
+                {
+                    '@vueuse/core': [
+                        'defaultWindow',
+                        'defaultDocument',
+                        'isClient',
+                        'isDef',
+                        'resolveUnref',
+                    ],
+                },
+            ],
             resolvers: [ElementPlusResolver()],
             dts: './src/types/auto-imports.d.ts',
         }),

@@ -1,7 +1,9 @@
 <template>
-    <div :class="$style.wrapper" @mousemove="dragMoving" @mouseup="dragFinish" @mouseleave="dragFinish">
+    <div :class="$style.wrapper" @mousemove="dragMoving" @mouseup="dragFinished" @mouseleave="dragFinished">
         <div :class="[$style.progress, { [$style.animate]: isSwiped, [$style.success]: isSuccess }]" />
-        <div :class="[$style.text, { [$style.animate]: !isSuccess }]">{{ myText }}</div>
+        <div :class="[$style.text, { [$style.animate]: !isSuccess }]">
+            <span :class="{ [$style['text-transform']]: stopToCheck && isSuccess, [$style.success]: isSuccess }">{{ myText }}</span>
+        </div>
 
         <div :class="[$style.slider, { [$style.animate]: isSwiped }]" @mousedown.prevent="dragStart">
             <el-icon :size="20" :color="isSuccess ? background[2] : textColor">
@@ -13,28 +15,33 @@
 </template>
 
 <script lang="ts" setup>
-import type { IDragVerifyProps } from '../drag-verify'
+import type { IDragVerifyTextProps } from '../drag-verify'
 import { CircleCheck, DArrowRight } from '@element-plus/icons-vue'
-import { useVModel } from '@vueuse/core'
+import { inRange } from '@wfrog/vc-utils'
 
-const props = defineProps<Required<IDragVerifyProps>>()
+const props = defineProps<IDragVerifyTextProps>()
 const emits = defineEmits<{
     (e: 'success'): void
-    (e: 'fail'): void
+    (e: 'failed'): void
     (e: 'update:success', success: boolean): void
+    (e: 'dragStart', startX: number): void
+    (e: 'dragMoving', moveX: number): void
+    (e: 'dragFinished', moveX: number): void
+    (e: 'dragEnd', currentX: number): void
 }>()
 
 const isMoving = ref(false)
 const startX = ref(0)
 const currentX = ref(0)
 const isSuccess = ref(false)
-const isSwiped = ref(false)
+const isSwiped = ref(false) // 滑动过，动画后会还原为 false
 const mySuccess = useVModel(props, 'success', emits)
 
 const myText = computed(() => isSuccess.value ? props.successText : props.text)
 const moveX = computed(() => currentX.value - startX.value)
 const halfWidth = computed(() => props.width / 2)
 const swipeWidth = computed(() => props.width - props.height)
+const mySuccessRange = computed<[number, number]>(() => props.successRange || [swipeWidth.value, 9999])
 const sliderLeft = computed(() => {
     if (moveX.value < 0) { return 0 }
     if (moveX.value > swipeWidth.value) { return swipeWidth.value }
@@ -53,35 +60,40 @@ const myTextColor = computed(() => isSuccess.value ? '#fff' : props.textColor)
 
 function verify(result: boolean) {
     mySuccess.value = result
-    result ? emits('success') : emits('fail')
+    result ? emits('success') : emits('failed')
 }
 
 function dragMoving(e: MouseEvent | TouchEvent) {
     if (!isMoving.value || isSuccess.value) { return }
     currentX.value = (e as MouseEvent).pageX || (e as TouchEvent).touches[0].pageX
-    if (moveX.value >= swipeWidth.value) {
+    emits('dragMoving', moveX.value)
+    if (inRange(moveX.value, mySuccessRange.value) && !props.stopToCheck) {
         isSuccess.value = true
         isMoving.value = false
         verify(true)
     }
 }
 
-function dragFinish(e: MouseEvent | TouchEvent) {
+function dragFinished(e: MouseEvent | TouchEvent) {
     if (!isMoving.value || isSuccess.value) { return }
 
     currentX.value = (e as MouseEvent).pageX || (e as TouchEvent).touches[0].pageX
     isMoving.value = false
 
-    if (moveX.value < swipeWidth.value) {
+    if (!inRange(moveX.value, mySuccessRange.value)) {
         currentX.value = startX.value
         isSwiped.value = true
-        setTimeout(() => { isSwiped.value = false }, 500)
+        setTimeout(() => {
+            isSwiped.value = false
+            emits('dragFinished', currentX.value)
+        }, 500)
         verify(false)
     }
     else {
         isSuccess.value = true
         verify(true)
     }
+    emits('dragEnd', currentX.value)
 }
 
 function dragStart(e: MouseEvent | TouchEvent) {
@@ -89,6 +101,7 @@ function dragStart(e: MouseEvent | TouchEvent) {
 
     isMoving.value = true
     startX.value = (e as MouseEvent).pageX || (e as TouchEvent).touches[0].pageX
+    emits('dragStart', startX.value)
 }
 
 function reset() {
@@ -152,9 +165,19 @@ defineExpose({ reset })
         animation: slidetounlock 3s infinite;
     }
 
-    * {
+    span.success {
+        color: v-bind(myTextColor);
         -webkit-text-fill-color: v-bind(myTextColor);
     }
+
+    // * {
+    //     -webkit-text-fill-color: v-bind(myTextColor);
+    // }
+}
+
+.text-transform {
+    display: inline-flex;
+    transform: translateX(v-bind('`${(sliderLeft - width) / 2}px`'));
 }
 
 .progress {

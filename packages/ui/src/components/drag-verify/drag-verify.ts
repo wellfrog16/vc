@@ -1,5 +1,7 @@
 export interface IDragVerifyProps {
     type: 'text' | 'image'
+    diffWidth?: number
+    imgs?: string[]
     success?: boolean
     width?: number
     height?: number
@@ -9,4 +11,13 @@ export interface IDragVerifyProps {
     text?: string
     successText?: string
     textColor?: string
+    stopToCheck?: boolean
+    tips?: boolean
+    refresh?: boolean
+    successTips?: string
+    failedTips?: string
+}
+
+export interface IDragVerifyTextProps extends Required<IDragVerifyProps> {
+    successRange?: [number, number]
 }

@@ -1,4 +1,4 @@
-import defaultWindow from '../defaultWindow'
+import defaultWindow from '../default-window'
 
 export const baseCdnUrl = {
     jsdelivr: '//cdn.jsdelivr.net/npm', // jsdelivr.net

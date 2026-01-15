@@ -1,7 +1,7 @@
 <template>
-    <Wrapper>
-        <ElDescriptionsItem label="展示区">
-            <VcConfigProvider iconfont-url="//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js">
+    <VcConfigProvider iconfont-url="//at.alicdn.com/t/font_2923719_83xgwd9wy2l.js">
+        <Wrapper>
+            <ElDescriptionsItem label="展示区">
                 <div :class="$style.icons" :style="myStyle">
                     <VcIcon name="fa-brands fa-bilibili" type="awesome" />
                     <VcIcon name="fa-solid fa-car-side" type="awesome" />
@@ -26,15 +26,34 @@
                     <VcIcon name="eleme" type="svg" />
                     <VcIcon name="business" type="svg" />
                 </div>
-            </VcConfigProvider>
-        </ElDescriptionsItem>
-        <ElDescriptionsItem label="大小控制">
-            <ElSlider v-model="fontsize" :min="14" :max="30" />
-        </ElDescriptionsItem>
-        <ElDescriptionsItem label="颜色控制">
-            <VcChoice v-model="myColor" :options="colors" />
-        </ElDescriptionsItem>
-    </Wrapper>
+                <div :class="$style.icons" :style="myStyle">
+                    <VcIcon name="mdi-light:bank" type="iconify" />
+                    <VcIcon name="mdi-light:face-mask" type="iconify" />
+                    <VcIcon name="ic:baseline-dining" type="iconify" />
+                    <VcIcon name="solar:accessibility-outline" type="iconify" />
+                    <VcIcon name="ri:briefcase-4-line" type="iconify" />
+                    <VcIcon name="svg-spinners:bars-scale-fade" type="iconify" />
+                </div>
+            </ElDescriptionsItem>
+            <ElDescriptionsItem label="展示区">
+                <div :style="myStyle">
+                    <VcIcon name="fa-brands fa-github-alt" type="awesome" />
+                    <span>图标和文字混排</span>
+                    <VcIcon name="Message" type="el" />
+                    <span>看看对齐情况</span>
+                    <VcIcon name="eleme" type="svg" />
+                    <VcIcon name="svg-spinners:bars-scale-fade" type="iconify" />
+                    效果如何？
+                </div>
+            </ElDescriptionsItem>
+            <ElDescriptionsItem label="大小控制">
+                <ElSlider v-model="fontsize" :min="14" :max="30" />
+            </ElDescriptionsItem>
+            <ElDescriptionsItem label="颜色控制">
+                <VcChoice v-model="myColor" :options="colors" />
+            </ElDescriptionsItem>
+        </Wrapper>
+    </VcConfigProvider>
 </template>
 
 <script lang="ts" setup>

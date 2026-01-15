@@ -38,6 +38,7 @@ export const componentsData = [
             { text: 'easy-pagination' },
             { text: 'awesome-icon' },
             { text: 'el-icon' },
+            { text: 'iconify-icon' },
             { text: 'svg-icon' },
             { text: 'icon' },
             { text: 'button' },

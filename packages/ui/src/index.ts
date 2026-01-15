@@ -20,6 +20,7 @@ export { default as VcEasyPagination } from './components/easy-pagination/easy-p
 export { default as VcElIcon } from './components/el-icon/el-icon.vue'
 export { default as VcFlag } from './components/flag/flag.vue'
 export { default as VcIcon } from './components/icon/icon.vue'
+export { default as VcIconifyIcon } from './components/iconify-icon/iconify-icon.vue'
 export { default as VcImage } from './components/image/image.vue'
 export { default as VcInputNumber } from './components/input-number/input-number.vue'
 export { default as VcInput } from './components/input/input.vue'

@@ -58,6 +58,7 @@ declare module 'vue' {
     VcElIcon: typeof import('@wfrog/vc-ui/es/components/el-icon')['default']
     VcFlag: typeof import('@wfrog/vc-ui/es/components/flag')['default']
     VcIcon: typeof import('@wfrog/vc-ui/es/components/icon')['default']
+    VcIconifyIcon: typeof import('@wfrog/vc-ui/es/components/iconify-icon')['default']
     VcImage: typeof import('@wfrog/vc-ui/es/components/image')['default']
     VcInput: typeof import('@wfrog/vc-ui/es/components/input')['default']
     VcInputNumber: typeof import('@wfrog/vc-ui/es/components/input-number')['default']

@@ -94,6 +94,7 @@ export default defineConfig({
                         { text: 'easy-pagination', link: '/components/easy-pagination' },
                         { text: 'awesome-icon', link: '/components/awesome-icon' },
                         { text: 'el-icon', link: '/components/el-icon' },
+                        { text: 'iconify-icon', link: '/components/iconify-icon' },
                         { text: 'svg-icon', link: '/components/svg-icon' },
                         { text: 'icon', link: '/components/icon' },
                         { text: 'button', link: '/components/button' },

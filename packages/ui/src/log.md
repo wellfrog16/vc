@@ -9,6 +9,7 @@ title: 更新日志
 ### 新增和更新
 
 - config-provider 组件增加 local-cdn 属性，用以配置指定的 cdn 地址
+- 新增 iconify-icon 组件，支持 iconify 的图标库
 
 ## 1.1.0
 

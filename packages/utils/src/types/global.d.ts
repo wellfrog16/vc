@@ -1,5 +1,5 @@
 interface Window {
-    vc: {
+    VC: {
         cdn: { name: string, host?: string, path?: string }
     }
     ClipboardJS: unknown

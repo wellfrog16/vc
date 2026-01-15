@@ -29,8 +29,8 @@ async function tinymceInit() {
         Tinymce.value = await loader.loadCdnSingle('tinymce')
     }
 
-    const cdnName = window.vc?.cdn.name || 'jsdelivr'
-    const cdnUrl = loader.baseCdnUrl[cdnName]
+    const cdnName = window.VC?.cdn?.name || 'jsdelivr'
+    const cdnUrl = loader.baseCdnUrl()[cdnName]
     const version = '5.8.1'
 
     let base_url = ''

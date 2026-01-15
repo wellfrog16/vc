@@ -5,9 +5,9 @@
 
 组件开发时，依赖的 `vue` 版本是 `^3.5.22`
 
-组件库所使用 CDN 源为 [jsdelivr](https://www.jsdelivr.com/)，并使用了一个自用的函数库 `@wfrog/vc-utils`
+组件库所使用 CDN 默认源为 [jsdelivr](https://www.jsdelivr.com/)，并使用了一个自用的函数库 `@wfrog/vc-utils`
 
-**！！！如果 jsdelivr 无法访问，会导致部分组件失效。解决办法：todo**
+**！！！如果 jsdelivr 无法访问，会导致部分组件失效。解决办法：将 cdn 文件放到自己的服务器上，通过 config-provider 指定地址**
 
 ## 组件库依赖
 

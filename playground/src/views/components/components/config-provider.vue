@@ -1,9 +1,12 @@
 <template>
-    <vc-config-provider :button="buttonConfig">
+    <vc-config-provider :button="buttonConfig" local-cdn="http://frog.dreamersky.com/local-cdn/">
         <el-space size="large">
             <vc-button type="warning" @click="handleClick">有二次确认的删除</vc-button>
             <vc-button type="warning" :confirm="{ type: 'none' }" @click="handleClick">阻止二次确认的 删除</vc-button>
         </el-space>
+        <div>
+            <vc-qr-code value="i am qrcode" :width="100" :height="100" />
+        </div>
     </vc-config-provider>
 </template>
 

@@ -13,6 +13,7 @@ export interface IConfigProviderProps {
     iconfontUrl?: string
     pcaBaseUrl?: string
     crosProxy?: string
+    localCdn?: string
 }
 
 export const KEY_NAME = Symbol('VcConfig')

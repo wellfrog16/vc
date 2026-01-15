@@ -8,14 +8,12 @@ interface Window {
     VC: {
         isAwesomeIconLock?: boolean
         isSVGIconLock?: boolean
+        cdn?: {
+            name: 'jsdelivr' | 'defaultBase' | 'localCDN'
+            path?: string
+            host?: string
+        }
     }
     tinyMCE: unknown
     BMapGL: any
-    vc: {
-        cdn: {
-            name: 'jsdelivr' | 'defaultBase' | 'localCDN'
-            path: string
-            host: string
-        }
-    }
 }

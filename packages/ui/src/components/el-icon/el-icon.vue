@@ -19,6 +19,7 @@ const props = withDefaults(defineProps<IElIconProps>(), { color: '', size: '' })
 
     &:global(.el-icon) {
         font-size: 1em;
+        vertical-align: -0.17em;
     }
 }
 </style>

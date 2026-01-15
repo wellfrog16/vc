@@ -16,7 +16,8 @@ const props = defineProps<ISVGIconProps>()
     height: 1em;
     overflow: hidden;
     font-size: 1em;
-    vertical-align: -0.15em;
+    vertical-align: -0.17em;
     fill: currentcolor;
+    display: inline-flex;
 }
 </style>

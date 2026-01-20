@@ -4,14 +4,15 @@ title: 更新日志
 
 ## 1.2.0
 
-2026-?-?
+2026-1-20
 
 ### 新增和更新
 
 - config-provider 组件增加 local-cdn 属性，用以配置指定的 cdn 地址
 - 新增 iconify-icon 组件，支持 iconify 的图标库
 - awesome-icon、svg-icon、el-icon 组件完善统一文字图标混排样式
-- icon 组件增加 iconify-icon 类型
+- 新增 icon-picker 组件
+- 新增 scrollbar 组件
 
 ### 缺陷修复
 

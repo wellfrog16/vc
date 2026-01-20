@@ -14,7 +14,7 @@
 本组件库依赖 `element-plus`，需要事先安装组件中使用的库，以及组件的依赖
 
 ```sh
-pnpm i element-plus@~2.11.7 @element-plus/icons-vue@^2.3.2 @vueuse/core@^14.0.0
+pnpm i element-plus@~2.13.1 @element-plus/icons-vue@^2.3.2 @vueuse/core@^14.0.0
 pnpm i @wfrog/vc-utils@^1.0.0 lodash-es@^4.17.21
 ```
 

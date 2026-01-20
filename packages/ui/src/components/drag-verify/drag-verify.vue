@@ -1,6 +1,6 @@
 <template>
-    <Text v-if="type === 'text'" v-bind="props" ref="textRef" v-model:success="mySuccess" />
-    <Image v-if="type === 'image'" v-bind="props" ref="imageRef" v-model:success="mySuccess" />
+    <Text v-if="type === 'text'" v-bind="{ ...$attrs, ...props }" ref="textRef" v-model:success="mySuccess" />
+    <Image v-if="type === 'image'" v-bind="{ ...$attrs, ...props }" ref="imageRef" v-model:success="mySuccess" />
 </template>
 
 <script setup lang="ts">
@@ -27,9 +27,6 @@ const props = withDefaults(defineProps<IDragVerifyProps>(), {
     refresh: true,
     tips: true,
 })
-// const emits = defineEmits<{
-//     (e: 'click', event: Event): void
-// }>()
 
 const mySuccess = useVModel(props, 'success')
 const textRef = useTemplateRef('textRef')

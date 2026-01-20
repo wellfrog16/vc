@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<IChoiceProps>(), {
 })
 
 const myType = props.type as any // 解决类型报红
-const myOptions = computed(() => {
+const myOptions = computed<any>(() => {
     if (Array.isArray(props.options) && typeof props.options[0] === 'string') {
         return props.options.map(item => ({ label: item, value: item }))
     }

@@ -30,7 +30,7 @@ const emits = defineEmits<{
 
     // 类型模板
     const typesTemplate = `export interface I${pascalName}Props {
-  // 在这里定义组件的 props
+    // 在这里定义组件的 props
 }
 `
 

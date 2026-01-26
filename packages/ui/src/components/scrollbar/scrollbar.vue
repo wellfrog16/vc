@@ -24,6 +24,7 @@ defineExpose({ ...scrollbarRef.value! })
     :global {
         .el-scrollbar__wrap {
             flex-grow: 1;
+            flex-direction: column;
             height: 10px;
             display: flex;
         }

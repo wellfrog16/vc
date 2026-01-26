@@ -36,6 +36,7 @@ export const componentsData = [
             { text: 'dialog-camera-upload' },
             { text: 'drag-verify' },
             { text: 'drawer' },
+            { text: 'dual-pane' },
             { text: 'easy-pagination' },
             { text: 'awesome-icon' },
             { text: 'el-icon' },

@@ -12,14 +12,12 @@
             </div>
         </div>
         <div :class="$style['container-wrapper']">
-            <el-scrollbar :class="$style.scrollbar">
-                <div :class="$style.container">
-                    <component :is="currentComponent" v-if="currentComponent" />
-                    <div v-else>
-                        <el-text type="warning">从左边选择一个组件</el-text>
-                    </div>
+            <vc-scrollbar flex :view-class="$style.container">
+                <component :is="currentComponent" v-if="currentComponent" />
+                <div v-else>
+                    <el-text type="warning">从左边选择一个组件</el-text>
                 </div>
-            </el-scrollbar>
+            </vc-scrollbar>
         </div>
     </div>
 </template>
@@ -79,11 +77,6 @@ function setComponent(name: string) {
         //     box-sizing: border-box;
         // }
     }
-}
-
-.scrollbar {
-    height: 100px;
-    flex-grow: 1;
 }
 
 .collapse {

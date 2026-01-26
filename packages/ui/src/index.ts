@@ -16,6 +16,7 @@ export { default as VcDialogUploadImages } from './components/dialog-upload-imag
 export { default as VcDialog } from './components/dialog/dialog.vue'
 export { default as VcDragVerify } from './components/drag-verify/drag-verify.vue'
 export { default as VcDrawer } from './components/drawer/drawer.vue'
+export { default as VcDualPane } from './components/dual-pane/dual-pane.vue'
 export { default as VcEasyPagination } from './components/easy-pagination/easy-pagination.vue'
 export { default as VcElIcon } from './components/el-icon/el-icon.vue'
 export { default as VcFlag } from './components/flag/flag.vue'

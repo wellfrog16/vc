@@ -4,6 +4,6 @@ export interface IDualPaneProps {
     layout?: 'horizontal' | 'vertical'
     lazy?: boolean
     padding?: number
-    props1?: SplitterPanelProps
-    props2?: SplitterPanelProps
+    props1?: Partial<SplitterPanelProps>
+    props2?: Partial<SplitterPanelProps>
 }

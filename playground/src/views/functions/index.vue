@@ -56,7 +56,7 @@ function setFunction(name: string) {
 .aside-wrapper {
     display: flex;
     flex-direction: column;
-    background-color: var(--el-color-white);
+    background-color: var(--el-bg-color);
     margin-right: 4px;
 }
 
@@ -93,7 +93,7 @@ function setFunction(name: string) {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    background-color: var(--el-color-white);
+    background-color: var(--el-bg-color);
 }
 
 .container {

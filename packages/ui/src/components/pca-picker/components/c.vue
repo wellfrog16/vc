@@ -70,7 +70,7 @@ watch(popoverVisible, () => {
     left: -40px;
     width: 38px;
     padding: 8px 0;
-    background-color: var(--el-color-white);
+    background-color: var(--el-bg-color);
     border-radius: var(--el-popover-border-radius);
     box-shadow: var(--el-box-shadow-light);
 

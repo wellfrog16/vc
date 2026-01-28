@@ -164,7 +164,7 @@ onBeforeMount(() => setImage())
     top: 5px;
     cursor: pointer;
     z-index: 5;
-    color: var(--el-color-white);
+    color: var(--el-bg-color);
 }
 
 .move-canvas {

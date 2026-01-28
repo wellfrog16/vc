@@ -121,7 +121,7 @@ function togglePlay(play: boolean) {
 </script>
 
 <style lang="scss" module>
-$bg-color: #f5f5f5;
+$bg-color: var(--el-bg-color);
 
 .main {
     display: flex;

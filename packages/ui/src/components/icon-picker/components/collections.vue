@@ -70,7 +70,7 @@ onMounted(async () => {
     position: sticky;
     top: 0;
     padding-bottom: 4px;
-    background-color: var(--el-color-white);
+    background-color: var(--el-bg-color);
 }
 
 .container {

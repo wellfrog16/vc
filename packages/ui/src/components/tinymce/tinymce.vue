@@ -6,6 +6,7 @@
 
 <script lang="ts" setup>
 import type { ITinymceProps } from './tinymce'
+import { useDark } from '@vueuse/core'
 import { loader } from '@wfrog/vc-utils'
 import config from './config'
 
@@ -16,10 +17,12 @@ const props = withDefaults(defineProps<ITinymceProps>(), {
     height: '360px',
     modelValue: '',
     httpRequest: undefined,
+    storageKey: 'vc-dark',
 })
 
 const emits = defineEmits(['update:modelValue'])
 
+const isDark = useDark({ storageKey: props.storageKey })
 const Tinymce = shallowRef()
 const loading = ref(false)
 
@@ -53,6 +56,8 @@ async function tinymceInit() {
 
     Tinymce.value.init({
         ...config[props.config], // 插件、菜单等配置信息
+        skin: isDark.value ? 'oxide-dark' : 'oxide',
+        theme: 'silver',
         selector: `#${props.id}`, // 容器
         language: 'zh_CN',
         language_url,
@@ -62,6 +67,8 @@ async function tinymceInit() {
         content_css: false, // 不加载body的样式
         image_uploadtab: true,
         images_upload_handler: props.httpRequest,
+        suffix: '.min',
+        branding: false, // 显示tinymce徽标
         init_instance_callback: (editor: any) => {
             if (props.modelValue) { editor.setContent(props.modelValue) }
 
@@ -83,16 +90,17 @@ function tinymceDestory() {
 
 const tinymceConfig = computed(() => props.config)
 
-watch(tinymceConfig, () => {
+const tinymceWatch = watch([tinymceConfig, isDark], () => {
     tinymceDestory()
     tinymceInit()
-})
+}, { deep: true })
 
-onMounted(async () => {
-    tinymceInit()
-})
+onMounted(() => tinymceInit())
 
-onBeforeUnmount(() => tinymceDestory())
+onBeforeUnmount(() => {
+    tinymceWatch.stop()
+    tinymceDestory()
+})
 
 function setContent(val: string) {
     if (!Tinymce.value) { return }

@@ -111,11 +111,11 @@ div.main {
             left: 0;
             width: calc(100% - 8px);
             height: 100%;
-            background: var(--el-color-white);
+            background: var(--el-bg-color);
             height: 16px;
             z-index: 3;
             display: v-bind('boxPadding ? "block" : "none"');
-            // background-image: radial-gradient(transparent 1px, var(--el-color-white) 1px);
+            // background-image: radial-gradient(transparent 1px, var(--el-bg-color) 1px);
             // background-size: 4px 4px;
             // backdrop-filter: saturate(50%) blur(4px);
         }
@@ -127,7 +127,7 @@ div.main {
             left: 0;
             width: calc(100% - 8px);
             height: 100%;
-            background: var(--el-color-white);
+            background: var(--el-bg-color);
             height: 16px;
             z-index: 3;
             display: v-bind('boxPadding ? "block" : "none"');

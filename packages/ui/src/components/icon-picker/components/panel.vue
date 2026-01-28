@@ -101,7 +101,7 @@ onUnmounted(() => collectionWatch.stop())
 }
 
 .wrapper {
-    background-color: var(--el-color-white);
+    background-color: var(--el-popover-bg-color);
     position: relative;
     z-index: 5;
 }
@@ -139,15 +139,17 @@ button.collections-button {
 
 .collections-wrapper {
     position: absolute;
-    top: -12px;
+    top: -13px;
     left: 0;
-    bottom: -12px;
+    bottom: -13px;
     width: 200px;
-    background-color: var(--el-color-white);
+    background-color: var(--el-popover-bg-color);
     padding: 12px;
     z-index: 3;
     transition: left 0.3s;
     border-radius: 4px;
+    border: 1px solid var(--el-popover-border-color);
+    box-sizing: border-box;
 
     &.shadow {
         box-shadow: var(--el-box-shadow-light);

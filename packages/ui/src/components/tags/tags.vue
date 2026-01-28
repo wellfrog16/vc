@@ -141,7 +141,7 @@ function showError() {
 // tag 修改保存时
 function handleSave({ target }: FocusEvent) {
     currentRef.value = target
-    currentTag.value = currentTag.value.trim()
+    currentTag.value = currentTag.value.toString().trim()
     // 如果编辑值为空则删除当前tag
     if (currentTag.value === '') {
         handleDelete(bakTag.value)
@@ -175,7 +175,7 @@ function showCreate() {
 // tag 新建保存时
 function handleInsert({ target }: FocusEvent) {
     currentRef.value = target
-    currentTag.value = currentTag.value.trim()
+    currentTag.value = currentTag.value.toString().trim()
     // 如果编辑值为空则关闭输入框
     if (currentTag.value === '') {
         createVisible.value = false

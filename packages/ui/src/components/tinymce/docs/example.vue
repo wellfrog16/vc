@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <VcTinymce v-model="result" :config="config" :http-request="httpRequest" />
+            <VcTinymce v-model="result" :config="config" :http-request="httpRequest" storage-key="vitepress-theme-appearance" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="编辑器配置">
             <VcChoice v-model="config" :options="data" />

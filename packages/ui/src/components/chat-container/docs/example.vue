@@ -58,6 +58,6 @@ function clearContent() {
 .container {
     width: 100%;
     height: 300px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--el-border-color-lighter);
 }
 </style>

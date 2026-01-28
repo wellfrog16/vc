@@ -1,4 +1,5 @@
 @use 'element-plus/theme-chalk/index.css' as *;
+@use 'element-plus/theme-chalk/dark/css-vars.css' as *;
 
 .vp-doc h2 {
     &:first-child {
@@ -26,7 +27,8 @@
 }
 
 .el-date-table {
-    th, td {
+    th,
+    td {
         border: initial;
     }
 
@@ -41,7 +43,8 @@
 }
 
 .usage {
-    th, td {
+    th,
+    td {
         border: 0;
     }
 
@@ -75,11 +78,11 @@ table {
     z-index: 2300 !important;
 }
 
-html.dark {
-    --el-fill-color-light: var(--code-hl-bg-color);
-    --el-text-color-regular: var(--c-text);
-    --el-border-color-lighter: var(--c-border);
-    --el-bg-color: var(--c-bg);
-    --el-text-color-primary: var(--c-text);
-    --el-fill-color-blank: var(--c-bg);
-}
+// html.dark {
+//     --el-fill-color-light: var(--code-hl-bg-color);
+//     --el-text-color-regular: var(--c-text);
+//     --el-border-color-lighter: var(--c-border);
+//     --el-bg-color: var(--c-bg);
+//     --el-text-color-primary: var(--c-text);
+//     --el-fill-color-blank: var(--c-bg);
+// }

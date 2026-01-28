@@ -1,20 +1,20 @@
 <template>
-    <VcElIcon :name="isDark ? 'Sunny' : 'Moon'" :class="$style['dark-switch']" :size="size" @click="handleToggle" />
+    <VcElIcon :name="isDark ? 'Sunny' : 'Moon'" :class="$style['dark-switcher']" :size="size" @click="handleToggle" />
 </template>
 
 <script setup lang="ts">
-import type { IDarkSwitchEmits, IDarkSwitchProps } from './dark-switch'
+import type { IDarkSwitcherEmits, IDarkSwitcherProps } from './dark-switcher'
 import { useDark, useToggle } from '@vueuse/core'
 import VcElIcon from '../el-icon/el-icon.vue'
 
-const props = withDefaults(defineProps<IDarkSwitchProps>(), {
+const props = withDefaults(defineProps<IDarkSwitcherProps>(), {
     initialValue: 'auto',
     size: 28,
     storageKey: 'vc-dark',
     duration: 850,
 })
 
-const emits = defineEmits<IDarkSwitchEmits>()
+const emits = defineEmits<IDarkSwitcherEmits>()
 
 const isDark = useDark({ storageKey: props.storageKey, initialValue: props.initialValue })
 const toggleDark = useToggle(isDark)
@@ -75,7 +75,7 @@ function handleToggle(e: MouseEvent) {
     }
 }
 
-.dark-switch {
+.dark-switcher {
     cursor: pointer;
 }
 </style>

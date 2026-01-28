@@ -47,7 +47,7 @@ declare module 'vue' {
     VcConfigProvider: typeof import('@wfrog/vc-ui/es/components/config-provider')['default']
     VcCropper: typeof import('@wfrog/vc-ui/es/components/cropper')['default']
     VcCurrency: typeof import('@wfrog/vc-ui/es/components/currency')['default']
-    VcDarkSwitch: typeof import('@wfrog/vc-ui/es/components/dark-switch')['default']
+    VcDarkSwitcher: typeof import('@wfrog/vc-ui/es/components/dark-switcher')['default']
     VcDaterangePicker: typeof import('@wfrog/vc-ui/es/components/daterange-picker')['default']
     VcDialog: typeof import('@wfrog/vc-ui/es/components/dialog')['default']
     VcDialogCameraUpload: typeof import('@wfrog/vc-ui/es/components/dialog-camera-upload')['default']

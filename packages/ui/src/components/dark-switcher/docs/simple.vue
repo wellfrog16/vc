@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
-        <VcDarkSwitch />
+        <VcDarkSwitcher />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import VcDarkSwitch from '../dark-switch.vue'
+import VcDarkSwitcher from '../dark-switcher.vue'
 </script>

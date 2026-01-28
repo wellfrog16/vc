@@ -13,7 +13,7 @@
             <el-header :class="$style.header">
                 <el-text>这里是用产物测试，模拟真实场景，测试功能和 ts 类型</el-text>
                 <div class="flex-y-center">
-                    <el-text><vc-dark-switch :size="30" /></el-text>
+                    <el-text><vc-dark-switcher :size="30" /></el-text>
                 </div>
             </el-header>
             <el-main id="elMain" :class="$style.main">

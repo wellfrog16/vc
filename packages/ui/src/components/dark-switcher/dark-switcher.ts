@@ -1,12 +1,12 @@
 import type { BasicColorSchema } from '@vueuse/core'
 
-export interface IDarkSwitchProps {
+export interface IDarkSwitcherProps {
     initialValue?: globalThis.MaybeRefOrGetter<BasicColorSchema>
     size?: string | number
     storageKey?: string
     duration?: number
 }
 
-export interface IDarkSwitchEmits {
+export interface IDarkSwitcherEmits {
     (e: 'change', value: boolean): void
 }

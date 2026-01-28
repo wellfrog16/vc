@@ -1,4 +1,4 @@
-# dark-switch
+# dark-switcher
 
 ## 功能
 

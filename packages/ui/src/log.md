@@ -8,7 +8,7 @@ title: 更新日志
 
 ### 新增和更新
 
-- 新增 dark-switch 组件
+- 新增 dark-switcher 组件
 - 所有组件支持暗黑模式
 
 ### 缺陷修复

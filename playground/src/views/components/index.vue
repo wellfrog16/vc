@@ -55,7 +55,7 @@ function setComponent(name: string) {
 .aside-wrapper {
     display: flex;
     flex-direction: column;
-    background-color: var(--el-color-white);
+    background-color: var(--el-bg-color);
     margin-right: 4px;
 }
 
@@ -87,7 +87,7 @@ function setComponent(name: string) {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    background-color: var(--el-color-white);
+    background-color: var(--el-bg-color);
 }
 
 .container {

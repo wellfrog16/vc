@@ -3,6 +3,7 @@ export const componentsData = [
         text: '全局配置',
         items: [
             { text: 'config-provider' },
+            { text: 'dark-switch' },
         ],
     },
     {

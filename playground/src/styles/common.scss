@@ -6,3 +6,31 @@
     flex-grow: 1;
     padding: 12px;
 }
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-x-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    > div,
+    span {
+        display: inline-flex;
+    }
+}
+
+.flex-y-center {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    > div,
+    span {
+        display: inline-flex;
+    }
+}

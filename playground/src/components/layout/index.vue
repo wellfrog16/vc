@@ -10,7 +10,12 @@
             />
         </el-aside>
         <el-container>
-            <el-header :class="$style.header">这里是用产物测试，模拟真实场景，测试功能和 ts 类型</el-header>
+            <el-header :class="$style.header">
+                <el-text>这里是用产物测试，模拟真实场景，测试功能和 ts 类型</el-text>
+                <div class="flex-y-center">
+                    <el-text><vc-dark-switch :size="30" /></el-text>
+                </div>
+            </el-header>
             <el-main id="elMain" :class="$style.main">
                 <router-view v-slot="{ Component }">
                     <transition appear name="fade-transform" mode="out-in">
@@ -63,7 +68,7 @@ $page-height: calc(
 
 .aside {
     // --el-menu-bg-color: red;
-    background-color: var(--color-primary);
+    background-color: var(--el-bg-color);
 
     > ul {
         border-right: 0;
@@ -77,7 +82,7 @@ $page-height: calc(
     justify-content: space-between;
     height: $height;
     line-height: $height;
-    background-color: var(--el-color-white);
+    background-color: var(--el-bg-color);
     // border-bottom: 1px solid var(--el-border-color);
     // box-shadow: 0 1px 5px rgb(0 0 0 / 20%);
 }
@@ -91,6 +96,6 @@ main.main {
 
     // height: @page-height;
     overflow-x: hidden;
-    background-color: #f0f2f5;
+    background-color: var(--el-bg-color-page);
 }
 </style>

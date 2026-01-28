@@ -8,6 +8,8 @@ title: 更新日志
 
 ### 新增和更新
 
+- 新增 dark-switch 组件
+
 ### 缺陷修复
 
 - 修复 dual-pane 参数类型

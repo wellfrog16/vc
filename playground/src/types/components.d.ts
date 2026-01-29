@@ -44,6 +44,7 @@ declare module 'vue' {
     VcChatContainer: typeof import('@wfrog/vc-ui/es/components/chat-container')['default']
     VcChoice: typeof import('@wfrog/vc-ui/es/components/choice')['default']
     VcChoiceBoolean: typeof import('@wfrog/vc-ui/es/components/choice-boolean')['default']
+    VcColorSwitcher: typeof import('@wfrog/vc-ui/es/components/color-switcher')['default']
     VcConfigProvider: typeof import('@wfrog/vc-ui/es/components/config-provider')['default']
     VcCropper: typeof import('@wfrog/vc-ui/es/components/cropper')['default']
     VcCurrency: typeof import('@wfrog/vc-ui/es/components/currency')['default']

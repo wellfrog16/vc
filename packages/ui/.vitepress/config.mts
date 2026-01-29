@@ -60,6 +60,7 @@ export default defineConfig({
                     items: [
                         { text: 'config-provider', link: '/components/config-provider' },
                         { text: 'dark-switcher', link: '/components/dark-switcher' },
+                        { text: 'color-switcher', link: '/components/color-switcher' },
                     ],
                 },
                 {

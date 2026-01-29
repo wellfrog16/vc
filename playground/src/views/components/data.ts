@@ -4,6 +4,7 @@ export const componentsData = [
         items: [
             { text: 'config-provider' },
             { text: 'dark-switcher' },
+            { text: 'color-switcher' },
         ],
     },
     {

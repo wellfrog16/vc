@@ -1,11 +1,11 @@
 <template>
-    <VcElIcon :name="isDark ? 'Sunny' : 'Moon'" :class="$style['dark-switcher']" :size="size" @click="handleToggle" />
+    <i :class="$style['dark-switcher']"><VcIconifyIcon :name="iconName" :size="size" @click="handleToggle" /></i>
 </template>
 
 <script setup lang="ts">
 import type { IDarkSwitcherEmits, IDarkSwitcherProps } from './dark-switcher'
 import { useDark, useToggle } from '@vueuse/core'
-import VcElIcon from '../el-icon/el-icon.vue'
+import VcIconifyIcon from '@/components/iconify-icon/iconify-icon.vue'
 
 const props = withDefaults(defineProps<IDarkSwitcherProps>(), {
     initialValue: 'auto',
@@ -18,6 +18,7 @@ const emits = defineEmits<IDarkSwitcherEmits>()
 
 const isDark = useDark({ storageKey: props.storageKey, initialValue: props.initialValue })
 const toggleDark = useToggle(isDark)
+const iconName = computed(() => isDark.value ? 'carbon:sun' : 'carbon:moon')
 
 function handleToggle(e: MouseEvent) {
     // @ts-expect-error startViewTransition
@@ -76,6 +77,7 @@ function handleToggle(e: MouseEvent) {
 }
 
 .dark-switcher {
+    display: inline-flex;
     cursor: pointer;
 }
 </style>

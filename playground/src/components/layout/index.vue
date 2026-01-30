@@ -12,8 +12,9 @@
         <el-container>
             <el-header :class="$style.header">
                 <el-text>这里是用产物测试，模拟真实场景，测试功能和 ts 类型</el-text>
-                <div class="flex-y-center">
-                    <el-text><vc-dark-switcher :size="30" /></el-text>
+                <div class="flex-y-center" :class="$style.widget">
+                    <vc-color-switcher :size="24" />
+                    <vc-dark-switcher :size="24" />
                 </div>
             </el-header>
             <el-main id="elMain" :class="$style.main">
@@ -97,5 +98,19 @@ main.main {
     // height: @page-height;
     overflow-x: hidden;
     background-color: var(--el-bg-color-page);
+}
+
+.widget {
+    column-gap: 8px;
+    color: var(--el-color-info);
+    border-radius: 4px;
+
+    > * {
+        padding: 4px;
+        &:hover {
+            border-radius: 4px;
+            background-color: var(--el-color-primary-light-9);
+        }
+    }
 }
 </style>

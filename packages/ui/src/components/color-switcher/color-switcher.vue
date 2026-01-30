@@ -10,12 +10,12 @@
 
 <script setup lang="ts">
 import type { IColorSwitcherEmits, IColorSwitcherProps } from './color-switcher'
-import { Brush } from '@element-plus/icons-vue'
 import { throttle } from 'lodash-es'
 import VcIconifyIcon from '@/components/iconify-icon/iconify-icon.vue'
 import { PRESET_COLORS, useTheme } from './color-switcher'
 
 const props = withDefaults(defineProps<IColorSwitcherProps>(), {
+    darkStorageKey: 'vc-dark',
     storageKey: 'vc-primary-color',
     size: 28,
 })
@@ -23,7 +23,7 @@ const emits = defineEmits<IColorSwitcherEmits>()
 
 const colorPickerRef = useTemplateRef('colorPickerRef')
 
-const { themeColor, setTheme } = useTheme(props.storageKey)
+const { themeColor, setTheme } = useTheme(props.storageKey, props.darkStorageKey)
 const throttleSetTheme = throttle(val => {
     setTheme(val)
     emits('change', val)

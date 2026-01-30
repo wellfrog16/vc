@@ -11,7 +11,7 @@
             <VcChoiceBoolean v-model="flag" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区">
-            <VcColorSwitcher />
+            <VcColorSwitcher dark-storage-key="vitepress-theme-appearance" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>

@@ -108,6 +108,7 @@ export default defineConfig({
                         { text: 'screenfull', link: '/components/screenfull' },
                         { text: 'scrollbar', link: '/components/scrollbar' },
                         { text: 'single-player', link: '/components/single-player' },
+                        { text: 'splitter', link: '/components/splitter' },
                         { text: 'sync-scroll-container', link: '/components/sync-scroll-container' },
                         { text: 'text-ellipsis', link: '/components/text-ellipsis' },
                         { text: 'upload-file', link: '/components/upload-file' },

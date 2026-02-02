@@ -72,6 +72,8 @@ declare module 'vue' {
     VcScrollbar: typeof import('@wfrog/vc-ui/es/components/scrollbar')['default']
     VcSelect: typeof import('@wfrog/vc-ui/es/components/select')['default']
     VcSinglePlayer: typeof import('@wfrog/vc-ui/es/components/single-player')['default']
+    VcSplitter: typeof import('@wfrog/vc-ui/es/components/splitter')['default']
+    VcSplitterPanel: typeof import('@wfrog/vc-ui/es/components/splitter-panel')['default']
     VcSvgIcon: typeof import('@wfrog/vc-ui/es/components/svg-icon')['default']
     VcSwitch: typeof import('@wfrog/vc-ui/es/components/switch')['default']
     VcSyncScrollContainer: typeof import('@wfrog/vc-ui/es/components/sync-scroll-container')['default']

@@ -52,6 +52,7 @@ export const componentsData = [
             { text: 'screenfull' },
             { text: 'scrollbar' },
             { text: 'single-player' },
+            { text: 'splitter' },
             { text: 'sync-scroll-container' },
             { text: 'text-ellipsis' },
             { text: 'upload-file' },

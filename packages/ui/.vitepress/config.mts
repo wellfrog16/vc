@@ -94,7 +94,6 @@ export default defineConfig({
                         { text: 'dialog-camera-upload', link: '/components/dialog-camera-upload' },
                         { text: 'drag-verify', link: '/components/drag-verify' },
                         { text: 'drawer', link: '/components/drawer' },
-                        { text: 'dual-pane', link: '/components/dual-pane' },
                         { text: 'easy-pagination', link: '/components/easy-pagination' },
                         { text: 'awesome-icon', link: '/components/awesome-icon' },
                         { text: 'el-icon', link: '/components/el-icon' },

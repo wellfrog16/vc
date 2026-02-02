@@ -11,6 +11,7 @@ title: 更新日志
 - 新增 dark-switcher 组件
 - 新增 color-switcher 组件
 - 新增 splitter、splitter-panel 组件
+- 删除 dual-pane 组件，由 splitter 组件替代
 - 所有组件支持暗黑模式
 
 ### 缺陷修复

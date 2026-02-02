@@ -56,7 +56,6 @@ declare module 'vue' {
     VcDialogUploadImages: typeof import('@wfrog/vc-ui/es/components/dialog-upload-images')['default']
     VcDragVerify: typeof import('@wfrog/vc-ui/es/components/drag-verify')['default']
     VcDrawer: typeof import('@wfrog/vc-ui/es/components/drawer')['default']
-    VcDualPane: typeof import('@wfrog/vc-ui/es/components/dual-pane')['default']
     VcEasyPagination: typeof import('@wfrog/vc-ui/es/components/easy-pagination')['default']
     VcElIcon: typeof import('@wfrog/vc-ui/es/components/el-icon')['default']
     VcFlag: typeof import('@wfrog/vc-ui/es/components/flag')['default']

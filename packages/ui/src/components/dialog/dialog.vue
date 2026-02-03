@@ -22,12 +22,12 @@
             </div>
         </template>
         <template #default>
-            <ElScrollbar v-if="!isFullscreen && (height || maxHeight)" :class="scrollbarClassName" :height="height" :max-height="maxHeight" always>
-                <div :class="$style['body-container']"><slot /></div>
-            </ElScrollbar>
-            <ElScrollbar v-else :class="scrollbarClassName" :max-height="fullscreenHeight" always>
-                <div :class="$style['body-container']"><slot /></div>
-            </ElScrollbar>
+            <VcScrollbar v-if="!isFullscreen && (height || maxHeight)" :height="height" :max-height="maxHeight" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="16">
+                <slot />
+            </VcScrollbar>
+            <VcScrollbar v-else :max-height="fullscreenHeight" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="16">
+                <slot />
+            </VcScrollbar>
         </template>
         <template v-if="showDefaultFooter || $slots.footer" #footer><slot name="footer"><VcButton v-if="showDefaultFooter" @click="dialogVisible = false">关闭</VcButton></slot></template>
     </ElDialog>
@@ -37,6 +37,7 @@
 import type { IDialogProps } from './dialog'
 import { Close, CopyDocument, FullScreen } from '@element-plus/icons-vue'
 import VcButton from '../button/button.vue'
+import VcScrollbar from '../scrollbar/scrollbar.vue'
 
 const props = withDefaults(defineProps<IDialogProps>(), {
     title: '对话框',
@@ -59,10 +60,6 @@ const visible = ref(false) // 用于销毁对话框以及非开启状态时不�
 const isFullscreen = ref(false)
 const toggleFullscreen = useToggle(isFullscreen)
 const Icon = computed(() => isFullscreen.value ? CopyDocument : FullScreen)
-const scrollbarClassName = computed(() => ({
-    [$style.scrollbar]: true,
-    [$style.flex]: props.flex,
-}))
 
 watch(dialogVisible, val => {
     if (val) {
@@ -94,6 +91,8 @@ div.main {
         .el-dialog__body {
             flex-grow: 1;
             padding: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .el-dialog__footer {
@@ -160,28 +159,7 @@ div.main {
     align-items: center;
 }
 
-.scrollbar {
-    &:global {
-        > .el-scrollbar__wrap {
-            display: flex;
-            flex-direction: column;
-
-            & > .el-scrollbar__view {
-                flex-grow: 1;
-                min-height: 100px;
-            }
-        }
-    }
-
-    &.flex:global {
-        > .el-scrollbar__wrap > .el-scrollbar__view {
-            display: flex;
-            flex-direction: column;
-        }
-    }
-}
-
-.body-container {
+.scrollbar-view {
     padding: 16px;
 }
 

@@ -10,11 +10,14 @@
                 :height="height"
                 :max-height="maxHeight"
                 :box-padding="boxPadding"
+                :flex="isFlex"
             >
-                <VcButton :time="0" @click="handleAdd">增加内容</VcButton>
-                <VcButton :time="0" @click="handleRemove">减少内容</VcButton>
-                <div v-for="item in line" :key="item">啤酒、饮料、矿泉水，花生、瓜子、大鸡腿</div>
-                <div>长文本测试左右的 padding，我很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长</div>
+                <div>
+                    <VcButton :time="0" @click="handleAdd">增加内容</VcButton>
+                    <VcButton :time="0" @click="handleRemove">减少内容</VcButton>
+                    <div v-for="item in line" :key="item">啤酒、饮料、矿泉水，花生、瓜子、大鸡腿</div>
+                    <div>长文本测试左右的 padding，我很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长</div>
+                </div>
             </VcDialog>
             <VcButton @click="() => toggleVisible()">打开</VcButton>
         </ElDescriptionsItem>
@@ -32,6 +35,9 @@
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：内边距">
             <VcChoiceBoolean v-model="boxPadding" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="Flex 模式">
+            <VcChoiceBoolean v-model="isFlex" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="">
             滚动内容，注意上下边距的不同
@@ -53,6 +59,7 @@ const showFullscreen = ref(true)
 const isFullscreen = ref(false)
 const showDefaultFooter = ref(false)
 const boxPadding = ref(true)
+const isFlex = ref(false)
 const toggleVisible = useToggle(visible)
 const line = ref(1)
 const height = ref('')

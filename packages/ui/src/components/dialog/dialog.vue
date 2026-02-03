@@ -22,10 +22,7 @@
             </div>
         </template>
         <template #default>
-            <VcScrollbar v-if="!isFullscreen && (height || maxHeight)" :height="height" :max-height="maxHeight" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="padding">
-                <slot />
-            </VcScrollbar>
-            <VcScrollbar v-else :max-height="myFullscreenHeight" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="padding">
+            <VcScrollbar :max-height="myMaxHeight" :height="height" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="padding">
                 <slot />
             </VcScrollbar>
         </template>
@@ -64,6 +61,11 @@ const Icon = computed(() => isFullscreen.value ? CopyDocument : FullScreen)
 const myFullscreenHeight = computed(() => {
     if (props.fullscreenHeight) { return props.fullscreenHeight }
     return props.showDefaultFooter ? 'calc(100vh - 114px)' : 'calc(100vh - 57px)'
+})
+
+const myMaxHeight = computed(() => {
+    if (isFullscreen.value || !props.maxHeight) { return myFullscreenHeight.value }
+    return props.maxHeight
 })
 
 watch(dialogVisible, val => {

@@ -1,5 +1,5 @@
 <template>
-    <ElScrollbar ref="scrollbarRef" v-bind="{ ...$attrs, ...props }" :class="{ [$style.scrollbar]: flex }">
+    <ElScrollbar ref="scrollbarRef" v-bind="props" :class="{ [$style.scrollbar]: flex }">
         <slot />
     </ElScrollbar>
 </template>
@@ -7,7 +7,9 @@
 <script setup lang="ts">
 import type { IScrollbarProps } from './scrollbar'
 
-const props = defineProps<IScrollbarProps>()
+const props = withDefaults(defineProps<IScrollbarProps>(), {
+    padding: 0,
+})
 
 const scrollbarRef = useTemplateRef('scrollbarRef')
 
@@ -19,13 +21,13 @@ defineExpose({ ...scrollbarRef.value! })
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    height: 10px;
+    min-height: 100px;
 
     :global {
         .el-scrollbar__wrap {
             flex-grow: 1;
             flex-direction: column;
-            height: 10px;
+            min-height: 100px;
             display: flex;
         }
 
@@ -33,7 +35,8 @@ defineExpose({ ...scrollbarRef.value! })
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            height: 10px;
+            min-height: 100px;
+            padding: v-bind('`${padding}px`');
         }
     }
 }

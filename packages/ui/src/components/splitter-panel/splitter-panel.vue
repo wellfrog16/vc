@@ -1,6 +1,6 @@
 <template>
     <el-splitter-panel :class="$style.panel">
-        <VcScrollbar flex :view-class="$style.container"><slot /></VcScrollbar>
+        <VcScrollbar flex :padding="padding"><slot /></VcScrollbar>
     </el-splitter-panel>
 </template>
 
@@ -17,9 +17,5 @@ withDefaults(defineProps<ISplitterPanelProps>(), {
 .panel {
     display: flex;
     flex-direction: column;
-}
-
-.container {
-    padding: v-bind('`${padding}px`');
 }
 </style>

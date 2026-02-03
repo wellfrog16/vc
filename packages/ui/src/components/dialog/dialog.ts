@@ -10,4 +10,5 @@ export interface IDialogProps {
     flex?: boolean
     fullscreen?: boolean
     boxPadding?: boolean
+    padding?: number
 }

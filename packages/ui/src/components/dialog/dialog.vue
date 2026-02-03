@@ -22,10 +22,10 @@
             </div>
         </template>
         <template #default>
-            <VcScrollbar v-if="!isFullscreen && (height || maxHeight)" :height="height" :max-height="maxHeight" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="16">
+            <VcScrollbar v-if="!isFullscreen && (height || maxHeight)" :height="height" :max-height="maxHeight" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="padding">
                 <slot />
             </VcScrollbar>
-            <VcScrollbar v-else :max-height="fullscreenHeight" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="16">
+            <VcScrollbar v-else :max-height="myFullscreenHeight" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="padding">
                 <slot />
             </VcScrollbar>
         </template>
@@ -44,10 +44,10 @@ const props = withDefaults(defineProps<IDialogProps>(), {
     showFullscreen: true,
     showDefaultFooter: false,
     lazy: true,
-    fullscreenHeight: 'calc(100vh - 146px)',
     flex: false,
     fullscreen: false,
     boxPadding: true,
+    padding: 16,
 })
 
 const emits = defineEmits<{
@@ -60,6 +60,11 @@ const visible = ref(false) // 用于销毁对话框以及非开启状态时不�
 const isFullscreen = ref(false)
 const toggleFullscreen = useToggle(isFullscreen)
 const Icon = computed(() => isFullscreen.value ? CopyDocument : FullScreen)
+
+const myFullscreenHeight = computed(() => {
+    if (props.fullscreenHeight) { return props.fullscreenHeight }
+    return props.showDefaultFooter ? 'calc(100vh - 114px)' : 'calc(100vh - 57px)'
+})
 
 watch(dialogVisible, val => {
     if (val) {

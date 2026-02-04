@@ -22,7 +22,7 @@
             </div>
         </template>
         <template #default>
-            <VcScrollbar :max-height="myMaxHeight" :height="height" always :view-class="$style['scrollbar-view']" :flex="flex" :padding="padding">
+            <VcScrollbar :max-height="myMaxHeight" :height="height" always :view-class="$style['scrollbar-view']" :padding="padding" :fill-height="false">
                 <slot />
             </VcScrollbar>
         </template>

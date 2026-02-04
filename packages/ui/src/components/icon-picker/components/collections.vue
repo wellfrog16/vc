@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.wrapper">
-        <VcScrollbar ref="scrollbarRef" flex @end-reached="loadMore">
+        <VcScrollbar ref="scrollbarRef" @end-reached="loadMore">
             <div :class="$style['search-wrapper']">
                 <ElInput v-model="keyword" placeholder="搜索合集..." :class="$style['search-input']" clearable @keyup="handleSearch" @clear="handleSearch" />
             </div>

@@ -10,7 +10,6 @@
                 :height="height"
                 :max-height="maxHeight"
                 :box-padding="boxPadding"
-                :flex="isFlex"
             >
                 <div>
                     <VcButton :time="0" @click="handleAdd">增加内容</VcButton>
@@ -36,9 +35,6 @@
         <ElDescriptionsItem label="参数：内边距">
             <VcChoiceBoolean v-model="boxPadding" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="Flex 模式">
-            <VcChoiceBoolean v-model="isFlex" />
-        </ElDescriptionsItem>
         <ElDescriptionsItem label="">
             滚动内容，注意上下边距的不同
         </ElDescriptionsItem>
@@ -59,7 +55,6 @@ const showFullscreen = ref(true)
 const isFullscreen = ref(false)
 const showDefaultFooter = ref(false)
 const boxPadding = ref(true)
-const isFlex = ref(false)
 const toggleVisible = useToggle(visible)
 const line = ref(1)
 const height = ref('')

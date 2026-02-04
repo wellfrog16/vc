@@ -5,6 +5,9 @@
                 <div v-for="i in 20" :key="i">{{ i }}</div>
             </VcScrollbar>
         </div>
+        <VcScrollbar flex height="120px">
+            <div v-for="i in 20" :key="i">{{ i }}</div>
+        </VcScrollbar>
     </Wrapper>
 </template>
 

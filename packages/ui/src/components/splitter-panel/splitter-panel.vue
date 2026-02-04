@@ -1,6 +1,6 @@
 <template>
     <el-splitter-panel :class="$style.panel">
-        <VcScrollbar flex :padding="padding"><slot /></VcScrollbar>
+        <VcScrollbar :padding="padding"><slot /></VcScrollbar>
     </el-splitter-panel>
 </template>
 

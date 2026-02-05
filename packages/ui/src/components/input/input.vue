@@ -34,12 +34,11 @@ defineExpose({ inputRef })
 
 <style lang="scss" module>
 div.input {
-    width: unset;
-    min-width: v-bind(myWidth);
+    width: v-bind(myWidth);
+    display: inline-flex;
 
     &.block {
         display: flex;
-        width: v-bind(myWidth);
     }
 }
 </style>

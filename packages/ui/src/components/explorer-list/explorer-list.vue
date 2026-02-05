@@ -1,5 +1,5 @@
 <template>
-    <VcScrollbar>
+    <VcScrollbar always>
         <div
             v-for="(item, index) in myData"
             :key="item.value"

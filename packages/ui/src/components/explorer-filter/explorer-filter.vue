@@ -45,9 +45,9 @@ const keywordChange = debounce(() => handleFilter(), props.debounce)
 
 <style lang="scss" module>
 .explorer-filter {
-    position: sticky;
     padding-bottom: v-bind('`${padding}px`');
     display: flex;
     column-gap: 8px;
+    border-bottom: 1px solid var(--el-border-color-lighter);
 }
 </style>

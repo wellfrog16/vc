@@ -8,6 +8,7 @@
 </template>
 
 <script lang="ts" setup>
+import VcButton from '../../button/button.vue'
 import VcDialog from '../dialog.vue'
 
 const [visible, toggleVisible] = useToggle()

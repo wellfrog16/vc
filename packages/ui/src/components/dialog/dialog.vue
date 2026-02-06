@@ -3,11 +3,12 @@
         v-if="visible || !lazy"
         v-model="dialogVisible"
         v-bind="$attrs"
+        append-to-body
         align-center
         :show-close="false"
         :fullscreen="isFullscreen"
         :close-on-click-modal="false"
-        :class="$style.main"
+        :class="[$style.main, { [$style['box-padding']]: boxPadding }]"
         @closed="handleClosed"
     >
         <template #header="{ close, titleId, titleClass }">
@@ -60,7 +61,7 @@ const Icon = computed(() => isFullscreen.value ? CopyDocument : FullScreen)
 
 const myFullscreenHeight = computed(() => {
     if (props.fullscreenHeight) { return props.fullscreenHeight }
-    return props.showDefaultFooter ? 'calc(100vh - 114px)' : 'calc(100vh - 57px)'
+    return props.showDefaultFooter ? 'calc(100vh - 98px)' : 'calc(100vh - 49px)'
 })
 
 const myMaxHeight = computed(() => {
@@ -90,7 +91,7 @@ div.main {
 
     :global {
         .el-dialog__header {
-            padding: 12px 16px;
+            padding: 8px 16px;
             margin-right: 0;
             border-bottom: 1px solid var(--el-border-color-light);
         }
@@ -103,7 +104,7 @@ div.main {
         }
 
         .el-dialog__footer {
-            padding: 12px 16px;
+            padding: 8px 16px;
             border-top: 1px solid var(--el-border-color-light);
         }
     }
@@ -120,7 +121,7 @@ div.main {
             background: var(--el-bg-color);
             height: 16px;
             z-index: 3;
-            display: v-bind('boxPadding ? "block" : "none"');
+            display: none;
             // background-image: radial-gradient(transparent 1px, var(--el-bg-color) 1px);
             // background-size: 4px 4px;
             // backdrop-filter: saturate(50%) blur(4px);
@@ -136,7 +137,7 @@ div.main {
             background: var(--el-bg-color);
             height: 16px;
             z-index: 3;
-            display: v-bind('boxPadding ? "block" : "none"');
+            display: none;
         }
     }
 
@@ -147,6 +148,19 @@ div.main {
             line-height: 1;
         }
         line-height: 1;
+    }
+}
+
+.box-padding {
+    :global(> .el-dialog__body > .el-scrollbar) {
+        position: relative;
+        &::before {
+            display: 'block';
+        }
+
+        &::after {
+            display: 'block';
+        }
     }
 }
 

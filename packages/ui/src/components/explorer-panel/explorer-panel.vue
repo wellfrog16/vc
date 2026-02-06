@@ -1,7 +1,7 @@
 <template>
-    <el-splitter-panel :class="$style.panel" :resizable="resizable">
+    <ElSplitterPanel :class="$style.panel" :resizable="resizable">
         <div :class="$style.container"><slot /></div>
-    </el-splitter-panel>
+    </ElSplitterPanel>
 </template>
 
 <script setup lang="ts">

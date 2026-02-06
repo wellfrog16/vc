@@ -1,9 +1,9 @@
 <template>
     <div ref="queryRef" :class="$style['explorer-query']">
         <div ref="formContainerRef" :class="[$style['form-container'], { [$style.expand]: isExpanded }]">
-            <el-form ref="formRef" :inline="true" :model="model" :class="$style.form">
+            <ElForm ref="formRef" :inline="true" :model="model" :class="$style.form">
                 <slot />
-            </el-form>
+            </ElForm>
         </div>
         <div ref="actionsRef" :class="$style.actions">
             <VcButton

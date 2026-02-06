@@ -1,6 +1,6 @@
 <template>
     <VcScrollbar always>
-        <el-tree v-show="!loading" ref="treeRef" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
+        <ElTree v-show="!loading" ref="treeRef" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
             <template #default="{ node }">
                 <div :class="$style.node">
                     <div :class="$style.label">
@@ -13,9 +13,9 @@
                     </div>
                 </div>
             </template>
-        </el-tree>
+        </ElTree>
         <div v-if="loading" :class="$style.loading">
-            <el-icon class="is-loading"><Loading /></el-icon>{{ loadingText }}
+            <ElIcon class="is-loading"><Loading /></ElIcon>{{ loadingText }}
         </div>
     </VcScrollbar>
 </template>

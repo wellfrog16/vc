@@ -1,6 +1,6 @@
 <template>
     <div :class="$style['explorer-filter']">
-        <el-input
+        <ElInput
             v-model="keyword"
             :placeholder="placeholder"
             :clearable="clearable"
@@ -11,7 +11,7 @@
             @change="handleFilter"
             @input="keywordChange"
         />
-        <el-button v-if="create" :icon="Plus" :disabled="disabled" @click="emits('create')" />
+        <ElButton v-if="create" :icon="Plus" :disabled="disabled" @click="emits('create')" />
     </div>
 </template>
 

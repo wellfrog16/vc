@@ -17,7 +17,7 @@
         </div>
         <div v-if="isEmpty && !loading" :class="$style.empty">{{ emptyText }}</div>
         <div v-if="loading" :class="$style.loading">
-            <el-icon class="is-loading"><Loading /></el-icon>{{ loadingText }}
+            <ElIcon class="is-loading"><Loading /></ElIcon>{{ loadingText }}
         </div>
     </VcScrollbar>
 </template>

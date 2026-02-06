@@ -1,11 +1,11 @@
 <template>
-    <div :class="$style['explorer-query']">
-        <div :class="[$style['form-container'], { [$style.expand]: isExpanded }]">
+    <div ref="queryRef" :class="$style['explorer-query']">
+        <div ref="formContainerRef" :class="[$style['form-container'], { [$style.expand]: isExpanded }]">
             <el-form ref="formRef" :inline="true" :model="model" :class="$style.form">
                 <slot />
             </el-form>
         </div>
-        <div :class="$style.actions">
+        <div ref="actionsRef" :class="$style.actions">
             <VcButton
                 v-if="hasMore"
                 link
@@ -25,17 +25,22 @@
 
 <script setup lang="ts">
 import type { IExplorerQueryEmits, IExplorerQueryProps } from './explorer-query'
-import { useElementSize, useToggle } from '@vueuse/core'
+import { promiseTimeout, useElementSize, useResizeObserver, useToggle } from '@vueuse/core'
 import VcButton from '../button/button.vue'
+import { calculateLayout } from './explorer-query'
 
 const props = withDefaults(defineProps<IExplorerQueryProps>(), {
     padding: 8,
     height: 32,
+    autoSpace: true,
 })
 const emits = defineEmits<IExplorerQueryEmits>()
 
+const queryRef = useTemplateRef('queryRef')
+const formContainerRef = useTemplateRef('formContainerRef')
 const formRef = useTemplateRef('formRef')
 const formElRef = computed(() => formRef.value?.$el)
+const actionsRef = useTemplateRef('actionsRef')
 
 const [isExpanded, toggle] = useToggle(false)
 const expandText = computed(() => (isExpanded.value ? '收起搜索' : '展开搜索'))
@@ -51,6 +56,18 @@ function handleReset() {
 function handleSearch() {
     emits('search', props.model)
 }
+
+function refreshLayout() {
+    if (!props.autoSpace) { return }
+    calculateLayout(queryRef.value!, actionsRef.value!, formContainerRef.value!)
+}
+
+useResizeObserver(queryRef, () => refreshLayout())
+
+onMounted(async () => {
+    await promiseTimeout(0)
+    refreshLayout()
+})
 </script>
 
 <style lang="scss" module>

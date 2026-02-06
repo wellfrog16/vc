@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<IExplorerListProps>(), {
     actions: () => [],
     data: () => [],
     emptyText: '没有数据',
-    loadingText: '加载数据中...',
+    loadingText: '数据加载中...',
 })
 const emits = defineEmits<IExplorerListEmits>()
 
@@ -46,7 +46,9 @@ const filterMethod = props.filterMethod || ((keyword: string, item: IExplorerLis
 })
 
 const myData = computed(() => {
-    return props.localFilter ? props.data.filter(item => filterMethod(filterKeyword.value, item)) : props.data
+    return props.group && filterKeyword.value[props.group]
+        ? props.data.filter(item => filterMethod(filterKeyword.value[props.group!], item))
+        : props.data
 })
 const isEmpty = computed(() => myData.value.length === 0)
 
@@ -58,7 +60,7 @@ function handleClick(item: IExplorerListItemProps, e: MouseEvent) {
 
 <style lang="scss" module>
 .item {
-    padding: 8px 12px;
+    padding: 4px 8px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -94,14 +96,16 @@ function handleClick(item: IExplorerListItemProps, e: MouseEvent) {
 
     > button {
         margin-left: 0 !important;
+        font-size: 1.2em;
     }
 }
 
 .empty,
 .loading {
-    padding: 8px 12px;
+    padding: 4px 8px;
     display: flex;
     align-items: center;
     column-gap: 4px;
+    color: var(--el-text-color-secondary);
 }
 </style>

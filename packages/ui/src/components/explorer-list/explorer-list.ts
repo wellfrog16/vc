@@ -8,7 +8,7 @@ export interface IExplorerListItemProps<T = any> {
 export interface IExplorerListProps {
     data?: IExplorerListItemProps[]
     actions?: ('create' | 'modify' | 'delete')[]
-    localFilter?: boolean
+    group?: string
     filterMethod?: (keyword: string, item: IExplorerListItemProps) => boolean
     emptyText?: string
     loading?: boolean
@@ -17,8 +17,4 @@ export interface IExplorerListProps {
 
 export interface IExplorerListEmits {
     (e: 'click', value: string | number, original: any, event: MouseEvent): void
-}
-
-export interface IExplorerListEmits2 {
-    (e: 'click', value: string | number): void
 }

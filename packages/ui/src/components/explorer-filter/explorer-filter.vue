@@ -35,9 +35,11 @@ const emits = defineEmits<{
 const { filterKeyword } = injectState()
 const keyword = ref<string>('')
 function handleFilter() {
-    if (filterKeyword.value === keyword.value) { return }
-    filterKeyword.value = keyword.value
-    emits('filter', filterKeyword.value)
+    if (props.group) {
+        if (filterKeyword.value[props.group] === keyword.value) { return }
+        filterKeyword.value[props.group] = keyword.value
+    }
+    emits('filter', keyword.value)
 }
 
 const keywordChange = debounce(() => handleFilter(), props.debounce)

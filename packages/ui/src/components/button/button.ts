@@ -17,4 +17,5 @@ export interface IButtonProps {
         cancelButtonText?: string
         msg?: string
     }
+    stop?: boolean
 }

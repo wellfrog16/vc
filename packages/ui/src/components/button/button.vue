@@ -8,13 +8,25 @@
         @confirm="handleConfirm"
     >
         <template #reference>
-            <ElButton v-bind="$attrs" :type="type" :class="$style.button" @click="handleClick">
+            <!-- 暂时解决不了 click.stop 传递的问题，因此用一个 stop 的 props 来控制逻辑渲染 -->
+            <ElButton v-if="stop" v-bind="$attrs" :type="type" :class="$style.button" @click.stop="handleClick">
+                <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
+                <span v-if="$slots.default"><slot /></span>
+                <VcIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
+            </ElButton>
+            <ElButton v-else v-bind="$attrs" :type="type" :class="$style.button" @click="handleClick">
                 <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
                 <span v-if="$slots.default"><slot /></span>
                 <VcIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
             </ElButton>
         </template>
     </ElPopconfirm>
+    <!-- 暂时解决不了 click.stop 传递的问题，因此用一个 stop 的 props 来控制逻辑渲染 -->
+    <ElButton v-else-if="stop" v-bind="$attrs" :type="type" :class="$style.button" @click.stop="handleClick">
+        <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
+        <span v-if="$slots.default"><slot /></span>
+        <VcIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
+    </ElButton>
     <ElButton v-else v-bind="$attrs" :type="type" :class="$style.button" @click="handleClick">
         <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
         <span v-if="$slots.default"><slot /></span>
@@ -33,6 +45,7 @@ const props = withDefaults(defineProps<IButtonProps>(), {
     throttle: 800,
     type: '',
     confirm: undefined,
+    stop: false,
 })
 const emits = defineEmits<{ (e: 'click', event: Event): void }>()
 const { button: buttonConfig } = injectConfig()
@@ -54,6 +67,10 @@ async function handleComfirm() {
     }
 }
 const handleClick = useThrottleFn(async e => {
+    if (props.stop) {
+        e.stopPropagation()
+    }
+
     if (myConfirm.value === 'messagebox') {
         const result = await handleComfirm()
         result && emits('click', e)
@@ -66,6 +83,10 @@ const handleClick = useThrottleFn(async e => {
 }, props.throttle)
 
 const handleConfirm = useThrottleFn(async e => {
+    if (props.stop) {
+        e.stopPropagation()
+    }
+
     emits('click', e)
 }, props.throttle)
 </script>

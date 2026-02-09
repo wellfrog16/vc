@@ -8,7 +8,7 @@ export interface IIconOption {
 
 export interface IButtonProps {
     icon?: IIconOption
-    time?: number
+    throttle?: number
     type?: ButtonType
     confirm?: {
         type?: 'popconfirm' | 'messagebox' | 'none' // 非 popconfirm， messagebox 的其他值不会执行 confirm

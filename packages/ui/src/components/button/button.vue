@@ -30,7 +30,7 @@ import { injectConfig } from '../config-provider/config-provider'
 import VcIcon from '../icon/icon.vue'
 
 const props = withDefaults(defineProps<IButtonProps>(), {
-    time: 800,
+    throttle: 800,
     type: '',
     confirm: undefined,
 })
@@ -63,11 +63,11 @@ const handleClick = useThrottleFn(async e => {
         return
     }
     emits('click', e)
-}, props.time)
+}, props.throttle)
 
 const handleConfirm = useThrottleFn(async e => {
     emits('click', e)
-}, props.time)
+}, props.throttle)
 </script>
 
 <style lang="scss" module>

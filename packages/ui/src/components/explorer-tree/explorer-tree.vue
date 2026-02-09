@@ -52,7 +52,7 @@ const treeProps = computed(() => ({
     defaultExpandAll: props.defaultExpandAll,
     expandOnClickNode: false,
     highlightCurrent: true,
-    nodeKey: 'id',
+    nodeKey: 'value',
     ...props.treeProps,
 }))
 

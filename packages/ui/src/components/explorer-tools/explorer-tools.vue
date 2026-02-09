@@ -53,7 +53,8 @@ const { fullscreenTarget, key } = injectState()
 const $style = useCssModule()
 const [settingVisible, toggleSettingVisible] = useToggle()
 
-const myLayout = usePersistentModel('layout', `${key}-layout`, props.layout)
+const layoutStorageKey = props.toolsKey ? `${key}-${props.toolsKey}-layout` : `${key}-layout`
+const myLayout = usePersistentModel('layout', layoutStorageKey, props.layout)
 
 const keyword = ref('')
 

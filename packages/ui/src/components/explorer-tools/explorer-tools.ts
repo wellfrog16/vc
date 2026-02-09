@@ -6,6 +6,7 @@ export interface IExplorerToolsProps {
     create?: boolean
     createText?: string
     throttle?: number
+    toolsKey?: string
 }
 
 export interface IExplorerToolsEmits {

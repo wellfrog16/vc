@@ -3,6 +3,7 @@ export interface IExplorerQueryProps {
     height?: number
     model: Record<string, any>
     autoSpace?: boolean // form-item 环绕 actions，使用 absolute，计算坐标来实现
+    queryKey?: string
 }
 
 export interface IExplorerQueryEmits {

@@ -27,6 +27,7 @@
 import type { IExplorerQueryEmits, IExplorerQueryProps } from './explorer-query'
 import { promiseTimeout, useElementSize, useResizeObserver, useToggle } from '@vueuse/core'
 import VcButton from '../button/button.vue'
+import { injectState } from '../explorer/explorer'
 import { calculateLayout } from './explorer-query'
 
 const props = withDefaults(defineProps<IExplorerQueryProps>(), {
@@ -42,8 +43,16 @@ const formRef = useTemplateRef('formRef')
 const formElRef = computed(() => formRef.value?.$el)
 const actionsRef = useTemplateRef('actionsRef')
 
-const [isExpanded, toggle] = useToggle(false)
+// 展开/收起 持久化
+const { key } = injectState()
+const expandStorageKey = props.queryKey ? `${key}-${props.queryKey}-expand` : `${key}-expand`
+const defaultExpand = useStorage(expandStorageKey, false)
+const [isExpanded, toggle] = useToggle(defaultExpand.value)
 const expandText = computed(() => (isExpanded.value ? '收起搜索' : '展开搜索'))
+
+const expnadWatch = watch(isExpanded, val => {
+    defaultExpand.value = val
+})
 
 const { height: formHeight } = useElementSize(formElRef)
 const hasMore = computed(() => formHeight.value > props.height + 8)
@@ -68,6 +77,8 @@ onMounted(async () => {
     await promiseTimeout(0)
     refreshLayout()
 })
+
+onBeforeUnmount(() => expnadWatch.stop())
 </script>
 
 <style lang="scss" module>

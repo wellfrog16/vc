@@ -7,9 +7,34 @@
                         <slot :data="node.data" :index="node.index"><VcIconifyIcon v-if="node.data.icon" :name="node.data.icon" :class="$style.icon" />{{ node.data.label }}</slot>
                     </div>
                     <div v-if="actions.length" class="vc-actions" :class="[$style.actions]">
-                        <VcButton v-if="actions.includes('create')" title="新增" type="success" link :icon="{ type: 'el', name: 'Plus' }" />
-                        <VcButton v-if="actions.includes('modify')" title="修改" type="primary" link :icon="{ type: 'el', name: 'Edit' }" />
-                        <VcButton v-if="actions.includes('delete')" title="删除" type="danger" link :icon="{ type: 'el', name: 'Delete' }" />
+                        <VcButton
+                            v-if="actions.includes('create')"
+                            title="新增"
+                            type="success"
+                            link
+                            :icon="{ type: 'el', name: 'Plus' }"
+                            stop
+                            @click="emits('create', node.data.value, node)"
+                        />
+                        <VcButton
+                            v-if="actions.includes('modify')"
+                            title="修改"
+                            type="primary"
+                            link
+                            :icon="{ type: 'el', name: 'Edit' }"
+                            stop
+                            @click="emits('modify', node.data.value, node)"
+                        />
+                        <VcButton
+                            v-if="actions.includes('remove')"
+                            :confirm="confirmRender(node)"
+                            title="删除"
+                            type="danger"
+                            link
+                            :icon="{ type: 'el', name: 'Delete' }"
+                            stop
+                            @click="emits('remove', node.data.value, node)"
+                        />
                     </div>
                 </div>
             </template>
@@ -36,6 +61,9 @@ const props = withDefaults(defineProps<IExplorerTreeProps>(), {
     emptyText: '没有数据',
     defaultExpandAll: true,
     loadingText: '数据加载中...',
+    confirmRender: (node: Node) => {
+        return { msg: `确定要删除 ${node.data.label} 吗？` }
+    },
 })
 const emits = defineEmits<IExplorerTreeEmits>()
 

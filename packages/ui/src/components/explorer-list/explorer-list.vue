@@ -10,9 +10,9 @@
                 <slot :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
             </div>
             <div v-if="actions.length" :class="$style.actions">
-                <VcButton v-if="actions.includes('create')" type="success" link :icon="{ type: 'el', name: 'Plus' }" />
-                <VcButton v-if="actions.includes('modify')" type="primary" link :icon="{ type: 'el', name: 'Edit' }" />
-                <VcButton v-if="actions.includes('delete')" type="danger" link :icon="{ type: 'el', name: 'Delete' }" />
+                <VcButton v-if="actions.includes('create')" title="新增" type="success" link :icon="{ type: 'el', name: 'Plus' }" />
+                <VcButton v-if="actions.includes('modify')" title="修改" type="primary" link :icon="{ type: 'el', name: 'Edit' }" />
+                <VcButton v-if="actions.includes('delete')" title="删除" type="danger" link :icon="{ type: 'el', name: 'Delete' }" />
             </div>
         </div>
         <div v-if="isEmpty && !loading" :class="$style.empty">{{ emptyText }}</div>

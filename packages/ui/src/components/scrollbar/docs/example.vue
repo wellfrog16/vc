@@ -8,7 +8,7 @@
             </div>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区">
-            <VcScrollbar flex height="120px">
+            <VcScrollbar flex height="120px" :fill-height="false">
                 <div v-for="i in 20" :key="i">{{ i }}</div>
             </VcScrollbar>
         </ElDescriptionsItem>

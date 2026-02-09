@@ -24,19 +24,17 @@ defineExpose({ ...scrollbarRef.value! })
     flex-direction: column;
     flex-grow: 1;
 
-    :global {
-        .el-scrollbar__wrap {
-            flex-grow: 1;
-            flex-direction: column;
-            display: flex;
-        }
+    > :global(.el-scrollbar__wrap) {
+        flex-grow: 1;
+        flex-direction: column;
+        display: flex;
+    }
 
-        .el-scrollbar__view {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            padding: v-bind('`${padding}px`');
-        }
+    > :global(.el-scrollbar__wrap > .el-scrollbar__view) {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        padding: v-bind('`${padding}px`');
     }
 }
 

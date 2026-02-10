@@ -1,15 +1,25 @@
 <template>
-    <ElSplitterPanel :class="$style.panel" :resizable="resizable">
+    <ElSplitterPanel ref="panelRef" :class="$style.panel" :resizable="resizable">
         <div :class="$style.container"><slot /></div>
     </ElSplitterPanel>
 </template>
 
 <script setup lang="ts">
 import type { IExplorerPanelProps } from './explorer-panel'
+import { injectState } from '../explorer/explorer'
 
-withDefaults(defineProps<IExplorerPanelProps>(), {
+const props = withDefaults(defineProps<IExplorerPanelProps>(), {
     resizable: false,
     padding: 8,
+})
+
+const panelRef = useTemplateRef('panelRef')
+const { fullscreenTarget } = injectState()
+
+onMounted(() => {
+    if (props.group && panelRef.value?.splitterPanelRef) {
+        fullscreenTarget.value[props.group] = panelRef.value.splitterPanelRef
+    }
 })
 </script>
 

@@ -45,9 +45,10 @@ function handleClosed() {
         .el-drawer__header {
             box-sizing: border-box;
             flex: 0 0 auto;
-            padding: 10px 16px;
+            padding: 8px 16px;
             margin-bottom: 0;
             border-bottom: 1px solid var(--el-border-color-light);
+            font-size: var(--el-font-size-large);
         }
 
         .el-drawer__body {
@@ -60,7 +61,7 @@ function handleClosed() {
         .drawer-footer {
             display: flex;
             flex: 0 0 auto;
-            padding: 10px 16px;
+            padding: 8px 16px;
             border-top: 1px solid var(--el-border-color-light);
 
             .el-button {

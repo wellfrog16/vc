@@ -1,6 +1,6 @@
 <template>
     <div :class="$style['explorer-table']">
-        <ElTable :data="data" stripe :class="$style.table" v-bind="$attrs" scrollbar-always-on>
+        <ElTable :data="data" stripe :class="$style.table" v-bind="$attrs" scrollbar-always-on :highlight-current-row="highlightCurrent">
             <slot />
         </ElTable>
     </div>
@@ -9,7 +9,9 @@
 <script setup lang="ts">
 import type { IExplorerTableProps } from './explorer-table'
 
-withDefaults(defineProps<IExplorerTableProps>(), {})
+withDefaults(defineProps<IExplorerTableProps>(), {
+    highlightCurrent: false,
+})
 </script>
 
 <style lang="scss" module>

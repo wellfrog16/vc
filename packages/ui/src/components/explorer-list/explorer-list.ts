@@ -15,11 +15,12 @@ export interface IExplorerListProps {
     emptyText?: string
     loading?: boolean
     loadingText?: string
+    highlightCurrent?: boolean
     confirmRender?: (item: IExplorerListItemProps) => IButtonProps['confirm']
 }
 
 export interface IExplorerListEmits {
-    (e: 'click', value: string | number, original: any, event: MouseEvent): void
+    (e: 'itemClick', value: string | number, item: IExplorerListItemProps, event: MouseEvent): void
     (e: 'create', value: string | number, item: IExplorerListItemProps): void
     (e: 'modify', value: string | number, item: IExplorerListItemProps): void
     (e: 'remove', value: string | number, item: IExplorerListItemProps): void

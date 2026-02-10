@@ -61,6 +61,7 @@ const props = withDefaults(defineProps<IExplorerTreeProps>(), {
     emptyText: '没有数据',
     defaultExpandAll: true,
     loadingText: '数据加载中...',
+    highlightCurrent: true,
     confirmRender: (node: Node) => {
         return { msg: `确定要删除 ${node.data.label} 吗？` }
     },
@@ -79,7 +80,7 @@ const treeProps = computed(() => ({
     emptyText: props.emptyText,
     defaultExpandAll: props.defaultExpandAll,
     expandOnClickNode: false,
-    highlightCurrent: true,
+    highlightCurrent: props.highlightCurrent,
     nodeKey: 'value',
     ...props.treeProps,
 }))

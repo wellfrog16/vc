@@ -13,6 +13,7 @@ export interface IExplorerTreeProps {
     loading?: boolean
     loadingText?: string
     confirmRender?: (node: Node) => IButtonProps['confirm']
+    highlightCurrent?: boolean
 }
 
 export interface IExplorerTreeEmits {

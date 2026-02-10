@@ -10,9 +10,34 @@
                 <slot :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
             </div>
             <div v-if="actions.length" :class="$style.actions">
-                <VcButton v-if="actions.includes('create')" title="新增" type="success" link :icon="{ type: 'el', name: 'Plus' }" @click="emits('create', item.value, item)" />
-                <VcButton v-if="actions.includes('modify')" title="修改" type="primary" link :icon="{ type: 'el', name: 'Edit' }" @click="emits('modify', item.value, item)" />
-                <VcButton v-if="actions.includes('remove')" title="删除" type="danger" link :icon="{ type: 'el', name: 'Delete' }" :confirm="confirmRender(item)" @click="emits('remove', item.value, item)" />
+                <VcButton
+                    v-if="actions.includes('create')"
+                    title="新增"
+                    type="success"
+                    link
+                    :icon="{ type: 'el', name: 'Plus' }"
+                    stop
+                    @click="emits('create', item.value, item)"
+                />
+                <VcButton
+                    v-if="actions.includes('modify')"
+                    title="修改"
+                    type="primary"
+                    link
+                    :icon="{ type: 'el', name: 'Edit' }"
+                    stop
+                    @click="emits('modify', item.value, item)"
+                />
+                <VcButton
+                    v-if="actions.includes('remove')"
+                    title="删除"
+                    type="danger"
+                    link
+                    :icon="{ type: 'el', name: 'Delete' }"
+                    :confirm="confirmRender(item)"
+                    stop
+                    @click="emits('remove', item.value, item)"
+                />
             </div>
         </div>
         <div v-if="isEmpty && !loading" :class="$style.empty">{{ emptyText }}</div>
@@ -35,6 +60,7 @@ const props = withDefaults(defineProps<IExplorerListProps>(), {
     data: () => [],
     emptyText: '没有数据',
     loadingText: '数据加载中...',
+    highlightCurrent: true,
     confirmRender: (item: IExplorerListItemProps) => {
         return { msg: `确定要删除 ${item.label} 吗？` }
     },
@@ -56,8 +82,9 @@ const myData = computed(() => {
 const isEmpty = computed(() => myData.value.length === 0)
 
 function handleClick(item: IExplorerListItemProps, e: MouseEvent) {
+    if (!props.highlightCurrent) { return }
     actived.value = item.value
-    emits('click', item.value, item.original, e)
+    emits('itemClick', item.value, item, e)
 }
 </script>
 
@@ -74,6 +101,7 @@ function handleClick(item: IExplorerListItemProps, e: MouseEvent) {
 
         .actions {
             display: inline-flex;
+            align-items: flex-start;
         }
     }
 

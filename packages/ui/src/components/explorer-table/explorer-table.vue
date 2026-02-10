@@ -22,6 +22,7 @@ withDefaults(defineProps<IExplorerTableProps>(), {})
 .table {
     width: 100%;
     flex-grow: 1;
+    height: 100px;
 
     --el-table-header-bg-color: var(--el-color-info-light-9);
     --el-table-row-hover-bg-color: var(--el-color-primary-light-9);

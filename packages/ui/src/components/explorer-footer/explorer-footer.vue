@@ -10,7 +10,7 @@ import type { IExplorerFooterProps } from './explorer-footer'
 import { isNumber } from 'lodash-es'
 
 const props = withDefaults(defineProps<IExplorerFooterProps>(), {
-    padding: 8,
+    paddingTop: 8,
     layout: 'total, prev, pager, next',
 })
 </script>
@@ -20,6 +20,6 @@ const props = withDefaults(defineProps<IExplorerFooterProps>(), {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: v-bind('`${padding}px`');
+    padding-top: v-bind('`${paddingTop}px`');
 }
 </style>

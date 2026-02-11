@@ -1,5 +1,5 @@
 export interface IExplorerFooterProps {
-    padding?: number
+    paddingTop?: number
     layout?: string
     total?: number
 }

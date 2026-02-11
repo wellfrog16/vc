@@ -27,7 +27,7 @@
                         />
                         <VcButton
                             v-if="actions.includes('remove')"
-                            :confirm="confirmRender(node)"
+                            :confirm="confirmParams(node)"
                             title="删除"
                             type="danger"
                             link
@@ -62,7 +62,7 @@ const props = withDefaults(defineProps<IExplorerTreeProps>(), {
     defaultExpandAll: true,
     loadingText: '数据加载中...',
     highlightCurrent: true,
-    confirmRender: (node: Node) => {
+    confirmParams: (node: Node) => {
         return { msg: `确定要删除 ${node.data.label} 吗？` }
     },
 })
@@ -81,6 +81,7 @@ const treeProps = computed(() => ({
     defaultExpandAll: props.defaultExpandAll,
     expandOnClickNode: false,
     highlightCurrent: props.highlightCurrent,
+    filterNodeMethod: props.filterMethod,
     nodeKey: 'value',
     ...props.treeProps,
 }))

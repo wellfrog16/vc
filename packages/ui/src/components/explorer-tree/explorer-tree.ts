@@ -12,7 +12,8 @@ export interface IExplorerTreeProps {
     group?: string
     loading?: boolean
     loadingText?: string
-    confirmRender?: (node: Node) => IButtonProps['confirm']
+    confirmParams?: (node: Node) => IButtonProps['confirm']
+    filterMethod?: TreeComponentProps['filterNodeMethod']
     highlightCurrent?: boolean
 }
 

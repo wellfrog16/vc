@@ -50,6 +50,26 @@ export const staticRoutes: RouteRecordRaw[] = [
             },
         ],
     },
+    {
+        name: 'my-layout',
+        path: '/layout',
+        component: Layout,
+        redirect: { name: 'layout' },
+        meta: {
+            title: '布局',
+            icon: ['el', 'Promotion'],
+        },
+        children: [
+            {
+                name: 'layout',
+                path: 'index',
+                component: () => import('@/views/layout/index.vue'),
+                meta: {
+                    hidden: true,
+                },
+            },
+        ],
+    },
     // {
     //     name: 'my-components3',
     //     path: '/components3',

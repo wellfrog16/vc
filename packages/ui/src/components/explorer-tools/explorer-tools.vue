@@ -41,9 +41,9 @@ import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 import VcInput from '../input/input.vue'
 
 const props = withDefaults(defineProps<IExplorerToolsProps>(), {
-    tools: () => ['search', 'refresh', 'fullscreen', 'setting'],
+    tools: () => ['refresh', 'fullscreen', 'setting'],
     searchPlaceholder: '请输入搜索内容',
-    layout: 'card',
+    layout: 'list',
     createText: '新增',
     throttle: 800,
 })
@@ -77,11 +77,6 @@ function toggleFullScreen() {
         emits('fullscreen', isFullScreen.value)
     }
 }
-
-onMounted(() => {
-    // const key = useStableKey()
-    // console.log('ExplorerTools key:', key)
-})
 </script>
 
 <style lang="scss" module>
@@ -90,6 +85,8 @@ onMounted(() => {
     align-items: center;
     justify-content: space-between;
     padding: 8px 0;
+    flex-wrap: wrap;
+    row-gap: 8px;
 }
 
 .buttons {

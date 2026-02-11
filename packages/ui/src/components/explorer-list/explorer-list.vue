@@ -34,7 +34,7 @@
                     type="danger"
                     link
                     :icon="{ type: 'el', name: 'Delete' }"
-                    :confirm="confirmRender(item)"
+                    :confirm="confirmParams(item)"
                     stop
                     @click="emits('remove', item.value, item)"
                 />
@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IExplorerListEmits, IExplorerListItemProps, IExplorerListProps } from './explorer-list'
+import type { IExplorerListEmits, IExplorerListItem, IExplorerListProps } from './explorer-list'
 import { Loading } from '@element-plus/icons-vue'
 import VcButton from '../button/button.vue'
 import { injectState } from '../explorer/explorer'
@@ -61,7 +61,7 @@ const props = withDefaults(defineProps<IExplorerListProps>(), {
     emptyText: '没有数据',
     loadingText: '数据加载中...',
     highlightCurrent: true,
-    confirmRender: (item: IExplorerListItemProps) => {
+    confirmParams: (item: IExplorerListItem) => {
         return { msg: `确定要删除 ${item.label} 吗？` }
     },
 })
@@ -70,7 +70,7 @@ const emits = defineEmits<IExplorerListEmits>()
 const { filterKeyword } = injectState()
 const actived = ref<string | number>()
 
-const filterMethod = props.filterMethod || ((keyword: string, item: IExplorerListItemProps) => {
+const filterMethod = props.filterMethod || ((keyword: string, item: IExplorerListItem) => {
     return item.label.toLowerCase().includes(keyword.toLowerCase())
 })
 
@@ -81,7 +81,7 @@ const myData = computed(() => {
 })
 const isEmpty = computed(() => myData.value.length === 0)
 
-function handleClick(item: IExplorerListItemProps, e: MouseEvent) {
+function handleClick(item: IExplorerListItem, e: MouseEvent) {
     if (!props.highlightCurrent) { return }
     actived.value = item.value
     emits('itemClick', item.value, item, e)
@@ -95,6 +95,10 @@ function handleClick(item: IExplorerListItemProps, e: MouseEvent) {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: var(--el-font-size-base);
+    color: var(--el-text-color-regular);
+    min-height: 32px;
+    box-sizing: border-box;
 
     &:hover {
         background-color: var(--el-color-primary-light-9);

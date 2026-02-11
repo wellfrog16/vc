@@ -39,6 +39,7 @@ export const componentsData = [
             { text: 'drag-verify' },
             { text: 'drawer' },
             { text: 'easy-pagination' },
+            { text: 'explorer' },
             { text: 'awesome-icon' },
             { text: 'el-icon' },
             { text: 'iconify-icon' },

@@ -22,7 +22,7 @@ withDefaults(defineProps<IExplorerTableProps>(), {
 }
 
 .table {
-    width: 100%;
+    // width: 100%;
     flex-grow: 1;
     height: 100px;
 

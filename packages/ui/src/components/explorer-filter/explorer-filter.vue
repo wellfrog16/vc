@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IExplorerFilterProps } from './explorer-filter'
+import type { IExplorerFilterEmits, IExplorerFilterProps } from './explorer-filter'
 import { Plus, Search } from '@element-plus/icons-vue'
 import { debounce } from 'lodash-es'
 import { injectState } from '../explorer/explorer'
@@ -24,13 +24,10 @@ import { injectState } from '../explorer/explorer'
 const props = withDefaults(defineProps<IExplorerFilterProps>(), {
     placeholder: '查询',
     clearable: true,
-    padding: 8,
+    paddingBottom: 8,
     debounce: 300,
 })
-const emits = defineEmits<{
-    (e: 'filter', keyword: string): void
-    (e: 'create'): void
-}>()
+const emits = defineEmits<IExplorerFilterEmits>()
 
 const { filterKeyword } = injectState()
 const keyword = ref<string>('')
@@ -47,7 +44,7 @@ const keywordChange = debounce(() => handleFilter(), props.debounce)
 
 <style lang="scss" module>
 .explorer-filter {
-    padding-bottom: v-bind('`${padding}px`');
+    padding-bottom: v-bind('`${paddingBottom}px`');
     display: flex;
     column-gap: 8px;
     border-bottom: 1px solid var(--el-border-color-lighter);

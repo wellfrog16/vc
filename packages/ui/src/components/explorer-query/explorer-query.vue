@@ -31,7 +31,7 @@ import { injectState } from '../explorer/explorer'
 import { calculateLayout } from './explorer-query'
 
 const props = withDefaults(defineProps<IExplorerQueryProps>(), {
-    padding: 8,
+    paddingBottom: 8,
     height: 32,
     autoSpace: true,
 })
@@ -83,7 +83,7 @@ onBeforeUnmount(() => expnadWatch.stop())
 
 <style lang="scss" module>
 .explorer-query {
-    padding-bottom: v-bind('`${padding}px`');
+    padding-bottom: v-bind('`${paddingBottom}px`');
     display: flex;
     column-gap: 8px;
     justify-content: space-between;

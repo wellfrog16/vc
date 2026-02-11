@@ -7,7 +7,7 @@ export const treeData: CascaderOption[] = [
         children: [
             {
                 value: 'disciplines',
-                label: 'Disciplines',
+                label: '文字 icon 测试 Label',
                 icon: 'carbon:data-table',
                 children: [
                     { value: 'consistency', label: 'Consistency' },

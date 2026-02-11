@@ -1,5 +1,5 @@
 <template>
-    <ElSplitterPanel ref="panelRef" :class="$style.panel" :resizable="resizable">
+    <ElSplitterPanel ref="panelRef" :class="$style.panel" :resizable="resizable" v-bind="$attrs">
         <div :class="$style.container"><slot /></div>
     </ElSplitterPanel>
 </template>
@@ -27,7 +27,7 @@ onMounted(() => {
 .panel {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    // flex-grow: 1;
     // height: 100px;
 }
 
@@ -36,5 +36,6 @@ onMounted(() => {
     flex-direction: column;
     padding: v-bind('`${padding}px`');
     flex-grow: 1;
+    height: 100px;
 }
 </style>

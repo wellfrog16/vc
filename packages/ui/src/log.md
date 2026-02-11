@@ -11,13 +11,19 @@ title: 更新日志
 - 新增 dark-switcher 组件
 - 新增 color-switcher 组件
 - 新增 splitter、splitter-panel 组件
-- 删除 dual-pane 组件，由 splitter 组件替代
+- 新增 explorer 组件及其系列子组件 filter、query、list、table、tree、panel、footer
+- dialog 组件增加 padding 参数，完善 flex 模式。使用 vc-scrollbar 替换 el-scrollbar
 - 所有组件支持暗黑模式
 
 ### 缺陷修复
 
 - 修复 dual-pane 参数类型
 - 修复 tinymce 组件的 cdn 引用
+- 修复 dialog 组件的高度、全屏功能
+- 修复 dialog 全屏/普通切换时，重新渲染了 scrollbar
+- 修复 dialog 的 box-padding 在 append-to-body 模式下失效
+- 修复 scrollbar 组件 flex 布局的样式问题，并修复使用 scrollbar 的组件
+- 修复 input 块级/内联显示样式
 
 ## 1.3.0
 

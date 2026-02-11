@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.wrapper">
         <div :class="$style.container">
-            <VcScrollbar flex>
+            <VcScrollbar>
                 <div v-for="i in 20" :key="i">{{ i }}</div>
             </VcScrollbar>
         </div>

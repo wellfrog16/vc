@@ -95,6 +95,7 @@ export default defineConfig({
                         { text: 'drag-verify', link: '/components/drag-verify' },
                         { text: 'drawer', link: '/components/drawer' },
                         { text: 'easy-pagination', link: '/components/easy-pagination' },
+                        { text: 'explorer', link: '/components/explorer' },
                         { text: 'awesome-icon', link: '/components/awesome-icon' },
                         { text: 'el-icon', link: '/components/el-icon' },
                         { text: 'iconify-icon', link: '/components/iconify-icon' },

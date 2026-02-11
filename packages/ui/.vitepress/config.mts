@@ -64,6 +64,15 @@ export default defineConfig({
                     ],
                 },
                 {
+                    text: '布局组件',
+                    items: [
+                        { text: 'explorer', link: '/components/explorer' },
+                        { text: 'scrollbar', link: '/components/scrollbar' },
+                        { text: 'splitter', link: '/components/splitter' },
+                        { text: 'sync-scroll-container', link: '/components/sync-scroll-container' },
+                    ],
+                },
+                {
                     text: '表单组件',
                     items: [
                         { text: 'choice', link: '/components/choice' },
@@ -95,7 +104,6 @@ export default defineConfig({
                         { text: 'drag-verify', link: '/components/drag-verify' },
                         { text: 'drawer', link: '/components/drawer' },
                         { text: 'easy-pagination', link: '/components/easy-pagination' },
-                        { text: 'explorer', link: '/components/explorer' },
                         { text: 'awesome-icon', link: '/components/awesome-icon' },
                         { text: 'el-icon', link: '/components/el-icon' },
                         { text: 'iconify-icon', link: '/components/iconify-icon' },
@@ -106,10 +114,7 @@ export default defineConfig({
                         { text: 'image', link: '/components/image' },
                         { text: 'qr-code', link: '/components/qr-code' },
                         { text: 'screenfull', link: '/components/screenfull' },
-                        { text: 'scrollbar', link: '/components/scrollbar' },
                         { text: 'single-player', link: '/components/single-player' },
-                        { text: 'splitter', link: '/components/splitter' },
-                        { text: 'sync-scroll-container', link: '/components/sync-scroll-container' },
                         { text: 'text-ellipsis', link: '/components/text-ellipsis' },
                         { text: 'upload-file', link: '/components/upload-file' },
                     ],

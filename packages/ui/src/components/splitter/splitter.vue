@@ -9,6 +9,6 @@ import type { ISplitterProps } from './splitter'
 
 withDefaults(defineProps<ISplitterProps>(), {
     layout: 'horizontal',
-    lazy: true,
+    lazy: false,
 })
 </script>

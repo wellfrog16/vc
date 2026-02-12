@@ -37,7 +37,7 @@ const keyword = ref('')
 
 const handleSearch = debounce(() => {
     search(keyword.value)
-    scrollbarRef.value?.setScrollTop(0)
+    scrollbarRef.value?.instance?.setScrollTop(0)
 }, 500)
 
 function handleChoice(e: MouseEvent) {

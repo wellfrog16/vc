@@ -1,5 +1,5 @@
 <template>
-    <ElScrollbar ref="scrollbarRef" v-bind="props" :class="{ [$style.scrollbar]: flex, [$style[`fill-height`]]: fillHeight }">
+    <ElScrollbar ref="scrollbarRef" v-bind="$attrs" :class="{ [$style.scrollbar]: flex, [$style[`fill-height`]]: fillHeight }">
         <slot />
     </ElScrollbar>
 </template>
@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import type { IScrollbarProps } from './scrollbar'
 
-const props = withDefaults(defineProps<IScrollbarProps>(), {
+withDefaults(defineProps<IScrollbarProps>(), {
     padding: 0,
     flex: true,
     fillHeight: true,
@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<IScrollbarProps>(), {
 
 const scrollbarRef = useTemplateRef('scrollbarRef')
 
-defineExpose({ ...scrollbarRef.value! })
+defineExpose({ instance: scrollbarRef.value })
 </script>
 
 <style lang="scss" module>

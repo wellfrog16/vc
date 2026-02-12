@@ -12,7 +12,7 @@
                 type="primary"
                 :icon="{ name: 'ArrowDown', position: 'right' }"
                 :class="[{ [$style.expand]: isExpanded }, $style.more]"
-                :time="300"
+                :throttle="0"
                 @click="() => toggle()"
             >
                 {{ expandText }}
@@ -27,7 +27,7 @@
 import type { IExplorerQueryEmits, IExplorerQueryProps } from './explorer-query'
 import { promiseTimeout, useElementSize, useResizeObserver, useToggle } from '@vueuse/core'
 import VcButton from '../button/button.vue'
-import { injectState } from '../explorer/explorer'
+import { injectExplorerState } from '../explorer/explorer'
 import { calculateLayout } from './explorer-query'
 
 const props = withDefaults(defineProps<IExplorerQueryProps>(), {
@@ -44,7 +44,7 @@ const formElRef = computed(() => formRef.value?.$el)
 const actionsRef = useTemplateRef('actionsRef')
 
 // 展开/收起 持久化
-const { key } = injectState()
+const { key } = injectExplorerState()
 const expandStorageKey = props.queryKey ? `${key}-${props.queryKey}-expand` : `${key}-expand`
 const defaultExpand = useStorage(expandStorageKey, false)
 const [isExpanded, toggle] = useToggle(defaultExpand.value)

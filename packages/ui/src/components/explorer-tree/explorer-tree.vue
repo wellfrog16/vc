@@ -52,7 +52,7 @@ import type { ComponentInternalInstance } from 'vue'
 import type { IExplorerTreeEmits, IExplorerTreeProps } from './explorer-tree'
 import { Loading } from '@element-plus/icons-vue'
 import VcButton from '../button/button.vue'
-import { injectState } from '../explorer/explorer'
+import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 import VcScrollbar from '../scrollbar/scrollbar.vue'
 
@@ -69,11 +69,7 @@ const props = withDefaults(defineProps<IExplorerTreeProps>(), {
 const emits = defineEmits<IExplorerTreeEmits>()
 
 const treeRef = useTemplateRef('treeRef')
-const { filterKeyword } = injectState()
-const keyword = computed(() => {
-    if (!props.group) { return '' }
-    return filterKeyword.value[props.group]
-})
+const { filterKeyword } = injectExplorerPanelState()
 
 const treeProps = computed(() => ({
     data: props.data,
@@ -87,9 +83,7 @@ const treeProps = computed(() => ({
 }))
 
 function filterNode(value: string, data: TreeNodeData) {
-    if (!props.group) { return true }
-    const keyword = filterKeyword.value[props.group]
-    if (!value || !keyword) { return true }
+    if (!value || !filterKeyword.value) { return true }
 
     return data.label?.toLowerCase().includes(value.toLowerCase()) ?? false
 }
@@ -98,7 +92,7 @@ function handleNodeClick(data: any, node: Node, instance: ComponentInternalInsta
     emits('nodeClick', data.value, node, instance, event)
 }
 
-watch(keyword, value => {
+watch(filterKeyword, value => {
     treeRef.value?.filter(value)
 })
 </script>

@@ -19,7 +19,7 @@
 import type { IExplorerFilterEmits, IExplorerFilterProps } from './explorer-filter'
 import { Plus, Search } from '@element-plus/icons-vue'
 import { debounce } from 'lodash-es'
-import { injectState } from '../explorer/explorer'
+import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 
 const props = withDefaults(defineProps<IExplorerFilterProps>(), {
     placeholder: '查询',
@@ -29,13 +29,11 @@ const props = withDefaults(defineProps<IExplorerFilterProps>(), {
 })
 const emits = defineEmits<IExplorerFilterEmits>()
 
-const { filterKeyword } = injectState()
+const { filterKeyword } = injectExplorerPanelState()
 const keyword = ref<string>('')
 function handleFilter() {
-    if (props.group) {
-        if (filterKeyword.value[props.group] === keyword.value) { return }
-        filterKeyword.value[props.group] = keyword.value
-    }
+    if (filterKeyword.value === keyword.value) { return }
+    filterKeyword.value = keyword.value
     emits('filter', keyword.value)
 }
 

@@ -10,7 +10,6 @@ export interface IExplorerListItem<T = any> {
 export interface IExplorerListProps {
     data?: IExplorerListItem[]
     actions?: ('create' | 'modify' | 'remove')[]
-    group?: string
     filterMethod?: (keyword: string, item: IExplorerListItem) => boolean
     emptyText?: string
     loading?: boolean

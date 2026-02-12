@@ -51,7 +51,7 @@
 import type { IExplorerListEmits, IExplorerListItem, IExplorerListProps } from './explorer-list'
 import { Loading } from '@element-plus/icons-vue'
 import VcButton from '../button/button.vue'
-import { injectState } from '../explorer/explorer'
+import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 import VcScrollbar from '../scrollbar/scrollbar.vue'
 
@@ -67,7 +67,7 @@ const props = withDefaults(defineProps<IExplorerListProps>(), {
 })
 const emits = defineEmits<IExplorerListEmits>()
 
-const { filterKeyword } = injectState()
+const { filterKeyword } = injectExplorerPanelState()
 const actived = ref<string | number>()
 
 const filterMethod = props.filterMethod || ((keyword: string, item: IExplorerListItem) => {
@@ -75,8 +75,8 @@ const filterMethod = props.filterMethod || ((keyword: string, item: IExplorerLis
 })
 
 const myData = computed(() => {
-    return props.group && filterKeyword.value[props.group]
-        ? props.data.filter(item => filterMethod(filterKeyword.value[props.group!], item))
+    return filterKeyword.value
+        ? props.data.filter(item => filterMethod(filterKeyword.value, item))
         : props.data
 })
 const isEmpty = computed(() => myData.value.length === 0)

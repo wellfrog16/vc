@@ -1,5 +1,5 @@
 <template>
-    <ElSplitter :layout="layout" :lazy="lazy" :class="$style.explorer" v-bind="$attrs">
+    <ElSplitter v-bind="$attrs" ref="splitterRef" :layout="layout" :lazy="lazy" :class="$style.explorer">
         <slot />
     </ElSplitter>
 </template>
@@ -13,13 +13,19 @@ const props = withDefaults(defineProps<IExplorerProps>(), {
     layout: 'horizontal',
     lazy: false,
 })
-const filterKeyword = ref<Record<string, string>>({})
-const fullscreenTarget = ref<Record<string, string>>({})
+
+const fullscreenTarget = ref<HTMLElement>()
+const splitterRef = useTemplateRef('splitterRef')
 
 useProvide(KEY_NAME, {
-    filterKeyword,
     fullscreenTarget,
     key: `vc-explorer-${props.explorerKey}`,
+})
+
+onMounted(() => {
+    if (splitterRef.value?.$el) {
+        fullscreenTarget.value = splitterRef.value.$el
+    }
 })
 </script>
 

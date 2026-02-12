@@ -5,7 +5,6 @@ export interface IExplorerFilterProps {
     create?: boolean
     debounce?: number
     disabled?: boolean
-    group?: string
 }
 
 export interface IExplorerFilterEmits {

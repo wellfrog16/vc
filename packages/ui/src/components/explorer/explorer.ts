@@ -8,10 +8,9 @@ export interface IExplorerProps {
 }
 
 export interface IExplorerState {
-    filterKeyword: Ref<Record<string, string>>
-    fullscreenTarget: Ref<Record<string, HTMLElement>>
-    key: string
+    fullscreenTarget: Ref<HTMLElement> // 全屏的目标 div
+    key: string // explorer 唯一 key
 }
 
 export const KEY_NAME = Symbol('VCExplorerState')
-export const injectState = () => useInject<IExplorerState>(KEY_NAME)
+export const injectExplorerState = () => useInject<IExplorerState>(KEY_NAME)

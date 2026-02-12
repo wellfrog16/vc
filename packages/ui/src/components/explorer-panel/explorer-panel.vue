@@ -5,20 +5,30 @@
 </template>
 
 <script setup lang="ts">
+import type { IColumnConfig } from '../explorer-table/explorer-table'
 import type { IExplorerPanelProps } from './explorer-panel'
-import { injectState } from '../explorer/explorer'
+import { useProvide } from '@/use/useStore'
+import { KEY_NAME } from './explorer-panel'
 
-const props = withDefaults(defineProps<IExplorerPanelProps>(), {
+withDefaults(defineProps<IExplorerPanelProps>(), {
     resizable: false,
     padding: 8,
 })
 
 const panelRef = useTemplateRef('panelRef')
-const { fullscreenTarget } = injectState()
+const fullscreenTarget = ref<HTMLElement>()
+const columnConfig = ref<IColumnConfig[]>([])
+const filterKeyword = ref('')
+
+useProvide(KEY_NAME, {
+    fullscreenTarget,
+    columnConfig,
+    filterKeyword,
+})
 
 onMounted(() => {
-    if (props.group && panelRef.value?.splitterPanelRef) {
-        fullscreenTarget.value[props.group] = panelRef.value.splitterPanelRef
+    if (panelRef.value?.splitterPanelRef) {
+        fullscreenTarget.value = panelRef.value.splitterPanelRef
     }
 })
 </script>

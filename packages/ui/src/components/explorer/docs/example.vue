@@ -2,7 +2,7 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <VcDialog v-model="dialogVisible" title="测试" height="500px" fullscreen flex :padding="5" :box-padding="false">
-                <VcExplorer explorer-key="demo">
+                <VcExplorer explorer-key="demoa">
                     <VcExplorerPanel size="200">
                         <VcExplorerFilter :create="filterCreateVisible" group="a" @filter="(val) => { console.log('filter', val) }" />
                         <VcExplorerList
@@ -15,7 +15,7 @@
                             @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
                         />
                     </VcExplorerPanel>
-                    <VcExplorerPanel group="cc">
+                    <VcExplorerPanel>
                         <VcExplorerQuery :model="form.fields" :auto-space="autoSpace" @search="(val) => { console.log('search', val) }">
                             <ElFormItem label="订单名称" prop="name">
                                 <VcInput v-model="form.fields.name" placeholder="订单名称" clearable width="200px" />
@@ -38,14 +38,13 @@
                         </VcExplorerQuery>
                         <VcExplorerTools
                             v-model:layout="layout"
-                            group="cc"
                             :tools="myTools"
                             :create="toolsCreateVisible"
+                            column-setter-size="small"
                             @create="() => { console.log('create') }"
                             @search="() => { console.log('search') }"
                             @refresh="() => { console.log('refresh') }"
                             @fullscreen="(val) => { console.log('fullscreen', val) }"
-                            @setting="(val) => { console.log('setting', val) }"
                             @layout="(val) => { console.log('layout', val) }"
                         >
                             <ElButton>其他按钮1</ElButton>
@@ -54,25 +53,16 @@
                                 <ElButton type="primary">设置</ElButton>
                             </template>
                         </VcExplorerTools>
-                        <VcExplorerTable :data="tableData">
-                            <ElTableColumn fixed prop="date" label="Date" width="150" />
-                            <ElTableColumn prop="name" label="Name" width="120" />
-                            <ElTableColumn prop="state" label="State" width="120" />
-                            <ElTableColumn prop="city" label="City" width="120" />
-                            <ElTableColumn prop="zip" label="Zip" width="120" />
-                            <ElTableColumn prop="tag" label="Tag" width="100" />
-                            <ElTableColumn prop="address" min-width="300" label="Address" />
-                        </VcExplorerTable>
+                        <VcExplorerTable :data="tableData" selection :column-config="columns" />
                         <VcExplorerFooter v-model:current-page="currentPage" :total="50" @current-change="(val: number) => { console.log('current-change', val) }">
                             <ElButton type="primary">批量操作</ElButton>
                         </VcExplorerFooter>
                     </VcExplorerPanel>
                     <VcExplorerPanel size="300">
-                        <VcExplorerFilter :create="filterCreateVisible" group="b" @filter="(val) => { console.log('filter', val) }" />
+                        <VcExplorerFilter :create="filterCreateVisible" @filter="(val) => { console.log('filter', val) }" />
                         <VcExplorerTree
                             :data="treeData"
                             :actions="myListAction"
-                            group="b"
                             @node-click="handleNodeClick"
                             @create="(val) => { console.log('create', val) }"
                             @modify="(val) => { console.log('modify', val) }"
@@ -81,10 +71,10 @@
                     </VcExplorerPanel>
                 </VcExplorer>
             </VcDialog>
-            <el-space direction="vertical" alignment="start">
+            <ElSpace direction="vertical" alignment="start">
                 <ElText>布局太大，放在对话框里展示</ElText>
                 <ElButton @click="dialogVisible = true">打开对话框</ElButton>
-            </el-space>
+            </ElSpace>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="Filter 参数" />
         <ElDescriptionsItem label="新增按钮">
@@ -125,7 +115,7 @@ import VcExplorerTools from '@/components/explorer-tools/explorer-tools.vue'
 import VcExplorerTree from '@/components/explorer-tree/explorer-tree.vue'
 import VcInput from '@/components/input/input.vue'
 import VcExplorer from '../explorer.vue'
-import { tableData, treeData } from './data'
+import { columns, tableData, treeData } from './data'
 
 const listActionOptions = [
     { label: '新增', value: 'create' },

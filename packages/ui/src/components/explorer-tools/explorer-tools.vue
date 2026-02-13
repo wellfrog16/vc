@@ -21,12 +21,16 @@
             </ElRadioGroup>
             <VcButton v-if="tools.includes('refresh')" title="刷新" :throttle="throttle" circle :icon="{ name: 'Refresh', type: 'el' }" @click="emits('refresh')" />
             <VcButton v-if="tools.includes('fullscreen')" title="全屏" :type="isFullScreen ? 'primary' : 'default'" circle :icon="{ name: 'FullScreen', type: 'el' }" @click="toggleFullScreen" />
-            <ElPopover :visible="settingVisible" placement="bottom-end" trigger="click">
-                <slot name="setting" />
-                <template #reference>
-                    <VcButton v-if="tools.includes('setting')" title="设置" circle :icon="{ name: 'Setting', type: 'el' }" :throttle="throttle" @click="handleSetting" />
-                </template>
-            </ElPopover>
+            <ColumnSetter
+                v-if="tools.includes('setter')"
+                v-model:data="columnConfig"
+                :tools-key="toolsKey"
+                :size="columnSetterSize"
+                :column-to-storage="columnToStorage"
+                @config-confirm="val => emits('configConfirm', val)"
+            >
+                <VcButton title="设置" circle :icon="{ name: 'Setting', type: 'el' }" :throttle="throttle" />
+            </ColumnSetter>
         </div>
     </div>
 </template>
@@ -36,22 +40,26 @@ import type { IExplorerToolsEmits, IExplorerToolsProps } from './explorer-tools'
 import { Search } from '@element-plus/icons-vue'
 import usePersistentModel from '@/use/usePersistentModel'
 import VcButton from '../button/button.vue'
-import { injectState } from '../explorer/explorer'
+import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
+import { injectExplorerState } from '../explorer/explorer'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 import VcInput from '../input/input.vue'
+import ColumnSetter from './components/column-setter.vue'
 
 const props = withDefaults(defineProps<IExplorerToolsProps>(), {
-    tools: () => ['refresh', 'fullscreen', 'setting'],
+    tools: () => ['refresh', 'fullscreen', 'setter'],
     searchPlaceholder: '请输入搜索内容',
     layout: 'list',
     createText: '新增',
     throttle: 800,
+    fullscreenTarget: 'page',
+    columnSetterSize: 'small',
 })
 const emits = defineEmits<IExplorerToolsEmits>()
 
-const { fullscreenTarget, key } = injectState()
+const { key, fullscreenTarget: pageTarget } = injectExplorerState()
+const { fullscreenTarget: panelTarget, columnConfig } = injectExplorerPanelState()
 const $style = useCssModule()
-const [settingVisible, toggleSettingVisible] = useToggle()
 
 const layoutStorageKey = props.toolsKey ? `${key}-${props.toolsKey}-layout` : `${key}-layout`
 const myLayout = usePersistentModel('layout', layoutStorageKey, props.layout)
@@ -62,15 +70,9 @@ const handleSearch = useThrottleFn(() => {
     emits('search', keyword.value)
 }, props.throttle)
 
-function handleSetting() {
-    toggleSettingVisible()
-    emits('setting', settingVisible.value)
-}
-
 const isFullScreen = ref(false)
 function toggleFullScreen() {
-    if (!props.group) { return }
-    const target = fullscreenTarget.value[props.group]
+    const target = props.fullscreenTarget === 'page' ? pageTarget.value : panelTarget.value
     if (target) {
         isFullScreen.value = !isFullScreen.value
         isFullScreen.value ? target.classList.add($style.fullscreen) : target.classList.remove($style.fullscreen)
@@ -104,7 +106,7 @@ function toggleFullScreen() {
     align-items: center;
     column-gap: 12px;
 
-    button {
+    > button {
         padding: 4px;
         font-size: 18px;
         margin-left: 0 !important;

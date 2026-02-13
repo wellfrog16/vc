@@ -46,6 +46,7 @@
                             @refresh="() => { console.log('refresh') }"
                             @fullscreen="(val) => { console.log('fullscreen', val) }"
                             @layout="(val) => { console.log('layout', val) }"
+                            @config-confirm="(val) => { console.log('config-confirm', val) }"
                         >
                             <ElButton>其他按钮1</ElButton>
                             <ElButton>其他按钮2</ElButton>
@@ -128,7 +129,7 @@ const toolsOptions = [
     { label: '布局', value: 'layout' },
     { label: '刷新', value: 'refresh' },
     { label: '全屏', value: 'fullscreen' },
-    { label: '设置', value: 'setting' },
+    { label: '设置', value: 'setter' },
 ]
 
 // Filter
@@ -139,7 +140,7 @@ const filterCreateVisible = ref(false)
 const autoSpace = ref(true)
 
 // Tools
-const myTools = ref<any[]>(['search', 'layout', 'refresh', 'fullscreen', 'setting'])
+const myTools = ref<any[]>(['search', 'layout', 'refresh', 'fullscreen', 'setter'])
 const toolsCreateVisible = ref(true)
 const layout = ref<any>('card')
 

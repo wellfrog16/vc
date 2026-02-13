@@ -52,10 +52,13 @@
   },
   "dependencies": {
     "@iconify/vue": "^5.0.0",
+    "colord": "^2.9.3",
     "cropperjs": "^1.5.12",
+    "sortablejs": "^1.15.6",
     "vuedraggable-es-fix": "^1.0.1"
   },
   "devDependencies": {
+    "@types/sortablejs": "^1.15.9",
     "vitepress": "2.0.0-alpha.15"
   }
 }

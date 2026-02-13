@@ -53,15 +53,7 @@
                             <ElButton type="primary">设置</ElButton>
                         </template>
                     </VcExplorerTools>
-                    <VcExplorerTable :data="tableData">
-                        <ElTableColumn fixed prop="date" label="Date" width="150" />
-                        <ElTableColumn prop="name" label="Name" width="120" />
-                        <ElTableColumn prop="state" label="State" width="120" />
-                        <ElTableColumn prop="city" label="City" width="120" />
-                        <ElTableColumn prop="zip" label="Zip" width="120" />
-                        <ElTableColumn prop="tag" label="Tag" width="100" />
-                        <ElTableColumn prop="address" min-width="300" label="Address" />
-                    </VcExplorerTable>
+                    <VcExplorerTable :data="tableData" selection :column-config="columns" />
                     <VcExplorerFooter v-model:current-page="currentPage" :total="50" @current-change="(val: number) => { console.log('current-change', val) }">
                         <ElButton type="primary">批量操作</ElButton>
                     </VcExplorerFooter>
@@ -84,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { tableData, treeData } from '../components/demo-data'
+import { columns, tableData, treeData } from '../components/demo-data'
 
 // Filter
 const myListAction = ref<any[]>(['modify', 'remove'])

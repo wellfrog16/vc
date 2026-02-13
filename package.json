@@ -22,7 +22,7 @@
     "utils:publish": "pnpm --filter ./packages/utils publish2",
     "playground:dev": "pnpm -C playground dev",
     "playground:build": "pnpm -C playground build",
-    "postinstall": "pnpm utils:build && pnpm ui:build",
+    "postinstall2": "pnpm utils:build && pnpm ui:build",
     "clean": "pnpm -r run clean && rm -rf node_modules",
     "commit": "git-cz",
     "lint": "commitlint -e",

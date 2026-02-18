@@ -1,5 +1,5 @@
 <template>
-    <ElPopover placement="bottom-end" trigger="click" :width="popoverWidth" :teleported="false" @hide="onHide" @before-enter="handleBefore">
+    <ElPopover placement="bottom-end" trigger="click" :width="popoverWidth" :teleported="false" @hide="onHide" :show-arrow="false" @before-enter="handleBefore">
         <template v-if="isInit" #default>
             <div :class="$style.header">
                 <ElText size="large">列设置</ElText>

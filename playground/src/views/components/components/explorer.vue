@@ -1,11 +1,10 @@
 <template>
     <VcExplorer explorer-key="demo">
         <VcExplorerPanel size="200">
-            <VcExplorerFilter :create="filterCreateVisible" group="a" @filter="(val) => { console.log('filter', val) }" />
+            <VcExplorerFilter :create="filterCreateVisible" @filter="(val) => { console.log('filter', val) }" />
             <VcExplorerList
                 :data="listData"
                 :actions="myListAction"
-                group="a"
                 @create="(val) => { console.log('create', val) }"
                 @modify="(val) => { console.log('modify', val) }"
                 @remove="(val) => { console.log('remove', val) }"
@@ -35,15 +34,15 @@
             </VcExplorerQuery>
             <VcExplorerTools
                 v-model:layout="layout"
-                group="cc"
                 :tools="myTools"
                 :create="toolsCreateVisible"
                 @create="() => { console.log('create') }"
                 @search="() => { console.log('search') }"
                 @refresh="() => { console.log('refresh') }"
                 @fullscreen="(val) => { console.log('fullscreen', val) }"
-                @setting="(val) => { console.log('setting', val) }"
                 @layout="(val) => { console.log('layout', val) }"
+                @config-confirm="(val) => { console.log('config-confirm', val) }"
+                @column-reset="() => { console.log('column-reset') }"
             >
                 <ElButton>其他按钮1</ElButton>
                 <ElButton>其他按钮2</ElButton>
@@ -57,11 +56,10 @@
             </VcExplorerFooter>
         </VcExplorerPanel>
         <VcExplorerPanel size="300">
-            <VcExplorerFilter :create="filterCreateVisible" group="b" @filter="(val) => { console.log('filter', val) }" />
+            <VcExplorerFilter :create="filterCreateVisible" @filter="(val) => { console.log('filter', val) }" />
             <VcExplorerTree
                 :data="treeData"
                 :actions="myListAction"
-                group="b"
                 @node-click="handleNodeClick"
                 @create="(val) => { console.log('create', val) }"
                 @modify="(val) => { console.log('modify', val) }"
@@ -82,7 +80,7 @@ const filterCreateVisible = ref(false)
 const autoSpace = ref(true)
 
 // Tools
-const myTools = ref<any[]>(['search', 'layout', 'refresh', 'fullscreen', 'setting'])
+const myTools = ref<any[]>(['search', 'layout', 'refresh', 'fullscreen', 'setter'])
 const toolsCreateVisible = ref(true)
 const layout = ref<any>('card')
 

@@ -4,11 +4,10 @@
             <VcDialog v-model="dialogVisible" title="测试" height="500px" fullscreen flex :padding="5" :box-padding="false">
                 <VcExplorer explorer-key="demoa">
                     <VcExplorerPanel size="200">
-                        <VcExplorerFilter :create="filterCreateVisible" group="a" @filter="(val) => { console.log('filter', val) }" />
+                        <VcExplorerFilter :create="filterCreateVisible" @filter="(val) => { console.log('filter', val) }" />
                         <VcExplorerList
                             :data="listData"
                             :actions="myListAction"
-                            group="a"
                             @create="(val) => { console.log('create', val) }"
                             @modify="(val) => { console.log('modify', val) }"
                             @remove="(val) => { console.log('remove', val) }"

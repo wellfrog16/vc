@@ -80,12 +80,12 @@ export const tableData = [
     { date: '2016-05-06', name: 'Tom', state: 'California', city: 'Los Angeles', address: 'No. 189, Grove St, Los Angeles', zip: 'CA 90036', tag: 'Home' },
 ]
 
-export const columns = [
-    { prop: 'date', label: 'Date', width: 150, widthType: 'width' },
-    { prop: 'name', label: 'Name', width: 120, widthType: 'width' },
-    { prop: 'state', label: 'State', width: 120, widthType: 'width' },
-    { prop: 'city', label: 'City', width: 120, widthType: 'width' },
-    { prop: 'zip', label: 'Zip', width: 120, widthType: 'width' },
-    { prop: 'tag', label: 'Tag', width: 100, widthType: 'width' },
-    { prop: 'address', label: 'Address', minWidth: 300, widthType: 'minWidth' },
+export const columns: any[] = [
+    { prop: 'date', label: 'Date', width: 150, widthType: 'width', visible: true, align: 'left' },
+    { prop: 'name', label: 'Name', width: 120, widthType: 'width', visible: true, align: 'left' },
+    { prop: 'state', label: 'State', width: 120, widthType: 'width', visible: true, align: 'left' },
+    { prop: 'city', label: 'City', width: 120, widthType: 'width', visible: true, align: 'left' },
+    { prop: 'zip', label: 'Zip', width: 120, widthType: 'width', visible: true, align: 'left' },
+    { prop: 'tag', label: 'Tag', width: 100, widthType: 'width', visible: true, align: 'left' },
+    { prop: 'address', label: 'Address', minWidth: 300, widthType: 'minWidth', visible: true, align: 'left' },
 ]

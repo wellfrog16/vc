@@ -5,7 +5,7 @@
                 <ElText size="large">列设置</ElText>
                 <div :class="$style['mode-wrapper']">
                     <VcButton v-if="isFullMode && resetVisible" :class="$style.reset" :icon="{ name: 'RefreshLeft' }" @click="emits('reset')">重置</VcButton>
-                    <ElSegmented v-model="mode" :options="modeOptions" />
+                    <ElSegmented v-model="mode" :options="modeOptions" :class="$style.segmented" />
                 </div>
             </div>
             <ElDivider :class="$style.divider" />
@@ -86,6 +86,12 @@ onBeforeMount(() => loadConfig())
     display: flex;
     align-items: center;
     column-gap: 8px;
+}
+
+.segmented {
+    :global(.el-segmented__item-label) {
+        line-height: 1;
+    }
 }
 
 .reset {

@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { IColumnConfig } from '../explorer-table/explorer-table'
+import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
 import { useInject } from '@/use/useStore'
 
 export interface IExplorerPanelProps {

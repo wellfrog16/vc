@@ -1,5 +1,5 @@
 import type { CascaderOption } from 'element-plus/es/components/cascader-panel'
-import type { IColumnConfig } from '../../explorer-table/explorer-table'
+import type { IColumnConfig } from '../../explorer-column-table/explorer-column-table'
 
 export const treeData: CascaderOption[] = [
     {

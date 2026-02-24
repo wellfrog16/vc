@@ -22,7 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import type { IColumnConfig, IExplorerTableProps } from './explorer-table'
+import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
+import type { IExplorerTableProps } from './explorer-table'
 import { ElTableColumn } from 'element-plus'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 

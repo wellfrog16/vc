@@ -1,4 +1,4 @@
-import type { IColumnConfig } from '../explorer-table/explorer-table'
+import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
 
 export interface IExplorerToolsProps {
     tools?: ('search' | 'refresh' | 'fullscreen' | 'setter' | 'layout')[]

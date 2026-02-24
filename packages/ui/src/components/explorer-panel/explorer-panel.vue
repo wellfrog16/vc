@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IColumnConfig } from '../explorer-table/explorer-table'
+import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
 import type { IExplorerPanelProps } from './explorer-panel'
 import { useProvide } from '@/use/useStore'
 import { KEY_NAME } from './explorer-panel'

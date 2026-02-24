@@ -41,6 +41,7 @@
                             :tools="myTools"
                             :create="toolsCreateVisible"
                             column-setter-size="small"
+                            column-to-storage
                             @create="() => { console.log('create') }"
                             @search="() => { console.log('search') }"
                             @refresh="() => { console.log('refresh') }"

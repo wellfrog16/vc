@@ -13,7 +13,7 @@ export interface IColumnConfig {
 export interface IExplorerColumnTableProps {
     data: IColumnConfig[]
     size?: 'small' | 'default' | 'large' // 预留，未兼容 default/large 后的样式
-    mode: 'easy' | 'full'
+    mode?: 'easy' | 'full'
     highlightCurrent?: boolean
     height?: number | string
     emptyColumn?: boolean

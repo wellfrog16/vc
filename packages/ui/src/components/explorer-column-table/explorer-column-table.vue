@@ -53,6 +53,7 @@ const props = withDefaults(defineProps<IExplorerColumnTableProps>(), {
     highlightCurrent: false,
     height: 320,
     emptyColumn: false,
+    mode: 'easy',
 })
 const emits = defineEmits<IExplorerColumnTableEmits>()
 
@@ -158,6 +159,9 @@ defineExpose({ init })
 
 <style lang="scss" module>
 .table {
+    flex-grow: 1;
+    height: 100px;
+
     --el-table-header-bg-color: var(--el-color-info-light-9);
     --el-table-row-hover-bg-color: var(--el-color-primary-light-9);
 }

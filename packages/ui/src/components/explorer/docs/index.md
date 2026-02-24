@@ -58,6 +58,10 @@
 
 <UsageFooter />
 
+## explorer-column-table API
+
+<UsageColumnTable />
+
 <script setup>
 import Example from "./example.vue";
 import Usage from "./usage.vue";
@@ -69,4 +73,5 @@ import UsageTree from "./usage-tree.vue";
 import UsageTable from "./usage-table.vue";
 import UsageTools from "./usage-tools.vue";
 import UsageFooter from "./usage-footer.vue";
+import UsageColumnTable from "./usage-column-table.vue";
 </script>

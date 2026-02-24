@@ -42,12 +42,14 @@
                             :create="toolsCreateVisible"
                             column-setter-size="small"
                             column-to-storage
+                            :column-reset-visible="toolsColumnResetVisible"
                             @create="() => { console.log('create') }"
                             @search="() => { console.log('search') }"
                             @refresh="() => { console.log('refresh') }"
                             @fullscreen="(val) => { console.log('fullscreen', val) }"
                             @layout="(val) => { console.log('layout', val) }"
                             @config-confirm="(val) => { console.log('config-confirm', val) }"
+                            @column-reset="() => { console.log('column-reset') }"
                         >
                             <ElButton>其他按钮1</ElButton>
                             <ElButton>其他按钮2</ElButton>
@@ -93,6 +95,9 @@
         <ElDescriptionsItem label="Tools 参数" />
         <ElDescriptionsItem label="新增按钮">
             <VcChoiceBoolean v-model="toolsCreateVisible" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="列重置按钮">
+            <VcChoiceBoolean v-model="toolsColumnResetVisible" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="工具栏">
             <VcChoice v-model="myTools" multiple :options="toolsOptions" />
@@ -143,6 +148,7 @@ const autoSpace = ref(true)
 // Tools
 const myTools = ref<any[]>(['search', 'layout', 'refresh', 'fullscreen', 'setter'])
 const toolsCreateVisible = ref(true)
+const toolsColumnResetVisible = ref(true)
 const layout = ref<any>('card')
 
 // Footer

@@ -27,7 +27,9 @@
                 :tools-key="toolsKey"
                 :size="columnSetterSize"
                 :column-to-storage="columnToStorage"
+                :reset-visible="columnResetVisible"
                 @config-confirm="val => emits('configConfirm', val)"
+                @reset="emits('columnReset')"
             >
                 <VcButton title="设置" circle :icon="{ name: 'Setting', type: 'el' }" :throttle="throttle" />
             </ColumnSetter>
@@ -54,6 +56,7 @@ const props = withDefaults(defineProps<IExplorerToolsProps>(), {
     throttle: 800,
     fullscreenTarget: 'page',
     columnSetterSize: 'small',
+    columnResetVisible: true,
 })
 const emits = defineEmits<IExplorerToolsEmits>()
 

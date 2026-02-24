@@ -4,7 +4,7 @@
             <div :class="$style.header">
                 <ElText size="large">列设置</ElText>
                 <div :class="$style['mode-wrapper']">
-                    <VcButton v-if="isFullMode" :class="$style.reset" :icon="{ name: 'RefreshLeft' }">重置</VcButton>
+                    <VcButton v-if="isFullMode && resetVisible" :class="$style.reset" :icon="{ name: 'RefreshLeft' }" @click="emits('reset')">重置</VcButton>
                     <ElSegmented v-model="mode" :options="modeOptions" />
                 </div>
             </div>

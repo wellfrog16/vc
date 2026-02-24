@@ -16,6 +16,7 @@ export interface IExplorerColumnTableProps {
     mode: 'easy' | 'full'
     highlightCurrent?: boolean
     height?: number | string
+    emptyColumn?: boolean
 }
 
 export interface IExplorerColumnTableEmits {

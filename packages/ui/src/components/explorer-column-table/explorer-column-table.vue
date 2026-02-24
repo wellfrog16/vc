@@ -9,14 +9,14 @@
         scrollbar-always-on
         :class="$style.table"
     >
-        <ElTableColumn prop="label" label="列名" show-overflow-tooltip>
+        <ElTableColumn prop="label" label="列名" :min-width="200" show-overflow-tooltip>
             <template #default="{ row }">
                 <div :class="$style.label">
                     <ElCheckbox v-model="row.visible" :label="row.label" :size="size" />
                 </div>
             </template>
         </ElTableColumn>
-        <ElTableColumn v-if="isFullMode" label="宽度" width="210" align="center">
+        <ElTableColumn v-if="isFullMode" label="宽度" :width="widthConfig.width" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
                     <VcChoice v-model="row.widthType" :options="widthOptions" :size="size" @change="handleWidthChange(row)" />
@@ -25,20 +25,21 @@
                 </div>
             </template>
         </ElTableColumn>
-        <ElTableColumn v-if="isFullMode" label="数据位置" width="140" align="center">
+        <ElTableColumn v-if="isFullMode" label="数据位置" :width="widthConfig.data" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
                     <VcChoice v-model="row.align" :options="alignOptions" :size="size" />
                 </div>
             </template>
         </ElTableColumn>
-        <ElTableColumn v-if="isFullMode" label="冻结位置" width="100" align="center">
+        <ElTableColumn v-if="isFullMode" label="冻结位置" :width="widthConfig.fixed" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
                     <VcChoice v-model="row.formFixed" multiple :options="fixedOptions" :size="size" @change="handleFixedChange(row)" />
                 </div>
             </template>
         </ElTableColumn>
+        <ElTableColumn v-if="emptyColumn" label="" />
     </ElTable>
 </template>
 
@@ -51,6 +52,7 @@ import VcInputNumber from '@/components/input-number/input-number.vue'
 const props = withDefaults(defineProps<IExplorerColumnTableProps>(), {
     highlightCurrent: false,
     height: 320,
+    emptyColumn: false,
 })
 const emits = defineEmits<IExplorerColumnTableEmits>()
 
@@ -88,6 +90,16 @@ const fixedOptions = [
     { label: '左', value: 'left' },
     { label: '右', value: 'right' },
 ]
+
+const widthConfig = computed(() => {
+    if (props.size === 'small') {
+        return { width: 210, data: 140, fixed: 100 }
+    }
+    if (props.size === 'default') {
+        return { width: 240, data: 160, fixed: 120 }
+    }
+    return { width: 260, data: 200, fixed: 140 }
+})
 
 const isFullMode = computed(() => props.mode === 'full')
 

@@ -46,8 +46,8 @@
 <script setup lang="ts">
 import type { IColumnConfig, IExplorerColumnTableEmits, IExplorerColumnTableProps } from './explorer-column-table'
 import Sortable from 'sortablejs'
-import VcChoice from '@/components/choice/choice.vue'
-import VcInputNumber from '@/components/input-number/input-number.vue'
+import VcChoice from '../choice/choice.vue'
+import VcInputNumber from '../input-number/input-number.vue'
 
 const props = withDefaults(defineProps<IExplorerColumnTableProps>(), {
     highlightCurrent: false,

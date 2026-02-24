@@ -5,7 +5,6 @@ import { useInject } from '@/use/useStore'
 export interface IExplorerPanelProps {
     resizable?: boolean
     padding?: number
-    group?: string
 }
 
 export interface IExplorerState {

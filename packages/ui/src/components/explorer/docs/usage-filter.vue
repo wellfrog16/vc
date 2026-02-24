@@ -8,7 +8,7 @@ const documentData = {
         { param: 'placeholder', description: '占位符', type: 'string', defaultValue: '查询' },
         { param: 'clearable', description: '是否可清空', type: 'boolean', defaultValue: 'true' },
         { param: 'padding-bottom', description: '底部间距', type: 'number', defaultValue: '8' },
-        { param: 'group', description: '分组，用于和 list/tree 联动进行本地搜索', type: 'string', defaultValue: '-' },
+        { param: 'create', description: '创建按钮是否显示', type: 'boolean', defaultValue: 'false' },
         { param: 'disabled', description: '是否禁用', type: 'boolean', defaultValue: 'false' },
         { param: 'debounce', description: '防抖时间', type: 'number', defaultValue: '300' },
     ],

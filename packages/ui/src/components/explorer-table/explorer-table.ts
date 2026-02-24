@@ -5,7 +5,7 @@ export interface IExplorerTableProps {
     data: any[]
     selection?: boolean
     highlightCurrent?: boolean
-    size?: 'small' | 'large'
+    size?: 'small' | 'default' | 'large'
     columnRender?: (column: IColumnConfig) => VNode
     columnConfig?: IColumnConfig[]
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="main-wrapper">
-        <vc-scrollbar><Explorer /></vc-scrollbar>
+        <Explorer />
     </div>
 </template>
 

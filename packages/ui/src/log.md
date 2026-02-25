@@ -4,14 +4,14 @@ title: 更新日志
 
 ## 1.4.0
 
-2026-?-?
+2026-2-25
 
 ### 新增和更新
 
 - 新增 dark-switcher 组件
 - 新增 color-switcher 组件
 - 新增 splitter、splitter-panel 组件
-- 新增 explorer 组件及其系列子组件 filter、query、list、table、tree、panel、footer
+- 新增 explorer 组件及其系列子组件 filter、query、list、table、column-table、tree、tools、panel、footer
 - dialog 组件增加 padding 参数，完善 flex 模式。使用 vc-scrollbar 替换 el-scrollbar
 - 所有组件支持暗黑模式
 

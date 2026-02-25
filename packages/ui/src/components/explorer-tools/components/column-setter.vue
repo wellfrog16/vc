@@ -22,6 +22,7 @@ import type { IColumnSetterEmits, IColumnSetterProps } from '../explorer-tools'
 import { storage } from '@wfrog/vc-utils'
 import VcButton from '@/components/button/button.vue'
 import VcExplorerColumnTable from '@/components/explorer-column-table/explorer-column-table.vue'
+import { injectExplorerPanelState } from '../../explorer-panel/explorer-panel'
 import { injectExplorerState } from '../../explorer/explorer'
 
 const props = withDefaults(defineProps<IColumnSetterProps>(), {
@@ -31,6 +32,7 @@ const props = withDefaults(defineProps<IColumnSetterProps>(), {
 const emits = defineEmits<IColumnSetterEmits>()
 
 const { key } = injectExplorerState()
+const panelState = injectExplorerPanelState()
 const myData = useVModel(props, 'data', emits)
 const columnTableRef = useTemplateRef('columnTableRef')
 const $style = useCssModule()
@@ -44,7 +46,7 @@ const modeOptions = [
 
 const mode = ref<'easy' | 'full'>('easy')
 const isFullMode = computed(() => mode.value === 'full')
-const popoverWidth = computed(() => isFullMode.value ? '750px' : '270px')
+const popoverWidth = computed(() => isFullMode.value ? '800px' : '270px')
 const isInit = ref(false)
 
 function onHide() {
@@ -72,7 +74,10 @@ async function handleBefore() {
     columnTableRef.value?.init()
 }
 
-onBeforeMount(() => loadConfig())
+onBeforeMount(() => {
+    loadConfig()
+    panelState.actions.saveColumnConfig = onHide
+})
 </script>
 
 <style lang="scss" module>

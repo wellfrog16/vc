@@ -13,8 +13,14 @@
             @header-dragend="onHeaderDragend"
         >
             <ElTableColumn v-if="selection" type="selection" :width="size === 'large' ? 50 : 38" align="center" />
+            <slot name="expand" />
+            <ElTableColumn v-if="index" type="index" :width="size === 'large' ? 80 : 60" align="center" fixed="left" />
             <template v-if="columns.length">
-                <component :is="columnRender(item)" v-for="item in columns" :key="item.prop" />
+                <ElTableColumn v-for="item in columns" :key="item.prop" v-bind="item">
+                    <template #default="{ row, $index }">
+                        <component :is="columnRender(row, item, $index)" />
+                    </template>
+                </ElTableColumn>
             </template>
             <slot />
         </ElTable>
@@ -29,7 +35,7 @@ import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 
 const props = withDefaults(defineProps<IExplorerTableProps>(), {
     highlightCurrent: false,
-    columnRender: (column: IColumnConfig) => h(ElTableColumn, column),
+    columnRender: (row: any, column: IColumnConfig) => h('span', row[column.prop]),
 })
 
 const state = injectExplorerPanelState()
@@ -40,9 +46,22 @@ watch(() => props.columnConfig, val => {
     state.columnConfig.value = val || []
 }, { deep: true, immediate: true })
 
-function onHeaderDragend(newWidth: number, oldWidth: number, column: any, event: Event) {
-    console.log(newWidth, oldWidth, column, event)
+function onHeaderDragend(newWidth: number, _oldWidth: number, column: any) {
+    const item = state.columnConfig.value.find(item => item.prop === column.property)
+    if (item) {
+        item.width = newWidth
+        item.widthType = 'width'
+        delete item.minWidth
+        state.actions.saveColumnConfig()
+    }
 }
+
+defineExpose({
+    setColumns: (columns: IColumnConfig[]) => {
+        state.columnConfig.value = columns
+        state.actions.saveColumnConfig()
+    },
+})
 </script>
 
 <style lang="scss" module>
@@ -62,7 +81,7 @@ function onHeaderDragend(newWidth: number, oldWidth: number, column: any, event:
 
     :global {
         .el-table__header-wrapper .el-table__cell:hover {
-            border-right-color: var(--el-color-primary-light-5);
+            border-right-color: var(--el-color-primary-light-5) !important;
         }
 
         .el-table__column-resize-proxy {

@@ -4,8 +4,9 @@ import type { IColumnConfig } from '../explorer-column-table/explorer-column-tab
 export interface IExplorerTableProps {
     data: any[]
     selection?: boolean
+    index?: boolean
     highlightCurrent?: boolean
     size?: 'small' | 'default' | 'large'
-    columnRender?: (column: IColumnConfig) => VNode
+    columnRender?: (row: any, column: IColumnConfig, index: number) => VNode
     columnConfig?: IColumnConfig[]
 }

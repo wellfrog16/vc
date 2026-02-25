@@ -39,6 +39,13 @@
                 </div>
             </template>
         </ElTableColumn>
+        <ElTableColumn v-if="isFullMode" label="截断" :width="widthConfig.truncate" align="center">
+            <template #default="{ row }">
+                <div :class="$style['item-container']">
+                    <el-checkbox v-model="row.showOverflowTooltip" :size="size" border :class="$style.truncate" />
+                </div>
+            </template>
+        </ElTableColumn>
         <ElTableColumn v-if="emptyColumn" label="" />
     </ElTable>
 </template>
@@ -94,12 +101,12 @@ const fixedOptions = [
 
 const widthConfig = computed(() => {
     if (props.size === 'small') {
-        return { width: 210, data: 140, fixed: 100 }
+        return { width: 210, data: 140, fixed: 100, truncate: 50 }
     }
     if (props.size === 'default') {
-        return { width: 240, data: 160, fixed: 120 }
+        return { width: 240, data: 160, fixed: 120, truncate: 60 }
     }
-    return { width: 260, data: 200, fixed: 140 }
+    return { width: 260, data: 200, fixed: 140, truncate: 76 }
 })
 
 const isFullMode = computed(() => props.mode === 'full')
@@ -203,6 +210,18 @@ defineExpose({ init })
 
     > div {
         vertical-align: middle;
+    }
+}
+
+.truncate {
+    padding: 0 9px !important;
+
+    &:global(.el-checkbox--small) {
+        padding: 0 7px !important;
+    }
+
+    &:global(.el-checkbox--large) {
+        padding: 0 11px !important;
     }
 }
 </style>

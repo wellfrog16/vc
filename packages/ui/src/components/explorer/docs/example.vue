@@ -48,7 +48,7 @@
                             @fullscreen="(val) => { console.log('fullscreen', val) }"
                             @layout="(val) => { console.log('layout', val) }"
                             @config-confirm="(val) => { console.log('config-confirm', val) }"
-                            @column-reset="() => { console.log('column-reset') }"
+                            @column-reset="() => { tableRef?.setColumns(cloneDeep(columns)) }"
                         >
                             <ElButton>其他按钮1</ElButton>
                             <ElButton>其他按钮2</ElButton>
@@ -56,7 +56,7 @@
                                 <ElButton type="primary">设置</ElButton>
                             </template>
                         </VcExplorerTools>
-                        <VcExplorerTable :data="tableData" selection :column-config="columns" />
+                        <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn" index />
                         <VcExplorerFooter v-model:current-page="currentPage" :total="50" @current-change="(val: number) => { console.log('current-change', val) }">
                             <ElButton type="primary">批量操作</ElButton>
                         </VcExplorerFooter>
@@ -108,6 +108,7 @@
 </template>
 
 <script lang="ts" setup>
+import { cloneDeep } from 'lodash-es'
 import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import VcChoice from '@/components/choice/choice.vue'
 import VcDialog from '@/components/dialog/dialog.vue'
@@ -150,6 +151,9 @@ const toolsCreateVisible = ref(true)
 const toolsColumnResetVisible = ref(true)
 const layout = ref<any>('card')
 
+// Table
+const tableRef = useTemplateRef('tableRef')
+
 // Footer
 const currentPage = ref(1)
 
@@ -169,6 +173,7 @@ const orderStatusOptions = [
     { label: '已交付', value: '3' },
 ]
 
+const tableColumn = ref(cloneDeep(columns))
 const form = reactive({
     fields: {
         name: '',

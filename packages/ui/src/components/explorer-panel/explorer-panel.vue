@@ -19,11 +19,15 @@ const panelRef = useTemplateRef('panelRef')
 const fullscreenTarget = ref<HTMLElement>()
 const columnConfig = ref<IColumnConfig[]>([])
 const filterKeyword = ref('')
+const actions = reactive({
+    saveColumnConfig: () => {},
+})
 
 useProvide(KEY_NAME, {
     fullscreenTarget,
     columnConfig,
     filterKeyword,
+    actions,
 })
 
 onMounted(() => {

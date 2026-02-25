@@ -8,6 +8,15 @@ export const componentsData = [
         ],
     },
     {
+        text: '布局组件',
+        items: [
+            { text: 'explorer' },
+            { text: 'scrollbar' },
+            { text: 'splitter' },
+            { text: 'sync-scroll-container' },
+        ],
+    },
+    {
         text: '表单组件',
         items: [
             { text: 'choice' },
@@ -39,7 +48,6 @@ export const componentsData = [
             { text: 'drag-verify' },
             { text: 'drawer' },
             { text: 'easy-pagination' },
-            { text: 'explorer' },
             { text: 'awesome-icon' },
             { text: 'el-icon' },
             { text: 'iconify-icon' },
@@ -50,10 +58,7 @@ export const componentsData = [
             { text: 'image' },
             { text: 'qr-code' },
             { text: 'screenfull' },
-            { text: 'scrollbar' },
             { text: 'single-player' },
-            { text: 'splitter' },
-            { text: 'sync-scroll-container' },
             { text: 'text-ellipsis' },
             { text: 'upload-file' },
         ],

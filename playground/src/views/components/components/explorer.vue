@@ -11,7 +11,7 @@
                 @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
             />
         </VcExplorerPanel>
-        <VcExplorerPanel group="cc">
+        <VcExplorerPanel>
             <VcExplorerQuery :model="form.fields" :auto-space="autoSpace" @search="(val) => { console.log('search', val) }">
                 <ElFormItem label="订单名称" prop="name">
                     <VcInput v-model="form.fields.name" placeholder="订单名称" clearable width="200px" />
@@ -36,13 +36,16 @@
                 v-model:layout="layout"
                 :tools="myTools"
                 :create="toolsCreateVisible"
+                column-setter-size="small"
+                column-to-storage
+                :column-reset-visible="toolsColumnResetVisible"
                 @create="() => { console.log('create') }"
                 @search="() => { console.log('search') }"
                 @refresh="() => { console.log('refresh') }"
                 @fullscreen="(val) => { console.log('fullscreen', val) }"
                 @layout="(val) => { console.log('layout', val) }"
                 @config-confirm="(val) => { console.log('config-confirm', val) }"
-                @column-reset="() => { console.log('column-reset') }"
+                @column-reset="() => { tableRef?.setColumns(cloneDeep(columns)) }"
             >
                 <ElButton>其他按钮1</ElButton>
                 <ElButton>其他按钮2</ElButton>
@@ -50,7 +53,7 @@
                     <ElButton type="primary">设置</ElButton>
                 </template>
             </VcExplorerTools>
-            <VcExplorerTable :data="tableData" selection :column-config="columns" />
+            <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn" index />
             <VcExplorerFooter v-model:current-page="currentPage" :total="50" @current-change="(val: number) => { console.log('current-change', val) }">
                 <ElButton type="primary">批量操作</ElButton>
             </VcExplorerFooter>
@@ -70,6 +73,7 @@
 </template>
 
 <script setup lang="ts">
+import { cloneDeep } from 'lodash-es'
 import { columns, tableData, treeData } from '../demo-data'
 
 // Filter
@@ -82,7 +86,12 @@ const autoSpace = ref(true)
 // Tools
 const myTools = ref<any[]>(['search', 'layout', 'refresh', 'fullscreen', 'setter'])
 const toolsCreateVisible = ref(true)
+const toolsColumnResetVisible = ref(true)
 const layout = ref<any>('card')
+
+// Table
+const tableRef = useTemplateRef('tableRef')
+const tableColumn = ref(cloneDeep(columns))
 
 // Footer
 const currentPage = ref(1)

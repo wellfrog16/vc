@@ -2,7 +2,7 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <VcDialog v-model="dialogVisible" title="测试" height="500px" fullscreen flex :padding="5" :box-padding="false">
-                <VcExplorer explorer-key="demoa">
+                <VcExplorer explorer-key="demo">
                     <VcExplorerPanel size="200">
                         <VcExplorerFilter :create="filterCreateVisible" @filter="(val) => { console.log('filter', val) }" />
                         <VcExplorerList
@@ -153,6 +153,7 @@ const layout = ref<any>('card')
 
 // Table
 const tableRef = useTemplateRef('tableRef')
+const tableColumn = ref(cloneDeep(columns))
 
 // Footer
 const currentPage = ref(1)
@@ -173,7 +174,6 @@ const orderStatusOptions = [
     { label: '已交付', value: '3' },
 ]
 
-const tableColumn = ref(cloneDeep(columns))
 const form = reactive({
     fields: {
         name: '',

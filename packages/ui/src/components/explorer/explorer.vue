@@ -17,13 +17,13 @@ const props = withDefaults(defineProps<IExplorerProps>(), {
 const fullscreenTarget = ref<HTMLElement>()
 const splitterRef = useTemplateRef('splitterRef')
 
-useProvide(KEY_NAME, {
+props.explorerKey && useProvide(KEY_NAME, {
     fullscreenTarget,
     key: `vc-explorer-${props.explorerKey}`,
 })
 
 onMounted(() => {
-    if (splitterRef.value?.$el) {
+    if (props.explorerKey && splitterRef.value?.$el) {
         fullscreenTarget.value = splitterRef.value.$el
     }
 })

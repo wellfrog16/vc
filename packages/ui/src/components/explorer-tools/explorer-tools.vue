@@ -107,7 +107,7 @@ function toggleFullScreen() {
 .tools {
     display: flex;
     align-items: center;
-    column-gap: 12px;
+    column-gap: 8px;
 
     > button {
         padding: 4px;

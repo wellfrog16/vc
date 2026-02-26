@@ -99,6 +99,7 @@ function handleClick(item: IExplorerListItem, e: MouseEvent) {
     color: var(--el-text-color-regular);
     min-height: 32px;
     box-sizing: border-box;
+    line-height: 1;
 
     &:hover {
         background-color: var(--el-color-primary-light-9);

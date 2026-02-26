@@ -1,0 +1,96 @@
+<template>
+    <div v-loading="loading" :class="$style['explorer-container']">
+        <div :class="$style.header">
+            <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" />{{ title }}</div>
+            <div :class="$style.actions">
+                <VcButton v-if="isEditing" :icon="{ type: 'el', name: 'Close' }" @click="handleCancel">取消</VcButton>
+                <VcButton v-if="isEditing" type="primary" :icon="{ type: 'el', name: 'Check' }" @click="handleSave">保存</VcButton>
+                <VcButton v-if="!isEditing" type="primary" :icon="{ type: 'el', name: 'Edit' }" @click="handleEdit">编辑</VcButton>
+            </div>
+        </div>
+        <VcScrollbar always>
+            <ElForm ref="formRef" :model="form.fields" :rules="form.rules" v-bind="props.formProps" :disabled="!isEditing">
+                <div><slot /></div>
+            </ElForm>
+        </VcScrollbar>
+    </div>
+</template>
+
+<script setup lang="ts">
+import type { IExplorerFormEmits, IExplorerFormProps } from './explorer-form'
+import VcButton from '../button/button.vue'
+import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
+import VcScrollbar from '../scrollbar/scrollbar.vue'
+
+const props = withDefaults(defineProps<IExplorerFormProps>(), {
+    onCancel: () => {},
+    onSave: () => {},
+})
+const emits = defineEmits<IExplorerFormEmits>()
+
+const isEditing = ref(false)
+const loading = ref(false)
+const formRef = useTemplateRef('formRef')
+
+function handleEdit() {
+    emits('clickEdit')
+    isEditing.value = true
+}
+async function handleCancel() {
+    await props.onCancel()
+    isEditing.value = false
+}
+async function handleSave() {
+    const valid = await formRef.value!.validate()
+    if (!valid) { return }
+
+    await props.onSave()
+    isEditing.value = false
+}
+</script>
+
+<style lang="scss" module>
+.explorer-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--el-border-color-lighter);
+    height: 40px;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+
+.header-container {
+    font-size: 1.2em;
+}
+
+.icon {
+    margin-right: 4px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    :global {
+        .el-button {
+            margin-left: 0;
+        }
+    }
+}
+
+// .scrollbar {
+//     :global(.el-scrollbar__wrap > .el-scrollbar__view) {
+//         padding-right: 12px;
+//     }
+// }
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <ElScrollbar ref="scrollbarRef" v-bind="$attrs" :class="{ [$style.scrollbar]: flex, [$style[`fill-height`]]: fillHeight }">
+    <ElScrollbar ref="scrollbarRef" v-bind="props" :class="{ [$style.scrollbar]: flex, [$style[`fill-height`]]: fillHeight }">
         <slot />
     </ElScrollbar>
 </template>
@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import type { IScrollbarProps } from './scrollbar'
 
-withDefaults(defineProps<IScrollbarProps>(), {
+const props = withDefaults(defineProps<IScrollbarProps>(), {
     padding: 0,
     flex: true,
     fillHeight: true,

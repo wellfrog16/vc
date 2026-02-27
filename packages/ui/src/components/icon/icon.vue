@@ -6,10 +6,11 @@
 import type { IIconProps } from './icon'
 import VcAwesome from '../awesome-icon/awesome-icon.vue'
 import HEl from '../el-icon/el-icon.vue'
+import VcIconify from '../iconify-icon/iconify-icon.vue'
 import VcSvg from '../svg-icon/svg-icon.vue'
 
 const props = defineProps<IIconProps>()
-const components = { awesome: VcAwesome, el: HEl, svg: VcSvg }
+const components = { awesome: VcAwesome, el: HEl, svg: VcSvg, iconify: VcIconify }
 const mySize = computed(() => {
     if (props.size && Number.isNaN(+props.size)) { return props.size }
     return `${props.size}px`

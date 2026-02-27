@@ -1,6 +1,6 @@
 declare namespace IGlobal {
     type BaseType = string | number | boolean
-    type IconType = 'el' | 'svg' | 'awesome'
+    type IconType = 'el' | 'svg' | 'awesome' | 'iconify'
     type ImageFit = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down'
 }
 

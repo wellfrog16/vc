@@ -11,52 +11,77 @@
                 @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
             />
         </VcExplorerPanel>
-        <VcExplorerPanel>
-            <VcExplorerQuery :model="form.fields" :auto-space="autoSpace" @search="(val) => { console.log('search', val) }">
-                <ElFormItem label="订单名称" prop="name">
-                    <VcInput v-model="form.fields.name" placeholder="订单名称" clearable width="200px" />
-                </ElFormItem>
-                <ElFormItem label="订单编号" prop="code">
-                    <VcInput v-model="form.fields.code" placeholder="订单编号" clearable />
-                </ElFormItem>
-                <ElFormItem label="订单状态" prop="status">
-                    <VcChoice v-model="form.fields.status" multiple :options="orderStatusOptions" />
-                </ElFormItem>
-                <ElFormItem label="时间范围" prop="date">
-                    <el-date-picker
-                        v-model="form.fields.date"
-                        type="daterange"
-                        range-separator="To"
-                        start-placeholder="Start date"
-                        end-placeholder="End date"
-                    />
-                </ElFormItem>
-            </VcExplorerQuery>
-            <VcExplorerTools
-                v-model:layout="layout"
-                :tools="myTools"
-                :create="toolsCreateVisible"
-                column-setter-size="small"
-                column-to-storage
-                :column-reset-visible="toolsColumnResetVisible"
-                @create="() => { console.log('create') }"
-                @search="() => { console.log('search') }"
-                @refresh="() => { console.log('refresh') }"
-                @fullscreen="(val) => { console.log('fullscreen', val) }"
-                @layout="(val) => { console.log('layout', val) }"
-                @config-confirm="(val) => { console.log('config-confirm', val) }"
-                @column-reset="() => { tableRef?.setColumns(cloneDeep(columns)) }"
-            >
-                <ElButton>其他按钮1</ElButton>
-                <ElButton>其他按钮2</ElButton>
-                <template #setting>
-                    <ElButton type="primary">设置</ElButton>
-                </template>
-            </VcExplorerTools>
-            <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn" index />
-            <VcExplorerFooter v-model:current-page="currentPage" :total="50" @current-change="(val: number) => { console.log('current-change', val) }">
-                <ElButton type="primary">批量操作</ElButton>
-            </VcExplorerFooter>
+        <VcExplorerPanel :padding="0">
+            <VcExplorer layout="vertical">
+                <VcExplorerPanel resizable>
+                    <VcExplorerQuery :model="form.fields" :auto-space="autoSpace" @search="(val) => { console.log('search', val) }">
+                        <ElFormItem label="订单名称" prop="name">
+                            <VcInput v-model="form.fields.name" placeholder="订单名称" clearable width="200px" />
+                        </ElFormItem>
+                        <ElFormItem label="订单编号" prop="code">
+                            <VcInput v-model="form.fields.code" placeholder="订单编号" clearable />
+                        </ElFormItem>
+                        <ElFormItem label="订单状态" prop="status">
+                            <VcChoice v-model="form.fields.status" multiple :options="orderStatusOptions" />
+                        </ElFormItem>
+                        <ElFormItem label="时间范围" prop="date">
+                            <el-date-picker
+                                v-model="form.fields.date"
+                                type="daterange"
+                                range-separator="To"
+                                start-placeholder="Start date"
+                                end-placeholder="End date"
+                            />
+                        </ElFormItem>
+                    </VcExplorerQuery>
+                    <VcExplorerTools
+                        v-model:layout="layout"
+                        :tools="myTools"
+                        :create="toolsCreateVisible"
+                        column-setter-size="small"
+                        column-to-storage
+                        :column-reset-visible="toolsColumnResetVisible"
+                        @create="() => { console.log('create') }"
+                        @search="() => { console.log('search') }"
+                        @refresh="() => { console.log('refresh') }"
+                        @fullscreen="(val) => { console.log('fullscreen', val) }"
+                        @layout="(val) => { console.log('layout', val) }"
+                        @config-confirm="(val) => { console.log('config-confirm', val) }"
+                        @column-reset="() => { tableRef?.setColumns(cloneDeep(columns)) }"
+                    >
+                        <ElButton>其他按钮1</ElButton>
+                        <ElButton>其他按钮2</ElButton>
+                        <template #setting>
+                            <ElButton type="primary">设置</ElButton>
+                        </template>
+                    </VcExplorerTools>
+                    <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn" index />
+                    <VcExplorerFooter v-model:current-page="currentPage" :total="50" @current-change="(val: number) => { console.log('current-change', val) }">
+                        <ElButton type="primary">批量操作</ElButton>
+                    </VcExplorerFooter>
+                </VcExplorerPanel>
+                <VcExplorerPanel size="400" resizable>
+                    <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }">
+                        <ElRow :gutter="20" :class="$style.row">
+                            <ElCol :span="12">
+                                <ElFormItem label="标题" prop="title">
+                                    <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                </ElFormItem>
+                            </ElCol>
+                            <ElCol :span="12">
+                                <ElFormItem label="标题" prop="title">
+                                    <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                </ElFormItem>
+                            </ElCol>
+                            <ElCol :span="12">
+                                <ElFormItem label="标题" prop="title">
+                                    <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                </ElFormItem>
+                            </ElCol>
+                        </ElRow>
+                    </VcExplorerForm>
+                </VcExplorerPanel>
+            </VcExplorer>
         </VcExplorerPanel>
         <VcExplorerPanel size="300">
             <VcExplorerFilter :create="filterCreateVisible" @filter="(val) => { console.log('filter', val) }" />
@@ -93,6 +118,12 @@ const layout = ref<any>('card')
 const tableRef = useTemplateRef('tableRef')
 const tableColumn = ref(cloneDeep(columns))
 
+// Form
+const defaultFields = { title: '容器标题' }
+const containerForm = reactive({
+    fields: { ...defaultFields },
+})
+
 // Footer
 const currentPage = ref(1)
 
@@ -125,4 +156,8 @@ function handleNodeClick(value: any, node: any, instance: any, event: MouseEvent
 }
 </script>
 
-<style lang="scss" module></style>
+<style lang="scss" module>
+.row {
+    margin: 0 !important;
+}
+</style>

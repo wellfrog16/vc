@@ -64,25 +64,34 @@
                                 </VcExplorerFooter>
                             </VcExplorerPanel>
                             <VcExplorerPanel size="400" resizable>
-                                <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }">
-                                    <ElRow :gutter="20" :class="$style.row">
-                                        <ElCol :span="12">
-                                            <ElFormItem label="标题" prop="title">
-                                                <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
-                                            </ElFormItem>
-                                        </ElCol>
-                                        <ElCol :span="12">
-                                            <ElFormItem label="标题" prop="title">
-                                                <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
-                                            </ElFormItem>
-                                        </ElCol>
-                                        <ElCol :span="12">
-                                            <ElFormItem label="标题" prop="title">
-                                                <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
-                                            </ElFormItem>
-                                        </ElCol>
-                                    </ElRow>
-                                </VcExplorerForm>
+                                <VcExplorer>
+                                    <VcExplorerPanel resizable>
+                                        <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }">
+                                            <ElRow :gutter="20" :class="$style.row">
+                                                <ElCol :span="12">
+                                                    <ElFormItem label="标题" prop="title">
+                                                        <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                                    </ElFormItem>
+                                                </ElCol>
+                                                <ElCol :span="12">
+                                                    <ElFormItem label="标题" prop="title">
+                                                        <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                                    </ElFormItem>
+                                                </ElCol>
+                                                <ElCol :span="12">
+                                                    <ElFormItem label="标题" prop="title">
+                                                        <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                                    </ElFormItem>
+                                                </ElCol>
+                                            </ElRow>
+                                        </VcExplorerForm>
+                                    </VcExplorerPanel>
+                                    <VcExplorerPanel resizable>
+                                        <VcExplorerContainer title="这个是纯容器">
+                                            <div v-for="value in 20" :key="value">这个是纯容器，带标题{{ value }}</div>
+                                        </VcExplorerContainer>
+                                    </VcExplorerPanel>
+                                </VcExplorer>
                             </VcExplorerPanel>
                         </VcExplorer>
                     </VcExplorerPanel>
@@ -137,6 +146,7 @@ import { cloneDeep } from 'lodash-es'
 import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import VcChoice from '@/components/choice/choice.vue'
 import VcDialog from '@/components/dialog/dialog.vue'
+import VcExplorerContainer from '@/components/explorer-container/explorer-container.vue'
 import VcExplorerFilter from '@/components/explorer-filter/explorer-filter.vue'
 import VcExplorerFooter from '@/components/explorer-footer/explorer-footer.vue'
 import VcExplorerForm from '@/components/explorer-form/explorer-form.vue'

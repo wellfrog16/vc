@@ -11,6 +11,7 @@ title: 更新日志
 - 优化 explorer-list 组件样式
 - explorer 组件增加嵌套功能
 - 新增 explorer-form 子组件
+- 新增 explorer-container 子组件
 - icon 组件增加 iconify 支持，方便 button 组件使用
 
 ### 缺陷修复

@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="loading" :class="$style['explorer-container']">
+    <div v-loading="loading" :class="$style['explorer-form']">
         <div :class="$style.header">
             <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" /><slot name="title">{{ title }}</slot></div>
             <div :class="$style.actions">
@@ -69,7 +69,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" module>
-.explorer-container {
+.explorer-form {
     display: flex;
     flex-direction: column;
     flex-grow: 1;

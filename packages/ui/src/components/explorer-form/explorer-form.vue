@@ -92,11 +92,12 @@ onBeforeUnmount(() => {
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--el-border-color-lighter);
-    height: 40px;
-    padding-bottom: 8px;
+    padding-bottom: 7px;
     box-sizing: border-box;
     margin-bottom: 8px;
     color: var(--el-text-color-regular);
+    flex-wrap: wrap;
+    row-gap: 8px;
 }
 
 .header-container {

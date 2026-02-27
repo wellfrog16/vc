@@ -2,7 +2,7 @@
     <div v-loading="loading" :class="$style['explorer-container']">
         <div :class="$style.header">
             <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" /><slot name="title">{{ title }}</slot></div>
-            <div :class="$style.actions"><slot name="action" /></div>
+            <div v-if="$slots.action" :class="$style.actions"><slot name="action" /></div>
         </div>
         <VcScrollbar always>
             <slot />
@@ -34,11 +34,13 @@ withDefaults(defineProps<IExplorerContainerProps>(), {
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--el-border-color-lighter);
-    height: 40px;
-    padding-bottom: 8px;
+    min-height: 40px;
+    padding-bottom: 7px;
     box-sizing: border-box;
     margin-bottom: 8px;
     color: var(--el-text-color-regular);
+    flex-wrap: wrap;
+    row-gap: 8px;
 }
 
 .header-container {

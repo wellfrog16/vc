@@ -60,7 +60,7 @@
                         <ElButton type="primary">批量操作</ElButton>
                     </VcExplorerFooter>
                 </VcExplorerPanel>
-                <VcExplorerPanel size="400" resizable>
+                <VcExplorerPanel size="400" resizable :padding="0">
                     <VcExplorer>
                         <VcExplorerPanel resizable>
                             <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }">

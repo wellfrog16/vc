@@ -10,7 +10,7 @@
             </div>
         </div>
         <VcScrollbar always>
-            <component :is="formComponent" ref="formRef" v-bind="props.formProps" :model="form.fields" :rules="form.rules" :disabled="!isEditing">
+            <component :is="formComponent" ref="formRef" v-bind="props.formProps" :model="form.fields" :rules="form.rules" :disabled="!isEditing" require-asterisk-position="right">
                 <slot />
             </component>
         </VcScrollbar>

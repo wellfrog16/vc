@@ -61,25 +61,36 @@
                     </VcExplorerFooter>
                 </VcExplorerPanel>
                 <VcExplorerPanel size="400" resizable>
-                    <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }">
-                        <ElRow :gutter="20" :class="$style.row">
-                            <ElCol :span="12">
-                                <ElFormItem label="标题" prop="title">
-                                    <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
-                                </ElFormItem>
-                            </ElCol>
-                            <ElCol :span="12">
-                                <ElFormItem label="标题" prop="title">
-                                    <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
-                                </ElFormItem>
-                            </ElCol>
-                            <ElCol :span="12">
-                                <ElFormItem label="标题" prop="title">
-                                    <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
-                                </ElFormItem>
-                            </ElCol>
-                        </ElRow>
-                    </VcExplorerForm>
+                    <VcExplorer>
+                        <VcExplorerPanel resizable>
+                            <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }">
+                                <ElRow :gutter="20" :class="$style.row">
+                                    <ElCol :span="12">
+                                        <ElFormItem label="标题" prop="title">
+                                            <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                        </ElFormItem>
+                                    </ElCol>
+                                    <ElCol :span="12">
+                                        <ElFormItem label="标题" prop="title">
+                                            <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                        </ElFormItem>
+                                    </ElCol>
+                                    <ElCol :span="12">
+                                        <ElFormItem label="标题" prop="title">
+                                            <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                        </ElFormItem>
+                                    </ElCol>
+                                </ElRow>
+                            </VcExplorerForm>
+                        </VcExplorerPanel>
+                        <VcExplorerPanel resizable>
+                            <VcExplorerContainer title="这个是纯容器">
+                                <div v-for="value in 20" :key="value">
+                                    <ElText>这个是纯容器，带标题{{ value }}</ElText>
+                                </div>
+                            </VcExplorerContainer>
+                        </VcExplorerPanel>
+                    </VcExplorer>
                 </VcExplorerPanel>
             </VcExplorer>
         </VcExplorerPanel>
@@ -122,6 +133,9 @@ const tableColumn = ref(cloneDeep(columns))
 const defaultFields = { title: '容器标题' }
 const containerForm = reactive({
     fields: { ...defaultFields },
+    rules: {
+        title: [{ required: true, message: '请输入容器标题', trigger: 'blur' }],
+    },
 })
 
 // Footer

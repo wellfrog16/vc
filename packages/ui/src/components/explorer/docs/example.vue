@@ -88,7 +88,9 @@
                                     </VcExplorerPanel>
                                     <VcExplorerPanel resizable>
                                         <VcExplorerContainer title="这个是纯容器">
-                                            <div v-for="value in 20" :key="value">这个是纯容器，带标题{{ value }}</div>
+                                            <div v-for="value in 20" :key="value">
+                                                <ElText>这个是纯容器，带标题{{ value }}</ElText>
+                                            </div>
                                         </VcExplorerContainer>
                                     </VcExplorerPanel>
                                 </VcExplorer>
@@ -195,6 +197,9 @@ const tableColumn = ref(cloneDeep(columns))
 const defaultFields = { title: '容器标题' }
 const containerForm = reactive({
     fields: { ...defaultFields },
+    rules: {
+        title: [{ required: true, message: '请输入容器标题', trigger: 'blur' }],
+    },
 })
 
 // Footer

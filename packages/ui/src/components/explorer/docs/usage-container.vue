@@ -10,9 +10,9 @@ const documentData = {
         { param: 'loading', description: '是否加载中', type: 'boolean', defaultValue: 'false' },
     ],
     slots: [
+        { name: 'default', description: '表单内容插槽' },
         { name: 'title', description: '标题插槽' },
         { name: 'action', description: '操作插槽' },
-        { name: 'default', description: '表单内容插槽' },
     ],
 }
 </script>

@@ -20,8 +20,9 @@ const documentData = {
         { param: 'ISave', description: '(fields: Record<string, any>) => void | Promise<void>' },
     ],
     slots: [
-        { name: 'title', description: '表单标题插槽' },
         { name: 'default', description: '表单内容插槽' },
+        { name: 'title', description: '表单标题插槽' },
+        { name: 'action', description: '表单操作按钮插槽' },
     ],
 }
 </script>

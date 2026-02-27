@@ -46,6 +46,7 @@ const props = withDefaults(defineProps<IDialogProps>(), {
     fullscreen: false,
     boxPadding: true,
     padding: 16,
+    maxHeight: '80vh',
 })
 
 const emits = defineEmits<{

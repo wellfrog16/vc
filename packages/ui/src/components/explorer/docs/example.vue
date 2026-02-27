@@ -64,20 +64,20 @@
                                 </VcExplorerFooter>
                             </VcExplorerPanel>
                             <VcExplorerPanel size="400" resizable>
-                                <VcExplorerForm :title="containerForm.fields.title" icon="carbon:data-table" :form="containerForm" :form-props="{ labelPosition: 'top' }">
+                                <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }">
                                     <ElRow :gutter="20" :class="$style.row">
                                         <ElCol :span="12">
-                                            <ElFormItem label="标题">
+                                            <ElFormItem label="标题" prop="title">
                                                 <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
                                             </ElFormItem>
                                         </ElCol>
                                         <ElCol :span="12">
-                                            <ElFormItem label="标题">
+                                            <ElFormItem label="标题" prop="title">
                                                 <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
                                             </ElFormItem>
                                         </ElCol>
                                         <ElCol :span="12">
-                                            <ElFormItem label="标题">
+                                            <ElFormItem label="标题" prop="title">
                                                 <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
                                             </ElFormItem>
                                         </ElCol>
@@ -182,10 +182,9 @@ const tableRef = useTemplateRef('tableRef')
 const tableColumn = ref(cloneDeep(columns))
 
 // Container
+const defaultFields = { title: '容器标题' }
 const containerForm = reactive({
-    fields: {
-        title: '容器标题',
-    },
+    fields: { ...defaultFields },
 })
 
 // Footer

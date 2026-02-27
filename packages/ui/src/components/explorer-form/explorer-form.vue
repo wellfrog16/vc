@@ -1,7 +1,7 @@
 <template>
     <div v-loading="loading" :class="$style['explorer-container']">
         <div :class="$style.header">
-            <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" />{{ title }}</div>
+            <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" /><slot name="title">{{ title }}</slot></div>
             <div :class="$style.actions">
                 <VcButton v-if="isEditing" :icon="{ type: 'el', name: 'Close' }" @click="handleCancel">取消</VcButton>
                 <VcButton v-if="isEditing" type="primary" :icon="{ type: 'el', name: 'Check' }" @click="handleSave">保存</VcButton>
@@ -10,7 +10,7 @@
         </div>
         <VcScrollbar always>
             <ElForm ref="formRef" :model="form.fields" :rules="form.rules" v-bind="props.formProps" :disabled="!isEditing">
-                <div><slot /></div>
+                <slot />
             </ElForm>
         </VcScrollbar>
     </div>
@@ -23,6 +23,8 @@ import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 import VcScrollbar from '../scrollbar/scrollbar.vue'
 
 const props = withDefaults(defineProps<IExplorerFormProps>(), {
+    icon: 'clarity:form-line',
+    autoInitial: true,
     onCancel: () => {},
     onSave: () => {},
 })
@@ -36,17 +38,34 @@ function handleEdit() {
     emits('clickEdit')
     isEditing.value = true
 }
+
 async function handleCancel() {
+    formRef.value!.resetFields()
     await props.onCancel()
     isEditing.value = false
 }
+
 async function handleSave() {
     const valid = await formRef.value!.validate()
     if (!valid) { return }
 
-    await props.onSave()
+    await props.onSave(props.form.fields)
+    formRef.value?.setInitialValues(props.form.fields)
     isEditing.value = false
 }
+
+const autoInitialWatch = watch(() => props.form.fields, val => {
+    props.autoInitial && formRef.value?.setInitialValues(val)
+}, { immediate: true })
+
+const initialValuesWatch = watch(() => props.initialValues, () => {
+    props.initialValues && formRef.value?.setInitialValues(props.initialValues)
+}, { immediate: true, deep: true })
+
+onBeforeUnmount(() => {
+    initialValuesWatch.stop()
+    autoInitialWatch.stop()
+})
 </script>
 
 <style lang="scss" module>

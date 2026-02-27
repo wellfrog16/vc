@@ -10,9 +10,11 @@
 - ExplorerQuery：查询区域组件
 - ExplorerTools：工具栏组件
 - ExplorerList：列表区域组件
-- ExplorerTable：表格区域组件
 - ExplorerTree：树结构组件
+- ExplorerTable：表格区域组件
+- ExplorerForm：表单组件
 - ExplorerFooter：底部组件（带分页）
+- ExplorerColumnTable：表格列配置组件，供 ExplorerTools 使用，也可以单独在页面使用
 
 ## 功能示例
 
@@ -54,6 +56,10 @@
 
 <UsageTable />
 
+## explorer-form API
+
+<UsageForm />
+
 ## explorer-footer API
 
 <UsageFooter />
@@ -71,6 +77,7 @@ import UsageQuery from "./usage-query.vue";
 import UsageList from "./usage-list.vue";
 import UsageTree from "./usage-tree.vue";
 import UsageTable from "./usage-table.vue";
+import UsageForm from "./usage-form.vue";
 import UsageTools from "./usage-tools.vue";
 import UsageFooter from "./usage-footer.vue";
 import UsageColumnTable from "./usage-column-table.vue";

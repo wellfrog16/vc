@@ -6,7 +6,7 @@
 const documentData = {
     params: [
         { param: 'title', description: '表单标题', type: 'string', defaultValue: '-' },
-        { param: 'icon', description: '表单标题前的 icon，使用 iconify', type: 'string', defaultValue: 'clarity:form-line' },
+        { param: 'icon', description: '表单标题前的 icon，使用 iconify', type: 'string', defaultValue: 'fluent:form-48-regular' },
         { param: 'form', description: '表单配置', type: 'IForm', defaultValue: '-' },
         { param: 'form-props', description: '表单属性', type: 'FormProps', defaultValue: '-' },
         { param: 'initialValues', description: '初始值', type: 'Record<string, any>', defaultValue: '{}' },

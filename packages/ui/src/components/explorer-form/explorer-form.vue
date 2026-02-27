@@ -23,7 +23,7 @@ import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 import VcScrollbar from '../scrollbar/scrollbar.vue'
 
 const props = withDefaults(defineProps<IExplorerFormProps>(), {
-    icon: 'clarity:form-line',
+    icon: 'fluent:form-48-regular',
     autoInitial: true,
     onCancel: () => {},
     onSave: () => {},
@@ -85,6 +85,7 @@ onBeforeUnmount(() => {
     padding-bottom: 8px;
     box-sizing: border-box;
     margin-bottom: 8px;
+    color: var(--el-text-color-regular);
 }
 
 .header-container {

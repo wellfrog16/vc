@@ -96,10 +96,19 @@ function handleNodeClick(data: any, node: Node, instance: ComponentInternalInsta
 watch(filterKeyword, value => {
     treeRef.value?.filter(value)
 })
+
+defineExpose({
+    getTreeRef: () => treeRef.value,
+    setActive: (value: string | number) => {
+        treeRef.value?.setCurrentKey(value)
+    },
+})
 </script>
 
 <style lang="scss" module>
 .tree {
+    // --el-tree-node-content-height: 32px;
+
     :global {
         .el-tree-node__content {
             display: flex;
@@ -141,6 +150,7 @@ watch(filterKeyword, value => {
     padding: 4px 8px 4px 0;
     box-sizing: border-box;
     width: 100px;
+    // height: 32px;
 }
 
 .label {

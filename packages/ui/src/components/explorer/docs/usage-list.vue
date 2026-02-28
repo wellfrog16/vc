@@ -27,6 +27,9 @@ const documentData = {
         { name: 'remove', description: '删除按钮点击事件', param: 'value, IExplorerListItem' },
         { name: 'item-click', description: '列表项点击事件', param: 'value, IExplorerListItem' },
     ],
+    methods: [
+        { name: 'setActive', description: '设置当前节点', param: '(value: string | number) => void' },
+    ],
     slots: [
         { name: 'default', description: '列表项目，参数 data: IExplorerListItem, index: number' },
     ],

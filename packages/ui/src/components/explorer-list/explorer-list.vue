@@ -87,6 +87,12 @@ function handleClick(item: IExplorerListItem, e: MouseEvent) {
     actived.value = item.value
     emits('itemClick', item.value, item, e)
 }
+
+defineExpose({
+    setActive: (value: string | number) => {
+        actived.value = value
+    },
+})
 </script>
 
 <style lang="scss" module>

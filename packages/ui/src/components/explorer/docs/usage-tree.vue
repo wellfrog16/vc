@@ -29,6 +29,10 @@ const documentData = {
         { name: 'remove', description: '删除按钮点击事件', param: 'value, Node' },
         { name: 'node-click', description: '节点点击事件', param: 'value, Node, ComponentInternalInstance | null, event: MouseEvent' },
     ],
+    methods: [
+        { name: 'getTreeRef', description: '获取 el-tree 的 ref', param: '() => ElTree' },
+        { name: 'setActive', description: '设置当前节点', param: '(value: string | number) => void' },
+    ],
     slots: [
         { name: 'default', description: '列表项目，参数 data: IExplorerListItem, index: number' },
     ],

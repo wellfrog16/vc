@@ -2,6 +2,16 @@
 title: 更新日志
 ---
 
+## 1.6.0
+
+2026-?-?
+
+### 新增和更新
+
+- explorer-tree 和 explorer-list 增加 setActive 方法
+
+### 缺陷修复
+
 ## 1.5.0
 
 2026-2-28

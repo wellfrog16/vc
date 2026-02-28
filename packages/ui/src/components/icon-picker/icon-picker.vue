@@ -1,5 +1,5 @@
 <template>
-    <ElPopover v-model:visible="visible" placement="bottom-start" trigger="click" width="350px">
+    <ElPopover v-model:visible="visible" placement="bottom-start" trigger="click" width="350px" :disabled="formDisabled">
         <template #reference>
             <VcInput v-model="myValue" :class="$style.input" v-bind="$attrs">
                 <template #prepend>
@@ -14,15 +14,20 @@
 <script setup lang="ts">
 import type { IIconPickerProps } from './icon-picker'
 import { useVModel } from '@vueuse/core'
+import { useFormDisabled } from 'element-plus'
 import VcIconifyIcon from '@/components/iconify-icon/iconify-icon.vue'
 import VcInput from '@/components/input/input.vue'
 import Panel from './components/panel.vue'
 
-const props = defineProps<IIconPickerProps>()
+const props = withDefaults(defineProps<IIconPickerProps>(), {
+    disabled: undefined,
+})
 const emits = defineEmits<{
     (e: 'update:modelValue', value: string): void
     (e: 'change', value: string): void
 }>()
+
+const formDisabled = useFormDisabled()
 const visible = ref(false)
 const panelVisible = ref(false)
 
@@ -47,7 +52,7 @@ const pickerVisibleWatch = watch(visible, val => {
     :global {
         .el-input-group__prepend {
             padding: 0 4px;
-            cursor: pointer;
+            cursor: v-bind('!formDisabled ? "pointer" : "not-allowed"');
         }
     }
 }

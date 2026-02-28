@@ -4,6 +4,6 @@ export interface ITagsProps {
     regexp?: RegExp
     sameMessage?: string
     errorMessage?: string
-    readonly?: boolean
+    disabled?: boolean
     valueFormat?: (val: string | number) => string | number
 }

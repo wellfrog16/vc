@@ -8,6 +8,7 @@
 import type { ITinymceProps } from './tinymce'
 import { useDark } from '@vueuse/core'
 import { loader } from '@wfrog/vc-utils'
+import { useFormDisabled } from 'element-plus'
 import config from './config'
 
 const props = withDefaults(defineProps<ITinymceProps>(), {
@@ -18,10 +19,12 @@ const props = withDefaults(defineProps<ITinymceProps>(), {
     modelValue: '',
     httpRequest: undefined,
     storageKey: 'vc-dark',
+    disabled: undefined,
 })
 
 const emits = defineEmits(['update:modelValue'])
 
+const formDisabled = useFormDisabled()
 const isDark = useDark({ storageKey: props.storageKey })
 const Tinymce = shallowRef()
 const loading = ref(false)
@@ -69,6 +72,7 @@ async function tinymceInit() {
         images_upload_handler: props.httpRequest,
         suffix: '.min',
         branding: false, // 显示tinymce徽标
+        readonly: formDisabled.value,
         init_instance_callback: (editor: any) => {
             if (props.modelValue) { editor.setContent(props.modelValue) }
 
@@ -94,6 +98,12 @@ const tinymceWatch = watch([tinymceConfig, isDark], () => {
     tinymceDestory()
     tinymceInit()
 }, { deep: true })
+
+watch(formDisabled, val => {
+    if (!Tinymce.value) { return }
+    const tinymce = Tinymce.value.get(props.id)
+    tinymce.setMode(val ? 'readonly' : 'design')
+})
 
 onMounted(() => tinymceInit())
 

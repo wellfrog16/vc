@@ -1,15 +1,18 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区：">
-            <VcTreePicker
-                v-model="result"
-                :options="treeData"
-                :multiple="multiple"
-                :block="block"
-                :width="width"
-                :props="cascaderProps"
-                filterable
-            />
+            <el-form disabled>
+                <VcTreePicker
+                    v-model="result"
+                    :options="treeData"
+                    :multiple="multiple"
+                    :block="block"
+                    :width="width"
+                    :props="cascaderProps"
+                    filterable
+                    :disabled="false"
+                />
+            </el-form>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：单/多选">
             <VcChoice v-model="multiple" :options="multipleOption" @change="handleMultipleChange" />

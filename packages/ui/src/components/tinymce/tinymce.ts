@@ -10,4 +10,5 @@ export interface ITinymceProps {
     // httpRequest?: RawEditorSettings['images_upload_handler'] // 报错
     httpRequest?: any
     storageKey?: string
+    disabled?: boolean
 }

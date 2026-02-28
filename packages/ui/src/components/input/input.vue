@@ -1,5 +1,5 @@
 <template>
-    <ElInput ref="inputRef" :class="className">
+    <ElInput ref="inputRef" :class="className" :disabled="formDisabled">
         <!-- 这样没有类型提示 -->
         <!-- <template v-for="(_, name) in $slots" :key="name" #[name]>
             <slot :name="name" />
@@ -13,12 +13,15 @@
 
 <script lang="ts" setup>
 import type { IInputProps } from './input'
+import { useFormDisabled } from 'element-plus'
 
 const props = withDefaults(defineProps<IInputProps>(), {
     block: false,
+    disabled: undefined,
 })
 const $style = useCssModule()
 const inputRef = useTemplateRef('inputRef')
+const formDisabled = useFormDisabled()
 
 const className = computed(() => ({
     [$style.input]: true,

@@ -5,17 +5,20 @@
         :disabled-date="disabledDate"
         type="daterange"
         :value-format="valueFormat"
+        :disabled="formDisabled"
         @change="handleChange"
     />
 </template>
 
 <script lang="ts" setup>
 import type { IDateRangePickerProps } from './daterange-picker'
+import { useFormDisabled } from 'element-plus'
 
 const props = withDefaults(defineProps<IDateRangePickerProps>(), {
     valueFormat: 'YYYY-MM-DD',
     limitDays: 3,
     includeToday: false,
+    disabled: undefined,
 })
 
 const emits = defineEmits<{
@@ -24,6 +27,7 @@ const emits = defineEmits<{
 }>()
 
 const myValue = useVModel(props, 'modelValue', emits)
+const formDisabled = useFormDisabled()
 
 function disabledDate(time: Date) {
     const now = Date.now()

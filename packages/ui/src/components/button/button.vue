@@ -9,12 +9,12 @@
     >
         <template #reference>
             <!-- 暂时解决不了 click.stop 传递的问题，因此用一个 stop 的 props 来控制逻辑渲染 -->
-            <ElButton v-if="stop" v-bind="$attrs" :type="type" :class="$style.button" @click.stop="handleClick">
+            <ElButton v-if="stop" v-bind="$attrs" :type="type" :class="$style.button" :disabled="formDisabled" @click.stop="handleClick">
                 <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
                 <span v-if="$slots.default"><slot /></span>
                 <VcIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
             </ElButton>
-            <ElButton v-else v-bind="$attrs" :type="type" :class="$style.button" @click="handleClick">
+            <ElButton v-else v-bind="$attrs" :type="type" :class="$style.button" :disabled="formDisabled" @click="handleClick">
                 <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
                 <span v-if="$slots.default"><slot /></span>
                 <VcIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
@@ -22,12 +22,12 @@
         </template>
     </ElPopconfirm>
     <!-- 暂时解决不了 click.stop 传递的问题，因此用一个 stop 的 props 来控制逻辑渲染 -->
-    <ElButton v-else-if="stop" v-bind="$attrs" :type="type" :class="$style.button" @click.stop="handleClick">
+    <ElButton v-else-if="stop" v-bind="$attrs" :type="type" :class="$style.button" :disabled="formDisabled" @click.stop="handleClick">
         <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
         <span v-if="$slots.default"><slot /></span>
         <VcIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
     </ElButton>
-    <ElButton v-else v-bind="$attrs" :type="type" :class="$style.button" @click="handleClick">
+    <ElButton v-else v-bind="$attrs" :type="type" :class="$style.button" :disabled="formDisabled" @click="handleClick">
         <VcIcon v-if="position === 'left' && name" :type="iconType" :name="name" />
         <span v-if="$slots.default"><slot /></span>
         <VcIcon v-if="position === 'right' && name" :type="iconType" :name="name" />
@@ -36,7 +36,7 @@
 
 <script lang="ts" setup>
 import type { IButtonProps } from './button'
-import { ElMessageBox } from 'element-plus'
+import { ElMessageBox, useFormDisabled } from 'element-plus'
 
 import { injectConfig } from '../config-provider/config-provider'
 import VcIcon from '../icon/icon.vue'
@@ -46,9 +46,12 @@ const props = withDefaults(defineProps<IButtonProps>(), {
     type: '',
     confirm: undefined,
     stop: false,
+    disabled: undefined,
 })
 const emits = defineEmits<{ (e: 'click', event: Event): void }>()
 const { button: buttonConfig } = injectConfig()
+const formDisabled = useFormDisabled()
+
 const defaultConfirmInfo = { title: '提示', confirmButtonText: '确定', cancelButtonText: '取消', msg: '请确认您的操作' }
 const myConfirm = computed(() => buttonConfig?.confirm?.type !== undefined
     ? buttonConfig?.confirm?.type

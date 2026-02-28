@@ -10,9 +10,17 @@
             </div>
         </div>
         <VcScrollbar always>
-            <component :is="formComponent" ref="formRef" v-bind="props.formProps" :model="form.fields" :rules="form.rules" :disabled="!isEditing" require-asterisk-position="right">
+            <ElForm
+                ref="formRef"
+                v-bind="formProps"
+                :model="form.fields"
+                :rules="form.rules"
+                :disabled="!isEditing"
+                require-asterisk-position="right"
+                :label-position="labelPosition"
+            >
                 <slot />
-            </component>
+            </ElForm>
         </VcScrollbar>
     </div>
 </template>
@@ -27,6 +35,7 @@ import VcScrollbar from '../scrollbar/scrollbar.vue'
 const props = withDefaults(defineProps<IExplorerFormProps>(), {
     icon: 'fluent:form-48-regular',
     autoInitial: true,
+    labelPosition: 'top',
     onCancel: () => {},
     onSave: () => {},
 })
@@ -35,11 +44,6 @@ const emits = defineEmits<IExplorerFormEmits>()
 const isEditing = ref(false)
 const loading = ref(false)
 const formRef = useTemplateRef<InstanceType<typeof ElForm>>('formRef')
-// 如果不用 component，直接使用 ElForm，会导致 disabled 无法传递
-// 原因 inject 用的 formContextKey 是在组件库构建时生成的。
-// 生产环境使用发布后的组件库，formContextKey 是使用组件库的项目重新生成的，两者不是一个，导致无法传递 disabled。
-// 因此使用 component，动态生成组件，使用组件在被使用时才生成 formContextKey，可以传递 disabled。
-const formComponent = ref()
 
 function handleEdit() {
     emits('clickEdit')
@@ -70,10 +74,6 @@ const autoInitialWatch = watch(() => props.form.fields, val => {
 const initialValuesWatch = watch(() => props.initialValues, () => {
     props.initialValues && formRef.value?.setInitialValues(props.initialValues)
 }, { immediate: true, deep: true })
-
-onBeforeMount(() => {
-    formComponent.value = ElForm
-})
 
 onBeforeUnmount(() => {
     initialValuesWatch.stop()

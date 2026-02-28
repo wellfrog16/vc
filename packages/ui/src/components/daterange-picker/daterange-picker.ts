@@ -3,4 +3,5 @@ export interface IDateRangePickerProps {
     valueFormat?: string
     limitDays?: number
     includeToday?: boolean
+    disabled?: boolean
 }

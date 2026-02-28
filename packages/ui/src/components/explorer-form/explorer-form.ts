@@ -12,6 +12,7 @@ export interface IExplorerFormProps {
     initialValues?: Record<string, any>
     autoInitial?: boolean
     defaultEditing?: boolean
+    labelPosition?: FormProps['labelPosition']
     onCancel?: () => void | Promise<void>
     onSave?: (data: Record<string, any>) => void | Promise<void>
 }

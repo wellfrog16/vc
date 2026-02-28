@@ -4,6 +4,7 @@
         :visible="popoverVisible"
         placement="bottom"
         :popper-class="$style.popover"
+        :disabled="formDisabled"
     >
         <div ref="containerRef" :class="$style.container">
             <FilterPicker v-if="filterManualVisible || keyword" />
@@ -19,7 +20,7 @@
                     collapse-tags
                     collapse-tags-tooltip
                     clearable
-                    :disabled="loading || disabled || loadFailed"
+                    :disabled="loading || formDisabled || loadFailed"
                     :loading="loading"
                     :options="optionData"
                     :props="cascaderProps"
@@ -36,6 +37,7 @@
 
 <script lang="ts" setup>
 import type { IPCAData, IPCAPickerProps } from './pca-picker'
+import { useFormDisabled } from 'element-plus'
 import { useProvide } from '@/use/useStore'
 import { injectConfig } from '../config-provider/config-provider'
 import CPicker from './components/c.vue'
@@ -46,7 +48,7 @@ import { KEY_NAME, usePCAData } from './pca-picker'
 import './index.scss'
 
 const props = withDefaults(defineProps<IPCAPickerProps>(), {
-    disabled: false,
+    disabled: undefined,
     excludeIds: () => [71, 81, 82], // 港澳台
     nameKey: 'n',
     activeMark: true,
@@ -65,6 +67,7 @@ const emits = defineEmits<{
 }>()
 
 const myValue = useVModel(props, 'modelValue', emits)
+const formDisabled = useFormDisabled()
 const { pcaBaseUrl, crosProxy } = injectConfig()
 const [popoverVisible, togglePopoverVisible] = useToggle()
 const $style = useCssModule()
@@ -118,7 +121,7 @@ onClickOutside(containerRef, event => {
 // 修复箭头样式
 const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value }))
 
-const handleSelectClick = useThrottleFn(() => !loading.value && !props.disabled && togglePopoverVisible(), 300)
+const handleSelectClick = useThrottleFn(() => !loading.value && !formDisabled.value && togglePopoverVisible(), 300)
 
 // 用于解决 before-filter 清空时无触发的问题
 function handleKeyup(event: KeyboardEvent) {

@@ -9,6 +9,7 @@ const documentData = {
         { param: 'icon', description: '表单标题前的 icon，使用 iconify', type: 'string', defaultValue: 'fluent:form-48-regular' },
         { param: 'form', description: '表单配置', type: 'IForm', defaultValue: '-' },
         { param: 'form-props', description: '表单属性', type: 'FormProps', defaultValue: '-' },
+        { param: 'labelPosition', description: '标签位置', type: 'FormProps["labelPosition"]', defaultValue: 'top' },
         { param: 'initialValues', description: '初始值', type: 'Record<string, any>', defaultValue: '{}' },
         { param: 'autoInitial', description: '是否用 form.fields 自动初始化表单值', type: 'boolean', defaultValue: 'true' },
         { param: 'defaultEditing', description: '是否默认编辑模式', type: 'boolean', defaultValue: 'false' },

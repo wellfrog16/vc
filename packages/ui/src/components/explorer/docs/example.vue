@@ -75,12 +75,17 @@
                                                 </ElCol>
                                                 <ElCol :span="12">
                                                     <ElFormItem label="标题" prop="title">
-                                                        <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                                        <VcInput v-model="containerForm.fields.title" placeholder="标题" clearable block />
                                                     </ElFormItem>
                                                 </ElCol>
                                                 <ElCol :span="12">
-                                                    <ElFormItem label="标题" prop="title">
-                                                        <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                                    <ElFormItem label="图标" prop="icon">
+                                                        <VcIconPicker v-model="containerForm.fields.icon" block />
+                                                    </ElFormItem>
+                                                </ElCol>
+                                                <ElCol :span="12">
+                                                    <ElFormItem label="操作">
+                                                        <VcButton type="primary">操作按钮</VcButton>
                                                     </ElFormItem>
                                                 </ElCol>
                                             </ElRow>
@@ -145,6 +150,7 @@
 
 <script lang="ts" setup>
 import { cloneDeep } from 'lodash-es'
+import VcButton from '@/components/button/button.vue'
 import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import VcChoice from '@/components/choice/choice.vue'
 import VcDialog from '@/components/dialog/dialog.vue'
@@ -158,6 +164,7 @@ import VcExplorerQuery from '@/components/explorer-query/explorer-query.vue'
 import VcExplorerTable from '@/components/explorer-table/explorer-table.vue'
 import VcExplorerTools from '@/components/explorer-tools/explorer-tools.vue'
 import VcExplorerTree from '@/components/explorer-tree/explorer-tree.vue'
+import VcIconPicker from '@/components/icon-picker/icon-picker.vue'
 import VcInput from '@/components/input/input.vue'
 import VcExplorer from '../explorer.vue'
 import { columns, tableData, treeData } from './data'
@@ -194,7 +201,7 @@ const tableRef = useTemplateRef('tableRef')
 const tableColumn = ref(cloneDeep(columns))
 
 // Form
-const defaultFields = { title: '容器标题' }
+const defaultFields = { title: '容器标题', icon: '' }
 const containerForm = reactive({
     fields: { ...defaultFields },
     rules: {

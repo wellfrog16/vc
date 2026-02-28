@@ -8,8 +8,8 @@
             <VcTags v-model="result2" :regexp="/^\d+$/" :value-format="valueFormat" error-message="只能输入数字" @change="handleChange" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果"><span>{{ result2 }}</span></ElDescriptionsItem>
-        <ElDescriptionsItem label="只读展示">
-            <VcTags v-model="result1" readonly />
+        <ElDescriptionsItem label="禁用展示">
+            <VcTags v-model="result1" disabled />
         </ElDescriptionsItem>
     </Wrapper>
 </template>

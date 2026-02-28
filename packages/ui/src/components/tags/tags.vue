@@ -1,5 +1,5 @@
 <template>
-    <ElSpace v-if="readonly" wrap>
+    <ElSpace v-if="formDisabled" wrap>
         <ElTag v-for="tag in tags" :key="tag.name" disable-transitions v-bind="$attrs">{{ tag.name }}</ElTag>
     </ElSpace>
     <ElSpace v-else wrap>
@@ -60,6 +60,7 @@
 
 <script lang="ts" setup>
 import type { ITagsProps } from './tags'
+import { useFormDisabled } from 'element-plus'
 import Draggable from 'vuedraggable-es-fix'
 import vFocus from '@/directives/focus'
 import VcButton from '../button/button.vue'
@@ -69,7 +70,7 @@ const props = withDefaults(defineProps<ITagsProps>(), {
     limit: 5,
     errorMessage: '',
     sameMessage: '内容重复了',
-    readonly: false,
+    disabled: undefined,
     valueFormat: (val: string | number) => val,
 })
 
@@ -80,6 +81,7 @@ const emits = defineEmits<{
     (e: 'dragEnd', event: any): void
 }>()
 
+const formDisabled = useFormDisabled()
 const errorVisible = ref(false)
 const createVisible = ref(false) // 新建input的visible
 const currentTag = ref('') // 正在编辑的tag值

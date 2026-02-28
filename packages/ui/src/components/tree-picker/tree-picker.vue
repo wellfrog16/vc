@@ -25,6 +25,7 @@
                     :props="cascaderProps"
                     :class="[selectClassName, $style.cascader]"
                     :popper-class="{ [$style['cascader-popover']]: !filterable || !keyword, [$style['cascader-panel']]: !!keyword }"
+                    :disabled="formDisabled"
                     v-bind="$attrs"
                     @clear="clear"
                     @blur="keyword = ''"
@@ -39,11 +40,12 @@
 <script lang="ts" setup>
 import type { CascaderNode, CascaderValue } from 'element-plus/es/components/cascader-panel'
 import type { ITreePickerProps } from './tree-picker'
+import { useFormDisabled } from 'element-plus'
 import PopoverCascader from './components/popover-cascader.vue'
 
 const props = withDefaults(defineProps<ITreePickerProps>(), {
     placeholder: '请选择',
-    disabled: false,
+    disabled: undefined,
     multiple: false,
     options: () => [],
     props: () => ({}),
@@ -57,8 +59,9 @@ const emits = defineEmits<{
 
 const myValue = useVModel(props, 'modelValue', emits)
 const [popoverVisible, togglePopoverVisible] = useToggle()
+const formDisabled = useFormDisabled()
 
-const handleSelectClick = useThrottleFn(() => !props.disabled && togglePopoverVisible(), 300)
+const handleSelectClick = useThrottleFn(() => !formDisabled.value && togglePopoverVisible(), 300)
 
 // 级联选择的props，便于设置multiple
 const cascaderProps = computed(() => ({

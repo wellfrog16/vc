@@ -9,6 +9,7 @@
             :class="[inputNumberClass, $style['el-input-number']]"
             :precision="precision"
             :controls-position="myControlsPosition"
+            :disabled="formDisabled"
             v-bind="$attrs"
             @keydown="limitInputValue"
             @change="handleChange"
@@ -26,8 +27,13 @@
 
 <script lang="ts" setup>
 import type { IInputNumberProps } from './input-number'
+import { useFormDisabled } from 'element-plus'
 
-const props = withDefaults(defineProps<IInputNumberProps>(), { precision: 0, inputWidth: '80px' })
+const props = withDefaults(defineProps<IInputNumberProps>(), {
+    precision: 0,
+    inputWidth: '80px',
+    disabled: undefined,
+})
 const emits = defineEmits<{
     (e: 'update:modelValue', val: number): void
     (e: 'change', currentValue: number, oldValue: number): void
@@ -38,6 +44,7 @@ const $slots = useSlots()
 const $style = useCssModule()
 const visible = ref(true)
 const inputNumberRef = useTemplateRef('inputNumberRef')
+const formDisabled = useFormDisabled()
 
 const mainClass = computed(() => {
     const className = {

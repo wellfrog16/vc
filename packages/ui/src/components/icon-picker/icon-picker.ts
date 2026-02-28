@@ -1,7 +1,8 @@
 export interface IIconPickerProps {
-    modelValue: string
+    modelValue: string | undefined
     collection?: string
     collections?: string[]
+    disabled?: boolean
 }
 
 interface IIconData {

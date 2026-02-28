@@ -15,6 +15,7 @@ export interface ICurrencyProps {
     prefix?: boolean
     prepend?: boolean
     append?: boolean
+    disabled?: boolean
 }
 
 const data: ICurrencyInfo[] = [

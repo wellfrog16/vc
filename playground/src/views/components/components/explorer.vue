@@ -72,12 +72,17 @@
                                     </ElCol>
                                     <ElCol :span="12">
                                         <ElFormItem label="标题" prop="title">
-                                            <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                            <VcInput v-model="containerForm.fields.title" placeholder="标题" clearable />
                                         </ElFormItem>
                                     </ElCol>
                                     <ElCol :span="12">
                                         <ElFormItem label="标题" prop="title">
-                                            <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
+                                            <VcIconPicker v-model="containerForm.fields.icon" />
+                                        </ElFormItem>
+                                    </ElCol>
+                                    <ElCol :span="12">
+                                        <ElFormItem label="图标" prop="icon">
+                                            <VcButton type="warning">我们</VcButton>
                                         </ElFormItem>
                                     </ElCol>
                                 </ElRow>
@@ -130,7 +135,7 @@ const tableRef = useTemplateRef('tableRef')
 const tableColumn = ref(cloneDeep(columns))
 
 // Form
-const defaultFields = { title: '容器标题' }
+const defaultFields = { title: '容器标题', icon: '' }
 const containerForm = reactive({
     fields: { ...defaultFields },
     rules: {

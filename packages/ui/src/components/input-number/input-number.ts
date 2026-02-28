@@ -5,4 +5,5 @@ export interface IInputNumberProps {
     size?: 'large' | 'default' | 'small'
     inputNumberClass?: string
     inputWidth?: string
+    disabled?: boolean
 }

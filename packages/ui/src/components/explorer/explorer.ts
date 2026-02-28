@@ -4,7 +4,7 @@ import { useInject } from '@/use/useStore'
 export interface IExplorerProps {
     layout?: 'horizontal' | 'vertical'
     lazy?: boolean
-    explorerKey: string // 记录子组件功能的状态，比如搜索展开还是收起，确保刷新后能记住上次的状态
+    explorerKey?: string // 记录子组件功能的状态，比如搜索展开还是收起，确保刷新后能记住上次的状态
 }
 
 export interface IExplorerState {

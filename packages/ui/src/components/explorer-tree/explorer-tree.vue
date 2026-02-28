@@ -33,6 +33,7 @@
                             link
                             :icon="{ type: 'el', name: 'Delete' }"
                             stop
+                            :class="$style.remove"
                             @click="emits('remove', node.data.value, node)"
                         />
                     </div>
@@ -160,6 +161,10 @@ watch(filterKeyword, value => {
         margin-left: 0 !important;
         font-size: 1.2em;
     }
+}
+
+.remove {
+    transform: translateY(-1px);
 }
 
 .loading {

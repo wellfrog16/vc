@@ -10,7 +10,7 @@ const documentData = {
         { param: 'lazy', description: '是否使用懒渲染', type: 'boolean', defaultValue: 'true' },
         { param: 'fullscreen', description: '是否打开时默认全屏', type: 'boolean', defaultValue: 'false' },
         { param: 'height', description: '滚动条区域高度', type: 'number | string', defaultValue: '-' },
-        { param: 'max-height', description: '滚动条区域最大高度，未到最大高度自适应', type: 'number | string', defaultValue: '-' },
+        { param: 'max-height', description: '滚动条区域最大高度，未到最大高度自适应', type: 'number | string', defaultValue: '80vh' },
         { param: 'fullscreen-height', description: '全屏大小时，内容区域的高度', type: 'number | string', defaultValue: '-' },
         { param: 'padding', description: '内容区域的内边距', type: 'number', defaultValue: '16' },
         { param: 'boxPadding', description: '内容区域上下部分是否有模拟的内边距', type: 'boolean', defaultValue: 'true' },

@@ -129,5 +129,12 @@ onBeforeUnmount(() => expnadWatch.stop())
 .actions {
     display: flex;
     align-items: center;
+    column-gap: 8px;
+
+    :global {
+        .el-button {
+            margin-left: 0;
+        }
+    }
 }
 </style>

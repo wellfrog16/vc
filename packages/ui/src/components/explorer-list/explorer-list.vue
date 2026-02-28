@@ -36,6 +36,7 @@
                     :icon="{ type: 'el', name: 'Delete' }"
                     :confirm="confirmParams(item)"
                     stop
+                    :class="$style.remove"
                     @click="emits('remove', item.value, item)"
                 />
             </div>
@@ -99,6 +100,7 @@ function handleClick(item: IExplorerListItem, e: MouseEvent) {
     color: var(--el-text-color-regular);
     min-height: 32px;
     box-sizing: border-box;
+    line-height: 1;
 
     &:hover {
         background-color: var(--el-color-primary-light-9);
@@ -133,6 +135,10 @@ function handleClick(item: IExplorerListItem, e: MouseEvent) {
         margin-left: 0 !important;
         font-size: 1.2em;
     }
+}
+
+.remove {
+    transform: translateY(-1px);
 }
 
 .empty,

@@ -2,6 +2,23 @@
 title: 更新日志
 ---
 
+## 1.5.0
+
+2026-2-28
+
+### 新增和更新
+
+- 优化 explorer-list 组件样式
+- explorer 组件增加嵌套功能
+- 新增 explorer-form 子组件
+- 新增 explorer-container 子组件
+- icon 组件增加 iconify 支持，方便 button 组件使用
+- dialog 组件给 maxHeight 默认值
+
+### 缺陷修复
+
+- 修复 scrollbar 组件的参数传递
+
 ## 1.4.0
 
 2026-2-25

@@ -13,6 +13,7 @@ title: 更新日志
 - 新增 explorer-form 子组件
 - 新增 explorer-container 子组件
 - icon 组件增加 iconify 支持，方便 button 组件使用
+- dialog 组件给 maxHeight 默认值
 
 ### 缺陷修复
 

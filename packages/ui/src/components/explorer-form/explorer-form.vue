@@ -61,6 +61,8 @@ async function handleSave() {
     isEditing.value = false
 }
 
+const editingWatch = watch(() => props.defaultEditing, val => { isEditing.value = val }, { immediate: true })
+
 const autoInitialWatch = watch(() => props.form.fields, val => {
     props.autoInitial && formRef.value?.setInitialValues(val)
 }, { immediate: true })
@@ -76,6 +78,7 @@ onBeforeMount(() => {
 onBeforeUnmount(() => {
     initialValuesWatch.stop()
     autoInitialWatch.stop()
+    editingWatch.stop()
 })
 </script>
 

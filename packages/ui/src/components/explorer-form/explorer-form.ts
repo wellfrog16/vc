@@ -11,6 +11,7 @@ export interface IExplorerFormProps {
     formProps?: Partial<FormProps>
     initialValues?: Record<string, any>
     autoInitial?: boolean
+    defaultEditing?: boolean
     onCancel?: () => void | Promise<void>
     onSave?: (data: Record<string, any>) => void | Promise<void>
 }

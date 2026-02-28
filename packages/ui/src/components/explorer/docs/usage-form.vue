@@ -11,6 +11,7 @@ const documentData = {
         { param: 'form-props', description: '表单属性', type: 'FormProps', defaultValue: '-' },
         { param: 'initialValues', description: '初始值', type: 'Record<string, any>', defaultValue: '{}' },
         { param: 'autoInitial', description: '是否用 form.fields 自动初始化表单值', type: 'boolean', defaultValue: 'true' },
+        { param: 'defaultEditing', description: '是否默认编辑模式', type: 'boolean', defaultValue: 'false' },
         { param: 'onCancel', description: '取消按钮点击事件', type: 'ICancel', defaultValue: '()=>{}' },
         { param: 'onSave', description: '保存按钮点击事件', type: 'ISave', defaultValue: '()=>{}' },
     ],

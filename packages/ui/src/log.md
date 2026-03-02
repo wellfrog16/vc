@@ -8,7 +8,7 @@ title: 更新日志
 
 ### 新增和更新
 
-- explorer-tree 和 explorer-list 增加 setActive 方法
+- explorer-tree 和 explorer-list 增加 setActive 方法、action 插槽
 
 ### 缺陷修复
 

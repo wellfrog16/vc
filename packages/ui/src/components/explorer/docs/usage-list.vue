@@ -32,6 +32,7 @@ const documentData = {
     ],
     slots: [
         { name: 'default', description: '列表项目，参数 data: IExplorerListItem, index: number' },
+        { name: 'action', description: '列表项操作按钮，参数 data: IExplorerListItem, index: number' },
     ],
 }
 </script>

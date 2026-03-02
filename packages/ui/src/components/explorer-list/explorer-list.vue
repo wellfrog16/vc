@@ -28,6 +28,7 @@
                     stop
                     @click="emits('modify', item.value, item)"
                 />
+                <slot name="action" :data="item" :index="index" />
                 <VcButton
                     v-if="actions.includes('remove')"
                     title="删除"

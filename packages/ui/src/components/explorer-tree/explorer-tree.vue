@@ -25,6 +25,7 @@
                             stop
                             @click="emits('modify', node.data.value, node)"
                         />
+                        <slot name="action" :data="node.data" :index="node.index" />
                         <VcButton
                             v-if="actions.includes('remove')"
                             :confirm="confirmParams(node)"

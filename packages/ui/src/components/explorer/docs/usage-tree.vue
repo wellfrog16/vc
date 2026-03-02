@@ -20,8 +20,8 @@ const documentData = {
     ],
     types: [
         { param: 'TreeComponentProps', description: 'el-tree 的 props 类型' },
-        { param: 'Fun1', description: '(keyword: string, item: IExplorerListItem) => boolean' },
-        { param: 'Fun2', description: '(item: IExplorerListItem) => IButtonProps[\'confirm\']' },
+        { param: 'Fun1', description: '(keyword: string, item: IExplorerTreeItem) => boolean' },
+        { param: 'Fun2', description: '(item: IExplorerTreeItem) => IButtonProps[\'confirm\']' },
     ],
     events: [
         { name: 'create', description: '创建按钮点击事件', param: 'value, Node' },
@@ -34,7 +34,8 @@ const documentData = {
         { name: 'setActive', description: '设置当前节点', param: '(value: string | number) => void' },
     ],
     slots: [
-        { name: 'default', description: '列表项目，参数 data: IExplorerListItem, index: number' },
+        { name: 'default', description: '列表项目，参数 data: IExplorerTreeItem, index: number' },
+        { name: 'action', description: '列表项操作按钮，参数 data: IExplorerTreeItem, index: number' },
     ],
 }
 </script>

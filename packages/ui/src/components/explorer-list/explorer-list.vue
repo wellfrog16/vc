@@ -1,45 +1,47 @@
 <template>
     <VcScrollbar always>
-        <div
-            v-for="(item, index) in myData"
-            :key="item.value"
-            :class="[$style.item, { [$style.active]: actived === item.value }]"
-            @click="e => handleClick(item, e)"
-        >
-            <div :class="$style.label">
-                <slot :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
-            </div>
-            <div v-if="actions.length" :class="$style.actions">
-                <VcButton
-                    v-if="actions.includes('create')"
-                    title="新增"
-                    type="success"
-                    link
-                    :icon="{ type: 'el', name: 'Plus' }"
-                    stop
-                    @click="emits('create', item.value, item)"
-                />
-                <VcButton
-                    v-if="actions.includes('modify')"
-                    title="修改"
-                    type="primary"
-                    link
-                    :icon="{ type: 'el', name: 'Edit' }"
-                    stop
-                    @click="emits('modify', item.value, item)"
-                />
-                <slot name="action" :data="item" :index="index" />
-                <VcButton
-                    v-if="actions.includes('remove')"
-                    title="删除"
-                    type="danger"
-                    link
-                    :icon="{ type: 'el', name: 'Delete' }"
-                    :confirm="confirmParams(item)"
-                    stop
-                    :class="$style.remove"
-                    @click="emits('remove', item.value, item)"
-                />
+        <div v-show="!loading">
+            <div
+                v-for="(item, index) in myData"
+                :key="item.value"
+                :class="[$style.item, { [$style.active]: actived === item.value }]"
+                @click="e => handleClick(item, e)"
+            >
+                <div :class="$style.label">
+                    <slot :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
+                </div>
+                <div v-if="actions.length" :class="$style.actions">
+                    <VcButton
+                        v-if="actions.includes('create')"
+                        title="新增"
+                        type="success"
+                        link
+                        :icon="{ type: 'el', name: 'Plus' }"
+                        stop
+                        @click="emits('create', item.value, item)"
+                    />
+                    <VcButton
+                        v-if="actions.includes('modify')"
+                        title="修改"
+                        type="primary"
+                        link
+                        :icon="{ type: 'el', name: 'Edit' }"
+                        stop
+                        @click="emits('modify', item.value, item)"
+                    />
+                    <slot name="action" :data="item" :index="index" />
+                    <VcButton
+                        v-if="actions.includes('remove')"
+                        title="删除"
+                        type="danger"
+                        link
+                        :icon="{ type: 'el', name: 'Delete' }"
+                        :confirm="confirmParams(item)"
+                        stop
+                        :class="$style.remove"
+                        @click="emits('remove', item.value, item)"
+                    />
+                </div>
             </div>
         </div>
         <div v-if="isEmpty && !loading" :class="$style.empty">{{ emptyText }}</div>

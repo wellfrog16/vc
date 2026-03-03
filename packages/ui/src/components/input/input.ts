@@ -6,4 +6,5 @@ export interface IInputProps {
     block?: boolean
     width?: string
     disabled?: boolean
+    clearable?: boolean
 }

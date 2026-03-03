@@ -2,7 +2,7 @@
     <Wrapper>
         <ElDescriptionsItem label="展示区">
             <el-text>前置</el-text>
-            <VcInput v-model="result" :block="isBlock" :width="width" clearable />
+            <VcInput v-model="result" :block="isBlock" :width="width" />
             <el-text>后置</el-text>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：内联/块级">

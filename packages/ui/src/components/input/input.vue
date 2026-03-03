@@ -1,5 +1,5 @@
 <template>
-    <ElInput ref="inputRef" :class="className" :disabled="formDisabled">
+    <ElInput ref="inputRef" :class="className" :disabled="formDisabled" :clearable="clearable">
         <!-- 这样没有类型提示 -->
         <!-- <template v-for="(_, name) in $slots" :key="name" #[name]>
             <slot :name="name" />
@@ -18,6 +18,7 @@ import { useFormDisabled } from 'element-plus'
 const props = withDefaults(defineProps<IInputProps>(), {
     block: false,
     disabled: undefined,
+    clearable: true,
 })
 const $style = useCssModule()
 const inputRef = useTemplateRef('inputRef')

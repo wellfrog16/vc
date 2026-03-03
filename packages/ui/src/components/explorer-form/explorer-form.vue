@@ -52,17 +52,29 @@ function handleEdit() {
 
 async function handleCancel() {
     formRef.value!.resetFields()
-    await props.onCancel()
+
+    const cb = await props.onCancel()
     isEditing.value = false
+    typeof cb === 'function' && await cb()
 }
 
 async function handleSave() {
     const valid = await formRef.value!.validate()
     if (!valid) { return }
 
-    await props.onSave(props.form.fields)
-    formRef.value?.setInitialValues(props.form.fields)
-    isEditing.value = false
+    let cb = null
+
+    try {
+        loading.value = true
+        cb = await props.onSave(props.form.fields)
+        formRef.value?.setInitialValues(props.form.fields)
+        isEditing.value = false
+    }
+    finally {
+        loading.value = false
+    }
+
+    typeof cb === 'function' && await cb()
 }
 
 const editingWatch = watch(() => props.defaultEditing, val => { isEditing.value = val }, { immediate: true })

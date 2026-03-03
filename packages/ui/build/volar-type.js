@@ -3,7 +3,12 @@ import path from 'node:path'
 import klawSync from 'klaw-sync'
 
 const baseOutput = path.resolve(__dirname, '../dist/es')
-const names = klawSync(`${baseOutput}/components`, {
+const componentNames = klawSync(`${baseOutput}/components`, {
+    nofile: true,
+    depthLimit: 0,
+}).map(dir => path.basename(dir.path))
+
+const directiveNames = klawSync(`${baseOutput}/directives`, {
     nofile: true,
     depthLimit: 0,
 }).map(dir => path.basename(dir.path))
@@ -15,13 +20,18 @@ declare module 'vue' {
     export interface GlobalComponents {
 `
 
-names.forEach(name => {
+componentNames.forEach(name => {
     const componentName = `Vc-${name}`.replace(/-(\w)/g, upper)
-
-    // if (name === 'qr-code') { componentName = 'VCQRCode' }
-    // if (name === 'svg-icon') { componentName = 'VCSVGIcon' }
-    // if (name === 'pca-picker') { componentName = 'VCPCAPicker' }
     content += `        ${componentName}: typeof import('@wfrog/vc-ui')['${componentName}']\n`
+})
+
+content += `    }\n`
+content += `    export interface GlobalDirectives {
+`
+
+directiveNames.forEach(name => {
+    const directiveName = `v-${name}`.replace(/-(\w)/g, upper)
+    content += `        ${directiveName}: typeof import('@wfrog/vc-ui/es/directives/${name}')\n`
 })
 
 content += `    }\n}\nexport {}`

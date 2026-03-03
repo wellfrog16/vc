@@ -12,7 +12,7 @@
             </div>
         </div>
         <div :class="$style['container-wrapper']">
-            <vc-scrollbar flex :view-class="$style.container">
+            <vc-scrollbar flex :view-class="$style.container" :padding="8">
                 <component :is="currentComponent" v-if="currentComponent" />
                 <div v-else>
                     <el-text type="warning">从左边选择一个组件</el-text>

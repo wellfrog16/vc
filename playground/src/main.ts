@@ -1,3 +1,4 @@
+import setupVcdirectives from '@wfrog/vc-ui/directives'
 // import VCComponents from '@wfrog/vc-ui'
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -9,6 +10,7 @@ import setupPlugins from './plugins'
 
 const app = createApp(App)
 setupPlugins(app)
+setupVcdirectives(app)
 // app.use(VCComponents)
 
 app.mount('#app')

@@ -22,9 +22,18 @@
       "types": "./dist/es/components/*/index.d.ts",
       "default": "./dist/es/components/*/index.mjs"
     },
+    "./es/directives/*/type": "./dist/es/directives/*/index.d.ts",
+    "./es/directives/*": {
+      "types": "./dist/es/directives/*/index.d.ts",
+      "default": "./dist/es/directives/*/index.mjs"
+    },
     "./resolver": {
       "types": "./dist/es/utils/resolver.d.ts",
       "default": "./dist/es/utils/resolver.mjs"
+    },
+    "./directives": {
+      "types": "./dist/es/directives/index.d.ts",
+      "default": "./dist/es/directives/index.mjs"
     },
     "./*": "./dist/*"
   },

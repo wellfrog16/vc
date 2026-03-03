@@ -19,6 +19,11 @@ for (const [key, value] of getFoldFile(path.resolve(__dirname, './src/use'), tru
     useEntrys[`use/${key}`] = value.path
 }
 
+const directiveEntrys: Record<string, string> = {}
+for (const [key, value] of getFoldFile(path.resolve(__dirname, './src/directives'), true)) {
+    directiveEntrys[`directives/${key}`] = `${value.path}/index.ts`
+}
+
 // 简化配置，避免类型错误
 export default defineConfig({
     plugins: [
@@ -74,7 +79,9 @@ export default defineConfig({
                 main: resolve(__dirname, './src/index.ts'),
                 ...componentEntrys,
                 ...useEntrys,
+                ...directiveEntrys,
                 resolver: resolve(__dirname, './src/utils/resolver.ts'),
+                directives: resolve(__dirname, './src/directives/index.ts'),
             },
             name: '@wfrog/vc-ui',
             formats: ['es'],

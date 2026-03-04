@@ -68,7 +68,7 @@
                             <VcExplorerPanel :padding="0" size="400" resizable>
                                 <VcExplorer>
                                     <VcExplorerPanel resizable>
-                                        <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }">
+                                        <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }" @save="handleSave">
                                             <ElRow :gutter="20" :class="$style.row">
                                                 <ElCol :span="12">
                                                     <ElFormItem label="标题" prop="title">
@@ -214,6 +214,10 @@ const containerForm = reactive({
         title: [{ required: true, message: '请输入容器标题', trigger: 'blur' }],
     },
 })
+async function handleSave() {
+    console.log('handleSave', containerForm.fields)
+    return async () => {}
+}
 
 // Footer
 const currentPage = ref(1)

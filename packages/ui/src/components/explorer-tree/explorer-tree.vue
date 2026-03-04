@@ -104,6 +104,7 @@ defineExpose({
         .el-tree-node__content {
             display: flex;
             align-items: center;
+            // height: auto;
 
             &:hover {
                 background-color: var(--el-color-primary-light-9);

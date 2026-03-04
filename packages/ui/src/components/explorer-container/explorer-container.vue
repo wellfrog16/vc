@@ -44,10 +44,12 @@ withDefaults(defineProps<IExplorerContainerProps>(), {
 }
 
 .header-container {
-    font-size: 1.2em;
+    font-size: var(--el-font-size-medium);
 }
 
 .icon {
     margin-right: 4px;
+    font-size: 1.1em;
+    transform: translateY(1px);
 }
 </style>

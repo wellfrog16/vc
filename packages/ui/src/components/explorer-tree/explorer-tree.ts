@@ -5,7 +5,7 @@ import type { IButtonProps } from '../button/button'
 
 export interface IExplorerTreeProps {
     data?: TreeComponentProps['data']
-    actions?: ('create' | 'modify' | 'remove')[]
+    actions?: ('create' | 'modify' | 'remove' | 'up' | 'down' | 'action')[]
     treeProps?: TreeComponentProps
     emptyText?: string
     defaultExpandAll?: boolean
@@ -21,4 +21,6 @@ export interface IExplorerTreeEmits {
     (e: 'create', value: string | number, node: Node): void
     (e: 'modify', value: string | number, node: Node): void
     (e: 'remove', value: string | number, node: Node): void
+    (e: 'up', value: string | number, node: Node): void
+    (e: 'down', value: string | number, node: Node): void
 }

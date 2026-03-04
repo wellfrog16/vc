@@ -11,36 +11,18 @@
                     <slot :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
                 </div>
                 <div v-if="actions.length" :class="$style.actions">
-                    <VcButton
-                        v-if="actions.includes('create')"
-                        title="新增"
-                        type="success"
-                        link
-                        :icon="{ type: 'el', name: 'Plus' }"
-                        stop
-                        @click="emits('create', item.value, item)"
-                    />
-                    <VcButton
-                        v-if="actions.includes('modify')"
-                        title="修改"
-                        type="primary"
-                        link
-                        :icon="{ type: 'el', name: 'Edit' }"
-                        stop
-                        @click="emits('modify', item.value, item)"
-                    />
-                    <slot name="action" :data="item" :index="index" />
-                    <VcButton
-                        v-if="actions.includes('remove')"
-                        title="删除"
-                        type="danger"
-                        link
-                        :icon="{ type: 'el', name: 'Delete' }"
-                        :confirm="confirmParams(item)"
-                        stop
-                        :class="$style.remove"
-                        @click="emits('remove', item.value, item)"
-                    />
+                    <template v-for="action in actions" :key="action">
+                        <slot v-if="action === 'action'" name="action" :data="item" :index="index" />
+                        <VcButton
+                            v-else
+                            v-bind="actionsMapping[action]"
+                            :confirm="action === 'remove' ? confirmParams(item) : undefined"
+                            link
+                            :icon="{ type: 'el', name: actionsMapping[action].icon }"
+                            stop
+                            @click="emits(action as any, item.value, item)"
+                        />
+                    </template>
                 </div>
             </div>
         </div>
@@ -73,6 +55,14 @@ const emits = defineEmits<IExplorerListEmits>()
 
 const { filterKeyword } = injectExplorerPanelState()
 const actived = ref<string | number>()
+
+const actionsMapping: Record<string, any> = {
+    create: { title: '新增', type: 'primary', icon: 'Plus' },
+    modify: { title: '修改', type: 'primary', icon: 'Edit' },
+    remove: { title: '删除', type: 'danger', icon: 'Delete' },
+    up: { title: '上移', type: 'success', icon: 'Top' },
+    down: { title: '下移', type: 'success', icon: 'Bottom' },
+}
 
 const filterMethod = props.filterMethod || ((keyword: string, item: IExplorerListItem) => {
     return item.label.toLowerCase().includes(keyword.toLowerCase())
@@ -143,6 +133,11 @@ defineExpose({
     > button {
         margin-left: 0 !important;
         font-size: 1.2em;
+        border: 1px solid var(--el-border-color-light) !important;
+
+        &:hover {
+            border-color: var(--el-border-color-dark) !important;
+        }
     }
 }
 

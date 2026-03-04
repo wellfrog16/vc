@@ -8,6 +8,8 @@
                 @create="(val) => { console.log('create', val) }"
                 @modify="(val) => { console.log('modify', val) }"
                 @remove="(val) => { console.log('remove', val) }"
+                @up="(val) => { console.log('up', val) }"
+                @down="(val) => { console.log('down', val) }"
                 @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
             />
         </VcExplorerPanel>
@@ -60,7 +62,7 @@
                         <ElButton type="primary">批量操作</ElButton>
                     </VcExplorerFooter>
                 </VcExplorerPanel>
-                <VcExplorerPanel size="400" resizable :padding="0">
+                <VcExplorerPanel :padding="0" size="400" resizable>
                     <VcExplorer>
                         <VcExplorerPanel resizable>
                             <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" :form-props="{ labelPosition: 'top' }">
@@ -72,17 +74,17 @@
                                     </ElCol>
                                     <ElCol :span="12">
                                         <ElFormItem label="标题" prop="title">
-                                            <VcInput v-model="containerForm.fields.title" placeholder="标题" clearable />
-                                        </ElFormItem>
-                                    </ElCol>
-                                    <ElCol :span="12">
-                                        <ElFormItem label="标题" prop="title">
-                                            <VcIconPicker v-model="containerForm.fields.icon" />
+                                            <VcInput v-model="containerForm.fields.title" placeholder="标题" clearable block />
                                         </ElFormItem>
                                     </ElCol>
                                     <ElCol :span="12">
                                         <ElFormItem label="图标" prop="icon">
-                                            <VcButton type="warning">我们</VcButton>
+                                            <VcIconPicker v-model="containerForm.fields.icon" block />
+                                        </ElFormItem>
+                                    </ElCol>
+                                    <ElCol :span="12">
+                                        <ElFormItem label="操作">
+                                            <VcButton type="primary">操作按钮</VcButton>
                                         </ElFormItem>
                                     </ElCol>
                                 </ElRow>
@@ -108,6 +110,8 @@
                 @create="(val) => { console.log('create', val) }"
                 @modify="(val) => { console.log('modify', val) }"
                 @remove="(val) => { console.log('remove', val) }"
+                @up="(val) => { console.log('up', val) }"
+                @down="(val) => { console.log('down', val) }"
             />
         </VcExplorerPanel>
     </VcExplorer>
@@ -118,7 +122,7 @@ import { cloneDeep } from 'lodash-es'
 import { columns, tableData, treeData } from '../demo-data'
 
 // Filter
-const myListAction = ref<any[]>(['modify', 'remove'])
+const myListAction = ref<any[]>(['modify', 'up', 'remove'])
 const filterCreateVisible = ref(false)
 
 // Query

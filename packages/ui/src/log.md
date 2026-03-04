@@ -11,6 +11,7 @@ title: 更新日志
 - explorer-tree 和 explorer-list 增加 setActive 方法、action 插槽
 - input 组件设置 clearable 默认 true
 - 增加自定义指令的导出
+- explorer-tree 和 explorer-list 的 actions 增加 up、down。并优化 actions 逻辑
 
 ### 缺陷修复
 

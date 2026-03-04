@@ -7,36 +7,18 @@
                         <slot :data="node.data" :index="node.index"><VcIconifyIcon v-if="node.data.icon" :name="node.data.icon" :class="$style.icon" />{{ node.data.label }}</slot>
                     </div>
                     <div v-if="actions.length" class="vc-actions" :class="[$style.actions]">
-                        <VcButton
-                            v-if="actions.includes('create')"
-                            title="新增"
-                            type="success"
-                            link
-                            :icon="{ type: 'el', name: 'Plus' }"
-                            stop
-                            @click="emits('create', node.data.value, node)"
-                        />
-                        <VcButton
-                            v-if="actions.includes('modify')"
-                            title="修改"
-                            type="primary"
-                            link
-                            :icon="{ type: 'el', name: 'Edit' }"
-                            stop
-                            @click="emits('modify', node.data.value, node)"
-                        />
-                        <slot name="action" :data="node.data" :index="node.index" />
-                        <VcButton
-                            v-if="actions.includes('remove')"
-                            :confirm="confirmParams(node)"
-                            title="删除"
-                            type="danger"
-                            link
-                            :icon="{ type: 'el', name: 'Delete' }"
-                            stop
-                            :class="$style.remove"
-                            @click="emits('remove', node.data.value, node)"
-                        />
+                        <template v-for="action in actions" :key="action">
+                            <slot v-if="action === 'action'" name="action" :data="node.data" :index="node.index" />
+                            <VcButton
+                                v-else
+                                v-bind="actionsMapping[action]"
+                                :confirm="action === 'remove' ? confirmParams(node) : undefined"
+                                link
+                                :icon="{ type: 'el', name: actionsMapping[action].icon }"
+                                stop
+                                @click="emits(action as any, node.data.value, node)"
+                            />
+                        </template>
                     </div>
                 </div>
             </template>
@@ -72,6 +54,14 @@ const emits = defineEmits<IExplorerTreeEmits>()
 
 const treeRef = useTemplateRef('treeRef')
 const { filterKeyword } = injectExplorerPanelState()
+
+const actionsMapping: Record<string, any> = {
+    create: { title: '新增', type: 'primary', icon: 'Plus' },
+    modify: { title: '修改', type: 'primary', icon: 'Edit' },
+    remove: { title: '删除', type: 'danger', icon: 'Delete' },
+    up: { title: '上移', type: 'success', icon: 'Top' },
+    down: { title: '下移', type: 'success', icon: 'Bottom' },
+}
 
 const treeProps = computed(() => ({
     data: props.data,
@@ -171,6 +161,11 @@ defineExpose({
     > button {
         margin-left: 0 !important;
         font-size: 1.2em;
+        border: 1px solid var(--el-border-color-light) !important;
+
+        &:hover {
+            border-color: var(--el-border-color-dark) !important;
+        }
     }
 }
 

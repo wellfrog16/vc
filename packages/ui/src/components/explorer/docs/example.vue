@@ -11,6 +11,8 @@
                             @create="(val) => { console.log('create', val) }"
                             @modify="(val) => { console.log('modify', val) }"
                             @remove="(val) => { console.log('remove', val) }"
+                            @up="(val) => { console.log('up', val) }"
+                            @down="(val) => { console.log('down', val) }"
                             @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
                         />
                     </VcExplorerPanel>
@@ -111,6 +113,8 @@
                             @create="(val) => { console.log('create', val) }"
                             @modify="(val) => { console.log('modify', val) }"
                             @remove="(val) => { console.log('remove', val) }"
+                            @up="(val) => { console.log('up', val) }"
+                            @down="(val) => { console.log('down', val) }"
                         />
                     </VcExplorerPanel>
                 </VcExplorer>
@@ -172,6 +176,8 @@ import { columns, tableData, treeData } from './data'
 const listActionOptions = [
     { label: '新增', value: 'create' },
     { label: '修改', value: 'modify' },
+    { label: '上移', value: 'up' },
+    { label: '下移', value: 'down' },
     { label: '删除', value: 'remove' },
 ]
 

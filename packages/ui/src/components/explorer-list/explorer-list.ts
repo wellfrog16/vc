@@ -9,7 +9,7 @@ export interface IExplorerListItem<T = any> {
 
 export interface IExplorerListProps {
     data?: IExplorerListItem[]
-    actions?: ('create' | 'modify' | 'remove')[]
+    actions?: ('create' | 'modify' | 'remove' | 'up' | 'down' | 'action')[]
     filterMethod?: (keyword: string, item: IExplorerListItem) => boolean
     emptyText?: string
     loading?: boolean
@@ -23,4 +23,6 @@ export interface IExplorerListEmits {
     (e: 'create', value: string | number, item: IExplorerListItem): void
     (e: 'modify', value: string | number, item: IExplorerListItem): void
     (e: 'remove', value: string | number, item: IExplorerListItem): void
+    (e: 'up', value: string | number, node: Node): void
+    (e: 'down', value: string | number, node: Node): void
 }

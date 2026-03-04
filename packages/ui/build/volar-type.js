@@ -30,8 +30,8 @@ content += `    export interface GlobalDirectives {
 `
 
 directiveNames.forEach(name => {
-    const directiveName = `v-${name}`.replace(/-(\w)/g, upper)
-    content += `        ${directiveName}: typeof import('@wfrog/vc-ui/es/directives/${name}')\n`
+    const directiveName = name.replace(/^(\w)/, upper)
+    content += `        v${directiveName}: typeof import('@wfrog/vc-ui')['VcV${directiveName}']\n`
 })
 
 content += `    }\n}\nexport {}`

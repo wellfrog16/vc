@@ -56,6 +56,9 @@ export { default as VcThousandInput } from './components/thousand-input/thousand
 export { default as VcTinymce } from './components/tinymce/tinymce.vue'
 export { default as VcTreePicker } from './components/tree-picker/tree-picker.vue'
 export { default as VcUploadFile } from './components/upload-file/upload-file.vue'
+export { default as VcVCleave } from './directives/cleave'
+export { default as VcVFocus } from './directives/focus'
+export { default as VcVThousand } from './directives/thousand'
 
 const modules: Record<string, any> = import.meta.glob('./components/*/*.vue', { eager: true })
 const upper = (_: any, letter: string) => letter.toUpperCase()

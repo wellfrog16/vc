@@ -8,7 +8,12 @@ title: 更新日志
 
 ### 新增和更新
 
+- explorer-form 增加实例方法 toggleIsEditing
+- explorer-tree 样式优化
+
 ### 缺陷修复
+
+- 修复 explorer-form 的 save 类型
 
 ## 1.6.0
 

@@ -10,6 +10,11 @@
         <el-divider />
         <el-text>获取路径 tree.getPath(data, item => item.value === '2-1')</el-text>
         <el-text type="primary">{{ node3Path }}</el-text>
+        <el-divider />
+        <el-text>节点 2-1-1 是否在节点 2-1 内</el-text>
+        <el-text type="primary">{{ isSelfOrDescendant1 }}</el-text>
+        <el-text>节点 3-1-1 是否在节点 2-1 内</el-text>
+        <el-text type="primary">{{ isSelfOrDescendant2 }}</el-text>
         <!-- <el-text>{{ node3 }}</el-text> -->
     </el-space>
 </template>
@@ -99,4 +104,6 @@ const node1 = tree.filter(data, item => item.value === '3-1')
 const node2 = tree.filter(data, item => item.value === '3-1', { fullPath: false })
 const node3 = tree.getPath(data, item => item.value === '2-1')
 const node3Path = node3.map(item => item.label).join(' / ')
+const isSelfOrDescendant1 = tree.isSelfOrDescendant(data, '2-1', '2-1-1')
+const isSelfOrDescendant2 = tree.isSelfOrDescendant(data, '2-1', '3-1-1')
 </script>

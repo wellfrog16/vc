@@ -68,7 +68,71 @@ function getPath<
     return result
 }
 
+type ValueType = string | number
+
+interface TreeNode {
+    value: ValueType
+    children?: TreeNode[]
+}
+
+/**
+ * 判断 target 是否是 self 节点或其子孙节点的 value
+ * @param treeData - 树数据
+ * @param self - 起始节点的 value
+ * @param target - 要查找的目标 value
+ * @returns target 是 self 或其子孙则返回 true
+ */
+function isSelfOrDescendant(treeData: TreeNode[], self: ValueType, target: ValueType): boolean {
+    // 先找到 self 节点
+    const selfNode = findNode(treeData, self)
+
+    // 没找到 self 节点，直接返回 false
+    if (!selfNode)
+        return false
+
+    // 先判断 target 是否就是 self 本身
+    if (selfNode.value === target)
+        return true
+
+    // 再判断 target 是否在 self 的子孙中
+    return hasDescendant(selfNode, target)
+}
+
+/**
+ * 在树中查找指定 value 的节点
+ */
+function findNode(treeData: TreeNode[], value: ValueType): TreeNode | null {
+    for (const node of treeData) {
+        if (node.value === value) {
+            return node
+        }
+        if (node.children?.length) {
+            const found = findNode(node.children, value)
+            if (found)
+                return found
+        }
+    }
+    return null
+}
+
+/**
+ * 判断节点是否有指定 value 的子孙（不包含自身）
+ */
+function hasDescendant(node: TreeNode, target: ValueType): boolean {
+    if (!node.children?.length)
+        return false
+
+    for (const child of node.children) {
+        if (child.value === target)
+            return true
+        if (hasDescendant(child, target))
+            return true
+    }
+    return false
+}
+
 export default {
     filter,
     getPath,
+    isSelfOrDescendant,
 }

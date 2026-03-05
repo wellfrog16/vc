@@ -142,13 +142,13 @@ defineExpose({
     padding: 4px 8px 4px 0;
     box-sizing: border-box;
     width: 100px;
-    // height: 32px;
 }
 
 .label {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    transform: translateY(-1px);
 }
 
 .icon {

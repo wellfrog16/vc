@@ -115,6 +115,10 @@ defineExpose({
             }
         }
 
+        .el-tree-node:focus > .el-tree-node__content {
+            background-color: var(--el-color-primary-light-9);
+        }
+
         .is-current {
             > .el-tree-node__content {
                 color: var(--el-color-primary);

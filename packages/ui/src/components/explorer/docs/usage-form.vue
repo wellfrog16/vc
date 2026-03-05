@@ -21,6 +21,9 @@ const documentData = {
         { param: 'ICancel', description: '() => void | Promise<void>' },
         { param: 'ISave', description: '(fields: Record<string, any>) => void | Promise<void>' },
     ],
+    methods: [
+        { name: 'toggleIsEditing', description: '切换编辑状态', param: '(val?: boolean) => void' },
+    ],
     slots: [
         { name: 'default', description: '表单内容插槽' },
         { name: 'title', description: '表单标题插槽' },

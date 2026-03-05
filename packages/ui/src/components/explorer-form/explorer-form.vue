@@ -87,6 +87,10 @@ const initialValuesWatch = watch(() => props.initialValues, () => {
     props.initialValues && formRef.value?.setInitialValues(props.initialValues)
 }, { immediate: true, deep: true })
 
+defineExpose({
+    toggleIsEditing: (val?: boolean) => { isEditing.value = val ?? !isEditing.value },
+})
+
 onBeforeUnmount(() => {
     initialValuesWatch.stop()
     autoInitialWatch.stop()

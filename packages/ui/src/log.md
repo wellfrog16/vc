@@ -10,6 +10,7 @@ title: 更新日志
 
 - explorer-form 增加实例方法 toggleIsEditing
 - explorer-tree 样式优化
+- explorer-footer 增加对齐方式参数
 
 ### 缺陷修复
 

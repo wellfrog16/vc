@@ -5,6 +5,7 @@
 <script lang="ts" setup>
 const documentData = {
     params: [
+        { param: 'align', description: '对齐方式', type: 'left | center | right', defaultValue: 'right' },
         { param: 'padding-top', description: '顶部间距', type: 'number', defaultValue: '8' },
         { param: 'layout', description: '分页布局', type: 'string', defaultValue: '下一行' },
         { param: '-', rowType: 'paramType', description: 'total, prev, pager, next' },

@@ -12,6 +12,7 @@ export interface IExplorerListProps {
     actions?: ('create' | 'modify' | 'remove' | 'up' | 'down' | 'action')[]
     filterMethod?: (keyword: string, item: IExplorerListItem) => boolean
     emptyText?: string
+    pending?: boolean
     loading?: boolean
     loadingText?: string
     highlightCurrent?: boolean

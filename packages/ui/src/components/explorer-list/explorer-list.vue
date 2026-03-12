@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="isEmpty && !loading" :class="$style.empty">{{ emptyText }}</div>
+        <div v-if="isEmpty && !loading && !pending" :class="$style.empty">{{ emptyText }}</div>
         <div v-if="loading" :class="$style.loading">
             <ElIcon class="is-loading"><Loading /></ElIcon>{{ loadingText }}
         </div>

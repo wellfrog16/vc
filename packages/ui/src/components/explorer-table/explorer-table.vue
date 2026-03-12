@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style['explorer-table']">
+    <div v-loading="loading" :class="$style['explorer-table']">
         <ElTable
             :data="data"
             stripe
@@ -23,6 +23,10 @@
                 </ElTableColumn>
             </template>
             <slot />
+            <template #empty>
+                <div v-if="!loading && !pending">{{ emptyText }}</div>
+                <div v-else />
+            </template>
         </ElTable>
     </div>
 </template>
@@ -34,6 +38,8 @@ import { ElTableColumn } from 'element-plus'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 
 const props = withDefaults(defineProps<IExplorerTableProps>(), {
+    emptyText: '没有数据',
+    loadingText: '数据加载中...',
     highlightCurrent: false,
     columnRender: (row: any, column: IColumnConfig) => h('span', row[column.prop]),
 })

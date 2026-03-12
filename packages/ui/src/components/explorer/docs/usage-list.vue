@@ -7,6 +7,7 @@ const documentData = {
     params: [
         { param: 'data', description: '数据', type: 'IExplorerListItem[]', defaultValue: '[]' },
         { param: 'actions', description: '操作按钮列表', type: '(create | modify | remove)[]', defaultValue: '[]' },
+        { param: 'pending', description: '是否正在处理', type: 'boolean', defaultValue: 'false' },
         { param: 'loading', description: '是否加载中', type: 'boolean', defaultValue: 'false' },
         { param: 'loadingText', description: '加载中的文本', type: 'string', defaultValue: '数据加载中...' },
         { param: 'emptyText', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },

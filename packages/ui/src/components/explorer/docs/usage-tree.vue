@@ -8,6 +8,7 @@ const documentData = {
         { param: 'data', description: '数据', type: 'TreeComponentProps[\'data\']', defaultValue: '[]' },
         { param: 'treeProps', description: '传递给 el-tree 的 props', type: 'TreeComponentProps', defaultValue: '{}' },
         { param: 'actions', description: '操作按钮列表', type: '(create | modify | remove)[]', defaultValue: '[]' },
+        { param: 'pending', description: '是否正在处理', type: 'boolean', defaultValue: 'false' },
         { param: 'loading', description: '是否加载中', type: 'boolean', defaultValue: 'false' },
         { param: 'loading-text', description: '加载中的文本', type: 'string', defaultValue: '数据加载中...' },
         { param: 'empty-text', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },

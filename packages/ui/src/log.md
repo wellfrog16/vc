@@ -11,6 +11,7 @@ title: 更新日志
 - explorer-form 增加实例方法 toggleIsEditing
 - explorer-tree 样式优化
 - explorer-footer 增加对齐方式参数
+- explorer-list、explorer-tree、explorer-table 增加 pending 相关参数和功能
 
 ### 缺陷修复
 

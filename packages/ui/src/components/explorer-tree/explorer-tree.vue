@@ -1,6 +1,6 @@
 <template>
     <VcScrollbar always>
-        <ElTree v-show="!loading" ref="treeRef" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
+        <ElTree v-show="!loading && !pending" ref="treeRef" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
             <template #default="{ node }">
                 <div :class="$style.node">
                     <div :class="$style.label">

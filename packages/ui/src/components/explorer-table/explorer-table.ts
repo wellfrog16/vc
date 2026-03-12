@@ -6,6 +6,10 @@ export interface IExplorerTableProps {
     selection?: boolean
     index?: boolean
     highlightCurrent?: boolean
+    emptyText?: string
+    pending?: boolean
+    loading?: boolean
+    loadingText?: string
     size?: 'small' | 'default' | 'large'
     columnRender?: (row: any, column: IColumnConfig, index: number) => VNode
     columnConfig?: IColumnConfig[]

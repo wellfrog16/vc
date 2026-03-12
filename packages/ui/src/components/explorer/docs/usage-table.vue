@@ -6,6 +6,10 @@
 const documentData = {
     params: [
         { param: 'data', description: '表格数据', type: 'any[]', defaultValue: '[]' },
+        { param: 'pending', description: '是否正在处理', type: 'boolean', defaultValue: 'false' },
+        { param: 'loading', description: '是否加载中', type: 'boolean', defaultValue: 'false' },
+        { param: 'loading-text', description: '加载中的文本', type: 'string', defaultValue: '数据加载中...' },
+        { param: 'empty-text', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },
         { param: 'highlight-current', description: '是否高亮当前项', type: 'boolean', defaultValue: 'true' },
         { param: 'index', description: '是否显示索引列', type: 'boolean', defaultValue: 'false' },
         { param: 'column-config', description: '列配置', type: 'IColumnConfig[]', defaultValue: '[]' },

@@ -9,6 +9,7 @@ export interface IExplorerTreeProps {
     treeProps?: TreeComponentProps
     emptyText?: string
     defaultExpandAll?: boolean
+    pending?: boolean
     loading?: boolean
     loadingText?: string
     confirmParams?: (node: Node) => IButtonProps['confirm']

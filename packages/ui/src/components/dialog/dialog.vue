@@ -5,6 +5,7 @@
         v-bind="$attrs"
         append-to-body
         align-center
+        :width="width"
         :show-close="false"
         :fullscreen="isFullscreen"
         :close-on-click-modal="false"
@@ -17,8 +18,9 @@
                     <slot name="header" :close="close">{{ title }}</slot>
                 </span>
                 <span :class="$style.buttons">
-                    <ElButton v-show="showFullscreen" :icon="Icon" plain @click="() => toggleFullscreen()" />
-                    <ElButton :icon="Close" plain @click="close" />
+                    <slot name="header-action" />
+                    <ElButton v-show="showFullscreen" :class="$style['icon-button']" :icon="Icon" plain @click="() => toggleFullscreen()" />
+                    <ElButton :class="$style['icon-button']" :icon="Close" plain @click="close" />
                 </span>
             </div>
         </template>
@@ -47,6 +49,7 @@ const props = withDefaults(defineProps<IDialogProps>(), {
     boxPadding: true,
     padding: 16,
     maxHeight: '80vh',
+    width: '960px',
 })
 
 const emits = defineEmits<{
@@ -186,10 +189,14 @@ div.main {
 }
 
 .buttons {
-    button {
+    display: flex;
+    column-gap: 8px;
+
+    button.icon-button {
         padding: 8px;
         font-size: 1.2em;
         border: 0;
+        margin-left: 0;
     }
 }
 </style>

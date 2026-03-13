@@ -42,6 +42,7 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     loadingText: '数据加载中...',
     highlightCurrent: false,
     columnRender: (row: any, column: IColumnConfig) => h('span', row[column.prop]),
+    loading: false,
 })
 
 const state = injectExplorerPanelState()

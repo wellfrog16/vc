@@ -63,12 +63,14 @@ function handleEdit() {
     emits('edit')
 }
 
-watch(myVisible, val => {
+const visibleWatch = watch(myVisible, val => {
     if (!val) { return }
     isEditing.value = props.editing ?? true
 }, { immediate: true })
 
 defineExpose({ formRef })
+
+onUnmounted(() => { visibleWatch.stop() })
 </script>
 
 <style lang="scss" module>

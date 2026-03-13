@@ -87,7 +87,7 @@
                             <VcExplorerPanel :padding="0" size="400" resizable>
                                 <VcExplorer>
                                     <VcExplorerPanel resizable>
-                                        <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" @save="handleSave">
+                                        <VcExplorerForm ref="formRef" :title="containerForm.fields.title" :form="containerForm" @save="handleSave">
                                             <ElRow :gutter="20" :class="$style.row">
                                                 <ElCol :span="12">
                                                     <ElFormItem label="标题" prop="title">
@@ -236,6 +236,7 @@ const tableRef = useTemplateRef('tableRef')
 const tableColumn = ref(cloneDeep(columns))
 
 // Form
+const formRef = useTemplateRef('formRef')
 const defaultFields = { title: '容器标题', icon: '' }
 const containerForm = reactive({
     fields: { ...defaultFields },
@@ -245,7 +246,8 @@ const containerForm = reactive({
 })
 async function handleSave() {
     console.log('handleSave', containerForm.fields)
-    return async () => {}
+    formRef.value?.update()
+    formRef.value?.toggleEditing(false)
 }
 
 // Footer

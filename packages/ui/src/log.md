@@ -8,7 +8,7 @@ title: 更新日志
 
 ### 新增和更新
 
-- explorer-form 增加实例方法 toggleIsEditing
+- explorer-form 增加实例方法 toggleEditing、update、formRef，并重新设计交互逻辑
 - explorer-tree 样式优化
 - explorer-footer 增加对齐方式参数
 - explorer-list、explorer-tree、explorer-table 增加 pending 相关参数和功能

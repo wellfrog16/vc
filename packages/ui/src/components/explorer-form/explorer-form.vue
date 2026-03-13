@@ -3,10 +3,10 @@
         <div :class="$style.header">
             <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" /><slot name="title">{{ title }}</slot></div>
             <div :class="$style.actions">
-                <VcButton v-if="isEditing" :icon="{ type: 'el', name: 'Close' }" @click="handleCancel">取消</VcButton>
-                <VcButton v-if="isEditing" type="primary" :icon="{ type: 'el', name: 'Check' }" @click="handleSave">保存</VcButton>
-                <VcButton v-if="!isEditing" type="primary" :icon="{ type: 'el', name: 'Edit' }" @click="handleEdit">编辑</VcButton>
                 <slot name="action" />
+                <VcButton v-if="editable && isEditing" :icon="{ name: 'Close' }" @click="handleCancel">取消</VcButton>
+                <VcButton v-if="editable && isEditing" :icon="{ name: 'Check' }" type="primary" @click="handleSave">保存</VcButton>
+                <VcButton v-if="editable && !isEditing" :icon="{ name: 'EditPen' }" type="primary" @click="handleEdit">编辑</VcButton>
             </div>
         </div>
         <VcScrollbar always>
@@ -15,7 +15,7 @@
                 v-bind="formProps"
                 :model="form.fields"
                 :rules="form.rules"
-                :disabled="!isEditing"
+                :disabled="disabled || !isEditing || !editable"
                 require-asterisk-position="right"
                 :label-position="labelPosition"
             >
@@ -34,67 +34,37 @@ import VcScrollbar from '../scrollbar/scrollbar.vue'
 
 const props = withDefaults(defineProps<IExplorerFormProps>(), {
     icon: 'fluent:form-48-regular',
-    autoInitial: true,
     labelPosition: 'top',
-    onCancel: () => {},
-    onSave: () => {},
+    editable: true,
+    editing: true,
+    loading: false,
 })
 const emits = defineEmits<IExplorerFormEmits>()
 
-const isEditing = ref(false)
-const loading = ref(false)
+const isEditing = ref(props.editing ?? true)
 const formRef = useTemplateRef<InstanceType<typeof ElForm>>('formRef')
 
 function handleEdit() {
-    emits('clickEdit')
+    emits('edit')
     isEditing.value = true
 }
 
 async function handleCancel() {
     formRef.value!.resetFields()
-
-    const cb = await props.onCancel()
     isEditing.value = false
-    typeof cb === 'function' && await cb()
 }
 
 async function handleSave() {
     const valid = await formRef.value!.validate()
     if (!valid) { return }
 
-    let cb = null
-
-    try {
-        loading.value = true
-        cb = await props.onSave(props.form.fields)
-        formRef.value?.setInitialValues(props.form.fields)
-        isEditing.value = false
-    }
-    finally {
-        loading.value = false
-    }
-
-    typeof cb === 'function' && await cb()
+    emits('save', props.form.fields)
 }
 
-const editingWatch = watch(() => props.defaultEditing, val => { isEditing.value = val }, { immediate: true })
-
-const autoInitialWatch = watch(() => props.form.fields, val => {
-    props.autoInitial && formRef.value?.setInitialValues(val)
-}, { immediate: true })
-
-const initialValuesWatch = watch(() => props.initialValues, () => {
-    props.initialValues && formRef.value?.setInitialValues(props.initialValues)
-}, { immediate: true, deep: true })
-
 defineExpose({
-    toggleIsEditing: (val?: boolean) => { isEditing.value = val ?? !isEditing.value },
-})
-
-onBeforeUnmount(() => {
-    initialValuesWatch.stop()
-    autoInitialWatch.stop()
-    editingWatch.stop()
+    formRef,
+    update: (data?: Record<string, any>) => { formRef.value?.setInitialValues(data || props.form.fields) },
+    toggleEditing: (val?: boolean) => { isEditing.value = val ?? !isEditing.value },
 })
 </script>
 
@@ -125,7 +95,7 @@ onBeforeUnmount(() => {
 
 .icon {
     margin-right: 4px;
-    font-size: 1.1em;
+    font-size: var(--el-font-size-extra-large);
     transform: translateY(1px);
 }
 

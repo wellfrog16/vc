@@ -9,14 +9,15 @@ export interface IExplorerFormProps {
         rules?: Record<string, any>
     }>
     formProps?: Partial<FormProps>
-    initialValues?: Record<string, any>
-    autoInitial?: boolean
-    defaultEditing?: boolean
+    disabled?: boolean // 表单禁用
+    editable?: boolean // 可编辑
+    editing?: boolean // 编辑中
+    loading?: boolean // 加载中
     labelPosition?: FormProps['labelPosition']
-    onCancel?: () => void | Promise<void> | Promise<() => void | Promise<void>>
-    onSave?: (data: Record<string, any>) => void | Promise<void> | Promise<() => void | Promise<void>>
 }
 
 export interface IExplorerFormEmits {
-    (e: 'clickEdit'): void
+    (e: 'cancel'): void
+    (e: 'edit'): void
+    (e: 'save', data: Record<string, any>): void
 }

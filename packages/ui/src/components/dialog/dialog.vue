@@ -15,7 +15,7 @@
         <template #header="{ close, titleId, titleClass }">
             <div :class="$style.header">
                 <span :id="titleId" :class="[titleClass, $style.title]">
-                    <slot name="header" :close="close">{{ title }}</slot>
+                    <slot name="title" :close="close">{{ title }}</slot>
                 </span>
                 <span :class="$style.buttons">
                     <slot name="header-action" />

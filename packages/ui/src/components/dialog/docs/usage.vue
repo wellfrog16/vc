@@ -17,7 +17,7 @@ const documentData = {
         { param: '其他', description: 'el-dialog 的属性、事件、插槽', type: 'https://element-plus.org/zh-CN/component/dialog#api', defaultValue: '-' },
     ],
     slots: [
-        { name: 'header', description: '对话框头部，提供 close 方法用于关闭对话框', params: [{ param: 'close', description: '关闭对话框的方法', type: '() => void' }] },
+        { name: 'title', description: '对话框标题，提供 close 方法用于关闭对话框', params: [{ param: 'close', description: '关闭对话框的方法', type: '() => void' }] },
         { name: 'header-action', description: '对话框头部右侧的操作区域' },
     ],
 }

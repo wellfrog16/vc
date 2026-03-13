@@ -22,6 +22,7 @@ export { default as VcEasyPagination } from './components/easy-pagination/easy-p
 export { default as VcElIcon } from './components/el-icon/el-icon.vue'
 export { default as VcExplorerColumnTable } from './components/explorer-column-table/explorer-column-table.vue'
 export { default as VcExplorerContainer } from './components/explorer-container/explorer-container.vue'
+export { default as VcExplorerDialogForm } from './components/explorer-dialog-form/explorer-dialog-form.vue'
 export { default as VcExplorerFilter } from './components/explorer-filter/explorer-filter.vue'
 export { default as VcExplorerFooter } from './components/explorer-footer/explorer-footer.vue'
 export { default as VcExplorerForm } from './components/explorer-form/explorer-form.vue'

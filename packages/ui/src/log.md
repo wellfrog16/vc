@@ -13,6 +13,8 @@ title: 更新日志
 - explorer-footer 增加对齐方式参数
 - explorer-list、explorer-tree、explorer-table 增加 pending 相关参数和功能
 - dialog 组件增加 header-action 插槽，默认宽度调整为 960px
+- dialog 组件的 header 插槽，更名为 title 插槽
+- 新增 explorer-dialog-form 子组件
 
 ### 缺陷修复
 

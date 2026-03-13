@@ -8,13 +8,32 @@
                         <VcExplorerList
                             :data="listData"
                             :actions="myListAction"
-                            @create="(val) => { console.log('create', val) }"
-                            @modify="(val) => { console.log('modify', val) }"
+                            @create="(val) => { console.log('create', val); dialogFormVisible = true }"
+                            @modify="(val) => { console.log('modify', val); dialogFormVisible = true }"
                             @remove="(val) => { console.log('remove', val) }"
                             @up="(val) => { console.log('up', val) }"
                             @down="(val) => { console.log('down', val) }"
                             @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
                         />
+                        <VcExplorerDialogForm v-model:visible="dialogFormVisible" :form="dialogForm" title="编辑">
+                            <ElRow :gutter="20" :class="$style.row">
+                                <ElCol :span="12">
+                                    <ElFormItem label="标题" prop="title">
+                                        <ElInput v-model="dialogForm.fields.title" placeholder="标题" clearable />
+                                    </ElFormItem>
+                                </ElCol>
+                                <ElCol :span="12">
+                                    <ElFormItem label="标题" prop="title">
+                                        <VcInput v-model="dialogForm.fields.title" placeholder="标题" clearable block />
+                                    </ElFormItem>
+                                </ElCol>
+                                <ElCol :span="12">
+                                    <ElFormItem label="图标" prop="icon">
+                                        <VcIconPicker v-model="dialogForm.fields.icon" block />
+                                    </ElFormItem>
+                                </ElCol>
+                            </ElRow>
+                        </VcExplorerDialogForm>
                     </VcExplorerPanel>
                     <VcExplorerPanel :padding="0">
                         <VcExplorer layout="vertical">
@@ -159,6 +178,7 @@ import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import VcChoice from '@/components/choice/choice.vue'
 import VcDialog from '@/components/dialog/dialog.vue'
 import VcExplorerContainer from '@/components/explorer-container/explorer-container.vue'
+import VcExplorerDialogForm from '@/components/explorer-dialog-form/explorer-dialog-form.vue'
 import VcExplorerFilter from '@/components/explorer-filter/explorer-filter.vue'
 import VcExplorerFooter from '@/components/explorer-footer/explorer-footer.vue'
 import VcExplorerForm from '@/components/explorer-form/explorer-form.vue'
@@ -192,6 +212,15 @@ const toolsOptions = [
 // Filter
 const myListAction = ref<any[]>(['modify', 'remove'])
 const filterCreateVisible = ref(false)
+
+// Dialog-Form
+const dialogFormVisible = ref(false)
+const dialogForm = reactive({
+    fields: { title: '对话框表单', icon: '' },
+    rules: {
+        title: [{ required: true, message: '对话框表单', trigger: 'blur' }],
+    },
+})
 
 // Query
 const autoSpace = ref(true)

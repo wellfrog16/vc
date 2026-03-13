@@ -66,6 +66,7 @@ declare module 'vue' {
     VcElIcon: typeof import('@wfrog/vc-ui/es/components/el-icon')['default']
     VcExplorer: typeof import('@wfrog/vc-ui/es/components/explorer')['default']
     VcExplorerContainer: typeof import('@wfrog/vc-ui/es/components/explorer-container')['default']
+    VcExplorerDialogForm: typeof import('@wfrog/vc-ui/es/components/explorer-dialog-form')['default']
     VcExplorerFilter: typeof import('@wfrog/vc-ui/es/components/explorer-filter')['default']
     VcExplorerFooter: typeof import('@wfrog/vc-ui/es/components/explorer-footer')['default']
     VcExplorerForm: typeof import('@wfrog/vc-ui/es/components/explorer-form')['default']

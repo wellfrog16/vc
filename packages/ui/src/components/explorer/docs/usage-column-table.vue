@@ -13,7 +13,6 @@ const documentData = {
         { param: 'empty-column', description: '空列设置', type: 'boolean', defaultValue: 'false' },
         { param: '其他', description: 'el-table 的属性、事件', type: 'https://element-plus.org/zh-CN/component/table#api' },
     ],
-
     events: [
         { name: 'update:data', description: '表格数据更新事件', param: 'any[]' },
     ],

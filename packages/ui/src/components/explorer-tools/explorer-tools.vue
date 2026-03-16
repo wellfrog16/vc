@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style['explorer-tools']">
+    <div :class="$style['explorer-tools']" class="vc-explorer-tools">
         <div :class="$style.buttons">
             <VcButton v-if="create" type="primary" @click="emits('create')">{{ createText }}</VcButton>
             <slot />
@@ -89,7 +89,7 @@ function toggleFullScreen() {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
+    padding: 0 0 8px 0;
     flex-wrap: wrap;
     row-gap: 8px;
 }

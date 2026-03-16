@@ -43,6 +43,11 @@ onMounted(() => {
     flex-direction: column;
     // flex-grow: 1;
     // height: 100px;
+    :global {
+        .vc-explorer-query + .vc-explorer-tools {
+            padding-top: 8px;
+        }
+    }
 }
 
 .container {

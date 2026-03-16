@@ -2,6 +2,16 @@
 title: 更新日志
 ---
 
+## 1.8.0
+
+2026-?-?
+
+### 新增和更新
+
+- explorer-tools 协同 explorer-query 和 explorer-panel 样式优化
+
+### 缺陷修复
+
 ## 1.7.0
 
 2026-3-16

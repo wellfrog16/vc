@@ -1,5 +1,5 @@
 <template>
-    <div ref="queryRef" :class="$style['explorer-query']">
+    <div ref="queryRef" :class="$style['explorer-query']" class="vc-explorer-query">
         <div ref="formContainerRef" :class="[$style['form-container'], { [$style.expand]: isExpanded }]">
             <ElForm ref="formRef" :inline="true" :model="model" :class="$style.form">
                 <slot />

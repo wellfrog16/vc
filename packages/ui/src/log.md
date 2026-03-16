@@ -4,7 +4,7 @@ title: 更新日志
 
 ## 1.7.0
 
-2026-?-?
+2026-3-16
 
 ### 新增和更新
 
@@ -17,8 +17,6 @@ title: 更新日志
 - 新增 explorer-dialog-form 子组件
 
 ### 缺陷修复
-
-- 修复 explorer-form 的 save 类型
 
 ## 1.6.0
 

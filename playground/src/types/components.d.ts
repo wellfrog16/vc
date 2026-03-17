@@ -71,6 +71,7 @@ declare module 'vue' {
     VcExplorerFooter: typeof import('@wfrog/vc-ui/es/components/explorer-footer')['default']
     VcExplorerForm: typeof import('@wfrog/vc-ui/es/components/explorer-form')['default']
     VcExplorerList: typeof import('@wfrog/vc-ui/es/components/explorer-list')['default']
+    VcExplorerModalForm: typeof import('@wfrog/vc-ui/es/components/explorer-modal-form')['default']
     VcExplorerPanel: typeof import('@wfrog/vc-ui/es/components/explorer-panel')['default']
     VcExplorerQuery: typeof import('@wfrog/vc-ui/es/components/explorer-query')['default']
     VcExplorerTable: typeof import('@wfrog/vc-ui/es/components/explorer-table')['default']

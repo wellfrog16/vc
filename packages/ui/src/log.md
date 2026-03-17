@@ -10,6 +10,7 @@ title: 更新日志
 
 - explorer-tools 协同 explorer-query 和 explorer-panel 样式优化
 - drawer 组件部分功能与 dialog 组件保持一致（全屏，尺寸，slot等）
+- explorer-dialog-form 组件改名为 explorer-modal-form，支持 dialog 和 drawer 两种模式
 
 ### 缺陷修复
 

@@ -22,10 +22,10 @@
                 </span>
             </div>
         </template>
-        <ElScrollbar class="drawer-scrollbar" always>
+        <ElScrollbar class="vc-drawer-scrollbar" always>
             <div :class="$style['body-container']"><slot /></div>
         </ElScrollbar>
-        <div v-if="showDefaultFooter || $slots.footer" class="drawer-footer"><slot name="footer"><VcButton @click="drawerVisible = false">关闭</VcButton></slot></div>
+        <div v-if="showDefaultFooter || $slots.footer" :class="$style.footer"><slot name="footer"><VcButton @click="drawerVisible = false">关闭</VcButton></slot></div>
     </ElDrawer>
 </template>
 
@@ -87,17 +87,6 @@ function handleClosed() {
             padding: 0;
             overflow: hidden;
         }
-
-        .drawer-footer {
-            display: flex;
-            flex: 0 0 auto;
-            padding: 8px 16px;
-            border-top: 1px solid var(--el-border-color-light);
-
-            .el-button {
-                flex-grow: 1;
-            }
-        }
     }
 
     :global(> .el-drawer__body > .el-scrollbar) {
@@ -143,6 +132,12 @@ function handleClosed() {
         margin: 0 !important;
     }
 }
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
 .buttons {
     display: flex;
     column-gap: 8px;
@@ -157,5 +152,13 @@ function handleClosed() {
 
 .body-container {
     padding: 16px;
+}
+
+.footer {
+    display: flex;
+    flex: 0 0 auto;
+    padding: 8px 16px;
+    border-top: 1px solid var(--el-border-color-light);
+    justify-content: flex-end;
 }
 </style>

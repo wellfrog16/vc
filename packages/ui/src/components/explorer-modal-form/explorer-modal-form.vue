@@ -1,5 +1,5 @@
 <template>
-    <VcDialog v-model="myVisible" v-bind="$attrs">
+    <component :is="component" v-model="modalVisible" v-bind="$attrs">
         <ElForm
             ref="formRef"
             v-loading="loading"
@@ -24,30 +24,32 @@
             <VcButton v-if="isEditing" :loading="loading" :icon="{ name: 'Check' }" type="primary" @click="handleSave">保存</VcButton>
             <VcButton v-if="editable && !isEditing" :loading="loading" :icon="{ name: 'EditPen' }" type="primary" @click="handleEdit">编辑</VcButton>
         </template>
-    </VcDialog>
+    </component>
 </template>
 
 <script setup lang="ts">
-import type { IExplorerDialogFormEmits, IExplorerDialogFormProps } from './explorer-dialog-form'
+import type { IExplorerModalFormEmits, IExplorerModalFormProps } from './explorer-modal-form'
 import VcButton from '../button/button.vue'
 import VcDialog from '../dialog/dialog.vue'
+import VcDrawer from '../drawer/drawer.vue'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 
-const props = withDefaults(defineProps<IExplorerDialogFormProps>(), {
+const props = withDefaults(defineProps<IExplorerModalFormProps>(), {
     icon: 'fluent:form-48-regular',
     labelPosition: 'top',
     editable: true,
     editing: true,
     loading: false,
 })
-const emits = defineEmits<IExplorerDialogFormEmits>()
+const emits = defineEmits<IExplorerModalFormEmits>()
 
-const myVisible = useVModel(props, 'visible', emits)
+const modalVisible = useVModel(props, 'modelValue', emits)
 const formRef = useTemplateRef('formRef')
 const isEditing = ref(false)
+const component = computed(() => props.type === 'dialog' ? VcDialog : VcDrawer)
 
 function handleCancel() {
-    myVisible.value = false
+    modalVisible.value = false
     emits('cancel')
 }
 
@@ -63,7 +65,7 @@ function handleEdit() {
     emits('edit')
 }
 
-const visibleWatch = watch(myVisible, val => {
+const visibleWatch = watch(modalVisible, val => {
     if (!val) { return }
     isEditing.value = props.editing ?? true
 }, { immediate: true })

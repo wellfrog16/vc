@@ -12,7 +12,7 @@
                 @down="(val) => { console.log('down', val) }"
                 @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
             />
-            <VcExplorerDialogForm v-model:visible="dialogFormVisible" :form="dialogForm" title="编辑">
+            <VcExplorerModalForm v-model="dialogFormVisible" type="dialog" :form="dialogForm" title="编辑">
                 <ElRow :gutter="20" :class="$style.row">
                     <ElCol :span="12">
                         <ElFormItem label="标题" prop="title">
@@ -30,7 +30,7 @@
                         </ElFormItem>
                     </ElCol>
                 </ElRow>
-            </VcExplorerDialogForm>
+            </VcExplorerModalForm>
         </VcExplorerPanel>
         <VcExplorerPanel :padding="0">
             <VcExplorer layout="vertical">
@@ -84,7 +84,7 @@
                 <VcExplorerPanel :padding="0" size="400" resizable>
                     <VcExplorer>
                         <VcExplorerPanel resizable>
-                            <VcExplorerForm :title="containerForm.fields.title" :form="containerForm" @save="handleSave">
+                            <VcExplorerForm ref="formRef" :title="containerForm.fields.title" :form="containerForm" @save="handleSave">
                                 <ElRow :gutter="20" :class="$style.row">
                                     <ElCol :span="12">
                                         <ElFormItem label="标题" prop="title">
@@ -167,6 +167,7 @@ const tableRef = useTemplateRef('tableRef')
 const tableColumn = ref(cloneDeep(columns))
 
 // Form
+const formRef = useTemplateRef('formRef')
 const defaultFields = { title: '容器标题', icon: '' }
 const containerForm = reactive({
     fields: { ...defaultFields },
@@ -176,7 +177,8 @@ const containerForm = reactive({
 })
 async function handleSave() {
     console.log('handleSave', containerForm.fields)
-    return async () => {}
+    formRef.value?.update()
+    formRef.value?.toggleEditing(false)
 }
 
 // Footer

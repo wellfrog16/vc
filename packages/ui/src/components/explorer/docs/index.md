@@ -64,7 +64,7 @@
 
 ## explorer-dialog-form API
 
-<UsageDialogForm />
+<UsageModalForm />
 
 ## explorer-container API
 
@@ -88,7 +88,7 @@ import UsageList from "./usage-list.vue";
 import UsageTree from "./usage-tree.vue";
 import UsageTable from "./usage-table.vue";
 import UsageForm from "./usage-form.vue";
-import UsageDialogForm from "./usage-dialog-form.vue";
+import UsageModalForm from "./usage-modal-form.vue";
 import UsageContainer from "./usage-container.vue";
 import UsageTools from "./usage-tools.vue";
 import UsageFooter from "./usage-footer.vue";

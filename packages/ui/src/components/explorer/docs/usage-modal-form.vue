@@ -5,6 +5,8 @@
 <script lang="ts" setup>
 const documentData = {
     params: [
+        { param: '*type', description: 'modal 类型', type: 'dialog | drawer', defaultValue: '-' },
+        { param: 'modelValue', description: '是否显示 Drawer', type: 'boolean', defaultValue: 'false' },
         { param: 'title', description: '表单标题', type: 'string', defaultValue: '-' },
         { param: 'icon', description: '表单标题前的 icon，使用 iconify', type: 'string', defaultValue: 'fluent:form-48-regular' },
         { param: 'form', description: '表单配置', type: 'IForm', defaultValue: '-' },
@@ -22,7 +24,7 @@ const documentData = {
         { name: 'formRef', description: '表单实例', param: 'FormInstance' },
     ],
     events: [
-        { name: 'update:visible', description: 'visible 变化事件', param: 'visible' },
+        { name: 'update:modelValue', description: 'modelValue 变化事件', param: 'visible' },
         { name: 'cancel', description: '取消事件', param: '-' },
         { name: 'edit', description: '编辑事件', param: '-' },
         { name: 'save', description: '保存事件', param: 'data' },

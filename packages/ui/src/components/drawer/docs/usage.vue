@@ -8,7 +8,14 @@ const documentData = {
         { param: 'lazy', description: '是否使用懒渲染', type: 'boolean', defaultValue: 'true' },
         { param: 'showDefaultFooter', description: '是否显示默认带关闭的 footer', type: 'boolean', defaultValue: 'false' },
         { param: 'boxPadding', description: '内容区域上下部分是否有模拟的内边距', type: 'boolean', defaultValue: 'true' },
+        { param: 'fullscreen', description: '是否打开时默认全屏', type: 'boolean', defaultValue: 'false' },
+        { param: 'showFullscreen', description: '是否显示最大化的按钮', type: 'boolean', defaultValue: 'true' },
+        { param: 'size', description: 'Drawer 的尺寸', type: 'string | number', defaultValue: '500px' },
         { param: '其他', description: 'el-drawer 的属性、事件、插槽', type: 'https://element-plus.org/zh-CN/component/drawer#api', defaultValue: '-' },
+    ],
+    slots: [
+        { name: 'title', description: '对话框标题，提供 close 方法用于关闭对话框', params: [{ param: 'close', description: '关闭对话框的方法', type: '() => void' }] },
+        { name: 'header-action', description: '对话框头部右侧的操作区域' },
     ],
 }
 </script>

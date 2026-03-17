@@ -9,6 +9,7 @@ title: 更新日志
 ### 新增和更新
 
 - explorer-tools 协同 explorer-query 和 explorer-panel 样式优化
+- drawer 组件部分功能与 dialog 组件保持一致（全屏，尺寸，slot等）
 
 ### 缺陷修复
 

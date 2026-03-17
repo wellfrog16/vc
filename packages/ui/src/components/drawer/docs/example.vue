@@ -1,13 +1,19 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <VcDrawer v-model="visible" title="测试" :show-default-footer="showDefaultFooter" :box-padding="boxPadding">
+            <VcDrawer v-model="visible" title="测试" :show-default-footer="showDefaultFooter" :box-padding="boxPadding" :show-fullscreen="showFullscreen" :fullscreen="isFullscreen">
                 <div v-for="value in 80" :key="value">{{ value }}：啤酒、饮料、矿泉水，花生、瓜子、大鸡腿</div>
             </VcDrawer>
             <VcButton @click="() => toggleVisible()">打开</VcButton>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：默认 footer">
             <VcChoiceBoolean v-model="showDefaultFooter" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：全屏">
+            <VcChoiceBoolean v-model="showFullscreen" />
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：默认全屏">
+            <VcChoiceBoolean v-model="isFullscreen" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：内边距">
             <VcChoiceBoolean v-model="boxPadding" />
@@ -24,6 +30,8 @@ import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import VcDrawer from '../drawer.vue'
 
 const [visible, toggleVisible] = useToggle()
+const showFullscreen = ref(true)
+const isFullscreen = ref(false)
 const showDefaultFooter = ref(false)
 const boxPadding = ref(true)
 </script>

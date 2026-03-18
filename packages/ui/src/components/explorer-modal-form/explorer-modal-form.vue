@@ -15,7 +15,7 @@
         <template #title="{ close }">
             <div :class="$style['header-container']">
                 <VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" />
-                <slot name="title" :close="close">{{ title }}</slot>
+                <slot name="title" :close="close">{{ modalTitle }}</slot>
             </div>
         </template>
         <template #footer>
@@ -47,6 +47,7 @@ const modalVisible = useVModel(props, 'modelValue', emits)
 const formRef = useTemplateRef('formRef')
 const isEditing = ref(false)
 const component = computed(() => props.type === 'dialog' ? VcDialog : VcDrawer)
+const modalTitle = computed(() => props.title || (props.form.fields.id ? '编辑' : '新增'))
 
 function handleCancel() {
     modalVisible.value = false
@@ -79,6 +80,5 @@ onUnmounted(() => { visibleWatch.stop() })
 .icon {
     margin-right: 4px;
     font-size: var(--el-font-size-extra-large);
-    transform: translateY(1px);
 }
 </style>

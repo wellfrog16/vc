@@ -15,7 +15,7 @@
                             @down="(val) => { console.log('down', val) }"
                             @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
                         />
-                        <VcExplorerModalForm v-model="dialogFormVisible" type="dialog" :form="dialogForm" title="编辑">
+                        <VcExplorerModalForm v-model="dialogFormVisible" type="dialog" :form="dialogForm">
                             <ElRow :gutter="20" :class="$style.row">
                                 <ElCol :span="12">
                                     <ElFormItem label="标题" prop="title">

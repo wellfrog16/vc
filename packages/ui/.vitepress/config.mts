@@ -91,6 +91,7 @@ export default defineConfig({
                         { text: 'thousand-input', link: '/components/thousand-input' },
                         { text: 'tinymce', link: '/components/tinymce' },
                         { text: 'tree-picker', link: '/components/tree-picker' },
+                        { text: 'transfer-panel', link: '/components/transfer-panel' },
                     ],
                 },
                 {

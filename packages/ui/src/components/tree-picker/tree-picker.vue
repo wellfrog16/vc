@@ -74,7 +74,7 @@ const cascaderProps = computed(() => ({
 }))
 
 const myWidth = computed(() => {
-    return props.width || (props.block ? '100%' : '214px')
+    return props.width || (props.block ? '100%' : '240px')
 })
 
 // 修复箭头样式

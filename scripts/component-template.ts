@@ -17,12 +17,10 @@ export function createTemplate(componentName: string) {
 </template>
 
 <script setup lang="ts">
-import type { I${pascalName}Props } from './${componentName}'
+import type { I${pascalName}Emits, I${pascalName}Props } from './${componentName}'
 
 const props = withDefaults(defineProps<I${pascalName}Props>(), {})
-const emits = defineEmits<{
-    (e: 'click', event: Event): void
-}>()
+const emits = defineEmits<I${pascalName}Emits>()
 </script>
 
 <style lang="scss" module></style>
@@ -30,7 +28,11 @@ const emits = defineEmits<{
 
     // 类型模板
     const typesTemplate = `export interface I${pascalName}Props {
-    // 在这里定义组件的 props
+    modelValue?: string
+}
+
+export interface I${pascalName}Emits {
+    (e: 'update:modelValue', value: string): void
 }
 `
 

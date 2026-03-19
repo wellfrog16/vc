@@ -56,6 +56,7 @@ export { default as VcTextEllipsis } from './components/text-ellipsis/text-ellip
 export { default as VcThousandInput } from './components/thousand-input/thousand-input.vue'
 export { default as VcTinymce } from './components/tinymce/tinymce.vue'
 export { default as VcTransferPanel } from './components/transfer-panel/transfer-panel.vue'
+export { default as VcTransfer } from './components/transfer/transfer.vue'
 export { default as VcTreePicker } from './components/tree-picker/tree-picker.vue'
 export { default as VcUploadFile } from './components/upload-file/upload-file.vue'
 export { default as VcVCleave } from './directives/cleave'

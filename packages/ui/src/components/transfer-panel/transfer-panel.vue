@@ -1,23 +1,26 @@
 <template>
     <div :class="$style['transfer-panel']">
-        <TransferChildPanel v-model="transferPanelValue" :width="panelHalfWidth" :title="title" type="source" :data="data" @change="(...params) => emits('change', ...params)" />
+        <TransferChildPanel v-model="transferPanelValue" :disabled="formDisabled" :width="panelHalfWidth" :title="title" type="source" :data="data" @change="(...params) => emits('change', ...params)" />
         <div :class="$style.divider" />
-        <TransferChildPanel v-model="transferPanelValue" :width="panelHalfWidth" type="choiced" :data="data" @change="(...params) => emits('change', ...params)" />
+        <TransferChildPanel v-model="transferPanelValue" :disabled="formDisabled" :width="panelHalfWidth" type="choiced" :data="data" @change="(...params) => emits('change', ...params)" />
     </div>
 </template>
 
 <script setup lang="ts">
 import type { ITransferPanelEmits, ITransferPanelProps } from './transfer-panel'
+import { useFormDisabled } from 'element-plus'
 import TransferChildPanel from './components/transfer-child-panel.vue'
 
 const props = withDefaults(defineProps<ITransferPanelProps>(), {
     height: '300px',
     halfWidth: '200px',
+    disabled: undefined,
     data: () => [],
 })
 const emits = defineEmits<ITransferPanelEmits>()
 
 const transferPanelValue = useVModel(props, 'modelValue', emits)
+const formDisabled = useFormDisabled()
 
 const transferPanelHeight = computed(() => {
     if (props.height && Number.isNaN(+props.height)) { return props.height }

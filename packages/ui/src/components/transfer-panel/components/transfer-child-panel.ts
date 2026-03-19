@@ -12,6 +12,7 @@ export interface ITransferChildPanelProps {
     width: string
     modelValue?: string[] | number[]
     debounce?: number
+    disabled?: boolean
 }
 
 export interface ITransferChildPanelEmits {

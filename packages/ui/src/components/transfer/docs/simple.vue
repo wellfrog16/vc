@@ -1,11 +1,13 @@
 <template>
     <Wrapper>
         <VcTransferPanel v-model="myValue" title="角色" :data="options" />
+        <VcTransfer v-model="myValue" title="角色" :data="options" />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import VcTransferPanel from '../transfer-panel.vue'
+import VcTransferPanel from '../../transfer-panel/transfer-panel.vue'
+import VcTransfer from '../transfer.vue'
 
 const options = [
     { label: '管理员', value: 1 },

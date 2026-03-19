@@ -99,6 +99,7 @@ declare module 'vue' {
     VcTextEllipsis: typeof import('@wfrog/vc-ui/es/components/text-ellipsis')['default']
     VcThousandInput: typeof import('@wfrog/vc-ui/es/components/thousand-input')['default']
     VcTinymce: typeof import('@wfrog/vc-ui/es/components/tinymce')['default']
+    VcTransfer: typeof import('@wfrog/vc-ui/es/components/transfer')['default']
     VcTransferPanel: typeof import('@wfrog/vc-ui/es/components/transfer-panel')['default']
     VcTreePicker: typeof import('@wfrog/vc-ui/es/components/tree-picker')['default']
     VcUploadFile: typeof import('@wfrog/vc-ui/es/components/upload-file')['default']

@@ -35,7 +35,7 @@ export const componentsData = [
             { text: 'thousand-input' },
             { text: 'tinymce' },
             { text: 'tree-picker' },
-            { text: 'transfer-panel' },
+            { text: 'transfer' },
         ],
     },
     {

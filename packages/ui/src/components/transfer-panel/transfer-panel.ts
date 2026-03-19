@@ -6,6 +6,7 @@ export interface ITransferPanelProps {
     data?: ITransferChildItem[]
     height?: string | number
     halfWidth?: string | number
+    disabled?: boolean
 }
 
 export interface ITransferPanelEmits {

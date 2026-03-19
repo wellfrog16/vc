@@ -9,6 +9,7 @@ title: 更新日志
 ### 新增和更新
 
 - explorer-modal-form 增加 title 默认值
+- 新增 transfer 组件
 - 新增 transfer-panel 组件
 
 ### 缺陷修复

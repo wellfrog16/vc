@@ -1,10 +1,11 @@
 <template>
-    <div :class="$style['transfer-child-panel']">
+    <div :class="[$style['transfer-child-panel'], { [$style.disabled]: disabled }]">
         <ElInput
             v-model="keyword"
             :placeholder="placeholder"
             clearable
             :prefix-icon="Search"
+            :disabled="disabled"
             @keydown.enter="handleFilter"
             @clear="handleFilter"
             @change="handleFilter"
@@ -48,6 +49,7 @@ import VcScrollbar from '../../scrollbar/scrollbar.vue'
 const props = withDefaults(defineProps<ITransferChildPanelProps>(), {
     placeholder: '查询',
     debounce: 300,
+    disabled: undefined,
 })
 
 const emits = defineEmits<ITransferChildPanelEmits>()
@@ -75,6 +77,8 @@ const myData = computed(() => {
 })
 
 function handleClick(item: ITransferChildItem) {
+    if (props.disabled) { return }
+
     if ((myValue.value as any[])?.includes(item.value)) {
         myValue.value = (myValue.value as any[]).filter((v: any) => v !== item.value)
         emits('change', 1, item)
@@ -90,6 +94,8 @@ function handleFilter() {
 }
 
 function handleOperation() {
+    if (props.disabled) { return }
+
     myValue.value = isSource.value ? props.data?.map(item => item.value) as string[] | number[] : []
     emits('change', isSource.value ? 1 : -1)
 }
@@ -178,6 +184,35 @@ const keywordChange = debounce(() => handleFilter(), props.debounce)
     &:hover {
         :global(.el-text) {
             color: var(--el-color-primary);
+        }
+    }
+}
+
+.transfer-child-panel.disabled {
+    .item {
+        cursor: not-allowed;
+
+        &:hover {
+            background-color: inherit;
+        }
+
+        &.active {
+            color: var(--el-color-info);
+            background-color: var(--el-fill-color-light);
+        }
+    }
+
+    .actions {
+        display: none !important;
+    }
+
+    .operation {
+        cursor: not-allowed;
+
+        &:hover {
+            :global(.el-text) {
+                color: var(--el-color-info);
+            }
         }
     }
 }

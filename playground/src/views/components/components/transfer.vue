@@ -3,6 +3,9 @@
         <div>
             <vc-transfer-panel v-model="result" title="角色" :data="options" />
         </div>
+        <div>
+            <vc-transfer v-model="result" title="角色" :data="options" :max-collapse-tags="3" />
+        </div>
         <el-text>结果：<el-text type="primary">{{ result }}</el-text></el-text>
     </el-space>
 </template>

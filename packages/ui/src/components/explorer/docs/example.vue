@@ -75,9 +75,6 @@
                                 >
                                     <ElButton>其他按钮1</ElButton>
                                     <ElButton>其他按钮2</ElButton>
-                                    <template #setting>
-                                        <ElButton type="primary">设置</ElButton>
-                                    </template>
                                 </VcExplorerTools>
                                 <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn" index />
                                 <VcExplorerFooter v-model:current-page="currentPage" :total="50" @current-change="(val: number) => { console.log('current-change', val) }">

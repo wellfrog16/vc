@@ -82,6 +82,8 @@ export const tableData = [
 ]
 
 export const columns: IColumnConfig[] = [
+    { prop: 'index', label: '', width: 60, widthType: 'width', visible: true, align: 'center', fixed: 'left' },
+    { prop: 'expand-row', label: '', width: 60, widthType: 'width', visible: true, align: 'left' },
     { prop: 'date', label: 'Date', width: 150, widthType: 'width', visible: true, align: 'left' },
     { prop: 'name', label: 'Name', width: 120, widthType: 'width', visible: true, align: 'left' },
     { prop: 'state', label: 'State', width: 120, widthType: 'width', visible: true, align: 'left' },
@@ -89,4 +91,5 @@ export const columns: IColumnConfig[] = [
     { prop: 'zip', label: 'Zip', width: 120, widthType: 'width', visible: true, align: 'left' },
     { prop: 'tag', label: 'Tag', width: 100, widthType: 'width', visible: true, align: 'left' },
     { prop: 'address', label: 'Address', minWidth: 300, widthType: 'minWidth', visible: true, align: 'left' },
+    { prop: 'operation', label: '操作', width: 160, widthType: 'width', visible: true, align: 'center', fixed: 'right' },
 ]

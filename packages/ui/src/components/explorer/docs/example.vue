@@ -74,9 +74,17 @@
                                     @column-reset="() => { tableRef?.setColumns(cloneDeep(columns)) }"
                                 >
                                     <ElButton>其他按钮1</ElButton>
-                                    <ElButton>其他按钮2</ElButton>
+                                    <ElButton>其他按钮21</ElButton>
                                 </VcExplorerTools>
-                                <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn" index />
+                                <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn">
+                                    <template #operation>
+                                        <VcButton :icon="{ name: 'Edit' }" link>编辑</VcButton>
+                                        <VcButton :icon="{ name: 'Remove' }" link>删除</VcButton>
+                                    </template>
+                                    <template #expand>
+                                        <div>展开内容</div>
+                                    </template>
+                                </VcExplorerTable>
                                 <VcExplorerFooter v-model:current-page="currentPage" :total="50" @current-change="(val: number) => { console.log('current-change', val) }">
                                     <ElButton type="primary">批量操作</ElButton>
                                 </VcExplorerFooter>

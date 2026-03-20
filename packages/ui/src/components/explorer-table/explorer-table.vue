@@ -13,11 +13,19 @@
             @header-dragend="onHeaderDragend"
         >
             <ElTableColumn v-if="selection" type="selection" :width="size === 'large' ? 50 : 38" align="center" />
-            <slot name="expand" />
-            <ElTableColumn v-if="index" type="index" :width="size === 'large' ? 80 : 60" align="center" fixed="left" />
             <template v-if="columns.length">
-                <ElTableColumn v-for="item in columns" :key="item.prop" v-bind="item">
-                    <template #default="{ row, $index }">
+                <!-- <ElTableColumn v-if="haveIndex" type="index" :width="size === 'large' ? 80 : 60" align="center" fixed="left" /> -->
+                <ElTableColumn v-for="item in columns" :key="item.prop" v-bind="item" :type="columnType(item)">
+                    <template v-if="item.prop.startsWith('expand')" #default="{ row, $index }">
+                        <slot name="expand" :row="row" :index="$index" />
+                    </template>
+                    <template v-else-if="item.prop === 'index'" #default="{ $index }">
+                        {{ startIndex + $index + 1 }}
+                    </template>
+                    <template v-else-if="item.prop === 'operation'" #default="{ row, $index }">
+                        <slot name="operation" :row="row" :index="$index" />
+                    </template>
+                    <template v-else #default="{ row, $index }">
                         <component :is="columnRender(row, item, $index)" />
                     </template>
                 </ElTableColumn>
@@ -43,10 +51,16 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     highlightCurrent: false,
     columnRender: (row: any, column: IColumnConfig) => h('span', row[column.prop]),
     loading: false,
+    startIndex: 0,
 })
 
 const state = injectExplorerPanelState()
 const columns = computed(() => state.columnConfig.value.filter(item => item.visible !== false))
+
+function columnType(item: IColumnConfig) {
+    if (item.prop.startsWith('expand')) { return 'expand' }
+    return 'default'
+}
 
 watch(() => props.columnConfig, val => {
     if (Array.isArray(state.columnConfig.value) && state.columnConfig.value.length) { return }

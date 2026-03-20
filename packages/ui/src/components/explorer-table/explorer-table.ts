@@ -13,4 +13,5 @@ export interface IExplorerTableProps {
     size?: 'small' | 'default' | 'large'
     columnRender?: (row: any, column: IColumnConfig, index: number) => VNode
     columnConfig?: IColumnConfig[]
+    startIndex?: number
 }

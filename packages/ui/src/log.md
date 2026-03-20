@@ -2,6 +2,16 @@
 title: 更新日志
 ---
 
+## 1.10.0
+
+2026-?-?
+
+### 新增和更新
+
+- explorer-table 增加 operation、expand 插槽，同时 operation、expand、index 列归入 tableColumn
+
+### 缺陷修复
+
 ## 1.9.0
 
 2026-3-19

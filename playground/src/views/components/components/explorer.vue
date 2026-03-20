@@ -12,7 +12,7 @@
                 @down="(val) => { console.log('down', val) }"
                 @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
             />
-            <VcExplorerModalForm v-model="dialogFormVisible" type="dialog" :form="dialogForm" title="编辑">
+            <VcExplorerModalForm v-model="dialogFormVisible" type="dialog" :form="dialogForm">
                 <ElRow :gutter="20" :class="$style.row">
                     <ElCol :span="12">
                         <ElFormItem label="标题" prop="title">
@@ -71,12 +71,17 @@
                         @column-reset="() => { tableRef?.setColumns(cloneDeep(columns)) }"
                     >
                         <ElButton>其他按钮1</ElButton>
-                        <ElButton>其他按钮2</ElButton>
-                        <template #setting>
-                            <ElButton type="primary">设置</ElButton>
-                        </template>
+                        <ElButton>其他按钮21</ElButton>
                     </VcExplorerTools>
-                    <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn" index />
+                    <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn">
+                        <template #operation>
+                            <VcButton :icon="{ name: 'Edit' }" link>编辑</VcButton>
+                            <VcButton :icon="{ name: 'Remove' }" link>删除</VcButton>
+                        </template>
+                        <template #expand>
+                            <div>展开内容</div>
+                        </template>
+                    </VcExplorerTable>
                     <VcExplorerFooter v-model:current-page="currentPage" :total="50" @current-change="(val: number) => { console.log('current-change', val) }">
                         <ElButton type="primary">批量操作</ElButton>
                     </VcExplorerFooter>

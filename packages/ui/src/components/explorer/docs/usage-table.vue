@@ -11,7 +11,7 @@ const documentData = {
         { param: 'loading-text', description: '加载中的文本', type: 'string', defaultValue: '数据加载中...' },
         { param: 'empty-text', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },
         { param: 'highlight-current', description: '是否高亮当前项', type: 'boolean', defaultValue: 'true' },
-        { param: 'index', description: '是否显示索引列', type: 'boolean', defaultValue: 'false' },
+        { param: 'startIndex', description: '起始索引', type: 'number', defaultValue: '0' },
         { param: 'column-config', description: '列配置', type: 'IColumnConfig[]', defaultValue: '[]' },
         { param: 'column-render', description: '列渲染函数', type: '(column: IColumnConfig) => VNode', defaultValue: '下一行' },
         { param: '-', rowType: 'paramType', description: '(column: IColumnConfig) => h(ElTableColumn, column)' },
@@ -24,8 +24,9 @@ const documentData = {
         { name: 'setColumns', description: '设置列', param: '(columns: IColumnConfig[]) => void' },
     ],
     slots: [
-        { name: 'expand', description: '展开行插槽' },
-        { name: 'default', description: '列插槽' },
+        { name: 'default', description: '列插槽，参数有 row 和 index，下同' },
+        { name: 'operation', description: '操作插槽' },
+        { name: 'expand', description: '展开行插槽，prop 需要配置 expand 开头，如：expand-order-children' },
     ],
 }
 </script>

@@ -12,7 +12,7 @@
         <ElTableColumn prop="label" label="列名" :min-width="200" show-overflow-tooltip>
             <template #default="{ row }">
                 <div :class="$style.label">
-                    <ElCheckbox v-model="row.visible" :label="row.label" :size="size" />
+                    <ElCheckbox v-model="row.visible" :label="getLabel(row)" :size="size" />
                 </div>
             </template>
         </ElTableColumn>
@@ -110,6 +110,13 @@ const widthConfig = computed(() => {
 })
 
 const isFullMode = computed(() => props.mode === 'full')
+
+function getLabel(row: IColumnConfig) {
+    if (row.label) { return row.label }
+    if (row.prop === 'index') { return '序号' }
+    if (row.prop.startsWith('expand')) { return '展开行' }
+    return '-'
+}
 
 function handleWidthChange(row: IColumnConfig) {
     if (row.widthType === 'width') {

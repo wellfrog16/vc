@@ -1,5 +1,5 @@
 <template>
-    <ElSwitch v-if="formDisabled || !confirm" v-model="myValue" :class="className" v-bind="$attrs" disable />
+    <ElSwitch v-if="formDisabled || !confirm" v-model="myValue" :class="className" v-bind="$attrs" :disabled="formDisabled" />
     <ElPopconfirm v-else :title="confirmTitle" v-bind="props.confirmProps" @confirm="handleConfirm">
         <template #reference>
             <span ref="mainRef" :class="$style.main">
@@ -11,9 +11,7 @@
 
 <script lang="ts" setup>
 import type { ISwitchProps } from './switch'
-
-import { ElPopconfirm, ElSwitch, useFormDisabled } from 'element-plus'
-import { computed, onMounted, useTemplateRef } from 'vue'
+import { useFormDisabled } from 'element-plus'
 
 const props = withDefaults(defineProps<ISwitchProps>(), {
     confirmTitle: '确认切换吗？',
@@ -23,6 +21,7 @@ const props = withDefaults(defineProps<ISwitchProps>(), {
 })
 
 const emits = defineEmits(['update:modelValue'])
+const myValue = useVModel(props, 'modelValue', emits)
 const mainRef = useTemplateRef('mainRef')
 const formDisabled = useFormDisabled()
 
@@ -32,11 +31,6 @@ function getSwitchEle() {
     return ele as HTMLDivElement
 }
 const handleConfirm = () => getSwitchEle()?.click()
-
-const myValue = computed({
-    get: () => props.modelValue,
-    set: val => emits('update:modelValue', val),
-})
 
 onMounted(() => {
     getSwitchEle()?.addEventListener('click', (event: Event) => {

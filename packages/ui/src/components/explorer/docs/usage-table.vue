@@ -23,6 +23,9 @@ const documentData = {
     methods: [
         { name: 'setColumns', description: '设置列', param: '(columns: IColumnConfig[]) => void' },
     ],
+    events: [
+        { name: 'column-event', description: '自定义 column 组件抛出的事件', param: 'column: IColumnConfig, row: any, value: Record<string, any>' },
+    ],
     slots: [
         { name: 'default', description: '列插槽，参数有 row 和 index，下同' },
         { name: 'operation', description: '操作插槽' },

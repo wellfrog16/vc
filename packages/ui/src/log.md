@@ -9,6 +9,8 @@ title: 更新日志
 ### 新增和更新
 
 - explorer-table 增加 operation、expand 插槽，同时 operation、expand、index 列归入 tableColumn
+- explorer-table 增加 columnEvent 事件，用于监听动态渲染时，自定义组件的操作
+- 优化 switch 组件
 
 ### 缺陷修复
 

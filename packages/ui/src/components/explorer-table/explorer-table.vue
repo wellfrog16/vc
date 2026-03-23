@@ -26,7 +26,7 @@
                         <slot name="operation" :row="row" :index="$index" />
                     </template>
                     <template v-else #default="{ row, $index }">
-                        <component :is="columnRender(row, item, $index)" />
+                        <component :is="columnRender(item, row, emits, $index)" />
                     </template>
                 </ElTableColumn>
             </template>
@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
-import type { IExplorerTableProps } from './explorer-table'
+import type { IExplorerTableEmits, IExplorerTableProps } from './explorer-table'
 import { ElTableColumn } from 'element-plus'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 
@@ -49,10 +49,11 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     emptyText: '没有数据',
     loadingText: '数据加载中...',
     highlightCurrent: false,
-    columnRender: (row: any, column: IColumnConfig) => h('span', row[column.prop]),
+    columnRender: (column: IColumnConfig, row: any) => h('span', row[column.prop]),
     loading: false,
     startIndex: 0,
 })
+const emits = defineEmits<IExplorerTableEmits>()
 
 const state = injectExplorerPanelState()
 const columns = computed(() => state.columnConfig.value.filter(item => item.visible !== false))

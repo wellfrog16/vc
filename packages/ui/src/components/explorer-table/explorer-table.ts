@@ -11,7 +11,11 @@ export interface IExplorerTableProps {
     loading?: boolean
     loadingText?: string
     size?: 'small' | 'default' | 'large'
-    columnRender?: (row: any, column: IColumnConfig, index: number) => VNode
+    columnRender?: (column: IColumnConfig, row: any, emits: IExplorerTableEmits, index: number) => VNode
     columnConfig?: IColumnConfig[]
     startIndex?: number
+}
+
+export interface IExplorerTableEmits {
+    (e: 'columnEvent', column: IColumnConfig, row: any, value: Record<string, any>): void
 }

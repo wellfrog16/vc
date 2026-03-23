@@ -73,7 +73,7 @@
                         <ElButton>其他按钮1</ElButton>
                         <ElButton>其他按钮21</ElButton>
                     </VcExplorerTools>
-                    <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn">
+                    <VcExplorerTable ref="tableRef" :data="tableData" selection :column-config="tableColumn" :column-render="columnRender" @column-event="(column, row, val) => { console.log(column, row, val) }">
                         <template #operation>
                             <VcButton :icon="{ name: 'Edit' }" link>编辑</VcButton>
                             <VcButton :icon="{ name: 'Remove' }" link>删除</VcButton>
@@ -143,7 +143,7 @@
 
 <script setup lang="ts">
 import { cloneDeep } from 'lodash-es'
-import { columns, tableData, treeData } from '../demo-data'
+import { columnRender, columns, tableData, treeData } from '../demo-data'
 
 // Filter
 const myListAction = ref<any[]>(['modify', 'up', 'remove'])

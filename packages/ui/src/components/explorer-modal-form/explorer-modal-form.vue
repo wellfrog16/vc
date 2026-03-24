@@ -66,12 +66,26 @@ function handleEdit() {
     emits('edit')
 }
 
+// 解决向 slot 传递的问题
+function fixLabelPosition() {
+    const formItems = formRef.value?.$el.querySelectorAll('.el-form-item')
+
+    if (props.labelPosition === 'top') {
+        formItems.forEach((formItem: HTMLElement) => formItem.classList.add('el-form-item--label-top'))
+    }
+    if (props.labelPosition === 'right') {
+        formItems.forEach((formItem: HTMLElement) => formItem.classList.add('el-form-item--label-right'))
+    }
+}
+
 const visibleWatch = watch(modalVisible, val => {
     if (!val) { return }
     isEditing.value = props.editing ?? true
+
+    nextTick(() => fixLabelPosition())
 }, { immediate: true })
 
-defineExpose({ formRef })
+defineExpose({ formRef, fixLabelPosition })
 
 onUnmounted(() => { visibleWatch.stop() })
 </script>

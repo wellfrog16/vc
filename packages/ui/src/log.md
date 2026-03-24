@@ -14,6 +14,8 @@ title: 更新日志
 
 ### 缺陷修复
 
+- 修复 explorer-modal-form 的 labelPosition 属性（top/right）
+
 ## 1.9.0
 
 2026-3-19

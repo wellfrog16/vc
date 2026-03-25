@@ -49,7 +49,7 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     emptyText: '没有数据',
     loadingText: '数据加载中...',
     highlightCurrent: false,
-    columnRender: (column: IColumnConfig, row: any) => h('span', row[column.prop]),
+    columnRender: (column: IColumnConfig, row: Record<string, any>) => h('span', row[column.prop]),
     loading: false,
     startIndex: 0,
 })

@@ -95,10 +95,10 @@ export const columns: any[] = [
     { prop: 'operation', label: '操作', width: 160, widthType: 'width', visible: true, align: 'center', fixed: 'right' },
 ]
 
-const columns2 = new Map<string, (row: any, column: any, emits: any) => any>()
+const columns2 = new Map<string, (column: any, row: Record<string, any>, emits: any) => any>()
 
 // 状态
-columns2.set('status', (column: any, row: any, emits: any) => {
+columns2.set('status', (column: any, row: Record<string, any>, emits: any) => {
     return h(VcSwitch, {
         'disabled': false,
         'confirm': true,
@@ -111,6 +111,6 @@ columns2.set('status', (column: any, row: any, emits: any) => {
     })
 })
 
-export function columnRender(column: any, row: any, emits: any) {
+export function columnRender(column: any, row: Record<string, any>, emits: any) {
     return columns2.get(column.prop)?.(column, row, emits) || h('span', row[column.prop])
 }

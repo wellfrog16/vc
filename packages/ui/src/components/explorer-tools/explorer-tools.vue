@@ -5,34 +5,37 @@
             <slot />
         </div>
         <div v-if="Array.isArray(tools) && tools.length > 0" :class="$style.tools">
-            <VcInput
-                v-if="tools.includes('search')"
-                v-model="keyword"
-                :placeholder="searchPlaceholder"
-                clearable
-                :prefix-icon="Search"
-                width="180px"
-                @keydown.enter="handleSearch"
-                @clear="handleSearch"
-            />
-            <ElRadioGroup v-if="tools.includes('layout')" v-model="myLayout" :class="$style.layout" @change="emits('layout', myLayout)">
-                <ElRadioButton value="card" title="卡片视图"><VcIconifyIcon name="lucide:layout-grid" /></ElRadioButton>
-                <ElRadioButton value="list" title="列表视图"><VcIconifyIcon name="lucide:table-of-contents" /></ElRadioButton>
-            </ElRadioGroup>
-            <VcButton v-if="tools.includes('refresh')" title="刷新" :throttle="throttle" circle :icon="{ name: 'Refresh', type: 'el' }" @click="emits('refresh')" />
-            <VcButton v-if="tools.includes('fullscreen')" title="全屏" :type="isFullScreen ? 'primary' : 'default'" circle :icon="{ name: 'FullScreen', type: 'el' }" @click="toggleFullScreen" />
-            <ColumnSetter
-                v-if="tools.includes('setter')"
-                v-model:data="columnConfig"
-                :tools-key="toolsKey"
-                :size="columnSetterSize"
-                :column-to-storage="columnToStorage"
-                :reset-visible="columnResetVisible"
-                @config-confirm="val => emits('configConfirm', val)"
-                @reset="emits('columnReset')"
-            >
-                <VcButton title="设置" circle :icon="{ name: 'Setting', type: 'el' }" :throttle="throttle" />
-            </ColumnSetter>
+            <template v-for="tool in tools" :key="tool">
+                <slot v-if="tool === 'custom'" name="action" />
+                <VcInput
+                    v-if="tool === 'search'"
+                    v-model="keyword"
+                    :placeholder="searchPlaceholder"
+                    clearable
+                    :prefix-icon="Search"
+                    width="180px"
+                    @keydown.enter="handleSearch"
+                    @clear="handleSearch"
+                />
+                <ElRadioGroup v-if="tool === 'layout'" v-model="myLayout" :class="$style.layout" @change="emits('layout', myLayout)">
+                    <ElRadioButton value="card" title="卡片视图"><VcIconifyIcon name="lucide:layout-grid" /></ElRadioButton>
+                    <ElRadioButton value="list" title="列表视图"><VcIconifyIcon name="lucide:table-of-contents" /></ElRadioButton>
+                </ElRadioGroup>
+                <VcButton v-if="tool === 'refresh'" title="刷新" :throttle="throttle" circle :icon="{ name: 'Refresh', type: 'el' }" @click="emits('refresh')" />
+                <VcButton v-if="tool === 'fullscreen'" title="全屏" :type="isFullScreen ? 'primary' : 'default'" circle :icon="{ name: 'FullScreen', type: 'el' }" @click="toggleFullScreen" />
+                <ColumnSetter
+                    v-if="tool === 'setter'"
+                    v-model:data="columnConfig"
+                    :tools-key="toolsKey"
+                    :size="columnSetterSize"
+                    :column-to-storage="columnToStorage"
+                    :reset-visible="columnResetVisible"
+                    @config-confirm="val => emits('configConfirm', val)"
+                    @reset="emits('columnReset')"
+                >
+                    <VcButton title="设置" circle :icon="{ name: 'Setting', type: 'el' }" :throttle="throttle" />
+                </ColumnSetter>
+            </template>
         </div>
     </div>
 </template>

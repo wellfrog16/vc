@@ -20,7 +20,7 @@ const documentData = {
         { param: '其他', description: 'el-switch 的属性、事件', type: 'https://element-plus.org/zh-CN/component/switch#api' },
     ],
     types: [
-        { param: 'ToolsType', description: '(\'search\' | \'refresh\' | \'fullscreen\' | \'setting\' | \'layout\')[]' },
+        { param: 'ToolsType', description: '(\'search\' | \'refresh\' | \'fullscreen\' | \'setting\' | \'layout\' | \'custom\')[]' },
     ],
     events: [
         { name: 'create', description: '创建事件', param: '-' },
@@ -33,6 +33,7 @@ const documentData = {
     ],
     slots: [
         { name: 'default', description: '左侧区域' },
+        { name: 'action', description: '右侧区域' },
     ],
 }
 </script>

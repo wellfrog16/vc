@@ -1,7 +1,7 @@
 import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
 
 export interface IExplorerToolsProps {
-    tools?: ('search' | 'refresh' | 'fullscreen' | 'setter' | 'layout')[]
+    tools?: ('search' | 'refresh' | 'fullscreen' | 'setter' | 'layout' | 'custom')[]
     searchPlaceholder?: string
     layout?: 'card' | 'list'
     create?: boolean

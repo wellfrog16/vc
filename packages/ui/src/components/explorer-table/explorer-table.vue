@@ -93,8 +93,7 @@ defineExpose({
     flex-grow: 1;
 }
 
-.table {
-    // width: 100%;
+div.table {
     flex-grow: 1;
     height: 100px;
 

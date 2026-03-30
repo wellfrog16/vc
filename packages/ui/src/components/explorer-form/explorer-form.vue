@@ -18,6 +18,7 @@
                 :disabled="disabled || !isEditing || !editable"
                 require-asterisk-position="right"
                 :label-position="labelPosition"
+                :class="$style.form"
             >
                 <slot />
             </ElForm>
@@ -108,6 +109,16 @@ defineExpose({
         .el-button {
             margin-left: 0 !important;
         }
+    }
+}
+
+.form {
+    display: flex;
+    flex-grow: 1;
+    align-items: flex-start;
+
+    :global(> .el-row) {
+        flex-grow: 1;
     }
 }
 

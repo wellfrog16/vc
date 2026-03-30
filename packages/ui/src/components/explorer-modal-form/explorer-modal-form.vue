@@ -9,6 +9,7 @@
             v-bind="formProps"
             :model="form.fields"
             :rules="form.rules"
+            :class="$style.form"
         >
             <slot />
         </ElForm>
@@ -94,5 +95,15 @@ onUnmounted(() => { visibleWatch.stop() })
 .icon {
     margin-right: 4px;
     font-size: var(--el-font-size-extra-large);
+}
+
+.form {
+    display: flex;
+    flex-grow: 1;
+    align-items: flex-start;
+
+    :global(> .el-row) {
+        flex-grow: 1;
+    }
 }
 </style>

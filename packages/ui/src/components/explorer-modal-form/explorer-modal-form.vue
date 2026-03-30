@@ -70,6 +70,7 @@ function handleEdit() {
 // 解决向 slot 传递的问题
 function fixLabelPosition() {
     const formItems = formRef.value?.$el.querySelectorAll('.el-form-item')
+    if (!formItems) { return }
 
     if (props.labelPosition === 'top') {
         formItems.forEach((formItem: HTMLElement) => formItem.classList.add('el-form-item--label-top'))

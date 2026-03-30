@@ -172,7 +172,7 @@ defineExpose({ init })
 </script>
 
 <style lang="scss" module>
-.table {
+div.table {
     flex-grow: 1;
     height: 100px;
 

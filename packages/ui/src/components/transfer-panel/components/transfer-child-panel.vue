@@ -16,7 +16,7 @@
                 <ElText v-else size="small" type="info">已选择 {{ choicedData?.length || 0 }}</ElText>
             </template>
         </ElInput>
-        <VcScrollbar always>
+        <VcScrollbar always view-margin="0 10px 18px 0">
             <div
                 v-for="(item, index) in myData"
                 :key="item.value"

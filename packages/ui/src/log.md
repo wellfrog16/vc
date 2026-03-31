@@ -14,6 +14,7 @@ title: 更新日志
 - 优化 switch 组件
 - explorer-form 和 explorer-modal-form 的 form 容器，调整为 flex 模式
 - 调整 scrollbar 的 bar 显示位置
+- 优化 transfer 组件样式
 
 ### 缺陷修复
 

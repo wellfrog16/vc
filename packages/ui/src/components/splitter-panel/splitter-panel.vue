@@ -1,17 +1,10 @@
 <template>
     <el-splitter-panel :class="$style.panel">
-        <VcScrollbar :padding="padding"><slot /></VcScrollbar>
+        <slot />
     </el-splitter-panel>
 </template>
 
-<script setup lang="ts">
-import type { ISplitterPanelProps } from './splitter-panel'
-import VcScrollbar from '../scrollbar/scrollbar.vue'
-
-withDefaults(defineProps<ISplitterPanelProps>(), {
-    padding: 8,
-})
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" module>
 .panel {

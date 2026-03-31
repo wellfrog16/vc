@@ -144,7 +144,7 @@ button.collections-button {
     bottom: -13px;
     width: 200px;
     background-color: var(--el-popover-bg-color);
-    padding: 12px;
+    padding: 12px 2px;
     z-index: 3;
     transition: left 0.3s;
     border-radius: 4px;

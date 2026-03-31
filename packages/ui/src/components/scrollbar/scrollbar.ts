@@ -1,7 +1,5 @@
-import type { ScrollbarProps } from 'element-plus'
-
-export interface IScrollbarProps extends Partial<ScrollbarProps> {
+export interface IScrollbarProps {
     flex?: boolean
-    padding?: number
     fillHeight?: boolean
+    viewMargin?: string
 }

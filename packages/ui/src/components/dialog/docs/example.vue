@@ -15,7 +15,12 @@
                     <VcButton :time="0" @click="handleAdd">增加内容</VcButton>
                     <VcButton :time="0" @click="handleRemove">减少内容</VcButton>
                     <div v-for="item in line" :key="item">啤酒、饮料、矿泉水，花生、瓜子、大鸡腿</div>
-                    <div>长文本测试左右的 padding，我很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长</div>
+                    <div>长文本测试左右的 padding，我很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长</div>
+                    <ElAlert type="info" title="提示" show-icon>
+                        <template #default>
+                            <div>长文本测试左右的 padding，我很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长</div>
+                        </template>
+                    </ElAlert>
                 </div>
             </VcDialog>
             <VcButton @click="() => toggleVisible()">打开</VcButton>

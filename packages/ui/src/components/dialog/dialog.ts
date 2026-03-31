@@ -9,6 +9,7 @@ export interface IDialogProps {
     fullscreenHeight?: string | number
     fullscreen?: boolean
     boxPadding?: boolean
-    padding?: number
+    padding?: string
+    viewMargin?: string
     width?: string | number
 }

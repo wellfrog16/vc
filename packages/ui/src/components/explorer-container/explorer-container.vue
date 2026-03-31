@@ -4,7 +4,7 @@
             <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" /><slot name="title">{{ title }}</slot></div>
             <div v-if="$slots.action" :class="$style.actions"><slot name="action" /></div>
         </div>
-        <VcScrollbar always>
+        <VcScrollbar always :class="$style.scrollbar">
             <slot />
         </VcScrollbar>
     </div>
@@ -51,5 +51,9 @@ withDefaults(defineProps<IExplorerContainerProps>(), {
     margin-right: 4px;
     font-size: 1.1em;
     transform: translateY(1px);
+}
+
+.scrollbar {
+    margin: 0 -8px;
 }
 </style>

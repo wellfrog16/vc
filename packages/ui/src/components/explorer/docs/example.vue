@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <VcDialog v-model="dialogVisible" title="测试" height="500px" fullscreen flex :padding="5" :box-padding="false">
+            <VcDialog v-model="dialogVisible" title="测试" height="500px" fullscreen padding="5px" view-margin="0px" :box-padding="false">
                 <VcExplorer explorer-key="demo">
                     <VcExplorerPanel size="200">
                         <VcExplorerFilter :create="filterCreateVisible" @filter="(val) => { console.log('filter', val) }" />
@@ -119,6 +119,11 @@
                                     </VcExplorerPanel>
                                     <VcExplorerPanel resizable>
                                         <VcExplorerContainer title="这个是纯容器">
+                                            <ElAlert type="info">
+                                                <template #default>
+                                                    <div>长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很</div>
+                                                </template>
+                                            </ElAlert>
                                             <div v-for="value in 20" :key="value">
                                                 <ElText>这个是纯容器，带标题{{ value }}</ElText>
                                             </div>

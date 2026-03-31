@@ -107,6 +107,7 @@ columns2.set('status', (column: IColumnConfig, row: Record<string, any>, emits: 
         'inactiveText': '关',
         'modelValue': row.status,
         'onUpdate:modelValue': val => row.status = val,
+        'style': { height: '24px' },
         'inline-prompt': true,
         'onChange': (val: any) => { emits('columnEvent', column, row, { value: val }) },
     })

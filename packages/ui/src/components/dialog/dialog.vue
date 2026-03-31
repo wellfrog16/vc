@@ -9,7 +9,11 @@
         :show-close="false"
         :fullscreen="isFullscreen"
         :close-on-click-modal="false"
-        :class="[$style.main, { [$style['box-padding']]: boxPadding }]"
+        :class="$style.main"
+        :style="{
+            '--vc-dialog-boxPadding': boxPadding ? 'block' : 'none',
+            '--vc-dialog-padding': padding,
+        }"
         @closed="handleClosed"
     >
         <template #header="{ close, titleId, titleClass }">
@@ -25,7 +29,7 @@
             </div>
         </template>
         <template #default>
-            <VcScrollbar :max-height="myMaxHeight" :height="height" always :view-class="$style['scrollbar-view']" :padding="padding" :fill-height="false">
+            <VcScrollbar :max-height="myMaxHeight" :height="height" always :view-margin="viewMargin" :fill-height="false">
                 <slot />
             </VcScrollbar>
         </template>
@@ -44,10 +48,10 @@ const props = withDefaults(defineProps<IDialogProps>(), {
     showFullscreen: true,
     showDefaultFooter: false,
     lazy: true,
-    flex: false,
     fullscreen: false,
     boxPadding: true,
-    padding: 16,
+    padding: '0px',
+    viewMargin: '12px',
     maxHeight: '80vh',
     width: '960px',
 })
@@ -102,7 +106,7 @@ div.main {
 
         .el-dialog__body {
             flex-grow: 1;
-            padding: 0;
+            padding: var(--vc-dialog-padding);
             display: flex;
             flex-direction: column;
         }
@@ -123,9 +127,9 @@ div.main {
             width: calc(100% - 8px);
             height: 100%;
             background: var(--el-bg-color);
-            height: 16px;
+            height: 12px;
             z-index: 3;
-            display: none;
+            display: var(--vc-dialog-boxPadding);
             // background-image: radial-gradient(transparent 1px, var(--el-bg-color) 1px);
             // background-size: 4px 4px;
             // backdrop-filter: saturate(50%) blur(4px);
@@ -139,9 +143,9 @@ div.main {
             width: calc(100% - 8px);
             height: 100%;
             background: var(--el-bg-color);
-            height: 16px;
+            height: 12px;
             z-index: 3;
-            display: none;
+            display: var(--vc-dialog-boxPadding);
         }
     }
 
@@ -159,11 +163,11 @@ div.main {
     :global(> .el-dialog__body > .el-scrollbar) {
         position: relative;
         &::before {
-            display: 'block';
+            display: block;
         }
 
         &::after {
-            display: 'block';
+            display: block;
         }
     }
 }
@@ -182,10 +186,6 @@ div.main {
 .title {
     display: flex;
     align-items: center;
-}
-
-.scrollbar-view {
-    padding: 16px;
 }
 
 .buttons {

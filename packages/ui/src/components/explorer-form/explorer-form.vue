@@ -9,7 +9,7 @@
                 <VcButton v-if="editable && !isEditing" :icon="{ name: 'EditPen' }" type="primary" @click="handleEdit">编辑</VcButton>
             </div>
         </div>
-        <VcScrollbar always>
+        <VcScrollbar always :class="$style.scrollbar">
             <ElForm
                 ref="formRef"
                 v-bind="formProps"
@@ -122,9 +122,7 @@ defineExpose({
     }
 }
 
-// .scrollbar {
-//     :global(.el-scrollbar__wrap > .el-scrollbar__view) {
-//         padding-right: 12px;
-//     }
-// }
+.scrollbar {
+    margin: 0 -8px;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <VcScrollbar always>
+    <VcScrollbar always :class="$style.scrollbar">
         <div v-show="!loading">
             <div
                 v-for="(item, index) in myData"
@@ -17,6 +17,7 @@
                             v-else
                             v-bind="actionsMapping[action]"
                             :confirm="action === 'remove' ? confirmParams(item) : undefined"
+                            :class="action === 'remove' ? $style.remove : undefined"
                             link
                             :icon="{ type: 'el', name: actionsMapping[action].icon }"
                             stop
@@ -152,5 +153,9 @@ defineExpose({
     align-items: center;
     column-gap: 4px;
     color: var(--el-text-color-secondary);
+}
+
+.scrollbar {
+    margin: 0 -8px;
 }
 </style>

@@ -116,6 +116,11 @@
                         </VcExplorerPanel>
                         <VcExplorerPanel resizable>
                             <VcExplorerContainer title="这个是纯容器">
+                                <ElAlert type="info">
+                                    <template #default>
+                                        <div>长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很</div>
+                                    </template>
+                                </ElAlert>
                                 <div v-for="value in 20" :key="value">
                                     <ElText>这个是纯容器，带标题{{ value }}</ElText>
                                 </div>

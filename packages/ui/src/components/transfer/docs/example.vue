@@ -34,6 +34,12 @@ const options = [
     { label: '编辑', value: 2 },
     { label: '普通用户', value: 3 },
     { label: '游客', value: 4 },
+    { label: '游客', value: 41 },
+    { label: '游客', value: 42 },
+    { label: '游客', value: 43 },
+    { label: '游客', value: 44 },
+    { label: '游客', value: 45 },
+    { label: '游客', value: 46 },
 ]
 
 const myValue = ref([])

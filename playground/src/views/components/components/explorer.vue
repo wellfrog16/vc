@@ -13,7 +13,7 @@
                 @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
             />
             <VcExplorerModalForm v-model="dialogFormVisible" type="dialog" :form="dialogForm">
-                <ElRow :gutter="20" :class="$style.row">
+                <ElRow :gutter="20">
                     <ElCol :span="12">
                         <ElFormItem label="标题" prop="title">
                             <ElInput v-model="dialogForm.fields.title" placeholder="标题" clearable />
@@ -90,7 +90,7 @@
                     <VcExplorer>
                         <VcExplorerPanel resizable>
                             <VcExplorerForm ref="formRef" :title="containerForm.fields.title" :form="containerForm" @save="handleSave">
-                                <ElRow :gutter="20" :class="$style.row">
+                                <ElRow :gutter="20">
                                     <ElCol :span="12">
                                         <ElFormItem label="标题" prop="title">
                                             <ElInput v-model="containerForm.fields.title" placeholder="标题" clearable />
@@ -222,9 +222,3 @@ function handleNodeClick(value: any, node: any, instance: any, event: MouseEvent
     console.log('handleNodeClick', value, node, instance, event)
 }
 </script>
-
-<style lang="scss" module>
-.row {
-    margin: 0 !important;
-}
-</style>

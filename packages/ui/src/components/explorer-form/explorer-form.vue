@@ -119,6 +119,7 @@ defineExpose({
 
     :global(> .el-row) {
         flex-grow: 1;
+        margin: 0 !important;
     }
 }
 

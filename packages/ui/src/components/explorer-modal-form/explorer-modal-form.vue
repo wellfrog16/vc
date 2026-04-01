@@ -1,6 +1,7 @@
 <template>
     <component :is="component" v-model="modalVisible" v-bind="$attrs">
-        <ElForm
+        <component
+            :is="formComponent"
             ref="formRef"
             v-loading="loading"
             require-asterisk-position="right"
@@ -12,7 +13,7 @@
             :class="$style.form"
         >
             <slot />
-        </ElForm>
+        </component>
         <template #title="{ close }">
             <div :class="$style['header-container']">
                 <VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" />
@@ -30,6 +31,7 @@
 
 <script setup lang="ts">
 import type { IExplorerModalFormEmits, IExplorerModalFormProps } from './explorer-modal-form'
+import { ElForm } from 'element-plus'
 import VcButton from '../button/button.vue'
 import VcDialog from '../dialog/dialog.vue'
 import VcDrawer from '../drawer/drawer.vue'
@@ -46,6 +48,11 @@ const emits = defineEmits<IExplorerModalFormEmits>()
 
 const modalVisible = useVModel(props, 'modelValue', emits)
 const formRef = useTemplateRef('formRef')
+
+// 用于解决 form 和 form slot 里的 form-item 不是同一个源问题
+// 会导致 form-item 的 label、required 等属性不生效
+const formComponent = shallowRef(ElForm)
+
 const isEditing = ref(false)
 const component = computed(() => props.type === 'dialog' ? VcDialog : VcDrawer)
 const modalTitle = computed(() => props.title || (props.form.fields.id ? '编辑' : '新增'))
@@ -67,27 +74,12 @@ function handleEdit() {
     emits('edit')
 }
 
-// 解决向 slot 传递的问题
-function fixLabelPosition() {
-    const formItems = formRef.value?.$el.querySelectorAll('.el-form-item')
-    if (!formItems) { return }
-
-    if (props.labelPosition === 'top') {
-        formItems.forEach((formItem: HTMLElement) => formItem.classList.add('el-form-item--label-top'))
-    }
-    if (props.labelPosition === 'right') {
-        formItems.forEach((formItem: HTMLElement) => formItem.classList.add('el-form-item--label-right'))
-    }
-}
-
 const visibleWatch = watch(modalVisible, val => {
     if (!val) { return }
     isEditing.value = props.editing ?? true
-
-    nextTick(() => fixLabelPosition())
 }, { immediate: true })
 
-defineExpose({ formRef, fixLabelPosition })
+defineExpose({ formRef })
 
 onUnmounted(() => { visibleWatch.stop() })
 </script>
@@ -105,6 +97,7 @@ onUnmounted(() => { visibleWatch.stop() })
 
     :global(> .el-row) {
         flex-grow: 1;
+        margin: 0 !important;
     }
 }
 </style>

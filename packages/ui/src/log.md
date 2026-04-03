@@ -17,6 +17,7 @@ title: 更新日志
 - 优化 transfer 组件样式
 - 修复 explorer-modal-form 的 labelPosition/required 属性
 - 调整 explorer-form 和 explorer-modal-form 下 el-row 的默认样式
+- 调整 column-setter 下 el-divider 的样式优先级
 
 ### 缺陷修复
 

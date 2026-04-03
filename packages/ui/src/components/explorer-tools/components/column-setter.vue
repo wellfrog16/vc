@@ -103,7 +103,7 @@ onBeforeMount(() => {
     height: 28px;
 }
 
-.divider {
-    margin: 8px 0;
+div.divider {
+    margin: 8px 0 !;
 }
 </style>

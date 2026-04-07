@@ -8,7 +8,7 @@ title: 更新日志
 
 ### 新增和更新
 
-- explorer-table 增加 operation、expand 插槽，同时 operation、expand、index 列归入 tableColumn
+- explorer-table 增加 operation、expand、append 插槽，同时 operation、expand、index 列归入 tableColumn
 - explorer-table 增加 columnEvent 事件，用于监听动态渲染时，自定义组件的操作
 - explorer-tools 增加 action 插槽，tools 渲染按照给定顺序
 - 优化 switch 组件
@@ -18,6 +18,7 @@ title: 更新日志
 - 修复 explorer-modal-form 的 labelPosition/required 属性
 - 调整 explorer-form 和 explorer-modal-form 下 el-row 的默认样式
 - 调整 column-setter 下 el-divider 的样式优先级
+- explorer-column-table 组件增加 default 和 append 插槽
 
 ### 缺陷修复
 

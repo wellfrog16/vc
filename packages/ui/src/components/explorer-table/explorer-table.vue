@@ -31,6 +31,9 @@
                 </ElTableColumn>
             </template>
             <slot />
+            <template v-if="$slots.append" #append>
+                <slot name="append" />
+            </template>
             <template #empty>
                 <div v-if="!loading && !pending">{{ emptyText }}</div>
                 <div v-else />

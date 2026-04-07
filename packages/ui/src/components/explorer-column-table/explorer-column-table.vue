@@ -46,7 +46,11 @@
                 </div>
             </template>
         </ElTableColumn>
+        <slot />
         <ElTableColumn v-if="emptyColumn" label="" />
+        <template v-if="$slots.append" #append>
+            <slot name="append" />
+        </template>
     </ElTable>
 </template>
 

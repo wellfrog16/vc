@@ -30,6 +30,7 @@ const documentData = {
         { name: 'default', description: '列插槽，参数有 row 和 index，下同' },
         { name: 'operation', description: '操作插槽' },
         { name: 'expand', description: '展开行插槽，prop 需要配置 expand 开头，如：expand-order-children' },
+        { name: 'append', description: '作用同 el-table 的 append 插槽' },
     ],
 }
 </script>

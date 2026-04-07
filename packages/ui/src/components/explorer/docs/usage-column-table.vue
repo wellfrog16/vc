@@ -16,5 +16,8 @@ const documentData = {
     events: [
         { name: 'update:data', description: '表格数据更新事件', param: 'any[]' },
     ],
+    slots: [
+        { name: 'append', description: '作用同 el-table 的 append 插槽' },
+    ],
 }
 </script>

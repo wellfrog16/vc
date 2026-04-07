@@ -19,6 +19,7 @@ title: 更新日志
 - 调整 explorer-form 和 explorer-modal-form 下 el-row 的默认样式
 - 调整 column-setter 下 el-divider 的样式优先级
 - explorer-column-table 组件增加 default 和 append 插槽
+- explorer-column-table 组件 size 默认为 default
 
 ### 缺陷修复
 

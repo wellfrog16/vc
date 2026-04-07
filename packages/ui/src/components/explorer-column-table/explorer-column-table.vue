@@ -65,6 +65,7 @@ const props = withDefaults(defineProps<IExplorerColumnTableProps>(), {
     height: 320,
     emptyColumn: false,
     mode: 'easy',
+    size: 'default',
 })
 const emits = defineEmits<IExplorerColumnTableEmits>()
 

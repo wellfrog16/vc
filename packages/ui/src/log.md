@@ -20,6 +20,7 @@ title: 更新日志
 - 调整 column-setter 下 el-divider 的样式优先级
 - explorer-column-table 组件增加 default 和 append 插槽
 - explorer-column-table 组件 size 默认为 default
+- explorer-column-table 组件增加 editable 属性，用于控制 prop/label 列是否可编辑
 
 ### 缺陷修复
 

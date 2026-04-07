@@ -9,11 +9,23 @@
         scrollbar-always-on
         :class="$style.table"
     >
-        <ElTableColumn prop="label" label="列名" :min-width="200" show-overflow-tooltip>
+        <ElTableColumn v-if="!editable" prop="label" label="列名" :min-width="200" show-overflow-tooltip>
             <template #default="{ row }">
                 <div :class="$style.label">
                     <ElCheckbox v-model="row.visible" :label="getLabel(row)" :size="size" />
                 </div>
+            </template>
+        </ElTableColumn>
+        <ElTableColumn v-if="isFullMode && editable" prop="label" label="列名" :min-width="200">
+            <template #default="{ row }">
+                <ElCheckbox v-model="row.visible" :size="size">
+                    <VcInput v-model="row.label" block :size="size" />
+                </ElCheckbox>
+            </template>
+        </ElTableColumn>
+        <ElTableColumn v-if="isFullMode && editable" prop="prop" label="Prop" :min-width="200">
+            <template #default="{ row }">
+                <VcInput v-model="row.prop" block :size="size" />
             </template>
         </ElTableColumn>
         <ElTableColumn v-if="isFullMode" label="宽度" :width="widthConfig.width" align="center">
@@ -59,6 +71,7 @@ import type { IColumnConfig, IExplorerColumnTableEmits, IExplorerColumnTableProp
 import Sortable from 'sortablejs'
 import VcChoice from '../choice/choice.vue'
 import VcInputNumber from '../input-number/input-number.vue'
+import VcInput from '../input/input.vue'
 
 const props = withDefaults(defineProps<IExplorerColumnTableProps>(), {
     highlightCurrent: false,
@@ -66,6 +79,7 @@ const props = withDefaults(defineProps<IExplorerColumnTableProps>(), {
     emptyColumn: false,
     mode: 'easy',
     size: 'default',
+    editable: false,
 })
 const emits = defineEmits<IExplorerColumnTableEmits>()
 

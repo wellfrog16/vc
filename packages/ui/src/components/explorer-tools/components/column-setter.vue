@@ -104,6 +104,6 @@ onBeforeMount(() => {
 }
 
 div.divider {
-    margin: 8px 0 !;
+    margin: 8px 0;
 }
 </style>

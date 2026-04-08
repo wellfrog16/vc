@@ -73,7 +73,7 @@ watch(() => props.columnConfig, val => {
 
 function onHeaderDragend(newWidth: number, _oldWidth: number, column: any) {
     const item = state.columnConfig.value.find(item => item.prop === column.property)
-    if (item) {
+    if (item && !item.disabled) {
         item.width = newWidth
         item.widthType = 'width'
         delete item.minWidth

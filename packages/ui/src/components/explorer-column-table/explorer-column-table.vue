@@ -2,7 +2,7 @@
     <ElTable
         ref="tableRef"
         :data="myData"
-        row-key="prop"
+        row-key="id"
         border
         :size="size"
         :height="height"
@@ -11,7 +11,7 @@
     >
         <ElTableColumn v-if="!editable" prop="label" label="列名" :min-width="200" show-overflow-tooltip>
             <template #default="{ row }">
-                <div :class="$style.label">
+                <div :class="[$style.label, $style.handle]">
                     <ElCheckbox v-model="row.visible" :label="getLabel(row)" :size="size" />
                 </div>
             </template>
@@ -20,44 +20,44 @@
             <template #default="{ row }">
                 <div :class="$style.label">
                     <ElCheckbox v-model="row.visible" :size="size">
-                        <VcInput v-model="row.label" block :size="size" />
+                        <VcInput v-model="row.label" block :size="size" :disabled="row.disabled" />
                     </ElCheckbox>
-                    <VcIconifyIcon name="carbon:draggable" size="30px" />
+                    <VcIconifyIcon :class="$style.handle" name="carbon:draggable" size="30px" />
                 </div>
             </template>
         </ElTableColumn>
         <ElTableColumn v-if="isFullMode && editable" prop="prop" label="Prop" :min-width="200">
             <template #default="{ row }">
-                <VcInput v-model="row.prop" block :size="size" />
+                <VcInput v-model="row.prop" block :size="size" :disabled="row.disabled" />
             </template>
         </ElTableColumn>
         <ElTableColumn v-if="isFullMode" label="宽度" :width="widthConfig.width" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
-                    <VcChoice v-model="row.widthType" :options="widthOptions" :size="size" @change="handleWidthChange(row)" />
-                    <VcInputNumber v-if="row.widthType === 'width'" v-model="row.width" :min="0" :size="size" :controls="false" input-width="50px" />
-                    <VcInputNumber v-else v-model="row.minWidth" :min="0" :size="size" :controls="false" input-width="50px" />
+                    <VcChoice v-model="row.widthType" :options="widthOptions" :size="size" :disabled="row.disabled" @change="handleWidthChange(row)" />
+                    <VcInputNumber v-if="row.widthType === 'width'" v-model="row.width" :min="0" :size="size" :controls="false" input-width="50px" :disabled="row.disabled" />
+                    <VcInputNumber v-else v-model="row.minWidth" :min="0" :size="size" :controls="false" input-width="50px" :disabled="row.disabled" />
                 </div>
             </template>
         </ElTableColumn>
         <ElTableColumn v-if="isFullMode" label="数据位置" :width="widthConfig.data" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
-                    <VcChoice v-model="row.align" :options="alignOptions" :size="size" />
+                    <VcChoice v-model="row.align" :options="alignOptions" :size="size" :disabled="row.disabled" />
                 </div>
             </template>
         </ElTableColumn>
         <ElTableColumn v-if="isFullMode" label="冻结位置" :width="widthConfig.fixed" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
-                    <VcChoice v-model="row.formFixed" multiple :options="fixedOptions" :size="size" @change="handleFixedChange(row)" />
+                    <VcChoice v-model="row.formFixed" multiple :options="fixedOptions" :size="size" :disabled="row.disabled" @change="handleFixedChange(row)" />
                 </div>
             </template>
         </ElTableColumn>
         <ElTableColumn v-if="isFullMode" label="截断" :width="widthConfig.truncate" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
-                    <el-checkbox v-model="row.showOverflowTooltip" :size="size" border :class="$style.truncate" />
+                    <el-checkbox v-model="row.showOverflowTooltip" :size="size" border :class="$style.truncate" :disabled="row.disabled" />
                 </div>
             </template>
         </ElTableColumn>
@@ -177,8 +177,8 @@ function init() {
 
     sortable.value = new Sortable(el, {
         animation: 150,
-        handle: `.${$style.label}`, // 可选：指定拖拽手柄
-        filter: '.el-input',
+        handle: `.${$style.handle}`, // 可选：指定拖拽手柄
+        // filter: '.el-input', // 导致 input 无法聚焦
         onEnd: evt => {
             const { newIndex, oldIndex } = evt
 
@@ -214,7 +214,6 @@ div.table {
             width: 100%;
             display: flex;
             align-items: center;
-            cursor: move;
         }
         .el-checkbox__label {
             min-width: 0;
@@ -222,14 +221,16 @@ div.table {
             text-overflow: ellipsis;
             white-space: nowrap;
             flex-grow: 1;
-            cursor: pointer;
         }
 
         .iconify {
             margin-left: 4px;
-            cursor: move;
         }
     }
+}
+
+.handle {
+    cursor: move;
 }
 
 .item-container {

@@ -22,6 +22,7 @@ title: 更新日志
 - explorer-column-table 组件 size 默认为 default
 - explorer-column-table 组件增加 editable 属性，用于控制 prop/label 列是否可编辑
 - explorer-column-table 组件样式优化
+- explorer-column-table 组件支持元素 disabled 属性
 
 ### 缺陷修复
 

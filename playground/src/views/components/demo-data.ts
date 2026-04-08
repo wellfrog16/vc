@@ -82,17 +82,17 @@ export const tableData = [
 ]
 
 export const columns: any[] = [
-    { prop: 'index', label: '', width: 60, widthType: 'width', visible: true, align: 'center', fixed: 'left' },
-    { prop: 'expand-row', label: '', width: 60, widthType: 'width', visible: true, align: 'left' },
-    { prop: 'status', label: '状态', width: 80, widthType: 'width', visible: true, align: 'left' },
-    { prop: 'date', label: 'Date', width: 150, widthType: 'width', visible: true, align: 'left' },
-    { prop: 'name', label: 'Name', width: 120, widthType: 'width', visible: true, align: 'left' },
-    { prop: 'state', label: 'State', width: 120, widthType: 'width', visible: true, align: 'left' },
-    { prop: 'city', label: 'City', width: 120, widthType: 'width', visible: true, align: 'left' },
-    { prop: 'zip', label: 'Zip', width: 120, widthType: 'width', visible: true, align: 'left' },
-    { prop: 'tag', label: 'Tag', width: 100, widthType: 'width', visible: true, align: 'left' },
-    { prop: 'address', label: 'Address', minWidth: 300, widthType: 'minWidth', visible: true, align: 'left' },
-    { prop: 'operation', label: '操作', width: 160, widthType: 'width', visible: true, align: 'center', fixed: 'right' },
+    { id: 1, prop: 'index', label: '', width: 60, widthType: 'width', visible: true, align: 'center', fixed: 'left' },
+    { id: 2, prop: 'expand-row', label: '', width: 60, widthType: 'width', visible: true, align: 'left' },
+    { id: 3, prop: 'status', label: '状态', width: 80, widthType: 'width', visible: true, align: 'center' },
+    { id: 4, prop: 'date', label: 'Date', width: 150, widthType: 'width', visible: true, align: 'left' },
+    { id: 5, prop: 'name', label: 'Name', width: 120, widthType: 'width', visible: true, align: 'left' },
+    { id: 6, prop: 'state', label: 'State', width: 120, widthType: 'width', visible: true, align: 'left' },
+    { id: 7, prop: 'city', label: 'City', width: 120, widthType: 'width', visible: true, align: 'left', disabled: true },
+    { id: 8, prop: 'zip', label: 'Zip', width: 120, widthType: 'width', visible: true, align: 'left' },
+    { id: 9, prop: 'tag', label: 'Tag', width: 100, widthType: 'width', visible: true, align: 'left' },
+    { id: 10, prop: 'address', label: 'Address', minWidth: 300, widthType: 'minWidth', visible: true, align: 'left' },
+    { id: 11, prop: 'operation', label: '操作', width: 160, widthType: 'width', visible: true, align: 'center', fixed: 'right' },
 ]
 
 const columns2 = new Map<string, (column: any, row: Record<string, any>, emits: any) => any>()

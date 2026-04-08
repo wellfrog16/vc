@@ -1,4 +1,5 @@
 export interface IColumnConfig {
+    id: string | number
     prop: string
     label: string
     width?: number
@@ -7,6 +8,7 @@ export interface IColumnConfig {
     fixed?: 'left' | 'right'
     align?: 'left' | 'center' | 'right'
     showOverflowTooltip?: boolean
+    disabled?: boolean
     widthType?: 'width' | 'minWidth' // 编辑用中间数据
     formFixed?: ('left' | 'right')[] // 编辑用中间数据
 }

@@ -18,9 +18,12 @@
         </ElTableColumn>
         <ElTableColumn v-if="isFullMode && editable" prop="label" label="列名" :min-width="200">
             <template #default="{ row }">
-                <ElCheckbox v-model="row.visible" :size="size">
-                    <VcInput v-model="row.label" block :size="size" />
-                </ElCheckbox>
+                <div :class="$style.label">
+                    <ElCheckbox v-model="row.visible" :size="size">
+                        <VcInput v-model="row.label" block :size="size" />
+                    </ElCheckbox>
+                    <VcIconifyIcon name="carbon:draggable" size="30px" />
+                </div>
             </template>
         </ElTableColumn>
         <ElTableColumn v-if="isFullMode && editable" prop="prop" label="Prop" :min-width="200">
@@ -70,6 +73,7 @@
 import type { IColumnConfig, IExplorerColumnTableEmits, IExplorerColumnTableProps } from './explorer-column-table'
 import Sortable from 'sortablejs'
 import VcChoice from '../choice/choice.vue'
+import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 import VcInputNumber from '../input-number/input-number.vue'
 import VcInput from '../input/input.vue'
 
@@ -174,6 +178,7 @@ function init() {
     sortable.value = new Sortable(el, {
         animation: 150,
         handle: `.${$style.label}`, // 可选：指定拖拽手柄
+        filter: '.el-input',
         onEnd: evt => {
             const { newIndex, oldIndex } = evt
 
@@ -202,6 +207,7 @@ div.table {
 .label {
     display: inline-flex;
     width: 100%;
+    align-items: center;
 
     :global {
         .el-checkbox {
@@ -209,19 +215,19 @@ div.table {
             display: flex;
             align-items: center;
             cursor: move;
-
-            > span {
-                display: inline-flex;
-                align-items: center;
-                height: 100%;
-            }
         }
         .el-checkbox__label {
             min-width: 0;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            flex-grow: 1;
             cursor: pointer;
+        }
+
+        .iconify {
+            margin-left: 4px;
+            cursor: move;
         }
     }
 }

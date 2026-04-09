@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IThousandInputProps } from './thousand-input'
+import type { IThousandInputEmits, IThousandInputProps } from './thousand-input'
 import { isEqual } from 'lodash-es'
 import vThousand from '@/directives/thousand'
 import VcInput from '../input/input.vue'
@@ -18,11 +18,7 @@ const props = withDefaults(defineProps<IThousandInputProps>(), {
     padDecimal: true,
 })
 
-const emits = defineEmits<{
-    (e: 'update:modelValue', value: string): void
-    (e: 'update:formatValue', value: string): void
-    (e: 'change', value: [string, string]): void
-}>()
+const emits = defineEmits<IThousandInputEmits>()
 
 // 转换为纯数字
 function fixValue(val: string) {

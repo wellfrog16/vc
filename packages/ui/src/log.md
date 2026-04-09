@@ -15,7 +15,6 @@ title: 更新日志
 - explorer-form 和 explorer-modal-form 的 form 容器，调整为 flex 模式
 - 调整 scrollbar 的 bar 显示位置
 - 优化 transfer 组件样式
-- 修复 explorer-modal-form 的 labelPosition/required 属性
 - 调整 explorer-form 和 explorer-modal-form 下 el-row 的默认样式
 - 调整 column-setter 下 el-divider 的样式优先级
 - explorer-column-table 组件增加 default 和 append 插槽
@@ -26,7 +25,8 @@ title: 更新日志
 
 ### 缺陷修复
 
-- 修复 explorer-modal-form 的 labelPosition 属性（top/right）
+- 修复 explorer-modal-form 的 labelPosition/required 属性
+- 修复表单组件在 form 中 change/blur 事件触发验证失效
 
 ## 1.9.0
 

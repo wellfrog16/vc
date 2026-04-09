@@ -1,4 +1,4 @@
-import type { CascaderOption, CascaderProps } from 'element-plus/es/components/cascader-panel'
+import type { CascaderNode, CascaderOption, CascaderProps, CascaderValue } from 'element-plus/es/components/cascader-panel'
 
 export interface ITreePickerProps {
     emptyText?: string
@@ -12,4 +12,10 @@ export interface ITreePickerProps {
     block?: boolean
     filterable?: boolean
     filterEmptyText?: string
+}
+
+export interface ITreePickerEmits {
+    (e: 'update:modelValue', value: string | number | string[] | number[] | undefined): void
+    (e: 'change', value: CascaderValue | null | undefined, node?: CascaderNode[]): void
+    (e: 'blur', event: FocusEvent): void
 }

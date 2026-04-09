@@ -1,8 +1,8 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <!-- <VcConfigProvider pca-base-url="https://raw.githubusercontent.com/wellfrog16/area/refs/heads/master"> -->
-            <VcConfigProvider pca-base-url="https://gitee.com/wellfrog16/area/raw/master" cros-proxy="https://api.allorigins.win/raw?url=">
+            <VcConfigProvider pca-base-url="https://raw.githubusercontent.com/wellfrog16/area/refs/heads/master">
+                <!-- <VcConfigProvider pca-base-url="https://gitee.com/wellfrog16/area/raw/master" cros-proxy="https://api.allorigins.win/raw?url="> -->
                 <VcPCAPicker
                     v-if="visible"
                     v-model="result"
@@ -88,7 +88,7 @@ import VcPCAPicker from '../pca-picker.vue'
 const sourceExplain = '*不同数据源，提供的数据不同。所以像“省 + 拼音”的数据，是无法提供【省市】信息的展示，也无法显示数据的【全称】。同样，如果数据源没有选择【拼音】，那么搜索时也无法使用拼音搜索。'
 
 const source = ref<any>('pca-py-fn')
-const sourceOption: IChoiceProps['options'] = [
+const sourceOption: any[] = [
     { label: '省', value: 'p' },
     { label: '省 + 拼音', value: 'p-py' },
     { label: '省 + 全称+ 拼音', value: 'p-py-fn' },

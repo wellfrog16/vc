@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { ITinymceProps } from './tinymce'
+import type { ITinymceEmits, ITinymceProps } from './tinymce'
 import { useDark } from '@vueuse/core'
 import { loader } from '@wfrog/vc-utils'
-import { useFormDisabled } from 'element-plus'
+import { useFormDisabled, useFormItem } from 'element-plus'
 import config from './config'
 
 const props = withDefaults(defineProps<ITinymceProps>(), {
@@ -22,9 +22,10 @@ const props = withDefaults(defineProps<ITinymceProps>(), {
     disabled: undefined,
 })
 
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits<ITinymceEmits>()
 
 const formDisabled = useFormDisabled()
+const { formItem } = useFormItem()
 const isDark = useDark({ storageKey: props.storageKey })
 const Tinymce = shallowRef()
 const loading = ref(false)
@@ -73,6 +74,16 @@ async function tinymceInit() {
         suffix: '.min',
         branding: false, // 显示tinymce徽标
         readonly: formDisabled.value,
+        setup(editor: any) {
+            editor.on('change', () => {
+                formItem?.validate?.('change').catch(() => {})
+                emits('change', editor.getContent())
+            })
+            editor.on('blur', (e: FocusEvent) => {
+                formItem?.validate?.('blur').catch(() => {})
+                emits('blur', e)
+            })
+        },
         init_instance_callback: (editor: any) => {
             if (props.modelValue) { editor.setContent(props.modelValue) }
 

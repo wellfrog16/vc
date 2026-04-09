@@ -16,7 +16,7 @@
                 <ElRow :gutter="20">
                     <ElCol :span="12">
                         <ElFormItem label="标题" prop="title">
-                            <ElInput v-model="dialogForm.fields.title" placeholder="标题" clearable />
+                            <ElInput v-model="dialogForm.fields.title" placeholder="标题" clearable block />
                         </ElFormItem>
                     </ElCol>
                     <ElCol :span="12">

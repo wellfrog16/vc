@@ -63,10 +63,16 @@ function handleCancel() {
 }
 
 async function handleSave() {
-    const valid = await formRef.value!.validate()
-    if (!valid) { return }
+    try {
+        const valid = await formRef.value!.validate()
+        if (!valid) { return false }
 
-    emits('save', props.form.fields)
+        emits('save', props.form.fields)
+        return true
+    }
+    catch {
+        return false
+    }
 }
 
 function handleEdit() {

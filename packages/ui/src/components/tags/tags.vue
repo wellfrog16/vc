@@ -60,7 +60,7 @@
 
 <script lang="ts" setup>
 import type { ITagsProps } from './tags'
-import { useFormDisabled } from 'element-plus'
+import { useFormDisabled, useFormItem } from 'element-plus'
 import Draggable from 'vuedraggable-es-fix'
 import vFocus from '@/directives/focus'
 import VcButton from '../button/button.vue'
@@ -82,6 +82,7 @@ const emits = defineEmits<{
 }>()
 
 const formDisabled = useFormDisabled()
+const { formItem } = useFormItem()
 const errorVisible = ref(false)
 const createVisible = ref(false) // 新建input的visible
 const currentTag = ref('') // 正在编辑的tag值
@@ -112,6 +113,7 @@ function handleDelete(name: string) {
     const data = [...props.modelValue]
     data.splice(data.indexOf(name), 1)
     tags.value = data
+    formItem?.validate?.('change').catch(() => {})
     emits('change', data)
 }
 
@@ -194,6 +196,7 @@ function handleInsert({ target }: FocusEvent) {
     const data = [...props.modelValue, currentTag.value]
     createVisible.value = false
     tags.value = data
+    formItem?.validate?.('change').catch(() => {})
     emits('change', data)
     setTimeout(() => showCreate(), 0)
 }

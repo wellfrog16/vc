@@ -28,6 +28,7 @@
                     :popper-class="$style['popover-select']"
                     :before-filter="() => false"
                     v-bind="$attrs"
+                    @blur="handleBlur"
                     @clear="clear"
                 />
             </div>
@@ -37,7 +38,7 @@
 
 <script lang="ts" setup>
 import type { IPCAData, IPCAPickerProps } from './pca-picker'
-import { useFormDisabled } from 'element-plus'
+import { useFormDisabled, useFormItem } from 'element-plus'
 import { useProvide } from '@/use/useStore'
 import { injectConfig } from '../config-provider/config-provider'
 import CPicker from './components/c.vue'
@@ -63,11 +64,13 @@ const props = withDefaults(defineProps<IPCAPickerProps>(), {
 const emits = defineEmits<{
     (e: 'update:modelValue', value: number | number[]): void
     (e: 'change', data?: IPCAData | IPCAData[]): void
+    (e: 'blur', event: FocusEvent): void
     (e: 'limit', number: number, value: IPCAData): void
 }>()
 
 const myValue = useVModel(props, 'modelValue', emits)
 const formDisabled = useFormDisabled()
+const { formItem } = useFormItem()
 const { pcaBaseUrl, crosProxy } = injectConfig()
 const [popoverVisible, togglePopoverVisible] = useToggle()
 const $style = useCssModule()
@@ -130,6 +133,7 @@ function handleKeyup(event: KeyboardEvent) {
 
 function handleChange(item: IPCAData | IPCAData[]) {
     const changeData = Array.isArray(item) ? item : item[0]
+    formItem?.validate?.('change').catch(() => {})
     emits('change', changeData)
     if (!props.multiple) {
         togglePopoverVisible(false)
@@ -139,7 +143,13 @@ function handleChange(item: IPCAData | IPCAData[]) {
 
 function clear() {
     togglePopoverVisible(false)
+    formItem?.validate?.('change').catch(() => {})
     emits('change', undefined)
+}
+
+function handleBlur(evt: FocusEvent) {
+    formItem?.validate?.('blur').catch(() => {})
+    emits('blur', evt)
 }
 
 useProvide(KEY_NAME, {

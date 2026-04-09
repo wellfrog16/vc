@@ -6,3 +6,8 @@ export interface ISelectProps {
     options: SelectProps['options'] | string[]
     disabled?: boolean
 }
+
+export interface ISelectEmits {
+    (e: 'change', value: any): void
+    (e: 'blur', event: FocusEvent): void
+}

@@ -12,3 +12,9 @@ export interface ITinymceProps {
     storageKey?: string
     disabled?: boolean
 }
+
+export interface ITinymceEmits {
+    (e: 'update:modelValue', value: string): void
+    (e: 'change', value: string): void
+    (e: 'blur', event: FocusEvent): void
+}

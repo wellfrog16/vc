@@ -6,3 +6,7 @@ export interface IChoiceProps {
     options: RadioGroupProps['options'] | CheckboxGroupProps['options'] | string[]
     disabled?: boolean
 }
+
+export interface IChoiceEmits {
+    (e: 'change', value: any): void
+}

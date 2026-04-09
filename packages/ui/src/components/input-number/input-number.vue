@@ -27,7 +27,7 @@
 
 <script lang="ts" setup>
 import type { IInputNumberProps } from './input-number'
-import { useFormDisabled } from 'element-plus'
+import { useFormDisabled, useFormItem } from 'element-plus'
 
 const props = withDefaults(defineProps<IInputNumberProps>(), {
     precision: 0,
@@ -45,6 +45,7 @@ const $style = useCssModule()
 const visible = ref(true)
 const inputNumberRef = useTemplateRef('inputNumberRef')
 const formDisabled = useFormDisabled()
+const { formItem } = useFormItem()
 
 const mainClass = computed(() => {
     const className = {
@@ -81,6 +82,7 @@ function limitInputValue(e: KeyboardEvent) {
 
 function handleChange(currentValue: number | undefined, oldValue: number | undefined) {
     myValue.value = currentValue === 0 ? currentValue : (currentValue || oldValue || 0)
+    formItem?.validate?.('change').catch(() => {})
     emits('change', myValue.value, oldValue || 0)
 }
 
@@ -92,6 +94,7 @@ function rerender() {
 function handleBlur(e: Event) {
     const eleInput = inputNumberRef.value?.querySelector('.el-input__inner[type=number]') as HTMLInputElement
     if (eleInput.value === '') { rerender() }
+    formItem?.validate?.('blur').catch(() => {})
     emits('blur', e)
 }
 

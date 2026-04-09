@@ -9,7 +9,7 @@
                 :multiple="multiple"
                 @expand-change="updatePopper"
                 @choiced="togglePopoverVisible(false)"
-                @change="(val, node) => emits('change', val, node)"
+                @change="handleChange"
             />
         </div>
         <template #reference>
@@ -28,7 +28,7 @@
                     :disabled="formDisabled"
                     v-bind="$attrs"
                     @clear="clear"
-                    @blur="keyword = ''"
+                    @blur="handleBlur"
                 >
                     <template #empty>{{ filterEmptyText }}</template>
                 </ElCascader>
@@ -39,8 +39,8 @@
 
 <script lang="ts" setup>
 import type { CascaderNode, CascaderValue } from 'element-plus/es/components/cascader-panel'
-import type { ITreePickerProps } from './tree-picker'
-import { useFormDisabled } from 'element-plus'
+import type { ITreePickerEmits, ITreePickerProps } from './tree-picker'
+import { useFormDisabled, useFormItem } from 'element-plus'
 import PopoverCascader from './components/popover-cascader.vue'
 
 const props = withDefaults(defineProps<ITreePickerProps>(), {
@@ -52,14 +52,12 @@ const props = withDefaults(defineProps<ITreePickerProps>(), {
     filterEmptyText: '没有匹配到数据',
 })
 
-const emits = defineEmits<{
-    (e: 'update:modelValue', value: string | number | string[] | number[] | undefined): void
-    (e: 'change', value: CascaderValue | null | undefined, node?: CascaderNode[]): void
-}>()
+const emits = defineEmits<ITreePickerEmits>()
 
 const myValue = useVModel(props, 'modelValue', emits)
 const [popoverVisible, togglePopoverVisible] = useToggle()
 const formDisabled = useFormDisabled()
+const { formItem } = useFormItem()
 
 const handleSelectClick = useThrottleFn(() => !formDisabled.value && togglePopoverVisible(), 300)
 
@@ -113,6 +111,17 @@ function clear() {
     setTimeout(() => {
         nextTick(() => togglePopoverVisible(false))
     }, 0)
+}
+
+function handleChange(val: CascaderValue | null | undefined, node: CascaderNode[] | undefined) {
+    formItem?.validate?.('change').catch(() => {})
+    emits('change', val, node)
+}
+
+function handleBlur(event: FocusEvent) {
+    formItem?.validate?.('blur').catch(() => {})
+    setTimeout(() => { keyword.value = '' }, 300)
+    emits('blur', event)
 }
 </script>
 

@@ -8,3 +8,8 @@ export interface IInputProps {
     disabled?: boolean
     clearable?: boolean
 }
+
+export interface IInputEmits {
+    (e: 'blur', evnet: FocusEvent): void
+    (e: 'change', value: string, evnet?: Event): void
+}

@@ -7,12 +7,13 @@
         :value-format="valueFormat"
         :disabled="formDisabled"
         @change="handleChange"
+        @blur="handleBlur"
     />
 </template>
 
 <script lang="ts" setup>
-import type { IDateRangePickerProps } from './daterange-picker'
-import { useFormDisabled } from 'element-plus'
+import type { IDateRangePickerEmits, IDateRangePickerProps } from './daterange-picker'
+import { useFormDisabled, useFormItem } from 'element-plus'
 
 const props = withDefaults(defineProps<IDateRangePickerProps>(), {
     valueFormat: 'YYYY-MM-DD',
@@ -21,13 +22,11 @@ const props = withDefaults(defineProps<IDateRangePickerProps>(), {
     disabled: undefined,
 })
 
-const emits = defineEmits<{
-    (e: 'update:modelValue', value: string[]): void
-    (e: 'change', value: string[]): void
-}>()
+const emits = defineEmits<IDateRangePickerEmits>()
 
 const myValue = useVModel(props, 'modelValue', emits)
 const formDisabled = useFormDisabled()
+const { formItem } = useFormItem()
 
 function disabledDate(time: Date) {
     const now = Date.now()
@@ -50,6 +49,12 @@ function disabledDate(time: Date) {
 }
 
 function handleChange(val: string[]) {
+    formItem?.validate?.('change').catch(() => {})
     emits('change', val)
+}
+
+function handleBlur(evt: FocusEvent) {
+    formItem?.validate?.('blur').catch(() => {})
+    emits('blur', evt as FocusEvent)
 }
 </script>

@@ -27,6 +27,7 @@ title: 更新日志
 
 - 修复 explorer-modal-form 的 labelPosition/required 属性
 - 修复表单组件在 form 中 change/blur 事件触发验证失效
+- 修复 explorer-form 遗漏的 cancel 事件
 
 ## 1.9.0
 

@@ -192,7 +192,7 @@ function init() {
     })
 }
 
-defineExpose({ init })
+defineExpose({ init, tableRef })
 </script>
 
 <style lang="scss" module>

@@ -15,7 +15,7 @@ withDefaults(defineProps<IScrollbarProps>(), {
 
 const scrollbarRef = useTemplateRef('scrollbarRef')
 
-defineExpose({ instance: scrollbarRef.value })
+defineExpose({ scrollbarRef })
 </script>
 
 <style lang="scss" module>

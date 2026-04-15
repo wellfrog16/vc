@@ -70,6 +70,26 @@ export const staticRoutes: RouteRecordRaw[] = [
             },
         ],
     },
+    {
+        name: 'my-test',
+        path: '/test',
+        component: Layout,
+        redirect: { name: 'test' },
+        meta: {
+            title: '测试页面',
+            icon: ['el', 'School'],
+        },
+        children: [
+            {
+                name: 'test',
+                path: 'index',
+                component: () => import('@/views/test/index.vue'),
+                meta: {
+                    hidden: true,
+                },
+            },
+        ],
+    },
     // {
     //     name: 'my-components3',
     //     path: '/components3',

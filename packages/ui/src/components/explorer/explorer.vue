@@ -30,7 +30,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" module>
-.explorer {
+div.explorer {
     border: 1px solid var(--el-border-color-lighter);
     border-radius: var(--el-border-radius-base);
     display: flex;

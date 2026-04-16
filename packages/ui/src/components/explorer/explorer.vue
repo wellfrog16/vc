@@ -35,7 +35,6 @@ div.explorer {
     border-radius: var(--el-border-radius-base);
     display: flex;
     flex-grow: 1;
-    height: 100px;
     background-color: var(--el-fill-color-blank);
     box-sizing: border-box;
 

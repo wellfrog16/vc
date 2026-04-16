@@ -9,11 +9,12 @@
             :class="$style.draggable"
             tag="span"
             item-key="name"
-            animation="400"
+            handle=".el-tag"
+            :animation="400"
             @start="handleDragStart"
             @end="handleDragEnd"
         >
-            <template #item="{ element }">
+            <template v-for="element in tags" :key="element.name">
                 <ElTag
                     v-if="!element.editVisible"
                     disable-transitions
@@ -37,20 +38,18 @@
                     @blur="handleSave"
                 />
             </template>
-            <template #footer>
-                <ElInput
-                    v-if="createVisible && !isLimited"
-                    v-model="currentTag"
-                    v-focus
-                    size="small"
-                    clearable
-                    :class="$style.input"
-                    @clear="handleInsertClear"
-                    @keyup.enter="handleBlur"
-                    @blur="handleInsert"
-                />
-                <VcButton v-else-if="!isLimited" size="small" :icon="{ name: 'Plus' }" @click="showCreate" />
-            </template>
+            <ElInput
+                v-if="createVisible && !isLimited"
+                v-model="currentTag"
+                v-focus
+                size="small"
+                clearable
+                :class="$style.input"
+                @clear="handleInsertClear"
+                @keyup.enter="handleBlur"
+                @blur="handleInsert"
+            />
+            <VcButton v-else-if="!isLimited" size="small" :icon="{ name: 'Plus' }" @click="showCreate" />
         </Draggable>
         <ElPopover v-if="errorVisible" :virtual-ref="currentRef" :visible="errorVisible" placement="bottom">
             <ElAlert type="error" :closable="false" :class="$style.alert">{{ sameContentMessage || errorMessage }}</ElAlert>
@@ -61,7 +60,7 @@
 <script lang="ts" setup>
 import type { ITagsProps } from './tags'
 import { useFormDisabled, useFormItem } from 'element-plus'
-import Draggable from 'vuedraggable-es-fix'
+import { VueDraggable as Draggable } from 'vue-draggable-plus'
 import vFocus from '@/directives/focus'
 import VcButton from '../button/button.vue'
 
@@ -85,8 +84,8 @@ const formDisabled = useFormDisabled()
 const { formItem } = useFormItem()
 const errorVisible = ref(false)
 const createVisible = ref(false) // 新建input的visible
-const currentTag = ref('') // 正在编辑的tag值
-const bakTag = ref('') // 编辑前的tag值
+const currentTag = ref<string | number>('') // 正在编辑的tag值
+const bakTag = ref<string | number>('') // 编辑前的tag值
 const sameContentMessage = ref('')
 const currentInput = ref<HTMLInputElement>()
 const timerId = ref()
@@ -103,13 +102,13 @@ const tags = computed({
 })
 const isLimited = computed(() => props.modelValue.length >= props.limit)
 
-function handleClick(name: string) {
+function handleClick(name: string | number) {
     currentTag.value = name
     bakTag.value = name
 }
 
 // 删除节点
-function handleDelete(name: string) {
+function handleDelete(name: string | number) {
     const data = [...props.modelValue]
     data.splice(data.indexOf(name), 1)
     tags.value = data

@@ -4,9 +4,9 @@
             <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" /><slot name="title">{{ title }}</slot></div>
             <div :class="$style.actions">
                 <slot name="action" />
-                <VcButton v-if="editable && isEditing" :icon="{ name: 'Close' }" @click="handleCancel">取消</VcButton>
-                <VcButton v-if="editable && isEditing" :icon="{ name: 'Check' }" type="primary" @click="handleSave">保存</VcButton>
-                <VcButton v-if="editable && !isEditing" :icon="{ name: 'EditPen' }" type="primary" @click="handleEdit">编辑</VcButton>
+                <VcButton v-if="editable && isEditing" :disabled="disabled" :icon="{ name: 'Close' }" @click="handleCancel">取消</VcButton>
+                <VcButton v-if="editable && isEditing" :disabled="disabled" :icon="{ name: 'Check' }" type="primary" @click="handleSave">保存</VcButton>
+                <VcButton v-if="editable && !isEditing" :disabled="disabled" :icon="{ name: 'EditPen' }" type="primary" @click="handleEdit">编辑</VcButton>
             </div>
         </div>
         <VcScrollbar always :class="$style.scrollbar">

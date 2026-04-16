@@ -22,9 +22,9 @@
         </template>
         <template #footer>
             <slot name="action" />
-            <VcButton v-if="isEditing" :loading="loading" :icon="{ name: 'Close' }" @click="handleCancel">取消</VcButton>
-            <VcButton v-if="isEditing" :loading="loading" :icon="{ name: 'Check' }" type="primary" @click="handleSave">保存</VcButton>
-            <VcButton v-if="editable && !isEditing" :loading="loading" :icon="{ name: 'EditPen' }" type="primary" @click="handleEdit">编辑</VcButton>
+            <VcButton v-if="isEditing" :disabled="disabled" :loading="loading" :icon="{ name: 'Close' }" @click="handleCancel">取消</VcButton>
+            <VcButton v-if="isEditing" :disabled="disabled" :loading="loading" :icon="{ name: 'Check' }" type="primary" @click="handleSave">保存</VcButton>
+            <VcButton v-if="editable && !isEditing" :disabled="disabled" :loading="loading" :icon="{ name: 'EditPen' }" type="primary" @click="handleEdit">编辑</VcButton>
         </template>
     </component>
 </template>

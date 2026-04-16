@@ -10,33 +10,29 @@
         append-to-body
         v-bind="$attrs"
     >
-        <Draggable v-model="imgList" item-key="uid" class="el-upload-list--picture-card" :class="[$style.draggable]">
-            <template #header>
-                <ElUpload
-                    v-loading="loading"
-                    multiple
-                    action=""
-                    :file-list="modelValue"
-                    :show-file-list="false"
-                    :http-request="handleHttpRequest"
-                    :before-upload="handleBeforeUpload"
-                    accept=".jpg,.jpeg,.png"
-                    :class="$style.upload"
-                    :limit="limit"
-                    :on-exceed="handleOnExceed"
-                >
-                    <VcElIcon name="Plus" />
-                </ElUpload>
-            </template>
-            <template #item="{ element }">
-                <div class="el-upload-list__item">
-                    <img class="el-upload-list__item-thumbnail" :src="getImgUrl(element)">
-                    <span class="el-upload-list__item-actions" :class="[$style.opration]">
-                        <VcElIcon name="ZoomIn" @click="handleOnPreview(element)" />
-                        <VcElIcon name="Delete" @click="handleOnRemove(element)" />
-                    </span>
-                </div>
-            </template>
+        <Draggable v-model="imgList" :animation="300" class="el-upload-list--picture-card" draggable=".el-upload-list__item" :class="$style.draggable">
+            <ElUpload
+                v-loading="loading"
+                multiple
+                action=""
+                :file-list="modelValue"
+                :show-file-list="false"
+                :http-request="handleHttpRequest"
+                :before-upload="handleBeforeUpload"
+                accept=".jpg,.jpeg,.png"
+                :class="$style.upload"
+                :limit="limit"
+                :on-exceed="handleOnExceed"
+            >
+                <VcElIcon name="Plus" />
+            </ElUpload>
+            <div v-for="(element, index) in imgList" :key="index" class="el-upload-list__item">
+                <img class="el-upload-list__item-thumbnail" :src="getImgUrl(element)">
+                <span class="el-upload-list__item-actions" :class="$style.opration">
+                    <VcElIcon name="ZoomIn" @click="handleOnPreview(element)" />
+                    <VcElIcon name="Delete" @click="handleOnRemove(element)" />
+                </span>
+            </div>
         </Draggable>
         <template #footer>
             <ElButton type="primary" :loading="loading" @click="handleConfirm">确 定</ElButton>
@@ -47,7 +43,7 @@
 <script lang="ts" setup>
 import type { UploadRawFile, UploadRequestOptions } from 'element-plus/es/components/upload/src/upload'
 import type { IDialogUploadImagesProps, IUploadFile } from './dialog-upload-images'
-import Draggable from 'vuedraggable-es-fix'
+import { VueDraggable as Draggable } from 'vue-draggable-plus'
 import VcDialog from '../dialog/dialog.vue'
 import VcElIcon from '../el-icon/el-icon.vue'
 
@@ -67,7 +63,7 @@ const emits = defineEmits<{
 }>()
 
 const loading = ref(false)
-const imgList = shallowRef<(File | IUploadFile)[]>(props.modelValue) // 已上传的文件列表
+const imgList = ref<(File | IUploadFile)[]>([]) // 已上传的文件列表
 
 const dialogVisible = computed({
     get: () => props.visible,
@@ -142,6 +138,13 @@ function handleOnExceed() {
 function handleOnPreview(file: IUploadFile | File) {
     window.open(getImgUrl(file))
 }
+
+const visibleWatch = watch(dialogVisible, val => {
+    if (!val) { return }
+    imgList.value = props.modelValue
+})
+
+onBeforeUnmount(() => visibleWatch.stop())
 </script>
 
 <style lang="scss" module>
@@ -217,10 +220,6 @@ div.draggable {
             width: 200px;
             height: 150px;
             margin: 0;
-        }
-
-        .el-upload-list__item:nth-of-type(4n) {
-            margin-right: 0;
         }
 
         .el-upload-list__item-thumbnail {

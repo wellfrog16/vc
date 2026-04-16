@@ -100,7 +100,6 @@ onUnmounted(() => { visibleWatch.stop() })
     display: flex;
     flex-grow: 1;
     align-items: flex-start;
-    flex-direction: column;
 
     :global(> .el-row) {
         flex-grow: 1;

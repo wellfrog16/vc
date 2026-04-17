@@ -8,20 +8,23 @@ title: 更新日志
 
 ### 新增和更新
 
-- explorer-table 增加 operation、expand、append 插槽，同时 operation、expand、index 列归入 tableColumn
-- explorer-table 增加 columnEvent 事件，用于监听动态渲染时，自定义组件的操作
+- explorer-table
+    - 增加 operation、expand、append 插槽，同时 operation、expand、index 列归入 tableColumn
+    - 增加 columnEvent 事件，用于监听动态渲染时，自定义组件的操作
 - explorer-tools 增加 action 插槽，tools 渲染按照给定顺序
 - 优化 switch 组件
 - explorer-form 和 explorer-modal-form 的 form 容器，调整为 flex 模式
+- 调整 explorer-form 和 explorer-modal-form 下 el-row 的默认样式
 - 调整 scrollbar 的 bar 显示位置
 - 优化 transfer 组件样式
-- 调整 explorer-form 和 explorer-modal-form 下 el-row 的默认样式
 - 调整 column-setter 下 el-divider 的样式优先级
-- explorer-column-table 组件增加 default 和 append 插槽
-- explorer-column-table 组件 size 默认为 default
-- explorer-column-table 组件增加 editable 属性，用于控制 prop/label 列是否可编辑
-- explorer-column-table 组件样式优化
-- explorer-column-table 组件支持元素 disabled 属性
+- explorer-column-table
+    - 增加 default 和 append 插槽
+    - size 默认为 default
+    - 增加 editable 属性，用于控制 prop/label 列是否可编辑
+    - 支持元素 disabled 属性
+    - 增加 rerender 方法
+    - 样式优化。
 - vue-draggable-plus 替换 vuedraggable-es-fix
 
 ### 缺陷修复

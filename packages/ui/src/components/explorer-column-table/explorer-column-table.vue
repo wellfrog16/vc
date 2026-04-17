@@ -1,5 +1,6 @@
 <template>
     <ElTable
+        v-if="tableVisible"
         ref="tableRef"
         :data="myData"
         row-key="id"
@@ -182,7 +183,15 @@ function init() {
     })
 }
 
-defineExpose({ init, tableRef })
+const tableVisible = ref(true)
+async function rerender() {
+    sortable.value?.destroy()
+    tableVisible.value = false
+    await nextTick()
+    tableVisible.value = true
+}
+
+defineExpose({ init, tableRef, rerender })
 </script>
 
 <style lang="scss" module>

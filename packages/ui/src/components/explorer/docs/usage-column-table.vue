@@ -16,6 +16,11 @@ const documentData = {
     events: [
         { name: 'update:data', description: '表格数据更新事件', param: 'any[]' },
     ],
+    methods: [
+        { name: 'tableRef', description: '表格实例', param: '-' },
+        { name: 'init', description: '执行 sorttable 初始化', param: '-' },
+        { name: 'rerender', description: '重新渲染表格', param: '-' },
+    ],
     slots: [
         { name: 'append', description: '作用同 el-table 的 append 插槽' },
     ],

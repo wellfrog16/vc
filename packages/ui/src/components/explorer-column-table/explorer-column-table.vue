@@ -70,8 +70,9 @@
 </template>
 
 <script setup lang="ts">
+import type { UseDraggableReturn } from 'vue-draggable-plus'
 import type { IColumnConfig, IExplorerColumnTableEmits, IExplorerColumnTableProps } from './explorer-column-table'
-import Sortable from 'sortablejs'
+import { useDraggable } from 'vue-draggable-plus'
 import VcChoice from '../choice/choice.vue'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 import VcInputNumber from '../input-number/input-number.vue'
@@ -89,7 +90,7 @@ const emits = defineEmits<IExplorerColumnTableEmits>()
 
 const tableRef = useTemplateRef('tableRef')
 const $style = useCssModule()
-const sortable = shallowRef<Sortable | null>(null)
+const sortable = shallowRef<UseDraggableReturn>()
 
 const myData = computed({
     get() {
@@ -172,23 +173,12 @@ function init() {
     if (!el) { return }
 
     if (sortable.value) {
-        sortable.value.destroy()
+        return
     }
 
-    sortable.value = new Sortable(el, {
+    sortable.value = useDraggable(el, myData, {
         animation: 150,
         handle: `.${$style.handle}`, // 可选：指定拖拽手柄
-        // filter: '.el-input', // 导致 input 无法聚焦
-        onEnd: evt => {
-            const { newIndex, oldIndex } = evt
-
-            // 本地数据重排
-            if (newIndex !== undefined && oldIndex !== undefined) {
-                const item = myData.value.splice(oldIndex, 1)[0]
-                myData.value.splice(newIndex, 0, item)
-            }
-            myData.value = [...myData.value] // 触发更新
-        },
     })
 }
 

@@ -99,7 +99,7 @@ export default defineConfig({
             },
         },
         rollupOptions: {
-            external: ['vue', '@vueuse/core', 'element-plus', '@element-plus/icons-vue', 'cropperjs', 'vuedraggable-es-fix'],
+            external: ['vue', '@vueuse/core', 'element-plus', '@element-plus/icons-vue', 'cropperjs', 'vue-draggable-plus'],
             output: {
                 // entryFileNames: 'es/components/[name]/index.mjs',
                 chunkFileNames: chunkInfo => {

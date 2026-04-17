@@ -81,7 +81,7 @@
                                         <VcButton :icon="{ name: 'Edit' }" link>编辑</VcButton>
                                         <VcButton :icon="{ name: 'Remove' }" link>删除</VcButton>
                                     </template>
-                                    <template #expand>
+                                    <template #expand-row>
                                         <div>展开内容</div>
                                     </template>
                                 </VcExplorerTable>

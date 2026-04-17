@@ -76,6 +76,12 @@
 
 ## explorer-column-table API
 
+:::tip
+组件依赖 vue-draggable-plus，考虑此组件不一定会被用到，默认不安装 vue-draggable-plus。
+
+pnpm add vue-draggable-plus@^0.6.1
+:::
+
 <UsageColumnTable />
 
 <script setup>

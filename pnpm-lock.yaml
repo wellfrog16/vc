@@ -111,16 +111,10 @@ importers:
       cropperjs:
         specifier: ^1.5.12
         version: 1.6.2
-      sortablejs:
-        specifier: ^1.15.6
-        version: 1.15.6
-      vuedraggable-es-fix:
-        specifier: ^1.0.1
-        version: 1.0.1(vue@3.5.27(typescript@5.9.3))
+      vue-draggable-plus:
+        specifier: ^0.6.1
+        version: 0.6.1(@types/sortablejs@1.15.9)
     devDependencies:
-      '@types/sortablejs':
-        specifier: ^1.15.9
-        version: 1.15.9
       vitepress:
         specifier: 2.0.0-alpha.15
         version: 2.0.0-alpha.15(@types/node@24.10.4)(async-validator@4.2.5)(change-case@5.4.4)(jiti@2.6.1)(postcss@8.5.6)(sass-embedded@1.97.0)(sass@1.97.0)(sortablejs@1.15.6)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -138,12 +132,12 @@ importers:
 
   playground:
     dependencies:
+      vue-draggable-plus:
+        specifier: ^0.6.1
+        version: 0.6.1(@types/sortablejs@1.15.9)
       vue-router:
         specifier: ^4.6.3
         version: 4.6.4(vue@3.5.27(typescript@5.9.3))
-      vuedraggable-es-fix:
-        specifier: ^1.0.1
-        version: 1.0.1(vue@3.5.27(typescript@5.9.3))
     devDependencies:
       '@vue/tsconfig':
         specifier: ^0.8.1
@@ -2909,9 +2903,6 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  sortablejs@1.14.0:
-    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
-
   sortablejs@1.15.6:
     resolution: {integrity: sha512-aNfiuwMEpfBM/CN6LY0ibyhxPfPbyFeBTYJKCvzkJ2GkUpazIt3H+QIPAMHwqQ7tMKaHz1Qj+rJJCqljnf4p3A==}
 
@@ -3254,6 +3245,15 @@ packages:
       '@vue/composition-api':
         optional: true
 
+  vue-draggable-plus@0.6.1:
+    resolution: {integrity: sha512-FbtQ/fuoixiOfTZzG3yoPl4JAo9HJXRHmBQZFB9x2NYCh6pq0TomHf7g5MUmpaDYv+LU2n6BPq2YN9sBO+FbIg==}
+    peerDependencies:
+      '@types/sortablejs': ^1.15.0
+      '@vue/composition-api': '*'
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+
   vue-eslint-parser@10.2.0:
     resolution: {integrity: sha512-CydUvFOQKD928UzZhTp4pr2vWz1L+H99t7Pkln2QSPdvmURT0MoC4wUccfCnuEaihNsu9aYYyk+bep8rlfkUXw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -3286,11 +3286,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  vuedraggable-es-fix@1.0.1:
-    resolution: {integrity: sha512-EI2+ivwibahz73zzSNKRK3xsrXeZpAY2RJdpFOkpQYaIXj7ZAsBv/akNWBUB7kDvebmYhPb78J8455/UW/PUbA==}
-    peerDependencies:
-      vue: ^3.2.31
 
   wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
@@ -6339,9 +6334,8 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  sortablejs@1.14.0: {}
-
-  sortablejs@1.15.6: {}
+  sortablejs@1.15.6:
+    optional: true
 
   source-map-js@1.2.1: {}
 
@@ -6687,6 +6681,10 @@ snapshots:
     dependencies:
       vue: 3.5.25(typescript@5.9.3)
 
+  vue-draggable-plus@0.6.1(@types/sortablejs@1.15.9):
+    dependencies:
+      '@types/sortablejs': 1.15.9
+
   vue-eslint-parser@10.2.0(eslint@9.39.2(jiti@2.6.1)):
     dependencies:
       debug: 4.4.3
@@ -6729,11 +6727,6 @@ snapshots:
       '@vue/shared': 3.5.27
     optionalDependencies:
       typescript: 5.9.3
-
-  vuedraggable-es-fix@1.0.1(vue@3.5.27(typescript@5.9.3)):
-    dependencies:
-      sortablejs: 1.14.0
-      vue: 3.5.27(typescript@5.9.3)
 
   wcwidth@1.0.1:
     dependencies:

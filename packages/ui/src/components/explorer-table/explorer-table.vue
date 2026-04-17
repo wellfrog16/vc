@@ -17,7 +17,7 @@
                 <!-- <ElTableColumn v-if="haveIndex" type="index" :width="size === 'large' ? 80 : 60" align="center" fixed="left" /> -->
                 <ElTableColumn v-for="item in columns" :key="item.prop" v-bind="item" :type="columnType(item)">
                     <template v-if="item.prop.startsWith('expand')" #default="{ row, $index }">
-                        <slot name="expand" :row="row" :index="$index" />
+                        <slot :name="item.prop" :row="row" :index="$index" />
                     </template>
                     <template v-else-if="item.prop === 'index'" #default="{ $index }">
                         {{ startIndex + $index + 1 }}

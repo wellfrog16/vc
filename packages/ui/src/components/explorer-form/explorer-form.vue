@@ -20,7 +20,7 @@
                 :label-position="labelPosition"
                 :class="$style.form"
             >
-                <slot />
+                <slot :is-editing="isEditing" />
             </ElForm>
         </VcScrollbar>
     </div>

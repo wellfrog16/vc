@@ -15,6 +15,7 @@ title: 更新日志
 - 优化 switch 组件
 - explorer-form 和 explorer-modal-form 的 form 容器，调整为 flex 模式
 - 调整 explorer-form 和 explorer-modal-form 下 el-row 的默认样式
+- explorer-form 的 default 插槽增加 is-editing 参数
 - 调整 scrollbar 的 bar 显示位置
 - 优化 transfer 组件样式
 - 调整 column-setter 下 el-divider 的样式优先级

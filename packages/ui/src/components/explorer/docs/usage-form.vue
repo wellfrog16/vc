@@ -24,7 +24,7 @@ const documentData = {
         { name: 'toggleEditing', description: '切换编辑状态', param: '(val?: boolean) => void' },
     ],
     slots: [
-        { name: 'default', description: '表单内容插槽' },
+        { name: 'default', description: '表单内容插槽，参数 is-editing' },
         { name: 'title', description: '表单标题插槽' },
         { name: 'action', description: '表单操作按钮插槽' },
     ],

@@ -124,15 +124,29 @@ const fixedOptions = [
     { label: '右', value: 'right' },
 ]
 
-const widthConfig = computed(() => {
+const widthConfig = ref({ width: 240, data: 160, fixed: 120, truncate: 60 })
+const widthConfigWatch = watch(() => props.size, () => {
     if (props.size === 'small') {
-        return { width: 210, data: 140, fixed: 100, truncate: 50 }
+        widthConfig.value = { width: 210, data: 140, fixed: 100, truncate: 50 }
+        return
     }
     if (props.size === 'default') {
-        return { width: 240, data: 160, fixed: 120, truncate: 60 }
+        widthConfig.value = { width: 240, data: 160, fixed: 120, truncate: 60 }
+        return
     }
-    return { width: 260, data: 200, fixed: 140, truncate: 76 }
-})
+    widthConfig.value = { width: 260, data: 200, fixed: 140, truncate: 76 }
+}, { immediate: true })
+
+//  todo 验证
+// const widthConfig = computed(() => {
+//     if (props.size === 'small') {
+//         return { width: 210, data: 140, fixed: 100, truncate: 50 }
+//     }
+//     if (props.size === 'default') {
+//         return { width: 240, data: 160, fixed: 120, truncate: 60 }
+//     }
+//     return { width: 260, data: 200, fixed: 140, truncate: 76 }
+// })
 
 const isFullMode = computed(() => props.mode === 'full')
 
@@ -191,7 +205,16 @@ async function rerender() {
     tableVisible.value = true
 }
 
-defineExpose({ init, tableRef, rerender })
+defineExpose({
+    init,
+    tableRef,
+    rerender,
+    setWidthConfig: (params: typeof widthConfig.value) => {
+        widthConfig.value = params
+    },
+})
+
+onBeforeUnmount(() => widthConfigWatch.stop())
 </script>
 
 <style lang="scss" module>

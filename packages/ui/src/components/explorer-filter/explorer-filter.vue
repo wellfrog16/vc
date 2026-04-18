@@ -46,5 +46,6 @@ const keywordChange = debounce(() => handleFilter(), props.debounce)
     display: flex;
     column-gap: 8px;
     border-bottom: 1px solid var(--el-border-color-lighter);
+    margin-bottom: 8px;
 }
 </style>

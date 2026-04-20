@@ -212,6 +212,9 @@ defineExpose({
     setWidthConfig: (params: typeof widthConfig.value) => {
         widthConfig.value = params
     },
+    getWidthConfig: () => {
+        return widthConfig.value
+    },
 })
 
 onBeforeUnmount(() => widthConfigWatch.stop())

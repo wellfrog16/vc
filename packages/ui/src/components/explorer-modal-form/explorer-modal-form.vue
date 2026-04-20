@@ -58,8 +58,8 @@ const component = computed(() => props.type === 'dialog' ? VcDialog : VcDrawer)
 const modalTitle = computed(() => props.title || (props.form.fields.id ? '编辑' : '新增'))
 
 function handleCancel() {
-    modalVisible.value = false
     emits('cancel')
+    modalVisible.value = false
 }
 
 async function handleSave() {
@@ -76,8 +76,8 @@ async function handleSave() {
 }
 
 function handleEdit() {
-    isEditing.value = true
     emits('edit')
+    isEditing.value = true
 }
 
 const visibleWatch = watch(modalVisible, val => {

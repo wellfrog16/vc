@@ -51,8 +51,8 @@ function handleEdit() {
 }
 
 async function handleCancel() {
-    formRef.value!.resetFields()
     emits('cancel')
+    formRef.value!.resetFields()
     isEditing.value = false
 }
 

@@ -13,8 +13,10 @@ title: 更新日志
     - 增加 columnEvent 事件，用于监听动态渲染时，自定义组件的操作
 - explorer-tools 增加 action 插槽，tools 渲染按照给定顺序
 - 优化 switch 组件
-- explorer-form 和 explorer-modal-form 的 form 容器，调整为 flex 模式
-- 调整 explorer-form 和 explorer-modal-form 下 el-row 的默认样式
+- explorer-form 和 explorer-modal-form
+    - form 容器，调整为 flex 模式
+    - 调整 dom 下 el-row 的默认样式
+    - 调整 emits 的执行时机
 - explorer-form 的 default 插槽增加 is-editing 参数
 - 调整 scrollbar 的 bar 显示位置
 - 优化 transfer 组件样式

@@ -135,4 +135,6 @@ export default {
     filter,
     getPath,
     isSelfOrDescendant,
+    findNode,
+    hasDescendant,
 }

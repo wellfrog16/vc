@@ -33,7 +33,7 @@ function filter<
 function getPath<
     T extends { [P in K]?: T[] },
     K extends string = 'children',
->(items: T[], check: (item: T) => boolean, options?: { prop?: K }): T[] {
+>(items: T[], compare: (item: T) => boolean, options?: { prop?: K }): T[] {
     const prop = (options?.prop ?? ('children' as unknown)) as K
     const result: T[] = []
 
@@ -41,7 +41,7 @@ function getPath<
         return items1.some(item => {
             result.push(item)
 
-            if (check(item)) {
+            if (compare(item)) {
                 return true
             }
             else {
@@ -101,9 +101,9 @@ function isSelfOrDescendant(treeData: TreeNode[], self: ValueType, target: Value
 /**
  * 在树中查找指定 value 的节点
  */
-function findNode(treeData: TreeNode[], value: ValueType): TreeNode | null {
+function findNode(treeData: TreeNode[], value: ValueType, compare: (a: TreeNode, b: ValueType) => boolean = (a, b) => a.value === b): TreeNode | null {
     for (const node of treeData) {
-        if (node.value === value) {
+        if (compare(node, value)) {
             return node
         }
         if (node.children?.length) {

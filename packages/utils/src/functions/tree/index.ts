@@ -101,13 +101,13 @@ function isSelfOrDescendant(treeData: TreeNode[], self: ValueType, target: Value
 /**
  * 在树中查找指定 value 的节点
  */
-function findNode(treeData: TreeNode[], value: ValueType, compare: (a: TreeNode, b: ValueType) => boolean = (a, b) => a.value === b): TreeNode | null {
+function findNode<T extends TreeNode>(treeData: T[], value: ValueType, compare: (a: T, b: ValueType) => boolean = (a, b) => a.value === b): T | null {
     for (const node of treeData) {
         if (compare(node, value)) {
             return node
         }
         if (node.children?.length) {
-            const found = findNode(node.children, value)
+            const found = findNode(node.children as T[], value, compare)
             if (found)
                 return found
         }

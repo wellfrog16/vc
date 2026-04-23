@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <VcSelect v-model="result1" :options="options1" clearable :multiple="multiple" :block="isBlock" placeholder="请选择" />
+            <VcSelect v-model="result1" :options="options1" clearable :multiple="multiple" :width="width" placeholder="请选择" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：单/多选">
             <ElSwitch
@@ -13,24 +13,19 @@
                 @change="handleChange"
             />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="参数：内联/块级">
-            <ElSwitch
-                v-model="isBlock"
-                inactive-text="内联"
-                active-text="块级"
-                :active-value="true"
-                :inactive-value="false"
-            />
+        <ElDescriptionsItem label="参数：宽度">
+            <VcChoice v-model="width" :options="widthOptions" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果"><span>{{ result1 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：逻辑型">
-            <VcSelect v-model="result2" :options="options2" clearable :block="isBlock" placeholder="请选择" />
+            <VcSelect v-model="result2" :options="options2" clearable :width="width" placeholder="请选择" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果"><span>{{ result2 }}</span></ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
+import VcChoice from '@/components/choice/choice.vue'
 import VcSelect from '../select.vue'
 
 const options1 = [
@@ -49,7 +44,12 @@ const options2 = [
 const result1 = ref<number | number[]>()
 const result2 = ref(false)
 const multiple = ref(false)
-const isBlock = ref(false)
+const widthOptions = [
+    { label: '未设定', value: '' },
+    { label: '150px', value: '150px' },
+    { label: '300px', value: '300px' },
+]
+const width = ref('')
 
 function handleChange(value: string | number | boolean) {
     result1.value = value ? [] : undefined

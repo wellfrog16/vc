@@ -4,6 +4,6 @@ export interface IInputNumberProps {
     controlsPosition?: 'right' | ''
     size?: 'large' | 'default' | 'small'
     inputNumberClass?: string
-    inputWidth?: string
     disabled?: boolean
+    width?: string | number
 }

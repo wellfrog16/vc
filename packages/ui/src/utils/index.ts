@@ -40,3 +40,7 @@ export function withNoopInstall<T>(component: T) {
 
     return component as SFCWithInstall<T>
 }
+
+export function formatToPx(value: number | string) {
+    return typeof value === 'number' ? `${value}px` : value
+}

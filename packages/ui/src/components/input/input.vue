@@ -14,9 +14,9 @@
 <script lang="ts" setup>
 import type { IInputEmits, IInputProps } from './input'
 import { useFormDisabled, useFormItem } from 'element-plus'
+import { formatToPx } from '@/utils'
 
 const props = withDefaults(defineProps<IInputProps>(), {
-    block: false,
     disabled: undefined,
     clearable: true,
 })
@@ -28,13 +28,9 @@ const formDisabled = useFormDisabled()
 const { formItem } = useFormItem()
 
 const className = computed(() => ({
-    [$style.input]: true,
-    [$style.block]: props.block,
+    [$style['input-width']]: !!props.width,
 }))
-
-const myWidth = computed(() => {
-    return props.width || (props.block ? '100%' : '240px')
-})
+const myWidth = computed(() => props.width ? formatToPx(props.width) : 'auto')
 
 function handleBlur(evt: FocusEvent) {
     formItem?.validate?.('blur').catch(() => {})
@@ -49,12 +45,7 @@ defineExpose({ inputRef })
 </script>
 
 <style lang="scss" module>
-div.input {
+div.input-width {
     width: v-bind(myWidth);
-    display: inline-flex;
-
-    &.block {
-        display: flex;
-    }
 }
 </style>

@@ -1,5 +1,14 @@
 <template>
-    <VcInput v-if="visible" ref="inputRef" v-model="myValue" v-thousand="options" v-bind="$attrs" :class="$style.main" @change="handleChange">
+    <VcInput
+        v-if="visible"
+        ref="inputRef"
+        v-model="myValue"
+        v-thousand="options"
+        v-bind="$attrs"
+        :clearable="false"
+        :class="$style.main"
+        @change="handleChange"
+    >
         <template v-if="$slots.prepend" #prepend><slot name="prepend" /></template>
         <template v-if="$slots.append" #append><slot name="append" /></template>
     </VcInput>

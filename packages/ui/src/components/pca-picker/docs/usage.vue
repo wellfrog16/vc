@@ -8,6 +8,7 @@ const documentData = {
         { param: '*v-model', description: '绑定值', type: 'Value | Value[]', defaultValue: '' },
         { param: '*source', description: '数据源', type: 'ISourceType', defaultValue: '-' },
         { param: '*type', description: '选择类型', type: 'P | C | PC | PCA', defaultValue: '-' },
+        { param: 'width', description: '宽度', type: 'string | number', defaultValue: '-' },
         { param: 'hotIds', description: '热门省市', type: 'number[]', defaultValue: '-' },
         { param: 'hotText', description: '热门省市文案', type: 'string', defaultValue: '热门' },
         { param: 'history', description: '是否记录历史城市', type: 'boolean', defaultValue: 'false' },

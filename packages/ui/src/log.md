@@ -29,6 +29,7 @@ title: 更新日志
     - 增加 rerender 方法
     - 样式优化。
 - vue-draggable-plus 替换 vuedraggable-es-fix
+- 统一表单组件，默认 block 模式，增加 width 属性
 
 ### 缺陷修复
 

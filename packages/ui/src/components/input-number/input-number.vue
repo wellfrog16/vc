@@ -28,6 +28,7 @@
 <script lang="ts" setup>
 import type { IInputNumberProps } from './input-number'
 import { useFormDisabled, useFormItem } from 'element-plus'
+import { formatToPx } from '@/utils'
 
 const props = withDefaults(defineProps<IInputNumberProps>(), {
     precision: 0,
@@ -50,6 +51,7 @@ const { formItem } = useFormItem()
 const mainClass = computed(() => {
     const className = {
         [$style['input-number']]: true,
+        [$style['input-number-width']]: !!props.width,
         'el-input': true,
         'el-input-group--prepend': $slots.prepend,
         'input-with-select': inputNumberRef.value?.querySelector('.el-input-group__prepend>.el-select'),
@@ -59,6 +61,7 @@ const mainClass = computed(() => {
     }
     return className
 })
+const myWidth = computed(() => props.width ? formatToPx(props.width) : 'auto')
 
 const myControlsPosition = computed(() => ($slots.prepend && props.controlsPosition === undefined) ? 'right' : props.controlsPosition)
 
@@ -104,7 +107,7 @@ onUnmounted(() => watchHandler.stop())
 
 <style lang="scss" module>
 div.input-number {
-    display: inline-flex;
+    display: flex;
     width: auto;
     padding: 0;
 
@@ -125,12 +128,13 @@ div.input-number {
     }
 }
 
-div.el-input-number {
-    width: auto;
-    line-height: 10px; // 防止上边框消失，10px为小于30px的任意值，无特殊意义
+div.input-number-width {
+    width: v-bind(myWidth);
+}
 
-    :global(.el-input__inner) {
-        width: v-bind(inputWidth);
-    }
+div.el-input-number {
+    display: flex;
+    width: 100%;
+    line-height: 10px; // 防止上边框消失，10px为小于30px的任意值，无特殊意义
 }
 </style>

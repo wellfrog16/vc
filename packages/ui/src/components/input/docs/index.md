@@ -2,9 +2,7 @@
 
 ## 功能
 
-用于解决 element-plus 2.5.x 版本之后对于 select 宽度的破坏性更新
-
-因此为 select 和 input 增加`内联`和`块级`两种显示方式
+input 功能增强，方便设置 width
 
 ## 功能示例
 

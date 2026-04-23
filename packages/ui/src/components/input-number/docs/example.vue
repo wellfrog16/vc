@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <VcInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth" :precision="precision" :step="step">
+            <VcInputNumber v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step="step">
                 <template #prefix>
                     <span>￥</span>
                 </template>
@@ -11,12 +11,12 @@
             </VcInputNumber>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：文字组合">
-            <VcInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth" :precision="precision" :step-strictly="false">
+            <VcInputNumber v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step-strictly="false">
                 <template #prepend>份数</template>
             </VcInputNumber>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：组合">
-            <VcInputNumber v-model="result" :size="size" :controls="controls" :input-width="myWidth" :precision="precision" :step="step">
+            <VcInputNumber v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step="step">
                 <template #prepend>
                     <ElSelect v-model="select" placeholder="请选择" style="width: 110px;" :size="size">
                         <ElOption label="西瓜" value="a" />
@@ -38,7 +38,7 @@
             <VcChoiceBoolean v-model="controls" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="宽度">
-            <ElSlider v-model="width" :min="50" :max="200" />
+            <VcChoice v-model="width" :options="widthOptions" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">
             {{ result }}
@@ -57,7 +57,12 @@ const select = ref('c')
 const precision = ref(0)
 const size = ref<any>('default')
 const sizeData = ['large', 'default', 'small']
-const width = ref(150)
-const myWidth = computed(() => `${width.value}px`)
+const width = ref('')
 const step = computed(() => 1 / (10 ** precision.value))
+
+const widthOptions = [
+    { label: '未设定', value: '' },
+    { label: '200px', value: '200px' },
+    { label: '350px', value: '350px' },
+]
 </script>

@@ -13,7 +13,7 @@
             />
         </div>
         <template #reference>
-            <div :class="$style.wrapper" @click.capture="handleSelectClick" @keyup="handleKeyup">
+            <div :class="wrapperClassName" @click.capture="handleSelectClick" @keyup="handleKeyup">
                 <ElCascader
                     v-model="myValue"
                     collapse-tags
@@ -41,6 +41,7 @@
 import type { CascaderNode, CascaderValue } from 'element-plus/es/components/cascader-panel'
 import type { ITreePickerEmits, ITreePickerProps } from './tree-picker'
 import { useFormDisabled, useFormItem } from 'element-plus'
+import { formatToPx } from '@/utils'
 import PopoverCascader from './components/popover-cascader.vue'
 
 const props = withDefaults(defineProps<ITreePickerProps>(), {
@@ -71,13 +72,11 @@ const cascaderProps = computed(() => ({
     ...props.props,
 }))
 
-const myWidth = computed(() => {
-    return props.width || (props.block ? '100%' : '240px')
-})
-
 // 修复箭头样式
 const $style = useCssModule()
-const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value, [$style.block]: props.block }))
+const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value }))
+const wrapperClassName = computed(() => ({ [$style['cascader-width']]: !!props.width }))
+const myWidth = computed(() => props.width ? formatToPx(props.width) : 'auto')
 
 const containerRef = useTemplateRef('containerRef')
 onClickOutside(containerRef, event => {
@@ -140,14 +139,7 @@ function handleBlur(event: FocusEvent) {
 }
 
 .wrapper {
-    display: inline-block;
-    width: unset;
-    min-width: v-bind(myWidth);
-
-    &.block {
-        display: block;
-        width: v-bind(myWidth);
-    }
+    width: v-bind(myWidth);
 
     :global(.el-tag .el-icon) {
         display: none;
@@ -162,6 +154,10 @@ function handleBlur(event: FocusEvent) {
             box-shadow: 0 0 0 1px var(--el-input-focus-border-color, var(--el-color-primary)) inset !important;
         }
     }
+}
+
+.cascader-width {
+    width: v-bind(myWidth);
 }
 
 .is-active {

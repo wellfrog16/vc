@@ -13,7 +13,7 @@
             <PCAPicker v-if="!filterManualVisible && !keyword && ['PCA', 'PC'].includes(type)" v-model="myValue" />
         </div>
         <template #reference>
-            <div :class="$style.wrapper" @click.capture="handleSelectClick" @keyup="handleKeyup">
+            <div :class="wrapperClassName" @click.capture="handleSelectClick" @keyup="handleKeyup">
                 <ElCascader
                     v-model="myValue"
                     :placeholder="myPlaceholder"
@@ -40,6 +40,7 @@
 import type { IPCAData, IPCAPickerProps } from './pca-picker'
 import { useFormDisabled, useFormItem } from 'element-plus'
 import { useProvide } from '@/use/useStore'
+import { formatToPx } from '@/utils'
 import { injectConfig } from '../config-provider/config-provider'
 import CPicker from './components/c.vue'
 import FilterPicker from './components/filter.vue'
@@ -123,6 +124,14 @@ onClickOutside(containerRef, event => {
 
 // 修复箭头样式
 const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value }))
+
+const wrapperClassName = computed(() => {
+    return {
+        [$style.wrapper]: true,
+        [$style['wrapper-width']]: !!props.width,
+    }
+})
+const myWidth = computed(() => props.width ? formatToPx(props.width) : 'auto')
 
 const handleSelectClick = useThrottleFn(() => !loading.value && !formDisabled.value && togglePopoverVisible(), 300)
 
@@ -227,13 +236,15 @@ onBeforeUnmount(() => {
 }
 
 .wrapper {
-    display: inline-block;
-    width: unset;
-    min-width: 300px;
+    display: block;
 
     :global(.el-tag .el-icon) {
         display: none;
     }
+}
+
+.wrapper-width {
+    width: v-bind(myWidth);
 }
 
 .cascader {

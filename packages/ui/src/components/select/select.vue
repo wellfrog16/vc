@@ -6,9 +6,9 @@
 import type { SelectProps } from 'element-plus'
 import type { ISelectEmits, ISelectProps } from './select'
 import { useFormDisabled, useFormItem } from 'element-plus'
+import { formatToPx } from '@/utils'
 
 const props = withDefaults(defineProps<ISelectProps>(), {
-    block: false,
     width: '',
     disabled: undefined,
 })
@@ -36,23 +36,13 @@ const myOptions = computed(() => {
 
 const $style = useCssModule()
 const className = computed(() => ({
-    [$style.select]: true,
-    [$style.block]: props.block,
+    [$style['select-width']]: !!props.width,
 }))
-
-const myWidth = computed(() => {
-    return props.width || (props.block ? '100%' : '240px')
-})
+const myWidth = computed(() => props.width ? formatToPx(props.width) : 'auto')
 </script>
 
 <style lang="scss" module>
-div.select {
-    width: unset;
-    min-width: v-bind(myWidth);
-
-    &.block {
-        display: block;
-        width: v-bind(myWidth);
-    }
+div.select-width {
+    width: v-bind(myWidth);
 }
 </style>

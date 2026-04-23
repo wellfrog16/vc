@@ -4,8 +4,7 @@ export interface ITransferProps {
     modelValue?: string[] | number[]
     data?: ITransferChildItem[]
     placeholder?: string
-    width?: string
-    block?: boolean
+    width?: string | number
     disabled?: boolean
 }
 

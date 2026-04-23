@@ -4,10 +4,9 @@
             <VcTransferPanel v-model="myValue" :data="data" />
         </div>
         <template #reference>
-            <div :class="$style.wrapper" @click.capture="handleSelectClick">
+            <div :class="wrapperClassName" @click.capture="handleSelectClick">
                 <VcSelect
                     v-model="myValue"
-                    :block="block"
                     :placeholder="placeholder"
                     :class="[$style.select, selectClassName]"
                     :options="data"
@@ -23,6 +22,7 @@
 <script setup lang="ts">
 import type { ITransferEmits, ITransferProps } from './transfer'
 import { useFormDisabled } from 'element-plus'
+import { formatToPx } from '@/utils'
 import VcSelect from '../select/select.vue'
 import VcTransferPanel from '../transfer-panel/transfer-panel.vue'
 
@@ -38,13 +38,11 @@ const formDisabled = useFormDisabled()
 
 const handleSelectClick = useThrottleFn(() => { !formDisabled.value && togglePopoverVisible() }, 300)
 
-const myWidth = computed(() => {
-    return props.width || (props.block ? '100%' : '240px')
-})
-
 // 修复箭头样式
 const $style = useCssModule()
-const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value, [$style.block]: props.block }))
+const selectClassName = computed(() => ({ [$style['is-active']]: popoverVisible.value }))
+const wrapperClassName = computed(() => ({ [$style['wrapper-width']]: !!props.width }))
+const myWidth = computed(() => props.width ? formatToPx(props.width) : 'auto')
 
 const containerRef = useTemplateRef('containerRef')
 onClickOutside(containerRef, event => {
@@ -75,18 +73,13 @@ onClickOutside(containerRef, event => {
 }
 
 .wrapper {
-    display: inline-block;
-    width: unset;
-    min-width: v-bind(myWidth);
-
-    &.block {
-        display: block;
-        width: v-bind(myWidth);
-    }
-
     :global(.el-tag .el-icon) {
         display: none;
     }
+}
+
+.wrapper-width {
+    width: v-bind(myWidth);
 }
 
 .select {

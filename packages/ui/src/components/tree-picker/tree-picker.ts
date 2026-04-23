@@ -8,8 +8,7 @@ export interface ITreePickerProps {
     modelValue: string | number | string[] | number[] | undefined
     options?: CascaderOption[]
     props?: CascaderProps
-    width?: string
-    block?: boolean
+    width?: string | number
     filterable?: boolean
     filterEmptyText?: string
 }

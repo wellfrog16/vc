@@ -29,6 +29,7 @@ export interface IPCAPickerProps {
     syncActive?: boolean // 是否在热门和历史选择里同步高亮选中项
     limit?: number // 多选时的数量限制
     props?: CascaderProps
+    width?: string | number
 }
 
 export interface ICommmonStateType {

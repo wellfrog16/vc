@@ -5,9 +5,7 @@
 <script lang="ts" setup>
 const documentData = {
     params: [
-        { param: 'block', description: '内联还是块级展示', type: 'boolean', defaultValue: 'false' },
-        { param: 'width', description: '宽度', type: 'string', defaultValue: '下一行' },
-        { param: '-', rowType: 'paramType', description: '内联240px；块级100%' },
+        { param: 'width', description: '宽度', type: 'string | number', defaultValue: '-' },
         { param: '其他', description: 'el-input 的属性、事件', type: 'https://element-plus.org/zh-CN/component/input#api' },
     ],
 }

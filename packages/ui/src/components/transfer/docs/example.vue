@@ -1,22 +1,13 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="穿梭器面板">
-            <VcTransferPanel v-model="myValue" :data="options" block :disabled="disabled" />
+            <VcTransferPanel v-model="myValue" :data="options" :disabled="disabled" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="穿梭器">
-            <VcTransfer v-model="myValue" :data="options" :block="isBlock" :disabled="disabled" />
+            <VcTransfer v-model="myValue" :data="options" :disabled="disabled" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：禁用">
             <VcChoiceBoolean v-model="disabled" />
-        </ElDescriptionsItem>
-        <ElDescriptionsItem label="参数：内联/块级">
-            <ElSwitch
-                v-model="isBlock"
-                inactive-text="内联"
-                active-text="块级"
-                :active-value="true"
-                :inactive-value="false"
-            />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">
             {{ myValue }}
@@ -44,7 +35,6 @@ const options = [
 
 const myValue = ref([])
 const disabled = ref(false)
-const isBlock = ref(false)
 </script>
 
 <style lang="scss" module></style>

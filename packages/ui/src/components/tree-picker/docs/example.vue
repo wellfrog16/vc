@@ -53,11 +53,11 @@ const blockOption: IChoiceProps['options'] = [
     { label: '块级（需要设置默认宽度）', value: true },
 ]
 
-const width = ref('450px')
+const width = ref('')
 const widthOption: IChoiceProps['options'] = [
     { label: '默认', value: '' },
-    { label: '350px', value: '350px' },
-    { label: '450px', value: '450px' },
+    { label: '300px', value: '300px' },
+    { label: '400px', value: '400px' },
 ]
 
 const showDemo1 = ref(false)

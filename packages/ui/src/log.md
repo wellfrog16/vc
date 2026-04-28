@@ -4,7 +4,7 @@ title: 更新日志
 
 ## 1.10.0
 
-2026-?-?
+2026-4-28
 
 ### 新增和更新
 
@@ -30,6 +30,7 @@ title: 更新日志
     - 样式优化。
 - vue-draggable-plus 替换 vuedraggable-es-fix
 - 统一表单组件，默认 block 模式，增加 width 属性
+- dark-switcher 和 color-switcher 组件改名为 dark-switch 和 color-switch
 
 ### 缺陷修复
 

@@ -36,8 +36,8 @@
             <template #default="{ row }">
                 <div :class="$style['item-container']">
                     <VcChoice v-model="row.widthType" :options="widthOptions" :size="size" :disabled="row.disabled" @change="handleWidthChange(row)" />
-                    <VcInputNumber v-if="row.widthType === 'width'" v-model="row.width" :min="0" :size="size" :controls="false" input-width="50px" :disabled="row.disabled" />
-                    <VcInputNumber v-else v-model="row.minWidth" :min="0" :size="size" :controls="false" input-width="50px" :disabled="row.disabled" />
+                    <VcInputNumber v-if="row.widthType === 'width'" v-model="row.width" :min="0" :size="size" :controls="false" width="80px" :disabled="row.disabled" />
+                    <VcInputNumber v-else v-model="row.minWidth" :min="0" :size="size" :controls="false" width="80px" :disabled="row.disabled" />
                 </div>
             </template>
         </ElTableColumn>

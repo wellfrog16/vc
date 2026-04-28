@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-text><vc-color-switcher storage-key="vc-dark" /></el-text>
+        <el-text><vc-color-switch storage-key="vc-dark" /></el-text>
     </div>
 </template>
 

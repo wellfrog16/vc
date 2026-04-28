@@ -1,9 +1,9 @@
 <template>
     <Wrapper>
-        <VcColorSwitcher />
+        <VcColorSwitch />
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
-import VcColorSwitcher from '../color-switcher.vue'
+import VcColorSwitch from '../color-switch.vue'
 </script>

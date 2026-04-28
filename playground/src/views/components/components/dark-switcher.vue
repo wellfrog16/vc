@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-text>
-            <vc-dark-switcher :size="30" />
+            <vc-dark-switch :size="30" />
         </el-text>
     </div>
 </template>

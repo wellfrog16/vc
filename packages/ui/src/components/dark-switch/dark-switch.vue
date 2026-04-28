@@ -1,20 +1,20 @@
 <template>
-    <i :class="$style['dark-switcher']"><VcIconifyIcon :name="iconName" :size="size" @click="handleToggle" /></i>
+    <i :class="$style['dark-switch']"><VcIconifyIcon :name="iconName" :size="size" @click="handleToggle" /></i>
 </template>
 
 <script setup lang="ts">
-import type { IDarkSwitcherEmits, IDarkSwitcherProps } from './dark-switcher'
+import type { IDarkSwitchEmits, IDarkSwitchProps } from './dark-switch'
 import { useDark, useToggle } from '@vueuse/core'
 import VcIconifyIcon from '@/components/iconify-icon/iconify-icon.vue'
 
-const props = withDefaults(defineProps<IDarkSwitcherProps>(), {
+const props = withDefaults(defineProps<IDarkSwitchProps>(), {
     initialValue: 'auto',
     size: 28,
     storageKey: 'vc-dark',
     duration: 850,
 })
 
-const emits = defineEmits<IDarkSwitcherEmits>()
+const emits = defineEmits<IDarkSwitchEmits>()
 
 const isDark = useDark({ storageKey: props.storageKey, initialValue: props.initialValue })
 const toggleDark = useToggle(isDark)
@@ -76,7 +76,7 @@ function handleToggle(e: MouseEvent) {
     }
 }
 
-.dark-switcher {
+.dark-switch {
     display: inline-flex;
     cursor: pointer;
 }

@@ -11,7 +11,7 @@
             <VcChoiceBoolean v-model="flag" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区">
-            <VcColorSwitcher dark-storage-key="vitepress-theme-appearance" />
+            <VcColorSwitch dark-storage-key="vitepress-theme-appearance" />
         </ElDescriptionsItem>
     </Wrapper>
 </template>
@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import VcButton from '@/components/button/button.vue'
 import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
-import VcColorSwitcher from '../color-switcher.vue'
+import VcColorSwitch from '../color-switch.vue'
 
 const flag = ref(false)
 </script>

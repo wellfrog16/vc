@@ -1,13 +1,13 @@
 import { useDark, useStorage } from '@vueuse/core'
 import { colord } from 'colord'
 
-export interface IColorSwitcherProps {
+export interface IColorSwitchProps {
     darkStorageKey?: string // 暗黑模式的storage key，用以监听用自定义主题色的暗黑颜色来覆盖原有暗黑颜色
     storageKey?: string
     size?: string | number
 }
 
-export interface IColorSwitcherEmits {
+export interface IColorSwitchEmits {
     (e: 'change', value: string): void
 }
 

@@ -59,8 +59,8 @@ export default defineConfig({
                     text: '全局配置',
                     items: [
                         { text: 'config-provider', link: '/components/config-provider' },
-                        { text: 'dark-switcher', link: '/components/dark-switcher' },
-                        { text: 'color-switcher', link: '/components/color-switcher' },
+                        { text: 'dark-switch', link: '/components/dark-switch' },
+                        { text: 'color-switch', link: '/components/color-switch' },
                     ],
                 },
                 {

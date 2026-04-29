@@ -131,10 +131,21 @@ function hasDescendant(node: TreeNode, target: ValueType): boolean {
     return false
 }
 
+// 树节点遍历函数
+function traverse<T extends TreeNode>(treeData: T[], callback: (node: T) => void) {
+    for (const node of treeData) {
+        callback(node)
+        if (node.children?.length) {
+            traverse(node.children as T[], callback)
+        }
+    }
+}
+
 export default {
     filter,
     getPath,
     isSelfOrDescendant,
     findNode,
     hasDescendant,
+    traverse,
 }

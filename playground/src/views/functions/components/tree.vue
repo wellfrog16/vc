@@ -106,4 +106,8 @@ const node3 = tree.getPath(data, item => item.value === '2-1')
 const node3Path = node3.map(item => item.label).join(' / ')
 const isSelfOrDescendant1 = tree.isSelfOrDescendant(data, '2-1', '2-1-1')
 const isSelfOrDescendant2 = tree.isSelfOrDescendant(data, '2-1', '3-1-1')
+
+tree.traverse(data, item => {
+    console.log(item.label)
+})
 </script>

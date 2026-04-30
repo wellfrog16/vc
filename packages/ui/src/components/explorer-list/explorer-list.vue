@@ -1,34 +1,39 @@
 <template>
     <VcScrollbar always :class="$style.scrollbar">
         <div v-show="!loading">
-            <div
-                v-for="(item, index) in myData"
-                :key="item.value"
-                :class="[$style.item, { [$style.active]: actived === item.value }]"
-                @click="e => handleClick(item, e)"
-            >
-                <slot name="item" :data="item" :index="index">
-                    <div :class="$style.label">
-                        <slot name="label" :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
-                    </div>
-                    <div v-if="actions.length" :class="$style.actions">
-                        <template v-for="action in actions" :key="action">
-                            <slot v-if="action === 'action'" name="action" :data="item" :index="index" />
-                            <VcButton
-                                v-else
-                                v-bind="actionsMapping[action]"
-                                :confirm="action === 'remove' ? confirmParams(item) : undefined"
-                                :class="action === 'remove' ? $style.remove : undefined"
-                                link
-                                :icon="{ type: 'el', name: actionsMapping[action].icon }"
-                                stop
-                                @click="emits(action as any, item.value, item)"
-                            />
-                        </template>
-                    </div>
-                    <slot :data="item" :index="index" name="extra-label" />
-                </slot>
-            </div>
+            <el-checkbox-group v-model="myValue" @change="val => emits('valueChange', val)">
+                <div
+                    v-for="(item, index) in myData"
+                    :key="item.value"
+                    :class="[$style.item, { [$style.active]: actived === item.value }]"
+                    @click="e => handleClick(item, e)"
+                >
+                    <slot name="item" :data="item" :index="index">
+                        <div :class="$style.label">
+                            <el-checkbox v-if="showCheckbox" :value="item.value">
+                                <slot name="label" :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
+                            </el-checkbox>
+                            <slot v-else name="label" :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
+                        </div>
+                        <div v-if="actions.length" :class="$style.actions">
+                            <template v-for="action in actions" :key="action">
+                                <slot v-if="action === 'action'" name="action" :data="item" :index="index" />
+                                <VcButton
+                                    v-else
+                                    v-bind="actionsMapping[action]"
+                                    :confirm="action === 'remove' ? confirmParams(item) : undefined"
+                                    :class="action === 'remove' ? $style.remove : undefined"
+                                    link
+                                    :icon="{ type: 'el', name: actionsMapping[action].icon }"
+                                    stop
+                                    @click="emits(action as any, item.value, item)"
+                                />
+                            </template>
+                        </div>
+                        <slot :data="item" :index="index" name="extra-label" />
+                    </slot>
+                </div>
+            </el-checkbox-group>
         </div>
         <div v-if="isEmpty && !loading && !pending" :class="$style.empty">{{ emptyText }}</div>
         <div v-if="loading" :class="$style.loading">
@@ -59,6 +64,7 @@ const props = withDefaults(defineProps<IExplorerListProps>(), {
 const emits = defineEmits<IExplorerListEmits>()
 
 const { filterKeyword } = injectExplorerPanelState()
+const myValue = useVModel(props, 'modelValue', emits)
 const actived = ref<string | number>()
 
 const actionsMapping: Record<string, any> = {
@@ -132,6 +138,8 @@ onBeforeUnmount(() => {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    --el-checkbox-height: 24px;
 
     :global(.iconify) {
         margin-right: 4px;

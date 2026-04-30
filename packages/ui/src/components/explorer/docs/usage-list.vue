@@ -12,6 +12,7 @@ const documentData = {
         { param: 'loadingText', description: '加载中的文本', type: 'string', defaultValue: '数据加载中...' },
         { param: 'emptyText', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },
         { param: 'highlight-current', description: '是否高亮当前项', type: 'boolean', defaultValue: 'true' },
+        { param: 'show-checkbox', description: '是否显示复选框', type: 'boolean', defaultValue: 'false' },
         { param: 'deep-watch', description: '是否深度监听 data 变化', type: 'boolean', defaultValue: 'false' },
         { param: 'filter-method', description: '自定义搜索方法', type: 'Fun1', defaultValue: '下一行' },
         { param: '-', rowType: 'paramType', description: '对 label 进行搜索' },

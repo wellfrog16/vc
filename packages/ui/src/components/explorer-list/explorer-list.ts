@@ -1,3 +1,4 @@
+import type { CheckboxValueType } from 'element-plus'
 import type { IButtonProps } from '../button/button'
 
 export interface IExplorerListItem<T = any> {
@@ -8,6 +9,7 @@ export interface IExplorerListItem<T = any> {
 }
 
 export interface IExplorerListProps {
+    modelValue?: (string | number)[] | undefined
     data?: IExplorerListItem[]
     actions?: ('create' | 'modify' | 'remove' | 'up' | 'down' | 'action')[]
     filterMethod?: (keyword: string, item: IExplorerListItem) => boolean
@@ -17,10 +19,13 @@ export interface IExplorerListProps {
     loadingText?: string
     highlightCurrent?: boolean
     deepWatch?: boolean
+    showCheckbox?: boolean
     confirmParams?: (item: IExplorerListItem) => IButtonProps['confirm']
 }
 
 export interface IExplorerListEmits {
+    (e: 'update:modelValue', value: (string | number)[] | undefined): void
+    (e: 'valueChange', value: CheckboxValueType[]): void
     (e: 'itemClick', value: string | number, item: IExplorerListItem, event: MouseEvent): void
     (e: 'create', value: string | number, item: IExplorerListItem): void
     (e: 'modify', value: string | number, item: IExplorerListItem): void

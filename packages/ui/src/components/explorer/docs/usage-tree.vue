@@ -35,7 +35,9 @@ const documentData = {
         { name: 'setActive', description: '设置当前节点', param: '(value: string | number) => void' },
     ],
     slots: [
-        { name: 'default', description: '列表项目，参数 data: IExplorerTreeItem, index: number' },
+        { name: 'node', description: '列表 node 操作按钮，参数 data: IExplorerTreeItem, index: number' },
+        { name: 'label', description: '列表 label，参数 data: IExplorerTreeItem, index: number' },
+        { name: 'extra-label', description: '列表 extra-label，参数 data: IExplorerTreeItem, index: number' },
         { name: 'action', description: '列表项操作按钮，参数 data: IExplorerTreeItem, index: number' },
     ],
 }

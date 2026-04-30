@@ -7,24 +7,27 @@
                 :class="[$style.item, { [$style.active]: actived === item.value }]"
                 @click="e => handleClick(item, e)"
             >
-                <div :class="$style.label">
-                    <slot :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
-                </div>
-                <div v-if="actions.length" :class="$style.actions">
-                    <template v-for="action in actions" :key="action">
-                        <slot v-if="action === 'action'" name="action" :data="item" :index="index" />
-                        <VcButton
-                            v-else
-                            v-bind="actionsMapping[action]"
-                            :confirm="action === 'remove' ? confirmParams(item) : undefined"
-                            :class="action === 'remove' ? $style.remove : undefined"
-                            link
-                            :icon="{ type: 'el', name: actionsMapping[action].icon }"
-                            stop
-                            @click="emits(action as any, item.value, item)"
-                        />
-                    </template>
-                </div>
+                <slot name="item" :data="item" :index="index">
+                    <div :class="$style.label">
+                        <slot name="label" :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
+                    </div>
+                    <div v-if="actions.length" :class="$style.actions">
+                        <template v-for="action in actions" :key="action">
+                            <slot v-if="action === 'action'" name="action" :data="item" :index="index" />
+                            <VcButton
+                                v-else
+                                v-bind="actionsMapping[action]"
+                                :confirm="action === 'remove' ? confirmParams(item) : undefined"
+                                :class="action === 'remove' ? $style.remove : undefined"
+                                link
+                                :icon="{ type: 'el', name: actionsMapping[action].icon }"
+                                stop
+                                @click="emits(action as any, item.value, item)"
+                            />
+                        </template>
+                    </div>
+                    <slot :data="item" :index="index" name="extra-label" />
+                </slot>
             </div>
         </div>
         <div v-if="isEmpty && !loading && !pending" :class="$style.empty">{{ emptyText }}</div>
@@ -121,10 +124,10 @@ defineExpose({
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
 
-.icon {
-    margin-right: 4px;
+    :global(.iconify) {
+        margin-right: 4px;
+    }
 }
 
 .actions {

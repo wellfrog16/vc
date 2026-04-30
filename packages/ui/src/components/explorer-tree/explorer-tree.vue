@@ -2,26 +2,29 @@
     <VcScrollbar always :class="$style.scrollbar">
         <ElTree v-show="!loading && !pending" ref="treeRef" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
             <template #default="{ node }">
-                <div :class="$style.node">
-                    <div :class="$style.label">
-                        <slot :data="node.data" :index="node.index"><VcIconifyIcon v-if="node.data.icon" :name="node.data.icon" :class="$style.icon" />{{ node.data.label }}</slot>
+                <slot name="node" :data="node.data" :index="node.index">
+                    <div :class="$style.node">
+                        <div :class="$style.label">
+                            <slot :data="node.data" :index="node.index" name="label"><VcIconifyIcon v-if="node.data.icon" :name="node.data.icon" />{{ node.data.label }}</slot>
+                        </div>
+                        <div v-if="actions.length" class="vc-actions" :class="[$style.actions]">
+                            <template v-for="action in actions" :key="action">
+                                <slot v-if="action === 'action'" name="action" :data="node.data" :index="node.index" />
+                                <VcButton
+                                    v-else
+                                    v-bind="actionsMapping[action]"
+                                    :confirm="action === 'remove' ? confirmParams(node) : undefined"
+                                    :class="action === 'remove' ? $style.remove : undefined"
+                                    link
+                                    :icon="{ type: 'el', name: actionsMapping[action].icon }"
+                                    stop
+                                    @click="emits(action as any, node.data.value, node)"
+                                />
+                            </template>
+                        </div>
+                        <slot :data="node.data" :index="node.index" name="extra-label" />
                     </div>
-                    <div v-if="actions.length" class="vc-actions" :class="[$style.actions]">
-                        <template v-for="action in actions" :key="action">
-                            <slot v-if="action === 'action'" name="action" :data="node.data" :index="node.index" />
-                            <VcButton
-                                v-else
-                                v-bind="actionsMapping[action]"
-                                :confirm="action === 'remove' ? confirmParams(node) : undefined"
-                                :class="action === 'remove' ? $style.remove : undefined"
-                                link
-                                :icon="{ type: 'el', name: actionsMapping[action].icon }"
-                                stop
-                                @click="emits(action as any, node.data.value, node)"
-                            />
-                        </template>
-                    </div>
-                </div>
+                </slot>
             </template>
         </ElTree>
         <div v-if="loading" :class="$style.loading">
@@ -154,10 +157,10 @@ defineExpose({
     text-overflow: ellipsis;
     white-space: nowrap;
     transform: translateY(-1px);
-}
 
-.icon {
-    margin-right: 4px;
+    :global(.iconify) {
+        margin-right: 4px;
+    }
 }
 
 .actions {

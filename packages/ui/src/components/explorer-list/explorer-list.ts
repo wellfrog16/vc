@@ -16,6 +16,7 @@ export interface IExplorerListProps {
     loading?: boolean
     loadingText?: string
     highlightCurrent?: boolean
+    deepWatch?: boolean
     confirmParams?: (item: IExplorerListItem) => IButtonProps['confirm']
 }
 

@@ -6,7 +6,7 @@ import type { IButtonProps } from '../button/button'
 export interface IExplorerTreeProps {
     data?: TreeComponentProps['data']
     actions?: ('create' | 'modify' | 'remove' | 'up' | 'down' | 'action')[]
-    treeProps?: TreeComponentProps
+    treeProps?: Partial<TreeComponentProps>
     emptyText?: string
     defaultExpandAll?: boolean
     pending?: boolean
@@ -15,6 +15,7 @@ export interface IExplorerTreeProps {
     confirmParams?: (node: Node) => IButtonProps['confirm']
     filterMethod?: TreeComponentProps['filterNodeMethod']
     highlightCurrent?: boolean
+    deepWatch?: boolean
 }
 
 export interface IExplorerTreeEmits {

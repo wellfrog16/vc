@@ -2,6 +2,14 @@
 title: 更新日志
 ---
 
+## 1.11.0
+
+2026-?-?
+
+### 新增和更新
+
+- explorer-list 和 explorer-tree 的插槽分为 item/node、label、label-extra、action
+
 ## 1.10.0
 
 2026-4-28

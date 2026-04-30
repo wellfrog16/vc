@@ -8,7 +8,9 @@ title: 更新日志
 
 ### 新增和更新
 
-- explorer-list 和 explorer-tree 的插槽分为 item/node、label、label-extra、action
+- explorer-list 和 explorer-tree
+    - 插槽分为 item/node、label、label-extra、action
+    - 对 props.data 进行深度监听配置，避免数据更新时，组件不重新渲染
 
 ## 1.10.0
 

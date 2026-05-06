@@ -15,7 +15,6 @@ export interface IExplorerTreeProps {
     confirmParams?: (node: Node) => IButtonProps['confirm']
     filterMethod?: TreeComponentProps['filterNodeMethod']
     highlightCurrent?: boolean
-    deepWatch?: boolean
 }
 
 export interface IExplorerTreeEmits {

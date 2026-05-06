@@ -56,7 +56,6 @@ const props = withDefaults(defineProps<IExplorerListProps>(), {
     emptyText: '没有数据',
     loadingText: '数据加载中...',
     highlightCurrent: true,
-    deepWatch: false,
     confirmParams: (item: IExplorerListItem) => {
         return { msg: `确定要删除 ${item.label} 吗？` }
     },
@@ -79,15 +78,12 @@ const filterMethod = props.filterMethod || ((keyword: string, item: IExplorerLis
     return item.label.toLowerCase().includes(keyword.toLowerCase())
 })
 
-const listData = ref<IExplorerListItem[]>([])
 const myData = computed(() => {
     return filterKeyword.value
-        ? listData.value.filter(item => filterMethod(filterKeyword.value, item))
-        : listData.value
+        ? props.data.filter(item => filterMethod(filterKeyword.value, item))
+        : props.data
 })
 const isEmpty = computed(() => myData.value.length === 0)
-
-const propsWatch = watch(() => props.data, value => { listData.value = value }, { immediate: true, deep: props.deepWatch })
 
 function handleClick(item: IExplorerListItem, e: MouseEvent) {
     if (!props.highlightCurrent) { return }
@@ -99,10 +95,6 @@ defineExpose({
     setActive: (value: string | number) => {
         actived.value = value
     },
-})
-
-onBeforeUnmount(() => {
-    propsWatch.stop()
 })
 </script>
 

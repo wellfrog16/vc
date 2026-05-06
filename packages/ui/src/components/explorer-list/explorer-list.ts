@@ -10,7 +10,7 @@ export interface IExplorerListItem<T = any> {
 
 export interface IExplorerListProps {
     modelValue?: (string | number)[] | undefined
-    data?: IExplorerListItem[]
+    data: IExplorerListItem[]
     actions?: ('create' | 'modify' | 'remove' | 'up' | 'down' | 'action')[]
     filterMethod?: (keyword: string, item: IExplorerListItem) => boolean
     emptyText?: string
@@ -18,7 +18,6 @@ export interface IExplorerListProps {
     loading?: boolean
     loadingText?: string
     highlightCurrent?: boolean
-    deepWatch?: boolean
     showCheckbox?: boolean
     confirmParams?: (item: IExplorerListItem) => IButtonProps['confirm']
 }

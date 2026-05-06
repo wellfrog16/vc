@@ -1,6 +1,6 @@
 <template>
     <VcScrollbar always :class="$style.scrollbar">
-        <ElTree v-show="!loading && !pending" ref="treeRef" :data="treeData" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
+        <ElTree v-show="!loading && !pending" ref="treeRef" :data="data" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
             <template #default="{ node }">
                 <slot name="node" :data="node.data" :index="node.index">
                     <div :class="$style.node">
@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import type { TreeComponentProps, TreeNodeData } from 'element-plus'
+import type { TreeNodeData } from 'element-plus'
 import type Node from 'element-plus/lib/components/tree/src/model/node'
 import type { ComponentInternalInstance } from 'vue'
 import type { IExplorerTreeEmits, IExplorerTreeProps } from './explorer-tree'
@@ -53,7 +53,6 @@ const props = withDefaults(defineProps<IExplorerTreeProps>(), {
     confirmParams: (node: Node) => {
         return { msg: `确定要删除 ${node.data.label} 吗？` }
     },
-    deepWatch: false,
 })
 const emits = defineEmits<IExplorerTreeEmits>()
 
@@ -68,7 +67,6 @@ const actionsMapping: Record<string, any> = {
     down: { title: '下移', type: 'success', icon: 'Bottom' },
 }
 
-const treeData = ref<TreeComponentProps['data']>()
 const treeProps = computed(() => ({
     emptyText: props.emptyText,
     defaultExpandAll: props.defaultExpandAll,
@@ -90,10 +88,9 @@ function handleNodeClick(data: any, node: Node, instance: ComponentInternalInsta
 }
 
 const filterWatch = watch(filterKeyword, value => treeRef.value?.filter(value))
-const propsWatch = watch(() => props.data, value => { treeData.value = value }, { immediate: true, deep: props.deepWatch })
 
 defineExpose({
-    getTreeRef: () => treeRef.value,
+    treeRef,
     setActive: (value: string | number | null, shouldAutoExpandParent = true) => {
         treeRef.value?.setCurrentKey(value, shouldAutoExpandParent)
     },
@@ -101,7 +98,6 @@ defineExpose({
 
 onBeforeUnmount(() => {
     filterWatch.stop()
-    propsWatch.stop()
 })
 </script>
 

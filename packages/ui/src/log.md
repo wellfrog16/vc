@@ -10,7 +10,6 @@ title: 更新日志
 
 - explorer-list 和 explorer-tree
     - 插槽分为 item/node、label、label-extra、action
-    - 对 props.data 进行深度监听配置，避免数据更新时，组件不重新渲染
 - explorer-list 增加复选框配置
 
 ## 1.10.0

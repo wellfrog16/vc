@@ -14,7 +14,6 @@ const documentData = {
         { param: 'empty-text', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },
         { param: 'highlight-current', description: '是否高亮当前节点', type: 'boolean', defaultValue: 'true' },
         { param: 'default-expand-all', description: '是否默认展开所有节点', type: 'boolean', defaultValue: 'true' },
-        { param: 'deep-watch', description: '是否深度监听 data 变化', type: 'boolean', defaultValue: 'false' },
         { param: 'filter-method', description: '自定义搜索方法', type: 'Fun1', defaultValue: '下一行' },
         { param: '-', rowType: 'paramType', description: 'el-tree 的 filter-node-method 参数' },
         { param: 'confirm-params', description: '删除确认参数', type: 'Fun2', defaultValue: '下一行' },

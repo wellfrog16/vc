@@ -14,6 +14,7 @@ export interface IExplorerFormProps {
     editing?: boolean // 编辑中
     loading?: boolean // 加载中
     labelPosition?: FormProps['labelPosition']
+    showCancel?: boolean
 }
 
 export interface IExplorerFormEmits {

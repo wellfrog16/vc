@@ -4,7 +4,7 @@
             <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" /><slot name="title">{{ title }}</slot></div>
             <div :class="$style.actions">
                 <slot name="action" />
-                <VcButton v-if="editable && isEditing" :disabled="disabled" :icon="{ name: 'Close' }" @click="handleCancel">取消</VcButton>
+                <VcButton v-if="editable && isEditing && showCancel" :disabled="disabled" :icon="{ name: 'Close' }" @click="handleCancel">取消</VcButton>
                 <VcButton v-if="editable && isEditing" :disabled="disabled" :icon="{ name: 'Check' }" type="primary" @click="handleSave">保存</VcButton>
                 <VcButton v-if="editable && !isEditing" :disabled="disabled" :icon="{ name: 'EditPen' }" type="primary" @click="handleEdit">编辑</VcButton>
             </div>
@@ -15,12 +15,12 @@
                 v-bind="formProps"
                 :model="form.fields"
                 :rules="form.rules"
-                :disabled="disabled || !isEditing || !editable"
+                :disabled="isDisabled"
                 require-asterisk-position="right"
                 :label-position="labelPosition"
                 :class="$style.form"
             >
-                <slot :is-editing="isEditing" />
+                <slot :is-editing="isEditing" :is-disabled="isDisabled" />
             </ElForm>
         </VcScrollbar>
     </div>
@@ -39,11 +39,14 @@ const props = withDefaults(defineProps<IExplorerFormProps>(), {
     editable: true,
     editing: true,
     loading: false,
+    showCancel: true,
 })
 const emits = defineEmits<IExplorerFormEmits>()
 
 const isEditing = ref(props.editing ?? true)
 const formRef = useTemplateRef<InstanceType<typeof ElForm>>('formRef')
+
+const isDisabled = computed(() => props.disabled || !isEditing.value || !props.editable)
 
 function handleEdit() {
     emits('edit')

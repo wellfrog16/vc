@@ -12,6 +12,7 @@ title: 更新日志
     - 插槽分为 item/node、label、label-extra、action
     - 增加 disabled 属性
 - explorer-list 增加复选框配置
+- explorer-form 增加取消按钮控制，完善 disabled 传递
 
 ## 1.10.0
 

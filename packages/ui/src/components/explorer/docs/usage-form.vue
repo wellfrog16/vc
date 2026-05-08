@@ -14,6 +14,7 @@ const documentData = {
         { param: 'editing', description: '是否编辑中', type: 'boolean', defaultValue: 'true' },
         { param: 'loading', description: '是否加载中', type: 'boolean', defaultValue: 'false' },
         { param: 'disabled', description: '是否禁用表单', type: 'boolean', defaultValue: 'false' },
+        { param: 'show-cancel', description: '是否显示取消按钮', type: 'boolean', defaultValue: 'true' },
     ],
     types: [
         { param: 'IForm', description: '{ fields: Record<string, any>, rules: Record<string, any> }' },
@@ -24,7 +25,7 @@ const documentData = {
         { name: 'toggleEditing', description: '切换编辑状态', param: '(val?: boolean) => void' },
     ],
     slots: [
-        { name: 'default', description: '表单内容插槽，参数 is-editing' },
+        { name: 'default', description: '表单内容插槽，参数 is-editing, is-disabled' },
         { name: 'title', description: '表单标题插槽' },
         { name: 'action', description: '表单操作按钮插槽' },
     ],

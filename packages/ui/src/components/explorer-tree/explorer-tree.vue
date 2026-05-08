@@ -42,7 +42,6 @@ import type { IExplorerTreeEmits, IExplorerTreeProps } from './explorer-tree'
 import { Loading } from '@element-plus/icons-vue'
 import { tree as treeFun } from '@wfrog/vc-utils'
 import { useFormDisabled } from 'element-plus'
-import { cloneDeep } from 'lodash-es'
 import VcButton from '../button/button.vue'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
@@ -85,9 +84,15 @@ const treeProps = computed(() => ({
 
 const treeData = computed(() => {
     if (formDisabled.value) {
-        const copyData = cloneDeep(props.data)
-        treeFun.traverse<any>(copyData || [], node => { node.disabled = true })
-        return copyData
+        treeFun.traverse<any>(props.data || [], node => {
+            node.originDisabled = node.disabled
+            node.disabled = true
+        })
+    }
+    else {
+        treeFun.traverse<any>(props.data || [], node => {
+            node.disabled = node.originDisabled ?? false
+        })
     }
     return props.data
 })

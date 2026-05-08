@@ -1,7 +1,7 @@
 <template>
     <VcScrollbar always :class="$style.scrollbar">
         <div v-show="!loading">
-            <el-checkbox-group v-model="myValue" @change="val => emits('valueChange', val)">
+            <el-checkbox-group v-model="myValue" :disabled="formDisabled" @change="val => emits('valueChange', val)">
                 <div
                     v-for="(item, index) in myData"
                     :key="item.value"
@@ -26,6 +26,7 @@
                                     link
                                     :icon="{ type: 'el', name: actionsMapping[action].icon }"
                                     stop
+                                    :disabled="formDisabled"
                                     @click="emits(action as any, item.value, item)"
                                 />
                             </template>
@@ -45,6 +46,7 @@
 <script setup lang="ts">
 import type { IExplorerListEmits, IExplorerListItem, IExplorerListProps } from './explorer-list'
 import { Loading } from '@element-plus/icons-vue'
+import { useFormDisabled } from 'element-plus'
 import VcButton from '../button/button.vue'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
@@ -59,11 +61,13 @@ const props = withDefaults(defineProps<IExplorerListProps>(), {
     confirmParams: (item: IExplorerListItem) => {
         return { msg: `确定要删除 ${item.label} 吗？` }
     },
+    disabled: false,
 })
 const emits = defineEmits<IExplorerListEmits>()
 
 const { filterKeyword } = injectExplorerPanelState()
 const myValue = useVModel(props, 'modelValue', emits)
+const formDisabled = useFormDisabled()
 const actived = ref<string | number>()
 
 const actionsMapping: Record<string, any> = {
@@ -135,6 +139,20 @@ defineExpose({
 
     :global(.iconify) {
         margin-right: 4px;
+    }
+
+    :global {
+        .el-checkbox {
+            width: 100%;
+        }
+
+        .el-checkbox__label {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: var(--el-text-color-regular) !important;
+            cursor: pointer !important;
+        }
     }
 }
 

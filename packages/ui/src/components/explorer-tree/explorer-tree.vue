@@ -1,6 +1,6 @@
 <template>
     <VcScrollbar always :class="$style.scrollbar">
-        <ElTree v-show="!loading && !pending" ref="treeRef" :data="data" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
+        <ElTree v-show="!loading && !pending" ref="treeRef" :data="treeData" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
             <template #default="{ node }">
                 <slot name="node" :data="node.data" :index="node.index">
                     <div :class="$style.node">
@@ -18,6 +18,7 @@
                                     link
                                     :icon="{ type: 'el', name: actionsMapping[action].icon }"
                                     stop
+                                    :disabled="formDisabled"
                                     @click="emits(action as any, node.data.value, node)"
                                 />
                             </template>
@@ -39,6 +40,9 @@ import type Node from 'element-plus/lib/components/tree/src/model/node'
 import type { ComponentInternalInstance } from 'vue'
 import type { IExplorerTreeEmits, IExplorerTreeProps } from './explorer-tree'
 import { Loading } from '@element-plus/icons-vue'
+import { tree as treeFun } from '@wfrog/vc-utils'
+import { useFormDisabled } from 'element-plus'
+import { cloneDeep } from 'lodash-es'
 import VcButton from '../button/button.vue'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
@@ -53,11 +57,13 @@ const props = withDefaults(defineProps<IExplorerTreeProps>(), {
     confirmParams: (node: Node) => {
         return { msg: `确定要删除 ${node.data.label} 吗？` }
     },
+    disabled: undefined,
 })
 const emits = defineEmits<IExplorerTreeEmits>()
 
 const treeRef = useTemplateRef('treeRef')
 const { filterKeyword } = injectExplorerPanelState()
+const formDisabled = useFormDisabled()
 
 const actionsMapping: Record<string, any> = {
     create: { title: '新增', type: 'primary', icon: 'Plus' },
@@ -76,6 +82,15 @@ const treeProps = computed(() => ({
     nodeKey: 'value',
     ...props.treeProps,
 }))
+
+const treeData = computed(() => {
+    if (formDisabled.value) {
+        const copyData = cloneDeep(props.data)
+        treeFun.traverse<any>(copyData || [], node => { node.disabled = true })
+        return copyData
+    }
+    return props.data
+})
 
 function filterNode(value: string, data: TreeNodeData) {
     if (!value || !filterKeyword.value) { return true }

@@ -10,6 +10,7 @@ title: 更新日志
 
 - explorer-list 和 explorer-tree
     - 插槽分为 item/node、label、label-extra、action
+    - 增加 disabled 属性
 - explorer-list 增加复选框配置
 
 ## 1.10.0

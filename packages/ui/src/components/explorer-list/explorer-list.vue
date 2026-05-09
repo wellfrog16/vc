@@ -1,7 +1,7 @@
 <template>
     <VcScrollbar always :class="$style.scrollbar">
         <div v-show="!loading">
-            <el-checkbox-group v-model="myValue" :disabled="formDisabled" @change="val => emits('valueChange', val)">
+            <el-checkbox-group v-model="myValue" :disabled="disabled" @change="val => emits('valueChange', val)">
                 <div
                     v-for="(item, index) in myData"
                     :key="item.value"
@@ -26,7 +26,7 @@
                                     link
                                     :icon="{ type: 'el', name: actionsMapping[action].icon }"
                                     stop
-                                    :disabled="formDisabled"
+                                    :disabled="disabled"
                                     @click="emits(action as any, item.value, item)"
                                 />
                             </template>
@@ -46,7 +46,6 @@
 <script setup lang="ts">
 import type { IExplorerListEmits, IExplorerListItem, IExplorerListProps } from './explorer-list'
 import { Loading } from '@element-plus/icons-vue'
-import { useFormDisabled } from 'element-plus'
 import VcButton from '../button/button.vue'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
@@ -67,7 +66,6 @@ const emits = defineEmits<IExplorerListEmits>()
 
 const { filterKeyword } = injectExplorerPanelState()
 const myValue = useVModel(props, 'modelValue', emits)
-const formDisabled = useFormDisabled()
 const actived = ref<string | number>()
 
 const actionsMapping: Record<string, any> = {

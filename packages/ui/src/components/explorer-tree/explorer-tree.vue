@@ -1,6 +1,6 @@
 <template>
     <VcScrollbar always :class="$style.scrollbar">
-        <ElTree v-show="!loading && !pending" ref="treeRef" :data="treeData" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
+        <ElTree v-show="!loading && !pending" ref="treeRef" :data="myTreeData" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
             <template #default="{ node }">
                 <slot name="node" :data="node.data" :index="node.index">
                     <div :class="$style.node">
@@ -18,7 +18,7 @@
                                     link
                                     :icon="{ type: 'el', name: actionsMapping[action].icon }"
                                     stop
-                                    :disabled="formDisabled"
+                                    :disabled="disabled"
                                     @click="emits(action as any, node.data.value, node)"
                                 />
                             </template>
@@ -41,7 +41,6 @@ import type { ComponentInternalInstance } from 'vue'
 import type { IExplorerTreeEmits, IExplorerTreeProps } from './explorer-tree'
 import { Loading } from '@element-plus/icons-vue'
 import { tree as treeFun } from '@wfrog/vc-utils'
-import { useFormDisabled } from 'element-plus'
 import VcButton from '../button/button.vue'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
@@ -62,7 +61,6 @@ const emits = defineEmits<IExplorerTreeEmits>()
 
 const treeRef = useTemplateRef('treeRef')
 const { filterKeyword } = injectExplorerPanelState()
-const formDisabled = useFormDisabled()
 
 const actionsMapping: Record<string, any> = {
     create: { title: '新增', type: 'primary', icon: 'Plus' },
@@ -82,20 +80,25 @@ const treeProps = computed(() => ({
     ...props.treeProps,
 }))
 
-const treeData = computed(() => {
-    if (formDisabled.value) {
-        treeFun.traverse<any>(props.data || [], node => {
+const myTreeData = ref<IExplorerTreeProps['data']>()
+watch(() => props.disabled, () => {
+    if (props.disabled) {
+        treeFun.traverse<any>(myTreeData.value || [], node => {
             node.originDisabled = node.disabled
             node.disabled = true
         })
     }
     else {
-        treeFun.traverse<any>(props.data || [], node => {
+        treeFun.traverse<any>(myTreeData.value || [], node => {
             node.disabled = node.originDisabled ?? false
         })
     }
-    return props.data
 })
+
+// 转存一次，这样才能即时相应 disabled 的变化，直接对 props.data 修改是无效的
+watch(() => props.data, () => {
+    myTreeData.value = props.data
+}, { immediate: true, deep: true })
 
 function filterNode(value: string, data: TreeNodeData) {
     if (!value || !filterKeyword.value) { return true }

@@ -37,7 +37,7 @@ const myData = useVModel(props, 'data', emits)
 const columnTableRef = useTemplateRef('columnTableRef')
 const $style = useCssModule()
 
-const columnStorageKey = props.toolsKey ? `${key}-${props.toolsKey}-column-config` : `${key}-column-config`
+const columnStorageKey = props.toolsKey ? `vc-explorer-column-config-${props.toolsKey}` : `${key}-column-config`
 
 const modeOptions = [
     { label: '简单设置', value: 'easy' },

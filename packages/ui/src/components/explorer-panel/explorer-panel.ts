@@ -5,6 +5,7 @@ import { useInject } from '@/use/useStore'
 export interface IExplorerPanelProps {
     resizable?: boolean
     padding?: number
+    commonState?: Record<string, any>
 }
 
 export interface IExplorerPanelState {
@@ -14,6 +15,7 @@ export interface IExplorerPanelState {
     actions: Reactive<{
         saveColumnConfig: () => void // 保存列配置 explorer-table 和 column-tools 共用。explorer-table 调 column-tools 的 saveColumnConfig
     }> // 操作
+    commonState: Ref<Record<string, any>> // 公共状态
 }
 
 export const KEY_NAME = Symbol('VCExplorerPanelState')

@@ -10,7 +10,7 @@ import type { IExplorerPanelProps } from './explorer-panel'
 import { useProvide } from '@/use/useStore'
 import { KEY_NAME } from './explorer-panel'
 
-withDefaults(defineProps<IExplorerPanelProps>(), {
+const props = withDefaults(defineProps<IExplorerPanelProps>(), {
     resizable: false,
     padding: 8,
 })
@@ -22,19 +22,27 @@ const filterKeyword = ref('')
 const actions = reactive({
     saveColumnConfig: () => {},
 })
+const commonState = ref<Record<string, any>>()
 
 useProvide(KEY_NAME, {
     fullscreenTarget,
     columnConfig,
     filterKeyword,
     actions,
+    commonState,
 })
+
+const commonStateWatch = watch(() => props.commonState, () => {
+    commonState.value = props.commonState
+}, { immediate: true, deep: true })
 
 onMounted(() => {
     if (panelRef.value?.splitterPanelRef) {
         fullscreenTarget.value = panelRef.value.splitterPanelRef
     }
 })
+
+onBeforeUnmount(() => commonStateWatch.stop())
 </script>
 
 <style lang="scss" module>

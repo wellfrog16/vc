@@ -1,3 +1,4 @@
+import type { ElTooltipProps } from 'element-plus'
 import { useInject } from '@/use/useStore'
 
 export interface IConfigProviderProps {
@@ -9,6 +10,14 @@ export interface IConfigProviderProps {
             cancelButtonText?: string
             msg?: string
         }
+    }
+    infoTooltip?: {
+        tooltipProps?: Partial<ElTooltipProps>
+        letter?: string
+        maxWidth?: string
+        icon?: string
+        offsetY?: string
+        onShowed?: (code: string | undefined, content: string | undefined, setContent: (content: string) => void) => void
     }
     iconfontUrl?: string
     pcaBaseUrl?: string

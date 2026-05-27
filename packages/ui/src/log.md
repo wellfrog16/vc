@@ -14,6 +14,8 @@ title: 更新日志
 - explorer-list 增加复选框配置
 - explorer-form 增加取消按钮控制，完善 disabled 传递
 - explorer-panel 增加 common-state 属性，方便子组件共享状态
+- 新增 info-tooltip 组件
+- 新增 form-item 组件
 
 ### 缺陷修复
 

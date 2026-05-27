@@ -1,0 +1,58 @@
+<template>
+    <Wrapper>
+        <ElDescriptionsItem label="展示区">
+            <VcConfigProvider :info-tooltip="{ onShowed: handleShowed }">
+                <el-form :model="form.fields" :rules="form.rules" :label-position="labelPosition" label-width="120px">
+                    <VcFormItem label="标题" content="这里是标题的说明和注释，使用 letter 图标" letter="!" prop="result">
+                        <el-input v-model="form.fields.result" />
+                    </VcFormItem>
+                    <VcFormItem label="内容动态加载" code="y">
+                        <el-input v-model="result" />
+                    </VcFormItem>
+                    <VcFormItem label="内容动态加载" code="z">
+                        <el-input v-model="result" />
+                    </VcFormItem>
+                </el-form>
+            </VcConfigProvider>
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="label 位置">
+            <VcChoice v-model="labelPosition" :options="labelPositionOptions" />
+        </ElDescriptionsItem>
+    </Wrapper>
+</template>
+
+<script lang="ts" setup>
+import VcChoice from '@/components/choice/choice.vue'
+import VcConfigProvider from '@/components/config-provider'
+import VcFormItem from '../form-item.vue'
+
+const labelPositionOptions = [
+    { label: '顶部', value: 'top' },
+    { label: '左边', value: 'left' },
+    { label: '右边', value: 'right' },
+]
+const labelPosition = ref<any>('top')
+
+const result = ref('')
+
+const form = reactive({
+    fields: {
+        result: '',
+    },
+    rules: {
+        result: [
+            { required: true, message: '请输入内容', trigger: 'blur' },
+        ],
+    },
+})
+
+function handleShowed(code: string | undefined, content: string | undefined, setContent: (content: string) => void) {
+    if (content) { return }
+    setContent('loading...')
+    setTimeout(() => {
+        setContent(`这里是 code: ${code} 的内容的说明和注释，使用 icon 图标`)
+    }, 1000)
+}
+</script>
+
+<style lang="scss" module></style>

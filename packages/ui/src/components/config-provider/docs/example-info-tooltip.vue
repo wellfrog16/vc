@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts" setup>
-import VcConfigProvider from '@/components/config-provider'
-import VcInfoTooltip from '../info-tooltip.vue'
+import VcInfoTooltip from '@/components/info-tooltip/info-tooltip.vue'
+import VcConfigProvider from '../config-provider.vue'
 
 function handleShowed(code: string | undefined, content: string | undefined, setContent: (content: string) => void) {
     if (content) { return }

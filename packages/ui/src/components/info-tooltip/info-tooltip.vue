@@ -68,6 +68,7 @@ function handleShow() {
     border-radius: 12px;
     cursor: pointer;
     transform: translateY(v-bind('myProps.offsetY'));
+    box-sizing: border-box;
 
     &:hover {
         color: var(--el-color-primary);

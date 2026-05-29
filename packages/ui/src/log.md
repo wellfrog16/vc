@@ -16,6 +16,7 @@ title: 更新日志
 - explorer-panel 增加 common-state 属性，方便子组件共享状态
 - 新增 info-tooltip 组件
 - 新增 form-item 组件
+- 完善 config-provider 文档
 
 ### 缺陷修复
 

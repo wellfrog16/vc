@@ -4,15 +4,17 @@
 
 给组件配置全局默认参数
 
-目前支持的组件有：`button`, `pca-picker`
+目前支持的组件有：`button`, `pca-picker`, `info-tooltip`
 
-## 功能示例
+## button
 
-### button
+<ExampleButton />
 
-<Example />
+<<< ./example-button.vue{3-13,23-36}
 
-### pca-picker
+## pca-picker
+
+直接在`<config-provider>`中配置参数即可
 
 ```
 // gitee 因为不能跨域，所以用代理跨域
@@ -23,15 +25,18 @@
  pca-base-url="https://raw.githubusercontent.com/wellfrog16/area/refs/heads/master"
 ```
 
-## 示例
+## info-tooltip
 
-<<< ./simple.vue{3-6,16-26}
+<ExampleInfoTooltip />
+
+<<< ./example-info-tooltip.vue{2-11,18-29}
 
 ## API
 
 <Usage />
 
 <script setup>
-import Example from "./example.vue";
+import ExampleButton from "./example-button.vue";
+import ExampleInfoTooltip from "./example-info-tooltip.vue";
 import Usage from "./usage.vue";
 </script>

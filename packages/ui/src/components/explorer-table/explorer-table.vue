@@ -10,9 +10,17 @@
             :highlight-current-row="highlightCurrent"
             border
             :allow-drag-last-column="true"
+            :row-key="rowKey"
+            :row-class-name="rowClassName"
             @header-dragend="onHeaderDragend"
+            @selection-change="handleSelectionChange"
         >
-            <ElTableColumn v-if="selection" type="selection" :width="size === 'large' ? 50 : 38" align="center" />
+            <ElTableColumn v-if="selection" type="selection" :width="size === 'large' ? 50 : 40" align="center" />
+            <ElTableColumn v-if="singleSelection" :width="size === 'large' ? 50 : 40" align="center" fixed="left">
+                <template #default="{ row }">
+                    <ElRadio v-model="selectedValue" :value="getRowValue(row)" :class="$style.radio" @click.stop="handleRadioClick(row)" />
+                </template>
+            </ElTableColumn>
             <template v-if="columns.length">
                 <!-- <ElTableColumn v-if="haveIndex" type="index" :width="size === 'large' ? 80 : 60" align="center" fixed="left" /> -->
                 <ElTableColumn v-for="item in columns" :key="item.prop" v-bind="item" :type="columnType(item)">
@@ -45,7 +53,7 @@
 <script setup lang="ts">
 import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
 import type { IExplorerTableEmits, IExplorerTableProps } from './explorer-table'
-import { ElTableColumn } from 'element-plus'
+import { ElRadio, ElTableColumn } from 'element-plus'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 
 const props = withDefaults(defineProps<IExplorerTableProps>(), {
@@ -55,15 +63,58 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     columnRender: (column: IColumnConfig, row: Record<string, any>) => h('span', row[column.prop]),
     loading: false,
     startIndex: 0,
+    rowKey: 'id',
 })
 const emits = defineEmits<IExplorerTableEmits>()
 
 const state = injectExplorerPanelState()
+const $style = useCssModule()
 const columns = computed(() => state.columnConfig.value.filter(item => item.visible !== false))
+const selectedValue = ref<any>()
+const selectedValues = ref<Set<any>>(new Set())
+
+function getRowValue(row: Record<string, any>) {
+    if (!row || !props.rowKey)
+        return undefined
+
+    // 1. 函数形式：直接调用
+    if (typeof props.rowKey === 'function') {
+        return props.rowKey(row)
+    }
+
+    // 2. 路径字符串：user.info.id
+    if (typeof props.rowKey === 'string' && props.rowKey.includes('.')) {
+        return props.rowKey.split('.').reduce((obj, key) => obj?.[key], row)
+    }
+
+    // 3. 普通属性名：id
+    return row[props.rowKey]
+}
+
+function handleRadioClick(row: any) {
+    const value = getRowValue(row)
+    if (selectedValue.value !== value) {
+        selectedValue.value = value
+        emits('singleSelect', row)
+    }
+}
+
+function handleSelectionChange(selection: any[]) {
+    selectedValues.value = new Set(selection.map(item => getRowValue(item)))
+    emits('selectionChange', selection)
+}
 
 function columnType(item: IColumnConfig) {
     if (item.prop.startsWith('expand')) { return 'expand' }
     return 'default'
+}
+
+function rowClassName({ row }: { row: any }) {
+    const value = getRowValue(row)
+    if (value === selectedValue.value || selectedValues.value.has(value)) {
+        return $style['selected-row']
+    }
+    return ''
 }
 
 watch(() => props.columnConfig, val => {
@@ -85,6 +136,12 @@ defineExpose({
     setColumns: (columns: IColumnConfig[]) => {
         state.columnConfig.value = columns
         state.actions.saveColumnConfig()
+    },
+    setSelectedValue: (value: any) => {
+        selectedValue.value = value
+    },
+    setSelectedValues: (values: any[]) => {
+        selectedValues.value = new Set(values)
     },
 })
 </script>
@@ -110,6 +167,26 @@ div.table {
 
         .el-table__column-resize-proxy {
             border-color: var(--el-color-primary);
+        }
+    }
+}
+
+.radio {
+    height: unset;
+
+    :global {
+        .el-radio__label {
+            display: none;
+        }
+    }
+}
+
+.selected-row {
+    // background-color: var(--el-color-primary-light-9) !important;
+
+    :global {
+        td.el-table__cell {
+            background-color: var(--el-color-primary-light-9) !important;
         }
     }
 }

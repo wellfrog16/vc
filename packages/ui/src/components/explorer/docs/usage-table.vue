@@ -12,6 +12,7 @@ const documentData = {
         { param: 'empty-text', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },
         { param: 'highlight-current', description: '是否高亮当前项', type: 'boolean', defaultValue: 'true' },
         { param: 'startIndex', description: '起始索引', type: 'number', defaultValue: '0' },
+        { param: 'rowKey', description: '行 key，用于单选和复选', type: 'string', defaultValue: 'id' },
         { param: 'column-config', description: '列配置', type: 'IColumnConfig[]', defaultValue: '[]' },
         { param: 'column-render', description: '列渲染函数', type: '(column: IColumnConfig) => VNode', defaultValue: '下一行' },
         { param: '-', rowType: 'paramType', description: '(column: IColumnConfig) => h(ElTableColumn, column)' },
@@ -22,9 +23,13 @@ const documentData = {
     ],
     methods: [
         { name: 'setColumns', description: '设置列', param: '(columns: IColumnConfig[]) => void' },
+        { name: 'setSelectedValue', description: '设置单选选中值', param: '(value: any) => void' },
+        { name: 'setSelectedValues', description: '设置多选选中值', param: '(values: any) => void' },
     ],
     events: [
         { name: 'column-event', description: '自定义 column 组件抛出的事件', param: 'column: IColumnConfig, row: Record<string, any>, value: Record<string, any>' },
+        { name: 'single-select', description: '单选事件', param: 'row: Record<string, any>' },
+        { name: 'selection-change', description: '当选择项发生变化时会触发该事件（多选）', param: 'selection: Record<string, any>[]' },
     ],
     slots: [
         { name: 'default', description: '列插槽，参数有 row 和 index，下同' },

@@ -1,6 +1,7 @@
 <template>
     <div v-loading="loading" :class="$style['explorer-table']">
         <ElTable
+            ref="tableRef"
             :data="data"
             stripe
             :class="$style.table"
@@ -69,6 +70,7 @@ const emits = defineEmits<IExplorerTableEmits>()
 
 const state = injectExplorerPanelState()
 const $style = useCssModule()
+const tableRef = useTemplateRef('tableRef')
 const columns = computed(() => state.columnConfig.value.filter(item => item.visible !== false))
 const selectedValue = ref<any>()
 const selectedValues = ref<Set<any>>(new Set())
@@ -143,6 +145,7 @@ defineExpose({
     setSelectedValues: (values: any[]) => {
         selectedValues.value = new Set(values)
     },
+    tableRef,
 })
 </script>
 

@@ -14,6 +14,7 @@ const documentData = {
         { param: 'fullscreen-target', description: '全屏切换的 explorer 目标', type: 'page | panel', defaultValue: 'page' },
         { param: 'throttle', description: '操作防抖时间', type: 'number', defaultValue: '800' },
         { param: 'tools-key', description: '工具栏唯一 key，用于 storage 的存储', type: 'string', defaultValue: '' },
+        { param: 'bottom-border', description: '是否显示底部边框', type: 'boolean', defaultValue: 'false' },
         { param: 'column-reset-visible', description: '列表设置里重置按钮是否显示', type: 'boolean', defaultValue: 'true' },
         { param: 'column-setter-size', description: '列表设置里列宽调整器大小', type: 'small | default | large', defaultValue: 'small' },
         { param: 'column-to-storage', description: '是否将列设置保存到 storage', type: 'boolean', defaultValue: 'false' },

@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style['explorer-tools']" class="vc-explorer-tools">
+    <div :class="[$style['explorer-tools'], { [$style['bottom-border']]: bottomBorder }]" class="vc-explorer-tools">
         <div :class="$style.buttons">
             <VcButton v-if="create" type="primary" @click="emits('create')">{{ createText }}</VcButton>
             <slot />
@@ -95,6 +95,12 @@ function toggleFullScreen() {
     padding: 0 0 8px 0;
     flex-wrap: wrap;
     row-gap: 8px;
+    box-sizing: border-box;
+
+    &.bottom-border {
+        border-bottom: 1px solid var(--el-border-color-lighter);
+        margin-bottom: 8px;
+    }
 }
 
 .buttons {

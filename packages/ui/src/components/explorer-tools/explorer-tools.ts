@@ -12,6 +12,7 @@ export interface IExplorerToolsProps {
     columnSetterSize?: 'small' | 'default' | 'large' // 预留，未兼容 default/large 后的样式
     columnToStorage?: boolean
     columnResetVisible?: boolean
+    bottomBorder?: boolean
 }
 
 export interface IExplorerToolsEmits {

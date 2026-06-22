@@ -14,12 +14,15 @@
             :row-key="rowKey"
             :row-class-name="rowClassName"
             @header-dragend="onHeaderDragend"
-            @selection-change="handleSelectionChange"
         >
             <ElTableColumn v-if="selection" type="selection" :width="size === 'large' ? 50 : 40" align="center" />
-            <ElTableColumn v-if="singleSelection" :width="size === 'large' ? 50 : 40" align="center" fixed="left">
+            <ElTableColumn v-if="customSelection" :width="size === 'large' ? 50 : 40" align="center" fixed="left">
+                <template v-if="isMultipleSelection" #header>
+                    <ElCheckbox v-model="isSelectedAll" :indeterminate="indeterminate" :class="$style.checkbox" />
+                </template>
                 <template #default="{ row }">
-                    <ElRadio v-model="selectedValue" :value="getRowValue(row)" :class="$style.radio" @click.stop="handleRadioClick(row)" />
+                    <ElRadio v-if="isSingleSelection" v-model="selectedValue" :value="getRowValue(row)" :class="$style.radio" @click.stop="handleRadioClick(row)" />
+                    <ElCheckbox v-if="isMultipleSelection" v-model="row[multipleCheckedKey]" :class="$style.checkbox" @click.stop="handleCheckboxClick(row)" />
                 </template>
             </ElTableColumn>
             <template v-if="columns.length">
@@ -54,7 +57,7 @@
 <script setup lang="ts">
 import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
 import type { IExplorerTableEmits, IExplorerTableProps } from './explorer-table'
-import { ElRadio, ElTableColumn } from 'element-plus'
+import { ElCheckbox, ElRadio, ElTableColumn } from 'element-plus'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 
 const props = withDefaults(defineProps<IExplorerTableProps>(), {
@@ -65,6 +68,7 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     loading: false,
     startIndex: 0,
     rowKey: 'id',
+    multipleCheckedKey: 'checked',
 })
 const emits = defineEmits<IExplorerTableEmits>()
 
@@ -74,6 +78,33 @@ const tableRef = useTemplateRef('tableRef')
 const columns = computed(() => state.columnConfig.value.filter(item => item.visible !== false))
 const selectedValue = ref<any>()
 const selectedValues = ref<Set<any>>(new Set())
+const isSingleSelection = computed(() => props.customSelection === 'radio')
+const isMultipleSelection = computed(() => props.customSelection === 'checkbox')
+
+// 全选按钮
+const isSelectedAll = computed({
+    get() {
+        if (!isMultipleSelection.value) { return false }
+
+        return selectedValues.value.size === props.data.length
+    },
+    set(val) {
+        if (!isMultipleSelection.value) { return }
+
+        if (val) {
+            selectedValues.value = new Set(props.data.map(getRowValue))
+        }
+        else {
+            selectedValues.value.clear()
+        }
+        props.data.forEach(row => { row.checked = val })
+    },
+})
+
+const indeterminate = computed(() => {
+    if (!isMultipleSelection.value) { return false }
+    return selectedValues.value.size > 0 && selectedValues.value.size < props.data.length
+})
 
 function getRowValue(row: Record<string, any>) {
     if (!row || !props.rowKey)
@@ -97,13 +128,16 @@ function handleRadioClick(row: any) {
     const value = getRowValue(row)
     if (selectedValue.value !== value) {
         selectedValue.value = value
-        emits('singleSelect', row)
+        emits('singleSelectionChange', row)
     }
 }
 
-function handleSelectionChange(selection: any[]) {
-    selectedValues.value = new Set(selection.map(item => getRowValue(item)))
-    emits('selectionChange', selection)
+function handleCheckboxClick(row: any) {
+    // 此时 data 里对应 row 的 checked 属性已经改变，这里参数的 row 应该是之前的副本(checked 还未改变)
+    const value = getRowValue(row)
+    const checked = !row[props.multipleCheckedKey] // 手动定义结果
+    checked ? selectedValues.value.add(value) : selectedValues.value.delete(value)
+    emits('multipleSelectionChange', row, Array.from(selectedValues.value)) // 事件出去时，row.checked 已经改变
 }
 
 function columnType(item: IColumnConfig) {
@@ -145,6 +179,8 @@ defineExpose({
     setSelectedValues: (values: any[]) => {
         selectedValues.value = new Set(values)
     },
+    selectAll: () => { isSelectedAll.value = true },
+    clearSelection: () => { isSelectedAll.value = false },
     tableRef,
 })
 </script>
@@ -182,6 +218,10 @@ div.table {
             display: none;
         }
     }
+}
+
+.checkbox {
+    height: unset;
 }
 
 .selected-row {

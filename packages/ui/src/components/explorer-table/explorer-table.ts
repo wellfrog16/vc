@@ -4,7 +4,8 @@ import type { IColumnConfig } from '../explorer-column-table/explorer-column-tab
 export interface IExplorerTableProps {
     data: any[]
     selection?: boolean
-    singleSelection?: boolean
+    customSelection?: 'radio' | 'checkbox'
+    multipleCheckedKey?: string
     index?: boolean
     highlightCurrent?: boolean
     emptyText?: string
@@ -20,6 +21,7 @@ export interface IExplorerTableProps {
 
 export interface IExplorerTableEmits {
     (e: 'columnEvent', column: IColumnConfig, row: Record<string, any>, value: Record<string, any>): void
-    (e: 'singleSelect', row: Record<string, any>): void
+    (e: 'singleSelectionChange', row: Record<string, any>): void
+    (e: 'multipleSelectionChange', row: Record<string, any>, values: Array<string | number>): void
     (e: 'selectionChange', rows: Record<string, any>[]): void
 }

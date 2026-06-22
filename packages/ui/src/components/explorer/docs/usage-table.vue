@@ -11,6 +11,8 @@ const documentData = {
         { param: 'loading-text', description: '加载中的文本', type: 'string', defaultValue: '数据加载中...' },
         { param: 'empty-text', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },
         { param: 'highlight-current', description: '是否高亮当前项', type: 'boolean', defaultValue: 'true' },
+        { param: 'custom-selection', description: '是否自定义选择框', type: 'radio | checkbox', defaultValue: '-' },
+        { param: 'multiple-checked-key', description: '多选标记字段名', type: 'string', defaultValue: 'checked' },
         { param: 'startIndex', description: '起始索引', type: 'number', defaultValue: '0' },
         { param: 'rowKey', description: '行 key，用于单选和复选', type: 'string', defaultValue: 'id' },
         { param: 'column-config', description: '列配置', type: 'IColumnConfig[]', defaultValue: '[]' },
@@ -25,10 +27,14 @@ const documentData = {
         { name: 'setColumns', description: '设置列', param: '(columns: IColumnConfig[]) => void' },
         { name: 'setSelectedValue', description: '设置单选选中值', param: '(value: any) => void' },
         { name: 'setSelectedValues', description: '设置多选选中值', param: '(values: any) => void' },
+        { name: 'clearSelection', description: '清除选中', param: '() => void' },
+        { name: 'selectAll', description: '全选', param: '() => void' },
+
     ],
     events: [
         { name: 'column-event', description: '自定义 column 组件抛出的事件', param: 'column: IColumnConfig, row: Record<string, any>, value: Record<string, any>' },
-        { name: 'single-select', description: '单选事件', param: 'row: Record<string, any>' },
+        { name: 'single-selection-change', description: '单选事件', param: 'row: Record<string, any>' },
+        { name: 'multiple-selection-change', description: '多选事件', param: 'row: Record<string, any>, values: Array<string | numver>' },
         { name: 'selection-change', description: '当选择项发生变化时会触发该事件（多选）', param: 'selection: Record<string, any>[]' },
     ],
     slots: [

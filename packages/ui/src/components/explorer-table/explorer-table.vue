@@ -16,7 +16,7 @@
             @header-dragend="onHeaderDragend"
         >
             <ElTableColumn v-if="selection" type="selection" :width="size === 'large' ? 50 : 40" align="center" />
-            <ElTableColumn v-if="customSelection" :width="size === 'large' ? 50 : 40" align="center" fixed="left">
+            <ElTableColumn v-if="customSelection" :width="size === 'large' ? 50 : 40" align="center" fixed="left" :class-name="$style.selection">
                 <template v-if="isMultipleSelection" #header>
                     <ElCheckbox v-model="isSelectedAll" :indeterminate="indeterminate" :class="$style.checkbox" />
                 </template>
@@ -207,6 +207,13 @@ div.table {
         .el-table__column-resize-proxy {
             border-color: var(--el-color-primary);
         }
+    }
+}
+
+.selection {
+    :global(.cell) {
+        display: flex;
+        align-items: center;
     }
 }
 

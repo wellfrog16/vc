@@ -58,7 +58,7 @@ export const treeData: CascaderOption[] = [
     },
 ]
 
-export const tableData = [
+export const tableData = ref([
     { date: '2016-05-03', status: true, name: 'Tom', state: 'California', city: 'Los Angeles', address: 'No. 189, Grove St, Los Angeles', zip: 'CA 90036', tag: 'Home' },
     { date: '2016-05-02', status: true, name: 'Tom', state: 'California', city: 'Los Angeles', address: 'No. 189, Grove St, Los Angeles', zip: 'CA 90036', tag: 'Home' },
     { date: '2016-05-04', status: true, name: 'Tom', state: 'California', city: 'Los Angeles', address: 'No. 189, Grove St, Los Angeles', zip: 'CA 90036', tag: 'Home' },
@@ -80,7 +80,7 @@ export const tableData = [
     { date: '2016-05-21', status: true, name: 'Tom', state: 'California', city: 'Los Angeles', address: 'No. 189, Grove St, Los Angeles', zip: 'CA 90036', tag: 'Home' },
     { date: '2016-05-22', status: true, name: 'Tom', state: 'California', city: 'Los Angeles', address: 'No. 189, Grove St, Los Angeles', zip: 'CA 90036', tag: 'Home' },
     { date: '2016-05-24', status: true, name: 'Tom', state: 'California', city: 'Los Angeles', address: 'No. 189, Grove St, Los Angeles', zip: 'CA 90036', tag: 'Home' },
-]
+])
 
 export const columns: IColumnConfig[] = [
     { id: 1, prop: 'index', label: '', width: 60, widthType: 'width', visible: true, align: 'center', fixed: 'left' },

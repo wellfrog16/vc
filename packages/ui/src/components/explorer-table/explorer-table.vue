@@ -77,7 +77,7 @@ const $style = useCssModule()
 const tableRef = useTemplateRef('tableRef')
 const columns = computed(() => state.columnConfig.value.filter(item => item.visible !== false))
 const selectedValue = ref<any>() // 单选
-const selectedValues = ref<Set<any>>(new Set()) // 多选值
+const selectedValues = computed(() => new Set(props.data.filter(item => item[props.multipleCheckedKey]).map(getRowValue))) // 多选
 const isSingleSelection = computed(() => props.customSelection === 'radio')
 const isMultipleSelection = computed(() => props.customSelection === 'checkbox')
 
@@ -91,13 +91,8 @@ const isSelectedAll = computed({
     set(val) {
         if (!isMultipleSelection.value) { return }
 
-        if (val) {
-            selectedValues.value = new Set(props.data.map(getRowValue))
-        }
-        else {
-            selectedValues.value.clear()
-        }
-        props.data.forEach(row => { row.checked = val })
+        props.data.forEach(row => { row[props.multipleCheckedKey] = val })
+        emits('selectAll', Array.from(selectedValues.value))
     },
 })
 
@@ -133,11 +128,7 @@ function handleRadioClick(row: any) {
 }
 
 function handleCheckboxClick(row: any) {
-    // 此时 data 里对应 row 的 checked 属性已经改变，这里参数的 row 应该是之前的副本(checked 还未改变)
-    const value = getRowValue(row)
-    const checked = !row[props.multipleCheckedKey] // 手动定义结果
-    checked ? selectedValues.value.add(value) : selectedValues.value.delete(value)
-    emits('multipleSelectionChange', row, Array.from(selectedValues.value)) // 事件出去时，row.checked 已经改变
+    emits('multipleSelectionChange', row, Array.from(selectedValues.value))
 }
 
 function columnType(item: IColumnConfig) {
@@ -175,9 +166,6 @@ defineExpose({
     },
     setSelectedValue: (value: any) => {
         selectedValue.value = value
-    },
-    setSelectedValues: (values: any[]) => {
-        selectedValues.value = new Set(values)
     },
     selectAll: () => { isSelectedAll.value = true },
     clearSelection: () => { isSelectedAll.value = false },

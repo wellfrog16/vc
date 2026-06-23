@@ -24,4 +24,5 @@ export interface IExplorerTableEmits {
     (e: 'singleSelectionChange', row: Record<string, any>): void
     (e: 'multipleSelectionChange', row: Record<string, any>, values: Array<string | number>): void
     (e: 'selectionChange', rows: Record<string, any>[]): void
+    (e: 'selectAll', values: Array<string | number>): void
 }

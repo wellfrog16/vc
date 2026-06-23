@@ -81,20 +81,18 @@ const selectedValues = ref<Set<any>>(new Set()) // 多选值
 const isSingleSelection = computed(() => props.customSelection === 'radio')
 const isMultipleSelection = computed(() => props.customSelection === 'checkbox')
 
-// 全选按钮
+// 全选按钮，只对当前 data 有效
 const isSelectedAll = computed({
     get() {
         if (!isMultipleSelection.value) { return false }
-        // 当前 data 所有数据的 checked 属性都为 true
-        return props.data.every(row => row[props.multipleCheckedKey])
+
+        return selectedValues.value.size === props.data.length
     },
     set(val) {
         if (!isMultipleSelection.value) { return }
 
         if (val) {
-            const selected = new Set(props.data.map(getRowValue))
-            // 合并两个 Set，全选还要包含之前选中的，所有不能单纯的赋值
-            selectedValues.value = new Set([...selectedValues.value, ...selected])
+            selectedValues.value = new Set(props.data.map(getRowValue))
         }
         else {
             selectedValues.value.clear()

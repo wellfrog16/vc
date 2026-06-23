@@ -12,6 +12,7 @@ title: 更新日志
     - 增加 tableRef 导出
     - 自定义多选功能，更准确和方便的选中和取消
 - explorer-tools 增加 bottom-border 属性
+- explorer-container 增加 scrollbar-props 属性
 
 ### 缺陷修复
 

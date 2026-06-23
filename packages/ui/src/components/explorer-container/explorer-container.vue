@@ -4,7 +4,7 @@
             <div :class="$style['header-container']"><VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" /><slot name="title">{{ title }}</slot></div>
             <div v-if="$slots.action" :class="$style.actions"><slot name="action" /></div>
         </div>
-        <VcScrollbar always :class="$style.scrollbar">
+        <VcScrollbar always :class="$style.scrollbar" v-bind="scrollbarProps">
             <slot />
         </VcScrollbar>
     </div>

@@ -76,8 +76,8 @@ const state = injectExplorerPanelState()
 const $style = useCssModule()
 const tableRef = useTemplateRef('tableRef')
 const columns = computed(() => state.columnConfig.value.filter(item => item.visible !== false))
-const selectedValue = ref<any>()
-const selectedValues = ref<Set<any>>(new Set())
+const selectedValue = ref<any>() // 单选
+const selectedValues = ref<Set<any>>(new Set()) // 多选值
 const isSingleSelection = computed(() => props.customSelection === 'radio')
 const isMultipleSelection = computed(() => props.customSelection === 'checkbox')
 
@@ -85,14 +85,16 @@ const isMultipleSelection = computed(() => props.customSelection === 'checkbox')
 const isSelectedAll = computed({
     get() {
         if (!isMultipleSelection.value) { return false }
-
-        return selectedValues.value.size === props.data.length
+        // 当前 data 所有数据的 checked 属性都为 true
+        return props.data.every(row => row[props.multipleCheckedKey])
     },
     set(val) {
         if (!isMultipleSelection.value) { return }
 
         if (val) {
-            selectedValues.value = new Set(props.data.map(getRowValue))
+            const selected = new Set(props.data.map(getRowValue))
+            // 合并两个 Set，全选还要包含之前选中的，所有不能单纯的赋值
+            selectedValues.value = new Set([...selectedValues.value, ...selected])
         }
         else {
             selectedValues.value.clear()

@@ -57,6 +57,7 @@
 <script setup lang="ts">
 import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
 import type { IExplorerTableEmits, IExplorerTableProps } from './explorer-table'
+import { promiseTimeout } from '@vueuse/core'
 import { ElCheckbox, ElRadio, ElTableColumn } from 'element-plus'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 
@@ -127,7 +128,8 @@ function handleRadioClick(row: any) {
     }
 }
 
-function handleCheckboxClick(row: any) {
+async function handleCheckboxClick(row: any) {
+    await promiseTimeout(0)
     emits('multipleSelectionChange', row, Array.from(selectedValues.value))
 }
 

@@ -35,6 +35,7 @@ const documentData = {
         { name: 'column-event', description: '自定义 column 组件抛出的事件', param: 'column: IColumnConfig, row: Record<string, any>, value: Record<string, any>' },
         { name: 'single-selection-change', description: '单选事件', param: 'row: Record<string, any>' },
         { name: 'multiple-selection-change', description: '多选事件', param: 'row: Record<string, any>, values: Array<string | numver>' },
+        { name: 'select-all', description: '全选/取消事件', param: 'checked: boolean, values: Array<string | numver>' },
         { name: 'selection-change', description: '当选择项发生变化时会触发该事件（多选）', param: 'selection: Record<string, any>[]' },
     ],
     slots: [

@@ -93,7 +93,7 @@ const isSelectedAll = computed({
         if (!isMultipleSelection.value) { return }
 
         props.data.forEach(row => { row[props.multipleCheckedKey] = val })
-        emits('selectAll', Array.from(selectedValues.value))
+        emits('selectAll', val, Array.from(selectedValues.value))
     },
 })
 

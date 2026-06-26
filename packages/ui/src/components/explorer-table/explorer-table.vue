@@ -46,7 +46,7 @@
             <template v-if="$slots.append" #append>
                 <slot name="append" />
             </template>
-            <template v-if="empty" #empty>
+            <template #empty>
                 <slot name="empty">
                     <div v-if="!loading && !pending">{{ emptyText }}</div>
                     <div v-else />
@@ -193,12 +193,21 @@ div.table {
     --el-table-row-hover-bg-color: var(--el-color-primary-light-9);
 
     :global {
+        .el-scrollbar__view {
+            min-height: 100%;
+            height: 100px;
+        }
+
         .el-table__header-wrapper .el-table__cell:hover {
             border-right-color: var(--el-color-primary-light-5) !important;
         }
 
         .el-table__column-resize-proxy {
             border-color: var(--el-color-primary);
+        }
+
+        .el-table__empty-block {
+            display: v-bind('`${empty ? "flex" : "none"}`');
         }
     }
 }

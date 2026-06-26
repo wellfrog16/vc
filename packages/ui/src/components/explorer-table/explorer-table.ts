@@ -8,6 +8,7 @@ export interface IExplorerTableProps {
     multipleCheckedKey?: string
     index?: boolean
     highlightCurrent?: boolean
+    empty?: boolean
     emptyText?: string
     pending?: boolean
     loading?: boolean

@@ -46,9 +46,11 @@
             <template v-if="$slots.append" #append>
                 <slot name="append" />
             </template>
-            <template #empty>
-                <div v-if="!loading && !pending">{{ emptyText }}</div>
-                <div v-else />
+            <template v-if="empty" #empty>
+                <slot name="empty">
+                    <div v-if="!loading && !pending">{{ emptyText }}</div>
+                    <div v-else />
+                </slot>
             </template>
         </ElTable>
     </div>
@@ -70,6 +72,7 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     startIndex: 0,
     rowKey: 'id',
     multipleCheckedKey: 'checked',
+    empty: true, // 是否显示空数据
 })
 const emits = defineEmits<IExplorerTableEmits>()
 
@@ -98,7 +101,7 @@ const isSelectedAll = computed({
 })
 
 const indeterminate = computed(() => {
-    if (!isMultipleSelection.value) { return false }
+    if (!isMultipleSelection.value || !props.data.length) { return false }
     return selectedValues.value.size > 0 && selectedValues.value.size < props.data.length
 })
 

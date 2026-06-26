@@ -9,6 +9,7 @@ const documentData = {
         { param: 'pending', description: '是否正在处理', type: 'boolean', defaultValue: 'false' },
         { param: 'loading', description: '是否加载中', type: 'boolean', defaultValue: 'false' },
         { param: 'loading-text', description: '加载中的文本', type: 'string', defaultValue: '数据加载中...' },
+        { param: 'empty', description: '是否显示空数据时的文本', type: 'boolean', defaultValue: 'true' },
         { param: 'empty-text', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },
         { param: 'highlight-current', description: '是否高亮当前项', type: 'boolean', defaultValue: 'true' },
         { param: 'custom-selection', description: '是否自定义选择框', type: 'radio | checkbox', defaultValue: '-' },
@@ -41,6 +42,7 @@ const documentData = {
     slots: [
         { name: 'default', description: '列插槽，参数有 row 和 index，下同' },
         { name: 'operation', description: '操作插槽' },
+        { name: 'empty', description: '空数据插槽' },
         { name: 'expand', description: '展开行插槽，prop 需要配置 expand 开头，如：expand-order-children' },
         { name: 'append', description: '作用同 el-table 的 append 插槽' },
     ],

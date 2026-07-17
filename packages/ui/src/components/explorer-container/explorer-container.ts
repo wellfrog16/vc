@@ -1,7 +1,7 @@
 import type { ScrollbarDirection, ScrollbarProps } from 'element-plus'
 
 export interface IExplorerContainerProps {
-    title: string
+    title?: string
     icon?: string
     loading?: boolean
     scrollbarProps?: Partial<ScrollbarProps> & {

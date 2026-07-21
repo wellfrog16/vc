@@ -5,7 +5,6 @@
         :close-on-click-modal="false"
         :width="dialogWidth"
         :show-close="false"
-        append-to-body
         :show-fullscreen="false"
     >
         <div ref="containerRef" :style="containerStyle" />

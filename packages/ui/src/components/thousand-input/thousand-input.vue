@@ -4,7 +4,6 @@
         ref="inputRef"
         v-model="myValue"
         v-thousand="options"
-        v-bind="$attrs"
         :clearable="false"
         :class="$style.main"
         @change="handleChange"

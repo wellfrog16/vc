@@ -1,5 +1,5 @@
 <template>
-    <ElSelect collapse-tags v-bind="$attrs" :class="className" :options="myOptions" :disabled="formDisabled" @change="handleChange" @blur="handleBlur" />
+    <ElSelect collapse-tags :class="className" :options="myOptions" :disabled="formDisabled" @change="handleChange" @blur="handleBlur" />
 </template>
 
 <script lang="ts" setup>

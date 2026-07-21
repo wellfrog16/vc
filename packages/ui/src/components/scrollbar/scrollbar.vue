@@ -1,5 +1,5 @@
 <template>
-    <ElScrollbar ref="scrollbarRef" v-bind="$attrs" :class="{ [$style.scrollbar]: flex, [$style[`fill-height`]]: fillHeight }">
+    <ElScrollbar ref="scrollbarRef" :class="{ [$style.scrollbar]: flex, [$style[`fill-height`]]: fillHeight }">
         <slot />
     </ElScrollbar>
 </template>

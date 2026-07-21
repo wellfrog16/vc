@@ -2,7 +2,6 @@
     <ElDrawer
         v-if="visible || !lazy"
         v-model="drawerVisible"
-        v-bind="$attrs"
         :close-on-click-modal="false"
         :show-close="false"
         :class="$style.main"

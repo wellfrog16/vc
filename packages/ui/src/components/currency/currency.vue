@@ -4,7 +4,6 @@
         v-model="myValue"
         v-model:format-value="formatValue"
         :options="thousandOption"
-        v-bind="$attrs"
         :class="{ [$style.append]: append, [$style.prepend]: prepend }"
         @change="handleChange"
     >

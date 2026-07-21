@@ -114,7 +114,7 @@ const filterWatch = watch(filterKeyword, value => treeRef.value?.filter(value))
 
 defineExpose({
     treeRef,
-    setActive: (value: string | number | null, shouldAutoExpandParent = true) => {
+    setActive: (value: string | number | null | undefined, shouldAutoExpandParent = true) => {
         treeRef.value?.setCurrentKey(value, shouldAutoExpandParent)
     },
 })

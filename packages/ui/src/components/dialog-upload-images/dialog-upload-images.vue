@@ -7,8 +7,6 @@
         :width="862"
         :show-close="false"
         :destroy-on-close="destroyOnClose"
-        append-to-body
-        v-bind="$attrs"
     >
         <Draggable v-model="imgList" :animation="300" class="el-upload-list--picture-card" draggable=".el-upload-list__item" :class="$style.draggable">
             <ElUpload

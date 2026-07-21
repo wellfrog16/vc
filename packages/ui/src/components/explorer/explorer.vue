@@ -1,5 +1,5 @@
 <template>
-    <ElSplitter v-bind="$attrs" ref="splitterRef" :layout="layout" :lazy="lazy" :class="$style.explorer">
+    <ElSplitter ref="splitterRef" :layout="layout" :lazy="lazy" :class="$style.explorer">
         <slot />
     </ElSplitter>
 </template>

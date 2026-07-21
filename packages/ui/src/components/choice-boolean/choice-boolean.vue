@@ -1,5 +1,5 @@
 <template>
-    <VcChoice v-model="myValue" :options="data" v-bind="$attrs" />
+    <VcChoice v-model="myValue" :options="data" />
 </template>
 
 <script lang="ts" setup>

@@ -21,8 +21,8 @@
                     <ElRadioButton value="card" title="卡片视图"><VcIconifyIcon name="lucide:layout-grid" /></ElRadioButton>
                     <ElRadioButton value="list" title="列表视图"><VcIconifyIcon name="lucide:table-of-contents" /></ElRadioButton>
                 </ElRadioGroup>
-                <VcButton v-if="tool === 'refresh'" title="刷新" :throttle="throttle" circle :icon="{ name: 'Refresh', type: 'el' }" @click="emits('refresh')" />
-                <VcButton v-if="tool === 'fullscreen'" title="全屏" :type="isFullScreen ? 'primary' : 'default'" circle :icon="{ name: 'FullScreen', type: 'el' }" @click="toggleFullScreen" />
+                <VcButton v-if="tool === 'refresh'" class="vc-icon-button" title="刷新" :throttle="throttle" circle :icon="{ name: 'Refresh', type: 'el' }" @click="emits('refresh')" />
+                <VcButton v-if="tool === 'fullscreen'" class="vc-icon-button" title="全屏" :type="isFullScreen ? 'primary' : 'default'" circle :icon="{ name: 'FullScreen', type: 'el' }" @click="toggleFullScreen" />
                 <ColumnSetter
                     v-if="tool === 'setter'"
                     v-model:data="columnConfig"
@@ -33,7 +33,7 @@
                     @config-confirm="val => emits('configConfirm', val)"
                     @reset="emits('columnReset')"
                 >
-                    <VcButton title="设置" circle :icon="{ name: 'Setting', type: 'el' }" :throttle="throttle" />
+                    <VcButton class="vc-icon-button" :class="$style.test" title="设置" circle :icon="{ name: 'Setting', type: 'el' }" :throttle="throttle" />
                 </ColumnSetter>
             </template>
         </div>
@@ -118,10 +118,12 @@ function toggleFullScreen() {
     align-items: center;
     column-gap: 8px;
 
-    > button {
-        padding: 4px;
-        font-size: 18px;
-        margin-left: 0 !important;
+    :global {
+        button.vc-icon-button {
+            padding: 4px;
+            font-size: 18px;
+            margin-left: 0 !important;
+        }
     }
 }
 

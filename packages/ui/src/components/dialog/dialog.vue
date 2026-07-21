@@ -2,7 +2,6 @@
     <ElDialog
         v-if="visible || !lazy"
         v-model="dialogVisible"
-        v-bind="$attrs"
         append-to-body
         align-center
         :width="width"

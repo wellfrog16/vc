@@ -1,6 +1,6 @@
 <template>
-    <ElRadioGroup v-if="!props.multiple" v-bind="$attrs" :type="myType" :options="myOptions" :disabled="formDisabled" @change="handleChange" />
-    <ElCheckboxGroup v-else v-bind="$attrs" :class="$style.checkbox" :type="myType" :options="myOptions" :disabled="formDisabled" @change="handleChange" />
+    <ElRadioGroup v-if="!props.multiple" :type="myType" :options="myOptions" :disabled="formDisabled" @change="handleChange" />
+    <ElCheckboxGroup v-else :class="$style.checkbox" :type="myType" :options="myOptions" :disabled="formDisabled" @change="handleChange" />
 </template>
 
 <script lang="ts" setup>

@@ -1,5 +1,5 @@
 <template>
-    <component :is="component" v-if="component" v-bind="$attrs">
+    <component :is="component" v-if="component">
         <template #label>
             <span :class="$style['label-container']">
                 <span :class="$style.label">{{ label }}</span>

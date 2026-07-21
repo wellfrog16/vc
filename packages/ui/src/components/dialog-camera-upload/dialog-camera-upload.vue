@@ -5,10 +5,8 @@
         :close-on-click-modal="false"
         :width="dialogWidth"
         :show-close="false"
-        append-to-body
         destroy-on-close
         :show-fullscreen="false"
-        lazy
     >
         <div v-loading="loading" :class="$style.window" :style="windowStyle">
             <ElImage v-show="imageVisible" :src="blobImage" fit="contain" />

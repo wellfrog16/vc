@@ -1,6 +1,5 @@
 <template>
     <ElDatePicker
-        v-bind="$attrs"
         v-model="myValue"
         :disabled-date="disabledDate"
         type="daterange"

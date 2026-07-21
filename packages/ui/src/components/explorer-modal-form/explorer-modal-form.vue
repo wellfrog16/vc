@@ -1,5 +1,5 @@
 <template>
-    <component :is="component" v-model="modalVisible" v-bind="$attrs">
+    <component :is="component" v-model="modalVisible">
         <component
             :is="formComponent"
             ref="formRef"

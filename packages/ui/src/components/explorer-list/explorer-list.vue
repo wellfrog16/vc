@@ -86,6 +86,7 @@ const myData = computed(() => {
         : props.data
 })
 const isEmpty = computed(() => myData.value.length === 0)
+const cursorStyle = computed(() => props.highlightCurrent ? 'pointer' : 'unset')
 
 function handleClick(item: IExplorerListItem, e: MouseEvent) {
     if (!props.highlightCurrent) { return }
@@ -94,7 +95,7 @@ function handleClick(item: IExplorerListItem, e: MouseEvent) {
 }
 
 defineExpose({
-    setActive: (value: string | number) => {
+    setActive: (value?: string | number) => {
         actived.value = value
     },
 })
@@ -103,7 +104,7 @@ defineExpose({
 <style lang="scss" module>
 .item {
     padding: 4px 8px;
-    cursor: pointer;
+    cursor: v-bind(cursorStyle);
     display: flex;
     justify-content: space-between;
     align-items: center;

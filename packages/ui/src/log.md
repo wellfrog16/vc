@@ -14,6 +14,7 @@ title: 更新日志
 - explorer-tools
     - 增加 bottom-border 属性
     - 样式调整
+    - fullscreen 的 z-index 调整为使用 element-plus 的 nextZIndex 方法
 - explorer-container 增加 scrollbar-props 属性
 - 删除不必要的 v-bind="attrs"
 

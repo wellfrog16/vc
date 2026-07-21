@@ -43,6 +43,7 @@
 <script setup lang="ts">
 import type { IExplorerToolsEmits, IExplorerToolsProps } from './explorer-tools'
 import { Search } from '@element-plus/icons-vue'
+import { useZIndex } from 'element-plus'
 import usePersistentModel from '@/use/usePersistentModel'
 import VcButton from '../button/button.vue'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
@@ -63,6 +64,8 @@ const props = withDefaults(defineProps<IExplorerToolsProps>(), {
 })
 const emits = defineEmits<IExplorerToolsEmits>()
 
+const { nextZIndex } = useZIndex()
+
 const { key, fullscreenTarget: pageTarget } = injectExplorerState()
 const { fullscreenTarget: panelTarget, columnConfig } = injectExplorerPanelState()
 const $style = useCssModule()
@@ -81,7 +84,14 @@ function toggleFullScreen() {
     const target = props.fullscreenTarget === 'page' ? pageTarget.value : panelTarget.value
     if (target) {
         isFullScreen.value = !isFullScreen.value
-        isFullScreen.value ? target.classList.add($style.fullscreen) : target.classList.remove($style.fullscreen)
+        if (isFullScreen.value) {
+            target.classList.add($style.fullscreen)
+            target.style.zIndex = nextZIndex().toString()
+        }
+        else {
+            target.classList.remove($style.fullscreen)
+            target.style.zIndex = ''
+        }
         emits('fullscreen', isFullScreen.value)
     }
 }
@@ -143,6 +153,5 @@ function toggleFullScreen() {
     bottom: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    z-index: 9999 !important;
 }
 </style>

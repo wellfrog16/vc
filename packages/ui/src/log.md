@@ -11,6 +11,7 @@ title: 更新日志
 - explorer-table
     - 增加 tableRef 导出
     - 自定义多选功能，更准确和方便的选中和取消
+    - 增加 column-filter 参数，用于自定义过滤最终显示的列
 - explorer-tools
     - 增加 bottom-border 属性
     - 样式调整

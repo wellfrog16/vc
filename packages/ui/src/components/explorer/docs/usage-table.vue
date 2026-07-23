@@ -19,6 +19,8 @@ const documentData = {
         { param: 'column-config', description: '列配置', type: 'IColumnConfig[]', defaultValue: '[]' },
         { param: 'column-render', description: '列渲染函数', type: '(column: IColumnConfig) => VNode', defaultValue: '下一行' },
         { param: '-', rowType: 'paramType', description: '(column: IColumnConfig) => h(ElTableColumn, column)' },
+        { param: 'column-filter', description: '列过滤', type: '(column: IColumnConfig) => boolean', defaultValue: '下一行' },
+        { param: '-', rowType: 'paramType', description: '(column: IColumnConfig) => column.visible !== false' },
         { param: '其他', description: 'el-table 的属性、事件', type: 'https://element-plus.org/zh-CN/component/table#api' },
     ],
     types: [

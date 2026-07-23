@@ -68,6 +68,7 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     loadingText: '数据加载中...',
     highlightCurrent: false,
     columnRender: (column: IColumnConfig, row: Record<string, any>) => h('span', row[column.prop]),
+    columnFilter: (column: IColumnConfig) => column.visible !== false,
     loading: false,
     startIndex: 0,
     rowKey: 'id',
@@ -79,7 +80,7 @@ const emits = defineEmits<IExplorerTableEmits>()
 const state = injectExplorerPanelState()
 const $style = useCssModule()
 const tableRef = useTemplateRef('tableRef')
-const columns = computed(() => state.columnConfig.value.filter(item => item.visible !== false))
+const columns = computed(() => state.columnConfig.value.filter(props.columnFilter))
 const selectedValue = ref<any>() // 单选
 const selectedValues = computed(() => new Set(props.data.filter(item => item[props.multipleCheckedKey]).map(getRowValue))) // 多选
 const isSingleSelection = computed(() => props.customSelection === 'radio')

@@ -17,6 +17,7 @@ export interface IExplorerTableProps {
     columnRender?: (column: IColumnConfig, row: Record<string, any>, emits: IExplorerTableEmits, index: number) => VNode
     columnConfig?: IColumnConfig[]
     columnFilter?: (column: IColumnConfig) => boolean
+    rowClassName?: ((data: { row: Record<string, any>, rowIndex: number }) => string) | string
     startIndex?: number
     rowKey?: string | ((row: any) => string) // 单选或者多选时提供
 }

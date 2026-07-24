@@ -12,7 +12,7 @@
             border
             :allow-drag-last-column="true"
             :row-key="rowKey"
-            :row-class-name="rowClassName"
+            :row-class-name="myRowClassName"
             @header-dragend="onHeaderDragend"
         >
             <ElTableColumn v-if="selection" type="selection" :width="size === 'large' ? 50 : 40" align="center" />
@@ -142,12 +142,20 @@ function columnType(item: IColumnConfig) {
     return 'default'
 }
 
-function rowClassName({ row }: { row: any }) {
-    const value = getRowValue(row)
-    if (value === selectedValue.value || selectedValues.value.has(value)) {
-        return $style['selected-row']
+function myRowClassName(data: { row: Record<string, any>, rowIndex: number }) {
+    const value = getRowValue(data.row)
+    let clsName = ''
+    if (typeof props.rowClassName === 'function') {
+        clsName = props.rowClassName(data)
     }
-    return ''
+    if (typeof props.rowClassName === 'string') {
+        clsName = props.rowClassName
+    }
+
+    if (value === selectedValue.value || selectedValues.value.has(value)) {
+        return `${clsName} ${$style['selected-row']}`
+    }
+    return clsName
 }
 
 watch(() => props.columnConfig, val => {

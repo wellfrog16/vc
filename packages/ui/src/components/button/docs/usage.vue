@@ -5,6 +5,7 @@
 <script lang="ts" setup>
 const documentData = {
     params: [
+        { param: 'disabled', description: '是否禁用', type: 'boolean | () => boolean', defaultValue: '-' },
         { param: 'throttle', description: '点击时的节流间隔，单位毫秒', type: 'number', defaultValue: '800' },
         { param: 'confirm', description: '是否显示二次确认框，设置 none 则不二次确认', type: 'IConfirmInfo', defaultValue: '下一行' },
         { param: '-', rowType: 'defaultValue', description: '{ type: \'messagebox\', title: \'提示\', confirmButtonText: \'确定\', cancelButtonText: \'取消\', msg: \'确认要删除这条数据吗\' }' },

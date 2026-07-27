@@ -19,6 +19,7 @@ title: 更新日志
     - fullscreen 的 z-index 调整为使用 element-plus 的 nextZIndex 方法
 - explorer-container 增加 scrollbar-props 属性
 - 删除不必要的 v-bind="attrs"
+- explorer-tree、explorer-list、button 的 disabled 增加支持函数
 
 ### 缺陷修复
 

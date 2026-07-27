@@ -20,7 +20,7 @@ export interface IExplorerListProps {
     highlightCurrent?: boolean
     showCheckbox?: boolean
     confirmParams?: (item: IExplorerListItem) => IButtonProps['confirm']
-    disabled?: boolean
+    disabled?: boolean | ((action: string, item: IExplorerListItem) => boolean)
 }
 
 export interface IExplorerListEmits {

@@ -18,7 +18,7 @@
                                     link
                                     :icon="{ type: 'el', name: actionsMapping[action].icon }"
                                     stop
-                                    :disabled="disabled"
+                                    :disabled="myDisabled(action, node)"
                                     @click="emits(action as any, node.data.value, node)"
                                 />
                             </template>
@@ -111,6 +111,10 @@ function handleNodeClick(data: any, node: Node, instance: ComponentInternalInsta
 }
 
 const filterWatch = watch(filterKeyword, value => treeRef.value?.filter(value))
+function myDisabled(action: string, node: Node) {
+    if (typeof props.disabled === 'function') { return props.disabled(action, node) }
+    return props.disabled
+}
 
 defineExpose({
     treeRef,

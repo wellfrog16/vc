@@ -15,7 +15,7 @@ export interface IExplorerTreeProps {
     confirmParams?: (node: Node) => IButtonProps['confirm']
     filterMethod?: TreeComponentProps['filterNodeMethod']
     highlightCurrent?: boolean
-    disabled?: boolean
+    disabled?: boolean | ((action: string, node: Node) => boolean)
 }
 
 export interface IExplorerTreeEmits {

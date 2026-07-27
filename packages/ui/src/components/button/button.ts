@@ -19,4 +19,5 @@ export interface IButtonProps {
         msg?: string
     }
     stop?: boolean
+    disabled?: boolean | (() => boolean)
 }

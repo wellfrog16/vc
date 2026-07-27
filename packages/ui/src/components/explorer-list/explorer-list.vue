@@ -1,7 +1,7 @@
 <template>
     <VcScrollbar always :class="$style.scrollbar">
         <div v-show="!loading">
-            <el-checkbox-group v-model="myValue" :disabled="disabled" @change="val => emits('valueChange', val)">
+            <el-checkbox-group v-model="myValue" :disabled="checkboxGroupDisabled" @change="val => emits('valueChange', val)">
                 <div
                     v-for="(item, index) in myData"
                     :key="item.value"
@@ -26,7 +26,7 @@
                                     link
                                     :icon="{ type: 'el', name: actionsMapping[action].icon }"
                                     stop
-                                    :disabled="disabled"
+                                    :disabled="myDisabled(action, item)"
                                     @click="emits(action as any, item.value, item)"
                                 />
                             </template>
@@ -60,6 +60,9 @@ const props = withDefaults(defineProps<IExplorerListProps>(), {
     confirmParams: (item: IExplorerListItem) => {
         return { msg: `确定要删除 ${item.label} 吗？` }
     },
+    filterMethod: (keyword: string, item: IExplorerListItem) => {
+        return item.label.toLowerCase().includes(keyword.toLowerCase())
+    },
     disabled: false,
 })
 const emits = defineEmits<IExplorerListEmits>()
@@ -76,13 +79,9 @@ const actionsMapping: Record<string, any> = {
     down: { title: '下移', type: 'success', icon: 'Bottom' },
 }
 
-const filterMethod = props.filterMethod || ((keyword: string, item: IExplorerListItem) => {
-    return item.label.toLowerCase().includes(keyword.toLowerCase())
-})
-
 const myData = computed(() => {
     return filterKeyword.value
-        ? props.data.filter(item => filterMethod(filterKeyword.value, item))
+        ? props.data.filter(item => props.filterMethod(filterKeyword.value, item))
         : props.data
 })
 const isEmpty = computed(() => myData.value.length === 0)
@@ -92,6 +91,16 @@ function handleClick(item: IExplorerListItem, e: MouseEvent) {
     if (!props.highlightCurrent) { return }
     actived.value = item.value
     emits('itemClick', item.value, item, e)
+}
+
+const checkboxGroupDisabled = computed(() => {
+    if (props.disabled === undefined) { return false }
+    if (typeof props.disabled === 'boolean') { return props.disabled }
+    return false
+})
+function myDisabled(action: string, item: IExplorerListItem) {
+    if (typeof props.disabled === 'function') { return props.disabled(action, item) }
+    return props.disabled
 }
 
 defineExpose({

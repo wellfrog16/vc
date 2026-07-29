@@ -82,6 +82,7 @@ export default defineConfig({
                         { text: 'dialog-map-point', link: '/components/dialog-map-point' },
                         { text: 'dialog-upload-images', link: '/components/dialog-upload-images' },
                         { text: 'form-item', link: '/components/form-item' },
+                        { text: 'gen-input', link: '/components/gen-input' },
                         { text: 'icon-picker', link: '/components/icon-picker' },
                         { text: 'input', link: '/components/input' },
                         { text: 'input-number', link: '/components/input-number' },

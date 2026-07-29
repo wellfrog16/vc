@@ -26,6 +26,7 @@ export const componentsData = [
             { text: 'dialog-map-point' },
             { text: 'dialog-upload-images' },
             { text: 'form-item' },
+            { text: 'gen-input' },
             { text: 'icon-picker' },
             { text: 'input' },
             { text: 'input-number' },

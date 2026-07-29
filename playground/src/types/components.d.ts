@@ -79,6 +79,7 @@ declare module 'vue' {
     VcExplorerTree: typeof import('@wfrog/vc-ui/es/components/explorer-tree')['default']
     VcFlag: typeof import('@wfrog/vc-ui/es/components/flag')['default']
     VcFormItem: typeof import('@wfrog/vc-ui/es/components/form-item')['default']
+    VcGenInput: typeof import('@wfrog/vc-ui/es/components/gen-input')['default']
     VcIcon: typeof import('@wfrog/vc-ui/es/components/icon')['default']
     VcIconifyIcon: typeof import('@wfrog/vc-ui/es/components/iconify-icon')['default']
     VcIconPicker: typeof import('@wfrog/vc-ui/es/components/icon-picker')['default']

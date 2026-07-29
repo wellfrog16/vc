@@ -35,6 +35,7 @@ export { default as VcExplorerTree } from './components/explorer-tree/explorer-t
 export { default as VcExplorer } from './components/explorer/explorer.vue'
 export { default as VcFlag } from './components/flag/flag.vue'
 export { default as VcFormItem } from './components/form-item/form-item.vue'
+export { default as VcGenInput } from './components/gen-input/gen-input.vue'
 export { default as VcIconPicker } from './components/icon-picker/icon-picker.vue'
 export { default as VcIcon } from './components/icon/icon.vue'
 export { default as VcIconifyIcon } from './components/iconify-icon/iconify-icon.vue'

@@ -9,7 +9,6 @@
             :class="[inputNumberClass, $style['el-input-number']]"
             :precision="precision"
             :controls-position="myControlsPosition"
-            :disabled="formDisabled"
             v-bind="$attrs"
             @keydown="limitInputValue"
             @change="handleChange"
@@ -26,8 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IInputNumberProps } from './input-number'
-import { useFormDisabled, useFormItem } from 'element-plus'
+import type { IInputNumberEmits, IInputNumberProps } from './input-number'
 import { formatToPx } from '@/utils'
 
 const props = withDefaults(defineProps<IInputNumberProps>(), {
@@ -35,18 +33,12 @@ const props = withDefaults(defineProps<IInputNumberProps>(), {
     inputWidth: '80px',
     disabled: undefined,
 })
-const emits = defineEmits<{
-    (e: 'update:modelValue', val: number): void
-    (e: 'change', currentValue: number, oldValue: number): void
-    (e: 'blur', event: Event): void
-}>()
+const emits = defineEmits<IInputNumberEmits>()
 
 const $slots = useSlots()
 const $style = useCssModule()
 const visible = ref(true)
 const inputNumberRef = useTemplateRef('inputNumberRef')
-const formDisabled = useFormDisabled()
-const { formItem } = useFormItem()
 
 const mainClass = computed(() => {
     const className = {
@@ -85,7 +77,6 @@ function limitInputValue(e: KeyboardEvent) {
 
 function handleChange(currentValue: number | undefined, oldValue: number | undefined) {
     myValue.value = currentValue === 0 ? currentValue : (currentValue || oldValue || 0)
-    formItem?.validate?.('change').catch(() => {})
     emits('change', myValue.value, oldValue || 0)
 }
 
@@ -97,7 +88,6 @@ function rerender() {
 function handleBlur(e: Event) {
     const eleInput = inputNumberRef.value?.querySelector('.el-input__inner[type=number]') as HTMLInputElement
     if (eleInput.value === '') { rerender() }
-    formItem?.validate?.('blur').catch(() => {})
     emits('blur', e)
 }
 

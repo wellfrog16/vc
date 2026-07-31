@@ -7,6 +7,7 @@
         :accept="accept"
         :http-request="handleHttpRequest"
         :before-upload="handleBeforeUpload"
+        :disabled="formDisabled"
     >
         <template v-if="isImageType">
             <ElImage v-if="hasImage" :src="imgOptions.src" :fit="imgOptions.fit" :style="imageSizeStyle" :class="$style.photo">
@@ -15,7 +16,7 @@
             <VcElIcon v-else :name="imgOptions.icon" :class="[$style.icon]" :style="iconSizeStyle" />
         </template>
         <template v-if="isButtonType">
-            <slot><VcButton :size="btnOptions.size" :type="btnOptions.type" :icon="{ name: btnOptions.icon }">{{ btnOptions.text }}</VcButton></slot>
+            <slot><VcButton :size="btnOptions.size" :type="btnOptions.type" :icon="{ name: btnOptions.icon }" :disabled="formDisabled">{{ btnOptions.text }}</VcButton></slot>
         </template>
         <VcCropper v-if="cropper && image" v-model:visible="visible" :image="image" :option="cropperOption" dialog @finished="handleFinished" @cancel="handleCancel" />
     </ElUpload>
@@ -26,7 +27,7 @@ import type { UploadRawFile } from 'element-plus/es/components/upload/src/upload
 import type { IUploadFileProps } from './upload-file'
 
 import { file } from '@wfrog/vc-utils'
-import { ElImage, ElUpload, vLoading } from 'element-plus'
+import { ElImage, ElUpload, useFormDisabled, vLoading } from 'element-plus'
 import { computed, nextTick, ref } from 'vue'
 
 import VcButton from '../button/button.vue'
@@ -42,12 +43,14 @@ const props = withDefaults(defineProps<IUploadFileProps>(), {
     maxSize: 2 * 1024 * 1024,
     cropper: false,
     cropperOption: () => ({}),
+    disabled: undefined,
 })
 
 const emits = defineEmits<{
     (e: 'error', message: string): void
 }>()
 
+const formDisabled = useFormDisabled()
 const loading = ref(false)
 const imgSrc = ref('') // 上传图片的本地url
 const visible = ref(false)
@@ -149,8 +152,17 @@ function handleFinished(canvas: any, blob: Blob) {
         border: 1px dashed var(--el-border-color);
         border-radius: 6px;
 
-        &:hover {
+        &:not(:global(.is-disabled)):hover {
             border-color: var(--el-color-primary);
+        }
+    }
+
+    :global {
+        .is-disabled .el-icon:hover {
+            color: var(--el-color-text-secondary);
+        }
+        .is-disabled {
+            cursor: not-allowed;
         }
     }
 }

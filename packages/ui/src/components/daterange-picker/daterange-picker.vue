@@ -1,31 +1,19 @@
 <template>
-    <ElDatePicker
-        v-model="myValue"
-        :disabled-date="disabledDate"
-        type="daterange"
-        :value-format="valueFormat"
-        :disabled="formDisabled"
-        @change="handleChange"
-        @blur="handleBlur"
-    />
+    <ElDatePicker v-model="myValue" :disabled-date="disabledDate" type="daterange" :value-format="valueFormat" />
 </template>
 
 <script lang="ts" setup>
 import type { IDateRangePickerEmits, IDateRangePickerProps } from './daterange-picker'
-import { useFormDisabled, useFormItem } from 'element-plus'
 
 const props = withDefaults(defineProps<IDateRangePickerProps>(), {
     valueFormat: 'YYYY-MM-DD',
     limitDays: 3,
     includeToday: false,
-    disabled: undefined,
 })
 
 const emits = defineEmits<IDateRangePickerEmits>()
 
 const myValue = useVModel(props, 'modelValue', emits)
-const formDisabled = useFormDisabled()
-const { formItem } = useFormItem()
 
 function disabledDate(time: Date) {
     const now = Date.now()
@@ -45,15 +33,5 @@ function disabledDate(time: Date) {
         return pickerTime + todayTime > now || pickerTime + todayTime < now + limitTime
     }
     return pickerTime + todayTime > now + limitTime || pickerTime + todayTime < now
-}
-
-function handleChange(val: string[]) {
-    formItem?.validate?.('change').catch(() => {})
-    emits('change', val)
-}
-
-function handleBlur(evt: FocusEvent) {
-    formItem?.validate?.('blur').catch(() => {})
-    emits('blur', evt as FocusEvent)
 }
 </script>

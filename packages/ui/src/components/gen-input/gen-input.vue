@@ -20,9 +20,7 @@ const emits = defineEmits<IGenInputEmits>()
 const myModelValue = useVModel(props, 'modelValue', emits)
 const checked = ref(props.defaultChecked)
 const placeholder = computed(() => (checked.value ? props.genPlaceholder : props.placeholder))
-function handleChange() {
-    myModelValue.value = ''
-}
+function handleChange() { myModelValue.value = '' }
 </script>
 
 <style lang="scss" module>

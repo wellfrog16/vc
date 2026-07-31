@@ -9,7 +9,6 @@ export interface IThousandInputProps {
     formatValue?: string
     options?: IOptionType
     padDecimal?: boolean
-    disabled?: boolean
 }
 
 export interface IThousandInputEmits {

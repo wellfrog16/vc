@@ -1,7 +1,7 @@
 <template>
     <ElPopover v-model:visible="visible" placement="bottom-start" trigger="click" width="350px" :disabled="formDisabled">
         <template #reference>
-            <VcInput v-model="myValue" :class="$style.input" v-bind="$attrs">
+            <VcInput v-model="myValue" :class="$style.input" v-bind="$attrs" :disabled="formDisabled">
                 <template #prepend>
                     <VcIconifyIcon :name="iconName" size="24" />
                 </template>

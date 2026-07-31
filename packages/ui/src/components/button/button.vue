@@ -36,7 +36,7 @@
 
 <script lang="ts" setup>
 import type { IButtonProps } from './button'
-import { ElMessageBox, useFormDisabled } from 'element-plus'
+import { ElMessageBox } from 'element-plus'
 
 import { injectConfig } from '../config-provider/config-provider'
 import VcIcon from '../icon/icon.vue'
@@ -50,7 +50,6 @@ const props = withDefaults(defineProps<IButtonProps>(), {
 })
 const emits = defineEmits<{ (e: 'click', event: Event): void }>()
 const { button: buttonConfig } = injectConfig()
-const formDisabled = useFormDisabled()
 
 const defaultConfirmInfo = { title: '提示', confirmButtonText: '确定', cancelButtonText: '取消', msg: '请确认您的操作' }
 const myConfirm = computed(() => buttonConfig?.confirm?.type !== undefined
@@ -62,7 +61,7 @@ const { name, type: iconType = 'el', position = 'left' } = props.icon || {}
 const { msg, title, confirmButtonText, cancelButtonText } = { ...defaultConfirmInfo, ...buttonConfig?.confirm, ...props.confirm }
 const myDisabled = computed(() => {
     if (typeof props.disabled === 'function') { return props.disabled() }
-    return formDisabled.value
+    return props.disabled
 })
 async function handleComfirm() {
     try {

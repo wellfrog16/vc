@@ -1,7 +1,6 @@
 <template>
     <component :is="component" v-model="modalVisible">
-        <component
-            :is="formComponent"
+        <ElForm
             ref="formRef"
             v-loading="loading"
             require-asterisk-position="right"
@@ -13,7 +12,7 @@
             :class="$style.form"
         >
             <slot />
-        </component>
+        </ElForm>
         <template #title="{ close }">
             <div :class="$style['header-container']">
                 <VcIconifyIcon v-if="icon" :name="icon" :class="$style.icon" />
@@ -48,10 +47,6 @@ const emits = defineEmits<IExplorerModalFormEmits>()
 
 const modalVisible = useVModel(props, 'modelValue', emits)
 const formRef = useTemplateRef('formRef')
-
-// 用于解决 form 和 form slot 里的 form-item 不是同一个源问题
-// 会导致 form-item 的 label、required 等属性不生效
-const formComponent = shallowRef(ElForm)
 
 const isEditing = ref(false)
 const component = computed(() => props.type === 'dialog' ? VcDialog : VcDrawer)

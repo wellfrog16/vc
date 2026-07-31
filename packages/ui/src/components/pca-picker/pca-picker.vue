@@ -28,7 +28,6 @@
                     :popper-class="$style['popover-select']"
                     :before-filter="() => false"
                     v-bind="$attrs"
-                    @blur="handleBlur"
                     @clear="clear"
                 />
             </div>
@@ -154,11 +153,6 @@ function clear() {
     togglePopoverVisible(false)
     formItem?.validate?.('change').catch(() => {})
     emits('change', undefined)
-}
-
-function handleBlur(evt: FocusEvent) {
-    formItem?.validate?.('blur').catch(() => {})
-    emits('blur', evt)
 }
 
 useProvide(KEY_NAME, {

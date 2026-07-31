@@ -3,7 +3,7 @@
     <ElPopconfirm v-else :title="confirmTitle" v-bind="props.confirmProps" @confirm="handleConfirm">
         <template #reference>
             <span ref="mainRef" :class="$style.main">
-                <ElSwitch v-model="myValue" class="h-switch" :class="className" v-bind="$attrs" />
+                <ElSwitch v-model="myValue" class="h-switch" :class="className" v-bind="$attrs" :disabled="formDisabled" />
             </span>
         </template>
     </ElPopconfirm>

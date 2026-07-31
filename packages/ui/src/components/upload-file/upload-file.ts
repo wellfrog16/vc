@@ -45,6 +45,7 @@ export interface IUploadFileProps {
     beforeUpload?: (file: File) => boolean
     cropper?: boolean
     cropperOption?: ICropper.Options
+    disabled?: boolean
 }
 
 export const defaultProps = {

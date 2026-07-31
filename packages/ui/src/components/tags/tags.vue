@@ -57,7 +57,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ITagsProps } from './tags'
+import type { ITagsEmits, ITagsProps } from './tags'
 import { useFormDisabled, useFormItem } from 'element-plus'
 import { VueDraggable as Draggable } from 'vue-draggable-plus'
 import vFocus from '@/directives/focus'
@@ -72,12 +72,7 @@ const props = withDefaults(defineProps<ITagsProps>(), {
     valueFormat: (val: string | number) => val,
 })
 
-const emits = defineEmits<{
-    (e: 'update:modelValue', val: any[]): void
-    (e: 'change', val: any[]): void
-    (e: 'dragStart', event: any): void
-    (e: 'dragEnd', event: any): void
-}>()
+const emits = defineEmits<ITagsEmits>()
 
 const formDisabled = useFormDisabled()
 const { formItem } = useFormItem()

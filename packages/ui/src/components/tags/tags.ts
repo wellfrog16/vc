@@ -7,3 +7,10 @@ export interface ITagsProps {
     disabled?: boolean
     valueFormat?: (val: string | number) => string | number
 }
+
+export interface ITagsEmits {
+    (e: 'update:modelValue', val: any[]): void
+    (e: 'change', val: any[]): void
+    (e: 'dragStart', event: any): void
+    (e: 'dragEnd', event: any): void
+}

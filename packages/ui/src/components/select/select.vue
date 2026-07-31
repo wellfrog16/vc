@@ -1,31 +1,16 @@
 <template>
-    <ElSelect collapse-tags :class="className" :options="myOptions" :disabled="formDisabled" @change="handleChange" @blur="handleBlur" />
+    <ElSelect collapse-tags :class="className" :options="myOptions" />
 </template>
 
 <script lang="ts" setup>
 import type { SelectProps } from 'element-plus'
-import type { ISelectEmits, ISelectProps } from './select'
-import { useFormDisabled, useFormItem } from 'element-plus'
+import type { ISelectProps } from './select'
 import { formatToPx } from '@/utils'
 
 const props = withDefaults(defineProps<ISelectProps>(), {
     width: '',
     disabled: undefined,
 })
-const emits = defineEmits<ISelectEmits>()
-
-const formDisabled = useFormDisabled()
-const { formItem } = useFormItem()
-
-function handleChange(value: any) {
-    formItem?.validate?.('change').catch(() => {})
-    emits('change', value)
-}
-
-function handleBlur(evt: FocusEvent) {
-    formItem?.validate?.('blur').catch(() => {})
-    emits('blur', evt)
-}
 
 const myOptions = computed(() => {
     if (Array.isArray(props.options) && typeof props.options[0] === 'string') {

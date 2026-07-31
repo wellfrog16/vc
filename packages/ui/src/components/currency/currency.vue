@@ -5,10 +5,11 @@
         v-model:format-value="formatValue"
         :options="thousandOption"
         :class="{ [$style.append]: append, [$style.prepend]: prepend }"
+        :disabled="disabled"
         @change="handleChange"
     >
         <template v-if="prepend" #prepend>
-            <ElSelect v-if="Array.isArray(currencyInfo)" v-model="myCode" :style="selectStyle" :disabled="formDisabled" @change="handleCodeChange">
+            <ElSelect v-if="Array.isArray(currencyInfo)" v-model="myCode" :style="selectStyle" :disabled="disabled" @change="handleCodeChange">
                 <template v-if="flag" #prefix>
                     <VcFlag v-if="myCurrencyInfo" :code="myCurrencyInfo?.flag" />
                 </template>
@@ -29,7 +30,6 @@
 
 <script lang="ts" setup>
 import type { ICurrencyCode, ICurrencyProps } from './currency'
-import { useFormDisabled } from 'element-plus'
 import VcFlag from '../flag/flag.vue'
 import VcThousandInput from '../thousand-input/thousand-input.vue'
 import currency from './currency'
@@ -48,7 +48,6 @@ const emits = defineEmits<{
 }>()
 
 const myValue = useVModel(props, 'modelValue', emits)
-const formDisabled = useFormDisabled()
 
 const selectStyle = computed(() => ({ width: props.flag ? '7.5em' : '6em' }))
 

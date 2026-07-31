@@ -4,11 +4,5 @@
 // Exported variable '__VLS_component' has or is using name 'IPropType' from external module "E:/project/_mine/vc/packages/ui/src/components/input/input.vue" but cannot be named.
 export interface IInputProps {
     width?: string | number
-    disabled?: boolean
     clearable?: boolean
-}
-
-export interface IInputEmits {
-    (e: 'blur', evnet: FocusEvent): void
-    (e: 'change', value: string, evnet?: Event): void
 }

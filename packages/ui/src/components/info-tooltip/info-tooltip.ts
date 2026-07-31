@@ -4,6 +4,7 @@ export interface IInfoTooltipProps {
     letter?: string
     maxWidth?: string
     icon?: string
+    iconClass?: string
     offsetY?: string
 }
 

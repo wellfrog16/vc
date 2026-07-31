@@ -4,6 +4,8 @@ import type { IInfoTooltipProps } from '../info-tooltip/info-tooltip'
 export interface IFormItemProps extends IInfoTooltipProps {
     label?: string
     tooltipProps?: Partial<ElTooltipProps>
+    noEdit?: boolean
+    noEditText?: string
 }
 
 export interface IFormItemEmits {

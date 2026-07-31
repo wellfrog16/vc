@@ -1,7 +1,7 @@
 <template>
     <el-tooltip v-if="content || code" ref="tooltipRef" v-bind="tooltipProps" @before-show="handleShow">
         <span v-if="myProps.letter" :class="$style.letter" @click="handleClick">{{ myProps.letter }}</span>
-        <VcIconifyIcon v-else :name="myProps.icon" :class="$style.icon" @click="handleClick" />
+        <VcIconifyIcon v-else :name="myProps.icon" :class="[$style.icon, iconClass]" @click="handleClick" />
         <template #content><div :class="$style.content" :style="{ maxWidth: myProps.maxWidth }" v-html="myContent" /></template>
     </el-tooltip>
 </template>

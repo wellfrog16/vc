@@ -11,6 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    CdnTag: typeof import('@/components/cdn-tag.vue')['default']
     Document: typeof import('@/components/document.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAnchor: typeof import('element-plus/es')['ElAnchor']

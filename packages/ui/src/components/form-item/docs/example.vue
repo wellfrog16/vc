@@ -3,13 +3,13 @@
         <ElDescriptionsItem label="展示区">
             <VcConfigProvider :info-tooltip="{ onShowed: handleShowed }">
                 <el-form :model="form.fields" :rules="form.rules" :label-position="labelPosition" label-width="120px">
-                    <VcFormItem label="标题" content="这里是标题的说明和注释，使用 letter 图标" letter="!" prop="result">
+                    <VcFormItem label="标题" content="这里是标题的说明和注释，使用 letter 图标" letter="!" prop="result" :no-edit="noEdit">
                         <el-input v-model="form.fields.result" />
                     </VcFormItem>
-                    <VcFormItem label="内容动态加载" code="y">
+                    <VcFormItem label="内容动态加载" code="y" :no-edit="noEdit">
                         <el-input v-model="result" />
                     </VcFormItem>
-                    <VcFormItem label="内容动态加载" code="z">
+                    <VcFormItem label="内容动态加载" code="z" :no-edit="noEdit">
                         <el-input v-model="result" />
                     </VcFormItem>
                 </el-form>
@@ -18,10 +18,14 @@
         <ElDescriptionsItem label="label 位置">
             <VcChoice v-model="labelPosition" :options="labelPositionOptions" />
         </ElDescriptionsItem>
+        <ElDescriptionsItem label="创建后不可编辑标记">
+            <VcChoiceBoolean v-model="noEdit" />
+        </ElDescriptionsItem>
     </Wrapper>
 </template>
 
 <script lang="ts" setup>
+import VcChoiceBoolean from '@/components/choice-boolean/choice-boolean.vue'
 import VcChoice from '@/components/choice/choice.vue'
 import VcConfigProvider from '@/components/config-provider'
 import VcFormItem from '../form-item.vue'
@@ -32,6 +36,7 @@ const labelPositionOptions = [
     { label: '右边', value: 'right' },
 ]
 const labelPosition = ref<any>('top')
+const noEdit = ref(false)
 
 const result = ref('')
 

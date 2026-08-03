@@ -1,9 +1,9 @@
 <template>
-    <ElSwitch v-if="formDisabled || !confirm" v-model="myValue" :class="className" v-bind="$attrs" :disabled="formDisabled" />
+    <ElSwitch v-if="formDisabled || !confirm" v-model="myValue" :class="className" v-bind="$attrs" :disabled="formDisabled" @click.stop />
     <ElPopconfirm v-else :title="confirmTitle" v-bind="props.confirmProps" @confirm="handleConfirm">
         <template #reference>
-            <span ref="mainRef" :class="$style.main">
-                <ElSwitch v-model="myValue" class="h-switch" :class="className" v-bind="$attrs" :disabled="formDisabled" />
+            <span ref="mainRef" :class="$style.main" @click.stop>
+                <ElSwitch v-model="myValue" class="vc-switch" :class="className" v-bind="$attrs" :disabled="formDisabled" />
             </span>
         </template>
     </ElPopconfirm>
@@ -27,16 +27,10 @@ const formDisabled = useFormDisabled()
 
 function getSwitchEle() {
     if (!mainRef.value) { return }
-    const ele = mainRef.value.getElementsByClassName('h-switch')[0]
+    const ele = mainRef.value.getElementsByClassName('vc-switch')[0]
     return ele as HTMLDivElement
 }
 const handleConfirm = () => getSwitchEle()?.click()
-
-onMounted(() => {
-    getSwitchEle()?.addEventListener('click', (event: Event) => {
-        event.stopPropagation()
-    })
-})
 </script>
 
 <style lang="scss" module>

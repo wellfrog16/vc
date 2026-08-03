@@ -9,6 +9,7 @@ title: 更新日志
 ### 新增和更新
 
 - form-item 组件新增 no-edit 相关属性
+- switch 组件禁止点击冒泡
 
 ## 1.12.0
 

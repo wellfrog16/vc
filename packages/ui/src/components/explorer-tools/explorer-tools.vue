@@ -6,7 +6,7 @@
         </div>
         <div v-if="Array.isArray(tools) && tools.length > 0" :class="$style.tools">
             <template v-for="tool in tools" :key="tool">
-                <slot v-if="tool === 'custom'" name="action" />
+                <slot v-if="tool === 'custom'" name="custom" />
                 <VcInput
                     v-if="tool === 'search'"
                     v-model="keyword"

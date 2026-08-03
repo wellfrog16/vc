@@ -10,6 +10,7 @@ title: 更新日志
 
 - form-item 组件新增 no-edit 相关属性
 - switch 组件禁止点击冒泡
+- explorer-tools 统一自定义插槽名称 custom
 
 ## 1.12.0
 

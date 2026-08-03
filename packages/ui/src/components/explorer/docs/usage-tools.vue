@@ -34,7 +34,7 @@ const documentData = {
     ],
     slots: [
         { name: 'default', description: '左侧区域' },
-        { name: 'action', description: '右侧区域' },
+        { name: 'custom', description: '右侧区域' },
     ],
 }
 </script>

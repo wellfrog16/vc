@@ -106,7 +106,27 @@ function filterNode(value: string, data: TreeNodeData) {
     return data.label?.toLowerCase().includes(value.toLowerCase()) ?? false
 }
 
+function cancalFocus(event: MouseEvent) {
+    let target = event.target as HTMLElement
+    do {
+        if (target.classList.contains('el-tree-node')) {
+            target.blur()
+            return
+        }
+        target = target.parentElement as HTMLElement
+    } while (target)
+}
+
+const actived = ref<string | number>()
 function handleNodeClick(data: any, node: Node, instance: ComponentInternalInstance | null, event: MouseEvent) {
+    if (props.cancelHighlight && actived.value === data.value) {
+        actived.value = undefined
+        emits('nodeClick', undefined, node, instance, event)
+        treeRef.value?.setCurrentKey(undefined)
+        cancalFocus(event)
+        return
+    }
+    actived.value = data.value
     emits('nodeClick', data.value, node, instance, event)
 }
 
@@ -146,6 +166,10 @@ onBeforeUnmount(() => {
                 }
             }
         }
+
+        // .el-tree-node:not(.is-current):focus > .el-tree-node__content {
+        //     background-color: inherit;
+        // }
 
         .el-tree-node:focus > .el-tree-node__content {
             background-color: var(--el-color-primary-light-9);

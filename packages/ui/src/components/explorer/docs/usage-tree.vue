@@ -13,6 +13,7 @@ const documentData = {
         { param: 'loading-text', description: '加载中的文本', type: 'string', defaultValue: '数据加载中...' },
         { param: 'empty-text', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },
         { param: 'highlight-current', description: '是否高亮当前节点', type: 'boolean', defaultValue: 'true' },
+        { param: 'cancel-highlight', description: '点击已高亮 item 是否取消高亮', type: 'boolean', defaultValue: 'false' },
         { param: 'default-expand-all', description: '是否默认展开所有节点', type: 'boolean', defaultValue: 'true' },
         { param: 'disabled', description: '是否禁用', type: 'IDisabled', defaultValue: 'false' },
         { param: 'filter-method', description: '自定义搜索方法', type: 'Fun1', defaultValue: '下一行' },

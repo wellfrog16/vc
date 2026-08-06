@@ -6,7 +6,7 @@
                     v-for="(item, index) in myData"
                     :key="item.value"
                     :class="[$style.item, { [$style.active]: actived === item.value }]"
-                    @click="e => handleClick(item, e)"
+                    @click="() => handleClick(item)"
                 >
                     <slot name="item" :data="item" :index="index">
                         <div :class="$style.label">
@@ -64,6 +64,7 @@ const props = withDefaults(defineProps<IExplorerListProps>(), {
         return item.label.toLowerCase().includes(keyword.toLowerCase())
     },
     disabled: false,
+    cancelHighlight: false,
 })
 const emits = defineEmits<IExplorerListEmits>()
 
@@ -87,10 +88,17 @@ const myData = computed(() => {
 const isEmpty = computed(() => myData.value.length === 0)
 const cursorStyle = computed(() => props.highlightCurrent ? 'pointer' : 'unset')
 
-function handleClick(item: IExplorerListItem, e: MouseEvent) {
+function handleClick(item: IExplorerListItem) {
     if (!props.highlightCurrent) { return }
+
+    // 点击高亮，则取消高亮
+    if (props.cancelHighlight && actived.value === item.value) {
+        actived.value = undefined
+        emits('itemClick', undefined, item)
+        return
+    }
     actived.value = item.value
-    emits('itemClick', item.value, item, e)
+    emits('itemClick', item.value, item)
 }
 
 const checkboxGroupDisabled = computed(() => {

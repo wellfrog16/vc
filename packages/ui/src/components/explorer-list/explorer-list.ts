@@ -18,6 +18,7 @@ export interface IExplorerListProps {
     loading?: boolean
     loadingText?: string
     highlightCurrent?: boolean
+    cancelHighlight?: boolean // 点击已高亮 item 是否取消高亮
     showCheckbox?: boolean
     confirmParams?: (item: IExplorerListItem) => IButtonProps['confirm']
     disabled?: boolean | ((action: string, item: IExplorerListItem) => boolean)
@@ -26,7 +27,7 @@ export interface IExplorerListProps {
 export interface IExplorerListEmits {
     (e: 'update:modelValue', value: (string | number)[] | undefined): void
     (e: 'valueChange', value: CheckboxValueType[]): void
-    (e: 'itemClick', value: string | number, item: IExplorerListItem, event: MouseEvent): void
+    (e: 'itemClick', value: string | number | undefined, item: IExplorerListItem): void
     (e: 'create', value: string | number, item: IExplorerListItem): void
     (e: 'modify', value: string | number, item: IExplorerListItem): void
     (e: 'remove', value: string | number, item: IExplorerListItem): void

@@ -13,7 +13,7 @@
                             @remove="(val) => { console.log('remove', val) }"
                             @up="(val) => { console.log('up', val) }"
                             @down="(val) => { console.log('down', val) }"
-                            @item-click="(val, item, e) => { console.log('itemClick', val, item, e) }"
+                            @item-click="(val, item) => { console.log('itemClick', val, item) }"
                         />
                         <VcExplorerModalForm v-model="dialogFormVisible" type="dialog" :form="dialogForm">
                             <ElRow :gutter="20">

@@ -182,7 +182,7 @@ button.collections-button {
         line-height: 0;
 
         &:hover {
-            background-color: var(--el-color-primary-light-7);
+            background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
         }
     }
 }

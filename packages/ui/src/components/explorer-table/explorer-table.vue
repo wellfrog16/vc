@@ -199,7 +199,7 @@ div.table {
     height: 100px;
 
     --el-table-header-bg-color: var(--el-color-info-light-9);
-    --el-table-row-hover-bg-color: var(--el-color-primary-light-9);
+    --el-table-row-hover-bg-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
 
     :global {
         .el-scrollbar__view {
@@ -243,11 +243,9 @@ div.table {
 }
 
 .selected-row {
-    // background-color: var(--el-color-primary-light-9) !important;
-
     :global {
         td.el-table__cell {
-            background-color: var(--el-color-primary-light-9) !important;
+            background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light)) !important;
         }
     }
 }

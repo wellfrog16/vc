@@ -131,7 +131,7 @@ onBeforeUnmount(() => {
     width: 40px;
     height: 40px;
     bottom: 0;
-    color: var(--el-color-primary-light-2);
+    color: var(--el-color-primary);
     cursor: pointer;
     background-color: var(--el-bg-color);
     border-radius: 40px;
@@ -139,7 +139,7 @@ onBeforeUnmount(() => {
     transition: all 0.3s ease-in-out;
 
     &:hover {
-        background-color: var(--el-color-primary-light-9);
+        background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
     }
 }
 

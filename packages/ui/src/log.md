@@ -9,6 +9,7 @@ title: 更新日志
 ### 新增和更新
 
 - 新增 tree-select 组件
+- 新增 --vc-highlight-bg-color css 变量，用于统一配置高亮色
 - form-item 组件新增 no-edit 相关属性
 - switch 组件禁止点击冒泡
 - explorer-tools 统一自定义插槽名称 custom

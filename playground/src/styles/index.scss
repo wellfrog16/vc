@@ -15,7 +15,8 @@ body {
     height: 100%;
     padding: 0;
     margin: 0;
-    // --el-fill-color-light: var(--el-color-primary-light-9) !important;
+
+    --vc-highlight-bg-color: var(--el-color-primary-light-9);
 }
 
 // 美化webkit内核滚动条

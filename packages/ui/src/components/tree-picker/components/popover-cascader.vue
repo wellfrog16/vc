@@ -19,6 +19,7 @@
         :props="cascaderProps"
         :options="options"
         v-bind="$attrs"
+        :class="$style['cascader-panel']"
         @expand-change="emits('expandChange')"
         @change="handleCascaderChange"
     />
@@ -112,5 +113,9 @@ onBeforeUnmount(() => filterTreeWatch.stop())
             transform: translateX(10px);
         }
     }
+}
+
+.cascader-panel {
+    --el-cascader-node-background-hover: var(--vc-highlight-bg-color, var(--el-fill-color-light));
 }
 </style>

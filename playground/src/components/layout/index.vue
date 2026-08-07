@@ -109,7 +109,7 @@ main.main {
         padding: 4px;
         &:hover {
             border-radius: 4px;
-            background-color: var(--el-color-primary-light-9);
+            background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
         }
     }
 }

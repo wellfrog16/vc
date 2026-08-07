@@ -182,6 +182,7 @@ function handleBlur(event: FocusEvent) {
     height: 225px;
 
     :global(.el-tree-node__content) {
+        --el-tree-node-hover-bg-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
         padding-right: 32px;
     }
 

@@ -1,5 +1,5 @@
 <template>
-    <ElSelect collapse-tags :class="className" :options="myOptions" />
+    <ElSelect collapse-tags :popper-class="$style.popper" :class="className" :options="myOptions" />
 </template>
 
 <script lang="ts" setup>
@@ -22,11 +22,18 @@ const myOptions = computed(() => {
 const $style = useCssModule()
 const className = computed(() => ({
     [$style['select-width']]: !!props.width,
+    [$style.select]: true,
 }))
 const myWidth = computed(() => props.width ? formatToPx(props.width) : 'auto')
 </script>
 
 <style lang="scss" module>
+.popper {
+    :global(.el-select-dropdown__item.is-hovering) {
+        background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
+    }
+}
+
 div.select-width {
     width: v-bind(myWidth);
 }

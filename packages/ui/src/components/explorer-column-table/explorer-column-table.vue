@@ -226,7 +226,7 @@ div.table {
     height: 100px;
 
     --el-table-header-bg-color: var(--el-color-info-light-9);
-    --el-table-row-hover-bg-color: var(--el-color-primary-light-9);
+    --el-table-row-hover-bg-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
 }
 
 .label {

@@ -159,7 +159,7 @@ onBeforeUnmount(() => {
             // height: auto;
 
             &:hover {
-                background-color: var(--el-color-primary-light-9);
+                background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
 
                 .vc-actions {
                     display: inline-flex;
@@ -172,13 +172,13 @@ onBeforeUnmount(() => {
         // }
 
         .el-tree-node:focus > .el-tree-node__content {
-            background-color: var(--el-color-primary-light-9);
+            background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
         }
 
         .is-current {
             > .el-tree-node__content {
                 color: var(--el-color-primary);
-                background-color: var(--el-color-primary-light-9);
+                background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light)) !important;
             }
         }
 

@@ -132,7 +132,7 @@ defineExpose({
     line-height: 1;
 
     &:hover {
-        background-color: var(--el-color-primary-light-9);
+        background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
 
         .actions {
             display: inline-flex;
@@ -142,7 +142,7 @@ defineExpose({
 
     &.active {
         color: var(--el-color-primary);
-        background-color: var(--el-color-primary-light-9);
+        background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
     }
 }
 

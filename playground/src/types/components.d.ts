@@ -105,6 +105,7 @@ declare module 'vue' {
     VcTransfer: typeof import('@wfrog/vc-ui/es/components/transfer')['default']
     VcTransferPanel: typeof import('@wfrog/vc-ui/es/components/transfer-panel')['default']
     VcTreePicker: typeof import('@wfrog/vc-ui/es/components/tree-picker')['default']
+    VcTreeSelect: typeof import('@wfrog/vc-ui/es/components/tree-select')['default']
     VcUploadFile: typeof import('@wfrog/vc-ui/es/components/upload-file')['default']
   }
   export interface GlobalDirectives {

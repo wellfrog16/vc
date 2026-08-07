@@ -108,7 +108,7 @@ function handleKeyup(event: KeyboardEvent) {
 
 // 清除事件，清除所有数据
 function clear() {
-    myValue.value = props.multiple ? [] : ''
+    myValue.value = props.multiple ? [] : undefined
     setTimeout(() => togglePopoverVisible(false), 0)
 }
 

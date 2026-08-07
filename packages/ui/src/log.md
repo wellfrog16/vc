@@ -4,14 +4,16 @@ title: 更新日志
 
 ## 1.13.0
 
-2026-?-?
+2026-8-7
 
 ### 新增和更新
 
+- 新增 tree-select 组件
 - form-item 组件新增 no-edit 相关属性
 - switch 组件禁止点击冒泡
 - explorer-tools 统一自定义插槽名称 custom
 - explorer-list 和 explorer-tree 增加 cancel-highlight 属性
+- 修复 tree-picker 的 check-strictly 属性
 
 ## 1.12.0
 

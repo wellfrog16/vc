@@ -91,7 +91,7 @@ onBeforeUnmount(() => filterTreeWatch.stop())
     min-width: 180px;
     height: 206px;
     margin-right: 8px;
-    border: 1px solid #e4e7ed;
+    border: 1px solid var(--el-border-color-light);
     border-radius: 4px;
 
     :global {

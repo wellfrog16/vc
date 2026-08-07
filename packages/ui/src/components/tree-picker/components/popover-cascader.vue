@@ -1,5 +1,6 @@
 <template>
     <div v-if="multiple" :class="$style.selected">
+        <!-- 多选结果的预览 -->
         <ElScrollbar>
             <ElTree
                 ref="treeRef"
@@ -50,6 +51,7 @@ const cascaderProps = computed(() => ({
 
 const treeProps = computed(() => ({
     label: props.props.label || 'label',
+    value: props.props.value || 'value',
     children: props.props.children || 'children',
 }))
 

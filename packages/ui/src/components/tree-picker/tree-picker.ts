@@ -5,12 +5,14 @@ export interface ITreePickerProps {
     placeholder?: string
     disabled?: boolean
     multiple?: boolean
+    checkStrictly?: boolean
     modelValue: string | number | string[] | number[] | undefined
     options?: CascaderOption[]
     props?: CascaderProps
     width?: string | number
     filterable?: boolean
     filterEmptyText?: string
+    clearable?: boolean
 }
 
 export interface ITreePickerEmits {

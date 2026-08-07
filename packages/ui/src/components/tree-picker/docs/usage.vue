@@ -9,6 +9,7 @@ const documentData = {
         { param: '*multiple', description: '是否多选', type: 'boolean', defaultValue: 'false' },
         { param: '*options', description: '树形结构数据，参考 el-cascader', type: 'ITreeOption', defaultValue: '[]' },
         { param: '-', description: '-', type: 'https://element-plus.org/zh-CN/component/cascader#%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E', defaultValue: '-' },
+        { param: 'checkStrictly', description: '是否严格的遵守父子不互相关联的做法', type: 'boolean', defaultValue: 'false' },
         { param: 'width', description: '宽度', type: 'string | number', defaultValue: '-' },
         { param: 'placeholder', description: 'placeholder', type: 'string', defaultValue: '请选择' },
         { param: 'emptyText', description: '复选未选择时，已选数据面板展示的文案', type: 'string', defaultValue: '尚未选择' },

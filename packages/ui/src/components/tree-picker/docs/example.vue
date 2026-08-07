@@ -8,7 +8,7 @@
                     :multiple="multiple"
                     :block="block"
                     :width="width"
-                    :props="cascaderProps"
+                    :check-strictly="checkStrictly"
                     filterable
                     :disabled="false"
                 />
@@ -24,7 +24,7 @@
             <VcChoice v-model="width" :options="widthOption" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="演示：任意节点单选">
-            <VcChoiceBoolean v-model="showDemo1" @change="handleShowDemo1Change" />
+            <VcChoiceBoolean v-model="checkStrictly" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果">{{ result }}</ElDescriptionsItem>
     </Wrapper>
@@ -60,16 +60,5 @@ const widthOption: IChoiceProps['options'] = [
     { label: '400px', value: '400px' },
 ]
 
-const showDemo1 = ref(false)
-const cascaderProps = ref({
-    checkStrictly: false,
-})
-function handleShowDemo1Change(value: boolean) {
-    if (!value) { return }
-    multiple.value = false
-    result.value = ''
-    cascaderProps.value = {
-        checkStrictly: true,
-    }
-}
+const checkStrictly = ref(false)
 </script>

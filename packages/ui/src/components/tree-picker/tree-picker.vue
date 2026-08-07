@@ -18,7 +18,7 @@
                     v-model="myValue"
                     collapse-tags
                     collapse-tags-tooltip
-                    clearable
+                    :clearable="clearable"
                     :options="options"
                     :placeholder="placeholder"
                     :filterable="filterable"
@@ -51,6 +51,7 @@ const props = withDefaults(defineProps<ITreePickerProps>(), {
     options: () => [],
     props: () => ({}),
     filterEmptyText: '没有匹配到数据',
+    clearable: true,
 })
 
 const emits = defineEmits<ITreePickerEmits>()
@@ -69,6 +70,7 @@ const cascaderProps = computed(() => ({
     children: props.props.children || 'children',
     multiple: props.multiple,
     emitPath: false,
+    checkStrictly: props.checkStrictly,
     ...props.props,
 }))
 
@@ -106,10 +108,8 @@ function handleKeyup(event: KeyboardEvent) {
 
 // 清除事件，清除所有数据
 function clear() {
-    emits('update:modelValue', props.multiple ? [] : '')
-    setTimeout(() => {
-        nextTick(() => togglePopoverVisible(false))
-    }, 0)
+    myValue.value = props.multiple ? [] : ''
+    setTimeout(() => togglePopoverVisible(false), 0)
 }
 
 function handleChange(val: CascaderValue | null | undefined, node: CascaderNode[] | undefined) {

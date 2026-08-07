@@ -4,6 +4,7 @@ dist
 /es/
 dist-ssr
 *.local
+.trae/documents
 
 # Log files
 npm-debug.log*

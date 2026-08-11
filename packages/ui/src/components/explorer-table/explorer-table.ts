@@ -24,7 +24,7 @@ export interface IExplorerTableProps {
 
 export interface IExplorerTableEmits {
     (e: 'columnEvent', column: IColumnConfig, row: Record<string, any>, value: Record<string, any>): void
-    (e: 'singleSelectionChange', row: Record<string, any>): void
+    (e: 'singleSelectionChange', row: Record<string, any>, value: string | number): void
     (e: 'multipleSelectionChange', row: Record<string, any>, values: Array<string | number>): void
     (e: 'selectionChange', rows: Record<string, any>[]): void
     (e: 'selectAll', checked: boolean, values: Array<string | number>): void

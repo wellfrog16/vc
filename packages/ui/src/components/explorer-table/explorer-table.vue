@@ -91,7 +91,8 @@ const isSelectedAll = computed({
     get() {
         if (!isMultipleSelection.value) { return false }
 
-        return selectedValues.value.size === props.data.length
+        // 对比 selectedValues 和 data 里的每一个值，如果相等，则表示全选
+        return selectedValues.value.size > 0 && Array.from(selectedValues.value).every(value => props.data.some(row => getRowValue(row) === value))
     },
     set(val) {
         if (!isMultipleSelection.value) { return }
@@ -103,7 +104,7 @@ const isSelectedAll = computed({
 
 const indeterminate = computed(() => {
     if (!isMultipleSelection.value || !props.data.length) { return false }
-    return selectedValues.value.size > 0 && selectedValues.value.size < props.data.length
+    return selectedValues.value.size > 0 && selectedValues.value.size < props.data.length && Array.from(selectedValues.value).some(value => props.data.some(row => getRowValue(row) !== value))
 })
 
 function getRowValue(row: Record<string, any>) {
@@ -128,7 +129,7 @@ function handleRadioClick(row: any) {
     const value = getRowValue(row)
     if (selectedValue.value !== value) {
         selectedValue.value = value
-        emits('singleSelectionChange', row)
+        emits('singleSelectionChange', row, selectedValue.value)
     }
 }
 

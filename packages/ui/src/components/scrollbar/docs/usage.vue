@@ -20,11 +20,11 @@ const documentData = {
         { param: '其他', description: 'el-scrollbar 的属性、事件', type: 'https://element-plus.org/zh-CN/component/scrollbar#api' },
     ],
     events: [
-        { name: 'loadMore', description: '滚动到底部时触发', param: 'void' },
+        { name: 'load-more', description: '滚动到底部时触发', param: 'void' },
     ],
     slots: [
         { name: 'loading', description: '自定义底部加载中状态' },
-        { name: 'noMore', description: '自定义底部无更多数据状态' },
+        { name: 'no-more', description: '自定义底部无更多数据状态' },
         { name: 'empty', description: '自定义空状态内容' },
     ],
 }

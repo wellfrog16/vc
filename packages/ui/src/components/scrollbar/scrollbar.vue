@@ -3,18 +3,18 @@
         <slot v-if="!empty" />
         <slot v-else name="empty">
             <div :class="$style['status-text']">
-                <ElText>{{ emptyText }}</ElText>
+                <ElText type="info">{{ emptyText }}</ElText>
             </div>
         </slot>
         <div v-if="scrollLoad && !empty" ref="sentinelRef" :class="$style.sentinel">
             <slot v-if="loading" name="loading">
                 <div :class="$style.loading">
                     <el-icon class="is-loading"><Loading /></el-icon>
-                    <ElText>{{ loadingText }}</ElText>
+                    <ElText type="info">{{ loadingText }}</ElText>
                 </div>
             </slot>
-            <slot v-else-if="scrollLoadDisabled" name="noMore">
-                <div v-if="noMoreText" :class="$style['status-text']"><ElText>{{ noMoreText }}</ElText></div>
+            <slot v-else-if="scrollLoadDisabled" name="no-more">
+                <div :class="$style['status-text']"><ElText type="info">{{ noMoreText }}</ElText></div>
             </slot>
         </div>
     </ElScrollbar>

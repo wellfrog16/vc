@@ -77,9 +77,9 @@ function handleLoadMore() {
 
 <style lang="scss" module>
 .tip {
-    padding: 8px 12px;
-    font-size: 12px;
-    color: var(--el-text-color-secondary);
     border-top: 1px solid var(--el-border-color-light);
+    color: var(--el-text-color-secondary);
+    font-size: 12px;
+    padding: 8px 12px;
 }
 </style>

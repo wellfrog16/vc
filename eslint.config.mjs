@@ -29,6 +29,10 @@ export default antfu(
              * By default uses Prettier
              */
             markdown: 'prettier',
+            prettierOptions: {
+                plugins: ['prettier-plugin-css-order'],
+                cssDeclarationSorterOrder: 'alphabetical',
+            },
         },
         ignores: [
             '**/fixtures',

@@ -60,6 +60,7 @@
     "esno": "^4.8.0",
     "klaw-sync": "^7.0.0",
     "lodash-es": "^4.17.21",
+    "prettier-plugin-css-order": "^2.2.0",
     "rimraf": "^6.1.0",
     "sass-embedded": "^1.93.3",
     "typescript": "~5.9.3",

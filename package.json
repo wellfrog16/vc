@@ -26,7 +26,8 @@
     "clean": "pnpm -r run clean && rm -rf node_modules",
     "commit": "git-cz",
     "lint": "commitlint -e",
-    "push": "node ./scripts/auto-push.js",
+    "push": "node ./scripts/auto-git.js push",
+    "pull": "node ./scripts/auto-git.js pull",
     "gen:com": "esno ./scripts/create-component.ts",
     "gen:fun": "esno ./scripts/create-function.ts"
   },

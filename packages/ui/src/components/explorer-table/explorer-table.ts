@@ -10,7 +10,7 @@ export interface IExplorerTableProps {
     highlightCurrent?: boolean
     empty?: boolean
     emptyText?: string
-    pending?: boolean
+    noMoreText?: string // 没有更多数据提示文本
     loading?: boolean
     loadingText?: string
     size?: 'small' | 'default' | 'large'
@@ -20,6 +20,10 @@ export interface IExplorerTableProps {
     rowClassName?: ((data: { row: Record<string, any>, rowIndex: number }) => string) | string
     startIndex?: number
     rowKey?: string | ((row: any) => string) // 单选或者多选时提供
+    scrollLoad?: boolean // 是否开启滚动加载
+    scrollLoadDisabled?: boolean // 是否禁用继续滚动加载（例如没有更多数据时）
+    scrollLoadRootMargin?: string // IntersectionObserver rootMargin
+    scrollLoadThreshold?: number // IntersectionObserver threshold
 }
 
 export interface IExplorerTableEmits {
@@ -28,4 +32,5 @@ export interface IExplorerTableEmits {
     (e: 'multipleSelectionChange', row: Record<string, any>, values: Array<string | number>): void
     (e: 'selectionChange', rows: Record<string, any>[]): void
     (e: 'selectAll', checked: boolean, values: Array<string | number>): void
+    (e: 'loadMore'): void
 }

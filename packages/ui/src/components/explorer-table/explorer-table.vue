@@ -1,71 +1,80 @@
 <template>
-    <div v-loading="loading" :class="$style['explorer-table']">
-        <ElTable
-            ref="tableRef"
-            :data="data"
-            stripe
-            :class="$style.table"
-            :size="size"
-            v-bind="$attrs"
-            scrollbar-always-on
-            :highlight-current-row="highlightCurrent"
-            border
-            :allow-drag-last-column="true"
-            :row-key="rowKey"
-            :row-class-name="myRowClassName"
-            @header-dragend="onHeaderDragend"
-        >
-            <ElTableColumn v-if="selection" type="selection" :width="size === 'large' ? 50 : 40" align="center" />
-            <ElTableColumn v-if="customSelection" :width="size === 'large' ? 50 : 40" align="center" fixed="left" :class-name="$style.selection">
-                <template v-if="isMultipleSelection" #header>
-                    <ElCheckbox v-model="isSelectedAll" :indeterminate="indeterminate" :class="$style.checkbox" />
+    <ElTable
+        ref="tableRef"
+        :data="empty ? [] : data"
+        stripe
+        :class="$style.table"
+        :size="size"
+        scrollbar-always-on
+        :highlight-current-row="highlightCurrent"
+        border
+        :allow-drag-last-column="true"
+        :row-key="rowKey"
+        :row-class-name="myRowClassName"
+        @header-dragend="onHeaderDragend"
+    >
+        <ElTableColumn v-if="selection" type="selection" :width="size === 'large' ? 50 : 40" align="center" />
+        <ElTableColumn v-if="customSelection" :width="size === 'large' ? 50 : 40" align="center" fixed="left" :class-name="$style.selection">
+            <template v-if="isMultipleSelection" #header>
+                <ElCheckbox v-model="isSelectedAll" :indeterminate="indeterminate" :class="$style.checkbox" />
+            </template>
+            <template #default="{ row }">
+                <ElRadio v-if="isSingleSelection" v-model="selectedValue" :value="getRowValue(row)" :class="$style.radio" @click.stop="handleRadioClick(row)" />
+                <ElCheckbox v-if="isMultipleSelection" v-model="row[multipleCheckedKey]" :class="$style.checkbox" @click.stop="handleCheckboxClick(row)" />
+            </template>
+        </ElTableColumn>
+        <template v-if="columns.length">
+            <!-- <ElTableColumn v-if="haveIndex" type="index" :width="size === 'large' ? 80 : 60" align="center" fixed="left" /> -->
+            <ElTableColumn v-for="item in columns" :key="item.prop" v-bind="item" :type="columnType(item)">
+                <template v-if="item.prop.startsWith('expand')" #default="{ row, $index }">
+                    <slot :name="item.prop" :row="row" :index="$index" />
                 </template>
-                <template #default="{ row }">
-                    <ElRadio v-if="isSingleSelection" v-model="selectedValue" :value="getRowValue(row)" :class="$style.radio" @click.stop="handleRadioClick(row)" />
-                    <ElCheckbox v-if="isMultipleSelection" v-model="row[multipleCheckedKey]" :class="$style.checkbox" @click.stop="handleCheckboxClick(row)" />
+                <template v-else-if="item.prop === 'index'" #default="{ $index }">
+                    {{ startIndex + $index + 1 }}
+                </template>
+                <template v-else-if="item.prop === 'operation'" #default="{ row, $index }">
+                    <slot name="operation" :row="row" :index="$index" />
+                </template>
+                <template v-else #default="{ row, $index }">
+                    <component :is="columnRender(item, row, emits, $index)" />
                 </template>
             </ElTableColumn>
-            <template v-if="columns.length">
-                <!-- <ElTableColumn v-if="haveIndex" type="index" :width="size === 'large' ? 80 : 60" align="center" fixed="left" /> -->
-                <ElTableColumn v-for="item in columns" :key="item.prop" v-bind="item" :type="columnType(item)">
-                    <template v-if="item.prop.startsWith('expand')" #default="{ row, $index }">
-                        <slot :name="item.prop" :row="row" :index="$index" />
-                    </template>
-                    <template v-else-if="item.prop === 'index'" #default="{ $index }">
-                        {{ startIndex + $index + 1 }}
-                    </template>
-                    <template v-else-if="item.prop === 'operation'" #default="{ row, $index }">
-                        <slot name="operation" :row="row" :index="$index" />
-                    </template>
-                    <template v-else #default="{ row, $index }">
-                        <component :is="columnRender(item, row, emits, $index)" />
-                    </template>
-                </ElTableColumn>
-            </template>
-            <slot />
-            <template v-if="$slots.append" #append>
-                <slot name="append" />
-            </template>
-            <template #empty>
-                <slot name="empty">
-                    <div v-if="!loading && !pending">{{ emptyText }}</div>
-                    <div v-else />
-                </slot>
-            </template>
-        </ElTable>
-    </div>
+        </template>
+        <slot />
+        <template v-if="$slots.append || scrollLoadEnabled || (loading && scrollLoad) || (scrollLoadDisabled && scrollLoad)" #append>
+            <slot v-if="$slots.append" name="append" />
+            <div v-if="scrollLoadEnabled" ref="sentinelRef" :class="$style.sentinel" />
+            <slot v-if="loading && scrollLoad" name="loading">
+                <div :class="$style['status-text']">
+                    <el-icon class="is-loading"><Loading /></el-icon>
+                    <ElText type="info">{{ loadingText }}</ElText>
+                </div>
+            </slot>
+            <slot v-else-if="scrollLoadDisabled && scrollLoad" name="no-more">
+                <div :class="$style['status-text']"><ElText type="info">{{ noMoreText }}</ElText></div>
+            </slot>
+        </template>
+        <template #empty>
+            <slot name="empty">
+                <div v-if="empty"><ElText type="info">{{ emptyText }}</ElText></div>
+                <div v-else />
+            </slot>
+        </template>
+    </ElTable>
 </template>
 
 <script setup lang="ts">
 import type { IColumnConfig } from '../explorer-column-table/explorer-column-table'
 import type { IExplorerTableEmits, IExplorerTableProps } from './explorer-table'
+import { Loading } from '@element-plus/icons-vue'
 import { promiseTimeout } from '@vueuse/core'
 import { ElCheckbox, ElRadio, ElTableColumn } from 'element-plus'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 
 const props = withDefaults(defineProps<IExplorerTableProps>(), {
     emptyText: '没有数据',
-    loadingText: '数据加载中...',
+    loadingText: '数据加载中',
+    noMoreText: '没有更多了',
     highlightCurrent: false,
     columnRender: (column: IColumnConfig, row: Record<string, any>) => h('span', row[column.prop]),
     columnFilter: (column: IColumnConfig) => column.visible !== false,
@@ -73,14 +82,39 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     startIndex: 0,
     rowKey: 'id',
     multipleCheckedKey: 'checked',
-    empty: true, // 是否显示空数据
+    empty: false,
+    scrollLoad: false,
+    scrollLoadDisabled: false,
+    scrollLoadRootMargin: '0px',
+    scrollLoadThreshold: 0,
 })
 const emits = defineEmits<IExplorerTableEmits>()
 
 const state = injectExplorerPanelState()
 const $style = useCssModule()
 const tableRef = useTemplateRef('tableRef')
+const sentinelRef = useTemplateRef('sentinelRef')
 const columns = computed(() => state.columnConfig.value.filter(props.columnFilter))
+
+const scrollLoadEnabled = computed(() =>
+    props.scrollLoad && props.data.length > 0 && !props.loading && !props.scrollLoadDisabled,
+)
+
+const scrollRoot = computed(() => tableRef.value?.scrollBarRef?.wrapRef ?? null)
+
+useIntersectionObserver(
+    sentinelRef,
+    ([{ isIntersecting }]) => {
+        if (isIntersecting && scrollLoadEnabled.value) {
+            emits('loadMore')
+        }
+    },
+    {
+        root: scrollRoot,
+        rootMargin: props.scrollLoadRootMargin,
+        threshold: props.scrollLoadThreshold,
+    },
+)
 const selectedValue = ref<any>() // 单选
 const selectedValues = computed(() => new Set(props.data.filter(item => item[props.multipleCheckedKey]).map(getRowValue))) // 多选
 const isSingleSelection = computed(() => props.customSelection === 'radio')
@@ -240,7 +274,7 @@ div.table {
 }
 
 .checkbox {
-    height: unset;
+    height: unset !important;
 }
 
 .selected-row {
@@ -249,5 +283,17 @@ div.table {
             background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light)) !important;
         }
     }
+}
+
+.status-text {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 4px;
+}
+
+.sentinel {
+    height: 0;
 }
 </style>

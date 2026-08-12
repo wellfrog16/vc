@@ -7,10 +7,6 @@ const documentData = {
     params: [
         { param: 'data', description: '数据', type: 'IExplorerListItem[]', defaultValue: '[]' },
         { param: 'actions', description: '操作按钮列表', type: '(create | modify | remove)[]', defaultValue: '[]' },
-        { param: 'pending', description: '是否正在处理', type: 'boolean', defaultValue: 'false' },
-        { param: 'loading', description: '是否加载中', type: 'boolean', defaultValue: 'false' },
-        { param: 'loadingText', description: '加载中的文本', type: 'string', defaultValue: '数据加载中...' },
-        { param: 'emptyText', description: '空数据时的文本', type: 'string', defaultValue: '没有数据' },
         { param: 'highlight-current', description: '是否高亮当前项', type: 'boolean', defaultValue: 'true' },
         { param: 'cancel-highlight', description: '点击已高亮 item 是否取消高亮', type: 'boolean', defaultValue: 'false' },
         { param: 'show-checkbox', description: '是否显示复选框', type: 'boolean', defaultValue: 'false' },
@@ -19,6 +15,7 @@ const documentData = {
         { param: '-', rowType: 'paramType', description: '对 label 进行搜索' },
         { param: 'confirm-params', description: '删除确认参数', type: 'Fun2', defaultValue: '下一行' },
         { param: '-', rowType: 'paramType', description: '() => { msg:\'确定要删除 label 吗？\' }' },
+        { param: '其他', description: 'scrollbar 的 API', type: './scrollbar.html#api', defaultValue: '-' },
     ],
     types: [
         { param: 'IDisabled', description: 'boolean | ((action: string, item: IExplorerListItem) => boolean)' },

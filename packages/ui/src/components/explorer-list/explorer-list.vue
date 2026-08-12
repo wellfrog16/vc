@@ -1,51 +1,54 @@
 <template>
     <VcScrollbar always :class="$style.scrollbar">
-        <div v-show="!loading">
-            <el-checkbox-group v-model="myValue" :disabled="checkboxGroupDisabled" @change="val => emits('valueChange', val)">
-                <div
-                    v-for="(item, index) in myData"
-                    :key="item.value"
-                    :class="[$style.item, { [$style.active]: actived === item.value }]"
-                    @click="() => handleClick(item)"
-                >
-                    <slot name="item" :data="item" :index="index">
-                        <div :class="$style.label">
-                            <el-checkbox v-if="showCheckbox" :value="item.value">
-                                <slot name="label" :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
-                            </el-checkbox>
-                            <slot v-else name="label" :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
-                        </div>
-                        <div v-if="actions.length" :class="$style.actions">
-                            <template v-for="action in actions" :key="action">
-                                <slot v-if="action === 'action'" name="action" :data="item" :index="index" />
-                                <VcButton
-                                    v-else
-                                    v-bind="actionsMapping[action]"
-                                    :confirm="action === 'remove' ? confirmParams(item) : undefined"
-                                    :class="action === 'remove' ? $style.remove : undefined"
-                                    link
-                                    :icon="{ type: 'el', name: actionsMapping[action].icon }"
-                                    stop
-                                    :disabled="myDisabled(action, item)"
-                                    @click="emits(action as any, item.value, item)"
-                                />
-                            </template>
-                        </div>
-                        <slot :data="item" :index="index" name="extra-label" />
-                    </slot>
-                </div>
-            </el-checkbox-group>
-        </div>
-        <div v-if="isEmpty && !loading && !pending" :class="$style.empty">{{ emptyText }}</div>
-        <div v-if="loading" :class="$style.loading">
-            <ElIcon class="is-loading"><Loading /></ElIcon>{{ loadingText }}
-        </div>
+        <el-checkbox-group v-model="myValue" :disabled="checkboxGroupDisabled" @change="val => emits('valueChange', val)">
+            <div
+                v-for="(item, index) in myData"
+                :key="item.value"
+                :class="[$style.item, { [$style.active]: actived === item.value }]"
+                @click="() => handleClick(item)"
+            >
+                <slot name="item" :data="item" :index="index">
+                    <div :class="$style.label">
+                        <el-checkbox v-if="showCheckbox" :value="item.value">
+                            <slot name="label" :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
+                        </el-checkbox>
+                        <slot v-else name="label" :data="item" :index="index"><VcIconifyIcon v-if="item.icon" :name="item.icon" :class="$style.icon" />{{ item.label }}</slot>
+                    </div>
+                    <div v-if="actions.length" :class="$style.actions">
+                        <template v-for="action in actions" :key="action">
+                            <slot v-if="action === 'action'" name="action" :data="item" :index="index" />
+                            <VcButton
+                                v-else
+                                v-bind="actionsMapping[action]"
+                                :confirm="action === 'remove' ? confirmParams(item) : undefined"
+                                :class="action === 'remove' ? $style.remove : undefined"
+                                link
+                                :icon="{ type: 'el', name: actionsMapping[action].icon }"
+                                stop
+                                :disabled="myDisabled(action, item)"
+                                @click="emits(action as any, item.value, item)"
+                            />
+                        </template>
+                    </div>
+                    <slot :data="item" :index="index" name="extra-label" />
+                </slot>
+            </div>
+        </el-checkbox-group>
+
+        <template v-if="$slots.empty" #empty>
+            <slot name="empty" />
+        </template>
+        <template v-if="$slots.loading" #loading>
+            <slot name="loading" />
+        </template>
+        <template v-if="$slots['no-more']" #no-more>
+            <slot name="no-more" />
+        </template>
     </VcScrollbar>
 </template>
 
 <script setup lang="ts">
 import type { IExplorerListEmits, IExplorerListItem, IExplorerListProps } from './explorer-list'
-import { Loading } from '@element-plus/icons-vue'
 import VcButton from '../button/button.vue'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
@@ -54,8 +57,6 @@ import VcScrollbar from '../scrollbar/scrollbar.vue'
 const props = withDefaults(defineProps<IExplorerListProps>(), {
     actions: () => [],
     data: () => [],
-    emptyText: '没有数据',
-    loadingText: '数据加载中...',
     highlightCurrent: true,
     confirmParams: (item: IExplorerListItem) => {
         return { msg: `确定要删除 ${item.label} 吗？` }
@@ -85,7 +86,7 @@ const myData = computed(() => {
         ? props.data.filter(item => props.filterMethod(filterKeyword.value, item))
         : props.data
 })
-const isEmpty = computed(() => myData.value.length === 0)
+
 const cursorStyle = computed(() => props.highlightCurrent ? 'pointer' : 'unset')
 
 function handleClick(item: IExplorerListItem) {
@@ -189,15 +190,6 @@ defineExpose({
 
 .remove {
     transform: translateY(-1px);
-}
-
-.empty,
-.loading {
-    padding: 4px 8px;
-    display: flex;
-    align-items: center;
-    column-gap: 4px;
-    color: var(--el-text-color-secondary);
 }
 
 .scrollbar {

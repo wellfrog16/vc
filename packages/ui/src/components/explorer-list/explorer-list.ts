@@ -13,10 +13,6 @@ export interface IExplorerListProps {
     data: IExplorerListItem[]
     actions?: ('create' | 'modify' | 'remove' | 'up' | 'down' | 'action')[]
     filterMethod?: (keyword: string, item: IExplorerListItem) => boolean
-    emptyText?: string
-    pending?: boolean
-    loading?: boolean
-    loadingText?: string
     highlightCurrent?: boolean
     cancelHighlight?: boolean // 点击已高亮 item 是否取消高亮
     showCheckbox?: boolean

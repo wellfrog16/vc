@@ -11,6 +11,7 @@ const documentData = {
         { param: 'create', description: '创建按钮是否显示', type: 'boolean', defaultValue: 'false' },
         { param: 'disabled', description: '是否禁用', type: 'boolean', defaultValue: 'false' },
         { param: 'debounce', description: '防抖时间', type: 'number', defaultValue: '300' },
+        { param: 'close-filter', description: '关闭本地过滤', type: 'boolean', defaultValue: 'false' },
     ],
     events: [
         { name: 'create', description: '创建按钮点击回调', param: '-' },

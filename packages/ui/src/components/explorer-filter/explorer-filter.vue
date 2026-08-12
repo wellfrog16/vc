@@ -26,6 +26,7 @@ const props = withDefaults(defineProps<IExplorerFilterProps>(), {
     clearable: true,
     paddingBottom: 8,
     debounce: 300,
+    closeFilter: false,
 })
 const emits = defineEmits<IExplorerFilterEmits>()
 
@@ -33,7 +34,7 @@ const { filterKeyword } = injectExplorerPanelState()
 const keyword = ref<string>('')
 function handleFilter() {
     if (filterKeyword.value === keyword.value) { return }
-    filterKeyword.value = keyword.value
+    !props.closeFilter && (filterKeyword.value = keyword.value)
     emits('filter', keyword.value)
 }
 

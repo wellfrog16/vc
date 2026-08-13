@@ -121,29 +121,29 @@ defineExpose({
 
 <style lang="scss" module>
 .item {
-    padding: 4px 8px;
+    align-items: center;
+    box-sizing: border-box;
+    color: var(--el-text-color-regular);
     cursor: v-bind(cursorStyle);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     font-size: var(--el-font-size-base);
-    color: var(--el-text-color-regular);
-    min-height: 32px;
-    box-sizing: border-box;
+    justify-content: space-between;
     line-height: 1;
+    min-height: 32px;
+    padding: 4px 8px;
 
     &:hover {
         background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
 
         .actions {
-            display: inline-flex;
             align-items: flex-start;
+            display: inline-flex;
         }
     }
 
     &.active {
-        color: var(--el-color-primary);
         background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light));
+        color: var(--el-color-primary);
     }
 }
 
@@ -164,23 +164,23 @@ defineExpose({
         }
 
         .el-checkbox__label {
+            color: var(--el-text-color-regular) !important;
+            cursor: pointer !important;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            color: var(--el-text-color-regular) !important;
-            cursor: pointer !important;
         }
     }
 }
 
 .actions {
-    display: none;
     column-gap: 4px;
+    display: none;
 
     > button {
-        margin-left: 0 !important;
-        font-size: 1.2em;
         border: 1px solid var(--el-border-color-light) !important;
+        font-size: 1.2em;
+        margin-left: 0 !important;
 
         &:hover {
             border-color: var(--el-border-color-dark) !important;

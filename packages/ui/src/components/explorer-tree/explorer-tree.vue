@@ -1,6 +1,6 @@
 <template>
     <VcScrollbar always :class="$style.scrollbar">
-        <ElTree v-show="!loading && !pending" ref="treeRef" :data="myTreeData" v-bind="{ ...$attrs, ...treeProps }" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
+        <ElTree v-show="treeVisible" ref="treeRef" :data="data" v-bind="treeProps" :class="$style.tree" :filter-node-method="filterNode" @node-click="handleNodeClick">
             <template #default="{ node }">
                 <slot name="node" :data="node.data" :index="node.index">
                     <div :class="$style.node">
@@ -28,9 +28,6 @@
                 </slot>
             </template>
         </ElTree>
-        <div v-if="loading" :class="$style.loading">
-            <ElIcon class="is-loading"><Loading /></ElIcon>{{ loadingText }}
-        </div>
     </VcScrollbar>
 </template>
 
@@ -39,7 +36,6 @@ import type { TreeNodeData } from 'element-plus'
 import type Node from 'element-plus/lib/components/tree/src/model/node'
 import type { ComponentInternalInstance } from 'vue'
 import type { IExplorerTreeEmits, IExplorerTreeProps } from './explorer-tree'
-import { Loading } from '@element-plus/icons-vue'
 import { tree as treeFun } from '@wfrog/vc-utils'
 import VcButton from '../button/button.vue'
 import { injectExplorerPanelState } from '../explorer-panel/explorer-panel'
@@ -48,9 +44,7 @@ import VcScrollbar from '../scrollbar/scrollbar.vue'
 
 const props = withDefaults(defineProps<IExplorerTreeProps>(), {
     actions: () => [],
-    emptyText: '没有数据',
     defaultExpandAll: true,
-    loadingText: '数据加载中...',
     highlightCurrent: true,
     confirmParams: (node: Node) => {
         return { msg: `确定要删除 ${node.data.label} 吗？` }
@@ -61,6 +55,7 @@ const emits = defineEmits<IExplorerTreeEmits>()
 
 const treeRef = useTemplateRef('treeRef')
 const { filterKeyword } = injectExplorerPanelState()
+const treeVisible = computed(() => Array.isArray(props.data) && props.data.length > 0)
 
 const actionsMapping: Record<string, any> = {
     create: { title: '新增', type: 'primary', icon: 'Plus' },
@@ -71,7 +66,6 @@ const actionsMapping: Record<string, any> = {
 }
 
 const treeProps = computed(() => ({
-    emptyText: props.emptyText,
     defaultExpandAll: props.defaultExpandAll,
     expandOnClickNode: false,
     highlightCurrent: props.highlightCurrent,
@@ -80,25 +74,19 @@ const treeProps = computed(() => ({
     ...props.treeProps,
 }))
 
-const myTreeData = ref<IExplorerTreeProps['data']>()
 watch(() => props.disabled, () => {
     if (props.disabled) {
-        treeFun.traverse<any>(myTreeData.value || [], node => {
+        treeFun.traverse<any>(props.data || [], node => {
             node.originDisabled = node.disabled
             node.disabled = true
         })
     }
     else {
-        treeFun.traverse<any>(myTreeData.value || [], node => {
+        treeFun.traverse<any>(props.data || [], node => {
             node.disabled = node.originDisabled ?? false
         })
     }
-})
-
-// 转存一次，这样才能即时相应 disabled 的变化，直接对 props.data 修改是无效的
-watch(() => props.data, () => {
-    myTreeData.value = props.data
-}, { immediate: true, deep: true })
+}, { immediate: true })
 
 function filterNode(value: string, data: TreeNodeData) {
     if (!value || !filterKeyword.value) { return true }
@@ -154,8 +142,8 @@ onBeforeUnmount(() => {
 
     :global {
         .el-tree-node__content {
-            display: flex;
             align-items: center;
+            display: flex;
             // height: auto;
 
             &:hover {
@@ -177,15 +165,16 @@ onBeforeUnmount(() => {
 
         .is-current {
             > .el-tree-node__content {
-                color: var(--el-color-primary);
                 background-color: var(--vc-highlight-bg-color, var(--el-fill-color-light)) !important;
+                color: var(--el-color-primary);
             }
         }
 
         .el-tree__empty-block {
-            text-align: left;
+            box-sizing: border-box;
             min-height: unset;
             padding: 4px 8px;
+            text-align: left;
         }
 
         .el-tree__empty-text {
@@ -195,20 +184,20 @@ onBeforeUnmount(() => {
 }
 
 .node {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-grow: 1;
-    padding: 4px 8px 4px 0;
     box-sizing: border-box;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    padding: 4px 8px 4px 0;
     width: 100px;
 }
 
 .label {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
     transform: translateY(-1px);
+    white-space: nowrap;
 
     :global(.iconify) {
         margin-right: 4px;
@@ -216,13 +205,13 @@ onBeforeUnmount(() => {
 }
 
 .actions {
-    display: none;
     column-gap: 4px;
+    display: none;
 
     > button {
-        margin-left: 0 !important;
-        font-size: 1.2em;
         border: 1px solid var(--el-border-color-light) !important;
+        font-size: 1.2em;
+        margin-left: 0 !important;
 
         &:hover {
             border-color: var(--el-border-color-dark) !important;
@@ -232,14 +221,6 @@ onBeforeUnmount(() => {
 
 .remove {
     transform: translateY(-1px);
-}
-
-.loading {
-    padding: 4px 8px;
-    display: flex;
-    align-items: center;
-    column-gap: 4px;
-    color: var(--el-text-color-secondary);
 }
 
 .scrollbar {

@@ -6,17 +6,16 @@
                 <ElText type="info">{{ emptyText }}</ElText>
             </div>
         </slot>
-        <div v-if="scrollLoad && !empty" ref="sentinelRef" :class="$style.sentinel">
-            <slot v-if="loading" name="loading">
-                <div :class="$style.loading">
-                    <el-icon class="is-loading"><Loading /></el-icon>
-                    <ElText type="info">{{ loadingText }}</ElText>
-                </div>
-            </slot>
-            <slot v-else-if="scrollLoadDisabled" name="no-more">
-                <div :class="$style['status-text']"><ElText type="info">{{ noMoreText }}</ElText></div>
-            </slot>
-        </div>
+        <div v-if="scrollLoad && !empty" ref="sentinelRef" :class="$style.sentinel" />
+        <slot v-if="loading" name="loading">
+            <div :class="$style.loading">
+                <ElIcon class="is-loading"><Loading /></ElIcon>
+                <ElText type="info">{{ loadingText }}</ElText>
+            </div>
+        </slot>
+        <slot v-else-if="scrollLoadDisabled" name="no-more">
+            <div :class="$style['status-text']"><ElText type="info">{{ noMoreText }}</ElText></div>
+        </slot>
     </ElScrollbar>
 </template>
 
@@ -76,9 +75,9 @@ defineExpose({ scrollbarRef })
     flex-grow: 1;
 
     > :global(.el-scrollbar__wrap) {
-        flex-grow: 1;
-        flex-direction: column;
         display: flex;
+        flex-direction: column;
+        flex-grow: 1;
     }
 
     > :global(.el-scrollbar__wrap > .el-scrollbar__view) {
@@ -94,15 +93,15 @@ defineExpose({ scrollbarRef })
 }
 
 .sentinel {
-    height: auto;
+    height: 0;
 }
 
 .loading {
-    padding: 12px;
-    display: flex;
     align-items: center;
-    justify-content: center;
     column-gap: 4px;
+    display: flex;
+    justify-content: center;
+    padding: 12px;
 }
 
 .status-text {

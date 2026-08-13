@@ -46,7 +46,7 @@
             <div v-if="scrollLoadEnabled" ref="sentinelRef" :class="$style.sentinel" />
             <slot v-if="loading && scrollLoad" name="loading">
                 <div :class="$style['status-text']">
-                    <el-icon class="is-loading"><Loading /></el-icon>
+                    <ElIcon class="is-loading"><Loading /></ElIcon>
                     <ElText type="info">{{ loadingText }}</ElText>
                 </div>
             </slot>

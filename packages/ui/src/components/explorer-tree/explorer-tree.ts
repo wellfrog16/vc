@@ -7,11 +7,7 @@ export interface IExplorerTreeProps {
     data?: TreeComponentProps['data']
     actions?: ('create' | 'modify' | 'remove' | 'up' | 'down' | 'action')[]
     treeProps?: Partial<TreeComponentProps>
-    emptyText?: string
     defaultExpandAll?: boolean
-    pending?: boolean
-    loading?: boolean
-    loadingText?: string
     confirmParams?: (node: Node) => IButtonProps['confirm']
     filterMethod?: TreeComponentProps['filterNodeMethod']
     highlightCurrent?: boolean

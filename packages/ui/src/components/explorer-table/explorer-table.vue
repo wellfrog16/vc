@@ -85,7 +85,7 @@ const props = withDefaults(defineProps<IExplorerTableProps>(), {
     empty: false,
     scrollLoad: false,
     scrollLoadDisabled: false,
-    scrollLoadRootMargin: '0px',
+    scrollLoadRootMargin: '100px',
     scrollLoadThreshold: 0,
 })
 const emits = defineEmits<IExplorerTableEmits>()
@@ -238,8 +238,8 @@ div.table {
 
     :global {
         .el-scrollbar__view {
-            min-height: 100%;
             height: 100px;
+            min-height: 100%;
         }
 
         .el-table__header-wrapper .el-table__cell:hover {
@@ -258,8 +258,8 @@ div.table {
 
 .selection {
     :global(.cell) {
-        display: flex;
         align-items: center;
+        display: flex;
     }
 }
 
@@ -286,11 +286,11 @@ div.table {
 }
 
 .status-text {
-    padding: 12px;
-    display: flex;
     align-items: center;
-    justify-content: flex-start;
     column-gap: 4px;
+    display: flex;
+    justify-content: flex-start;
+    padding: 12px;
 }
 
 .sentinel {

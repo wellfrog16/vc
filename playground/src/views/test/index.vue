@@ -1,25 +1,40 @@
 <template>
-    <VcExplorer explorer-key="table-scroll-load-test">
-        <VcExplorerPanel size="280px">
-            <VcExplorerFilter />
-            <VcExplorerList :data="listData" />
-        </VcExplorerPanel>
-        <VcExplorerPanel>
-            <VcExplorerTools :tools="[]" />
-            <VcExplorerTable
-                :loading="loading"
-                :data="tableData"
-                :column-config="columnConfig"
-                :scroll-load="true"
-                :scroll-load-disabled="noMore"
-                scroll-load-root-margin="20px"
-                @load-more="handleLoadMore"
-            />
-            <div :class="$style.tip">
-                已加载 {{ tableData.length }} 条，{{ noMore ? '没有更多' : '滚动加载更多' }}
-            </div>
-        </VcExplorerPanel>
-    </VcExplorer>
+    <div>
+        <VcButton @click="dialogVisible = true">打开</VcButton>
+    </div>
+    <VcDialog v-model="dialogVisible" width="800px" height="600px">
+        <VcExplorer explorer-key="table-scroll-load-test">
+            <VcExplorerPanel size="280px">
+                <VcExplorerFilter />
+                <VcExplorerList
+                    :data="listData"
+                    :scroll-load="true"
+                    :scroll-load-disabled="listNoMore"
+                    scroll-load-root-margin="20px"
+                    :loading="listLoading"
+                    @load-more="handleListLoadMore"
+                />
+                <div :class="$style.tip">
+                    已加载 {{ listData.length }} 条，{{ listNoMore ? '没有更多' : '滚动加载更多' }}
+                </div>
+            </VcExplorerPanel>
+            <VcExplorerPanel>
+                <VcExplorerTools :tools="[]" />
+                <VcExplorerTable
+                    :loading="loading"
+                    :data="tableData"
+                    :column-config="columnConfig"
+                    :scroll-load="true"
+                    :scroll-load-disabled="noMore"
+                    scroll-load-root-margin="20px"
+                    @load-more="handleLoadMore"
+                />
+                <div :class="$style.tip">
+                    已加载 {{ tableData.length }} 条，{{ noMore ? '没有更多' : '滚动加载更多' }}
+                </div>
+            </VcExplorerPanel>
+        </VcExplorer>
+    </VcDialog>
 </template>
 
 <script setup lang="ts">
@@ -35,10 +50,9 @@ interface RowItem {
 const PAGE_SIZE = 20
 const MAX_COUNT = 100
 
-const listData = ref([
-    { label: '测试分类 1', value: '1', icon: 'carbon:data-table' },
-    { label: '测试分类 2', value: '2', icon: 'carbon:data-table' },
-])
+const listData = ref(generateListData(0, PAGE_SIZE))
+const listLoading = ref(false)
+const listNoMore = computed(() => listData.value.length >= MAX_COUNT)
 
 const columnConfig = ref<IColumnConfig[]>([
     { id: 1, prop: 'id', label: '编号', width: 100 },
@@ -47,6 +61,7 @@ const columnConfig = ref<IColumnConfig[]>([
     { id: 4, prop: 'amount', label: '金额', width: 120, align: 'right' },
 ])
 
+const dialogVisible = ref(false)
 const tableData = ref<RowItem[]>(generateData(0, PAGE_SIZE))
 const loading = ref(false)
 const noMore = computed(() => tableData.value.length >= MAX_COUNT)
@@ -61,6 +76,28 @@ function generateData(start: number, count: number): RowItem[] {
             amount: Math.round(Math.random() * 10000) / 100,
         }
     })
+}
+
+function generateListData(start: number, count: number) {
+    return Array.from({ length: count }).map((_, i) => {
+        const index = start + i + 1
+        return {
+            label: `测试分类 ${index}`,
+            value: `${index}`,
+            icon: 'carbon:data-table',
+        }
+    })
+}
+
+function handleListLoadMore() {
+    if (listLoading.value || listNoMore.value) { return }
+
+    listLoading.value = true
+    setTimeout(() => {
+        const next = generateListData(listData.value.length, PAGE_SIZE)
+        listData.value.push(...next)
+        listLoading.value = false
+    }, 2000)
 }
 
 function handleLoadMore() {

@@ -26,15 +26,20 @@ const props = withDefaults(defineProps<IExplorerFilterProps>(), {
     clearable: true,
     paddingBottom: 8,
     debounce: 300,
-    closeFilter: false,
+    closeLocalFilter: false,
 })
 const emits = defineEmits<IExplorerFilterEmits>()
 
 const { filterKeyword } = injectExplorerPanelState()
 const keyword = ref<string>('')
 function handleFilter() {
+    if (props.closeLocalFilter) {
+        emits('filter', keyword.value)
+        return
+    }
+
     if (filterKeyword.value === keyword.value) { return }
-    !props.closeFilter && (filterKeyword.value = keyword.value)
+    filterKeyword.value = keyword.value
     emits('filter', keyword.value)
 }
 
@@ -43,10 +48,10 @@ const keywordChange = debounce(() => handleFilter(), props.debounce)
 
 <style lang="scss" module>
 .explorer-filter {
-    padding-bottom: v-bind('`${paddingBottom}px`');
-    display: flex;
-    column-gap: 8px;
     border-bottom: 1px solid var(--el-border-color-lighter);
+    column-gap: 8px;
+    display: flex;
     margin-bottom: 8px;
+    padding-bottom: v-bind('`${paddingBottom}px`');
 }
 </style>

@@ -6,14 +6,14 @@
                 <ElText type="info">{{ emptyText }}</ElText>
             </div>
         </slot>
-        <div v-if="scrollLoad && !empty" ref="sentinelRef" :class="$style.sentinel" />
+        <div v-if="scrollLoadEnabled" ref="sentinelRef" :class="$style.sentinel" />
         <slot v-if="loading" name="loading">
             <div :class="$style.loading">
                 <ElIcon class="is-loading"><Loading /></ElIcon>
                 <ElText type="info">{{ loadingText }}</ElText>
             </div>
         </slot>
-        <slot v-else-if="scrollLoadDisabled" name="no-more">
+        <slot v-else-if="scrollLoadDisabled && !empty" name="no-more">
             <div :class="$style['status-text']"><ElText type="info">{{ noMoreText }}</ElText></div>
         </slot>
     </ElScrollbar>
@@ -45,10 +45,7 @@ const emits = defineEmits<{
 const scrollbarRef = useTemplateRef('scrollbarRef')
 const sentinelRef = useTemplateRef('sentinelRef')
 
-const scrollLoadEnabled = computed(() =>
-    props.scrollLoad && !props.loading && !props.scrollLoadDisabled,
-)
-
+const scrollLoadEnabled = computed(() => props.scrollLoad && !props.loading && !props.scrollLoadDisabled)
 const scrollRoot = computed(() => scrollbarRef.value?.wrapRef ?? null)
 
 useIntersectionObserver(

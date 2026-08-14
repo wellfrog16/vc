@@ -41,7 +41,7 @@
             </ElTableColumn>
         </template>
         <slot />
-        <template v-if="$slots.append || scrollLoadEnabled || (loading && scrollLoad) || (scrollLoadDisabled && scrollLoad)" #append>
+        <template v-if="$slots.append || scrollLoadEnabled || (loading && scrollLoad) || (scrollLoadDisabled && scrollLoad && !empty)" #append>
             <slot v-if="$slots.append" name="append" />
             <div v-if="scrollLoadEnabled" ref="sentinelRef" :class="$style.sentinel" />
             <slot v-if="loading && scrollLoad" name="loading">
@@ -50,7 +50,7 @@
                     <ElText type="info">{{ loadingText }}</ElText>
                 </div>
             </slot>
-            <slot v-else-if="scrollLoadDisabled && scrollLoad" name="no-more">
+            <slot v-else-if="scrollLoadDisabled && scrollLoad && !empty" name="no-more">
                 <div :class="$style['status-text']"><ElText type="info">{{ noMoreText }}</ElText></div>
             </slot>
         </template>
@@ -96,10 +96,7 @@ const tableRef = useTemplateRef('tableRef')
 const sentinelRef = useTemplateRef('sentinelRef')
 const columns = computed(() => state.columnConfig.value.filter(props.columnFilter))
 
-const scrollLoadEnabled = computed(() =>
-    props.scrollLoad && props.data.length > 0 && !props.loading && !props.scrollLoadDisabled,
-)
-
+const scrollLoadEnabled = computed(() => props.scrollLoad && !props.loading && !props.scrollLoadDisabled)
 const scrollRoot = computed(() => tableRef.value?.scrollBarRef?.wrapRef ?? null)
 
 useIntersectionObserver(

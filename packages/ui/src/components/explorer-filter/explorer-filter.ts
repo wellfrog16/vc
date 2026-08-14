@@ -5,7 +5,7 @@ export interface IExplorerFilterProps {
     create?: boolean
     debounce?: number
     disabled?: boolean
-    closeFilter?: boolean
+    closeLocalFilter?: boolean
 }
 
 export interface IExplorerFilterEmits {

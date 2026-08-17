@@ -7,8 +7,8 @@
             :prefix-icon="Search"
             :disabled="disabled"
             @keydown.enter="handleFilter"
-            @clear="handleFilter"
-            @change="handleFilter"
+            @clear="emits('clear', keyword)"
+            @change="emits('change', keyword)"
             @input="keywordChange"
         />
         <ElButton v-if="create" :icon="Plus" :disabled="disabled" @click="emits('create')" />

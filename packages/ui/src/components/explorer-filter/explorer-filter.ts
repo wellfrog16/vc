@@ -10,5 +10,7 @@ export interface IExplorerFilterProps {
 
 export interface IExplorerFilterEmits {
     (e: 'filter', keyword: string): void
+    (e: 'clear', keyword: string): void
+    (e: 'change', keyword: string): void
     (e: 'create'): void
 }

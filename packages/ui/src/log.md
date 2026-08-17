@@ -10,7 +10,9 @@ title: 更新日志
 
 - 修复 explorer-table 多选算法
 - explorer-table、explorer-list、explorer-tree、scrollbar 增加统一的滚动加载功能
-- explorer-filter 增加 close-filter 参数
+- explorer-filter
+    - 增加 close-filter 参数
+    - 拆分 change、clear 事件
 - 框架增加 css 排序功能
 
 ## 1.13.0

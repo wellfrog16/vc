@@ -16,6 +16,8 @@ const documentData = {
     events: [
         { name: 'create', description: '创建按钮点击回调', param: '-' },
         { name: 'filter', description: '过滤关键词变化回调', param: 'keyword' },
+        { name: 'change', description: '关键词变化回调', param: 'keyword' },
+        { name: 'clear', description: '清除关键词变化回调', param: 'keyword' },
     ],
 }
 </script>

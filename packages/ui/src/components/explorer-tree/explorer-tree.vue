@@ -126,8 +126,9 @@ function myDisabled(action: string, node: Node) {
 
 defineExpose({
     treeRef,
-    setActive: (value: string | number | null | undefined, shouldAutoExpandParent = true) => {
+    setActive: (value: string | number | undefined, shouldAutoExpandParent = true) => {
         treeRef.value?.setCurrentKey(value, shouldAutoExpandParent)
+        actived.value = value
     },
 })
 

@@ -52,7 +52,7 @@ function handleClick() {
     }
 
     &:global(.el-form-item--label-top) {
-        label {
+        :global(.el-form-item__label) {
             width: auto;
         }
 

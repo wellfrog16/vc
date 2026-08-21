@@ -31,7 +31,7 @@ export default antfu(
             markdown: 'prettier',
             prettierOptions: {
                 plugins: ['prettier-plugin-css-order'],
-                cssDeclarationSorterOrder: 'alphabetical',
+                cssDeclarationSorterOrder: 'concentric-css',
             },
         },
         ignores: [

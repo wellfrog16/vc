@@ -8,7 +8,7 @@
     "noLib": false, // 不包含默认的库文件(lib.d.ts)
     "experimentalDecorators": true, // 启用装饰器特性
     "module": "ESNext", // 指定生成的模块代码,ESNext表示使用最新的ES模块语法
-    "ignoreDeprecations": "6.0", // 忽略实验性特性警告 6.0",
+    "ignoreDeprecations": "5.0", // 忽略实验性特性警告 5.0",
     "moduleResolution": "Node", // 模块解析策略,使用Node.js的模块解析机制
     "resolveJsonModule": true, // 允许导入JSON模块
     "strict": true, // 启用所有严格类型检查选项

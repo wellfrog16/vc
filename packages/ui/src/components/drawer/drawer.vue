@@ -24,7 +24,10 @@
         <ElScrollbar class="vc-drawer-scrollbar" always>
             <div :class="$style['body-container']"><slot /></div>
         </ElScrollbar>
-        <div v-if="showDefaultFooter || $slots.footer" :class="$style.footer"><slot name="footer"><VcButton @click="drawerVisible = false">关闭</VcButton></slot></div>
+        <div v-if="showDefaultFooter || $slots['footer-action'] || $slots['footer-extra']" :class="$style.footer">
+            <div><slot name="footer-extra" /></div>
+            <div><slot name="footer-action"><VcButton v-if="showDefaultFooter" @click="drawerVisible = false">关闭</VcButton></slot></div>
+        </div>
     </ElDrawer>
 </template>
 
@@ -72,11 +75,11 @@ function handleClosed() {
 
     :global {
         .el-drawer__header {
-            box-sizing: border-box;
             flex: 0 0 auto;
-            padding: 8px 16px;
+            box-sizing: border-box;
             margin-bottom: 0;
             border-bottom: 1px solid var(--el-border-color-light);
+            padding: 8px 16px;
             font-size: var(--el-font-size-large);
         }
 
@@ -91,32 +94,32 @@ function handleClosed() {
     :global(> .el-drawer__body > .el-scrollbar) {
         position: relative;
         &::before {
-            content: '';
+            display: v-bind('boxPadding ? "block" : "none"');
             position: absolute;
             top: 0;
             left: 0;
+            z-index: 3;
+            background: var(--el-bg-color);
             width: calc(100% - 8px);
             height: 100%;
-            background: var(--el-bg-color);
             height: 16px;
-            z-index: 3;
-            display: v-bind('boxPadding ? "block" : "none"');
+            content: '';
             // background-image: radial-gradient(transparent 1px, var(--el-bg-color) 1px);
             // background-size: 4px 4px;
             // backdrop-filter: saturate(50%) blur(4px);
         }
 
         &::after {
-            content: '';
+            display: v-bind('boxPadding ? "block" : "none"');
             position: absolute;
             bottom: 0;
             left: 0;
+            z-index: 3;
+            background: var(--el-bg-color);
             width: calc(100% - 8px);
             height: 100%;
-            background: var(--el-bg-color);
             height: 16px;
-            z-index: 3;
-            display: v-bind('boxPadding ? "block" : "none"');
+            content: '';
         }
     }
 }
@@ -127,8 +130,8 @@ function handleClosed() {
     justify-content: space-between;
 
     h4 {
-        padding: 0;
         margin: 0 !important;
+        padding: 0;
     }
 }
 
@@ -142,10 +145,10 @@ function handleClosed() {
     column-gap: 8px;
 
     button.icon-button {
+        margin-left: 0;
+        border: 0;
         padding: 8px;
         font-size: 1.2em;
-        border: 0;
-        margin-left: 0;
     }
 }
 
@@ -156,8 +159,8 @@ function handleClosed() {
 .footer {
     display: flex;
     flex: 0 0 auto;
-    padding: 8px 16px;
+    justify-content: space-between;
     border-top: 1px solid var(--el-border-color-light);
-    justify-content: flex-end;
+    padding: 8px 16px;
 }
 </style>

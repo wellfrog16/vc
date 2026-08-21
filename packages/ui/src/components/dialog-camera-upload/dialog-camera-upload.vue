@@ -40,7 +40,7 @@
             </div>
             <VcCropper v-if="cropper" v-model:visible="cropperVisible" :image="blobImage" :option="cropperOption" dialog @finished="handleFinished" />
         </div>
-        <template #footer>
+        <template #footer-action>
             <div :class="$style.footer">
                 <ElSelect v-if="cameraVisible" v-model="currentCamera" :class="$style.select">
                     <ElOption
@@ -260,37 +260,37 @@ div.alert {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 3;
     width: 200px;
     height: initial;
-    transform: translate(-50%, -50%);
 }
 
 .placeholder {
-    z-index: 10;
     display: flex;
-    background-color: rgb(0 0 0 / 20%);
     opacity: 0;
+    z-index: 10;
     transition: 0.3s all linear;
+    background-color: rgb(0 0 0 / 20%);
 
     &:hover {
         opacity: 1;
     }
 
     > div {
-        position: relative;
         display: flex;
+        position: relative;
         flex: 1 0 50%;
-        align-items: center;
         justify-content: center;
-        color: rgb(0 0 0 / 20%);
-        cursor: pointer;
+        align-items: center;
         transition: 0.3s all linear;
+        cursor: pointer;
+        color: rgb(0 0 0 / 20%);
 
         i {
-            font-size: 72px;
-            color: rgb(255 255 255 / 90%);
             transition: 0.3s all linear;
+            color: rgb(255 255 255 / 90%);
+            font-size: 72px;
         }
 
         &:hover {

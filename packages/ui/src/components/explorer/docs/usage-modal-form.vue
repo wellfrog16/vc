@@ -32,7 +32,8 @@ const documentData = {
     slots: [
         { name: 'default', description: '表单内容插槽' },
         { name: 'title', description: '表单标题插槽' },
-        { name: 'action', description: '表单操作按钮插槽' },
+        { name: 'footer-action', description: '同 dialog 的 footer-action 插槽' },
+        { name: 'footer-extra', description: '同 dialog 的 footer-extra 插槽' },
     ],
 }
 </script>

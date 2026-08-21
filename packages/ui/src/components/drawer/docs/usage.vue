@@ -16,6 +16,8 @@ const documentData = {
     slots: [
         { name: 'title', description: '对话框标题，提供 close 方法用于关闭对话框', params: [{ param: 'close', description: '关闭对话框的方法', type: '() => void' }] },
         { name: 'header-action', description: '对话框头部右侧的操作区域' },
+        { name: 'footer-extra', description: 'footer 左侧操作区域' },
+        { name: 'footer-action', description: 'footer 右侧操作区域' },
     ],
 }
 </script>

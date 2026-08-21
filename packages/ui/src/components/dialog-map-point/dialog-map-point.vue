@@ -13,7 +13,7 @@
                 <template #append><ElButton :icon="Search" @click="handleSearch" /></template>
             </ElInput>
         </div>
-        <template #footer>
+        <template #footer-action>
             <ElButton @click="handleClose">取 消</ElButton>
             <ElButton type="primary" @click="handleConfirm">确 定</ElButton>
         </template>
@@ -128,10 +128,10 @@ onMounted(() => {
     position: absolute;
     top: 10px;
     left: 50%;
-    z-index: 5;
-    width: 300px;
-    padding: 4px;
-    text-align: center;
     transform: translateX(-50%);
+    z-index: 5;
+    padding: 4px;
+    width: 300px;
+    text-align: center;
 }
 </style>

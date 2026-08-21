@@ -32,7 +32,7 @@
                 </span>
             </div>
         </Draggable>
-        <template #footer>
+        <template #footer-action>
             <ElButton type="primary" :loading="loading" @click="handleConfirm">确 定</ElButton>
         </template>
     </VcDialog>
@@ -167,18 +167,18 @@ onBeforeUnmount(() => visibleWatch.stop())
 
     :global {
         .el-upload {
-            position: relative;
-            box-sizing: border-box;
             display: flex;
-            align-items: center;
+            position: relative;
             justify-content: center;
+            align-items: center;
+            transition: var(--el-transition-duration-fast);
+            cursor: pointer;
+            box-sizing: border-box;
+            border: 1px dashed var(--el-border-color);
+            border-radius: 6px;
             width: 200px;
             height: 150px;
             overflow: hidden;
-            cursor: pointer;
-            border: 1px dashed var(--el-border-color);
-            border-radius: 6px;
-            transition: var(--el-transition-duration-fast);
 
             &:hover {
                 border-color: var(--el-color-primary);
@@ -194,8 +194,8 @@ onBeforeUnmount(() => visibleWatch.stop())
 
 .opration {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     font-size: 32px !important;
 
     i {
@@ -209,15 +209,15 @@ onBeforeUnmount(() => visibleWatch.stop())
 
 div.draggable {
     display: flex;
-    flex-wrap: wrap;
-    row-gap: 5px;
     column-gap: 5px;
+    row-gap: 5px;
+    flex-wrap: wrap;
 
     :global {
         .el-upload-list__item {
+            margin: 0;
             width: 200px;
             height: 150px;
-            margin: 0;
         }
 
         .el-upload-list__item-thumbnail {

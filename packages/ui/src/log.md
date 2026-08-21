@@ -15,6 +15,9 @@ title: 更新日志
     - 增加 close-filter 参数
     - 拆分 change、clear 事件
 - 框架增加 css 排序功能
+- form-item 组件增加 label-extra 插槽
+- drawer 组件调整 footer 插槽为 footer-extra 和 footer-action
+- dialog 组件调整 footer 插槽为 footer-extra 和 footer-action
 
 ## 1.13.0
 

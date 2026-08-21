@@ -32,7 +32,10 @@
                 <slot />
             </VcScrollbar>
         </template>
-        <template v-if="showDefaultFooter || $slots.footer" #footer><slot name="footer"><VcButton v-if="showDefaultFooter" @click="dialogVisible = false">关闭</VcButton></slot></template>
+        <template v-if="showDefaultFooter || $slots['footer-action'] || $slots['footer-extra']" #footer>
+            <div><slot name="footer-extra" /></div>
+            <div><slot name="footer-action"><VcButton v-if="showDefaultFooter" @click="dialogVisible = false">关闭</VcButton></slot></div>
+        </template>
     </ElDialog>
 </template>
 
@@ -98,63 +101,65 @@ div.main {
 
     :global {
         .el-dialog__header {
-            padding: 8px 16px;
             margin-right: 0;
             border-bottom: 1px solid var(--el-border-color-light);
+            padding: 8px 16px;
         }
 
         .el-dialog__body {
-            flex-grow: 1;
-            padding: var(--vc-dialog-padding);
             display: flex;
+            flex-grow: 1;
             flex-direction: column;
+            padding: var(--vc-dialog-padding);
         }
 
         .el-dialog__footer {
-            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
             border-top: 1px solid var(--el-border-color-light);
+            padding: 8px 16px;
         }
     }
 
     :global(> .el-dialog__body > .el-scrollbar) {
         position: relative;
         &::before {
-            content: '';
+            display: var(--vc-dialog-boxPadding);
             position: absolute;
             top: 0;
             left: 0;
+            z-index: 3;
+            background: var(--el-bg-color);
             width: calc(100% - 8px);
             height: 100%;
-            background: var(--el-bg-color);
             height: 12px;
-            z-index: 3;
-            display: var(--vc-dialog-boxPadding);
+            content: '';
             // background-image: radial-gradient(transparent 1px, var(--el-bg-color) 1px);
             // background-size: 4px 4px;
             // backdrop-filter: saturate(50%) blur(4px);
         }
 
         &::after {
-            content: '';
+            display: var(--vc-dialog-boxPadding);
             position: absolute;
             bottom: 0;
             left: 0;
+            z-index: 3;
+            background: var(--el-bg-color);
             width: calc(100% - 8px);
             height: 100%;
-            background: var(--el-bg-color);
             height: 12px;
-            z-index: 3;
-            display: var(--vc-dialog-boxPadding);
+            content: '';
         }
     }
 
     .header {
+        line-height: 1;
         h4 {
-            font-size: 1.2em;
             font-weight: 600;
+            font-size: 1.2em;
             line-height: 1;
         }
-        line-height: 1;
     }
 }
 
@@ -177,8 +182,8 @@ div.main {
     justify-content: space-between;
 
     h4 {
-        padding: 0;
         margin: 0 !important;
+        padding: 0;
     }
 }
 
@@ -192,10 +197,10 @@ div.main {
     column-gap: 8px;
 
     button.icon-button {
+        margin-left: 0;
+        border: 0;
         padding: 8px;
         font-size: 1.2em;
-        border: 0;
-        margin-left: 0;
     }
 }
 </style>

@@ -1,11 +1,14 @@
 <template>
     <ElFormItem :class="$style['form-item']">
         <template #label>
-            <span :class="$style['label-container']">
-                <VcInfoTooltip v-if="noEdit" content="创建后无法修改" offset-y="0px" icon="carbon:locked" :icon-class="$style['no-edit-icon']" />
-                <span :class="$style.label">{{ label }}</span>
-                <VcInfoTooltip v-bind="infoTooltipProps" offset-y="0px" @click="handleClick" />
-            </span>
+            <div :class="$style['label-wrapper']">
+                <span :class="$style['label-container']">
+                    <VcInfoTooltip v-if="noEdit" content="创建后无法修改" offset-y="0px" icon="carbon:locked" :icon-class="$style['no-edit-icon']" />
+                    <span :class="$style.label">{{ label }}</span>
+                    <VcInfoTooltip v-bind="infoTooltipProps" offset-y="0px" @click="handleClick" />
+                </span>
+                <div :class="$style['label-extra']"><slot name="label-extra" /></div>
+            </div>
         </template>
         <template #default>
             <slot />
@@ -38,15 +41,37 @@ function handleClick() {
 
 <style lang="scss" module>
 .form-item {
-    :global(.el-form-item__label) {
-        display: flex;
+    .label-extra {
+        display: none;
+    }
+
+    :global {
+        .el-form-item__label {
+            display: flex;
+        }
+    }
+
+    &:global(.el-form-item--label-top) {
+        label {
+            width: auto;
+        }
+
+        .label-extra {
+            display: flex;
+        }
+
+        .label-wrapper {
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
     }
 }
 
 .label-container {
     display: inline-flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .no-edit-icon {

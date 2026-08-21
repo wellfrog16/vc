@@ -15,5 +15,8 @@ const documentData = {
     events: [
         { name: 'click', description: 'icon 点击事件', param: 'code, label' },
     ],
+    slots: [
+        { name: 'label-extra', description: 'label-position = top 时，label 右侧的额外内容' },
+    ],
 }
 </script>

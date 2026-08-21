@@ -5,9 +5,15 @@
                 <el-form :model="form.fields" :rules="form.rules" :label-position="labelPosition" label-width="120px">
                     <VcFormItem label="标题" content="这里是标题的说明和注释，使用 letter 图标" letter="!" prop="result" :no-edit="noEdit">
                         <el-input v-model="form.fields.result" />
+                        <template #label-extra>
+                            <ElText>label-position = top 时，可以放额外信息</ElText>
+                        </template>
                     </VcFormItem>
                     <VcFormItem label="内容动态加载" code="y" :no-edit="noEdit">
                         <el-input v-model="result" />
+                        <template #label-extra>
+                            <ElButton type="primary" plain size="small">按钮</ElButton>
+                        </template>
                     </VcFormItem>
                     <VcFormItem label="内容动态加载" code="z" :no-edit="noEdit">
                         <el-input v-model="result" />

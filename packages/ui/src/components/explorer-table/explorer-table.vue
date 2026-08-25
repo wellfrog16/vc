@@ -222,8 +222,8 @@ defineExpose({
 <style lang="scss" module>
 .explorer-table {
     display: flex;
-    flex-direction: column;
     flex-grow: 1;
+    flex-direction: column;
 }
 
 div.table {
@@ -255,13 +255,13 @@ div.table {
 
 .selection {
     :global(.cell) {
-        align-items: center;
         display: flex;
+        align-items: center;
     }
 }
 
 .radio {
-    height: unset;
+    height: unset !important;
 
     :global {
         .el-radio__label {
@@ -283,10 +283,10 @@ div.table {
 }
 
 .status-text {
-    align-items: center;
-    column-gap: 4px;
     display: flex;
+    column-gap: 4px;
     justify-content: flex-start;
+    align-items: center;
     padding: 12px;
 }
 

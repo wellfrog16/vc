@@ -18,6 +18,7 @@ title: 更新日志
 - form-item 组件增加 label-extra 插槽
 - drawer 组件调整 footer 插槽为 footer-extra 和 footer-action
 - dialog 组件调整 footer 插槽为 footer-extra 和 footer-action
+- 调整 explorer-form 和 explorer-modal-form 的 require-asterisk-position 默认值
 
 ## 1.13.0
 

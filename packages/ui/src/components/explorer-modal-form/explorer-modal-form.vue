@@ -3,7 +3,6 @@
         <ElForm
             ref="formRef"
             v-loading="loading"
-            require-asterisk-position="right"
             :label-position="labelPosition"
             :disabled="disabled || !isEditing"
             v-bind="formProps"

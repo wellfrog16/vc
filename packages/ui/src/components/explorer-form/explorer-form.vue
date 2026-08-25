@@ -16,7 +16,6 @@
                 :model="form.fields"
                 :rules="form.rules"
                 :disabled="isDisabled"
-                require-asterisk-position="right"
                 :label-position="labelPosition"
                 :class="$style.form"
             >
@@ -82,22 +81,22 @@ defineExpose({
 <style lang="scss" module>
 .explorer-form {
     display: flex;
-    flex-direction: column;
     flex-grow: 1;
+    flex-direction: column;
     height: 100px;
 }
 
 .header {
     display: flex;
-    align-items: center;
+    row-gap: 8px;
+    flex-wrap: wrap;
     justify-content: space-between;
-    border-bottom: 1px solid var(--el-border-color-lighter);
-    padding-bottom: 7px;
+    align-items: center;
     box-sizing: border-box;
     margin-bottom: 8px;
+    border-bottom: 1px solid var(--el-border-color-lighter);
+    padding-bottom: 7px;
     color: var(--el-text-color-regular);
-    flex-wrap: wrap;
-    row-gap: 8px;
 }
 
 .header-container {
@@ -105,9 +104,9 @@ defineExpose({
 }
 
 .icon {
+    transform: translateY(1px);
     margin-right: 4px;
     font-size: var(--el-font-size-extra-large);
-    transform: translateY(1px);
 }
 
 .actions {
@@ -125,12 +124,12 @@ defineExpose({
 .form {
     display: flex;
     flex-grow: 1;
-    align-items: flex-start;
     flex-direction: column;
+    align-items: flex-start;
 
     :global(> .el-row) {
-        width: 100%;
         margin: 0 !important;
+        width: 100%;
     }
 }
 

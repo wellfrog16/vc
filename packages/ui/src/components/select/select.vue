@@ -22,7 +22,6 @@ const myOptions = computed(() => {
 const $style = useCssModule()
 const className = computed(() => ({
     [$style['select-width']]: !!props.width,
-    [$style.select]: true,
 }))
 const myWidth = computed(() => props.width ? formatToPx(props.width) : 'auto')
 </script>

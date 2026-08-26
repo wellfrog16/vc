@@ -4,7 +4,7 @@
         v-model="dialogVisible"
         append-to-body
         align-center
-        :width="width"
+        :width="myWidth"
         :show-close="false"
         :fullscreen="isFullscreen"
         :close-on-click-modal="false"
@@ -28,7 +28,7 @@
             </div>
         </template>
         <template #default>
-            <VcScrollbar :max-height="myMaxHeight" :height="height" always :view-margin="viewMargin" :fill-height="false">
+            <VcScrollbar :max-height="myMaxHeight" :height="myHeight" always :view-margin="viewMargin" :fill-height="false">
                 <slot />
             </VcScrollbar>
         </template>
@@ -54,7 +54,7 @@ const props = withDefaults(defineProps<IDialogProps>(), {
     boxPadding: true,
     padding: '0px',
     viewMargin: '12px',
-    maxHeight: '80vh',
+    maxHeight: 'calc(100vh - 98px)',
     width: '960px',
 })
 
@@ -63,20 +63,40 @@ const emits = defineEmits<{
     (e: 'closed'): void
 }>()
 const $style = useCssModule()
+const $slots = useSlots()
 const dialogVisible = useVModel(props, 'modelValue', emits)
 const visible = ref(false) // 用于销毁对话框以及非开启状态时不渲染
 const isFullscreen = ref(false)
 const toggleFullscreen = useToggle(isFullscreen)
 const Icon = computed(() => isFullscreen.value ? CopyDocument : FullScreen)
 
+// header + footer 高度
+const extraHeight = computed(() => {
+    if (props.showDefaultFooter || $slots['footer-action'] || $slots['footer-extra']) { return '98px' }
+    return '49px'
+})
+
 const myFullscreenHeight = computed(() => {
     if (props.fullscreenHeight) { return props.fullscreenHeight }
-    return props.showDefaultFooter ? 'calc(100vh - 98px)' : 'calc(100vh - 49px)'
+    return `calc(100vh - ${extraHeight.value})`
 })
 
 const myMaxHeight = computed(() => {
     if (isFullscreen.value || !props.maxHeight) { return myFullscreenHeight.value }
     return props.maxHeight
+})
+
+const myWidth = computed(() => {
+    if (props.smallFullscreen) { return 'calc(100vw - 100px)' }
+    return props.width
+})
+
+const myHeight = computed(() => {
+    if (props.smallFullscreen) { return `calc(100vh - 100px - ${extraHeight.value})` }
+    if (typeof props.height === 'string') {
+        return `calc(${props.height} - ${extraHeight.value})`
+    }
+    return props.height
 })
 
 watch(dialogVisible, val => {

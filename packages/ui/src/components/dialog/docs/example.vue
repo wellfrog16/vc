@@ -6,6 +6,7 @@
                 title="测试"
                 :show-fullscreen="showFullscreen"
                 :fullscreen="isFullscreen"
+                :small-fullscreen="isSmallFullscreen"
                 :show-default-footer="showDefaultFooter"
                 :height="height"
                 :max-height="maxHeight"
@@ -34,6 +35,9 @@
         <ElDescriptionsItem label="参数：全屏">
             <VcChoiceBoolean v-model="showFullscreen" />
         </ElDescriptionsItem>
+        <ElDescriptionsItem label="参数：小全屏">
+            <VcChoiceBoolean v-model="isSmallFullscreen" />
+        </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：默认全屏">
             <VcChoiceBoolean v-model="isFullscreen" />
         </ElDescriptionsItem>
@@ -58,6 +62,7 @@ import VcDialog from '../dialog.vue'
 const visible = ref(false)
 const showFullscreen = ref(true)
 const isFullscreen = ref(false)
+const isSmallFullscreen = ref(false)
 const showDefaultFooter = ref(false)
 const boxPadding = ref(true)
 const toggleVisible = useToggle(visible)

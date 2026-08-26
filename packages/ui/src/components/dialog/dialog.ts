@@ -8,6 +8,7 @@ export interface IDialogProps {
     maxHeight?: string | number
     fullscreenHeight?: string | number
     fullscreen?: boolean
+    smallFullscreen?: boolean
     boxPadding?: boolean
     padding?: string
     viewMargin?: string

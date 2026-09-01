@@ -65,6 +65,7 @@ export const componentsData = [
             { text: 'screenfull' },
             { text: 'single-player' },
             { text: 'text-ellipsis' },
+            { text: 'thousand-separator' },
             { text: 'upload-file' },
         ],
     },

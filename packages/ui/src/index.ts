@@ -57,6 +57,7 @@ export { default as VcSyncScrollContainer } from './components/sync-scroll-conta
 export { default as VcTags } from './components/tags/tags.vue'
 export { default as VcTextEllipsis } from './components/text-ellipsis/text-ellipsis.vue'
 export { default as VcThousandInput } from './components/thousand-input/thousand-input.vue'
+export { default as VcThousandSeparator } from './components/thousand-separator/thousand-separator.vue'
 export { default as VcTinymce } from './components/tinymce/tinymce.vue'
 export { default as VcTransferPanel } from './components/transfer-panel/transfer-panel.vue'
 export { default as VcTransfer } from './components/transfer/transfer.vue'

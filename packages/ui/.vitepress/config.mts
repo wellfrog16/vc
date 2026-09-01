@@ -121,6 +121,7 @@ export default defineConfig({
                         { text: 'single-player', link: '/components/single-player' },
                         { text: 'svg-icon', link: '/components/svg-icon' },
                         { text: 'text-ellipsis', link: '/components/text-ellipsis' },
+                        { text: 'thousand-separator', link: '/components/thousand-separator' },
                         { text: 'upload-file', link: '/components/upload-file' },
                     ],
                 },

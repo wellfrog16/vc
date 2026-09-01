@@ -8,6 +8,7 @@ title: 更新日志
 
 ### 新增和更新
 
+- 新增 thousand-separator 组件
 - 修复 explorer-table 多选算法
 - 修复 explorer-tree setActive 方法
 - explorer-table、explorer-list、explorer-tree、scrollbar 增加统一的滚动加载功能

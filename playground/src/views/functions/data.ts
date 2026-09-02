@@ -12,6 +12,7 @@ export const functionsData = [
             { text: 'rnd-color' },
             { text: 'remove-html-tag' },
             { text: 'storage' },
+            { text: 'thousand-separator' },
             { text: 'tree' },
         ],
     },

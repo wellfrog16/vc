@@ -30,6 +30,7 @@
                     :size="columnSetterSize"
                     :column-to-storage="columnToStorage"
                     :reset-visible="columnResetVisible"
+                    :formatter-name-options="columnFormatterNameOptions"
                     @config-confirm="val => emits('configConfirm', val)"
                     @reset="emits('columnReset')"
                 >
@@ -61,6 +62,7 @@ const props = withDefaults(defineProps<IExplorerToolsProps>(), {
     fullscreenTarget: 'page',
     columnSetterSize: 'small',
     columnResetVisible: true,
+    columnFormatterNameOptions: () => [],
 })
 const emits = defineEmits<IExplorerToolsEmits>()
 
@@ -100,23 +102,23 @@ function toggleFullScreen() {
 <style lang="scss" module>
 .explorer-tools {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 0 8px 0;
-    flex-wrap: wrap;
     row-gap: 8px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
     box-sizing: border-box;
+    padding: 0 0 8px 0;
 
     &.bottom-border {
-        border-bottom: 1px solid var(--el-border-color-lighter);
         margin-bottom: 8px;
+        border-bottom: 1px solid var(--el-border-color-lighter);
     }
 }
 
 .buttons {
     display: flex;
-    align-items: center;
     column-gap: 8px;
+    align-items: center;
 
     button {
         margin-left: 0 !important;
@@ -125,14 +127,14 @@ function toggleFullScreen() {
 
 .tools {
     display: flex;
-    align-items: center;
     column-gap: 8px;
+    align-items: center;
 
     :global {
         button.vc-icon-button {
+            margin-left: 0 !important;
             padding: 4px;
             font-size: 18px;
-            margin-left: 0 !important;
         }
     }
 }
@@ -146,11 +148,11 @@ function toggleFullScreen() {
 
 .fullscreen {
     position: fixed !important;
-    background-color: var(--el-bg-color) !important;
     top: 0 !important;
-    left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
+    left: 0 !important;
+    background-color: var(--el-bg-color) !important;
     width: 100% !important;
     height: 100% !important;
 }

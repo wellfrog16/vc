@@ -55,10 +55,10 @@
                 </div>
             </template>
         </ElTableColumn>
-        <ElTableColumn v-if="isFullMode" label="截断" :width="widthConfig.truncate" align="center">
+        <ElTableColumn v-if="isFullMode" label="处理方式" :width="widthConfig.formatter" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
-                    <el-checkbox v-model="row.showOverflowTooltip" :size="size" border :class="$style.truncate" :disabled="row.disabled" />
+                    <VcSelect v-model="row.formatterName" :append-to="tableRef?.$el" :options="formatterNameOptions" :size="size" :disabled="row.disabled" width="84px" />
                 </div>
             </template>
         </ElTableColumn>
@@ -78,6 +78,7 @@ import VcChoice from '../choice/choice.vue'
 import VcIconifyIcon from '../iconify-icon/iconify-icon.vue'
 import VcInputNumber from '../input-number/input-number.vue'
 import VcInput from '../input/input.vue'
+import VcSelect from '../select/select.vue'
 
 const props = withDefaults(defineProps<IExplorerColumnTableProps>(), {
     highlightCurrent: false,
@@ -100,6 +101,7 @@ const myData = computed({
             if (item.fixed) {
                 item.formFixed = [item.fixed]
             }
+            item.formatterName ??= 'text'
             return item
         })
     },
@@ -124,28 +126,36 @@ const fixedOptions = [
     { label: '右', value: 'right' },
 ]
 
-const widthConfig = ref({ width: 240, data: 160, fixed: 120, truncate: 60 })
+const formatterNameOptions = computed(() => {
+    return [
+        { label: '文本', value: 'text' },
+        { label: '文本截断', value: 'truncate' },
+        ...props.formatterNameOptions || [],
+    ]
+})
+
+const widthConfig = ref({ width: 240, data: 160, fixed: 120, formatter: 120 })
 const widthConfigWatch = watch(() => props.size, () => {
     if (props.size === 'small') {
-        widthConfig.value = { width: 210, data: 140, fixed: 100, truncate: 50 }
+        widthConfig.value = { width: 210, data: 140, fixed: 100, formatter: 110 }
         return
     }
     if (props.size === 'default') {
-        widthConfig.value = { width: 240, data: 160, fixed: 120, truncate: 60 }
+        widthConfig.value = { width: 240, data: 160, fixed: 120, formatter: 120 }
         return
     }
-    widthConfig.value = { width: 260, data: 200, fixed: 140, truncate: 76 }
+    widthConfig.value = { width: 260, data: 200, fixed: 140, formatter: 140 }
 }, { immediate: true })
 
 //  todo 验证
 // const widthConfig = computed(() => {
 //     if (props.size === 'small') {
-//         return { width: 210, data: 140, fixed: 100, truncate: 50 }
+//         return { width: 210, data: 140, fixed: 100, dataType: 110 }
 //     }
 //     if (props.size === 'default') {
-//         return { width: 240, data: 160, fixed: 120, truncate: 60 }
+//         return { width: 240, data: 160, fixed: 120, dataType: 120 }
 //     }
-//     return { width: 260, data: 200, fixed: 140, truncate: 76 }
+//     return { width: 260, data: 200, fixed: 140, dataType: 140 }
 // })
 
 const isFullMode = computed(() => props.mode === 'full')
@@ -231,21 +241,21 @@ div.table {
 
 .label {
     display: inline-flex;
-    width: 100%;
     align-items: center;
+    width: 100%;
 
     :global {
         .el-checkbox {
-            width: 100%;
             display: flex;
             align-items: center;
+            width: 100%;
         }
         .el-checkbox__label {
+            flex-grow: 1;
             min-width: 0;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            flex-grow: 1;
         }
 
         .iconify {
@@ -260,26 +270,14 @@ div.table {
 
 .item-container {
     display: inline-flex;
-    align-items: center;
     column-gap: 4px;
+    align-items: center;
+    vertical-align: middle;
     padding: 1px 0;
     line-height: 0;
-    vertical-align: middle;
 
     > div {
         vertical-align: middle;
-    }
-}
-
-.truncate {
-    padding: 0 9px !important;
-
-    &:global(.el-checkbox--small) {
-        padding: 0 7px !important;
-    }
-
-    &:global(.el-checkbox--large) {
-        padding: 0 11px !important;
     }
 }
 </style>

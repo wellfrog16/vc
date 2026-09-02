@@ -2,6 +2,14 @@
 title: 更新日志
 ---
 
+## 1.15.0
+
+2026-?-?
+
+### 新增和更新
+
+- exporer-tools 增加 column-formatter-name-options 属性，用于在业务端配置列格式化
+
 ## 1.14.0
 
 2026-9-1

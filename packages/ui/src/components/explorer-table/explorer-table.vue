@@ -94,7 +94,9 @@ const state = injectExplorerPanelState()
 const $style = useCssModule()
 const tableRef = useTemplateRef('tableRef')
 const sentinelRef = useTemplateRef('sentinelRef')
-const columns = computed(() => state.columnConfig.value.filter(props.columnFilter))
+const columns = computed(() => state.columnConfig.value
+    .filter(props.columnFilter)
+    .map(item => item.formatterName === 'truncate' ? { ...item, showOverflowTooltip: true } : item))
 
 const scrollLoadEnabled = computed(() => props.scrollLoad && !props.loading && !props.scrollLoadDisabled)
 const scrollRoot = computed(() => tableRef.value?.scrollBarRef?.wrapRef ?? null)

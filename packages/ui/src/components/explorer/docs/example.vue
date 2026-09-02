@@ -65,6 +65,7 @@
                                     column-setter-size="small"
                                     column-to-storage
                                     :column-reset-visible="toolsColumnResetVisible"
+                                    :column-formatter-name-options="[{ label: '自定义1', value: 'custom1' }, { label: '自定义2', value: 'custom2' }]"
                                     @create="() => { console.log('create') }"
                                     @search="() => { console.log('search') }"
                                     @refresh="() => { console.log('refresh') }"

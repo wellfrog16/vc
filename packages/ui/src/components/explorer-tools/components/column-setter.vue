@@ -9,7 +9,7 @@
                 </div>
             </div>
             <ElDivider :class="$style.divider" />
-            <VcExplorerColumnTable ref="columnTableRef" v-model:data="myData" :formatter-name-options="formatterNameOptions" :size="size" :mode="mode" :height="320" />
+            <VcExplorerColumnTable ref="columnTableRef" v-model:data="myData" :size="size" :mode="mode" :height="320" />
         </template>
         <template #reference>
             <slot />
@@ -27,7 +27,6 @@ import { injectExplorerState } from '../../explorer/explorer'
 
 const props = withDefaults(defineProps<IColumnSetterProps>(), {
     data: () => [],
-    formatterNameOptions: () => [],
 })
 
 const emits = defineEmits<IColumnSetterEmits>()
@@ -90,8 +89,8 @@ onBeforeMount(() => {
 
 .mode-wrapper {
     display: flex;
-    column-gap: 8px;
     align-items: center;
+    column-gap: 8px;
 }
 
 .segmented {

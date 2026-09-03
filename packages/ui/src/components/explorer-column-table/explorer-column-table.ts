@@ -7,7 +7,7 @@ export interface IColumnConfig {
     visible?: boolean
     fixed?: 'left' | 'right'
     align?: 'left' | 'center' | 'right'
-    formatterName?: string
+    showOverflowTooltip?: boolean
     disabled?: boolean
     widthType?: 'width' | 'minWidth' // 编辑用中间数据
     formFixed?: ('left' | 'right')[] // 编辑用中间数据
@@ -21,7 +21,6 @@ export interface IExplorerColumnTableProps {
     height?: number | string
     emptyColumn?: boolean
     editable?: boolean
-    formatterNameOptions?: { label: string, value: string }[]
 }
 
 export interface IExplorerColumnTableEmits {

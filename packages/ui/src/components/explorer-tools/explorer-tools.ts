@@ -12,7 +12,6 @@ export interface IExplorerToolsProps {
     columnSetterSize?: 'small' | 'default' | 'large' // 预留，未兼容 default/large 后的样式
     columnToStorage?: boolean
     columnResetVisible?: boolean
-    columnFormatterNameOptions?: { label: string, value: string }[]
     bottomBorder?: boolean
 }
 
@@ -32,7 +31,6 @@ export interface IColumnSetterProps {
     columnToStorage?: boolean
     toolsKey?: string
     resetVisible?: boolean
-    formatterNameOptions?: { label: string, value: string }[]
 }
 
 export interface IColumnSetterEmits {

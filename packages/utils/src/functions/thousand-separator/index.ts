@@ -1,7 +1,7 @@
 export interface IThousandSeparatorOptions {
     /** 千分位分隔符，默认逗号 */
     separator?: string
-    /** 保留小数位数：>0 四舍五入并补齐位数；0 不显示小数部分；-1 保留原样，默认 0 */
+    /** 保留小数位数：>0 四舍五入并补齐位数；0 不显示小数部分；-1 保留原样，默认 -1 */
     decimalPlaces?: number
 }
 
@@ -17,7 +17,7 @@ function thousandSeparator(
 ): string {
     if (value === null || value === undefined || value === '') { return '' }
     const separator = options.separator ?? ','
-    const decimalPlaces = options.decimalPlaces ?? 0
+    const decimalPlaces = options.decimalPlaces ?? -1
 
     if (typeof value === 'string') {
         const cleanStr = value.split(separator).join('').trim()

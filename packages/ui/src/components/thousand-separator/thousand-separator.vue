@@ -9,7 +9,7 @@ import { thousandSeparator } from '@wfrog/vc-utils'
 const props = withDefaults(defineProps<IThousandSeparatorProps>(), {
     value: null,
     separator: ',',
-    decimalPlaces: 0,
+    decimalPlaces: -1,
     placeholder: '-',
 })
 

@@ -3,7 +3,7 @@ export interface IThousandSeparatorProps {
     value?: string | number | null
     /** 千分位分隔符，默认逗号 */
     separator?: string
-    /** 保留小数位数，默认 0，-1 表示保留原样 */
+    /** 保留小数位数，默认 -1，-1 表示保留原样 */
     decimalPlaces?: number
     /** 空值时显示的占位符 */
     placeholder?: string

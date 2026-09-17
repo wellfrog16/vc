@@ -5,7 +5,6 @@
 <script lang="ts" setup>
 const documentData = {
     params: [
-        { param: 'precision', description: '精度', type: 'number', defaultValue: '0' },
         { param: 'inputNumberClass', description: '附加到 el-input-number 的 class', type: 'string', defaultValue: '-' },
         { param: 'width', description: '宽度', type: 'string | number', defaultValue: '-' },
         { param: '其他', description: 'el-input-number 的属性、事件', type: 'https://element-plus.org/zh-CN/component/input-number#api' },

@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <VcInputNumber v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step="step">
+            <VcInputNumber v-if="visible" v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step="step">
                 <template #prefix>
                     <span>￥</span>
                 </template>
@@ -11,12 +11,12 @@
             </VcInputNumber>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：文字组合">
-            <VcInputNumber v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step-strictly="false">
+            <VcInputNumber v-if="visible" v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step-strictly="false">
                 <template #prepend>份数</template>
             </VcInputNumber>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：组合">
-            <VcInputNumber v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step="step">
+            <VcInputNumber v-if="visible" v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step="step">
                 <template #prepend>
                     <ElSelect v-model="select" placeholder="请选择" style="width: 110px;" :size="size">
                         <ElOption label="西瓜" value="a" />
@@ -65,4 +65,13 @@ const widthOptions = [
     { label: '200px', value: '200px' },
     { label: '350px', value: '350px' },
 ]
+
+const visible = ref(true)
+function rerender() {
+    visible.value = false
+    nextTick(() => (visible.value = true))
+}
+
+const watchHandler = watch(precision, val => val === 0 && rerender())
+onUnmounted(() => watchHandler.stop())
 </script>

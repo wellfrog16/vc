@@ -7,12 +7,10 @@
             step-strictly
             :size="size"
             :class="[inputNumberClass, $style['el-input-number']]"
-            :precision="precision"
             :controls-position="myControlsPosition"
+            disabled-scientific
             v-bind="$attrs"
-            @keydown="limitInputValue"
             @change="handleChange"
-            @blur="handleBlur"
         >
             <template v-if="$slots.prefix" #prefix>
                 <slot name="prefix" />
@@ -29,8 +27,7 @@ import type { IInputNumberEmits, IInputNumberProps } from './input-number'
 import { formatToPx } from '@/utils'
 
 const props = withDefaults(defineProps<IInputNumberProps>(), {
-    precision: 0,
-    inputWidth: '80px',
+    width: 'auto',
     disabled: undefined,
 })
 const emits = defineEmits<IInputNumberEmits>()
@@ -65,41 +62,17 @@ const myValue = computed({
     },
 })
 
-function limitInputValue(e: KeyboardEvent) {
-    const key = e.key
-    if (key === 'e' || key === 'E' || (props.precision === 0 && key === '.')) {
-        // e.returnValue = false
-        e.preventDefault()
-        return false
-    }
-    return true
-}
-
 function handleChange(currentValue: number | undefined, oldValue: number | undefined) {
     myValue.value = currentValue === 0 ? currentValue : (currentValue || oldValue || 0)
     emits('change', myValue.value, oldValue || 0)
 }
-
-function rerender() {
-    visible.value = false
-    nextTick(() => (visible.value = true))
-}
-
-function handleBlur(e: Event) {
-    const eleInput = inputNumberRef.value?.querySelector('.el-input__inner[type=number]') as HTMLInputElement
-    if (eleInput.value === '') { rerender() }
-    emits('blur', e)
-}
-
-const watchHandler = watch(() => props.precision, val => val === 0 && rerender())
-onUnmounted(() => watchHandler.stop())
 </script>
 
 <style lang="scss" module>
 div.input-number {
     display: flex;
-    width: auto;
     padding: 0;
+    width: auto;
 
     &:global(.el-input-group--prepend :not(.el-select) .el-input__wrapper) {
         border-top-left-radius: 0;
@@ -108,9 +81,9 @@ div.input-number {
 
     &:global(.el-input-group--prepend div.el-select .el-input__wrapper) {
         $border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
+        box-shadow: 0 0 0 0;
 
         border-radius: $border-radius 0 0 $border-radius;
-        box-shadow: 0 0 0 0;
     }
 
     &:global(.input-with-select .el-input-group__prepend) {

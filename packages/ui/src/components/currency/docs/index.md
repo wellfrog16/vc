@@ -2,7 +2,7 @@
 
 ## 功能
 
-<CdnTag name="currency" />货币组件，[thousand-input](../../components/thousand-input) 的增强版
+货币组件
 
 :::tip
 目前暂时只列出了 人民币、新台币、美元、日元、韩元、欧元

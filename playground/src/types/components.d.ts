@@ -100,7 +100,6 @@ declare module 'vue' {
     VcSyncScrollContainer: typeof import('@wfrog/vc-ui/es/components/sync-scroll-container')['default']
     VcTags: typeof import('@wfrog/vc-ui/es/components/tags')['default']
     VcTextEllipsis: typeof import('@wfrog/vc-ui/es/components/text-ellipsis')['default']
-    VcThousandInput: typeof import('@wfrog/vc-ui/es/components/thousand-input')['default']
     VcThousandSeparator: typeof import('@wfrog/vc-ui/es/components/thousand-separator')['default']
     VcTinymce: typeof import('@wfrog/vc-ui/es/components/tinymce')['default']
     VcTransfer: typeof import('@wfrog/vc-ui/es/components/transfer')['default']

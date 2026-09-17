@@ -35,7 +35,6 @@ export const componentsData = [
             { text: 'select' },
             { text: 'switch' },
             { text: 'tags' },
-            { text: 'thousand-input' },
             { text: 'tinymce' },
             { text: 'tree-picker' },
             { text: 'tree-select' },

@@ -12,7 +12,7 @@ const documentData = {
         { param: 'prefix', description: '是否显示前缀', type: 'boolean', defaultValue: 'true' },
         { param: 'prepend', description: '是否显示前置内容', type: 'boolean', defaultValue: 'true' },
         { param: 'append', description: '是否显示后置内容', type: 'boolean', defaultValue: 'false' },
-        { param: '其他', description: 'thousand-input 的 API', type: './thousand-input.html#api', defaultValue: '-' },
+        { param: '其他', description: 'input-thousand 的 API', type: './input-thousand.html#api', defaultValue: '-' },
     ],
     types: [
         { param: 'ICurrencyCode', description: '\'CNY\' | \'USD\' | \'JPY\' | \'EUR\' | \'TWD\' | \'KRW\'' },

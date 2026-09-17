@@ -91,7 +91,6 @@ export default defineConfig({
                         { text: 'select', link: '/components/select' },
                         { text: 'switch', link: '/components/switch' },
                         { text: 'tags', link: '/components/tags' },
-                        { text: 'thousand-input', link: '/components/thousand-input' },
                         { text: 'tinymce', link: '/components/tinymce' },
                         { text: 'tree-picker', link: '/components/tree-picker' },
                         { text: 'tree-select', link: '/components/tree-select' },

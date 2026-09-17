@@ -14,7 +14,7 @@
         <template #footer>
             <ElSpace>
                 <ElButton :loading="loading" @click="handleCancle">取消</ElButton>
-                <ElLink :href="downloadLink" download="cropper.jpg" :underline="false">
+                <ElLink :href="downloadLink" download="cropper.jpg" underline="never">
                     <ElButton type="primary">下载切片</ElButton>
                 </ElLink>
                 <ElButton :loading="loading" type="primary" @click="handleFinish">确定</ElButton>

@@ -7,7 +7,7 @@
             <div ref="resultRef" :class="$style.result" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="操作">
-            <ElLink :href="downloadLink" download="cropper.jpg" :underline="false">
+            <ElLink :href="downloadLink" download="cropper.jpg" underline="never">
                 <ElButton type="primary" :icon="Download">下载</ElButton>
             </ElLink>
         </ElDescriptionsItem>

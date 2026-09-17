@@ -1,5 +1,5 @@
 <template>
-    <VcInputThousand v-model="myModelValue" :precision="myCurrencyInfo.option.precision" :disabled="disabled" @change="handleCodeChange">
+    <VcInputThousand v-model="myModelValue" :precision="myCurrencyInfo?.option.precision" :disabled="disabled" @change="handleCodeChange">
         <template v-if="prefix" #prefix>
             <span>{{ myCurrencyInfo?.option.prefix }}</span>
         </template>

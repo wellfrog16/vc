@@ -8,7 +8,7 @@
                 :prefix="prefix"
                 :pad-decimal="padDecimal"
                 :prepend="prepend"
-                :append="append"
+                :suffix="suffix"
             />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果：值"><span>{{ result1 }}</span></ElDescriptionsItem>
@@ -22,7 +22,7 @@
                 :prefix="prefix"
                 :pad-decimal="padDecimal"
                 :prepend="prepend"
-                :append="append"
+                :suffix="suffix"
                 @change="handleChange"
             />
         </ElDescriptionsItem>
@@ -38,8 +38,8 @@
         <ElDescriptionsItem label="参数：prepend">
             <VcChoiceBoolean v-model="prepend" />
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="参数：append">
-            <VcChoiceBoolean v-model="append" />
+        <ElDescriptionsItem label="参数：suffix">
+            <VcChoiceBoolean v-model="suffix" />
         </ElDescriptionsItem>
         <ElDescriptionsItem label="结果：值"><span>{{ result2 }}</span></ElDescriptionsItem>
         <ElDescriptionsItem label="结果：格式化"><span>{{ formatValue }}</span></ElDescriptionsItem>
@@ -57,14 +57,14 @@ const code: ICurrencyCode[] = ['CNY', 'USD', 'EUR', 'JPY', 'TWD', 'KRW']
 const result1 = ref('123456')
 const result2 = ref('')
 const formatValue = ref('')
-const changeValue = ref<string[]>()
+const changeValue = ref<string>()
 const flag = ref(true)
 const prefix = ref(true)
 const padDecimal = ref(true)
 const prepend = ref(true)
-const append = ref(false)
+const suffix = ref(true)
 
-const handleChange: any = (val: string[]) => {
-    changeValue.value = val
+const handleChange: any = (val: string, code: ICurrencyCode) => {
+    changeValue.value = `${val},${code}`
 }
 </script>

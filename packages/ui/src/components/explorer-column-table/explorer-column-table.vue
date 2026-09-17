@@ -10,6 +10,7 @@
         scrollbar-always-on
         :class="$style.table"
     >
+        <!-- @vue-generic {IColumnConfig} -->
         <ElTableColumn v-if="!editable" prop="label" label="列名" :min-width="200" show-overflow-tooltip>
             <template #default="{ row }">
                 <div :class="[$style.label, $style.handle]">
@@ -32,6 +33,7 @@
                 <VcInput v-model="row.prop" block :size="size" :disabled="row.disabled" />
             </template>
         </ElTableColumn>
+        <!-- @vue-generic {IColumnConfig} -->
         <ElTableColumn v-if="isFullMode" label="宽度" :width="widthConfig.width" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
@@ -48,6 +50,7 @@
                 </div>
             </template>
         </ElTableColumn>
+        <!-- @vue-generic {IColumnConfig} -->
         <ElTableColumn v-if="isFullMode" label="冻结位置" :width="widthConfig.fixed" align="center">
             <template #default="{ row }">
                 <div :class="$style['item-container']">
@@ -184,7 +187,8 @@ function handleFixedChange(row: IColumnConfig) {
 }
 
 function init() {
-    const el = tableRef.value?.$el.querySelector('.el-table__body tbody')
+    // tableRef 类型错误，没有了 $el 类型，实际上是有 $el 的，先用 any，等官方更新
+    const el = (tableRef.value as any)?.$el.querySelector('.el-table__body tbody')
     if (!el) { return }
 
     if (sortable.value) {
@@ -231,21 +235,21 @@ div.table {
 
 .label {
     display: inline-flex;
-    width: 100%;
     align-items: center;
+    width: 100%;
 
     :global {
         .el-checkbox {
-            width: 100%;
             display: flex;
             align-items: center;
+            width: 100%;
         }
         .el-checkbox__label {
+            flex-grow: 1;
             min-width: 0;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            flex-grow: 1;
         }
 
         .iconify {
@@ -260,11 +264,11 @@ div.table {
 
 .item-container {
     display: inline-flex;
-    align-items: center;
     column-gap: 4px;
+    align-items: center;
+    vertical-align: middle;
     padding: 1px 0;
     line-height: 0;
-    vertical-align: middle;
 
     > div {
         vertical-align: middle;

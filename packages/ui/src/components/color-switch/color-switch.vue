@@ -5,14 +5,7 @@
         </template>
 
         <!-- 改动：用 :is 渲染，组件类型被显式收窄 -->
-        <component
-            :is="ColorPickerPanel"
-            ref="colorPickerRef"
-            v-model="themeColor"
-            :predefine="[...PRESET_COLORS]"
-            :border="false"
-            show-alpha
-        />
+        <component :is="ColorPickerPanel" ref="colorPickerRef" v-model="themeColor" :predefine="[...PRESET_COLORS]" :border="false" show-alpha />
     </el-popover>
 </template>
 
@@ -40,6 +33,8 @@ interface PickerPanelProps {
     border?: boolean
     showAlpha?: boolean
 }
+
+// 规避 vue-tsc d.ts 生成时 TS2742：element-plus 内部类型引用 @ctrl/tinycolor 不可移植
 const ColorPickerPanel = ElColorPickerPanel as unknown as DefineComponent<PickerPanelProps>
 
 interface ColorPickerPanelExposed {

@@ -10,6 +10,9 @@ title: 更新日志
 
 - 新增 input-thousand 组件
 - 对齐新版本，优化 input-number 组件
+- 移除 thousand-input 组件
+- 重构 currency 组件
+- 修复 ui 构建时，color-switch 提示的类型错误
 
 ## 1.14.0
 

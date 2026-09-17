@@ -8,6 +8,9 @@ title: 更新日志
 
 ### 新增和更新
 
+- 新增 input-thousand 组件
+- 对齐新版本，优化 input-number 组件
+
 ## 1.14.0
 
 2026-9-1

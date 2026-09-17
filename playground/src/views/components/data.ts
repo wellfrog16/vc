@@ -30,6 +30,7 @@ export const componentsData = [
             { text: 'icon-picker' },
             { text: 'input' },
             { text: 'input-number' },
+            { text: 'input-thousand' },
             { text: 'pca-picker' },
             { text: 'select' },
             { text: 'switch' },

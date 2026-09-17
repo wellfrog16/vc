@@ -42,6 +42,7 @@ export { default as VcIconifyIcon } from './components/iconify-icon/iconify-icon
 export { default as VcImage } from './components/image/image.vue'
 export { default as VcInfoTooltip } from './components/info-tooltip/info-tooltip.vue'
 export { default as VcInputNumber } from './components/input-number/input-number.vue'
+export { default as VcInputThousand } from './components/input-thousand/input-thousand.vue'
 export { default as VcInput } from './components/input/input.vue'
 export { default as VcPcaPicker } from './components/pca-picker/pca-picker.vue'
 export { default as VcQrCode } from './components/qr-code/qr-code.vue'

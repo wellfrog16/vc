@@ -86,6 +86,7 @@ export default defineConfig({
                         { text: 'icon-picker', link: '/components/icon-picker' },
                         { text: 'input', link: '/components/input' },
                         { text: 'input-number', link: '/components/input-number' },
+                        { text: 'input-thousand', link: '/components/input-thousand' },
                         { text: 'pca-picker', link: '/components/pca-picker' },
                         { text: 'select', link: '/components/select' },
                         { text: 'switch', link: '/components/switch' },

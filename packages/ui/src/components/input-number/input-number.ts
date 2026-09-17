@@ -4,6 +4,7 @@ export interface IInputNumberProps {
     size?: 'large' | 'default' | 'small'
     inputNumberClass?: string
     width?: string | number
+    align?: 'left' | 'center' | 'right'
 }
 
 export interface IInputNumberEmits {

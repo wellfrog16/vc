@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <VcInputNumber v-if="visible" v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step="step">
+            <VcInputNumber v-if="visible" v-model="result" v-bind="inputProps" step-strictly>
                 <template #prefix>
                     <span>￥</span>
                 </template>
@@ -11,12 +11,12 @@
             </VcInputNumber>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="展示区：文字组合">
-            <VcInputNumber v-if="visible" v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step-strictly="false">
+            <VcInputNumber v-if="visible" v-model="result" v-bind="inputProps" :step-strictly="false">
                 <template #prepend>份数</template>
             </VcInputNumber>
         </ElDescriptionsItem>
-        <ElDescriptionsItem label="展示区：组合">
-            <VcInputNumber v-if="visible" v-model="result" :size="size" :controls="controls" :width="width" :precision="precision" :step="step">
+        <ElDescriptionsItem label="展示区：组合1">
+            <VcInputNumber v-if="visible" v-model="result" v-bind="inputProps" step-strictly>
                 <template #prepend>
                     <ElSelect v-model="select" placeholder="请选择" style="width: 110px;" :size="size">
                         <ElOption label="西瓜" value="a" />
@@ -24,6 +24,11 @@
                         <ElOption label="哈密瓜" value="c" />
                     </ElSelect>
                 </template>
+            </VcInputNumber>
+        </ElDescriptionsItem>
+        <ElDescriptionsItem label="展示区：组合2">
+            <VcInputNumber v-if="visible" v-model="result" v-bind="inputProps" step-strictly>
+                <template #append>元 / 台</template>
             </VcInputNumber>
         </ElDescriptionsItem>
         <ElDescriptionsItem label="参数：大小">
@@ -54,11 +59,18 @@ import VcInputNumber from '../input-number.vue'
 const controls = ref(true)
 const result = ref(1)
 const select = ref('c')
-const precision = ref(0)
+const precision = ref(1)
 const size = ref<any>('default')
 const sizeData = ['large', 'default', 'small']
 const width = ref('')
 const step = computed(() => 1 / (10 ** precision.value))
+const inputProps = computed(() => ({
+    size: size.value,
+    controls: controls.value,
+    width: width.value,
+    precision: precision.value,
+    step: step.value,
+}))
 
 const widthOptions = [
     { label: '未设定', value: '' },

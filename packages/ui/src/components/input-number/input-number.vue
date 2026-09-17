@@ -1,14 +1,13 @@
 <template>
-    <div ref="inputNumberRef" :class="mainClass">
+    <div :class="mainClass">
         <div v-if="$slots.prepend" class="el-input-group__prepend"><slot name="prepend" /></div>
         <ElInputNumber
-            v-if="visible"
             v-model="myValue"
-            step-strictly
             :size="size"
             :class="[inputNumberClass, $style['el-input-number']]"
             :controls-position="myControlsPosition"
             disabled-scientific
+            :align="align"
             v-bind="$attrs"
             @change="handleChange"
         >
@@ -19,6 +18,7 @@
                 <slot name="suffix" />
             </template>
         </ElInputNumber>
+        <div v-if="$slots.append" class="el-input-group__append"><slot name="append" /></div>
     </div>
 </template>
 
@@ -29,13 +29,12 @@ import { formatToPx } from '@/utils'
 const props = withDefaults(defineProps<IInputNumberProps>(), {
     width: 'auto',
     disabled: undefined,
+    align: 'right',
 })
 const emits = defineEmits<IInputNumberEmits>()
 
 const $slots = useSlots()
 const $style = useCssModule()
-const visible = ref(true)
-const inputNumberRef = useTemplateRef('inputNumberRef')
 
 const mainClass = computed(() => {
     const className = {
@@ -43,7 +42,7 @@ const mainClass = computed(() => {
         [$style['input-number-width']]: !!props.width,
         'el-input': true,
         'el-input-group--prepend': $slots.prepend,
-        'input-with-select': inputNumberRef.value?.querySelector('.el-input-group__prepend>.el-select'),
+        'el-input-group--append': $slots.append,
     }
     if (props.size) {
         className[`el-input--${props.size}`] = true
@@ -74,20 +73,14 @@ div.input-number {
     padding: 0;
     width: auto;
 
-    &:global(.el-input-group--prepend :not(.el-select) .el-input__wrapper) {
+    &:global(.el-input-group--prepend .el-input__wrapper) {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
 
-    &:global(.el-input-group--prepend div.el-select .el-input__wrapper) {
-        $border-radius: var(--el-input-border-radius, var(--el-border-radius-base));
-        box-shadow: 0 0 0 0;
-
-        border-radius: $border-radius 0 0 $border-radius;
-    }
-
-    &:global(.input-with-select .el-input-group__prepend) {
-        background-color: var(--el-fill-color-blank);
+    &:global(.el-input-group--append .el-input__wrapper) {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
 }
 

@@ -1,7 +1,7 @@
 <template>
     <Wrapper>
         <ElDescriptionsItem label="展示区">
-            <VcInputThousand v-model="result" :controls="controls">
+            <VcInputThousand v-model="result" :controls="controls" :precision="2">
                 <template #prefix>
                     <span>￥</span>
                 </template>

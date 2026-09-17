@@ -1,6 +1,6 @@
 <template>
     <el-space size="large" direction="vertical" alignment="left">
-        <vc-input-thousand />
+        <vc-input-thousand v-model="result" />
         <el-text>结果：<el-text type="primary">{{ result }}</el-text></el-text>
     </el-space>
 </template>

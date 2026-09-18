@@ -9,7 +9,7 @@ import { thousandSeparator } from '@wfrog/vc-utils'
 const props = withDefaults(defineProps<IThousandSeparatorProps>(), {
     value: null,
     separator: ',',
-    decimalPlaces: -1,
+    precision: -1,
     placeholder: '-',
 })
 
@@ -19,7 +19,7 @@ const formattedValue = computed(() => {
     }
     return thousandSeparator(props.value, {
         separator: props.separator,
-        decimalPlaces: props.decimalPlaces,
+        precision: props.precision,
     })
 })
 </script>

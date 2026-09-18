@@ -13,6 +13,7 @@ title: 更新日志
 - 移除 thousand-input 组件
 - 重构 currency 组件
 - 修复 ui 构建时，color-switch 提示的类型错误（hack 解决）
+- 统一千分位参数
 
 ## 1.14.0
 

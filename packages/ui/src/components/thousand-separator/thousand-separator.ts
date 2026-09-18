@@ -4,7 +4,7 @@ export interface IThousandSeparatorProps {
     /** 千分位分隔符，默认逗号 */
     separator?: string
     /** 保留小数位数，默认 -1，-1 表示保留原样 */
-    decimalPlaces?: number
+    precision?: number
     /** 空值时显示的占位符 */
     placeholder?: string
 }

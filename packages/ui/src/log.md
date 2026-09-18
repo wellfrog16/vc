@@ -4,7 +4,7 @@ title: 更新日志
 
 ## 1.15.0
 
-2026-?-?
+2026-9-18
 
 ### 新增和更新
 
@@ -12,7 +12,7 @@ title: 更新日志
 - 对齐新版本，优化 input-number 组件
 - 移除 thousand-input 组件
 - 重构 currency 组件
-- 修复 ui 构建时，color-switch 提示的类型错误
+- 修复 ui 构建时，color-switch 提示的类型错误（hack 解决）
 
 ## 1.14.0
 

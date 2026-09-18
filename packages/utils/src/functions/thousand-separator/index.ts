@@ -2,14 +2,14 @@ export interface IThousandSeparatorOptions {
     /** 千分位分隔符，默认逗号 */
     separator?: string
     /** 保留小数位数：>0 四舍五入并补齐位数；0 不显示小数部分；-1 保留原样，默认 -1 */
-    decimalPlaces?: number
+    precision?: number
 }
 
 /**
  * 千分位格式化，截断部分四舍五入
  * 字符串输入不经过 Number 转换（无精度损失），数字输入走 Intl.NumberFormat
  * @param value 要格式化的数值（数字或数字字符串）
- * @param options separator：千分位分隔符；decimalPlaces：保留小数位数
+ * @param options separator：千分位分隔符；precision：保留小数位数
  */
 function thousandSeparator(
     value: string | number | null | undefined,
@@ -17,29 +17,29 @@ function thousandSeparator(
 ): string {
     if (value === null || value === undefined || value === '') { return '' }
     const separator = options.separator ?? ','
-    const decimalPlaces = options.decimalPlaces ?? -1
+    const precision = options.precision ?? -1
 
     if (typeof value === 'string') {
         const cleanStr = value.split(separator).join('').trim()
         // 纯数字字符串：走精确路径，不转数字
         if (/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(cleanStr)) {
-            return formatNumericString(cleanStr, separator, decimalPlaces)
+            return formatNumericString(cleanStr, separator, precision)
         }
         // e-notation 等其他可解析形式：回退数字路径
         const num = Number.parseFloat(cleanStr)
         if (Number.isNaN(num)) {
             return value // 无法解析则直接返回原始字符串
         }
-        return formatNumber(num, separator, decimalPlaces)
+        return formatNumber(num, separator, precision)
     }
 
-    return formatNumber(value, separator, decimalPlaces)
+    return formatNumber(value, separator, precision)
 }
 
 /**
  * 格式化数字为千分位字符串
  */
-function formatNumber(num: number, separator: string, decimalPlaces: number): string {
+function formatNumber(num: number, separator: string, precision: number): string {
     // 处理 NaN 和 Infinity
     if (!Number.isFinite(num))
         return String(num)
@@ -47,7 +47,7 @@ function formatNumber(num: number, separator: string, decimalPlaces: number): st
     // 保持 -0 显示为 0
     const safeNum = Object.is(num, -0) ? 0 : num
 
-    const formatter = new Intl.NumberFormat('en-US', buildOptions(safeNum, decimalPlaces))
+    const formatter = new Intl.NumberFormat('en-US', buildOptions(safeNum, precision))
 
     // formatToParts 将默认分组符替换为自定义 separator
     return formatter.formatToParts(safeNum)
@@ -56,11 +56,11 @@ function formatNumber(num: number, separator: string, decimalPlaces: number): st
 }
 
 /**
- * 根据 decimalPlaces 构造 Intl.NumberFormatOptions
+ * 根据 precision 构造 Intl.NumberFormatOptions
  * -1 保留原样；0 不显示小数；>0 四舍五入并补齐位数
  */
-function buildOptions(num: number, decimalPlaces: number): Intl.NumberFormatOptions {
-    if (decimalPlaces < 0) {
+function buildOptions(num: number, precision: number): Intl.NumberFormatOptions {
+    if (precision < 0) {
         // 保留原样：按数字自身的小数位数设置 maximumFractionDigits
         const decimalLength = (String(Math.abs(num)).split('.')[1] ?? '').length
         return {
@@ -71,8 +71,8 @@ function buildOptions(num: number, decimalPlaces: number): Intl.NumberFormatOpti
     }
     return {
         useGrouping: true,
-        minimumFractionDigits: decimalPlaces,
-        maximumFractionDigits: decimalPlaces,
+        minimumFractionDigits: precision,
+        maximumFractionDigits: precision,
     }
 }
 
@@ -80,15 +80,15 @@ function buildOptions(num: number, decimalPlaces: number): Intl.NumberFormatOpti
  * 精确格式化数字字符串（不经过 Number 转换，无精度损失）
  * cleanStr: 已移除 separator 的数字字符串，如 "-1234.567"
  */
-function formatNumericString(cleanStr: string, separator: string, decimalPlaces: number): string {
+function formatNumericString(cleanStr: string, separator: string, precision: number): string {
     const negative = cleanStr.startsWith('-')
     const s = (negative || cleanStr.startsWith('+')) ? cleanStr.slice(1) : cleanStr
     let [intPart = '0', decPart = ''] = s.split('.')
     // 去除前导 0（与 parseFloat 行为一致）
     intPart = intPart.replace(/^0+(?=\d)/, '') || '0'
 
-    if (decimalPlaces >= 0) {
-        const keep = decimalPlaces
+    if (precision >= 0) {
+        const keep = precision
         const nextDigit = decPart[keep]
         let kept = decPart.slice(0, keep)
         // 四舍五入（half away from zero）：截断位后首位 >= 5 则进 1
@@ -106,7 +106,7 @@ function formatNumericString(cleanStr: string, separator: string, decimalPlaces:
         }
         decPart = kept.padEnd(keep, '0')
     }
-    // decimalPlaces = -1：decPart 保留原样
+    // precision = -1：decPart 保留原样
 
     const groupedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, separator)
     const dec = decPart ? `.${decPart}` : ''

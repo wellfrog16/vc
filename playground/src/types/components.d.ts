@@ -87,6 +87,7 @@ declare module 'vue' {
     VcInfoTooltip: typeof import('@wfrog/vc-ui/es/components/info-tooltip')['default']
     VcInput: typeof import('@wfrog/vc-ui/es/components/input')['default']
     VcInputNumber: typeof import('@wfrog/vc-ui/es/components/input-number')['default']
+    VcInputThousand: typeof import('@wfrog/vc-ui/es/components/input-thousand')['default']
     VcPcaPicker: typeof import('@wfrog/vc-ui/es/components/pca-picker')['default']
     VcQrCode: typeof import('@wfrog/vc-ui/es/components/qr-code')['default']
     VcScreenfull: typeof import('@wfrog/vc-ui/es/components/screenfull')['default']

@@ -10,4 +10,5 @@ interface Window {
     QRCode: unknown
     Cleave: unknown
     Cropper: unknown
+    echarts: unknown
 }

@@ -110,7 +110,7 @@ export const cdnMapping = {
     // echarts
     echarts: (version = '6.1.0') => ({
         version,
-        instance: () => window,
+        instance: () => defaultWindow && defaultWindow.echarts,
         source: {
             jsdelivr: { js: [`${baseCdnUrl().jsdelivr}/echarts@${version}/dist/echarts.min.js`] },
             defaultBase: { js: [`${baseCdnUrl().defaultBase}/echarts/${version}/dist/echarts.min.js`] },

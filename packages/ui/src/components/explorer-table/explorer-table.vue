@@ -184,7 +184,7 @@ function myRowClassName(data: { row: Record<string, any>, rowIndex: number }) {
         clsName = props.rowClassName
     }
 
-    if (value === selectedValue.value || selectedValues.value.has(value)) {
+    if ((selectedValue.value !== undefined && value === selectedValue.value) || selectedValues.value.has(value)) {
         return `${clsName} ${$style['selected-row']}`
     }
     return clsName

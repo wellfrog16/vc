@@ -32,6 +32,9 @@ const documentData = {
         { name: 'layout', description: '布局切换事件', param: 'card | list' },
         { name: 'column-reset', description: '列设置重置事件', param: '-' },
     ],
+    methods: [
+        { name: 'setKeyword', description: '设置搜索关键字', param: '(value: string) => void' },
+    ],
     slots: [
         { name: 'default', description: '左侧区域' },
         { name: 'custom', description: '右侧区域' },

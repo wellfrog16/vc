@@ -8,6 +8,8 @@ title: 更新日志
 
 ### 新增和更新
 
+- explorer-tools 组件，增加 setKeyword 方法
+
 ### 缺陷修复
 
 - 修复 explorer-table 的 row-class-name 属性

@@ -9,6 +9,7 @@ title: 更新日志
 ### 新增和更新
 
 - explorer-tools 组件，增加 setKeyword 方法
+- explorer-panel 组件，增加 loading 参数
 
 ### 缺陷修复
 

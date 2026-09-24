@@ -1,6 +1,6 @@
 <template>
-    <ElSplitterPanel ref="panelRef" :class="$style.panel" :resizable="resizable" v-bind="$attrs">
-        <div :class="$style.container"><slot /></div>
+    <ElSplitterPanel ref="panelRef" :class="$style.panel" :resizable="resizable">
+        <div v-loading="loading" :class="$style.container"><slot /></div>
     </ElSplitterPanel>
 </template>
 
@@ -13,6 +13,7 @@ import { KEY_NAME } from './explorer-panel'
 const props = withDefaults(defineProps<IExplorerPanelProps>(), {
     resizable: false,
     padding: 8,
+    loading: false,
 })
 
 const panelRef = useTemplateRef('panelRef')
@@ -60,9 +61,9 @@ onBeforeUnmount(() => commonStateWatch.stop())
 
 .container {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     padding: v-bind('`${padding}px`');
-    flex-grow: 1;
     height: 100px;
 }
 </style>

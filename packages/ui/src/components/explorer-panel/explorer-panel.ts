@@ -6,6 +6,7 @@ export interface IExplorerPanelProps {
     resizable?: boolean
     padding?: number
     commonState?: Record<string, any>
+    loading?: boolean
 }
 
 export interface IExplorerPanelState {
